@@ -43,7 +43,7 @@ docs/                  # 设计演进记录（分期取舍与踩坑档案）
 docker/                # docker-compose.yaml（app + worker + qdrant + redis + frontend）
 ```
 
-关键设计（对齐参考实现与教程口径）：
+关键设计：
 
 - **网关配额治理**：`GatewayThrottle` 同时限并发（`LLM_MAX_CONCURRENCY`，默认 2）与请求起点间隔
   （`LLM_MIN_INTERVAL_SECONDS`）；流式请求的名额持有到流耗尽才释放；瞬时故障指数退避重试，
