@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "read_only": true,
+  "checked_at": "2026-09-09T06:41:45.955223+00:00",
+  "remote_trace_verified": false,
+  "status": "CONFIGURATION_MISSING",
+  "missing_fields": [
+    "LANGFUSE_BASE_URL",
+    "LANGFUSE_PUBLIC_KEY",
+    "LANGFUSE_SECRET_KEY"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "read_only": true,
+  "checked_at": "2026-09-09T07:04:08.665583+00:00",
+  "remote_trace_verified": false,
+  "project": {
+    "status": "ACCESS_VERIFIED",
+    "accessible_count": 1,
+    "project_id_sha256": "b410c757aa6f8170f34eb12f"
+  },
+  "status": "PROJECT_ACCESS_VERIFIED",
+  "trace": {
+    "status": "NOT_REQUESTED"
+  }
+}

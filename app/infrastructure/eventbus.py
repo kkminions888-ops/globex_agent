@@ -21,11 +21,35 @@ Presentation 层按 shopping_session_id 订阅后推送给前端 WebSocket。
 from __future__ import annotations
 
 import asyncio
+from contextlib import contextmanager
+from contextvars import ContextVar
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
-from typing import Any
+from typing import Any, Callable
+
+from app.infrastructure.tracing import current_correlation
+from app.infrastructure.operational_metrics import observe_event
 
 TradeEventType = str
+
+# 只观察当前执行任务及其子协程，避免同会话排队时混入另一轮的商品结果。
+_run_observer: ContextVar[Callable[["TradeEvent"], None] | None] = ContextVar(
+    "globex_trade_event_observer", default=None,
+)
+
+
+@contextmanager
+def observe_run_events(observer: Callable[["TradeEvent"], None]):
+    previous = _run_observer.get()
+    def notify(event):
+        if previous is not None:
+            previous(event)
+        observer(event)
+    token = _run_observer.set(notify)
+    try:
+        yield
+    finally:
+        _run_observer.reset(token)
 
 EVENT_TYPES = (
     "agent.dispatch",
@@ -35,9 +59,13 @@ EVENT_TYPES = (
     "plan.update",
     "context.compressed",
     "model.fallback",
+    "usage.summary",
     "cache.hit",
     "task.queued",
     "task.started",
+    "confirmation.required",
+    "confirmation.resolved",
+    "skill.preload",
     "final.result",
     "error",
 )
@@ -49,6 +77,7 @@ class TradeEvent:
     type: TradeEventType
     payload: Any
     occurred_at: str
+    correlation: dict[str, str] = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         return {
@@ -56,6 +85,7 @@ class TradeEvent:
             "type": self.type,
             "payload": self.payload,
             "occurred_at": self.occurred_at,
+            "correlation": self.correlation,
         }
 
     @staticmethod
@@ -65,6 +95,7 @@ class TradeEvent:
             type=raw["type"],
             payload=raw.get("payload"),
             occurred_at=raw.get("occurred_at", ""),
+            correlation=raw.get("correlation", {}),
         )
 
 
@@ -112,7 +143,12 @@ class TradeEventBus:
             type=event_type,
             payload=payload,
             occurred_at=datetime.now(timezone.utc).isoformat(),
+            correlation=current_correlation(shopping_session_id),
         )
+        observe_event(event_type, payload)
+        observer = _run_observer.get()
+        if observer is not None:
+            observer(event)
         self.deliver_local(event)
         self._broadcast(event)
 

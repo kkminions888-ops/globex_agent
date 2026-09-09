@@ -1,0 +1,191 @@
+[
+  {
+    "type": "RUN_STARTED",
+    "threadId": "32524ff091894ced8bd71a192025ef76",
+    "runId": "339de2d9e80c43d3baaa883c056ea501"
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": []
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": []
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "running",
+      "progress": []
+    }
+  },
+  {
+    "type": "TOOL_CALL_START",
+    "toolCallId": "339de2d9e80c43d3baaa883c056ea501:tool:call_8b600674e00c478a92f69006",
+    "toolCallName": "forget_preference_tool"
+  },
+  {
+    "type": "TOOL_CALL_ARGS",
+    "toolCallId": "339de2d9e80c43d3baaa883c056ea501:tool:call_8b600674e00c478a92f69006",
+    "delta": "{\"statement\": \"喜欢"
+  },
+  {
+    "type": "TOOL_CALL_ARGS",
+    "toolCallId": "339de2d9e80c43d3baaa883c056ea501:tool:call_8b600674e00c478a92f69006",
+    "delta": "绿色\""
+  },
+  {
+    "type": "TOOL_CALL_ARGS",
+    "toolCallId": "339de2d9e80c43d3baaa883c056ea501:tool:call_8b600674e00c478a92f69006",
+    "delta": "}"
+  },
+  {
+    "type": "TOOL_CALL_END",
+    "toolCallId": "339de2d9e80c43d3baaa883c056ea501:tool:call_8b600674e00c478a92f69006"
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "running",
+      "progress": [
+        {
+          "id": "339de2d9e80c43d3baaa883c056ea501:tool:call_8b600674e00c478a92f69006",
+          "label": "更新购物偏好",
+          "status": "running"
+        }
+      ]
+    }
+  },
+  {
+    "type": "TOOL_CALL_RESULT",
+    "messageId": "339de2d9e80c43d3baaa883c056ea501:result:call_8b600674e00c478a92f69006",
+    "toolCallId": "339de2d9e80c43d3baaa883c056ea501:tool:call_8b600674e00c478a92f69006",
+    "content": "已撤回买家偏好：喜欢绿色",
+    "role": "tool"
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "running",
+      "progress": [
+        {
+          "id": "339de2d9e80c43d3baaa883c056ea501:tool:call_8b600674e00c478a92f69006",
+          "label": "更新购物偏好",
+          "status": "completed"
+        }
+      ]
+    }
+  },
+  {
+    "type": "TEXT_MESSAGE_START",
+    "messageId": "339de2d9e80c43d3baaa883c056ea501:text:250e3391cf504438b674d452447902a4",
+    "role": "assistant"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "339de2d9e80c43d3baaa883c056ea501:text:250e3391cf504438b674d452447902a4",
+    "delta": "已"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "339de2d9e80c43d3baaa883c056ea501:text:250e3391cf504438b674d452447902a4",
+    "delta": "成功删除"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "339de2d9e80c43d3baaa883c056ea501:text:250e3391cf504438b674d452447902a4",
+    "delta": "“"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "339de2d9e80c43d3baaa883c056ea501:text:250e3391cf504438b674d452447902a4",
+    "delta": "喜欢绿色”"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "339de2d9e80c43d3baaa883c056ea501:text:250e3391cf504438b674d452447902a4",
+    "delta": "这条长期颜色偏好。今后"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "339de2d9e80c43d3baaa883c056ea501:text:250e3391cf504438b674d452447902a4",
+    "delta": "的推荐将不再"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "339de2d9e80c43d3baaa883c056ea501:text:250e3391cf504438b674d452447902a4",
+    "delta": "特别考虑这一颜色"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "339de2d9e80c43d3baaa883c056ea501:text:250e3391cf504438b674d452447902a4",
+    "delta": "倾向。"
+  },
+  {
+    "type": "TEXT_MESSAGE_END",
+    "messageId": "339de2d9e80c43d3baaa883c056ea501:text:250e3391cf504438b674d452447902a4"
+  },
+  {
+    "type": "MESSAGES_SNAPSHOT",
+    "messages": [
+      {
+        "id": "3bbf2a2d264a46ba809f6dcb6b28d81c",
+        "role": "user",
+        "content": "删除长期记忆中的“喜欢绿色”，以后不再保留这条颜色偏好。请实际删除，只做这件事，不搜索商品。"
+      },
+      {
+        "id": "339de2d9e80c43d3baaa883c056ea501:final:answer",
+        "role": "assistant",
+        "content": "已成功删除“喜欢绿色”这条长期颜色偏好。今后的推荐将不再特别考虑这一颜色倾向。"
+      }
+    ]
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "completed",
+      "progress": [
+        {
+          "id": "339de2d9e80c43d3baaa883c056ea501:tool:call_8b600674e00c478a92f69006",
+          "label": "更新购物偏好",
+          "status": "completed"
+        }
+      ]
+    }
+  },
+  {
+    "type": "RUN_FINISHED",
+    "threadId": "32524ff091894ced8bd71a192025ef76",
+    "runId": "339de2d9e80c43d3baaa883c056ea501"
+  }
+]

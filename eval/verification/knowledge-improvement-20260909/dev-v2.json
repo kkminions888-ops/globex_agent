@@ -1,0 +1,1158 @@
+{
+  "scope": "diagnostic_document_scope_v2",
+  "cases": 35,
+  "metrics": {
+    "k": 3,
+    "count": 28,
+    "recall": 1.0,
+    "mrr": 1.0,
+    "ndcg": 1.0,
+    "precision": 0.4524,
+    "filter_accuracy": null,
+    "empty_count": 7,
+    "empty_accuracy": 1.0,
+    "policy_count": 4,
+    "policy_rejection_accuracy": 1.0,
+    "canonical_duplicate_rate": null,
+    "recall_strategies": "frozenset()",
+    "per_query": [
+      {
+        "query": "选购数码配件时，应该优先核对哪些可验证字段？",
+        "retrieved": [
+          "digital-accessories.md",
+          "eval-digital-accessories-避坑与合规.md",
+          "eval-digital-accessories-参数判断.md"
+        ],
+        "relevant": [
+          "digital-accessories.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "single",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "选购家居生活时，应该优先核对哪些可验证字段？",
+        "retrieved": [
+          "home-living.md",
+          "eval-home-living-避坑与合规.md",
+          "eval-home-living-参数判断.md"
+        ],
+        "relevant": [
+          "home-living.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "single",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "选购户外运动时，应该优先核对哪些可验证字段？",
+        "retrieved": [
+          "outdoor-sports.md",
+          "eval-outdoor-sports-避坑与合规.md",
+          "eval-outdoor-sports-参数判断.md"
+        ],
+        "relevant": [
+          "outdoor-sports.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "single",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "选购旅行装备时，应该优先核对哪些可验证字段？",
+        "retrieved": [
+          "travel-gear.md",
+          "eval-travel-gear-避坑与合规.md",
+          "eval-travel-gear-参数判断.md"
+        ],
+        "relevant": [
+          "travel-gear.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "single",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "选购旅行装备 概览时，应该优先核对哪些可验证字段？",
+        "retrieved": [
+          "eval-travel-gear-概览.md",
+          "eval-travel-gear-参数判断.md",
+          "eval-travel-gear-避坑与合规.md"
+        ],
+        "relevant": [
+          "eval-travel-gear-概览.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "single",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "选购旅行装备 避坑与合规时，应该优先核对哪些可验证字段？",
+        "retrieved": [
+          "eval-travel-gear-避坑与合规.md",
+          "eval-outdoor-sports-避坑与合规.md",
+          "eval-travel-gear-参数判断.md"
+        ],
+        "relevant": [
+          "eval-travel-gear-避坑与合规.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "single",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "选购数码配件 概览时，应该优先核对哪些可验证字段？",
+        "retrieved": [
+          "eval-digital-accessories-概览.md",
+          "eval-digital-accessories-避坑与合规.md",
+          "eval-digital-accessories-参数判断.md"
+        ],
+        "relevant": [
+          "eval-digital-accessories-概览.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "single",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "选购数码配件 参数判断时，应该优先核对哪些可验证字段？",
+        "retrieved": [
+          "eval-digital-accessories-参数判断.md",
+          "eval-digital-accessories-概览.md",
+          "eval-digital-accessories-避坑与合规.md"
+        ],
+        "relevant": [
+          "eval-digital-accessories-参数判断.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "single",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "选购数码配件 价格与预算时，应该优先核对哪些可验证字段？",
+        "retrieved": [
+          "eval-digital-accessories-价格与预算.md",
+          "eval-digital-accessories-避坑与合规.md",
+          "eval-digital-accessories-概览.md"
+        ],
+        "relevant": [
+          "eval-digital-accessories-价格与预算.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "single",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "选购数码配件 避坑与合规时，应该优先核对哪些可验证字段？",
+        "retrieved": [
+          "eval-digital-accessories-避坑与合规.md",
+          "eval-digital-accessories-参数判断.md",
+          "eval-digital-accessories-概览.md"
+        ],
+        "relevant": [
+          "eval-digital-accessories-避坑与合规.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "single",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "选购家居生活 概览时，应该优先核对哪些可验证字段？",
+        "retrieved": [
+          "eval-home-living-概览.md",
+          "eval-home-living-参数判断.md",
+          "eval-home-living-避坑与合规.md"
+        ],
+        "relevant": [
+          "eval-home-living-概览.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "single",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "选购家居生活 参数判断时，应该优先核对哪些可验证字段？",
+        "retrieved": [
+          "eval-home-living-参数判断.md",
+          "eval-home-living-避坑与合规.md",
+          "eval-home-living-概览.md"
+        ],
+        "relevant": [
+          "eval-home-living-参数判断.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "single",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "选购家居生活 价格与预算时，应该优先核对哪些可验证字段？",
+        "retrieved": [
+          "eval-home-living-价格与预算.md",
+          "eval-home-living-参数判断.md",
+          "eval-home-living-避坑与合规.md"
+        ],
+        "relevant": [
+          "eval-home-living-价格与预算.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "single",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "选购户外运动 价格与预算时，应该优先核对哪些可验证字段？",
+        "retrieved": [
+          "eval-outdoor-sports-价格与预算.md",
+          "eval-outdoor-sports-避坑与合规.md",
+          "eval-outdoor-sports-参数判断.md"
+        ],
+        "relevant": [
+          "eval-outdoor-sports-价格与预算.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "single",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "同时比较数码配件和家居生活 价格与预算时，哪些证据不能只凭标题判断？",
+        "retrieved": [
+          "digital-accessories.md",
+          "eval-home-living-价格与预算.md",
+          "eval-digital-accessories-价格与预算.md"
+        ],
+        "relevant": [
+          "digital-accessories.md",
+          "eval-home-living-价格与预算.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.6666666666666666,
+        "filter_ok": null,
+        "note": "",
+        "kind": "cross",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "同时比较家居生活和户外运动 价格与预算时，哪些证据不能只凭标题判断？",
+        "retrieved": [
+          "home-living.md",
+          "eval-outdoor-sports-价格与预算.md",
+          "eval-home-living-价格与预算.md"
+        ],
+        "relevant": [
+          "home-living.md",
+          "eval-outdoor-sports-价格与预算.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.6666666666666666,
+        "filter_ok": null,
+        "note": "",
+        "kind": "cross",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "同时比较户外运动和美妆个护 价格与预算时，哪些证据不能只凭标题判断？",
+        "retrieved": [
+          "outdoor-sports.md",
+          "eval-beauty-care-价格与预算.md",
+          "eval-outdoor-sports-价格与预算.md"
+        ],
+        "relevant": [
+          "outdoor-sports.md",
+          "eval-beauty-care-价格与预算.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.6666666666666666,
+        "filter_ok": null,
+        "note": "",
+        "kind": "cross",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "同时比较旅行装备和厨房餐饮 概览时，哪些证据不能只凭标题判断？",
+        "retrieved": [
+          "travel-gear.md",
+          "eval-kitchen-dining-概览.md",
+          "eval-travel-gear-参数判断.md"
+        ],
+        "relevant": [
+          "travel-gear.md",
+          "eval-kitchen-dining-概览.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.6666666666666666,
+        "filter_ok": null,
+        "note": "",
+        "kind": "cross",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "同时比较旅行装备 概览和厨房餐饮 避坑与合规时，哪些证据不能只凭标题判断？",
+        "retrieved": [
+          "eval-travel-gear-概览.md",
+          "eval-kitchen-dining-避坑与合规.md",
+          "eval-travel-gear-避坑与合规.md"
+        ],
+        "relevant": [
+          "eval-travel-gear-概览.md",
+          "eval-kitchen-dining-避坑与合规.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.6666666666666666,
+        "filter_ok": null,
+        "note": "",
+        "kind": "cross",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "同时比较旅行装备 避坑与合规和办公学习 概览时，哪些证据不能只凭标题判断？",
+        "retrieved": [
+          "eval-travel-gear-避坑与合规.md",
+          "eval-office-study-概览.md",
+          "eval-office-study-避坑与合规.md"
+        ],
+        "relevant": [
+          "eval-travel-gear-避坑与合规.md",
+          "eval-office-study-概览.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.6666666666666666,
+        "filter_ok": null,
+        "note": "",
+        "kind": "cross",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "同时比较数码配件 概览和办公学习 参数判断时，哪些证据不能只凭标题判断？",
+        "retrieved": [
+          "eval-digital-accessories-概览.md",
+          "eval-office-study-参数判断.md",
+          "eval-digital-accessories-参数判断.md"
+        ],
+        "relevant": [
+          "eval-digital-accessories-概览.md",
+          "eval-office-study-参数判断.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.6666666666666666,
+        "filter_ok": null,
+        "note": "",
+        "kind": "cross",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "同时比较数码配件 参数判断和办公学习 价格与预算时，哪些证据不能只凭标题判断？",
+        "retrieved": [
+          "eval-digital-accessories-参数判断.md",
+          "eval-office-study-价格与预算.md",
+          "eval-office-study-参数判断.md"
+        ],
+        "relevant": [
+          "eval-digital-accessories-参数判断.md",
+          "eval-office-study-价格与预算.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.6666666666666666,
+        "filter_ok": null,
+        "note": "",
+        "kind": "cross",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "同时比较数码配件 价格与预算和办公学习 避坑与合规时，哪些证据不能只凭标题判断？",
+        "retrieved": [
+          "eval-digital-accessories-价格与预算.md",
+          "eval-office-study-避坑与合规.md",
+          "eval-digital-accessories-避坑与合规.md"
+        ],
+        "relevant": [
+          "eval-digital-accessories-价格与预算.md",
+          "eval-office-study-避坑与合规.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.6666666666666666,
+        "filter_ok": null,
+        "note": "",
+        "kind": "cross",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "同时比较数码配件 避坑与合规和母婴宠物 概览时，哪些证据不能只凭标题判断？",
+        "retrieved": [
+          "eval-digital-accessories-避坑与合规.md",
+          "eval-baby-pet-概览.md",
+          "eval-baby-pet-避坑与合规.md"
+        ],
+        "relevant": [
+          "eval-digital-accessories-避坑与合规.md",
+          "eval-baby-pet-概览.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.6666666666666666,
+        "filter_ok": null,
+        "note": "",
+        "kind": "cross",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "GLOBAL 的政策快照若没有权威来源或已经超过有效期，还能当作确定事实回答吗？",
+        "retrieved": [
+          "cross-border-guide.md",
+          "eval-policy-material.md",
+          "eval-policy-battery.md"
+        ],
+        "relevant": [
+          "cross-border-guide.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "conflict_or_expired",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "EU 的政策快照若没有权威来源或已经超过有效期，还能当作确定事实回答吗？",
+        "retrieved": [
+          "eval-policy-eu.md",
+          "eval-policy-us.md",
+          "eval-policy-jp.md"
+        ],
+        "relevant": [
+          "eval-policy-eu.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "conflict_or_expired",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "JP 的政策快照若没有权威来源或已经超过有效期，还能当作确定事实回答吗？",
+        "retrieved": [
+          "eval-policy-jp.md",
+          "eval-policy-us.md",
+          "eval-policy-cn.md"
+        ],
+        "relevant": [
+          "eval-policy-jp.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "conflict_or_expired",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      },
+      {
+        "query": "SG 的政策快照若没有权威来源或已经超过有效期，还能当作确定事实回答吗？",
+        "retrieved": [
+          "eval-policy-sg.md",
+          "eval-policy-us.md",
+          "eval-policy-jp.md"
+        ],
+        "relevant": [
+          "eval-policy-sg.md"
+        ],
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "precision": 0.3333333333333333,
+        "filter_ok": null,
+        "note": "",
+        "kind": "conflict_or_expired",
+        "canonical_duplicate_rate": null,
+        "dimensions": {
+          "split": "dev"
+        }
+      }
+    ]
+  },
+  "observations": [
+    {
+      "case_id": "kb-001",
+      "query": "选购数码配件时，应该优先核对哪些可验证字段？",
+      "split": "dev",
+      "retrieved": [
+        "digital-accessories.md",
+        "eval-digital-accessories-避坑与合规.md",
+        "eval-digital-accessories-参数判断.md"
+      ],
+      "relevant": [
+        "digital-accessories.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-002",
+      "query": "选购家居生活时，应该优先核对哪些可验证字段？",
+      "split": "dev",
+      "retrieved": [
+        "home-living.md",
+        "eval-home-living-避坑与合规.md",
+        "eval-home-living-参数判断.md"
+      ],
+      "relevant": [
+        "home-living.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-003",
+      "query": "选购户外运动时，应该优先核对哪些可验证字段？",
+      "split": "dev",
+      "retrieved": [
+        "outdoor-sports.md",
+        "eval-outdoor-sports-避坑与合规.md",
+        "eval-outdoor-sports-参数判断.md"
+      ],
+      "relevant": [
+        "outdoor-sports.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-004",
+      "query": "选购旅行装备时，应该优先核对哪些可验证字段？",
+      "split": "dev",
+      "retrieved": [
+        "travel-gear.md",
+        "eval-travel-gear-避坑与合规.md",
+        "eval-travel-gear-参数判断.md"
+      ],
+      "relevant": [
+        "travel-gear.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-005",
+      "query": "选购旅行装备 概览时，应该优先核对哪些可验证字段？",
+      "split": "dev",
+      "retrieved": [
+        "eval-travel-gear-概览.md",
+        "eval-travel-gear-参数判断.md",
+        "eval-travel-gear-避坑与合规.md"
+      ],
+      "relevant": [
+        "eval-travel-gear-概览.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-006",
+      "query": "选购旅行装备 避坑与合规时，应该优先核对哪些可验证字段？",
+      "split": "dev",
+      "retrieved": [
+        "eval-travel-gear-避坑与合规.md",
+        "eval-outdoor-sports-避坑与合规.md",
+        "eval-travel-gear-参数判断.md"
+      ],
+      "relevant": [
+        "eval-travel-gear-避坑与合规.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-007",
+      "query": "选购数码配件 概览时，应该优先核对哪些可验证字段？",
+      "split": "dev",
+      "retrieved": [
+        "eval-digital-accessories-概览.md",
+        "eval-digital-accessories-避坑与合规.md",
+        "eval-digital-accessories-参数判断.md"
+      ],
+      "relevant": [
+        "eval-digital-accessories-概览.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-008",
+      "query": "选购数码配件 参数判断时，应该优先核对哪些可验证字段？",
+      "split": "dev",
+      "retrieved": [
+        "eval-digital-accessories-参数判断.md",
+        "eval-digital-accessories-概览.md",
+        "eval-digital-accessories-避坑与合规.md"
+      ],
+      "relevant": [
+        "eval-digital-accessories-参数判断.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-009",
+      "query": "选购数码配件 价格与预算时，应该优先核对哪些可验证字段？",
+      "split": "dev",
+      "retrieved": [
+        "eval-digital-accessories-价格与预算.md",
+        "eval-digital-accessories-避坑与合规.md",
+        "eval-digital-accessories-概览.md"
+      ],
+      "relevant": [
+        "eval-digital-accessories-价格与预算.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-010",
+      "query": "选购数码配件 避坑与合规时，应该优先核对哪些可验证字段？",
+      "split": "dev",
+      "retrieved": [
+        "eval-digital-accessories-避坑与合规.md",
+        "eval-digital-accessories-参数判断.md",
+        "eval-digital-accessories-概览.md"
+      ],
+      "relevant": [
+        "eval-digital-accessories-避坑与合规.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-011",
+      "query": "选购家居生活 概览时，应该优先核对哪些可验证字段？",
+      "split": "dev",
+      "retrieved": [
+        "eval-home-living-概览.md",
+        "eval-home-living-参数判断.md",
+        "eval-home-living-避坑与合规.md"
+      ],
+      "relevant": [
+        "eval-home-living-概览.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-012",
+      "query": "选购家居生活 参数判断时，应该优先核对哪些可验证字段？",
+      "split": "dev",
+      "retrieved": [
+        "eval-home-living-参数判断.md",
+        "eval-home-living-避坑与合规.md",
+        "eval-home-living-概览.md"
+      ],
+      "relevant": [
+        "eval-home-living-参数判断.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-013",
+      "query": "选购家居生活 价格与预算时，应该优先核对哪些可验证字段？",
+      "split": "dev",
+      "retrieved": [
+        "eval-home-living-价格与预算.md",
+        "eval-home-living-参数判断.md",
+        "eval-home-living-避坑与合规.md"
+      ],
+      "relevant": [
+        "eval-home-living-价格与预算.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-014",
+      "query": "选购户外运动 价格与预算时，应该优先核对哪些可验证字段？",
+      "split": "dev",
+      "retrieved": [
+        "eval-outdoor-sports-价格与预算.md",
+        "eval-outdoor-sports-避坑与合规.md",
+        "eval-outdoor-sports-参数判断.md"
+      ],
+      "relevant": [
+        "eval-outdoor-sports-价格与预算.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-021",
+      "query": "同时比较数码配件和家居生活 价格与预算时，哪些证据不能只凭标题判断？",
+      "split": "dev",
+      "retrieved": [
+        "digital-accessories.md",
+        "eval-home-living-价格与预算.md",
+        "eval-digital-accessories-价格与预算.md"
+      ],
+      "relevant": [
+        "digital-accessories.md",
+        "eval-home-living-价格与预算.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-022",
+      "query": "同时比较家居生活和户外运动 价格与预算时，哪些证据不能只凭标题判断？",
+      "split": "dev",
+      "retrieved": [
+        "home-living.md",
+        "eval-outdoor-sports-价格与预算.md",
+        "eval-home-living-价格与预算.md"
+      ],
+      "relevant": [
+        "home-living.md",
+        "eval-outdoor-sports-价格与预算.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-023",
+      "query": "同时比较户外运动和美妆个护 价格与预算时，哪些证据不能只凭标题判断？",
+      "split": "dev",
+      "retrieved": [
+        "outdoor-sports.md",
+        "eval-beauty-care-价格与预算.md",
+        "eval-outdoor-sports-价格与预算.md"
+      ],
+      "relevant": [
+        "outdoor-sports.md",
+        "eval-beauty-care-价格与预算.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-024",
+      "query": "同时比较旅行装备和厨房餐饮 概览时，哪些证据不能只凭标题判断？",
+      "split": "dev",
+      "retrieved": [
+        "travel-gear.md",
+        "eval-kitchen-dining-概览.md",
+        "eval-travel-gear-参数判断.md"
+      ],
+      "relevant": [
+        "travel-gear.md",
+        "eval-kitchen-dining-概览.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-025",
+      "query": "同时比较旅行装备 概览和厨房餐饮 避坑与合规时，哪些证据不能只凭标题判断？",
+      "split": "dev",
+      "retrieved": [
+        "eval-travel-gear-概览.md",
+        "eval-kitchen-dining-避坑与合规.md",
+        "eval-travel-gear-避坑与合规.md"
+      ],
+      "relevant": [
+        "eval-travel-gear-概览.md",
+        "eval-kitchen-dining-避坑与合规.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-026",
+      "query": "同时比较旅行装备 避坑与合规和办公学习 概览时，哪些证据不能只凭标题判断？",
+      "split": "dev",
+      "retrieved": [
+        "eval-travel-gear-避坑与合规.md",
+        "eval-office-study-概览.md",
+        "eval-office-study-避坑与合规.md"
+      ],
+      "relevant": [
+        "eval-travel-gear-避坑与合规.md",
+        "eval-office-study-概览.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-027",
+      "query": "同时比较数码配件 概览和办公学习 参数判断时，哪些证据不能只凭标题判断？",
+      "split": "dev",
+      "retrieved": [
+        "eval-digital-accessories-概览.md",
+        "eval-office-study-参数判断.md",
+        "eval-digital-accessories-参数判断.md"
+      ],
+      "relevant": [
+        "eval-digital-accessories-概览.md",
+        "eval-office-study-参数判断.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-028",
+      "query": "同时比较数码配件 参数判断和办公学习 价格与预算时，哪些证据不能只凭标题判断？",
+      "split": "dev",
+      "retrieved": [
+        "eval-digital-accessories-参数判断.md",
+        "eval-office-study-价格与预算.md",
+        "eval-office-study-参数判断.md"
+      ],
+      "relevant": [
+        "eval-digital-accessories-参数判断.md",
+        "eval-office-study-价格与预算.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-029",
+      "query": "同时比较数码配件 价格与预算和办公学习 避坑与合规时，哪些证据不能只凭标题判断？",
+      "split": "dev",
+      "retrieved": [
+        "eval-digital-accessories-价格与预算.md",
+        "eval-office-study-避坑与合规.md",
+        "eval-digital-accessories-避坑与合规.md"
+      ],
+      "relevant": [
+        "eval-digital-accessories-价格与预算.md",
+        "eval-office-study-避坑与合规.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-030",
+      "query": "同时比较数码配件 避坑与合规和母婴宠物 概览时，哪些证据不能只凭标题判断？",
+      "split": "dev",
+      "retrieved": [
+        "eval-digital-accessories-避坑与合规.md",
+        "eval-baby-pet-概览.md",
+        "eval-baby-pet-避坑与合规.md"
+      ],
+      "relevant": [
+        "eval-digital-accessories-避坑与合规.md",
+        "eval-baby-pet-概览.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null
+    },
+    {
+      "case_id": "kb-036",
+      "query": "请直接告诉我巴西进口的精确税率和清关时效。",
+      "split": "dev",
+      "retrieved": [],
+      "relevant": [],
+      "expected_unanswerable": true,
+      "unanswerable_pass": true
+    },
+    {
+      "case_id": "kb-037",
+      "query": "请直接告诉我火星基地的配送服务等级。",
+      "split": "dev",
+      "retrieved": [],
+      "relevant": [],
+      "expected_unanswerable": true,
+      "unanswerable_pass": true
+    },
+    {
+      "case_id": "kb-038",
+      "query": "请直接告诉我某品牌明年新品的官方零售价。",
+      "split": "dev",
+      "retrieved": [],
+      "relevant": [],
+      "expected_unanswerable": true,
+      "unanswerable_pass": true
+    },
+    {
+      "case_id": "kb-039",
+      "query": "请直接告诉我未提供目的国时的确定关税金额。",
+      "split": "dev",
+      "retrieved": [],
+      "relevant": [],
+      "expected_unanswerable": true,
+      "unanswerable_pass": true
+    },
+    {
+      "case_id": "kb-040",
+      "query": "请直接告诉我没有商品尺寸时的准确体积重。",
+      "split": "dev",
+      "retrieved": [],
+      "relevant": [],
+      "expected_unanswerable": true,
+      "unanswerable_pass": true
+    },
+    {
+      "case_id": "kb-041",
+      "query": "请直接告诉我实时汇率明日的收盘价。",
+      "split": "dev",
+      "retrieved": [],
+      "relevant": [],
+      "expected_unanswerable": true,
+      "unanswerable_pass": true
+    },
+    {
+      "case_id": "kb-042",
+      "query": "请直接告诉我缺少电池容量时能否航空托运。",
+      "split": "dev",
+      "retrieved": [],
+      "relevant": [],
+      "expected_unanswerable": true,
+      "unanswerable_pass": true
+    },
+    {
+      "case_id": "kb-046",
+      "query": "GLOBAL 的政策快照若没有权威来源或已经超过有效期，还能当作确定事实回答吗？",
+      "split": "dev",
+      "retrieved": [
+        "cross-border-guide.md",
+        "eval-policy-material.md",
+        "eval-policy-battery.md"
+      ],
+      "relevant": [
+        "cross-border-guide.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null,
+      "policy_statuses": [
+        "non_authoritative_source"
+      ],
+      "policy_pass": true
+    },
+    {
+      "case_id": "kb-047",
+      "query": "EU 的政策快照若没有权威来源或已经超过有效期，还能当作确定事实回答吗？",
+      "split": "dev",
+      "retrieved": [
+        "eval-policy-eu.md",
+        "eval-policy-us.md",
+        "eval-policy-jp.md"
+      ],
+      "relevant": [
+        "eval-policy-eu.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null,
+      "policy_statuses": [
+        "non_authoritative_source"
+      ],
+      "policy_pass": true
+    },
+    {
+      "case_id": "kb-048",
+      "query": "JP 的政策快照若没有权威来源或已经超过有效期，还能当作确定事实回答吗？",
+      "split": "dev",
+      "retrieved": [
+        "eval-policy-jp.md",
+        "eval-policy-us.md",
+        "eval-policy-cn.md"
+      ],
+      "relevant": [
+        "eval-policy-jp.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null,
+      "policy_statuses": [
+        "non_authoritative_source"
+      ],
+      "policy_pass": true
+    },
+    {
+      "case_id": "kb-049",
+      "query": "SG 的政策快照若没有权威来源或已经超过有效期，还能当作确定事实回答吗？",
+      "split": "dev",
+      "retrieved": [
+        "eval-policy-sg.md",
+        "eval-policy-us.md",
+        "eval-policy-jp.md"
+      ],
+      "relevant": [
+        "eval-policy-sg.md"
+      ],
+      "expected_unanswerable": false,
+      "unanswerable_pass": null,
+      "policy_statuses": [
+        "non_authoritative_source"
+      ],
+      "policy_pass": true
+    }
+  ]
+}

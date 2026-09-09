@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
-"""订单三个 UseCase：PlaceOrder / QueryOrder / CancelOrder
-
-TradeAgent 的工具层只做参数搬运，业务规则（库存扣减、状态机、金额计算）全部收敛在这里与 Order 聚合内。
-"""
+"""订单用例：写工具仅准备确认，真实写入统一通过 ConfirmationService.resolve。"""
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
-from app.domain.catalog.ports.product_repository import ProductRepository
 from app.domain.order.address import Address
-from app.domain.order.order import Order
-from app.domain.order.order_line import OrderLine
-from app.domain.order.ports.order_repository import OrderRepository
+
+if TYPE_CHECKING:
+    from app.application.usecases.confirmation_service import ConfirmationService
+    from app.domain.order.ports.trade_store import TradeStore
 
 
 @dataclass(frozen=True)
@@ -20,78 +18,42 @@ class OrderItemInput:
     sku_id: str
     quantity: int
 
+    def __post_init__(self) -> None:
+        if not isinstance(self.product_id, str) or not self.product_id.strip():
+            raise ValueError("OrderItem.product_id 不能为空")
+        if not isinstance(self.sku_id, str) or not self.sku_id.strip():
+            raise ValueError("OrderItem.sku_id 不能为空")
+        if type(self.quantity) is not int or self.quantity <= 0:
+            raise ValueError("OrderItem.quantity 必须为正整数，不能使用布尔值、小数或字符串")
+
 
 class PlaceOrderUseCase:
-    def __init__(self, product_repo: ProductRepository, order_repo: OrderRepository) -> None:
-        self._product_repo = product_repo
-        self._order_repo = order_repo
+    def __init__(self, confirmations: ConfirmationService) -> None:
+        self._confirmations = confirmations
 
-    async def execute(self, buyer_id: str, items: list[OrderItemInput], shipping_address: Address) -> dict:
-        if not items:
-            raise ValueError("PlaceOrder.items 不能为空")
-
-        lines: list[OrderLine] = []
-        deducted: list[tuple] = []  # 已扣减的 (sku, quantity)，失败时回滚
-        try:
-            for item in items:
-                product = await self._product_repo.find_by_id(item.product_id)
-                if product is None:
-                    raise ValueError(f"商品不存在：{item.product_id}")
-                sku = product.find_sku(item.sku_id)
-                if sku is None:
-                    raise ValueError(f"Sku 不存在：{item.product_id}/{item.sku_id}")
-                sku.deduct_stock(item.quantity)
-                deducted.append((sku, item.quantity))
-                lines.append(
-                    OrderLine(
-                        product_id=product.product_id,
-                        sku_id=sku.sku_id,
-                        title=f"{product.title}（{sku.spec}）",
-                        unit_price=sku.price,
-                        quantity=item.quantity,
-                    ),
-                )
-            order = Order.place(
-                order_id=await self._order_repo.next_order_id(),
-                buyer_id=buyer_id,
-                shipping_address=shipping_address,
-                lines=lines,
-            )
-        except Exception:
-            for sku, quantity in deducted:
-                sku.restore_stock(quantity)
-            raise
-        await self._order_repo.save(order)
-        return order.snapshot()
+    async def execute(
+        self, buyer_id: str, items: list[OrderItemInput], shipping_address: Address, *, session_id: str,
+    ) -> dict:
+        """只生成权威确认快照，不扣库存、不创建订单。"""
+        return await self._confirmations.prepare_order(buyer_id, session_id, items, shipping_address)
 
 
 class QueryOrderUseCase:
-    def __init__(self, order_repo: OrderRepository) -> None:
-        self._order_repo = order_repo
+    def __init__(self, trade_store: TradeStore) -> None:
+        self._trade_store = trade_store
 
-    async def execute(self, order_id: str) -> dict:
-        order = await self._order_repo.find_by_id(order_id)
-        if order is None:
-            raise ValueError(f"订单不存在：{order_id}")
-        return order.snapshot()
+    async def execute(self, order_id: str, *, buyer_id: str) -> dict:
+        if not isinstance(buyer_id, str) or not buyer_id.strip():
+            raise ValueError("查询订单必须提供买家身份")
+        if not isinstance(order_id, str) or not order_id.strip():
+            raise ValueError("订单号不能为空")
+        return await self._trade_store.get_order(order_id, buyer_id=buyer_id)
 
 
 class CancelOrderUseCase:
-    def __init__(self, product_repo: ProductRepository, order_repo: OrderRepository) -> None:
-        self._product_repo = product_repo
-        self._order_repo = order_repo
+    def __init__(self, confirmations: ConfirmationService) -> None:
+        self._confirmations = confirmations
 
-    async def execute(self, order_id: str, reason: str) -> dict:
-        order = await self._order_repo.find_by_id(order_id)
-        if order is None:
-            raise ValueError(f"订单不存在：{order_id}")
-        order.cancel(reason)
-        # 取消后回补库存
-        for line in order.lines:
-            product = await self._product_repo.find_by_id(line.product_id)
-            if product is not None:
-                sku = product.find_sku(line.sku_id)
-                if sku is not None:
-                    sku.restore_stock(line.quantity)
-        await self._order_repo.save(order)
-        return order.snapshot()
+    async def execute(self, order_id: str, reason: str, *, buyer_id: str, session_id: str) -> dict:
+        """只准备取消确认；库存回补由用户确认后的单个事务执行。"""
+        return await self._confirmations.prepare_cancel(buyer_id, session_id, order_id, reason)

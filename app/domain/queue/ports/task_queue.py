@@ -33,6 +33,10 @@ class IntentTask:
     # 长会话（轮数多、上下文大）单次耗时明显更长，
     # 把它们分到单独队列，避免把短平快的新会话堵在后面。
     priority: int = 0
+    # W3C Trace Context 只用于跨进程关联，不能参与业务幂等指纹。
+    traceparent: str = ""
+    tracestate: str = ""
+    request_id: str = ""
 
     def to_dict(self) -> dict:
         return {
@@ -44,6 +48,9 @@ class IntentTask:
             "raw_query": self.raw_query,
             "enqueued_at": self.enqueued_at,
             "priority": self.priority,
+            "traceparent": self.traceparent,
+            "tracestate": self.tracestate,
+            "request_id": self.request_id,
         }
 
     @staticmethod
@@ -57,16 +64,32 @@ class IntentTask:
             raw_query=raw.get("raw_query", ""),
             enqueued_at=raw.get("enqueued_at", ""),
             priority=int(raw.get("priority", 0)),
+            traceparent=raw.get("traceparent", ""),
+            tracestate=raw.get("tracestate", ""),
+            request_id=raw.get("request_id", ""),
         )
 
 
 @dataclass(frozen=True)
 class TaskStatus:
     task_id: str
-    state: str  # queued / running / done / failed
+    state: str  # queued / running / retrying / done / failed
     final_text: str = ""
     error: str = ""
     queue_position: int = 0
+    stream: str = ""
+    message_id: str = ""
+    deliveries: int = 0
+
+
+@dataclass(frozen=True)
+class QueueDelivery:
+    """一次实际领取；保留消息来源，才能正确续期、重投与确认。"""
+
+    stream: str
+    message_id: str
+    payload: str
+    deliveries: int = 1
 
 
 class TaskQueue(ABC):

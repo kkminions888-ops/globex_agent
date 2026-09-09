@@ -1,0 +1,363 @@
+[
+  {
+    "type": "RUN_STARTED",
+    "threadId": "015da3fe-1487-4582-b456-12f82d9f4dec",
+    "runId": "b95c0cd0-489f-4798-b231-5868e804a1b2"
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": []
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": []
+    }
+  },
+  {
+    "type": "CUSTOM",
+    "name": "skill.preload",
+    "value": {
+      "toolCallId": "b95c0cd0-489f-4798-b231-5868e804a1b2:preload:2121cc001cf44fd8a17b8f8535231c2c",
+      "source": "server_preload",
+      "status": "reading",
+      "id": "shopping-needs-clarification",
+      "version": "1.0",
+      "contentHash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5"
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [
+        {
+          "toolCallId": "b95c0cd0-489f-4798-b231-5868e804a1b2:preload:2121cc001cf44fd8a17b8f8535231c2c",
+          "source": "server_preload",
+          "status": "reading",
+          "id": "shopping-needs-clarification",
+          "version": "1.0",
+          "contentHash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5"
+        }
+      ],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": [
+        {
+          "id": "b95c0cd0-489f-4798-b231-5868e804a1b2:preload:2121cc001cf44fd8a17b8f8535231c2c",
+          "label": "读取所选方案",
+          "status": "running"
+        }
+      ]
+    }
+  },
+  {
+    "type": "CUSTOM",
+    "name": "skill.preload",
+    "value": {
+      "toolCallId": "b95c0cd0-489f-4798-b231-5868e804a1b2:preload:2121cc001cf44fd8a17b8f8535231c2c",
+      "source": "server_preload",
+      "status": "used",
+      "id": "shopping-needs-clarification",
+      "version": "1.0",
+      "contentHash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5",
+      "title": "选购需求梳理"
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [
+        {
+          "toolCallId": "b95c0cd0-489f-4798-b231-5868e804a1b2:preload:2121cc001cf44fd8a17b8f8535231c2c",
+          "source": "server_preload",
+          "status": "used",
+          "id": "shopping-needs-clarification",
+          "version": "1.0",
+          "contentHash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5",
+          "title": "选购需求梳理"
+        }
+      ],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": [
+        {
+          "id": "b95c0cd0-489f-4798-b231-5868e804a1b2:preload:2121cc001cf44fd8a17b8f8535231c2c",
+          "label": "读取所选方案",
+          "status": "completed"
+        }
+      ]
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [
+        {
+          "toolCallId": "b95c0cd0-489f-4798-b231-5868e804a1b2:preload:2121cc001cf44fd8a17b8f8535231c2c",
+          "source": "server_preload",
+          "status": "used",
+          "id": "shopping-needs-clarification",
+          "version": "1.0",
+          "contentHash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5",
+          "title": "选购需求梳理"
+        }
+      ],
+      "searchCompleted": false,
+      "status": "running",
+      "progress": [
+        {
+          "id": "b95c0cd0-489f-4798-b231-5868e804a1b2:preload:2121cc001cf44fd8a17b8f8535231c2c",
+          "label": "读取所选方案",
+          "status": "completed"
+        }
+      ]
+    }
+  },
+  {
+    "type": "CUSTOM",
+    "name": "model.fallback",
+    "value": {
+      "from": "qwen3-max",
+      "to": "qwen-plus",
+      "reason": "Connection error."
+    }
+  },
+  {
+    "type": "CUSTOM",
+    "name": "error",
+    "value": {
+      "message": "上游瞬时故障，正在重试：Connection error.",
+      "retrying": true
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [
+        {
+          "toolCallId": "b95c0cd0-489f-4798-b231-5868e804a1b2:preload:2121cc001cf44fd8a17b8f8535231c2c",
+          "source": "server_preload",
+          "status": "used",
+          "id": "shopping-needs-clarification",
+          "version": "1.0",
+          "contentHash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5",
+          "title": "选购需求梳理"
+        }
+      ],
+      "searchCompleted": false,
+      "status": "running",
+      "progress": [
+        {
+          "id": "b95c0cd0-489f-4798-b231-5868e804a1b2:preload:2121cc001cf44fd8a17b8f8535231c2c",
+          "label": "读取所选方案",
+          "status": "completed"
+        }
+      ]
+    }
+  },
+  {
+    "type": "CUSTOM",
+    "name": "model.fallback",
+    "value": {
+      "from": "qwen3-max",
+      "to": "qwen-plus",
+      "reason": "Connection error."
+    }
+  },
+  {
+    "type": "CUSTOM",
+    "name": "error",
+    "value": {
+      "message": "上游瞬时故障，正在重试：Connection error.",
+      "retrying": true
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [
+        {
+          "toolCallId": "b95c0cd0-489f-4798-b231-5868e804a1b2:preload:2121cc001cf44fd8a17b8f8535231c2c",
+          "source": "server_preload",
+          "status": "used",
+          "id": "shopping-needs-clarification",
+          "version": "1.0",
+          "contentHash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5",
+          "title": "选购需求梳理"
+        }
+      ],
+      "searchCompleted": false,
+      "status": "running",
+      "progress": [
+        {
+          "id": "b95c0cd0-489f-4798-b231-5868e804a1b2:preload:2121cc001cf44fd8a17b8f8535231c2c",
+          "label": "读取所选方案",
+          "status": "completed"
+        }
+      ]
+    }
+  },
+  {
+    "type": "TEXT_MESSAGE_START",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "role": "assistant"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": "已"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": "明确：\n"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": "- 商品"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": "类型：通"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": "勤背包  \n-"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": " 预算上限"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": "：300元人民币"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": "  \n- 配送国家"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": "：中国  \n-"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": " 容量要求：20"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": " 到 2"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": "5 升  \n-"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": " 材质禁忌：不要"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": "真皮  \n- 颜"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": "色偏好：优先黑色  \n\n"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": "需求已整理清楚"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1",
+    "delta": "，无需进一步确认。"
+  },
+  {
+    "type": "TEXT_MESSAGE_END",
+    "messageId": "b95c0cd0-489f-4798-b231-5868e804a1b2:text:528f104d2cb7454baf10197dc73658b1"
+  },
+  {
+    "type": "MESSAGES_SNAPSHOT",
+    "messages": [
+      {
+        "id": "a64d7843-82bd-4553-8886-6cdd57a37ae5",
+        "role": "user",
+        "content": "请整理我的选购需求：通勤背包，300元人民币以内，寄到中国，20到25升、不要真皮，优先黑色。先整理需求，不搜索商品。"
+      },
+      {
+        "id": "b95c0cd0-489f-4798-b231-5868e804a1b2:final:answer",
+        "role": "assistant",
+        "content": "已明确：\n- 商品类型：通勤背包  \n- 预算上限：300元人民币  \n- 配送国家：中国  \n- 容量要求：20 到 25 升  \n- 材质禁忌：不要真皮  \n- 颜色偏好：优先黑色  \n\n需求已整理清楚，无需进一步确认。"
+      }
+    ]
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [
+        {
+          "toolCallId": "b95c0cd0-489f-4798-b231-5868e804a1b2:preload:2121cc001cf44fd8a17b8f8535231c2c",
+          "source": "server_preload",
+          "status": "used",
+          "id": "shopping-needs-clarification",
+          "version": "1.0",
+          "contentHash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5",
+          "title": "选购需求梳理"
+        }
+      ],
+      "searchCompleted": false,
+      "status": "completed",
+      "progress": [
+        {
+          "id": "b95c0cd0-489f-4798-b231-5868e804a1b2:preload:2121cc001cf44fd8a17b8f8535231c2c",
+          "label": "读取所选方案",
+          "status": "completed"
+        }
+      ]
+    }
+  },
+  {
+    "type": "RUN_FINISHED",
+    "threadId": "015da3fe-1487-4582-b456-12f82d9f4dec",
+    "runId": "b95c0cd0-489f-4798-b231-5868e804a1b2"
+  }
+]

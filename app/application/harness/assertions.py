@@ -32,9 +32,9 @@ from typing import Any, Optional
 TOOL_REQUIRED_FIELDS: dict[str, tuple[str, ...]] = {
     "product_search_tool": ("hits", "recall_strategy"),
     "category_insight_tool": ("insights",),
-    "create_order_tool": ("order_id", "status"),
+    "create_order_tool": ("confirmation_required", "confirmation"),
     "query_order_tool": ("order_id", "status"),
-    "cancel_order_tool": ("order_id", "status"),
+    "cancel_order_tool": ("confirmation_required", "confirmation"),
 }
 
 # 工具名 → 必须在它之前调用过的工具

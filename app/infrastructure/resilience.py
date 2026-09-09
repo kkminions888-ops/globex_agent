@@ -24,6 +24,7 @@ from agentscope.tool import ToolBase, ToolChunk, ToolMiddlewareBase
 
 from app.infrastructure.context import ShoppingContext
 from app.infrastructure.eventbus import TradeEventBus
+from app.infrastructure.transient import is_transient_error
 
 logger = logging.getLogger(__name__)
 
@@ -176,14 +177,25 @@ class ToolResilienceMiddleware(ToolMiddlewareBase):
             )
             return
 
-        # 工具自身返回 ERROR 也计入连续失败（如下游 5xx 持续报错）
-        if chunks and chunks[-1].state == ToolResultState.ERROR:
+        # 只有瞬时基础设施错误才计入熔断。参数校验、目的国不支持、订单不存在等
+        # 确定性业务错误说明工具本身仍然健康，不能让一批坏请求毒死后续正常流量。
+        if chunks and chunks[-1].state == ToolResultState.ERROR and _is_transient_tool_error(chunks[-1]):
             await _record_failure(self._registry, tool_name)
         else:
             await _record_success(self._registry, tool_name)
 
         for chunk in chunks:
             yield chunk
+
+
+def _is_transient_tool_error(chunk: ToolChunk) -> bool:
+    texts: list[str] = []
+    for block in chunk.content or []:
+        if isinstance(block, dict):
+            texts.append(str(block.get("text", "")))
+        else:
+            texts.append(str(getattr(block, "text", "")))
+    return is_transient_error(RuntimeError("\n".join(texts)))
 
 
 # ---- 注册表适配：共享实现的读写是异步的，本地实现是同步的 ----

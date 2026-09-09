@@ -12,19 +12,14 @@ from app.application.usecases.order_usecases import (
 from app.domain.catalog.product_search_spec import ProductSearchSpec
 from app.domain.order.address import Address
 from app.infrastructure.persistence.in_memory_repositories import (
-    InMemoryOrderRepository,
     InMemoryProductRepository,
 )
+from tests.trade_test_helpers import confirmation_env  # noqa: F401
 
 
 @pytest.fixture()
 def product_repo() -> InMemoryProductRepository:
     return InMemoryProductRepository()
-
-
-@pytest.fixture()
-def order_repo() -> InMemoryOrderRepository:
-    return InMemoryOrderRepository()
 
 
 def _address() -> Address:
@@ -42,9 +37,14 @@ def _address() -> Address:
 class TestCatalogSearch:
     async def test_recall_travel_set(self, product_repo):
         usecase = CatalogSearchUseCase(product_repo)
-        result = await usecase.execute(ProductSearchSpec(normalized_query="旅行三件套 抗造 轻便 无塑料"))
+        result = await usecase.execute(
+            ProductSearchSpec(
+                normalized_query="旅行三件套 抗造 轻便 无塑料",
+                excluded_material_tags=["合成聚合物"],
+            ),
+        )
         assert result["hits"], "旅行三件套应能召回"
-        assert result["hits"][0]["product_id"] == "P1001", "语义最相关的 SPU 应排第一"
+        assert result["hits"][0]["product_id"] == "P2120", "无塑料约束应优先命中天然材质三件套"
 
     async def test_ship_to_filter(self, product_repo):
         usecase = CatalogSearchUseCase(product_repo)
@@ -64,50 +64,68 @@ class TestCatalogSearch:
 
 
 class TestOrderLifecycle:
-    async def test_place_query_cancel_roundtrip(self, product_repo, order_repo):
-        place = PlaceOrderUseCase(product_repo, order_repo)
-        query = QueryOrderUseCase(order_repo)
-        cancel = CancelOrderUseCase(product_repo, order_repo)
+    async def test_place_query_cancel_roundtrip(self, confirmation_env):
+        env = confirmation_env
+        place = PlaceOrderUseCase(env.service)
+        query = QueryOrderUseCase(env.store)
+        cancel = CancelOrderUseCase(env.service)
 
-        snapshot = await place.execute(
+        prepared = await place.execute(
             buyer_id="buyer-1",
+            session_id="session-1",
             items=[OrderItemInput(product_id="P1001", sku_id="P1001-S1", quantity=2)],
             shipping_address=_address(),
         )
+        assert prepared["confirmation_required"] is True
+        assert (await env.store.get_inventory(["P1001-S1"]))["P1001-S1"] == 50
+        confirmation = prepared["confirmation"]
+        committed = await env.service.resolve(
+            confirmation["confirmation_id"], "buyer-1", "session-1", confirmation["snapshot_hash"], True,
+        )
+        snapshot = committed["order"]
         assert snapshot["status"] == "CONFIRMED"
         assert snapshot["total_amount_major"] == 378.0
         assert snapshot["currency"] == "CNY"
 
         # 下单扣库存
-        product = await product_repo.find_by_id("P1001")
-        assert product.find_sku("P1001-S1").stock == 48
+        assert (await env.store.get_inventory(["P1001-S1"]))["P1001-S1"] == 48
 
-        queried = await query.execute(snapshot["order_id"])
+        queried = await query.execute(snapshot["order_id"], buyer_id="buyer-1")
         assert queried["order_id"] == snapshot["order_id"]
 
-        cancelled = await cancel.execute(snapshot["order_id"], "买家改主意了")
+        cancellation = await cancel.execute(
+            snapshot["order_id"], "买家改主意了", buyer_id="buyer-1", session_id="session-1",
+        )
+        assert (await env.store.get_inventory(["P1001-S1"]))["P1001-S1"] == 48
+        confirmation = cancellation["confirmation"]
+        cancelled = (await env.service.resolve(
+            confirmation["confirmation_id"], "buyer-1", "session-1", confirmation["snapshot_hash"], True,
+        ))["order"]
         assert cancelled["status"] == "CANCELLED"
         # 取消回补库存
-        assert product.find_sku("P1001-S1").stock == 50
+        assert (await env.store.get_inventory(["P1001-S1"]))["P1001-S1"] == 50
 
-    async def test_insufficient_stock_rolls_back(self, product_repo, order_repo):
-        place = PlaceOrderUseCase(product_repo, order_repo)
-        product = await product_repo.find_by_id("P1006")
-        original_stock = product.find_sku("P1006-S1").stock
+    async def test_insufficient_stock_does_not_write_before_confirmation(self, confirmation_env):
+        env = confirmation_env
+        place = PlaceOrderUseCase(env.service)
+        original_stock = await env.store.get_inventory(["P1006-S1"])
 
         with pytest.raises(ValueError, match="库存不足"):
             await place.execute(
                 buyer_id="buyer-1",
+                session_id="session-1",
                 items=[
                     OrderItemInput(product_id="P1006", sku_id="P1006-S1", quantity=5),
                     OrderItemInput(product_id="P1006", sku_id="P1006-S1", quantity=99),
                 ],
                 shipping_address=_address(),
             )
-        # 首行已扣的库存必须回滚
-        assert product.find_sku("P1006-S1").stock == original_stock
+        # 重复 SKU 先合并后校验，准备失败不能修改任何库存。
+        assert await env.store.get_inventory(["P1006-S1"]) == original_stock
+        assert (await env.service.list("buyer-1", "session-1"))["confirmations"] == []
 
-    async def test_query_unknown_order(self, order_repo):
-        query = QueryOrderUseCase(order_repo)
-        with pytest.raises(ValueError, match="订单不存在"):
-            await query.execute("GBX-999999")
+    async def test_query_unknown_order(self, confirmation_env):
+        query = QueryOrderUseCase(confirmation_env.store)
+        with pytest.raises(ValueError) as error:
+            await query.execute("GBX-999999", buyer_id="buyer-1")
+        assert error.value.code == "NOT_FOUND"

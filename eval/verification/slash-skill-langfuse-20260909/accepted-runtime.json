@@ -1,0 +1,51 @@
+{
+  "health": {
+    "status": "ok",
+    "model": "qwen3-max",
+    "runtime": {
+      "app_source_sha256": "8079d781aa73d6c1336952bde1bc354ebc9ebce1117290bd7f0ce6740d367b8a"
+    },
+    "database": "sqlite",
+    "trade_database": "sqlite",
+    "redis": "disabled",
+    "semantic_cache": false,
+    "queue": "disabled",
+    "queue_depth": 0,
+    "prompt_registry": {
+      "deployment_id": "pd-5920587fdf2542e180f9a98c79cec9f5",
+      "baseline": "p-93793c7894dfb6b41c52275dfe103666f26cdd55eab0aa022bfc026054fa6fbb",
+      "candidate": null,
+      "candidate_bps": 0,
+      "experiment": "bootstrap",
+      "action": "bootstrap",
+      "created_at": "2026-09-09T05:42:42.025441+00:00",
+      "pinned_version": null,
+      "effective_version": {
+        "version_id": "p-93793c7894dfb6b41c52275dfe103666f26cdd55eab0aa022bfc026054fa6fbb",
+        "content_sha256": "93793c7894dfb6b41c52275dfe103666f26cdd55eab0aa022bfc026054fa6fbb",
+        "yaml_sha256": "01fa592f3ae069990ba0feab49e778336a5c7488ca63c6500965061a8d85b1d0",
+        "toolset_sha256": "95de8b50d493851750ed3b9d2e4f67fda0894b67a92a46f2d5defb026073b864",
+        "created_at": "2026-09-09T05:42:42.024240+00:00"
+      }
+    }
+  },
+  "skills": {
+    "capability_digest": "9ec9e64ad46f726c7ec6404f3bc7c25533b3e7e183dce3b6a96dff027895623d",
+    "skills": [
+      {
+        "id": "shopping-needs-clarification",
+        "version": "1.0",
+        "title": "选购需求梳理",
+        "description": "把用途、预算和收货地整理清楚，找出还需要确认的条件。",
+        "scope": "shopping",
+        "content_hash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5",
+        "expires_at": "2026-12-31T15:59:59+00:00"
+      }
+    ]
+  },
+  "env_permission": "0o600",
+  "frontend_url": "http://127.0.0.1:5174/",
+  "backend_url": "http://127.0.0.1:8000",
+  "source_fingerprint": "8079d781aa73d6c1336952bde1bc354ebc9ebce1117290bd7f0ce6740d367b8a",
+  "runtime_matches_source": true
+}

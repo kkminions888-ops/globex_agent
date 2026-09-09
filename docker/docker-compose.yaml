@@ -8,6 +8,35 @@
 #
 # 存储用 SQLite，落在 app-data 卷（零外部依赖，无需额外容器）。
 # 注意：compose 形态下 QDRANT_URL 指向 qdrant 服务（覆盖本地嵌入模式）。
+x-agent-options: &agent-options
+  IDENTITY_MODE: ${IDENTITY_MODE:-demo}
+  SESSION_OWNER_BINDING: ${SESSION_OWNER_BINDING:-1}
+  IDENTITY_HMAC_SECRET: ${IDENTITY_HMAC_SECRET-}
+  PROMPT_PIN_VERSION: ${PROMPT_PIN_VERSION-}
+  METRICS_READER_BUYERS: ${METRICS_READER_BUYERS-}
+  HYBRID_RECALL_ENABLED: ${HYBRID_RECALL_ENABLED:-0}
+  CONTEXT_SIZE: ${CONTEXT_SIZE:-128000}
+  TOOL_RESULT_LIMIT: ${TOOL_RESULT_LIMIT:-20000}
+  TOKEN_BUDGET_TOTAL: ${TOKEN_BUDGET_TOTAL:-0}
+  REPLY_TOKEN_BUDGET: ${REPLY_TOKEN_BUDGET:-0}
+  HARNESS_ENABLED: ${HARNESS_ENABLED:-1}
+  OUTPUT_GUARD_ENABLED: ${OUTPUT_GUARD_ENABLED:-1}
+  DRIFT_DETECT_ENABLED: ${DRIFT_DETECT_ENABLED:-0}
+  LOOP_REPEAT_THRESHOLD: ${LOOP_REPEAT_THRESHOLD:-3}
+  BREAKER_SHARED: ${BREAKER_SHARED:-0}
+  PREFERENCE_RELEVANCE_ENABLED: ${PREFERENCE_RELEVANCE_ENABLED:-0}
+  PREFERENCE_TOP_K: ${PREFERENCE_TOP_K:-5}
+  PREFERENCE_SUBAGENT_INJECT: ${PREFERENCE_SUBAGENT_INJECT:-1}
+  QUEUE_PRIORITY_ENABLED: ${QUEUE_PRIORITY_ENABLED:-1}
+  QUEUE_LARGE_REQUEST_TURNS: ${QUEUE_LARGE_REQUEST_TURNS:-30}
+  CATEGORY_KB_COLLECTION: ${CATEGORY_KB_COLLECTION:-globex_category_kb}
+  TAVILY_API_KEY: ${TAVILY_API_KEY-}
+  LLM_MAX_RETRIES: ${LLM_MAX_RETRIES:-2}
+  # 本机 .env 可由 compose --env-file .env 读取；API 与 worker 共享同一追踪项目。
+  LANGFUSE_BASE_URL: ${LANGFUSE_BASE_URL-}
+  LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY-}
+  LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY-}
+
 services:
   app:
     build:
@@ -16,6 +45,7 @@ services:
     ports:
       - "8000:8000"
     environment:
+      <<: *agent-options
       # 敏感配置透传宿主机环境变量，缺失时直接报错，避免明文落盘
       LLM_BASE_URL: ${LLM_BASE_URL:?需设置 LLM_BASE_URL}
       LLM_API_KEY: ${LLM_API_KEY:?需设置 LLM_API_KEY}
@@ -26,6 +56,8 @@ services:
       LLM_MIN_INTERVAL_SECONDS: ${LLM_MIN_INTERVAL_SECONDS:-1.0}
       LLM_MAX_RETRIES: ${LLM_MAX_RETRIES:-2}
       EMBEDDING_MODEL: ${EMBEDDING_MODEL:-text-embedding-v4}
+      RERANKER_BASE_URL: ${RERANKER_BASE_URL-}
+      RERANKER_MODEL: ${RERANKER_MODEL-}
       QDRANT_URL: http://qdrant:6333
       QDRANT_COLLECTION: ${QDRANT_COLLECTION:-globex_products}
       # 四期：存储走 SQLite（落在 app-data 卷）；DATABASE_URL=file 退回 JSON 文件存储
@@ -40,6 +72,13 @@ services:
       QUEUE_WAIT_SECONDS: ${QUEUE_WAIT_SECONDS:-300}
       DATA_DIR: /app/data
       CORS_ORIGINS: http://localhost:5173
+      # 可选 OTLP/HTTP；Langfuse 的通用端点以 /api/public/otel 结尾。
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT-}
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: ${OTEL_EXPORTER_OTLP_TRACES_ENDPOINT-}
+      OTEL_EXPORTER_OTLP_HEADERS: ${OTEL_EXPORTER_OTLP_HEADERS-}
+      OTEL_EXPORTER_OTLP_TRACES_HEADERS: ${OTEL_EXPORTER_OTLP_TRACES_HEADERS-}
+      OTEL_EXPORTER_OTLP_TRACES_TIMEOUT: ${OTEL_EXPORTER_OTLP_TRACES_TIMEOUT:-5}
+      OTEL_SERVICE_NAME: globex-api
     volumes:
       - app-data:/app/data
     depends_on:
@@ -56,6 +95,7 @@ services:
       dockerfile: Dockerfile
     command: ["python", "-m", "app.worker"]
     environment:
+      <<: *agent-options
       LLM_BASE_URL: ${LLM_BASE_URL:?需设置 LLM_BASE_URL}
       LLM_API_KEY: ${LLM_API_KEY:?需设置 LLM_API_KEY}
       LLM_MODEL: ${LLM_MODEL:-qwen3-max}
@@ -63,6 +103,8 @@ services:
       LLM_MAX_CONCURRENCY: ${LLM_MAX_CONCURRENCY:-2}
       LLM_MIN_INTERVAL_SECONDS: ${LLM_MIN_INTERVAL_SECONDS:-1.0}
       EMBEDDING_MODEL: ${EMBEDDING_MODEL:-text-embedding-v4}
+      RERANKER_BASE_URL: ${RERANKER_BASE_URL-}
+      RERANKER_MODEL: ${RERANKER_MODEL-}
       QDRANT_URL: http://qdrant:6333
       QDRANT_COLLECTION: ${QDRANT_COLLECTION:-globex_products}
       # 与 app 共一个 SQLite 文件（共享 app-data 卷）；WAL 已开，缓解双进程写锁竞争
@@ -71,6 +113,12 @@ services:
       QUEUE_ENABLED: "1"
       SEMANTIC_CACHE_ENABLED: ${SEMANTIC_CACHE_ENABLED:-1}
       WORKER_CONCURRENCY: ${WORKER_CONCURRENCY:-2}
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT-}
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: ${OTEL_EXPORTER_OTLP_TRACES_ENDPOINT-}
+      OTEL_EXPORTER_OTLP_HEADERS: ${OTEL_EXPORTER_OTLP_HEADERS-}
+      OTEL_EXPORTER_OTLP_TRACES_HEADERS: ${OTEL_EXPORTER_OTLP_TRACES_HEADERS-}
+      OTEL_EXPORTER_OTLP_TRACES_TIMEOUT: ${OTEL_EXPORTER_OTLP_TRACES_TIMEOUT:-5}
+      OTEL_SERVICE_NAME: globex-worker
       DATA_DIR: /app/data
     volumes:
       - app-data:/app/data
@@ -83,6 +131,8 @@ services:
 
   redis:
     image: redis:7-alpine
+    # 接收队列任务后同步持久化日志；共享配额/缓存也使用该实例，吞吐需按实际负载验收。
+    command: ["redis-server", "--appendonly", "yes", "--appendfsync", "always"]
     ports:
       - "6379:6379"
     volumes:
@@ -95,7 +145,7 @@ services:
     restart: unless-stopped
 
   qdrant:
-    image: qdrant/qdrant:v1.12.4
+    image: qdrant/qdrant:v1.19.0
     ports:
       - "6333:6333"
     volumes:
@@ -103,16 +153,11 @@ services:
     restart: unless-stopped
 
   frontend:
-    image: node:22-alpine
-    working_dir: /app
-    command: sh -c "npm install && npm run dev"
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
     ports:
-      - "5173:5173"
-    environment:
-      VITE_API_BASE: http://localhost:8000
-    volumes:
-      - ../frontend:/app
-      - frontend-modules:/app/node_modules
+      - "5173:80"
     depends_on:
       app:
         condition: service_started
@@ -122,4 +167,3 @@ volumes:
   app-data:
   qdrant-data:
   redis-data:
-  frontend-modules:

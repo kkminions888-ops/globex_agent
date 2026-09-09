@@ -4,11 +4,16 @@
 embedding 用确定性桩实现（关键词特征轴 + 余弦），向量索引用 Qdrant 本地嵌入模式，
 全程不依赖外部服务与 LLM。
 """
+import json
+
 import pytest
 
 from app.application.usecases.catalog_search import CatalogSearchUseCase
 from app.domain.catalog.ports.retrieval_ports import EmbeddingClient, Reranker
 from app.domain.catalog.product_search_spec import ProductSearchSpec
+from app.domain.catalog.money import Money
+from app.domain.catalog.product import Product
+from app.domain.catalog.sku import Sku
 from app.infrastructure.persistence.in_memory_repositories import InMemoryProductRepository
 from app.infrastructure.settings import Settings
 from app.infrastructure.vector.index_bootstrap import bootstrap_product_index
@@ -71,6 +76,106 @@ async def indexed(tmp_path):
 
 
 class TestTwoStageRecall:
+    async def test_product_card_displays_target_currency_and_preserves_source_price(self):
+        """预算筛选与卡片展示必须使用同一目标币种口径。"""
+        repo = InMemoryProductRepository(
+            [
+                Product(
+                    product_id="P-USD", title="美元露营灯", brand="A", category="户外运动", origin_country="US",
+                    description="露营灯 防水", ships_to=["CN"],
+                    skus=[Sku("P-USD-S1", "标准", Money.from_major_units(10, "USD"), 8)],
+                ),
+            ],
+        )
+
+        result = await CatalogSearchUseCase(repo).execute(
+            ProductSearchSpec(normalized_query="露营灯", target_currency="CNY"),
+        )
+
+        hit = result["hits"][0]
+        assert hit["currency"] == "CNY"
+        assert hit["price_major"] == pytest.approx(71.0)
+        assert hit["source_currency"] == "USD"
+        assert hit["source_price_major"] == pytest.approx(10.0)
+        assert hit["skus"][0]["currency"] == "USD"
+
+    async def test_out_of_stock_product_is_filtered_and_explained(self):
+        repo = InMemoryProductRepository(
+            [
+                Product(
+                    product_id="P-OUT", title="缺货露营灯", brand="A", category="户外运动", origin_country="CN",
+                    description="露营灯 防水", ships_to=["CN"],
+                    skus=[Sku("P-OUT-S1", "标准", Money.from_major_units(99, "CNY"), 0)],
+                ),
+                Product(
+                    product_id="P-OK", title="现货露营灯", brand="B", category="户外运动", origin_country="CN",
+                    description="露营灯 防水", ships_to=["CN"],
+                    skus=[Sku("P-OK-S1", "标准", Money.from_major_units(109, "CNY"), 8)],
+                ),
+            ],
+        )
+
+        result = await CatalogSearchUseCase(repo).execute(ProductSearchSpec(normalized_query="露营灯"))
+
+        assert [hit["product_id"] for hit in result["hits"]] == ["P-OK"]
+        assert result["filtered_out"][0]["product_id"] == "P-OUT"
+        assert result["filtered_out"][0]["reason"] == "out_of_stock"
+
+    async def test_category_and_required_material_are_hard_filters(self):
+        """正式复合约束不能只靠关键词排序碰运气。"""
+        repo = InMemoryProductRepository(
+            [
+                Product(
+                    product_id="P-WRONG-CATEGORY", title="家居金属灯", brand="A", category="家居生活", origin_country="CN",
+                    description="露营灯", ships_to=["CN"], material_tags=["金属"],
+                    skus=[Sku("P-WRONG-CATEGORY-S1", "标准", Money.from_major_units(50, "CNY"), 5)],
+                ),
+                Product(
+                    product_id="P-WRONG-MATERIAL", title="户外玻璃灯", brand="B", category="户外运动", origin_country="CN",
+                    description="露营灯", ships_to=["CN"], material_tags=["玻璃"],
+                    skus=[Sku("P-WRONG-MATERIAL-S1", "标准", Money.from_major_units(50, "CNY"), 5)],
+                ),
+                Product(
+                    product_id="P-OK", title="户外金属灯", brand="C", category="户外运动", origin_country="CN",
+                    description="露营灯", ships_to=["CN"], material_tags=["金属"],
+                    skus=[Sku("P-OK-S1", "标准", Money.from_major_units(50, "CNY"), 5)],
+                ),
+            ],
+        )
+
+        result = await CatalogSearchUseCase(repo).execute(
+            ProductSearchSpec(
+                normalized_query="露营灯", category="户外运动", required_material_tags=["金属"],
+            ),
+        )
+
+        assert [hit["product_id"] for hit in result["hits"]] == ["P-OK"]
+        reasons = {item["product_id"]: item["reason"] for item in result["filtered_out"]}
+        assert reasons == {"P-WRONG-CATEGORY": "category_mismatch", "P-WRONG-MATERIAL": "material_required_missing"}
+
+    async def test_structured_material_exclusion_filters_synthetic_polymer(self):
+        repo = InMemoryProductRepository(
+            [
+                Product(
+                    product_id="P-POLY", title="聚合物水壶", brand="A", category="户外运动", origin_country="CN",
+                    description="水壶 便携", ships_to=["CN"], material_tags=["合成聚合物"],
+                    skus=[Sku("P-POLY-S1", "标准", Money.from_major_units(49, "CNY"), 8)],
+                ),
+                Product(
+                    product_id="P-METAL", title="金属水壶", brand="B", category="户外运动", origin_country="CN",
+                    description="水壶 便携", ships_to=["CN"], material_tags=["金属"],
+                    skus=[Sku("P-METAL-S1", "标准", Money.from_major_units(89, "CNY"), 8)],
+                ),
+            ],
+        )
+
+        result = await CatalogSearchUseCase(repo).execute(
+            ProductSearchSpec(normalized_query="水壶", excluded_material_tags=["合成聚合物"]),
+        )
+
+        assert [hit["product_id"] for hit in result["hits"]] == ["P-METAL"]
+        assert result["filtered_out"][0]["reason"] == "material_excluded"
+
     async def test_embedding_recall_ranks_camping_light_first(self, indexed):
         repo, embedder, index = indexed
         usecase = CatalogSearchUseCase(repo, embedder=embedder, vector_index=index)
@@ -177,7 +282,7 @@ class TestTwoStageRecall:
             ),
         )
         try:
-            await tool(normalized_query="露营灯", ship_to="US", target_currency="USD")
+            response = await tool(normalized_query="露营灯", ship_to="US", target_currency="USD")
         finally:
             ShoppingContext.reset(token)
 
@@ -187,3 +292,6 @@ class TestTwoStageRecall:
         hits = result_event.payload["hits"]
         assert hits and hits[0]["product_id"] == "P1008"
         assert hits[0]["landed_price"]["currency"] == "USD"
+        body = json.loads(response.content[0].text)
+        assert body.get("filtered_out"), "测试前提：本次检索应有被硬约束挡掉的候选"
+        assert result_event.payload["filtered_out"] == body["filtered_out"]

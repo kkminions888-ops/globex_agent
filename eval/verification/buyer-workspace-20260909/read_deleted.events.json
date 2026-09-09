@@ -1,0 +1,105 @@
+[
+  {
+    "type": "RUN_STARTED",
+    "threadId": "7382910777104333af56e06f680c97b4",
+    "runId": "185f811609084f65a4a708fbe5098bd0"
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": []
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": []
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "running",
+      "progress": []
+    }
+  },
+  {
+    "type": "TEXT_MESSAGE_START",
+    "messageId": "185f811609084f65a4a708fbe5098bd0:text:3804eddfbc4c4466bbf81e3bdb635b9b",
+    "role": "assistant"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "185f811609084f65a4a708fbe5098bd0:text:3804eddfbc4c4466bbf81e3bdb635b9b",
+    "delta": "当前"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "185f811609084f65a4a708fbe5098bd0:text:3804eddfbc4c4466bbf81e3bdb635b9b",
+    "delta": "长期"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "185f811609084f65a4a708fbe5098bd0:text:3804eddfbc4c4466bbf81e3bdb635b9b",
+    "delta": "记忆中未"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "185f811609084f65a4a708fbe5098bd0:text:3804eddfbc4c4466bbf81e3bdb635b9b",
+    "delta": "记录您的"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "185f811609084f65a4a708fbe5098bd0:text:3804eddfbc4c4466bbf81e3bdb635b9b",
+    "delta": "颜色偏好。"
+  },
+  {
+    "type": "TEXT_MESSAGE_END",
+    "messageId": "185f811609084f65a4a708fbe5098bd0:text:3804eddfbc4c4466bbf81e3bdb635b9b"
+  },
+  {
+    "type": "MESSAGES_SNAPSHOT",
+    "messages": [
+      {
+        "id": "fb9e58777e724e16b86ca20641631b3d",
+        "role": "user",
+        "content": "当前长期记忆里还记录了我的颜色偏好吗？没有就说未记录，不猜测，也不要新增记忆。"
+      },
+      {
+        "id": "185f811609084f65a4a708fbe5098bd0:final:answer",
+        "role": "assistant",
+        "content": "当前长期记忆中未记录您的颜色偏好。"
+      }
+    ]
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "completed",
+      "progress": []
+    }
+  },
+  {
+    "type": "RUN_FINISHED",
+    "threadId": "7382910777104333af56e06f680c97b4",
+    "runId": "185f811609084f65a4a708fbe5098bd0"
+  }
+]

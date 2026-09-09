@@ -1,0 +1,31 @@
+{
+  "scope": "isolated_real_registry_and_actual_skill_loader",
+  "checked_at": "2026-09-09T07:07:20.645543+00:00",
+  "skill_id": "shopping-needs-clarification",
+  "version": "1.0",
+  "content_hash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5",
+  "status": "PASS",
+  "check_count": 15,
+  "checks": {
+    "draft_hidden": true,
+    "draft_load_denied": true,
+    "publish_without_review_denied": true,
+    "empty_allowlist_compatible": true,
+    "metadata_has_no_body": true,
+    "actual_tool_load_success": true,
+    "exact_id_version_hash": true,
+    "reference_only_body": true,
+    "buyer_constraints_unchanged": true,
+    "forged_version_denied": true,
+    "same_version_mutation_denied": true,
+    "tool_escalation_denied": true,
+    "revoked_old_digest_denied": true,
+    "revoked_hidden": true,
+    "actors_explicitly_automated": true
+  },
+  "production_db_accessed": false,
+  "real_model_behavior_verified": false,
+  "browser_structured_selection_verified": false,
+  "human_review_claimed": false,
+  "temporary_database_removed": true
+}

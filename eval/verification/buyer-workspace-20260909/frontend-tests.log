@@ -1,0 +1,35 @@
+
+> globex-frontend@0.3.0 test
+> vitest run --run
+
+
+ RUN  v3.2.4 /Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本--归档-2026-08-29/项目工程/globex-agent/frontend
+
+stderr | tests/commerceClient.test.ts > 通过官方 SDK 消费真实 AG-UI 协议 > HTTP 错误显示可恢复提示，不把服务器错误页直接渲染给用户
+Agent execution failed: Error: HTTP 503: <html>internal traceback</html>
+    at file:///Users/haojunpan/Desktop/%E5%B7%A5%E4%BD%9C%E9%A1%B9%E7%9B%AE/project/ai/ai-agents-from-zero/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98-%E7%94%B5%E5%95%86%E6%90%9C%E7%B4%A2/%E7%BA%BF%E4%B8%8A%E7%89%88%E6%9C%AC--%E5%BD%92%E6%A1%A3-2026-08-29/%E9%A1%B9%E7%9B%AE%E5%B7%A5%E7%A8%8B/globex-agent/frontend/node_modules/@ag-ui/client/dist/index.mjs:1:27192
+    at doInnerSub (/Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本--归档-2026-08-29/项目工程/globex-agent/frontend/node_modules/rxjs/src/internal/operators/mergeInternals.ts:71:15)
+    at outerNext (/Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本--归档-2026-08-29/项目工程/globex-agent/frontend/node_modules/rxjs/src/internal/operators/mergeInternals.ts:53:58)
+    at OperatorSubscriber._this._next (/Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本--归档-2026-08-29/项目工程/globex-agent/frontend/node_modules/rxjs/src/internal/operators/OperatorSubscriber.ts:70:13)
+    at OperatorSubscriber.Subscriber.next (/Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本--归档-2026-08-29/项目工程/globex-agent/frontend/node_modules/rxjs/src/internal/Subscriber.ts:75:12)
+    at /Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本--归档-2026-08-29/项目工程/globex-agent/frontend/node_modules/rxjs/src/internal/observable/innerFrom.ts:90:24
+    at processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  status: 503,
+  payload: '<html>internal traceback</html>'
+}
+
+ ✓ tests/commerceClient.test.ts (6 tests) 80ms
+ ✓ tests/confirmationCards.test.tsx (11 tests) 69ms
+ ✓ tests/shoppingPlans.test.tsx (14 tests) 46ms
+ ✓ tests/confirmations.test.ts (8 tests) 18ms
+ ✓ tests/productContract.test.ts (36 tests) 35ms
+ ✓ tests/runRecovery.test.ts (4 tests) 645ms
+   ✓ 持久运行恢复（使用官方 AG-UI SDK） > 网络断流按cursor重连，丢弃重复和乱序帧，不重新POST模型  619ms
+ ✓ tests/buyerWorkspace.test.tsx (3 tests) 203ms
+ ✓ tests/skillSlashInteraction.test.tsx (7 tests) 256ms
+
+ Test Files  8 passed (8)
+      Tests  89 passed (89)
+   Start at  15:43:48
+   Duration  2.10s (transform 403ms, setup 0ms, collect 2.52s, tests 1.35s, environment 1.21s, prepare 626ms)
+

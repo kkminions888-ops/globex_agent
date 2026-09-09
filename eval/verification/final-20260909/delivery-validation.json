@@ -1,0 +1,38 @@
+{
+  "backend": {
+    "tests": 835,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "frontend": {
+    "tests_passed": 65,
+    "production_build": "PASS"
+  },
+  "docker_frontend": {
+    "image": "globex-frontend:verification-final-20260909",
+    "manifest_list_sha256": "b0e1a2713a8b361398393191bf8a81fabeff76841d748a4536052d0db7e7a1e0",
+    "nginx_config": "PASS",
+    "http_status": 200,
+    "proxied_api_source_matched": true
+  },
+  "browser": {
+    "page_url": "http://127.0.0.1:5174/",
+    "post_api_restart_two_cards_restored": true,
+    "console_errors": []
+  },
+  "runtime": {
+    "status": "ok",
+    "local_app_source_sha256": "74cc089949efcf544c5a7d87af444152b14188befd3058d9fac3e251b2bfbb04",
+    "running_app_source_sha256": "74cc089949efcf544c5a7d87af444152b14188befd3058d9fac3e251b2bfbb04",
+    "source_matched": true,
+    "effective_prompt_version": "p-93793c7894dfb6b41c52275dfe103666f26cdd55eab0aa022bfc026054fa6fbb",
+    "page_url": "http://127.0.0.1:5174/",
+    "deployment_notes": [
+      "Compose开启Redis同步AOF；评测原快照不追填",
+      "前端静态Nginx镜像已独立构建和nginx -t验证"
+    ]
+  },
+  "quality_gate": "BLOCK",
+  "quality_note": "完整正式报告与已见失败的修复诊断分开，尚不能宣称正式在线质量全部通过"
+}

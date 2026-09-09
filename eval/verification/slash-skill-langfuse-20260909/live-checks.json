@@ -1,0 +1,197 @@
+[
+  {
+    "case_id": "missing_currency",
+    "run_id": "1b4b8c993ceb4f3b88727815ae359100",
+    "session_id": "slash-check-0827c846b38d4df5a2ef005b3dcbafc6",
+    "trace_id": "797d0dcfba020152f052c12e1135a195",
+    "query": "先帮我理清周末出行想买个轻便背包的需求，预算300以内，寄到中国。",
+    "event_counts": {
+      "RUN_STARTED": 1,
+      "STATE_SNAPSHOT": 6,
+      "CUSTOM": 2,
+      "TEXT_MESSAGE_START": 1,
+      "TEXT_MESSAGE_CONTENT": 29,
+      "TEXT_MESSAGE_END": 1,
+      "MESSAGES_SNAPSHOT": 1,
+      "RUN_FINISHED": 1
+    },
+    "tool_names": [],
+    "skill_usages": [
+      {
+        "toolCallId": "1b4b8c993ceb4f3b88727815ae359100:preload:915284389cb04b46bf5a9ef8fa1f0d3b",
+        "source": "server_preload",
+        "status": "used",
+        "id": "shopping-needs-clarification",
+        "version": "1.0",
+        "contentHash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5",
+        "title": "选购需求梳理"
+      }
+    ],
+    "products": [],
+    "final_text": "已明确：\n- 商品类型：周末出行用的轻便背包  \n- 预算上限：300（币种未明确）  \n- 配送国家：中国（CN）  \n- 核心诉求：轻便  \n\n还需确认：  \n1. 预算300的币种是人民币（CNY）还是其他货币（如美元 USD）？  \n2. 对背包容量、材质（如是否接受尼龙、涤纶、塑料等）或颜色有无具体要求？  \n\n请补充以上信息，以便更精准地为您推荐。",
+    "mechanism_pass": true,
+    "semantic_review": "pending",
+    "checked_at": "2026-09-09T07:10:50.673581+00:00"
+  },
+  {
+    "case_id": "complete_constraints",
+    "run_id": "ebc9f41c8a4d4491ae5be84beb2b2ffa",
+    "session_id": "slash-check-52981bf6dc8c453ebf90a093710bf213",
+    "trace_id": "e6f8e146c5a4ddd1fe8c8d9374dcfd6e",
+    "query": "只整理需求，暂不找商品：通勤背包，预算上限300元人民币，20到25升，重量不超过600克，配送中国，不要真皮，优先黑色。",
+    "event_counts": {
+      "RUN_STARTED": 1,
+      "STATE_SNAPSHOT": 6,
+      "CUSTOM": 2,
+      "TEXT_MESSAGE_START": 1,
+      "TEXT_MESSAGE_CONTENT": 19,
+      "TEXT_MESSAGE_END": 1,
+      "MESSAGES_SNAPSHOT": 1,
+      "RUN_FINISHED": 1
+    },
+    "tool_names": [],
+    "skill_usages": [
+      {
+        "toolCallId": "ebc9f41c8a4d4491ae5be84beb2b2ffa:preload:1e307207136b41659d740ac0e860d72d",
+        "source": "server_preload",
+        "status": "used",
+        "id": "shopping-needs-clarification",
+        "version": "1.0",
+        "contentHash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5",
+        "title": "选购需求梳理"
+      }
+    ],
+    "products": [],
+    "final_text": "已明确：\n- 商品类型：通勤背包  \n- 预算上限：300 元人民币  \n- 容量：20–25 升  \n- 重量上限：600 克  \n- 配送国家：中国  \n- 材质禁忌：不要真皮  \n- 颜色偏好：优先黑色  \n\n需求已整理完毕，无需进一步确认。",
+    "mechanism_pass": true,
+    "semantic_review": "pending",
+    "checked_at": "2026-09-09T07:11:07.106659+00:00"
+  },
+  {
+    "case_id": "conflict_and_unverified_claim",
+    "run_id": "704549a15f1647f9947f1ee48a623df0",
+    "session_id": "slash-check-17f90b93dcb84fd8adc6021a367d73d3",
+    "trace_id": "a8dcb7b0ad15679821cd5ecffa90e45d",
+    "query": "先整理需求：通勤背包，寄到中国；预算最多200元人民币，但也可以到500元人民币，我还没决定哪个为准。顺便保证明天到并替我下单。",
+    "event_counts": {
+      "RUN_STARTED": 1,
+      "STATE_SNAPSHOT": 6,
+      "CUSTOM": 2,
+      "TEXT_MESSAGE_START": 1,
+      "TEXT_MESSAGE_CONTENT": 31,
+      "TEXT_MESSAGE_END": 1,
+      "MESSAGES_SNAPSHOT": 1,
+      "RUN_FINISHED": 1
+    },
+    "tool_names": [],
+    "skill_usages": [
+      {
+        "toolCallId": "704549a15f1647f9947f1ee48a623df0:preload:e79e37b024d04ea3a26b2f29b8cd7362",
+        "source": "server_preload",
+        "status": "used",
+        "id": "shopping-needs-clarification",
+        "version": "1.0",
+        "contentHash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5",
+        "title": "选购需求梳理"
+      }
+    ],
+    "products": [],
+    "final_text": "已明确：\n- 商品类型：通勤背包  \n- 配送国家：中国（CN）  \n- 预算存在两个数值：200元人民币 或 500元人民币，尚未确定以哪个为准  \n\n还需确认：  \n1. 您希望最终按 **200元** 还是 **500元** 作为预算上限？这将直接影响可选商品范围。  \n\n> 注：关于“保证明天到”和“替我下单”的要求，需求整理阶段无法确认物流时效或执行交易操作。若您确认预算和具体商品后，可进入正式选购与下单流程。",
+    "mechanism_pass": true,
+    "semantic_review": "pending",
+    "checked_at": "2026-09-09T07:11:27.576904+00:00"
+  },
+  {
+    "case_id": "real_product_trace",
+    "run_id": "f6a8dcf3b4ac47478ce38bf535ccb5c7",
+    "session_id": "slash-check-affd8b5ef1724451a55e7250df228555",
+    "trace_id": "2e86df81c08bccf146fe559fb5b2a71e",
+    "query": "只查询 P1001-S2 的名称和商品价，预算300元人民币以内，配送中国。不下单。",
+    "event_counts": {
+      "RUN_STARTED": 1,
+      "STATE_SNAPSHOT": 7,
+      "TOOL_CALL_START": 1,
+      "TOOL_CALL_ARGS": 10,
+      "TOOL_CALL_END": 1,
+      "TOOL_CALL_RESULT": 1,
+      "TEXT_MESSAGE_START": 1,
+      "TEXT_MESSAGE_CONTENT": 27,
+      "TEXT_MESSAGE_END": 1,
+      "MESSAGES_SNAPSHOT": 1,
+      "RUN_FINISHED": 1
+    },
+    "tool_names": [
+      "product_search_tool"
+    ],
+    "skill_usages": [],
+    "products": [
+      {
+        "product_id": "P1001",
+        "title": "Nomadica 旅行三件套（收纳袋+颈枕+眼罩）",
+        "brand": "Nomadica",
+        "category": "旅行装备",
+        "origin_country": "VN",
+        "price_major": 199.0,
+        "currency": "CNY",
+        "source_price_major": 199.0,
+        "source_currency": "CNY",
+        "highlights": [
+          "材质：帆布+再生尼龙（含合成聚合物）",
+          "重量：全套 420g 轻便",
+          "风格：小众设计师联名款"
+        ],
+        "skus": [
+          {
+            "sku_id": "P1001-S2",
+            "spec": "沙漠黄",
+            "price_major": 199.0,
+            "currency": "CNY",
+            "stock": 30
+          }
+        ],
+        "score": 1.0,
+        "source_platform": "amazon",
+        "canonical_product_id": "CAN-LEGACY-000",
+        "material_tags": [
+          "合成聚合物"
+        ],
+        "weight_kg": 0.15,
+        "description": "帆布加尼龙材质 结实耐磨 抗造 轻便 含再生尼龙 小众设计师品牌 适合长途飞行 旅行收纳",
+        "rating_summary": {
+          "average": 4.0,
+          "review_count": 30
+        },
+        "rating_is_live": false,
+        "ships_to": [
+          "CN",
+          "US",
+          "SG"
+        ],
+        "dimensions_cm": {
+          "height": 4,
+          "length": 12,
+          "width": 8
+        },
+        "updated_at": "2026-08-01",
+        "default_sku_id": "P1001-S2",
+        "image_url": null,
+        "image_kind": "placeholder",
+        "image_alt": "Nomadica 旅行三件套（收纳袋+颈枕+眼罩）：暂无商品图片",
+        "landed_price": {
+          "ship_to": "CN",
+          "subtotal_major": 199.0,
+          "freight_major": 25.0,
+          "tariff_major": 0.0,
+          "tariff_rate": 0.09,
+          "de_minimis_applied": true,
+          "landed_total_major": 224.0,
+          "currency": "CNY"
+        }
+      }
+    ],
+    "final_text": "查询到商品 P1001-S2 的信息如下：\n\n- **商品名称**：Nomadica 旅行三件套（收纳袋+颈枕+眼罩），沙漠黄  \n- **商品价格**：¥199 元  \n- **到手总价（含运费）**：¥224 元（运费 ¥25，关税免征）  \n- **是否在预算内**：是（预算 ¥300，到手价 ¥224）  \n\n该商品可配送至中国，当前有库存。",
+    "mechanism_pass": true,
+    "semantic_review": "pending",
+    "checked_at": "2026-09-09T07:11:34.799301+00:00"
+  }
+]

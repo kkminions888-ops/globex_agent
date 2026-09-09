@@ -39,7 +39,9 @@ from app.application.memory.preference_selector import PreferenceSelector
 from app.application.prompts.loader import load_prompts
 from app.application.tools.forget_preference_tool import build_forget_preference_tool
 from app.application.tools.remember_preference_tool import build_remember_preference_tool
+from app.application.tools.update_preference_tool import build_update_preference_tool
 from app.application.tools.task_dispatch_tool import build_task_dispatch_tool
+from app.application.tools.capability_tools import build_capability_tools, capability_hint
 from app.domain.buyer.preference import PreferenceStore
 from app.domain.session.ports.session_store import SessionStore
 from app.infrastructure.eventbus import TradeEventBus
@@ -51,7 +53,7 @@ from app.infrastructure.resilience import (
     ToolResilienceMiddleware,
 )
 from app.infrastructure.settings import Settings
-from app.infrastructure.tracing import build_agent_middlewares
+from app.infrastructure.tracing import build_agent_middlewares, record_prompt_assignment
 
 logger = logging.getLogger(__name__)
 
@@ -69,6 +71,8 @@ class MainAgentFactory:
         sequencing: Optional[SequencingTracker] = None,
         loop_detector: Optional[LoopDetector] = None,
         preference_selector: Optional[PreferenceSelector] = None,
+        capability_registry=None,
+        buyer_skill_store=None,
     ) -> None:
         self._settings = settings
         self._search_factory = search_factory
@@ -77,6 +81,9 @@ class MainAgentFactory:
         self._preference_store = preference_store
         self._circuit_registry = circuit_registry
         self._throttle = throttle
+        self._capability_registry = capability_registry
+        self.capability_registry = capability_registry
+        self.buyer_skill_store = buyer_skill_store
         # 与 orchestrator 共用同一个 selector，保证主/子 Agent 的偏好选取口径一致
         self._preference_selector = preference_selector or PreferenceSelector()
         # 护栏判定器按会话累积状态，须跨 Agent 实例共享（与熔断注册表同理）
@@ -135,6 +142,8 @@ class MainAgentFactory:
                 build_remember_preference_tool(self._preference_store, self._bus),
                 middlewares=self._resilience(),
             ),
+            FunctionTool(build_update_preference_tool(self._preference_store, self._bus),
+                         middlewares=self._resilience()),
             # 5. 长期记忆撤回路径（买家说“以后不用避开塑料了”）
             FunctionTool(
                 build_forget_preference_tool(self._preference_store, self._bus),
@@ -142,10 +151,17 @@ class MainAgentFactory:
             ),
         ]
 
+        system_prompt = prompts["system_prompt"]
+        if self._capability_registry is not None:
+            available_tools = {tool.name for tool in tools}
+            system_prompt += "\n\n" + capability_hint(self._capability_registry, available_tools)
+            tools.extend(FunctionTool(tool, is_read_only=True, middlewares=self._resilience())
+                         for tool in build_capability_tools(self._capability_registry, available_tools, self._bus, self.buyer_skill_store))
+
         return allow_business_tools(
             Agent(
                 name=prompts["name"],
-                system_prompt=prompts["system_prompt"],
+                system_prompt=system_prompt,
                 model=create_chat_model(self._settings, throttle=self._throttle, bus=self._bus),
                 toolkit=Toolkit(tools=tools),
                 middlewares=build_agent_middlewares(self._settings),
@@ -163,39 +179,65 @@ class SessionRegistry:
     """按 shopping_session_id 缓存 MainAgent 实例，支撑多轮对话；
     AgentState 经 SessionStore 端口落盘（SQLite 或文件），服务重启后恢复。"""
 
-    def __init__(self, main_factory: MainAgentFactory, session_store: SessionStore) -> None:
+    def __init__(self, main_factory: MainAgentFactory, session_store: SessionStore, *, enforce_owner: bool = True, prompt_registry=None) -> None:
         self._main_factory = main_factory
         self._session_store = session_store
         self._agents: dict[str, Agent] = {}
+        self._claims = {}
+        self._enforce_owner = enforce_owner
+        self._prompt_registry = prompt_registry
 
     async def get_or_create(self, shopping_session_id: str) -> Agent:
-        if shopping_session_id not in self._agents:
-            restored_state = await self._try_restore(shopping_session_id)
-            self._agents[shopping_session_id] = self._main_factory.build(restored_state)
-        return self._agents[shopping_session_id]
+        from app.infrastructure.context import ShoppingContext
+        from app.domain.session.ports.session_store import SessionOwnerMismatch, SessionStateCorrupt
+        context = ShoppingContext.current()
+        if context is None or context.shopping_session_id != shopping_session_id:
+            raise SessionOwnerMismatch("会话执行缺少可信的当前买家上下文")
+        try:
+            claim = await self._session_store.claim(shopping_session_id, buyer_id=context.buyer_id, enforce_owner=self._enforce_owner)
+            ShoppingContext.set_session_fence(claim.fence)
+            # 在恢复 AgentState 之前校验资料版本；变更后阻断旧正文继续参与模型上下文。
+            capabilities = getattr(self._main_factory, "capability_registry", None)
+            if capabilities is not None:
+                import asyncio
+                digest = await asyncio.to_thread(capabilities.bind_session, shopping_session_id, context.buyer_id)
+                ShoppingContext.set_capability_digest(digest)
+                record_prompt_assignment()
+            if self._prompt_registry is not None:
+                assignment = await self._prompt_registry.assign(shopping_session_id, context.buyer_id)
+                ShoppingContext.set_prompt_assignment(assignment)
+                record_prompt_assignment()
+            previous = self._claims.get(shopping_session_id)
+            if shopping_session_id not in self._agents or previous is None or previous.revision != claim.revision:
+                try:
+                    restored = AgentState.model_validate_json(claim.state_json) if claim.state_json is not None else None
+                except Exception as error:
+                    raise SessionStateCorrupt("持久会话快照损坏，未按空会话覆盖历史") from error
+                self._agents[shopping_session_id] = self._main_factory.build(restored)
+            self._claims[shopping_session_id] = claim
+            return self._agents[shopping_session_id]
+        except BaseException:
+            await self.invalidate(shopping_session_id)
+            raise
 
-    async def persist(self, shopping_session_id: str) -> None:
-        """每轮对话结束后落盘 AgentState 快照；失败仅告警不影响主链路。"""
+    async def invalidate(self, shopping_session_id: str) -> None:
+        """取得跨进程执行权后丢弃本地缓存，下一次读取恢复持久状态。"""
+        self._agents.pop(shopping_session_id, None)
+        self._claims.pop(shopping_session_id, None)
+
+    async def persist(self, shopping_session_id: str) -> bool:
+        """捕获本轮票据后执行 CAS，旧执行者无法覆盖新 owner 的状态。"""
         agent = self._agents.get(shopping_session_id)
-        if agent is None:
-            return
+        claim = self._claims.get(shopping_session_id)
+        if agent is None or claim is None:
+            return False
         try:
-            await self._session_store.save(shopping_session_id, agent.state.model_dump_json())
-        except Exception as err:  # noqa: BLE001
-            logger.warning("会话状态落盘失败：%s（%s）", shopping_session_id, err)
-
-    async def _try_restore(self, shopping_session_id: str) -> Optional[AgentState]:
-        try:
-            raw = await self._session_store.load(shopping_session_id)
-        except Exception as err:  # noqa: BLE001 —— 存储不可用时按新会话继续，不阻断对话
-            logger.warning("会话状态读取失败，按新会话处理：%s（%s）", shopping_session_id, err)
-            return None
-        if raw is None:
-            return None
-        try:
-            state = AgentState.model_validate_json(raw)
-            logger.info("会话状态已恢复：%s（%d 条上下文）", shopping_session_id, len(state.context))
-            return state
-        except Exception as err:  # noqa: BLE001 —— 快照损坏按新会话处理
-            logger.warning("会话状态恢复失败，按新会话处理：%s（%s）", shopping_session_id, err)
-            return None
+            saved = await self._session_store.save_claim(claim, agent.state.model_dump_json())
+            if self._claims.get(shopping_session_id) == claim:
+                self._claims[shopping_session_id] = saved
+            return True
+        except BaseException:
+            # 包括取消；丢弃缓存后下一轮必须重新读取，不把失败保存伪装为成功。
+            if self._claims.get(shopping_session_id) == claim:
+                await self.invalidate(shopping_session_id)
+            raise

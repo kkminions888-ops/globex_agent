@@ -27,26 +27,31 @@ import time
 import uuid
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException, WebSocket
+from fastapi import FastAPI, HTTPException, Query, Request, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse, Response
 from sqlalchemy import text
 
 from app.application.agents.orchestrator import SubmitIntentInput
 from app.composition import Container, build_container
-from app.domain.queue.ports.task_queue import IntentTask, TaskStatus
+from app.domain.queue.ports.task_queue import IntentTask
 from app.presentation.connection import ConnectionManager
+from app.presentation.confirmations import register_confirmation_routes, confirmation_error
+from app.presentation.ag_ui import register_ag_ui_routes
+from app.presentation.buyer_workspace import register_buyer_workspace_routes
+from app.presentation.identity import require_buyer, require_session, require_task, require_metrics_reader
+from app.infrastructure.tracing import TracingASGIMiddleware, inject_task_context, install_log_correlation
 from app.presentation.dto import (
     CancelOrderRequest,
     SubmitIntentRequest,
     SubmitIntentResponse,
 )
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
+install_log_correlation()
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s request=%(request_id)s task=%(task_id)s session=%(session_id)s trace=%(trace_id)s prompt=%(prompt_version)s %(message)s")
 
 logger = logging.getLogger(__name__)
 
-# 幂等键有效期：同一会话同一句话在此窗口内重复提交视为重复请求
-_IDEMPOTENCY_TTL_SECONDS = 600
 # 轮数计数器存活时长：比幂等窗口长得多，让一整段会话都能被正确分类
 _TURN_COUNTER_TTL_SECONDS = 86400
 
@@ -67,9 +72,13 @@ def build_app() -> FastAPI:
             logger.warning("事件背板监听中断：%s", err)
 
     @asynccontextmanager
-    async def lifespan(_: FastAPI):
+    async def lifespan(application: FastAPI):
         c = await build_container()
         state["c"] = c
+        application.state.identity_policy = getattr(c, "identity_policy", None)
+        application.state.session_store = getattr(c, "session_store", None)
+        application.state.session_owner_binding = getattr(getattr(c, "settings", None), "session_owner_binding", True)
+        application.state.metrics_reader_buyers = getattr(getattr(c, "settings", None), "metrics_reader_buyers", ())
         state["connections"] = ConnectionManager(c.bus)
         await c.startup()
         if c.backplane is not None:
@@ -87,6 +96,7 @@ def build_app() -> FastAPI:
             await c.shutdown()
 
     api = FastAPI(title="Globex 跨境电商 Agent", version="0.4.0", lifespan=lifespan)
+    api.add_middleware(TracingASGIMiddleware)
 
     def container() -> Container:
         if "c" not in state:
@@ -100,7 +110,14 @@ def build_app() -> FastAPI:
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
+        expose_headers=["X-Request-ID", "X-Trace-ID"],
     )
+
+    # AG-UI 首版在本进程直跑；旧 intents 接口继续使用原有 Redis 队列语义。
+    register_ag_ui_routes(api, lambda: container().orchestrator, lambda: container().confirmations,
+                         lambda: container().ag_ui_runtime)
+    register_confirmation_routes(api, lambda: container().confirmations)
+    register_buyer_workspace_routes(api, lambda: container().orchestrator)
 
     @api.get("/health")
     async def health() -> dict:
@@ -114,23 +131,59 @@ def build_app() -> FastAPI:
                 database = c.db_engine.url.get_backend_name()
             except Exception as err:  # noqa: BLE001
                 database = f"error: {err}"
+        trade_database = "disabled"
+        trade_engine = getattr(c, "trade_db_engine", None)
+        if trade_engine is not None:
+            try:
+                async with trade_engine.connect() as conn:
+                    await conn.execute(text("select 1"))
+                trade_database = trade_engine.url.get_backend_name()
+            except Exception:
+                trade_database = "error"
         redis_state = "disabled"
         if c.cache.enabled:
             redis_state = "ok" if await c.cache.ping() else "error"
-        return {
-            "status": "ok",
+        ready = not database.startswith("error") and trade_database != "error" and redis_state != "error"
+        result = {
+            "status": "ok" if ready else "degraded",
             "model": c.settings.llm_model,
+            "runtime": getattr(c, "runtime", {}),
             "database": database,
+            "trade_database": trade_database,
             "redis": redis_state,
             "semantic_cache": c.semantic_cache.enabled,
             "queue": "enabled" if c.task_queue is not None else "disabled",
             "queue_depth": await c.task_queue.depth() if c.task_queue is not None else 0,
         }
+        if getattr(c, "prompt_registry", None) is not None:
+            try:
+                result["prompt_registry"] = await asyncio.to_thread(c.prompt_registry.describe)
+            except ValueError:
+                ready = False
+                result["status"] = "degraded"
+                result["prompt_registry"] = {"status": "unavailable"}
+        return result if ready else JSONResponse(status_code=503, content=result)
+
+    @api.get("/internal/metrics", include_in_schema=False)
+    async def prometheus_metrics(request: Request) -> Response:
+        await require_metrics_reader(request)
+        from app.infrastructure.operational_metrics import registry
+        return Response(registry.prometheus(), media_type="text/plain; version=0.0.4",
+                        headers={"Cache-Control": "no-store"})
+
+    @api.get("/internal/metrics/summary", include_in_schema=False)
+    async def metrics_summary(request: Request) -> JSONResponse:
+        await require_metrics_reader(request)
+        from app.infrastructure.operational_metrics import registry
+        return JSONResponse({"metrics": registry.snapshot(), "alerts": registry.alerts()},
+                            headers={"Cache-Control": "no-store"})
 
     @api.post("/commerce/intents", response_model=SubmitIntentResponse)
-    async def submit_intent(body: SubmitIntentRequest) -> SubmitIntentResponse:
+    async def submit_intent(request: Request, body: SubmitIntentRequest) -> SubmitIntentResponse:
         c = container()
         session_id = body.shopping_session_id or f"session-{uuid.uuid4().hex[:8]}"
+        body.buyer_id = await require_buyer(request, body.buyer_id)
+        await require_session(request, body.buyer_id, session_id, create=True)
         intent = SubmitIntentInput(
             shopping_session_id=session_id,
             buyer_id=body.buyer_id,
@@ -144,14 +197,19 @@ def build_app() -> FastAPI:
                 shopping_session_id=result.shopping_session_id, final_text=result.final_text,
             )
 
-        task_id = await _enqueue(c, intent)
+        try:
+            task_id = await _enqueue(c, intent, request_id=body.request_id)
+        except ValueError as err:
+            raise HTTPException(status_code=409, detail=str(err)) from err
         final_text = await _await_result(c, task_id, session_id)
         return SubmitIntentResponse(shopping_session_id=session_id, final_text=final_text)
 
     @api.post("/commerce/intents/async")
-    async def submit_intent_async(body: SubmitIntentRequest) -> dict:
+    async def submit_intent_async(request: Request, body: SubmitIntentRequest) -> dict:
         c = container()
         session_id = body.shopping_session_id or f"session-{uuid.uuid4().hex[:8]}"
+        body.buyer_id = await require_buyer(request, body.buyer_id)
+        await require_session(request, body.buyer_id, session_id, create=True)
         intent = SubmitIntentInput(
             shopping_session_id=session_id,
             buyer_id=body.buyer_id,
@@ -161,12 +219,18 @@ def build_app() -> FastAPI:
         )
         if c.task_queue is None:
             raise HTTPException(status_code=503, detail="队列未启用，请使用 /commerce/intents")
-        task_id = await _enqueue(c, intent)
-        return {"shopping_session_id": session_id, "task_id": task_id, "state": "queued"}
+        try:
+            task_id = await _enqueue(c, intent, request_id=body.request_id)
+        except ValueError as err:
+            raise HTTPException(status_code=409, detail=str(err)) from err
+        status = await c.task_queue.get_status(task_id)
+        return {"shopping_session_id": session_id, "task_id": task_id, "state": status.state if status else "queued"}
 
     @api.get("/commerce/tasks/{task_id}")
-    async def get_task(task_id: str) -> dict:
+    async def get_task(request: Request, task_id: str, buyer_id: str = Query(min_length=1)) -> dict:
         c = container()
+        buyer_id = await require_buyer(request, buyer_id)
+        await require_task(request, buyer_id, task_id)
         if c.task_queue is None:
             raise HTTPException(status_code=503, detail="队列未启用")
         status = await c.task_queue.get_status(task_id)
@@ -185,18 +249,21 @@ def build_app() -> FastAPI:
         await state["connections"].serve(websocket)
 
     @api.get("/commerce/orders/{order_id}")
-    async def get_order(order_id: str) -> dict:
+    async def get_order(request: Request, order_id: str, buyer_id: str = Query(min_length=1)) -> dict:
+        buyer_id = await require_buyer(request, buyer_id)
         try:
-            return await container().query_order.execute(order_id)
+            return await container().query_order.execute(order_id, buyer_id=buyer_id)
         except ValueError as err:
             raise HTTPException(status_code=404, detail=str(err)) from err
 
     @api.post("/commerce/orders/{order_id}/cancel")
-    async def cancel_order_endpoint(order_id: str, body: CancelOrderRequest) -> dict:
+    async def cancel_order_endpoint(request: Request, order_id: str, body: CancelOrderRequest) -> dict:
+        body.buyer_id = await require_buyer(request, body.buyer_id)
+        await require_session(request, body.buyer_id, body.session_id, create=True)
         try:
-            return await container().cancel_order.execute(order_id, body.reason)
+            return await container().cancel_order.execute(order_id, body.reason, buyer_id=body.buyer_id, session_id=body.session_id)
         except ValueError as err:
-            raise HTTPException(status_code=400, detail=str(err)) from err
+            raise confirmation_error(err) from err
 
     return api
 
@@ -219,39 +286,25 @@ async def _queue_priority(c: Container, session_id: str) -> int:
     return 1 if current >= c.settings.queue_large_request_turns else 0
 
 
-async def _enqueue(c: Container, intent: SubmitIntentInput) -> str:
-    """入队并做幂等保护。
-
-    队列是 at-least-once，且买家/前端可能重复提交。用「会话 + 问句」指纹做幂等键，
-    命中说明短时间内已提交过同样内容，直接复用原 task_id，不再入队一次。
-    这一步对写操作（下单）尤其关键：重复消费等于重复下单。
-    """
-    fingerprint = hashlib.sha256(
-        f"{intent.shopping_session_id}\n{intent.raw_query}".encode(),
-    ).hexdigest()[:32]
-    idem_key = f"idem:{fingerprint}"
-    task_id = f"task-{uuid.uuid4().hex[:12]}"
-
-    acquired = await c.cache.set_if_absent(idem_key, task_id, _IDEMPOTENCY_TTL_SECONDS)
-    if not acquired:
-        previous = await c.cache.get_raw(idem_key)
-        if previous:
-            logger.info("幂等命中，复用已有任务：%s", previous)
-            return previous
-
+async def _enqueue(c: Container, intent: SubmitIntentInput, *, request_id: str | None = None) -> str:
+    """请求 ID 标识一次提交；同一句话的新提交可以形成新的任务。"""
+    # task_id 从请求身份确定，Redis enqueue 原子去重；没有客户端 ID 就视为新意图。
+    identity = f"{intent.buyer_id}\n{intent.shopping_session_id}\n{request_id or uuid.uuid4().hex}"
+    task_id = f"task-{hashlib.sha256(identity.encode()).hexdigest()}"
+    if getattr(c, "session_store", None) is not None:
+        await c.session_store.bind_task_owner(task_id, intent.shopping_session_id, intent.buyer_id)
     await c.task_queue.enqueue(  # type: ignore[union-attr]
         IntentTask(
-            task_id=task_id,
-            shopping_session_id=intent.shopping_session_id,
-            buyer_id=intent.buyer_id,
-            locale=intent.locale,
-            currency=intent.currency,
+            task_id=task_id, shopping_session_id=intent.shopping_session_id,
+            buyer_id=intent.buyer_id, locale=intent.locale, currency=intent.currency,
             raw_query=intent.raw_query,
             priority=await _queue_priority(c, intent.shopping_session_id),
+            **inject_task_context(session_id=intent.shopping_session_id, task_id=task_id),
         ),
     )
-    await c.task_queue.set_status(TaskStatus(task_id=task_id, state="queued"))  # type: ignore[union-attr]
-    c.bus.publish(intent.shopping_session_id, "task.queued", {"task_id": task_id})
+    status = await c.task_queue.get_status(task_id)  # type: ignore[union-attr]
+    if status is not None and status.state == "queued":
+        c.bus.publish(intent.shopping_session_id, "task.queued", {"task_id": task_id})
     return task_id
 
 
@@ -265,17 +318,16 @@ async def _await_result(c: Container, task_id: str, session_id: str) -> str:
     deadline = time.monotonic() + c.settings.queue_wait_seconds
     try:
         while time.monotonic() < deadline:
+            # 会话事件只负责唤醒。结果必须来自该 task_id 的已持久化终态。
+            status = await c.task_queue.get_status(task_id)  # type: ignore[union-attr]
+            if status is not None and status.state == "done":
+                return status.final_text
+            if status is not None and status.state == "failed":
+                return f"[error] {status.error}"
             try:
-                event = await asyncio.wait_for(queue.get(), timeout=2.0)
+                await asyncio.wait_for(queue.get(), timeout=min(2.0, max(0.01, deadline - time.monotonic())))
             except asyncio.TimeoutError:
-                status = await c.task_queue.get_status(task_id)  # type: ignore[union-attr]
-                if status is not None and status.state == "done":
-                    return status.final_text
-                if status is not None and status.state == "failed":
-                    return f"[error] {status.error}"
-                continue
-            if event.type == "final.result":
-                return str(event.payload.get("text", ""))
+                pass
         return "[error] 处理超时，请稍后重试或改用异步接口查询任务状态"
     finally:
         c.bus.unsubscribe(session_id, queue)

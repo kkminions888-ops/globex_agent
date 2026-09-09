@@ -22,6 +22,7 @@ _AUTO_ALLOWED_TOOLS = (
     # 撤回偏好与记住偏好对称：买家已在对话里明确说“以后不用避开塑料了”，
     # 再弹一次工具层确认卡是重复询问；且误删风险由精确匹配兜底
     "forget_preference_tool",
+    "update_preference_tool",
     "TaskCreate",
     "TaskUpdate",
     "TaskList",

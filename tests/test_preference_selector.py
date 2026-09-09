@@ -5,7 +5,7 @@
 「不要塑料材质」与「推荐个咖啡杯」的向量相似度很低，纯 top_k 会把它丢掉，
 于是推出一只塑料杯。漏黑名单是安全问题，不是相关性问题。
 """
-from app.application.memory.preference_selector import PreferenceSelector
+from app.application.memory.preference_selector import PreferenceSelector, material_exclusion_tags
 from app.domain.buyer.preference import BuyerPreference
 from app.domain.catalog.ports.retrieval_ports import EmbeddingClient
 
@@ -51,6 +51,14 @@ def _statements(preferences) -> list[str]:
 
 
 class TestDislikeSafetyFloor:
+    def test_material_dislikes_are_mapped_to_structured_catalog_tags(self):
+        preferences = [
+            _pref("dislike", "不要塑料和再生尼龙材质", "2026-01-01"),
+            _pref("like", "喜欢陶瓷杯", "2026-01-02"),
+        ]
+
+        assert material_exclusion_tags(preferences) == ["合成聚合物"]
+
     async def test_dislikes_never_truncated_by_top_k(self):
         """核心用例：4 条 dislike + top_k=1，dislike 一条都不能少。"""
         preferences = [

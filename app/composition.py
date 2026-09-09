@@ -12,8 +12,9 @@ API 进程与 worker 进程共用同一份接线，避免两处各自 new 一套
 from __future__ import annotations
 
 import hashlib
+import asyncio
 import logging
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Optional
 
@@ -25,7 +26,10 @@ from app.application.harness.assertions import SequencingTracker
 from app.application.harness.drift_detector import DriftDetector
 from app.application.harness.loop_detector import LoopDetector
 from app.application.memory.preference_selector import PreferenceSelector
+from app.infrastructure.buyer_skills import BuyerSkillStore
 from app.application.usecases.catalog_search import CatalogSearchUseCase
+from app.application.usecases.confirmation_service import ConfirmationService
+from app.infrastructure.persistence.sql.trade_store import SqlTradeStore
 from app.application.usecases.order_usecases import (
     CancelOrderUseCase,
     PlaceOrderUseCase,
@@ -38,7 +42,6 @@ from app.infrastructure.cache.semantic_cache import SemanticCache
 from app.infrastructure.embedding.openai_embedding_client import OpenAIEmbeddingClient
 from app.infrastructure.eventbus import TradeEventBus
 from app.infrastructure.persistence.in_memory_repositories import (
-    InMemoryOrderRepository,
     InMemoryProductRepository,
 )
 from app.infrastructure.persistence.json_file_stores import (
@@ -48,7 +51,6 @@ from app.infrastructure.persistence.json_file_stores import (
 )
 from app.infrastructure.persistence.sql.repositories import (
     SqlConversationStore,
-    SqlOrderRepository,
     SqlPreferenceStore,
     SqlSessionStore,
     bootstrap_schema,
@@ -65,9 +67,17 @@ from app.infrastructure.rag.category_knowledge import (
 from app.infrastructure.rerank.http_reranker import HttpReranker
 from app.infrastructure.resilience import CircuitBreakerRegistry
 from app.infrastructure.settings import Settings, load_settings
+from app.infrastructure.identity import IdentityPolicy
+from app.infrastructure.prompt_registry import PromptRegistry, toolset_contract
 from app.infrastructure.shared_breaker import SharedCircuitBreakerRegistry
 from app.infrastructure.throttle import GatewayThrottle
-from app.infrastructure.tracing import setup_tracing
+from app.infrastructure.shared_throttle import RedisGatewayThrottle
+from app.infrastructure.tracing import setup_tracing, shutdown_tracing
+from app.infrastructure.ag_ui_journal import AGUIJournal
+from app.infrastructure.queue.archive import QueueArchive
+from app.infrastructure.capability_registry import CapabilityRegistry
+from app.presentation.ag_ui_runtime import AGUIRuntime
+from app.infrastructure.runtime_version import app_source_fingerprint
 from app.infrastructure.vector.index_bootstrap import bootstrap_product_index
 from app.infrastructure.vector.qdrant_product_index import QdrantProductIndex
 
@@ -103,14 +113,28 @@ class Container:
     vector_index: QdrantProductIndex
     knowledge_base: Any
     db_engine: Any
+    confirmations: Any = None
+    trade_store: Any = None
+    trade_db_engine: Any = None
+    runtime: dict = field(default_factory=dict)
+    ag_ui_runtime: Any = None
+    session_store: Any = None
+    identity_policy: Any = None
+    prompt_registry: Any = None
 
     async def startup(self) -> None:
         """建表 / 建向量库 / 建知识库。任一失败只告警，对应能力降级但服务可用。"""
-        if self.db_engine is not None:
+        if self.ag_ui_runtime is not None:
+            await self.ag_ui_runtime.startup()
+        if self.db_engine is not None and (self.trade_store is None or self.db_engine is not self.trade_db_engine):
             try:
                 await bootstrap_schema(self.db_engine)
             except Exception as err:  # noqa: BLE001
                 logger.warning("数据库建表失败，持久化能力不可用：%s", err)
+        # 交易账本不可降级到内存：持久化失败时拒绝启动，避免返回虚假成功。
+        if self.trade_store is not None:
+            await self.trade_store.initialize_inventory(await self.product_repo.list_all())
+            self.product_repo.bind_inventory(self.trade_store.get_inventory)
         if isinstance(self.task_queue, RedisStreamTaskQueue):
             try:
                 await self.task_queue.ensure_group()
@@ -120,14 +144,27 @@ class Container:
         await bootstrap_category_knowledge(self.knowledge_base)
 
     async def shutdown(self) -> None:
+        if self.ag_ui_runtime is not None:
+            await self.ag_ui_runtime.shutdown()
+        if isinstance(self.session_store, JsonFileSessionStore):
+            await self.session_store.close()
         await self.vector_index.close()
         await self.cache.close()
+        if self.trade_db_engine is not None and self.trade_db_engine is not self.db_engine:
+            await self.trade_db_engine.dispose()
         if self.db_engine is not None:
             await self.db_engine.dispose()
+        await asyncio.to_thread(shutdown_tracing)
 
 
 async def build_container() -> Container:
+    source_fingerprint = app_source_fingerprint()
     settings = load_settings()
+    identity_policy = IdentityPolicy.from_settings(settings)
+    project_root = Path(__file__).resolve().parent.parent
+    prompt_registry = PromptRegistry(settings.data_dir / "prompts" / "registry.sqlite3",
+        toolset_contract(project_root, web_search_enabled=bool(settings.tavily_api_key)), pinned_version=settings.prompt_pin_version)
+    await asyncio.to_thread(prompt_registry.bootstrap, project_root / "app/application/prompts/globex.yml")
     setup_tracing(settings)
 
     # ---- Infrastructure ----
@@ -157,7 +194,7 @@ async def build_container() -> Container:
     task_queue: Optional[TaskQueue] = None
     backplane: Optional[RedisEventBackplane] = None
     if cache.enabled and settings.queue_enabled:
-        task_queue = RedisStreamTaskQueue(cache.client)
+        task_queue = RedisStreamTaskQueue(cache.client, QueueArchive(settings.data_dir / "queue_archive.db"))
         backplane = RedisEventBackplane(cache.client)
         # 关键：worker 与 API 是两个进程，不接背板前端收不到 worker 产生的事件
         bus.attach_backplane(backplane)
@@ -169,17 +206,25 @@ async def build_container() -> Container:
     use_database = settings.database_url != "file"
     db_engine = create_engine(settings.database_url) if use_database else None
     if db_engine is not None:
-        order_repo = SqlOrderRepository(db_engine)
         preference_store = SqlPreferenceStore(db_engine)
         session_store = SqlSessionStore(db_engine)
         conversation_store = SqlConversationStore(db_engine)
         logger.info("持久化形态：%s", db_engine.url.get_backend_name())
     else:
-        order_repo = InMemoryOrderRepository()
         preference_store = JsonFilePreferenceStore(settings.data_dir)
         session_store = JsonFileSessionStore(settings.data_dir)
         conversation_store = JsonFileConversationStore(settings.data_dir)
         logger.info("持久化形态：本地 JSON 文件（DATABASE_URL=file）")
+
+    # 旧版 file 订单无法按未知格式自动并账，必须先显式迁移。
+    if not use_database:
+        legacy_orders = settings.data_dir / "orders.json"
+        if legacy_orders.exists() and legacy_orders.read_text().strip() not in {"", "[]", "{}"}:
+            raise RuntimeError("检测到旧 orders.json，请先核对并迁移至交易账本，不能忽略历史订单后启动")
+    # file 模式只影响会话和偏好；交易仍使用持久 SQLite 原子账本。
+    trade_db_engine = db_engine or create_engine(f"sqlite+aiosqlite:///{settings.data_dir / 'trade.db'}")
+    trade_store = SqlTradeStore(trade_db_engine)
+    confirmations = ConfirmationService(product_repo, trade_store, bus=bus)
 
     # 熔断注册表：开 BREAKER_SHARED 且 Redis 可用时跨实例共享，否则进程内
     if settings.breaker_shared and cache.enabled:
@@ -195,9 +240,16 @@ async def build_container() -> Container:
             reset_seconds=settings.tool_circuit_reset_seconds,
         )
     # 全进程唯一的网关配额闸门：三个 Agent 工厂共用，否则各限一份等于没限
-    throttle = GatewayThrottle(
-        max_concurrency=settings.llm_max_concurrency,
-        min_interval_seconds=settings.llm_min_interval_seconds,
+    throttle = (
+        RedisGatewayThrottle(
+            cache.client,
+            max_concurrency=settings.llm_max_concurrency,
+            min_interval_seconds=settings.llm_min_interval_seconds,
+            namespace=f"{settings.llm_base_url}\n{settings.llm_model}",
+        ) if cache.enabled else GatewayThrottle(
+            max_concurrency=settings.llm_max_concurrency,
+            min_interval_seconds=settings.llm_min_interval_seconds,
+        )
     )
     # 护栏判定器同样全进程唯一：按会话累积状态，需跨 Agent 实例与轮次共享
     sequencing_tracker = SequencingTracker()
@@ -209,10 +261,11 @@ async def build_container() -> Container:
     # ---- Application ----
     catalog_search = CatalogSearchUseCase(
         product_repo, embedder=embedder, vector_index=vector_index, reranker=reranker,
+        hybrid_enabled=settings.hybrid_recall_enabled,
     )
-    place_order = PlaceOrderUseCase(product_repo, order_repo)
-    query_order = QueryOrderUseCase(order_repo)
-    cancel_order = CancelOrderUseCase(product_repo, order_repo)
+    place_order = PlaceOrderUseCase(confirmations)
+    query_order = QueryOrderUseCase(trade_store)
+    cancel_order = CancelOrderUseCase(confirmations)
 
     search_factory = SearchAgentFactory(
         settings, catalog_search, bus, knowledge_base, circuit_registry, throttle,
@@ -231,8 +284,10 @@ async def build_container() -> Container:
         sequencing=sequencing_tracker,
         loop_detector=loop_detector,
         preference_selector=preference_selector,
+        capability_registry=CapabilityRegistry(settings.data_dir / "capabilities.db"),
+        buyer_skill_store=BuyerSkillStore(settings.data_dir / "buyer_skills.db"),
     )
-    sessions = SessionRegistry(main_factory, session_store)
+    sessions = SessionRegistry(main_factory, session_store, enforce_owner=settings.session_owner_binding, prompt_registry=prompt_registry)
     orchestrator = MainAgentOrchestrator(
         sessions, bus, preference_store, conversation_store, semantic_cache,
         output_guard_enabled=settings.output_guard_enabled,
@@ -241,6 +296,9 @@ async def build_container() -> Container:
         drift_detector=drift_detector,
         preference_selector=preference_selector,
         preference_top_k=settings.preference_top_k,
+        session_lease_factory=task_queue.session_lease if task_queue is not None else None,
+        evidence_store=search_factory.evidence_store,
+        trade_state_provider=confirmations.agent_state,
     )
 
     return Container(
@@ -258,4 +316,12 @@ async def build_container() -> Container:
         vector_index=vector_index,
         knowledge_base=knowledge_base,
         db_engine=db_engine,
+        confirmations=confirmations,
+        trade_store=trade_store,
+        trade_db_engine=trade_db_engine,
+        runtime={"app_source_sha256": source_fingerprint},
+        ag_ui_runtime=AGUIRuntime(AGUIJournal(settings.data_dir / "ag_ui_runs.db"), orchestrator, confirmations),
+        session_store=session_store,
+        identity_policy=identity_policy,
+        prompt_registry=prompt_registry,
     )

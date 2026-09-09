@@ -1,0 +1,27 @@
+{
+  "case": "read_updated",
+  "query": "我长期喜欢什么颜色？只根据当前保存的长期记忆回答，不新增或修改记忆，不搜索商品。",
+  "run_id": "d68911b8f7e24fda801a4cbfdaf4a27d",
+  "session_id": "997146f9e10b49dea699f9be84288542",
+  "trace_id": "beb34e3707a7da1517dcfbe9abf7ea26",
+  "tool_names": [],
+  "final_text": "根据你当前保存的长期偏好记忆，你**喜欢绿色**。",
+  "preferences": [
+    {
+      "buyer_id": "319e4850-9d00-4ecc-8696-592597c6e349",
+      "kind": "like",
+      "statement": "喜欢绿色",
+      "created_at": "2026-09-09T07:42:30.122404+00:00"
+    }
+  ],
+  "events": {
+    "RUN_STARTED": 1,
+    "STATE_SNAPSHOT": 4,
+    "TEXT_MESSAGE_START": 1,
+    "TEXT_MESSAGE_CONTENT": 6,
+    "TEXT_MESSAGE_END": 1,
+    "MESSAGES_SNAPSHOT": 1,
+    "RUN_FINISHED": 1
+  },
+  "mechanism_pass": true
+}

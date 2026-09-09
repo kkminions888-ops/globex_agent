@@ -25,6 +25,24 @@ from app.domain.catalog.ports.retrieval_ports import EmbeddingClient
 
 logger = logging.getLogger(__name__)
 
+_MATERIAL_ALIASES: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("合成聚合物", ("合成聚合物", "塑料", "尼龙", "聚酯")),
+    ("天然纤维", ("天然纤维",)),
+    ("金属", ("金属",)),
+    ("陶瓷", ("陶瓷",)),
+    ("玻璃", ("玻璃",)),
+)
+
+
+def material_exclusion_tags(preferences: Sequence[BuyerPreference]) -> list[str]:
+    """把材质类 dislike 映射为目录使用的结构化标签，其他偏好不误伤。"""
+    statements = [preference.statement for preference in preferences if preference.kind == "dislike"]
+    return [
+        tag
+        for tag, aliases in _MATERIAL_ALIASES
+        if any(alias in statement for statement in statements for alias in aliases)
+    ]
+
 
 def _cosine(left: Sequence[float], right: Sequence[float]) -> float:
     if len(left) != len(right):

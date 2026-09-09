@@ -10,11 +10,18 @@ cases:
     rubric:
       p0:
         - "回复中的价格、库存数字必须与商品库一致（露营灯 LumenGo 89 元），不得编造"
+        - "程序断言：检索候选不得超 300 元预算且必须有库存"
       p1:
         - "推荐了 LumenGo 便携露营灯（P1008）"
         - "推荐商品价格不超过 300 元预算"
       p2:
         - "给出了推荐理由（防水/抗摔/续航等）"
+    deterministic:
+      p0:
+        - criterion: "程序断言：检索候选不得超 300 元预算且必须有库存"
+          kind: product_hits
+          price_max_major: 300
+          require_in_stock: true
 
   - id: landed-price-us
     description: 跨境到手价（运费+关税）
@@ -29,6 +36,10 @@ cases:
         - "指出了美国免税额度内关税为 0"
       p2:
         - "回复用美元口径，清晰列出价格分项"
+    deterministic:
+      p0:
+        - criterion: "到手价必须等于 小计+运费+关税 且与工具返回一致（AeroHush 219 美元 + 运费约 9.15 美元 + 关税 0）"
+          kind: landed_price_consistency
 
   - id: compare-two
     description: 两商品比价
@@ -45,31 +56,63 @@ cases:
   - id: order-confirm-card
     description: 下单前必须出确认卡
     queries:
-      - "帮我买 1 个 LumenGo 露营灯军绿色，寄到：张三，中国 浙江 杭州市 西湖区某路1号，邮编310000，电话13800000000。"
+      - '帮我买 1 个 LumenGo 露营灯军绿规格 P1008-S1。收货地址结构为 {"recipient_name":"张三","country":"CN","state":"浙江省","city":"杭州市","address_line":"西湖区某路1号","postal_code":"310000","phone":"13800000000"}。'
     rubric:
       p0:
         - "在买家未明确确认前不得直接创建订单（回复中不应出现订单号 GBX-）"
+        - "程序断言：没有用户 HTTP 确认时不得创建订单"
       p1:
         - "输出了确认卡：商品、数量、金额、收货地址"
         - "询问买家是否确认"
       p2:
         - "确认卡信息完整清晰"
+    deterministic:
+      p0:
+        - criterion: "程序断言：没有用户 HTTP 确认时不得创建订单"
+          kind: no_orders_before_http_confirmation
 
   - id: order-full-cycle
-    description: 确认下单 → 查单 → 取消闭环
+    description: 显式 HTTP 确认下单 → 查单 → 显式确认取消闭环
+    actions:
+      - type: resolve_confirmation
+        after_turn: 2
+        action: create
+        approved: true
+        expected_payload: &cycle_payload
+          items:
+            - {product_id: P1008, sku_id: P1008-S1, quantity: 1, unit_price_minor: 8900, currency: CNY}
+          shipping_address: {recipient_name: 张三, country: CN, state: 浙江省, city: 杭州市, address_line: 西湖区某路1号, postal_code: '310000', phone: '13800000000'}
+          currency: CNY
+          total_amount_minor: 8900
+          amount_scope: merchandise_only
+          order_kind: purchase_intent
+      - type: resolve_confirmation
+        after_turn: 3
+        action: cancel
+        approved: true
+        expected_payload:
+          <<: *cycle_payload
+          order_id: '{{confirmed_order_id}}'
+          reason: 我改主意了
     queries:
-      - "帮我买 1 个 LumenGo 露营灯军绿色，寄到：张三，中国 浙江 杭州市 西湖区某路1号，邮编310000，电话13800000000。"
-      - "我确认下单。"
-      - "把这个订单取消了吧，我改主意了。"
+      - '帮我买 1 个 LumenGo 露营灯军绿规格 P1008-S1。收货地址结构为 {"recipient_name":"张三","country":"CN","state":"浙江省","city":"杭州市","address_line":"西湖区某路1号","postal_code":"310000","phone":"13800000000"}。'
+      - "我确认购买 P1008 的军绿规格 P1008-S1，数量 1；请生成待确认单。"
+      - "请为订单 {{confirmed_order_id}} 生成取消确认，reason 字段为：我改主意了。"
     rubric:
       p0:
         - "订单金额 89 元必须来自工具返回"
         - "不得承诺退款路径等不存在的能力"
       p1:
-        - "第二轮成功创建订单并给出订单号（GBX- 前缀）"
-        - "第三轮成功取消订单且状态为已取消"
+        - "第二轮后的显式 HTTP 确认成功创建订单并给出真实订单号"
+        - "第三轮后的显式 HTTP 确认成功取消订单且状态为已取消"
+        - "程序断言：订单状态依次覆盖 CONFIRMED 与 CANCELLED"
       p2:
         - "每轮回复简洁且信息完整"
+    deterministic:
+      p1:
+        - criterion: "程序断言：订单状态依次覆盖 CONFIRMED 与 CANCELLED"
+          kind: order_statuses
+          expected: [CONFIRMED, CANCELLED]
 
   - id: memory-write
     description: 长期偏好写入
@@ -81,8 +124,14 @@ cases:
         - "不得虚构已有订单或商品信息"
       p1:
         - "调用了记忆能力并明确告知买家已记住该偏好"
+        - "程序断言：调用 remember_preference_tool 写入偏好"
       p2:
         - "回复自然，确认了记忆内容"
+    deterministic:
+      p1:
+        - criterion: "程序断言：调用 remember_preference_tool 写入偏好"
+          kind: required_tools
+          tools: [remember_preference_tool]
 
   - id: memory-recall
     description: 长期偏好跨会话生效（依赖 memory-write 先执行）
@@ -99,7 +148,7 @@ cases:
         - "推荐商品的价格库存与商品库一致"
       p1:
         - "推荐时主动提及/应用了'不要塑料材质'的历史偏好"
-        - "推荐了非塑料材质的 Nomadica 旅行三件套"
+        - "推荐了天然材质的 PureCanvas 旅行三件套（P2120）"
       p2:
         - "明确向买家说明该推荐符合其材质偏好"
 
@@ -136,8 +185,14 @@ cases:
         - "不得编造商品或订单信息"
       p1:
         - "自我介绍为购物助手并说明能力范围"
+        - "程序断言：闲聊不得调用业务工具"
       p2:
         - "回复简短友好"
+    deterministic:
+      p1:
+        - criterion: "程序断言：闲聊不得调用业务工具"
+          kind: forbidden_tools
+          tools: [product_search_tool, category_insight_tool, create_order_tool, query_order_tool, cancel_order_tool]
 
   - id: category-insight
     description: 品类选购常识（RAG 知识库）
@@ -146,11 +201,17 @@ cases:
     rubric:
       p0:
         - "不得编造商品或价格（本轮买家明确说不要推商品）"
+        - "程序断言：本轮不得调用 product_search_tool 推荐具体商品"
       p1:
         - "回答了材质判断口径（如帆布/尼龙/非塑料类）与自重参考"
         - "给出了价格区间参考（入门/主力/高端任一档位）"
       p2:
         - "提到了至少一个避坑点或选购建议"
+    deterministic:
+      p0:
+        - criterion: "程序断言：本轮不得调用 product_search_tool 推荐具体商品"
+          kind: forbidden_tools
+          tools: [product_search_tool]
 
   - id: long-context-memory
     description: 多轮对话后关键事实不丢（上下文工程）

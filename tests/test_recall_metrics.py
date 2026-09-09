@@ -14,6 +14,7 @@ from scripts.eval.metrics import (
     gate,
     mrr,
     ndcg_at_k,
+    precision_at_k,
     recall_at_k,
 )
 
@@ -46,6 +47,17 @@ class TestRecallAtK:
     def test_duplicates_do_not_inflate(self):
         """重复 id 不应让 Recall 虚高。"""
         assert recall_at_k(["a", "a", "a"], ["a", "b"], k=3) == 0.5
+
+
+class TestPrecisionAtK:
+    def test_uses_returned_slots_as_denominator(self):
+        assert precision_at_k(["a", "x", "b"], ["a", "b"], k=3) == pytest.approx(2 / 3)
+
+    def test_short_result_is_not_penalized_as_missing_slots(self):
+        assert precision_at_k(["a"], ["a"], k=8) == 1.0
+
+    def test_empty_result_is_zero(self):
+        assert precision_at_k([], ["a"], k=8) == 0.0
 
 
 class TestMRR:
@@ -101,9 +113,9 @@ class TestNDCGAtK:
         assert ndcg_at_k(["a", "b"], ["a", "b", "c", "d"], k=2) == pytest.approx(1.0)
 
 
-def _qr(recall: float, m: float, n: float, filter_ok=None) -> QueryResult:
+def _qr(recall: float, m: float, n: float, filter_ok=None, precision: float = 0.0) -> QueryResult:
     return QueryResult(
-        query="q", retrieved=[], relevant=[], recall=recall, mrr=m, ndcg=n,
+        query="q", retrieved=[], relevant=[], recall=recall, mrr=m, ndcg=n, precision=precision,
         filter_ok=filter_ok,
     )
 
@@ -114,9 +126,9 @@ class TestAggregate:
         assert agg.count == 0 and agg.recall == 0.0
 
     def test_macro_average(self):
-        agg = evaluate([_qr(1.0, 1.0, 1.0), _qr(0.0, 0.0, 0.0)], k=10)
+        agg = evaluate([_qr(1.0, 1.0, 1.0, precision=1.0), _qr(0.0, 0.0, 0.0, precision=0.0)], k=10)
         assert agg.count == 2
-        assert agg.recall == 0.5 and agg.mrr == 0.5 and agg.ndcg == 0.5
+        assert agg.recall == 0.5 and agg.mrr == 0.5 and agg.ndcg == 0.5 and agg.precision == 0.5
 
     def test_filter_accuracy_only_counts_declared(self):
         """未声明硬约束的 query 不参与过滤准确率统计。"""
@@ -129,32 +141,113 @@ class TestAggregate:
     def test_filter_accuracy_none_when_no_constraint(self):
         assert evaluate([_qr(1, 1, 1)], k=10).filter_accuracy is None
 
+    def test_empty_query_accuracy_is_tracked_outside_positive_recall_metrics(self):
+        agg = evaluate([_qr(1, 1, 1)], k=8, empty_results=[True, False])
+
+        assert agg.count == 1
+        assert agg.empty_count == 2
+        assert agg.empty_accuracy == 0.5
+
 
 class TestGate:
-    THRESHOLDS = Thresholds(recall=0.75, mrr=0.65, ndcg=0.70)
+    THRESHOLDS = Thresholds(recall=0.75, precision=0.60, mrr=0.65, ndcg=0.70)
 
     def test_pass(self):
-        agg = Aggregate(k=10, count=5, recall=0.9, mrr=0.8, ndcg=0.85)
+        agg = Aggregate(k=10, count=5, recall=0.9, precision=0.8, mrr=0.8, ndcg=0.85)
         assert gate(agg, self.THRESHOLDS) == ("PASS", [])
 
     def test_block_on_low_recall(self):
-        agg = Aggregate(k=10, count=5, recall=0.5, mrr=0.8, ndcg=0.85)
+        agg = Aggregate(k=10, count=5, recall=0.5, precision=0.8, mrr=0.8, ndcg=0.85)
         verdict, reasons = gate(agg, self.THRESHOLDS)
         assert verdict == "BLOCK"
         assert any("Recall@10" in r for r in reasons)
 
     def test_block_on_low_mrr(self):
-        agg = Aggregate(k=10, count=5, recall=0.9, mrr=0.3, ndcg=0.85)
+        agg = Aggregate(k=10, count=5, recall=0.9, precision=0.8, mrr=0.3, ndcg=0.85)
         assert gate(agg, self.THRESHOLDS)[0] == "BLOCK"
 
-    def test_warn_only_on_low_ndcg(self):
-        """排序质量退化只告警，不阻断——需要人看一眼再决定。"""
-        agg = Aggregate(k=10, count=5, recall=0.9, mrr=0.8, ndcg=0.5)
+    def test_block_on_low_ndcg(self):
+        agg = Aggregate(k=10, count=5, recall=0.9, precision=0.8, mrr=0.8, ndcg=0.5)
         verdict, reasons = gate(agg, self.THRESHOLDS)
-        assert verdict == "WARN"
+        assert verdict == "BLOCK"
         assert any("NDCG@10" in r for r in reasons)
 
+    def test_block_on_low_precision(self):
+        agg = Aggregate(k=10, count=5, recall=0.9, precision=0.2, mrr=0.8, ndcg=0.85)
+        assert gate(agg, self.THRESHOLDS)[0] == "BLOCK"
+
+    def test_precision_can_be_diagnostic_only(self):
+        """单金标 Top-K 集不能因观察性 Precision 被不可达门槛阻断。"""
+        agg = Aggregate(k=8, count=5, recall=0.95, precision=0.125, mrr=0.9, ndcg=0.9)
+
+        assert gate(agg, Thresholds(recall=0.9, precision=None, mrr=0.85, ndcg=0.85)) == ("PASS", [])
+
+    def test_block_when_hard_constraint_accuracy_is_below_gate(self):
+        agg = Aggregate(
+            k=8, count=5, recall=0.95, precision=0.2, mrr=0.9, ndcg=0.9,
+            filter_accuracy=0.8,
+        )
+
+        verdict, reasons = gate(
+            agg,
+            Thresholds(recall=0.9, precision=None, mrr=0.85, ndcg=0.85, filter_accuracy=1.0),
+        )
+
+        assert verdict == "BLOCK"
+        assert any("硬约束准确率" in reason for reason in reasons)
+
+    def test_online_gate_rejects_a_silent_fallback_strategy(self):
+        agg = Aggregate(
+            k=8, count=5, recall=0.95, precision=0.2, mrr=0.9, ndcg=0.9,
+            filter_accuracy=1.0, empty_accuracy=1.0, recall_strategies={"embedding_only"},
+        )
+
+        verdict, reasons = gate(
+            agg,
+            Thresholds(
+                recall=0.9, precision=None, mrr=0.85, ndcg=0.85,
+                empty_accuracy=1.0, filter_accuracy=1.0,
+                required_recall_strategies={"embedding_rerank"},
+            ),
+        )
+
+        assert verdict == "BLOCK"
+        assert any("实际召回策略" in reason for reason in reasons)
+
+    def test_gate_blocks_a_policy_fact_rejection_leak(self):
+        agg = Aggregate(
+            k=3, count=5, recall=0.9, precision=0.2, mrr=0.9, ndcg=0.9,
+            policy_count=2, policy_rejection_accuracy=0.5,
+        )
+
+        verdict, reasons = gate(
+            agg,
+            Thresholds(recall=0.85, precision=None, mrr=0.85, ndcg=0.85, policy_rejection_accuracy=1.0),
+        )
+
+        assert verdict == "BLOCK"
+        assert any("政策拒答准确率" in reason for reason in reasons)
+
     def test_empty_dataset_blocks(self):
-        verdict, reasons = gate(Aggregate(k=10, count=0, recall=0, mrr=0, ndcg=0), self.THRESHOLDS)
+        verdict, reasons = gate(Aggregate(k=10, count=0, recall=0, precision=0, mrr=0, ndcg=0), self.THRESHOLDS)
         assert verdict == "BLOCK"
         assert "标注集为空" in reasons[0]
+
+    def test_block_when_approved_baseline_drops_more_than_two_points(self):
+        agg = Aggregate(k=8, count=5, recall=0.91, precision=0.82, mrr=0.84, ndcg=0.84)
+        verdict, reasons = gate(
+            agg,
+            Thresholds(recall=0.90, precision=0.80, mrr=0.80, ndcg=0.80),
+            baseline={"recall": 0.94, "precision": 0.82, "mrr": 0.85, "ndcg": 0.86},
+        )
+
+        assert verdict == "BLOCK"
+        assert any("批准基线" in reason for reason in reasons)
+
+    def test_block_when_unanswerable_or_empty_query_returns_a_candidate(self):
+        agg = Aggregate(k=8, count=5, recall=0.91, precision=0.82, mrr=0.84, ndcg=0.84, empty_count=2, empty_accuracy=0.5)
+
+        verdict, reasons = gate(agg, Thresholds(recall=0.90, precision=0.80, mrr=0.80, ndcg=0.80, empty_accuracy=1.0))
+
+        assert verdict == "BLOCK"
+        assert any("无结果准确率" in reason for reason in reasons)

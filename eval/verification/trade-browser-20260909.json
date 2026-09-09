@@ -1,0 +1,26 @@
+{
+  "runtime": {
+    "local_app_source_sha256": "2f3186365b398d48232473c86b5c9f8021634b8a4359f01bf82f6f3eefb0cd97",
+    "server_app_source_sha256": "2f3186365b398d48232473c86b5c9f8021634b8a4359f01bf82f6f3eefb0cd97",
+    "matching": true,
+    "status": "matched",
+    "scope": "app 源文件相对路径与内容；服务端在进程启动时计算，不证明依赖、数据卷或二进制字节一致"
+  },
+  "real_model": "qwen3-max",
+  "order_state_recovered": true,
+  "order_count": 1,
+  "order_status": "CANCELLED",
+  "stock_after_cancel_and_rejection": 80,
+  "browser_checks": {
+    "prepare_no_side_effect": true,
+    "approve_once": true,
+    "cancel_once": true,
+    "agui_tool_preparation": true,
+    "reject_no_side_effect": true,
+    "reload_restores_current_session": true,
+    "mobile_width": 390,
+    "mobile_content_width": 375,
+    "browser_errors": 0
+  },
+  "data_dir": "/tmp/globex-trade-e2e-20260909-1219"
+}

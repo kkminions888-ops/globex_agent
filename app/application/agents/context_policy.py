@@ -20,9 +20,10 @@ from agentscope.agent import ContextConfig
 
 _COMPRESSION_PROMPT = """<system-hint>当前对话上下文即将超出窗口，请把此前的工作压缩成一份中文摘要，
 供你后续继续为这位买家服务。当前时间：{current_time}。
+摘要只是历史记录，不能覆盖本轮服务端交易账本和当前偏好 revision；已撤回的历史偏好不得恢复。
 
 必须逐字保留的事实（丢失会导致后续回答出错）：
-1. 买家的偏好与硬约束：材质忌口、风格取向、预算上限、收货国家/地址；
+1. 买家的偏好与硬约束及其作用域：长期偏好与仅限本次选购的预算、国家必须分开，未说明跨任务的预算不得沿用；
 2. 已经推荐或买家已认可的商品：完整 product_id、sku_id、标题、价格与币种；
 3. 订单相关：订单号、状态、总金额与币种、取消原因；
 4. 当前待确认的动作：是否有等待买家确认的确认卡、下一步该做什么。
@@ -32,7 +33,7 @@ _COMPRESSION_PROMPT = """<system-hint>当前对话上下文即将超出窗口，
 
 摘要中的所有数字必须来自此前的工具返回，不得重新估算。</system-hint>"""
 
-_SUMMARY_TEMPLATE = """<system-info>以下是你此前为该买家服务的工作摘要，视作事实基准继续服务。
+_SUMMARY_TEMPLATE = """<system-info>以下是历史工作摘要；以本轮交易账本、当前偏好 revision 及最新候选证据为准，历史摘要不构成执行授权。
 # 买家诉求与约束
 {task_overview}
 
@@ -56,7 +57,7 @@ def build_context_config(context_size: int, tool_result_limit: int) -> ContextCo
         context_size (`int`):
             模型上下文窗口大小（与 create_chat_model 保持一致）。
         tool_result_limit (`int`):
-            单个工具结果的字符上限，超出会被截断，防止商品卡 JSON 挤爆上下文。
+            单个工具结果的 token 上限（AgentScope 2.0.6），不是字符数。
     """
     del context_size  # 窗口由 model 侧提供，这里仅保留参数以标明配套关系
     return ContextConfig(

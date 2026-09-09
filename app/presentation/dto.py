@@ -13,6 +13,7 @@ from pydantic import BaseModel, Field
 class SubmitIntentRequest(BaseModel):
     shopping_session_id: Optional[str] = Field(default=None, description="会话 ID，缺省则新建会话")
     buyer_id: str = Field(min_length=1, description="买家 ID")
+    request_id: Optional[str] = Field(default=None, min_length=1, max_length=128, description="重试时复用；新意图使用新 ID")
     locale: str = Field(default="zh-CN")
     currency: str = Field(default="CNY")
     raw_query: str = Field(min_length=1, description="买家自然语言购物意图")
@@ -24,4 +25,6 @@ class SubmitIntentResponse(BaseModel):
 
 
 class CancelOrderRequest(BaseModel):
+    buyer_id: str = Field(min_length=1)
+    session_id: str = Field(min_length=1)
     reason: str = Field(min_length=1, description="取消原因")

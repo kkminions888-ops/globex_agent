@@ -1,0 +1,26 @@
+{
+  "check": "两次商品查询的AG-UI合并和持久顺序一致",
+  "base_url": "http://127.0.0.1:5174/",
+  "run_id": "7c71627d-0f8d-4029-a8a7-0f46808784ee",
+  "status": "completed",
+  "actual_search_calls": 2,
+  "cards": [
+    {
+      "product_id": "P1001",
+      "default_sku_id": "P1001-S2",
+      "price_major": 199.0
+    },
+    {
+      "product_id": "P1003",
+      "default_sku_id": "P1003-S1",
+      "price_major": 129.0
+    }
+  ],
+  "durable_candidate_order": [
+    "P1001",
+    "P1003"
+  ],
+  "scope": "浏览器UI与真实journal/SQLite核验；该进程在最终SQLite初始化修复之前启动，投影代码与交付版一致",
+  "post_api_restart_two_cards_restored": true,
+  "post_restart_console_errors": []
+}

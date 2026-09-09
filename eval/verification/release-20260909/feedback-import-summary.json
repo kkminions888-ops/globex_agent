@@ -1,0 +1,22 @@
+{
+  "product": {
+    "queued_scores": 0,
+    "badcases": 18,
+    "unlinked_scores": 0
+  },
+  "category": {
+    "queued_scores": 0,
+    "badcases": 7,
+    "unlinked_scores": 0
+  },
+  "browser_candidate": "c95bcac19779ab33b7779284a6c56dec4bd23e1a19056e6de4d802264afd839f",
+  "candidates_total": 29,
+  "statuses": {
+    "unreviewed": 29
+  },
+  "agent": {
+    "queued_scores": 0,
+    "badcases": 3,
+    "unlinked_scores": 30
+  }
+}

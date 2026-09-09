@@ -1,0 +1,19 @@
+{
+  "api_url": "http://127.0.0.1:8000",
+  "buyer_url": "http://127.0.0.1:5174",
+  "api_status": "ok",
+  "runtime": {
+    "app_source_sha256": "fbb58967e6f0332ead55a0112279a727f30b0b7d1576f423bbfb6bc0b5b1dfdb"
+  },
+  "published_skill_count": 0,
+  "browser_verified": {
+    "selector_visible": true,
+    "empty_state_truthful": true,
+    "new_session_has_no_alert": true,
+    "console_errors": []
+  },
+  "backend_focused_tests_passed": 124,
+  "frontend_tests_passed": 74,
+  "frontend_build": "passed",
+  "remote_langfuse": "configuration_missing"
+}

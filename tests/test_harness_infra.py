@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """P3 基础设施单测：熔断跨实例共享 + 队列双流优先级。
 
-用内存假 Redis 替代真实服务，验证行为契约；真实 Redis 的连通性
-在端到端环节用 docker 起的实例验证。
+用内存替身验证路由契约；真实 Redis 的原子性、重投与租约
+由 test_queue_reliability.py 启动隔离 Redis 进程验证。
 """
 import json
 
@@ -15,6 +15,7 @@ from app.infrastructure.queue.redis_stream_queue import (
     RedisStreamTaskQueue,
 )
 from app.infrastructure.shared_breaker import SharedCircuitBreakerRegistry
+from tests.test_phase4_queue import FakeStreamClient
 
 
 class FakeCache:
@@ -99,10 +100,11 @@ class TestSharedCircuitBreaker:
         assert await reg.status_async("t") == "closed"
 
 
-class FakeRedisClient:
+class FakeRedisClient(FakeStreamClient):
     """记录 xadd 目标流，够用来验证路由。"""
 
     def __init__(self) -> None:
+        super().__init__()
         self.added: list[tuple[str, dict]] = []
         self.groups: list[tuple[str, str]] = []
         self.acked: list[tuple[str, str]] = []

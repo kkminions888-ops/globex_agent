@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "error": null,
+  "checkedAt": "2026-09-09T05:44:01.494442+00:00",
+  "sdkVersion": "0.1.22",
+  "mode": "read_only_product_search",
+  "threadId": "verify-8ba8a485f3a64f2aa7b31532c37e88e4",
+  "runId": "run-a498879677c04c5ea1eef5ee10ff2924",
+  "timingMs": {
+    "firstEvent": 109.52,
+    "firstText": 3198.76,
+    "total": 9619.52
+  },
+  "eventCounts": {
+    "RUN_STARTED": 1,
+    "STATE_SNAPSHOT": 7,
+    "TOOL_CALL_START": 1,
+    "TOOL_CALL_ARGS": 11,
+    "TOOL_CALL_END": 1,
+    "TOOL_CALL_RESULT": 1,
+    "TEXT_MESSAGE_START": 1,
+    "TEXT_MESSAGE_CONTENT": 69,
+    "TEXT_MESSAGE_END": 1,
+    "MESSAGES_SNAPSHOT": 1,
+    "RUN_FINISHED": 1
+  },
+  "terminal": "RUN_FINISHED",
+  "messages": [
+    {
+      "id": "run-a498879677c04c5ea1eef5ee10ff2924:text:460563acd0af4923b5f616ff20507092",
+      "characters": 562,
+      "ended": true
+    }
+  ],
+  "tools": [
+    {
+      "id": "run-a498879677c04c5ea1eef5ee10ff2924:tool:call_06b017803cde4bdd8d61e5c7",
+      "name": "product_search_tool",
+      "argumentsCharacters": 110,
+      "argumentsEnded": true,
+      "argumentsJsonValid": true,
+      "resultReceived": true,
+      "resultMessageId": "run-a498879677c04c5ea1eef5ee10ff2924:result:call_06b017803cde4bdd8d61e5c7",
+      "resultCharacters": 1922
+    }
+  ],
+  "finalState": {
+    "status": "completed",
+    "searchCompleted": true,
+    "productCount": 2,
+    "productIds": [
+      "P1001",
+      "P1003"
+    ],
+    "progressCount": 1
+  },
+  "finalAnswerCharacters": 562,
+  "retrievalEvidence": [
+    {
+      "toolCallId": "run-a498879677c04c5ea1eef5ee10ff2924:tool:call_06b017803cde4bdd8d61e5c7",
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "hit_count": 2,
+      "total_candidates": 2
+    }
+  ],
+  "retrievalSummary": {
+    "observedStrategies": [
+      "exact_id_lookup"
+    ],
+    "allObservedSearchesUseEmbeddingAndRerank": false,
+    "unparsedProductSearchResults": 0,
+    "onlineMainQualityGates": "not_evaluated"
+  }
+}

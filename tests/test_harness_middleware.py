@@ -111,7 +111,7 @@ class TestHarnessMiddleware:
         tracker.record("s1", "product_search_tool")
 
         tool = FunctionTool(
-            _tool_factory("create_order_tool", '{"order_id":"O1","status":"created"}', spy=spy),
+            _tool_factory("create_order_tool", '{"confirmation_required":true,"confirmation":{"status":"pending"}}', spy=spy),
             middlewares=[_harness(sequencing=tracker)],
         )
         token = ShoppingContext.set(SNAPSHOT)
@@ -188,7 +188,7 @@ class TestHarnessMiddleware:
             ToolResilienceMiddleware(registry),
         ]
         failing = FunctionTool(
-            _tool_factory("product_search_tool", "[error] 下游报错", state=ToolResultState.ERROR),
+            _tool_factory("product_search_tool", "[error] 503 Service Unavailable", state=ToolResultState.ERROR),
             middlewares=chain,
         )
         token = ShoppingContext.set(SNAPSHOT)

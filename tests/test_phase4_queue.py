@@ -17,6 +17,7 @@ from app.domain.queue.ports.task_queue import IntentTask, TaskStatus
 from app.infrastructure.eventbus import TradeEvent, TradeEventBus
 from app.infrastructure.queue.redis_stream_queue import (
     _STREAM,
+    _ENQUEUE_SCRIPT, _STATUS_SCRIPT, _ACK_SCRIPT, _RELEASE_SCRIPT, _DEAD_SCRIPT, _RENEW_SCRIPT,
     RedisEventBackplane,
     RedisStreamTaskQueue,
 )
@@ -70,7 +71,7 @@ class FakeStreamClient:
     async def xinfo_groups(self, _stream):
         return [{"name": "globex-workers", "lag": len(self.entries) - len(self.acked)}]
 
-    async def set(self, key, value, ex=None, nx=False):
+    async def set(self, key, value, ex=None, nx=False, px=None):
         if nx and key in self.kv:
             return False
         self.kv[key] = value
@@ -78,6 +79,65 @@ class FakeStreamClient:
 
     async def get(self, key):
         return self.kv.get(key)
+
+    async def xautoclaim(self, *_args, **_kwargs):
+        # 旧单步单测不推进时间；双流/过期/真实 Lua 由 test_queue_reliability 验证。
+        return ["0-0", [], []]
+
+    async def eval(self, script, numkeys, *values):
+        """只支撑旧契约断言的内存命令替身，不宣称模拟 TTL 或跨进程原子性。"""
+        keys, args = values[:numkeys], values[numkeys:]
+        if script == _ENQUEUE_SCRIPT:
+            old = self.kv.get(keys[0])
+            if old:
+                return 0 if json.loads(old).get("payload_fingerprint") == args[3] else -1
+            status = json.loads(args[0])
+            status["payload_fingerprint"] = args[3]
+            self.kv[keys[0]] = json.dumps(status)
+            await self.xadd(keys[1], {"payload": args[1]})
+            return 1
+        if script == _STATUS_SCRIPT:
+            if any(self.kv.get(key) != args[3] for key in keys[1:]):
+                return -1
+            old = json.loads(self.kv.get(keys[0], "{}"))
+            if old.get("state") in {"done", "failed"}:
+                return 0
+            if args[1] == "queued" and old.get("state") not in {None, "queued"}:
+                return 0
+            status = json.loads(args[0])
+            if "payload_fingerprint" in old:
+                status["payload_fingerprint"] = old["payload_fingerprint"]
+            self.kv[keys[0]] = json.dumps(status)
+            return 1
+        if script == _ACK_SCRIPT:
+            if any(self.kv.get(key) != args[2] for key in keys[1:]):
+                return -1
+            await self.xack(keys[0], args[0], args[1])
+            return 1
+        if script == _RELEASE_SCRIPT:
+            for key in keys:
+                if self.kv.get(key) == args[0]:
+                    self.kv.pop(key)
+            return 1
+        if script == _RENEW_SCRIPT:
+            return int(all(self.kv.get(key) == args[0] for key in keys))
+        if script == _DEAD_SCRIPT:
+            if any(self.kv.get(key) != args[7] for key in keys[3:]):
+                return -1
+            if keys[2] not in self.kv:
+                old = json.loads(self.kv.get(keys[1], "{}"))
+                if old.get("state") != "done":
+                    await self.xadd(args[0], {"payload": args[1], "reason": args[2],
+                        "stream": keys[0], "message_id": args[3], "deliveries": args[4], "task_id": args[5]})
+                    if args[5]:
+                        status = json.loads(args[6])
+                        if "payload_fingerprint" in old:
+                            status["payload_fingerprint"] = old["payload_fingerprint"]
+                        self.kv[keys[1]] = json.dumps(status)
+                self.kv[keys[2]] = "1"
+            await self.xack(keys[0], args[8], args[3])
+            return 1
+        raise AssertionError("测试替身不认识该 Redis Lua 命令")
 
     async def publish(self, channel, data):
         self.published.append((channel, data))

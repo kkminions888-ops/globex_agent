@@ -13,8 +13,10 @@
 """
 from __future__ import annotations
 
+import argparse
 import asyncio
 import json
+import os
 import time
 import uuid
 from datetime import datetime
@@ -24,6 +26,10 @@ import websockets
 
 BASE_URL = "http://127.0.0.1:8000"
 WS_URL = "ws://127.0.0.1:8000/commerce/events"
+BUYER_ID = os.getenv("GLOBEX_BUYER_ID", "buyer-001")
+API_TOKEN = os.getenv("GLOBEX_API_TOKEN", "")
+AUTH_HEADERS = {"Authorization": f"Bearer {API_TOKEN}"} if API_TOKEN else {}
+WS_PROTOCOLS = ["globex-events", f"globex-auth.{API_TOKEN}"] if API_TOKEN else ["globex-events"]
 
 PARALLEL_QUERY = (
     "我下个月去高原露营，请分头调研三类装备：露营照明、登山杖、速干毛巾。"
@@ -38,8 +44,8 @@ SERIAL_QUERY = (
 
 async def collect_events(session_id: str, stop: asyncio.Event) -> list[dict]:
     events: list[dict] = []
-    async with websockets.connect(WS_URL) as ws:
-        await ws.send(json.dumps({"shopping_session_id": session_id}))
+    async with websockets.connect(WS_URL, subprotocols=WS_PROTOCOLS) as ws:
+        await ws.send(json.dumps({"shopping_session_id": session_id, "buyer_id": BUYER_ID}))
         while not stop.is_set():
             try:
                 raw = await asyncio.wait_for(ws.recv(), timeout=1)
@@ -55,7 +61,8 @@ def _dispatch_intervals(events: list[dict]) -> list[tuple[str, str, str]]:
     for event in events:
         if event["type"] == "tool.result" and event["payload"].get("tool") == "task_dispatch":
             payload = event["payload"]
-            intervals.append((payload["agent"], payload["started_at"], payload["finished_at"]))
+            if all(payload.get(field) for field in ("agent", "started_at", "finished_at")):
+                intervals.append((payload["agent"], payload["started_at"], payload["finished_at"]))
     return intervals
 
 
@@ -74,6 +81,11 @@ def _count_overlaps(intervals: list[tuple[str, str, str]]) -> int:
     return overlaps
 
 
+def parallel_verdict(result: dict) -> bool:
+    """至少两次派发且区间有重叠，才能证明单条意图内发生了真并行。"""
+    return result.get("dispatch_count", 0) >= 2 and result.get("overlaps", 0) > 0
+
+
 async def run_round(label: str, query: str) -> dict:
     session_id = f"parallel-{label}-{uuid.uuid4().hex[:6]}"
     stop = asyncio.Event()
@@ -81,12 +93,12 @@ async def run_round(label: str, query: str) -> dict:
     await asyncio.sleep(0.5)
 
     started = time.monotonic()
-    async with httpx.AsyncClient(timeout=900) as client:
+    async with httpx.AsyncClient(timeout=900, headers=AUTH_HEADERS) as client:
         response = await client.post(
             f"{BASE_URL}/commerce/intents",
             json={
                 "shopping_session_id": session_id,
-                "buyer_id": f"parallel-buyer-{label}",
+                "buyer_id": BUYER_ID,
                 "locale": "zh-CN",
                 "currency": "CNY",
                 "raw_query": query,
@@ -110,6 +122,9 @@ async def run_round(label: str, query: str) -> dict:
 
 
 async def main() -> None:
+    parser = argparse.ArgumentParser(description="真并行 fork 验证")
+    parser.parse_args()
+
     print("== 并行版（prompt 引导同轮多派） ...", flush=True)
     parallel = await run_round("parallel", PARALLEL_QUERY)
     print(f"   wall={parallel['wall_seconds']}s dispatch={parallel['dispatch_count']} overlaps={parallel['overlaps']}")
@@ -124,11 +139,12 @@ async def main() -> None:
               f"派发 {result['dispatch_count']} 次，时间区间重叠 {result['overlaps']} 对")
         for agent, start, end in result["intervals"]:
             print(f"   - {agent}: {start} → {end}")
-    if parallel["overlaps"] > 0:
+    if parallel_verdict(parallel):
         speedup = serial["wall_seconds"] / parallel["wall_seconds"] if parallel["wall_seconds"] else 0
         print(f"\n并行生效：并行版存在时间重叠，相对串行版加速 {speedup:.2f}x")
     else:
         print("\n并行未生效：并行版没有观察到派发时间重叠（模型可能仍逐个调用）")
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":

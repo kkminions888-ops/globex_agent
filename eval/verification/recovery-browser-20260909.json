@@ -1,0 +1,66 @@
+{
+  "kind": "browser_observation_and_server_journal",
+  "base_url": "http://127.0.0.1:5175",
+  "api_url": "http://127.0.0.1:8001",
+  "checks": [
+    "运行中打开同源新页面恢复同一run",
+    "第二个商品按商品卡顺序回查",
+    "停止生成后保留既有消息"
+  ],
+  "limitations": [
+    "模型正文自行重排商品，正文序号与商品卡顺序存在歧义，回查以商品卡顺序为准",
+    "此运行是本轮中间源码，不能替代最终版本回归"
+  ],
+  "runs": [
+    {
+      "query": "帮我选三款300元以内的轻便周末旅行背包，寄到中国。",
+      "run_id": "2d74d179-b396-4d09-866d-49f23f229c31",
+      "status": "completed",
+      "event_counts": {
+        "RUN_STARTED": 1,
+        "STATE_SNAPSHOT": 7,
+        "TOOL_CALL_START": 1,
+        "TOOL_CALL_ARGS": 11,
+        "TOOL_CALL_END": 1,
+        "TOOL_CALL_RESULT": 1,
+        "TEXT_MESSAGE_START": 1,
+        "TEXT_MESSAGE_CONTENT": 74,
+        "TEXT_MESSAGE_END": 1,
+        "MESSAGES_SNAPSHOT": 1,
+        "RUN_FINISHED": 1
+      },
+      "second_card_identified": false
+    },
+    {
+      "query": "刚才第二个商品的型号和可选规格是什么？只查询，不准备下单。",
+      "run_id": "8b29bb81-6583-4efd-8a5a-65cbfe011961",
+      "status": "completed",
+      "event_counts": {
+        "RUN_STARTED": 1,
+        "STATE_SNAPSHOT": 6,
+        "TOOL_CALL_START": 1,
+        "TOOL_CALL_ARGS": 9,
+        "TOOL_CALL_END": 1,
+        "TOOL_CALL_RESULT": 1,
+        "TEXT_MESSAGE_START": 1,
+        "TEXT_MESSAGE_CONTENT": 24,
+        "TEXT_MESSAGE_END": 1,
+        "MESSAGES_SNAPSHOT": 1,
+        "RUN_FINISHED": 1
+      },
+      "second_card_identified": true
+    },
+    {
+      "query": "再对比三款旅行背包的重量和到手价。",
+      "run_id": "17683d80-d790-41fd-bcf2-d57821fbd42b",
+      "status": "stopped",
+      "event_counts": {
+        "RUN_STARTED": 1,
+        "STATE_SNAPSHOT": 4,
+        "CUSTOM": 1,
+        "RUN_ERROR": 1
+      },
+      "second_card_identified": true
+    }
+  ]
+}

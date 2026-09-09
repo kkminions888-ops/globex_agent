@@ -1,0 +1,30 @@
+{
+  "status": "ok",
+  "model": "qwen3-max",
+  "runtime": {
+    "app_source_sha256": "46c470537df6fe06f1c2d06d0a2daa7d1a4a88887b6efa4954270702c98b77a0"
+  },
+  "database": "sqlite",
+  "trade_database": "sqlite",
+  "redis": "disabled",
+  "semantic_cache": false,
+  "queue": "disabled",
+  "queue_depth": 0,
+  "prompt_registry": {
+    "deployment_id": "pd-575c9aceec67432498da696455e98f08",
+    "baseline": "p-017d139aa6784ac038e5a829f0bfea516d8a71ed5a70817daf1f4138872c8b94",
+    "candidate": null,
+    "candidate_bps": 0,
+    "experiment": "bootstrap",
+    "action": "bootstrap",
+    "created_at": "2026-09-09T05:39:21.286408+00:00",
+    "pinned_version": null,
+    "effective_version": {
+      "version_id": "p-017d139aa6784ac038e5a829f0bfea516d8a71ed5a70817daf1f4138872c8b94",
+      "content_sha256": "017d139aa6784ac038e5a829f0bfea516d8a71ed5a70817daf1f4138872c8b94",
+      "yaml_sha256": "01fa592f3ae069990ba0feab49e778336a5c7488ca63c6500965061a8d85b1d0",
+      "toolset_sha256": "d713c4d103ded7adb0b5ded9754cac76b30050de38dda954848a08b16ba3c793",
+      "created_at": "2026-09-09T05:39:21.284853+00:00"
+    }
+  }
+}

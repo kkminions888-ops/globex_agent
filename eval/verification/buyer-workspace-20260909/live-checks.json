@@ -1,0 +1,134 @@
+[
+  {
+    "case": "update",
+    "query": "把长期偏好“喜欢蓝色”改成“喜欢绿色”，以后都按绿色。请直接更新长期记忆，只做这件事，不搜索商品。",
+    "run_id": "3da329dbf2b34ad8a913bd768f57921a",
+    "session_id": "a86b0beed1ec45389b7f7a1bfd0aab23",
+    "trace_id": "548bd69c08cc1a19ecd32792a465ebb8",
+    "tool_names": [
+      "update_preference_tool"
+    ],
+    "final_text": "已成功将您的长期偏好从“喜欢蓝色”更新为“喜欢绿色”。今后的推荐将优先考虑绿色商品。",
+    "preferences": [
+      {
+        "buyer_id": "319e4850-9d00-4ecc-8696-592597c6e349",
+        "kind": "like",
+        "statement": "喜欢绿色",
+        "created_at": "2026-09-09T07:42:30.122404+00:00"
+      }
+    ],
+    "events": {
+      "RUN_STARTED": 1,
+      "STATE_SNAPSHOT": 6,
+      "TOOL_CALL_START": 1,
+      "TOOL_CALL_ARGS": 6,
+      "TOOL_CALL_END": 1,
+      "TOOL_CALL_RESULT": 1,
+      "TEXT_MESSAGE_START": 1,
+      "TEXT_MESSAGE_CONTENT": 9,
+      "TEXT_MESSAGE_END": 1,
+      "MESSAGES_SNAPSHOT": 1,
+      "RUN_FINISHED": 1
+    },
+    "mechanism_pass": true
+  },
+  {
+    "case": "read_updated",
+    "query": "我长期喜欢什么颜色？只根据当前保存的长期记忆回答，不新增或修改记忆，不搜索商品。",
+    "run_id": "d68911b8f7e24fda801a4cbfdaf4a27d",
+    "session_id": "997146f9e10b49dea699f9be84288542",
+    "trace_id": "beb34e3707a7da1517dcfbe9abf7ea26",
+    "tool_names": [],
+    "final_text": "根据你当前保存的长期偏好记忆，你**喜欢绿色**。",
+    "preferences": [
+      {
+        "buyer_id": "319e4850-9d00-4ecc-8696-592597c6e349",
+        "kind": "like",
+        "statement": "喜欢绿色",
+        "created_at": "2026-09-09T07:42:30.122404+00:00"
+      }
+    ],
+    "events": {
+      "RUN_STARTED": 1,
+      "STATE_SNAPSHOT": 4,
+      "TEXT_MESSAGE_START": 1,
+      "TEXT_MESSAGE_CONTENT": 6,
+      "TEXT_MESSAGE_END": 1,
+      "MESSAGES_SNAPSHOT": 1,
+      "RUN_FINISHED": 1
+    },
+    "mechanism_pass": true
+  },
+  {
+    "case": "delete",
+    "query": "删除长期记忆中的“喜欢绿色”，以后不再保留这条颜色偏好。请实际删除，只做这件事，不搜索商品。",
+    "run_id": "339de2d9e80c43d3baaa883c056ea501",
+    "session_id": "32524ff091894ced8bd71a192025ef76",
+    "trace_id": "257aa00f6e8928cf1275bcb2804a6384",
+    "tool_names": [
+      "forget_preference_tool"
+    ],
+    "final_text": "已成功删除“喜欢绿色”这条长期颜色偏好。今后的推荐将不再特别考虑这一颜色倾向。",
+    "preferences": [],
+    "events": {
+      "RUN_STARTED": 1,
+      "STATE_SNAPSHOT": 6,
+      "TOOL_CALL_START": 1,
+      "TOOL_CALL_ARGS": 3,
+      "TOOL_CALL_END": 1,
+      "TOOL_CALL_RESULT": 1,
+      "TEXT_MESSAGE_START": 1,
+      "TEXT_MESSAGE_CONTENT": 8,
+      "TEXT_MESSAGE_END": 1,
+      "MESSAGES_SNAPSHOT": 1,
+      "RUN_FINISHED": 1
+    },
+    "mechanism_pass": true
+  },
+  {
+    "case": "read_deleted",
+    "query": "当前长期记忆里还记录了我的颜色偏好吗？没有就说未记录，不猜测，也不要新增记忆。",
+    "run_id": "185f811609084f65a4a708fbe5098bd0",
+    "session_id": "7382910777104333af56e06f680c97b4",
+    "trace_id": "d8d1695c690ea4f9fa42a07101b98eff",
+    "tool_names": [],
+    "final_text": "当前长期记忆中未记录您的颜色偏好。",
+    "preferences": [],
+    "events": {
+      "RUN_STARTED": 1,
+      "STATE_SNAPSHOT": 4,
+      "TEXT_MESSAGE_START": 1,
+      "TEXT_MESSAGE_CONTENT": 5,
+      "TEXT_MESSAGE_END": 1,
+      "MESSAGES_SNAPSHOT": 1,
+      "RUN_FINISHED": 1
+    },
+    "mechanism_pass": true
+  },
+  {
+    "case": "auto_skill",
+    "query": "请使用我的“三行需求单”方案整理：通勤背包，预算300元人民币，寄到中国。不要搜索商品。",
+    "run_id": "240bbb992dac44ec8db1df7039b9647a",
+    "session_id": "6065ab979cd343e9a9277a603d09d532",
+    "trace_id": "13d4f5f9e0a2f2764ac237028e1044b2",
+    "tool_names": [
+      "load_agent_skill_tool"
+    ],
+    "final_text": "用途：通勤背包  \n预算：300元人民币  \n限制：寄到中国",
+    "preferences": [],
+    "events": {
+      "RUN_STARTED": 1,
+      "STATE_SNAPSHOT": 6,
+      "TOOL_CALL_START": 1,
+      "TOOL_CALL_ARGS": 8,
+      "TOOL_CALL_END": 1,
+      "TOOL_CALL_RESULT": 1,
+      "TEXT_MESSAGE_START": 1,
+      "TEXT_MESSAGE_CONTENT": 6,
+      "TEXT_MESSAGE_END": 1,
+      "MESSAGES_SNAPSHOT": 1,
+      "RUN_FINISHED": 1
+    },
+    "mechanism_pass": true
+  }
+]

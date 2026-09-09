@@ -19,6 +19,8 @@ SubAgent as Tool 的调度工具——MainAgent 调它意味着"派一个专家�
 注意：本模块不能用 `from __future__ import annotations`（AgentScope schema 生成依赖运行时注解）。
 """
 import logging
+import json
+import re
 import time
 from datetime import datetime, timezone
 from typing import Literal, Optional
@@ -34,7 +36,8 @@ from app.application.memory.preference_selector import (
 )
 from app.domain.buyer.preference import PreferenceStore
 from app.infrastructure.context import ShoppingContext
-from app.infrastructure.eventbus import TradeEventBus
+from app.infrastructure.eventbus import TradeEventBus, observe_run_events
+from app.infrastructure.budget import get_budget, rule_fallback_text
 
 logger = logging.getLogger(__name__)
 
@@ -88,6 +91,9 @@ def build_task_dispatch_tool(
                 （买家偏好、预算、product_id/sku_id、收货地址等），子代理看不到主对话历史。
         """
         session_id = ShoppingContext.current_session_id()
+        budget = get_budget()
+        if budget is not None and budget.exhausted:
+            return ToolChunk(content=[TextBlock(text=rule_fallback_text())], state=ToolResultState.SUCCESS)
         started_at = datetime.now(timezone.utc).isoformat()
         started_monotonic = time.monotonic()
         bus.publish(
@@ -111,8 +117,29 @@ def build_task_dispatch_tool(
         if hint:
             inputs.insert(0, UserMsg("memory_hint", hint))
 
-        reply = await worker.reply(inputs)
+        evidence_refs, verified_ids = set(), set()
+        def capture(event):
+            if event.shopping_session_id != session_id or event.type != "tool.result" or not isinstance(event.payload, dict):
+                return
+            payload = event.payload
+            if payload.get("result_ref"):
+                evidence_refs.add(payload["result_ref"])
+            for hit in payload.get("hits", []):
+                verified_ids.add(hit["product_id"])
+                verified_ids.update(s["sku_id"] for s in hit.get("skus", []))
+            for line in [*payload.get("confirmation", {}).get("payload", {}).get("items", []),
+                         *payload.get("order", {}).get("lines", [])]:
+                verified_ids.update(str(line[key]) for key in ("product_id", "sku_id") if line.get(key))
+        with observe_run_events(capture):
+            reply = await worker.reply(inputs)
         output = reply.get_text_content() or ""
+        mentioned_ids = set(re.findall(r"\bP\d{4}(?:-S\d+)?\b", output))
+        unknown = mentioned_ids - verified_ids
+        # 下单专家可能只核对主任务传入的 SKU；这些标识仍须经过其真实业务工具核验。
+        decision = {"agent": subagent_type, "status": "unverified" if unknown else "completed",
+                    "summary": output if not unknown else "子任务回复包含未能由本轮检索证据核实的商品标识，请使用业务工具复核。",
+                    "evidence_refs": sorted(evidence_refs), "verified_product_ids": sorted(verified_ids),
+                    "unverified_product_ids": sorted(unknown)}
         bus.publish(
             session_id,
             "tool.result",
@@ -125,7 +152,7 @@ def build_task_dispatch_tool(
             },
         )
         return ToolChunk(
-            content=[TextBlock(type="text", text=output)],
+            content=[TextBlock(type="text", text=json.dumps(decision, ensure_ascii=False))],
             state=ToolResultState.SUCCESS,
         )
 

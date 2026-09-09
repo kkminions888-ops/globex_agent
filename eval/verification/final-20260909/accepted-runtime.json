@@ -1,0 +1,12 @@
+{
+  "status": "ok",
+  "local_app_source_sha256": "74cc089949efcf544c5a7d87af444152b14188befd3058d9fac3e251b2bfbb04",
+  "running_app_source_sha256": "74cc089949efcf544c5a7d87af444152b14188befd3058d9fac3e251b2bfbb04",
+  "source_matched": true,
+  "effective_prompt_version": "p-93793c7894dfb6b41c52275dfe103666f26cdd55eab0aa022bfc026054fa6fbb",
+  "page_url": "http://127.0.0.1:5174/",
+  "deployment_notes": [
+    "Compose开启Redis同步AOF；评测原快照不追填",
+    "前端静态Nginx镜像已独立构建和nginx -t验证"
+  ]
+}

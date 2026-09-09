@@ -1,0 +1,13 @@
+{
+  "scope": "user_authorized_local_feature_runtime",
+  "activation": "PROMPT_PIN_VERSION",
+  "previous_pin": null,
+  "version": {
+    "version_id": "p-3777d7d488ec6fa9d000eabae06d6923ac50cd79ac1c4c4f2e8ba5870d7854b5",
+    "content_sha256": "3777d7d488ec6fa9d000eabae06d6923ac50cd79ac1c4c4f2e8ba5870d7854b5",
+    "yaml_sha256": "786d184a8562f09cc321e438abf2c80d708e4527f7445502f74aec1fa053b8a5",
+    "toolset_sha256": "84c4a60011649b964d5ac824ae6f95eb89d01f5cfd94a4eec782b27194c9bf30",
+    "created_at": "2026-09-09T07:44:25.139447+00:00"
+  },
+  "formal_release_claimed": false
+}

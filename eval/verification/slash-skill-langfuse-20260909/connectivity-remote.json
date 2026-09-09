@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "read_only": true,
+  "checked_at": "2026-09-09T07:06:16.052070+00:00",
+  "remote_trace_verified": true,
+  "project": {
+    "status": "ACCESS_VERIFIED",
+    "accessible_count": 1,
+    "project_id_sha256": "b410c757aa6f8170f34eb12f"
+  },
+  "trace": {
+    "status": "VERIFIED",
+    "trace_id": "4a59a2dd5058279739df7d37a059764e",
+    "observation_count": 1,
+    "component_counts": {
+      "other": 1
+    },
+    "required_components": [],
+    "root_count": 1,
+    "parent_link_count": 0,
+    "missing_parent_count": 0,
+    "unfinished_count": 0,
+    "error_count": 0,
+    "usage_complete": false,
+    "input_tokens": null,
+    "output_tokens": null,
+    "cost_usd": null,
+    "issues": []
+  },
+  "status": "VERIFIED",
+  "read_attempts": 1,
+  "scope": "actual_exporter_connectivity_only"
+}

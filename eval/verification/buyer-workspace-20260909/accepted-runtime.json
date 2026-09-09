@@ -1,0 +1,11 @@
+{
+  "api_status": 200,
+  "frontend_status": 200,
+  "app_source_sha256": "83e8dd1d59f7613193920eda66ed30649584014eaa64b04b87da0c73bc77705e",
+  "runtime_matches_source": true,
+  "pinned_version": "p-3777d7d488ec6fa9d000eabae06d6923ac50cd79ac1c4c4f2e8ba5870d7854b5",
+  "browser_skill_page_verified": true,
+  "browser_preferences_page_verified": true,
+  "browser_console_errors": 0,
+  "temporary_services_stopped": true
+}

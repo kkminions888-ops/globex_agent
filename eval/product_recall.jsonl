@@ -1,5 +1,5 @@
 {"query": "旅行三件套", "kind": "lexical", "relevant": ["P1001", "P1011"], "note": "名词类：三件套整套；P1007 是毛巾三件装，属易混淆项，不算相关"}
-{"query": "抗造不含塑料的旅行三件套", "kind": "lexical", "relevant": ["P1001"], "note": "属性类：抗造 + 无塑料，只有 P1001 同时满足"}
+{"query": "抗造不含塑料的旅行三件套", "kind": "lexical", "relevant": ["P2120"], "excluded_material_tags": ["合成聚合物"], "note": "属性类：抗造 + 无合成聚合物，P2120 为纯棉帆布三件套"}
 {"query": "记忆棉颈枕的旅行套装", "kind": "lexical", "relevant": ["P1011"], "note": "属性类：记忆棉是 P1011 独有"}
 {"query": "颈枕", "kind": "lexical", "relevant": ["P1012", "P1011", "P1001"], "note": "名词类：单品颈枕最相关，含颈枕的套装次之"}
 {"query": "遮光眼罩", "kind": "lexical", "relevant": ["P1013", "P1058", "P1011", "P1001"], "note": "名词类：真丝遮光眼罩最相关，蒸汽眼罩次之"}
@@ -48,7 +48,7 @@
 {"query": "折叠露营凳 承重要够", "kind": "lexical", "relevant": ["P1041"], "note": "属性类"}
 {"query": "钛合金炊具 无涂层", "kind": "lexical", "relevant": ["P1048"], "note": "属性类"}
 {"query": "超轻防风外套", "kind": "lexical", "relevant": ["P1046"], "note": "属性类"}
-{"query": "300元以内抗造又不含塑料的旅行装备", "kind": "lexical", "relevant": ["P1001", "P1013"], "price_max_major": 300, "note": "硬约束类：验证价格过滤 + 属性；P1009 桑蚕丝 329 元应被价格挡掉"}
+{"query": "300元以内抗造又不含塑料的旅行装备", "kind": "lexical", "relevant": ["P2120", "P1013"], "price_max_major": 300, "excluded_material_tags": ["合成聚合物"], "note": "硬约束类：验证价格与材质过滤；P1001 含再生尼龙、P1009 329 元均应被挡掉"}
 {"query": "预算100元以内的收纳用品", "kind": "lexical", "relevant": ["P1014", "P1059"], "price_max_major": 100, "note": "硬约束类：亚麻收纳套 P1019（129 元）超预算，不列为 relevant——标注必须与约束一致"}
 {"query": "能寄到美国的登山杖", "kind": "lexical", "relevant": ["P1010", "P1047", "P1040"], "ship_to": "US", "note": "硬约束类：三款均可寄美国"}
 {"query": "能寄到日本的天然材质家居", "kind": "lexical", "relevant": ["P1031", "P1034", "P1006"], "ship_to": "JP", "note": "硬约束类：ships_to 含 JP"}

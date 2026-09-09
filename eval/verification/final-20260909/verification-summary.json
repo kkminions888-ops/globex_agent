@@ -1,0 +1,207 @@
+{
+  "snapshot": "3ef9cb7200d6a361afd1d1188296544e6b70ef387fbc8a12f167e4a0d2e1f300",
+  "backend": {
+    "tests": 798,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration_seconds": 89.743,
+    "redis_binary": "/tmp/globex-redis-build/redis-7.4.8/src/redis-server",
+    "scope": "工作区冻结时启动的全量后端pytest；后续源码修复另行回归"
+  },
+  "runs": [
+    {
+      "kind": "product",
+      "manifest": "eval/verification/final-20260909/product/recall-release-report-20260909-133920-357017.manifest.json",
+      "selection": [
+        "prod-033",
+        "prod-034",
+        "prod-035",
+        "prod-036",
+        "prod-037",
+        "prod-038",
+        "prod-039",
+        "prod-040",
+        "prod-041",
+        "prod-042",
+        "prod-043",
+        "prod-044",
+        "prod-045",
+        "prod-074",
+        "prod-075",
+        "prod-076",
+        "prod-077",
+        "prod-078",
+        "prod-079",
+        "prod-080",
+        "prod-081",
+        "prod-082",
+        "prod-083",
+        "prod-084",
+        "prod-085",
+        "prod-114",
+        "prod-115",
+        "prod-116",
+        "prod-117",
+        "prod-118",
+        "prod-119",
+        "prod-120",
+        "prod-121",
+        "prod-122",
+        "prod-123",
+        "prod-124",
+        "prod-125",
+        "prod-143",
+        "prod-144",
+        "prod-145",
+        "prod-146",
+        "prod-147",
+        "prod-148",
+        "prod-149",
+        "prod-150"
+      ],
+      "gate": "BLOCK",
+      "status": "COMPLETED",
+      "gate_scope": "release",
+      "inputs_unchanged": true,
+      "actual_strategies": {
+        "embedding_rerank": [
+          "embedding_only"
+        ]
+      }
+    },
+    {
+      "kind": "category",
+      "manifest": "eval/verification/final-20260909/category/category-recall-release-report-20260909-133920-572397.manifest.json",
+      "selection": [
+        "kb-015",
+        "kb-016",
+        "kb-017",
+        "kb-018",
+        "kb-019",
+        "kb-020",
+        "kb-031",
+        "kb-032",
+        "kb-033",
+        "kb-034",
+        "kb-035",
+        "kb-043",
+        "kb-044",
+        "kb-045",
+        "kb-050"
+      ],
+      "gate": "BLOCK",
+      "status": "COMPLETED",
+      "gate_scope": "release",
+      "inputs_unchanged": true,
+      "actual_strategies": [
+        "category_vector_document_scope_v1"
+      ]
+    },
+    {
+      "kind": "agent-diagnostic",
+      "manifest": "eval/verification/final-20260909/agent-diagnostic/agent-release-report-20260909-134043-354582.manifest.json",
+      "selection": [
+        "agent-055"
+      ],
+      "gate": "PASS",
+      "status": "COMPLETED",
+      "gate_scope": "diagnostic",
+      "inputs_unchanged": true,
+      "actual_strategies": {
+        "agent-055": [
+          "embedding_only",
+          "exact_id_lookup"
+        ]
+      },
+      "results": [
+        {
+          "id": "agent-055",
+          "verdict": "PASS",
+          "score": 1.0,
+          "metrics": {
+            "cost_source": "unknown",
+            "cost_usd": null,
+            "elapsed_ms": 34403.82820900413,
+            "expected_turns": 2,
+            "input_tokens": 44066,
+            "latency_scope": "agent_dialogue_and_http_actions_excluding_judge",
+            "observed_turns": 2,
+            "output_tokens": 1004,
+            "usage_complete": true
+          }
+        }
+      ]
+    },
+    {
+      "kind": "agent-diagnostic",
+      "manifest": "eval/verification/final-20260909/agent-diagnostic/agent-release-report-20260909-134043-389398.manifest.json",
+      "selection": [
+        "agent-054"
+      ],
+      "gate": "PASS",
+      "status": "COMPLETED",
+      "gate_scope": "diagnostic",
+      "inputs_unchanged": true,
+      "actual_strategies": {
+        "agent-054": [
+          "embedding_only"
+        ]
+      },
+      "results": [
+        {
+          "id": "agent-054",
+          "verdict": "PASS",
+          "score": 1.0,
+          "metrics": {
+            "cost_source": "unknown",
+            "cost_usd": null,
+            "elapsed_ms": 22996.691541018663,
+            "expected_turns": 2,
+            "input_tokens": 28191,
+            "latency_scope": "agent_dialogue_and_http_actions_excluding_judge",
+            "observed_turns": 2,
+            "output_tokens": 642,
+            "usage_complete": true
+          }
+        }
+      ]
+    },
+    {
+      "kind": "agent-diagnostic",
+      "manifest": "eval/verification/final-20260909/agent-diagnostic/agent-release-report-20260909-134043-638145.manifest.json",
+      "selection": [
+        "agent-053"
+      ],
+      "gate": "PASS",
+      "status": "COMPLETED",
+      "gate_scope": "diagnostic",
+      "inputs_unchanged": true,
+      "actual_strategies": {
+        "agent-053": [
+          "embedding_only",
+          "exact_id_lookup"
+        ]
+      },
+      "results": [
+        {
+          "id": "agent-053",
+          "verdict": "PASS",
+          "score": 1.0,
+          "metrics": {
+            "cost_source": "unknown",
+            "cost_usd": null,
+            "elapsed_ms": 33770.83208298427,
+            "expected_turns": 2,
+            "input_tokens": 35935,
+            "latency_scope": "agent_dialogue_and_http_actions_excluding_judge",
+            "observed_turns": 2,
+            "output_tokens": 814,
+            "usage_complete": true
+          }
+        }
+      ]
+    }
+  ],
+  "scope_note": "新冻结检索完整release+3条Agent修复诊断；不得与旧27条PASS拼为同版本Agent完整release通过。冻结后工作区的知识拒答/capability/部署变更另行回归。"
+}

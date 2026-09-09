@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import os
 import uuid
 
 import httpx
@@ -19,12 +20,26 @@ import websockets
 
 BASE_URL = "http://127.0.0.1:8000"
 WS_URL = "ws://127.0.0.1:8000/commerce/events"
+BUYER_ID = os.getenv("GLOBEX_BUYER_ID", "buyer-001")
+API_TOKEN = os.getenv("GLOBEX_API_TOKEN", "")
+AUTH_HEADERS = {"Authorization": f"Bearer {API_TOKEN}"} if API_TOKEN else {}
+WS_PROTOCOLS = ["globex-events", f"globex-auth.{API_TOKEN}"] if API_TOKEN else ["globex-events"]
+
+
+def validate_smoke_result(body: dict, events: list[dict]) -> None:
+    """冒烟必须同时拿到最终回复和完整工具事件，缺一即失败。"""
+    if not str(body.get("final_text", "")).strip():
+        raise AssertionError("冒烟失败：响应缺少非空 final_text")
+    event_types = {event.get("type") for event in events}
+    for required in ("tool.invoke", "tool.result", "final.result"):
+        if required not in event_types:
+            raise AssertionError(f"冒烟失败：事件流缺少 {required}")
 
 
 async def listen_events(session_id: str, stop: asyncio.Event) -> list[dict]:
     events: list[dict] = []
-    async with websockets.connect(WS_URL) as ws:
-        await ws.send(json.dumps({"shopping_session_id": session_id}))
+    async with websockets.connect(WS_URL, subprotocols=WS_PROTOCOLS) as ws:
+        await ws.send(json.dumps({"shopping_session_id": session_id, "buyer_id": BUYER_ID}))
         while not stop.is_set():
             try:
                 raw = await asyncio.wait_for(ws.recv(), timeout=1)
@@ -55,12 +70,12 @@ async def main() -> None:
     listener = asyncio.create_task(listen_events(session_id, stop))
     await asyncio.sleep(0.5)  # 等 WS 订阅建立
 
-    async with httpx.AsyncClient(timeout=600) as client:
+    async with httpx.AsyncClient(timeout=600, headers=AUTH_HEADERS) as client:
         response = await client.post(
             f"{BASE_URL}/commerce/intents",
             json={
                 "shopping_session_id": session_id,
-                "buyer_id": "buyer-001",
+                "buyer_id": BUYER_ID,
                 "locale": "zh-CN",
                 "currency": "CNY",
                 "raw_query": args.query,
@@ -72,6 +87,7 @@ async def main() -> None:
     await asyncio.sleep(1)  # 等尾部事件送达
     stop.set()
     events = await listener
+    validate_smoke_result(body, events)
 
     print("\n\n===== 最终回复 =====")
     print(body["final_text"])

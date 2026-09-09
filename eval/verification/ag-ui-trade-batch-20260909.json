@@ -1,0 +1,76 @@
+{
+  "ok": true,
+  "error": null,
+  "checkedAt": "2026-09-09T04:33:58.568213+00:00",
+  "sdkVersion": "0.1.22",
+  "mode": "read_only_product_search",
+  "threadId": "verify-45521bdfdd344807b294d06c9ae135e7",
+  "runId": "run-5f0b853eae9140c0b36894f0ff0af91a",
+  "timingMs": {
+    "firstEvent": 83.06,
+    "firstText": 4727.55,
+    "total": 11093.65
+  },
+  "eventCounts": {
+    "RUN_STARTED": 1,
+    "STATE_SNAPSHOT": 7,
+    "TOOL_CALL_START": 1,
+    "TOOL_CALL_ARGS": 13,
+    "TOOL_CALL_END": 1,
+    "TOOL_CALL_RESULT": 1,
+    "TEXT_MESSAGE_START": 1,
+    "TEXT_MESSAGE_CONTENT": 69,
+    "TEXT_MESSAGE_END": 1,
+    "MESSAGES_SNAPSHOT": 1,
+    "RUN_FINISHED": 1
+  },
+  "terminal": "RUN_FINISHED",
+  "messages": [
+    {
+      "id": "run-5f0b853eae9140c0b36894f0ff0af91a:text:76f7fe626d70401f820c170d26282f56",
+      "characters": 507,
+      "ended": true
+    }
+  ],
+  "tools": [
+    {
+      "id": "run-5f0b853eae9140c0b36894f0ff0af91a:tool:call_7dc41a85ab514e5c81def91f",
+      "name": "product_search_tool",
+      "argumentsCharacters": 131,
+      "argumentsEnded": true,
+      "argumentsJsonValid": true,
+      "resultReceived": true,
+      "resultMessageId": "run-5f0b853eae9140c0b36894f0ff0af91a:result:call_7dc41a85ab514e5c81def91f",
+      "resultCharacters": 3876
+    }
+  ],
+  "finalState": {
+    "status": "completed",
+    "searchCompleted": true,
+    "productCount": 3,
+    "productIds": [
+      "P1049",
+      "P1003",
+      "P1017"
+    ],
+    "progressCount": 1
+  },
+  "finalAnswerCharacters": 507,
+  "retrievalEvidence": [
+    {
+      "toolCallId": "run-5f0b853eae9140c0b36894f0ff0af91a:tool:call_7dc41a85ab514e5c81def91f",
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "hit_count": 3,
+      "total_candidates": 5
+    }
+  ],
+  "retrievalSummary": {
+    "observedStrategies": [
+      "embedding_only"
+    ],
+    "allObservedSearchesUseEmbeddingAndRerank": false,
+    "unparsedProductSearchResults": 0,
+    "onlineMainQualityGates": "not_evaluated"
+  }
+}

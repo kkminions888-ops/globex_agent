@@ -1,0 +1,90 @@
+{
+  "run_id": "21e8c7ac-8db1-4fa8-9a1d-f96643ca8121",
+  "session_id": "d9738384-4bad-4d6e-97aa-9c24d3167525",
+  "buyer_id": "319e4850-9d00-4ecc-8696-592597c6e349",
+  "fingerprint": "46dd41d61d951b43d9534b34e094a0ce27232aa907c935accfcfd08f4ffb0d2b",
+  "input_json": {
+    "threadId": "d9738384-4bad-4d6e-97aa-9c24d3167525",
+    "runId": "21e8c7ac-8db1-4fa8-9a1d-f96643ca8121",
+    "state": {},
+    "messages": [
+      {
+        "id": "11041493-1c9e-4f4e-9335-f397ad7488a1",
+        "role": "user",
+        "content": "想买通勤背包，预算300元人民币，寄到中国。请按我的方案整理需求，沿用我的长期颜色偏好，不搜索商品。"
+      }
+    ],
+    "tools": [],
+    "context": [],
+    "forwardedProps": {
+      "buyerId": "319e4850-9d00-4ecc-8696-592597c6e349",
+      "locale": "zh-CN",
+      "currency": "CNY",
+      "selectedSkill": {
+        "id": "personal-c09acc1fbcef4e93adbd958abf10b3ca",
+        "version": "1",
+        "contentHash": "e0aa0ed081ef1c8c4afd8622a8a9e256355fc7614ce369656fd8d436bc851ac5"
+      }
+    }
+  },
+  "projection_json": {
+    "messages": [
+      {
+        "id": "11041493-1c9e-4f4e-9335-f397ad7488a1",
+        "role": "user",
+        "content": "想买通勤背包，预算300元人民币，寄到中国。请按我的方案整理需求，沿用我的长期颜色偏好，不搜索商品。"
+      },
+      {
+        "id": "21e8c7ac-8db1-4fa8-9a1d-f96643ca8121:final:answer",
+        "role": "assistant",
+        "content": "用途：通勤背包  \n预算：300元人民币  \n限制：寄到中国，偏好蓝色"
+      }
+    ],
+    "state": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [
+        {
+          "toolCallId": "21e8c7ac-8db1-4fa8-9a1d-f96643ca8121:preload:a7853dae77504e49b7560b6e91925350",
+          "source": "server_preload",
+          "status": "used",
+          "id": "personal-c09acc1fbcef4e93adbd958abf10b3ca",
+          "version": "1",
+          "contentHash": "e0aa0ed081ef1c8c4afd8622a8a9e256355fc7614ce369656fd8d436bc851ac5",
+          "title": "我的三行需求单"
+        },
+        {
+          "toolCallId": "21e8c7ac-8db1-4fa8-9a1d-f96643ca8121:tool:call_40660c670eed46b4b7adbbc9",
+          "status": "used",
+          "id": "personal-c09acc1fbcef4e93adbd958abf10b3ca",
+          "version": "1",
+          "title": "我的三行需求单",
+          "contentHash": "e0aa0ed081ef1c8c4afd8622a8a9e256355fc7614ce369656fd8d436bc851ac5"
+        }
+      ],
+      "searchCompleted": false,
+      "status": "completed",
+      "progress": [
+        {
+          "id": "21e8c7ac-8db1-4fa8-9a1d-f96643ca8121:preload:a7853dae77504e49b7560b6e91925350",
+          "label": "读取所选方案",
+          "status": "completed"
+        },
+        {
+          "id": "21e8c7ac-8db1-4fa8-9a1d-f96643ca8121:tool:call_40660c670eed46b4b7adbbc9",
+          "label": "读取选购方案",
+          "status": "completed"
+        }
+      ]
+    },
+    "openMessages": [],
+    "openTools": []
+  },
+  "status": "completed",
+  "owner": "131e75e2487f4ee3a173ad0a05f6e2a8",
+  "lease_until": 1788939623.631625,
+  "last_seq": 33,
+  "stop_requested": 0,
+  "created_at": 1788939593.631625,
+  "updated_at": 1788939596.934453
+}

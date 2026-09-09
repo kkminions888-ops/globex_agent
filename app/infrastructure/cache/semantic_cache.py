@@ -108,9 +108,17 @@ class SemanticCache:
         “符合您不要塑料的偏好”，直接向用户断言了一条它刚删掉的偏好。实测踩过。
         """
         digest = hashlib.sha256(
-            f"{self._namespace}\n{buyer_id}\n{scope}".encode(),
+            f"{self._namespace}\n{self._prompt_version()}\n{buyer_id}\n{scope}".encode(),
         ).hexdigest()[:16]
         return f"semcache:{digest}"
+
+    @staticmethod
+    def _prompt_version() -> str:
+        from app.infrastructure.context import ShoppingContext
+        snapshot = ShoppingContext.current()
+        if snapshot is None:
+            return ""
+        return snapshot.prompt_version + ":" + getattr(snapshot, "capability_digest", "")
 
     async def _load_entries(self, buyer_id: str, scope: str = "") -> list:
         """读桶；缓存异常一律当空桶（纵深防御，不依赖底层一定吞异常）。"""

@@ -1,0 +1,34 @@
+{
+  "case_id": "complete_constraints",
+  "run_id": "ebc9f41c8a4d4491ae5be84beb2b2ffa",
+  "session_id": "slash-check-52981bf6dc8c453ebf90a093710bf213",
+  "trace_id": "e6f8e146c5a4ddd1fe8c8d9374dcfd6e",
+  "query": "只整理需求，暂不找商品：通勤背包，预算上限300元人民币，20到25升，重量不超过600克，配送中国，不要真皮，优先黑色。",
+  "event_counts": {
+    "RUN_STARTED": 1,
+    "STATE_SNAPSHOT": 6,
+    "CUSTOM": 2,
+    "TEXT_MESSAGE_START": 1,
+    "TEXT_MESSAGE_CONTENT": 19,
+    "TEXT_MESSAGE_END": 1,
+    "MESSAGES_SNAPSHOT": 1,
+    "RUN_FINISHED": 1
+  },
+  "tool_names": [],
+  "skill_usages": [
+    {
+      "toolCallId": "ebc9f41c8a4d4491ae5be84beb2b2ffa:preload:1e307207136b41659d740ac0e860d72d",
+      "source": "server_preload",
+      "status": "used",
+      "id": "shopping-needs-clarification",
+      "version": "1.0",
+      "contentHash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5",
+      "title": "选购需求梳理"
+    }
+  ],
+  "products": [],
+  "final_text": "已明确：\n- 商品类型：通勤背包  \n- 预算上限：300 元人民币  \n- 容量：20–25 升  \n- 重量上限：600 克  \n- 配送国家：中国  \n- 材质禁忌：不要真皮  \n- 颜色偏好：优先黑色  \n\n需求已整理完毕，无需进一步确认。",
+  "mechanism_pass": true,
+  "semantic_review": "pending",
+  "checked_at": "2026-09-09T07:11:07.106659+00:00"
+}

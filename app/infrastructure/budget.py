@@ -21,6 +21,7 @@ Agent 一次意图是多轮 Think/Act 加多次往返，单条请求就能打穿
 from __future__ import annotations
 
 import logging
+import json
 from contextvars import ContextVar
 from dataclasses import dataclass, field
 from typing import Optional
@@ -41,7 +42,7 @@ MINIMAL_MODE_HINT = (
 )
 
 FALLBACK_NOTICE = (
-    "本轮 Token 预算已耗尽，未再调用模型。以下是基于已获取信息的整理结果。"
+    "本轮剩余 Token 预算不足，未再调用模型。以下是基于已获取信息的整理结果。"
 )
 
 
@@ -53,6 +54,15 @@ class TokenBudget:
     used: int = 0
     # 记录每次消耗的来源，便于事后定位是哪一步烧的
     entries: list[tuple[str, int]] = field(default_factory=list)
+    reserved: int = 0
+    fallback_used: bool = False
+
+    def reserve(self, tokens: int) -> "BudgetReservation | None":
+        """调用前同步预留；并发子协程共享账本，检查与扣减之间没有 await。"""
+        if tokens <= 0 or self.exhausted or tokens > self.remaining:
+            return None
+        self.reserved += tokens
+        return BudgetReservation(self, tokens)
 
     def charge(self, source: str, tokens: int) -> None:
         if tokens <= 0:
@@ -62,7 +72,7 @@ class TokenBudget:
 
     @property
     def remaining(self) -> int:
-        return max(0, self.total_limit - self.used)
+        return max(0, self.total_limit - self.used - self.reserved)
 
     @property
     def remaining_ratio(self) -> float:
@@ -85,10 +95,60 @@ class TokenBudget:
 
 
 _budget_var: ContextVar[Optional[TokenBudget]] = ContextVar("token_budget", default=None)
+_verified_results: ContextVar[dict | None] = ContextVar("budget_verified_results", default=None)
+
+
+@dataclass
+class BudgetReservation:
+    budget: TokenBudget
+    amount: int
+    settled: bool = False
+
+    def settle(self, actual: int | None) -> None:
+        if self.settled:
+            return
+        self.settled = True
+        self.budget.reserved -= self.amount
+        # 网关不回 usage 或连接中断时保守记预留值，不能把未知成本当免费。
+        self.budget.charge("llm" if actual is not None else "llm_estimated", self.amount if actual is None else actual)
+
+
+def estimate_input_tokens(messages: list, tools: list | None) -> int:
+    """没有目标 tokenizer 时采用 UTF-8 字节上界估算，并保留协议开销。"""
+    payload = [m.model_dump() if hasattr(m, "model_dump") else str(m) for m in messages]
+    return len(json.dumps([payload, tools or []], ensure_ascii=False).encode()) + 256
+
+
+def remember_verified_result(kind: str, value: dict) -> None:
+    """只由已校验的业务工具调用，禁止从模型输出/历史摘要抽取兜底事实。"""
+    facts = _verified_results.get()
+    if facts is not None:
+        facts[kind] = value
+
+
+def rule_fallback_text() -> str:
+    facts = _verified_results.get() or {}
+    lines = [FALLBACK_NOTICE]
+    product_result = facts.get("products")
+    if product_result is not None:
+        hits = product_result.get("hits", [])
+        if not hits:
+            lines.append("本轮检索未找到符合条件的商品，可以调整预算或筛选条件后再试。")
+        for hit in hits[:5]:
+            lines.append(f"• {hit['title']}（{hit['product_id']}）：商品价 {hit['price_major']} {hit['currency']}。")
+    trade = facts.get("trade", {})
+    for order in trade.get("orders", [])[-3:]:
+        lines.append(f"订单 {order['order_id']}：{order['status']}。")
+    if trade.get("pending_confirmations") or facts.get("confirmation"):
+        lines.append("待确认操作尚未执行，请在页面确认卡核对并选择。")
+    if len(lines) == 1:
+        lines.append("目前还没有足够的已验证结果，请缩小问题范围后再试。")
+    return "\n".join(lines)
 
 
 def init_budget(total_limit: int) -> Optional[TokenBudget]:
     """在意图入口初始化预算；total_limit <= 0 表示不启用。"""
+    _verified_results.set({})
     if total_limit <= 0:
         _budget_var.set(None)
         return None

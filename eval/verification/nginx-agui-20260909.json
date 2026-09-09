@@ -1,0 +1,75 @@
+{
+  "ok": true,
+  "error": null,
+  "checkedAt": "2026-09-09T05:27:07.047373+00:00",
+  "sdkVersion": "0.1.22",
+  "mode": "read_only_product_search",
+  "threadId": "verify-866802c95d064db6b6c6f9400940dff5",
+  "runId": "run-a915566a2fdc4d96ad63a96f20cc5aee",
+  "timingMs": {
+    "firstEvent": 223.08,
+    "firstText": 3209.6,
+    "total": 7672.26
+  },
+  "eventCounts": {
+    "RUN_STARTED": 1,
+    "STATE_SNAPSHOT": 7,
+    "TOOL_CALL_START": 1,
+    "TOOL_CALL_ARGS": 10,
+    "TOOL_CALL_END": 1,
+    "TOOL_CALL_RESULT": 1,
+    "TEXT_MESSAGE_START": 1,
+    "TEXT_MESSAGE_CONTENT": 54,
+    "TEXT_MESSAGE_END": 1,
+    "MESSAGES_SNAPSHOT": 1,
+    "RUN_FINISHED": 1
+  },
+  "terminal": "RUN_FINISHED",
+  "messages": [
+    {
+      "id": "run-a915566a2fdc4d96ad63a96f20cc5aee:text:a37f4cb9ac824418ab1d94d880cb5c09",
+      "characters": 395,
+      "ended": true
+    }
+  ],
+  "tools": [
+    {
+      "id": "run-a915566a2fdc4d96ad63a96f20cc5aee:tool:call_709c98bc6d7748c99cbb1858",
+      "name": "product_search_tool",
+      "argumentsCharacters": 94,
+      "argumentsEnded": true,
+      "argumentsJsonValid": true,
+      "resultReceived": true,
+      "resultMessageId": "run-a915566a2fdc4d96ad63a96f20cc5aee:result:call_709c98bc6d7748c99cbb1858",
+      "resultCharacters": 1728
+    }
+  ],
+  "finalState": {
+    "status": "completed",
+    "searchCompleted": true,
+    "productCount": 2,
+    "productIds": [
+      "P1049",
+      "P1003"
+    ],
+    "progressCount": 1
+  },
+  "finalAnswerCharacters": 395,
+  "retrievalEvidence": [
+    {
+      "toolCallId": "run-a915566a2fdc4d96ad63a96f20cc5aee:tool:call_709c98bc6d7748c99cbb1858",
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "hit_count": 2,
+      "total_candidates": 6
+    }
+  ],
+  "retrievalSummary": {
+    "observedStrategies": [
+      "embedding_only"
+    ],
+    "allObservedSearchesUseEmbeddingAndRerank": false,
+    "unparsedProductSearchResults": 0,
+    "onlineMainQualityGates": "not_evaluated"
+  }
+}

@@ -20,6 +20,8 @@ SQLite 的边界（重要）：单写者模型。模块三的 worker 是独立�
 from __future__ import annotations
 
 import logging
+import asyncio
+import sqlite3
 from datetime import datetime, timezone
 from typing import Optional
 
@@ -39,6 +41,7 @@ from app.domain.session.ports.conversation_store import (
     ConversationTurn,
 )
 from app.domain.session.ports.session_store import SessionStore
+from app.infrastructure.persistence.sql.session_store import SqlFencedSessionStore
 from app.infrastructure.persistence.sql.tables import (
     AgentSessionStateRow,
     Base,
@@ -66,10 +69,20 @@ def create_engine(database_url: str) -> AsyncEngine:
 
         @event.listens_for(engine.sync_engine, "connect")
         def _enable_wal(dbapi_conn, _record):  # noqa: ANN001
-            cursor = dbapi_conn.cursor()
-            cursor.execute("PRAGMA journal_mode=WAL")
-            cursor.execute("PRAGMA busy_timeout=5000")  # 锁竞争时等待而不是立即报错
-            cursor.close()
+            async def configure(connection):
+                # 首次多进程打开空库时，切换 WAL 本身也可能竞争写锁。
+                async with connection.execute("PRAGMA busy_timeout=5000"):
+                    pass
+                for attempt in range(4):
+                    try:
+                        async with connection.execute("PRAGMA journal_mode=WAL"):
+                            pass
+                        return
+                    except sqlite3.OperationalError as err:
+                        if "locked" not in str(err).lower() or attempt == 3:
+                            raise
+                        await asyncio.sleep(0.05 * (2 ** attempt))
+            dbapi_conn.run_async(configure)
 
         return engine
     return create_async_engine(
@@ -89,19 +102,8 @@ async def bootstrap_schema(engine: AsyncEngine) -> None:
     logger.info("数据库表结构已就绪（%s）", engine.url.get_backend_name())
 
 
-class SqlSessionStore(SessionStore):
-    def __init__(self, engine: AsyncEngine) -> None:
-        self._session_factory = async_sessionmaker(engine, expire_on_commit=False)
-
-    async def save(self, session_id: str, state_json: str) -> None:
-        async with self._session_factory() as db:
-            await db.merge(AgentSessionStateRow(session_id=session_id, state_json=state_json))
-            await db.commit()
-
-    async def load(self, session_id: str) -> Optional[str]:
-        async with self._session_factory() as db:
-            row = await db.get(AgentSessionStateRow, session_id)
-            return row.state_json if row else None
+class SqlSessionStore(SqlFencedSessionStore):
+    """保留既有导入路径，快照写入统一由持久 fencing/CAS 实现。"""
 
 
 class SqlConversationStore(ConversationStore):
@@ -289,6 +291,25 @@ class SqlPreferenceStore(PreferenceStore):
             )
             for row in rows
         ]
+
+    async def replace(self, buyer_id: str, previous_statement: str, preference: BuyerPreference) -> bool:
+        if buyer_id != preference.buyer_id:
+            raise ValueError("偏好归属不一致")
+        async with self._session_factory() as db:
+            async with db.begin():
+                result = await db.execute(delete(BuyerPreferenceRow).where(
+                    BuyerPreferenceRow.buyer_id == buyer_id,
+                    BuyerPreferenceRow.statement == previous_statement))
+                if not result.rowcount:
+                    return False
+                existing = await db.scalar(select(BuyerPreferenceRow.id).where(
+                    BuyerPreferenceRow.buyer_id == buyer_id,
+                    BuyerPreferenceRow.kind == preference.kind,
+                    BuyerPreferenceRow.statement == preference.statement))
+                if existing is None:
+                    db.add(BuyerPreferenceRow(buyer_id=buyer_id,kind=preference.kind,
+                        statement=preference.statement,created_at=preference.created_at))
+        return True
 
     async def delete(self, buyer_id: str, statement: str) -> bool:
         """精确匹配 statement 删除；返回是否真的删到了行。"""

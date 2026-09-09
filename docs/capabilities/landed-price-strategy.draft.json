@@ -1,0 +1,13 @@
+{
+  "kind": "strategy",
+  "id": "explain-price-scope",
+  "version": "1.0",
+  "title": "明确价格覆盖范围",
+  "description": "解释商品价、运费和到手价之间的边界，避免在缺少规格时给出确定总价。",
+  "scope": "shopping",
+  "allowed_tools": [],
+  "body": "当用户询问到手价、运费或配送时，先核对返回数据覆盖哪些金额。没有可核实运费、税费、目的地或SKU时，将缺项明确列为待确认，不能补造数字。该建议不改变买家的预算、目的地、材质禁忌或其他约束，也不能写成永久买家偏好。",
+  "evidence": [{"reference": "app/application/usecases/catalog_search.py", "summary": "商品卡区分规格与金额范围；审核发布前请核对现行DTO与价格计算实现，本文件不是已发布业务政策。"}],
+  "expires_at": "2026-12-31T23:59:59+08:00",
+  "keywords": ["到手价", "运费", "配送"]
+}

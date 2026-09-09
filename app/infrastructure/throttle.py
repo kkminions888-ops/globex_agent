@@ -7,7 +7,8 @@
 也报 "Request rate increased too quickly"（速率爬升过快）。只限并发挡不住一批请求
 同时起跑，还要把起跑时刻摊开；只限速率又挡不住长请求堆积。
 
-进程内实现，多实例部署时需换成 Redis 令牌桶（见模块二），端口语义保持一致。
+这是无 Redis 部署的进程内实现；多实例使用 shared_throttle.RedisGatewayThrottle，
+两者都通过 slot() 持有到流结束，不能在共享模式故障时退回本地放行。
 """
 from __future__ import annotations
 

@@ -1,0 +1,149 @@
+{
+  "product": {
+    "manifest": "eval/verification/release-20260909/product/recall-release-report-20260909-132206-488249.manifest.json",
+    "gate": "BLOCK",
+    "status": "COMPLETED",
+    "selected": 45,
+    "gate_scope": "release",
+    "code_sha256": "0efa153c1ef1ad0bc3a30fd11d889410f8eb86ec8d6ecf5d655eea6d898d2bc2",
+    "inputs_unchanged": true,
+    "actual_strategies": {
+      "embedding_rerank": [
+        "embedding_only"
+      ]
+    }
+  },
+  "category": {
+    "manifest": "eval/verification/release-20260909/category/category-recall-release-report-20260909-132301-666763.manifest.json",
+    "gate": "BLOCK",
+    "status": "COMPLETED",
+    "selected": 15,
+    "gate_scope": "release",
+    "code_sha256": "0efa153c1ef1ad0bc3a30fd11d889410f8eb86ec8d6ecf5d655eea6d898d2bc2",
+    "inputs_unchanged": true,
+    "actual_strategies": [
+      "category_vector"
+    ]
+  },
+  "action-preflight": {
+    "manifest": "eval/verification/release-20260909/action-preflight/agent-release-report-20260909-132311-836348.manifest.json",
+    "gate": "PASS",
+    "status": "COMPLETED",
+    "selected": 1,
+    "gate_scope": "diagnostic",
+    "code_sha256": "0efa153c1ef1ad0bc3a30fd11d889410f8eb86ec8d6ecf5d655eea6d898d2bc2",
+    "inputs_unchanged": true,
+    "actual_strategies": {
+      "agent-051": [
+        "embedding_only"
+      ]
+    }
+  },
+  "agent": {
+    "manifest": "eval/verification/release-20260909/agent/agent-release-report-20260909-132421-803890.manifest.json",
+    "gate": "BLOCK",
+    "status": "ERROR",
+    "selected": 30,
+    "gate_scope": "release",
+    "code_sha256": "0efa153c1ef1ad0bc3a30fd11d889410f8eb86ec8d6ecf5d655eea6d898d2bc2",
+    "inputs_unchanged": true,
+    "actual_strategies": {
+      "agent-019": [
+        "embedding_only"
+      ],
+      "agent-020": [
+        "embedding_only"
+      ],
+      "agent-021": [
+        "embedding_only"
+      ],
+      "agent-022": [
+        "embedding_only"
+      ],
+      "agent-023": [
+        "embedding_only"
+      ],
+      "agent-024": [
+        "embedding_only"
+      ],
+      "agent-025": [
+        "embedding_only"
+      ],
+      "agent-036": [
+        "embedding_only"
+      ],
+      "agent-037": [
+        "embedding_only"
+      ],
+      "agent-038": [
+        "embedding_only"
+      ],
+      "agent-039": [
+        "embedding_only"
+      ],
+      "agent-040": [],
+      "agent-051": [
+        "embedding_only"
+      ],
+      "agent-052": [
+        "embedding_only"
+      ],
+      "agent-053": [
+        "embedding_only"
+      ],
+      "agent-054": [
+        "embedding_only"
+      ],
+      "agent-055": [
+        "embedding_only"
+      ],
+      "agent-066": [
+        "embedding_only"
+      ],
+      "agent-067": [
+        "embedding_only"
+      ],
+      "agent-068": [
+        "embedding_only"
+      ],
+      "agent-069": [
+        "embedding_only"
+      ],
+      "agent-070": [
+        "embedding_only"
+      ],
+      "agent-078": [],
+      "agent-079": [],
+      "agent-080": [],
+      "agent-088": [
+        "embedding_only"
+      ],
+      "agent-089": [
+        "embedding_only"
+      ],
+      "agent-090": [
+        "embedding_only"
+      ],
+      "agent-099": [
+        "embedding_only"
+      ],
+      "agent-100": [
+        "embedding_only"
+      ]
+    },
+    "pass_count": 27,
+    "error_case_ids": [
+      "agent-053",
+      "agent-054",
+      "agent-055"
+    ],
+    "service_runtime": {
+      "local_app_source_sha256": "1ebc84302392004974026f1ffe1a132ce99525892ede8f0cf20ed531977f5388",
+      "matching": true,
+      "scope": "app 源文件相对路径与内容；服务端在进程启动时计算，不证明依赖、数据卷或二进制字节一致",
+      "server_app_source_sha256": "1ebc84302392004974026f1ffe1a132ce99525892ede8f0cf20ed531977f5388",
+      "status": "matched"
+    }
+  },
+  "conclusion": "BLOCKED：三套正式release均未通过。诊断预检PASS不能替代release；当前新工作区后续修复不混称为该冻结版本验收。"
+}

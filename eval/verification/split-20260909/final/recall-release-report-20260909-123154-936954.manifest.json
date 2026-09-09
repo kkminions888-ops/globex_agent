@@ -1,0 +1,1472 @@
+{
+  "code": {
+    "file_count": 211,
+    "files": [
+      {
+        "bytes": 24,
+        "path": "app/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 24,
+        "path": "app/application/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 24,
+        "path": "app/application/agents/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 9721,
+        "path": "app/application/agents/ag_ui_adapter.py",
+        "sha256": "fb901046db4dbaae37c790d4ff3fdefe3b8d3400386ff061d49195b092535aa8"
+      },
+      {
+        "bytes": 3063,
+        "path": "app/application/agents/context_policy.py",
+        "sha256": "ee31ae676d45ebbb853ecff091f92c60c1bfd191774751c0b387d71e0b8d41a3"
+      },
+      {
+        "bytes": 9401,
+        "path": "app/application/agents/main_agent.py",
+        "sha256": "5ba198cc1e00ef3f841e32cc2d670daa079eceac0f8981af3d7e4305a3a29f9d"
+      },
+      {
+        "bytes": 24704,
+        "path": "app/application/agents/orchestrator.py",
+        "sha256": "47ae622ddac8abf9295bb017625ea24a52e3d7ef595b95857a4ad5d293ab613e"
+      },
+      {
+        "bytes": 1871,
+        "path": "app/application/agents/permissions.py",
+        "sha256": "05ec22b44a2d2345a92fe3d3b642159e3020f8e1ac0eca2d77b3688b2d6e3d5e"
+      },
+      {
+        "bytes": 4208,
+        "path": "app/application/agents/search_agent.py",
+        "sha256": "7bd5ff9d8db7063e3e5bc77bc897d8fb0f8a2b84a0bf7f3bc5738c2111e55459"
+      },
+      {
+        "bytes": 3511,
+        "path": "app/application/agents/trade_agent.py",
+        "sha256": "0b0c98f9838668c01e2f2ef7ac6e9fffd2a553596673b523f5a3ceecab6c954d"
+      },
+      {
+        "bytes": 556,
+        "path": "app/application/harness/__init__.py",
+        "sha256": "3335d1a654f804cf5c49471bfd8848f690e6f96673920ee598e5256cb678f29f"
+      },
+      {
+        "bytes": 5567,
+        "path": "app/application/harness/assertions.py",
+        "sha256": "279620a0320420807aed1f57e12d502fc88ad18b4baed8875064b8845c69e29b"
+      },
+      {
+        "bytes": 7387,
+        "path": "app/application/harness/drift_detector.py",
+        "sha256": "d471678a1a717027cac7f8f2511c2dfee32e305d4eefb3886ebaccae7ccf8a40"
+      },
+      {
+        "bytes": 3232,
+        "path": "app/application/harness/loop_detector.py",
+        "sha256": "d0e6af6e7c43758bb72fd21449ac6d65493431c9ebd7160dd8640ac0af674b63"
+      },
+      {
+        "bytes": 476,
+        "path": "app/application/memory/__init__.py",
+        "sha256": "522e2c6fef9be7eca418f03528d2c02138900187d169d09fd262953113a3d3ba"
+      },
+      {
+        "bytes": 6321,
+        "path": "app/application/memory/preference_selector.py",
+        "sha256": "e9b04fef756325e088d43d8dbde4dbb0310994eb34beead9601c29afa1b14427"
+      },
+      {
+        "bytes": 24,
+        "path": "app/application/prompts/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 11035,
+        "path": "app/application/prompts/globex.yml",
+        "sha256": "4b2299133a077d9af99785ba7bab53d06b0562b7db1d6af41ff133724604bceb"
+      },
+      {
+        "bytes": 441,
+        "path": "app/application/prompts/loader.py",
+        "sha256": "53cab9d23541728ff17e7e8f0071730404f4472ae1bf0fc51914cdf879a980cf"
+      },
+      {
+        "bytes": 24,
+        "path": "app/application/tools/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 5750,
+        "path": "app/application/tools/category_insight_tool.py",
+        "sha256": "9522fc5dfb1dc64605c2d6bac18d9c0b5add0e6b98a629b0ecfe8db32411031b"
+      },
+      {
+        "bytes": 3855,
+        "path": "app/application/tools/forget_preference_tool.py",
+        "sha256": "c62d6ad38792e41212e94895d9d3ec7c1bb0c09d7b5fe3e2630b07e6cdc689da"
+      },
+      {
+        "bytes": 6377,
+        "path": "app/application/tools/order_tools.py",
+        "sha256": "8580e32e327b4e201f3a303f7a0085347bb9c91aa11898869c040637c4ea7f2c"
+      },
+      {
+        "bytes": 8108,
+        "path": "app/application/tools/product_search_tool.py",
+        "sha256": "4aaf670bbb9f69ea9b300297228520e36916e3e555d74cebd5300e76d1e96480"
+      },
+      {
+        "bytes": 2554,
+        "path": "app/application/tools/remember_preference_tool.py",
+        "sha256": "3193b778372f7085dd5c33525c2fae83fc96e3e4a5c4cd890f014c76491b51f6"
+      },
+      {
+        "bytes": 5940,
+        "path": "app/application/tools/task_dispatch_tool.py",
+        "sha256": "109337a2f6a8e137099013fd053d2a113f4ab0987650ac81886d584b99b87890"
+      },
+      {
+        "bytes": 2779,
+        "path": "app/application/tools/web_search_tool.py",
+        "sha256": "009ae8b74b4e60e18cc631c4e1d4d429d090c018ef13008c80b893448911462d"
+      },
+      {
+        "bytes": 24,
+        "path": "app/application/usecases/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 14306,
+        "path": "app/application/usecases/catalog_search.py",
+        "sha256": "f543f41c358ab4c1cf5472d97ac029a84021a2744eb5433bcc0111208bb2b25d"
+      },
+      {
+        "bytes": 9162,
+        "path": "app/application/usecases/confirmation_service.py",
+        "sha256": "5213b0d5951bef5e52f5fd83e896e3033a38717de69c1807cb4e9edb8e8d9183"
+      },
+      {
+        "bytes": 2461,
+        "path": "app/application/usecases/order_usecases.py",
+        "sha256": "d96871c459b1d352cf1690cf0b2818f29e8a689821c38e09322d4a8442b948ad"
+      },
+      {
+        "bytes": 1017,
+        "path": "app/application/usecases/product_media.py",
+        "sha256": "bd6f69d7defd373b5a958d49e820747b4e3b95c286c17ad731f15a3e9c84f1e0"
+      },
+      {
+        "bytes": 13386,
+        "path": "app/composition.py",
+        "sha256": "d6282e1249a4abe65fe9a7bda2c7d9e84dc97b979e928d6c4648950feda4094a"
+      },
+      {
+        "bytes": 24,
+        "path": "app/domain/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 24,
+        "path": "app/domain/buyer/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 24,
+        "path": "app/domain/buyer/ports/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 2035,
+        "path": "app/domain/buyer/preference.py",
+        "sha256": "3fa3277c7824b57eda63e302b55897366a94a317660c4d0a4990a9477e376d40"
+      },
+      {
+        "bytes": 24,
+        "path": "app/domain/catalog/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 1536,
+        "path": "app/domain/catalog/exchange_rate.py",
+        "sha256": "cacc09ade154d88f5f7112d51f5b94ec306fd8360b8fea53d4dc3025f5409147"
+      },
+      {
+        "bytes": 2028,
+        "path": "app/domain/catalog/money.py",
+        "sha256": "54efad36795333cc9352ec40a64aff18f1cc172a82293e1423195bab78109d78"
+      },
+      {
+        "bytes": 24,
+        "path": "app/domain/catalog/ports/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 636,
+        "path": "app/domain/catalog/ports/product_repository.py",
+        "sha256": "0a3dd7ce4c230adb8f947087e966f92c988e3914b8d26ede0df3ad1a910ce116"
+      },
+      {
+        "bytes": 1478,
+        "path": "app/domain/catalog/ports/retrieval_ports.py",
+        "sha256": "2f6a5f4a657461ae3c9c34e1d61689dcc1adae5a7f64834608c3183b08065013"
+      },
+      {
+        "bytes": 2636,
+        "path": "app/domain/catalog/product.py",
+        "sha256": "a9483c1de63a0109144a26b7a7a552dc3fc7a130ba3ac1636071114dff580304"
+      },
+      {
+        "bytes": 1463,
+        "path": "app/domain/catalog/product_search_spec.py",
+        "sha256": "15dce8f05f898ec96bb75b64d56e0106b94b35af7ca70719e9636efbfdf0f8e7"
+      },
+      {
+        "bytes": 1116,
+        "path": "app/domain/catalog/sku.py",
+        "sha256": "ed9471bdb9e05afa4ad261214767e3e0440fc2796bd96ce719df1ef052825c5a"
+      },
+      {
+        "bytes": 24,
+        "path": "app/domain/order/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 757,
+        "path": "app/domain/order/address.py",
+        "sha256": "031f0c8594ac183f33ba5da9678b061faf11f42de58c40da97d3710cef6faee9"
+      },
+      {
+        "bytes": 3845,
+        "path": "app/domain/order/order.py",
+        "sha256": "0b51596fc3b9d137b89021e765accd0472b3e283cfd6522c0deb93be19157c5c"
+      },
+      {
+        "bytes": 651,
+        "path": "app/domain/order/order_line.py",
+        "sha256": "0d497d5ee76794fcf078b4186747fb3e1a094ec85e8a354222fc21149b9c7f5e"
+      },
+      {
+        "bytes": 24,
+        "path": "app/domain/order/ports/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 579,
+        "path": "app/domain/order/ports/order_repository.py",
+        "sha256": "a8ad6fe73dae999b894d1518f809a552ac9aa9517f700010ba6fbd39b9e52793"
+      },
+      {
+        "bytes": 1620,
+        "path": "app/domain/order/ports/trade_store.py",
+        "sha256": "391eb208aae391549e6fdedd8ad7273d1e67b2230d61339ce9d0d1a75053b11e"
+      },
+      {
+        "bytes": 24,
+        "path": "app/domain/queue/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 24,
+        "path": "app/domain/queue/ports/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 3431,
+        "path": "app/domain/queue/ports/task_queue.py",
+        "sha256": "66baf8a80af79edd2a4d91392a0721974f402865ae3d0af5d8c6289016c4d4e0"
+      },
+      {
+        "bytes": 24,
+        "path": "app/domain/session/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 24,
+        "path": "app/domain/session/ports/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 2580,
+        "path": "app/domain/session/ports/conversation_store.py",
+        "sha256": "01c7dfdf738161bb1e61d638cdafe1e450f82087609df21c5d7de377286b283a"
+      },
+      {
+        "bytes": 809,
+        "path": "app/domain/session/ports/session_store.py",
+        "sha256": "b8e7bc97f7e901371f772f67816d66f7288ea7279b6aebd3508b82ca4ee8b701"
+      },
+      {
+        "bytes": 24,
+        "path": "app/domain/shipping/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 4263,
+        "path": "app/domain/shipping/tariff_schedule.py",
+        "sha256": "0bccab0d719a079eb830a31e631f5d551e44fd607d19723c2ce8d789cd8dd039"
+      },
+      {
+        "bytes": 24,
+        "path": "app/infrastructure/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 3948,
+        "path": "app/infrastructure/budget.py",
+        "sha256": "ad2942c418326482a69dcf43b6b1f0f2e002df1fbeaea0c02c3659af4508528c"
+      },
+      {
+        "bytes": 24,
+        "path": "app/infrastructure/cache/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 3093,
+        "path": "app/infrastructure/cache/cached_embedding_client.py",
+        "sha256": "a968d4d89f7da550caf7bb3b12d7d5a23fbedb6555b3aac0d3997d25da3507fc"
+      },
+      {
+        "bytes": 5077,
+        "path": "app/infrastructure/cache/redis_cache.py",
+        "sha256": "4fd295205421e726d98f287638cd8f3243307ff1065357ed596def0c3d9433a0"
+      },
+      {
+        "bytes": 7133,
+        "path": "app/infrastructure/cache/semantic_cache.py",
+        "sha256": "e130fdec4922c2bc7598f2f1eb1c77115098438da9f2bd46c383305128115207"
+      },
+      {
+        "bytes": 1918,
+        "path": "app/infrastructure/context.py",
+        "sha256": "ddb7b76a98d7be78d0b4ea11782dfab160be918b6b10146d06c9d6be3a21f523"
+      },
+      {
+        "bytes": 24,
+        "path": "app/infrastructure/embedding/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 3226,
+        "path": "app/infrastructure/embedding/openai_embedding_client.py",
+        "sha256": "58bf960c5b13968ed3c83a3008b8a611e74a331cd219e9a89354dcd7439fa87a"
+      },
+      {
+        "bytes": 5661,
+        "path": "app/infrastructure/eventbus.py",
+        "sha256": "1a6f1aacbb7c010f07313518f0df1faddbd422a3ba77a42dd8dcbddf9610c2ce"
+      },
+      {
+        "bytes": 6965,
+        "path": "app/infrastructure/harness_middleware.py",
+        "sha256": "640f8b47d48d2d8bc18c9abd58a007e4c371d3bf2aad4aae8ce24caf794b9c6b"
+      },
+      {
+        "bytes": 11539,
+        "path": "app/infrastructure/llm.py",
+        "sha256": "cfd06403fe1df776c03f63743d0f006d0773eb90b48fb30925d185a807f9ea9f"
+      },
+      {
+        "bytes": 3494,
+        "path": "app/infrastructure/model_stream.py",
+        "sha256": "8e8a6a231117541a84257b4334843c322b35c6529f4ff2c27dba7fe55d94401d"
+      },
+      {
+        "bytes": 24,
+        "path": "app/infrastructure/persistence/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 2569,
+        "path": "app/infrastructure/persistence/in_memory_repositories.py",
+        "sha256": "fb7933e0a2c0734423b07937701b8e89d62418d44b16acfe8f6e12dd4ee37bf0"
+      },
+      {
+        "bytes": 7666,
+        "path": "app/infrastructure/persistence/json_file_stores.py",
+        "sha256": "39a4da3060a1447d7b8d10ef552aae2b6c87e6f7bd270beec97a1e5c18fdd1ad"
+      },
+      {
+        "bytes": 25088,
+        "path": "app/infrastructure/persistence/seed_products.py",
+        "sha256": "8977dd5d021f295968fafe26006c9dc5578eba9d7aff22f8a6bc2a56f1900e4d"
+      },
+      {
+        "bytes": 24,
+        "path": "app/infrastructure/persistence/sql/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 14046,
+        "path": "app/infrastructure/persistence/sql/repositories.py",
+        "sha256": "f3bb1cc2d6ceff02358d088a00ad95172c46ec16f4aa192a9584e7def9b944bc"
+      },
+      {
+        "bytes": 5346,
+        "path": "app/infrastructure/persistence/sql/tables.py",
+        "sha256": "2c05be1a0fa265beb9406be01758d97adcdcce27c3b83079c508b703cf3054e9"
+      },
+      {
+        "bytes": 22088,
+        "path": "app/infrastructure/persistence/sql/trade_store.py",
+        "sha256": "7249c969d56508528e71cc666578dbcb37a6fbbced11b44b452925aa0acd34f7"
+      },
+      {
+        "bytes": 2429,
+        "path": "app/infrastructure/persistence/sql/trade_tables.py",
+        "sha256": "812d0e7758593bc826d60d5f8c7697500a320d95a3611a865ec61be3a5fd7bee"
+      },
+      {
+        "bytes": 24,
+        "path": "app/infrastructure/queue/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 25185,
+        "path": "app/infrastructure/queue/redis_stream_queue.py",
+        "sha256": "59d9e4b5779805c98f3060eea30094326d2084eec7e361cfcbf9ad36bc80d2be"
+      },
+      {
+        "bytes": 24,
+        "path": "app/infrastructure/rag/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 9872,
+        "path": "app/infrastructure/rag/category_knowledge.py",
+        "sha256": "0b614b9816e68126ae8b71bb1fd6610ba940001f341fb2ba5a444e045a8f4fbd"
+      },
+      {
+        "bytes": 24,
+        "path": "app/infrastructure/rerank/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 2036,
+        "path": "app/infrastructure/rerank/http_reranker.py",
+        "sha256": "a9c7f2d2a430996c6849194dfd9d629fe7d581efcac55407fe001f01a19d6158"
+      },
+      {
+        "bytes": 8902,
+        "path": "app/infrastructure/resilience.py",
+        "sha256": "e7d3a8ecb9559ff5c2284cb017a11f3f4b308ba0e32b6111e49c32fc6f7ceedd"
+      },
+      {
+        "bytes": 603,
+        "path": "app/infrastructure/runtime_version.py",
+        "sha256": "fcec7aa7f165552da39e911240151e334e3e7cec5efbdd7a075e07f0efaa19a1"
+      },
+      {
+        "bytes": 905,
+        "path": "app/infrastructure/security/__init__.py",
+        "sha256": "916cca36c5608ea89a62c3ca413081a5262880cbe42d663d0a017c191e5c2472"
+      },
+      {
+        "bytes": 2038,
+        "path": "app/infrastructure/security/content_filter.py",
+        "sha256": "373565fd7a7f37422e3d330c0647457ad03c5d9cd37e4a4d7412d709aaa28f53"
+      },
+      {
+        "bytes": 2241,
+        "path": "app/infrastructure/security/output_guard.py",
+        "sha256": "0f46a53c6a9740b75fa7d97c7e988f5e8e85f071eca51cd0f26f44230f9c9053"
+      },
+      {
+        "bytes": 10402,
+        "path": "app/infrastructure/settings.py",
+        "sha256": "e34790471f5b108f0b77c9dfc8f308885cc09bd300f53e65c9d11a9b6ecb7c20"
+      },
+      {
+        "bytes": 4675,
+        "path": "app/infrastructure/shared_breaker.py",
+        "sha256": "f89821ec11677ea1accefc1bfc9468bd2dffa5e69517bc41b972aa0896324997"
+      },
+      {
+        "bytes": 9356,
+        "path": "app/infrastructure/shared_throttle.py",
+        "sha256": "d23b90b5271d404355287345d176868ac62032a1c6cc10912335bceb78ffda66"
+      },
+      {
+        "bytes": 1919,
+        "path": "app/infrastructure/throttle.py",
+        "sha256": "d2aa69e5c838c65d538a9cbe00fe043e7dff8452fa5a40126427a8a7dcaf4287"
+      },
+      {
+        "bytes": 18065,
+        "path": "app/infrastructure/tracing.py",
+        "sha256": "97bc7061a8acf7763e923fe8d37b9147ffee61ddcbc0532f757d7d64172bb3cc"
+      },
+      {
+        "bytes": 1125,
+        "path": "app/infrastructure/transient.py",
+        "sha256": "0c914c13c4b17dfc16ec05df6255967cdcffc6a43541e2a3c7d65390748eb51b"
+      },
+      {
+        "bytes": 24,
+        "path": "app/infrastructure/vector/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 1470,
+        "path": "app/infrastructure/vector/index_bootstrap.py",
+        "sha256": "8ec26909b98b07679dd9220b50d04b2c07210ffd07cd3bc3218d245df66cee18"
+      },
+      {
+        "bytes": 2830,
+        "path": "app/infrastructure/vector/qdrant_product_index.py",
+        "sha256": "857c74b922d57f6317981e84b00395a694e8fea1400c7be71d05cfa0746b3591"
+      },
+      {
+        "bytes": 24,
+        "path": "app/presentation/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 5396,
+        "path": "app/presentation/ag_ui.py",
+        "sha256": "e25bbebcf1bf4d7c2f44ddce071f5ce9c9e079973414319de208022d1f579d87"
+      },
+      {
+        "bytes": 3804,
+        "path": "app/presentation/confirmations.py",
+        "sha256": "68759299bb6084561c4d8dac84c4a02ab979bbc584c6661d0a0af7714b2ccade"
+      },
+      {
+        "bytes": 1559,
+        "path": "app/presentation/connection.py",
+        "sha256": "e86423bf3dc02b9d4295606afab549cc3189448e732d66f533038860713ca556"
+      },
+      {
+        "bytes": 1030,
+        "path": "app/presentation/dto.py",
+        "sha256": "6a9b2bc8df63d0ba9b8ee0b05909cc2e9730d99516259f266097ea8ab6af1554"
+      },
+      {
+        "bytes": 13588,
+        "path": "app/presentation/server.py",
+        "sha256": "118bf629c814dd3934701c952a0d3ad6798b345ea52b4109b78caeb15baa91e5"
+      },
+      {
+        "bytes": 3915,
+        "path": "app/worker.py",
+        "sha256": "40faa953eeec27db11238d986ad38227a56e4f285f234c95d652870d1934a6f7"
+      },
+      {
+        "bytes": 5608,
+        "path": "docker/docker-compose.yaml",
+        "sha256": "65d2839bf58f806923702f440c4ccc69698003d671a6c6cbd4c655724b6fd88e"
+      },
+      {
+        "bytes": 142001,
+        "path": "frontend/package-lock.json",
+        "sha256": "b5b3aa0ea14370426ec526dc2937f617e93b28d4acb076f4e6d69a82593e7c96"
+      },
+      {
+        "bytes": 680,
+        "path": "frontend/package.json",
+        "sha256": "d5cd91e8706246ffa8d63ad746d2b0e99ca34eb35ec38d08ee6a1639c5169777"
+      },
+      {
+        "bytes": 26760,
+        "path": "frontend/src/App.tsx",
+        "sha256": "47821ddba62d619b9edbb20c90591a5015a627a18ad00112719e587fee02b152"
+      },
+      {
+        "bytes": 11196,
+        "path": "frontend/src/components/ConfirmationCards.tsx",
+        "sha256": "f998a512e372ceaf93057e681bf71126f9e9a112ed0d8999da9c014bc3ca53ed"
+      },
+      {
+        "bytes": 1267,
+        "path": "frontend/src/components/EventTimeline.tsx",
+        "sha256": "b8511cf3e33676945c20e13d671f2cc384b3c618eb25246b0faa56a95bf236ab"
+      },
+      {
+        "bytes": 1902,
+        "path": "frontend/src/components/Icon.tsx",
+        "sha256": "110c85a1379a12e5f4802f9ba747e892599ff3e3010785ac0a291779c7cfc99f"
+      },
+      {
+        "bytes": 1899,
+        "path": "frontend/src/components/Markdown.tsx",
+        "sha256": "e18e1505d173436ffa6f8ff065a56568b8b7bdc91509110efa2c32b26a1a38c7"
+      },
+      {
+        "bytes": 2045,
+        "path": "frontend/src/components/Modal.tsx",
+        "sha256": "82fbda429af9487fa9e245b8ee2cb721c4ad4694ae27e4959bbd8413501089f1"
+      },
+      {
+        "bytes": 8053,
+        "path": "frontend/src/components/OrderIntentForm.tsx",
+        "sha256": "f184b1d8383e66ac7becf5eec263394bbc2e3676ceeb74503070d30cc3945205"
+      },
+      {
+        "bytes": 5510,
+        "path": "frontend/src/components/ProductCards.tsx",
+        "sha256": "91fb6a059b3c092679e052cc54c5011ef26b9b4458c528fcc221f5bf2f147109"
+      },
+      {
+        "bytes": 2878,
+        "path": "frontend/src/components/ProductComparison.tsx",
+        "sha256": "66af7b1570578c3486a3d3f99f3e86ebe2036899d162e6f7fd52c720c111df71"
+      },
+      {
+        "bytes": 5589,
+        "path": "frontend/src/components/ProductDetail.tsx",
+        "sha256": "e078b074d70acff5f3b559f784c662d7e53dd8e046c42ba90a9c0625e380d681"
+      },
+      {
+        "bytes": 8429,
+        "path": "frontend/src/components/confirmations.css",
+        "sha256": "4a713ea9d39b3c4e94902daf14464a911d2573b5fa3ba9af28bb3d9094586b85"
+      },
+      {
+        "bytes": 1063,
+        "path": "frontend/src/hooks/useCommerceAgent.ts",
+        "sha256": "ea03b27ecde83cafe56be00ba79844d13e5271e06dcbecbccf358a591fc0408d"
+      },
+      {
+        "bytes": 21857,
+        "path": "frontend/src/lib/commerceClient.ts",
+        "sha256": "c9061f31cd3294d20006e608934d0e3e92677059915da9d4d49dd77623535e48"
+      },
+      {
+        "bytes": 3956,
+        "path": "frontend/src/lib/confirmations.ts",
+        "sha256": "c10e5ea84d8f368fa4583f6ef7326dcbf4ba4be1df5b4a95789ee31435a24619"
+      },
+      {
+        "bytes": 238,
+        "path": "frontend/src/main.tsx",
+        "sha256": "41431cb94a112ca05f90ca6037229d09d4bb8ecc1c27ae3bb3740ace8f01d2a6"
+      },
+      {
+        "bytes": 41907,
+        "path": "frontend/src/styles.css",
+        "sha256": "f8195700355c1a91ed68b05707f5c7b4ae349f3f62236867e9ee5db20b77cee0"
+      },
+      {
+        "bytes": 3507,
+        "path": "frontend/src/types.ts",
+        "sha256": "c396af3c429d6615522fb8756f5b923510868ddd7d761041dfe4a62814b3744f"
+      },
+      {
+        "bytes": 7967,
+        "path": "frontend/tests/commerceClient.test.ts",
+        "sha256": "cbff7b69abd9f347cbd8bbb22d3bae0f42d66c703d5d22de5e1838389a041dc5"
+      },
+      {
+        "bytes": 7703,
+        "path": "frontend/tests/confirmationCards.test.tsx",
+        "sha256": "749063d36e2672720854a83ad0309088c90c8f4e22670baf29582e46b9928746"
+      },
+      {
+        "bytes": 8624,
+        "path": "frontend/tests/confirmations.test.ts",
+        "sha256": "4f5a603bca6edf44e77a1393af160071cf1ffd6ccb2cfcf4386177702e253d17"
+      },
+      {
+        "bytes": 6120,
+        "path": "frontend/tests/productContract.test.ts",
+        "sha256": "9ba8d527ede617f84f4fd4bf2f6a616b930086ff1a0c97653cd0d930718362cb"
+      },
+      {
+        "bytes": 526,
+        "path": "frontend/tsconfig.json",
+        "sha256": "5ef18e1e733ca6998c62ab11be2e7a86e71b0e3f66024c9c0d0ed10c684b876b"
+      },
+      {
+        "bytes": 771,
+        "path": "frontend/vite.config.ts",
+        "sha256": "fd59f9656e47de378dfe38c7bda6bae8ee881ca44b67f406a3bda4733a57b249"
+      },
+      {
+        "bytes": 1007,
+        "path": "pyproject.toml",
+        "sha256": "77435e79da701b50ae2600cf0dd4e8692f315933fa55cba4f975940069d33c66"
+      },
+      {
+        "bytes": 309,
+        "path": "scripts/__init__.py",
+        "sha256": "39245db74a9d4792ced414285f7656ba65e3fb19401f6305af4c2cd353ffbd03"
+      },
+      {
+        "bytes": 797,
+        "path": "scripts/eval/__init__.py",
+        "sha256": "55599849189d3288bb7023fd304f65a932f596419525ae9156c286f3b76551e6"
+      },
+      {
+        "bytes": 3699,
+        "path": "scripts/eval/contracts.py",
+        "sha256": "fc5aaacf390b8abf064c5c624ca825116cd2c9f109ac1dee07ff23352cf630af"
+      },
+      {
+        "bytes": 5153,
+        "path": "scripts/eval/data_quality.py",
+        "sha256": "e36bac489f4bfc5e7e15e3b8a5d3dd07c5e8d5deacc3dd8868145672e04d996f"
+      },
+      {
+        "bytes": 11843,
+        "path": "scripts/eval/eval_quality.py",
+        "sha256": "c826cf6a522ceeeaa25c9d16147fca30bb87c404129fd09e42a01d8996c06c11"
+      },
+      {
+        "bytes": 9799,
+        "path": "scripts/eval/evidence.py",
+        "sha256": "53738cd767e4bc092f1d22e89dd0f1d1fa13e83cfc2fac89886c00b9b0582e79"
+      },
+      {
+        "bytes": 2467,
+        "path": "scripts/eval/hard_constraints.py",
+        "sha256": "a253cd4979a2e769447530f6651a449f9c1e0be9af3707371386fcb47d421865"
+      },
+      {
+        "bytes": 3925,
+        "path": "scripts/eval/knowledge_quality.py",
+        "sha256": "c15bfeeffa1fdeab69954667bd7732513f6cd0d837cdc6b872df4a964f3cf9f9"
+      },
+      {
+        "bytes": 10784,
+        "path": "scripts/eval/metrics.py",
+        "sha256": "9d69e2a9d5e175165d8d0d819a30655d21eb6c777db22401823831440028b671"
+      },
+      {
+        "bytes": 12645,
+        "path": "scripts/eval/run_category_recall.py",
+        "sha256": "5145579adb6fc2eaf98e6df81d5a150929cd1df0fe81bf6f7228db5d4c9d73ff"
+      },
+      {
+        "bytes": 11345,
+        "path": "scripts/eval/run_manifest.py",
+        "sha256": "65a3321fa0ccfd9350bd77fd4912308c14e37a1174cf26f82d524ac499298940"
+      },
+      {
+        "bytes": 23410,
+        "path": "scripts/eval/run_product_recall.py",
+        "sha256": "886965a98d208fcf5bb5adb80993d483f2a6cb7a414faa20fd459bbddb66c7f5"
+      },
+      {
+        "bytes": 6531,
+        "path": "scripts/eval/validate_datasets.py",
+        "sha256": "59c2352cdcb51b9df31c102b1553b741aa3a134e86063becd73097c26cf1c58a"
+      },
+      {
+        "bytes": 26663,
+        "path": "scripts/eval_regression.py",
+        "sha256": "afd54f9c66949f1413079bdb49263a1049b6456a73dd7f6883414489c9832081"
+      },
+      {
+        "bytes": 7377,
+        "path": "scripts/generate_catalog_fixture.py",
+        "sha256": "170e8ef588f39de5e696d7e25a8dbcb217383132da40da915cb363ea25e94d76"
+      },
+      {
+        "bytes": 23272,
+        "path": "scripts/generate_eval_v1.py",
+        "sha256": "32738bb033b531f47994b04f6dba6959f984ea67d44ca6ba4c77337bf05fcd38"
+      },
+      {
+        "bytes": 9198,
+        "path": "scripts/generate_knowledge_fixture.py",
+        "sha256": "0a955f0c9cde2d7b02f8655b5436f54e4eb7459eaef1a221b60d3b8e27c5ae5e"
+      },
+      {
+        "bytes": 3289,
+        "path": "scripts/loadtest.py",
+        "sha256": "c79dd9126de76018f43fcc0e4ce42492971a0d1b1b1e5dd35b1721c78c86d450"
+      },
+      {
+        "bytes": 2419,
+        "path": "scripts/locustfile.py",
+        "sha256": "496a990b06572f34374a0a95a2109e6a7f6f0453d63a6546267998b56f579981"
+      },
+      {
+        "bytes": 3376,
+        "path": "scripts/smoke_e2e.py",
+        "sha256": "576d541859f00e8e3ad9a219bfb8ad1489c5a0df59a5b1d0b6c85af7dcaa6953"
+      },
+      {
+        "bytes": 14541,
+        "path": "scripts/verify_ag_ui.py",
+        "sha256": "b15c0178200739dcc7d787af857a2f55f83c2fb00494ad982e5c3470aa609ce8"
+      },
+      {
+        "bytes": 5603,
+        "path": "scripts/verify_parallel.py",
+        "sha256": "0e591007d778b51e374d37089a7f0a8f99f23a743a1b4a6e83f62022231872ba"
+      },
+      {
+        "bytes": 24,
+        "path": "tests/__init__.py",
+        "sha256": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed"
+      },
+      {
+        "bytes": 14436,
+        "path": "tests/test_ag_ui.py",
+        "sha256": "d04bb1a4a85ac287189311e0f39b187508c72e09d2a378bd7a1e73ad0112a18f"
+      },
+      {
+        "bytes": 8051,
+        "path": "tests/test_ag_ui_confirmations.py",
+        "sha256": "e06f50db0fc92013e6c45f5cd7088f3c86e2831329430bb8b5941ad4a86cfade"
+      },
+      {
+        "bytes": 1611,
+        "path": "tests/test_catalog_data_quality.py",
+        "sha256": "aa86aa6308b64a2792c3d4ebeea650b3db8ba609c714f96504e09f50ce6fb146"
+      },
+      {
+        "bytes": 2389,
+        "path": "tests/test_catalog_fixture.py",
+        "sha256": "54d1ceae3a6f7ec4ddf3588a0348f3dad2ad3c16764bd811641b46daff434df7"
+      },
+      {
+        "bytes": 9838,
+        "path": "tests/test_confirmation_routes.py",
+        "sha256": "6df39a02ec677566a291bb3b34772bac81848943ce7668aac1e83a767a1c397a"
+      },
+      {
+        "bytes": 12335,
+        "path": "tests/test_confirmation_service.py",
+        "sha256": "279bd2a97361db7f9681fda9dcfc98866d13b916c9995585e842a1aed6c77852"
+      },
+      {
+        "bytes": 3287,
+        "path": "tests/test_domain.py",
+        "sha256": "c83ee7eff0c9c783eeb2a5691fda6efd1372bb9a69de39f48aa171d4a9b1585f"
+      },
+      {
+        "bytes": 4900,
+        "path": "tests/test_embedding_client.py",
+        "sha256": "563e19e5090a63ed69dfc8e0d3dc2f80bc7a6b4354d6c01d3a92c5f91e00c42b"
+      },
+      {
+        "bytes": 1716,
+        "path": "tests/test_eval_category_runner.py",
+        "sha256": "64893d829e10957d5a02a0430bbc45d431c85022ed306cb9050b6921f85d0304"
+      },
+      {
+        "bytes": 6105,
+        "path": "tests/test_eval_contracts.py",
+        "sha256": "99fe809bb34ac159673fe8cc34f7bf371f018c305b4e31a1d54c444ecefb908a"
+      },
+      {
+        "bytes": 6319,
+        "path": "tests/test_eval_evidence.py",
+        "sha256": "44aedc1eccbe5191d68e1bc008920dfabb139b346cc2b6d7a9c164aeb0d0d230"
+      },
+      {
+        "bytes": 3923,
+        "path": "tests/test_eval_product_runner.py",
+        "sha256": "c7018a0aad5e89df3199c16e9d512f128f9d0e332888e9209d939dd1d978b30c"
+      },
+      {
+        "bytes": 1301,
+        "path": "tests/test_eval_profiles.py",
+        "sha256": "053ab2e69454f1d4b3dd8a2042bc915be0558c9a08aa2361b9a27a50979aa889"
+      },
+      {
+        "bytes": 6580,
+        "path": "tests/test_eval_regression_contract.py",
+        "sha256": "34f234e4384553dc240629774f055773f8a68295a47c0339e944b1d090f92cdb"
+      },
+      {
+        "bytes": 11903,
+        "path": "tests/test_eval_selection_manifest.py",
+        "sha256": "4a523c2baaf1dca5e88fe18d7762e9055df984036062b2e63a0eae17aec537f0"
+      },
+      {
+        "bytes": 7435,
+        "path": "tests/test_eval_v1_fixture.py",
+        "sha256": "c393cae2b83a14b7ad8b538ceda4d11decbd77a291d56dbb86d69fc2e17a10fa"
+      },
+      {
+        "bytes": 6380,
+        "path": "tests/test_harness_drift.py",
+        "sha256": "5d8b8aa30fbf1f379027e0afc0dae66660bdaba056c707d2cb314175347a624b"
+      },
+      {
+        "bytes": 11147,
+        "path": "tests/test_harness_guards.py",
+        "sha256": "63969ab3366b665acf73532609afc85f2061a25dad7595fd7dff6bacf1d0da16"
+      },
+      {
+        "bytes": 7347,
+        "path": "tests/test_harness_infra.py",
+        "sha256": "429883aacbfffcdce644021454afe35adfd17dbc610a49ce0465e85c394d19b9"
+      },
+      {
+        "bytes": 7680,
+        "path": "tests/test_harness_middleware.py",
+        "sha256": "2e59151be3c1f5c097cfeb49ac12c123522a0f1968512456bfad20ebcef64167"
+      },
+      {
+        "bytes": 3104,
+        "path": "tests/test_knowledge_fixture.py",
+        "sha256": "f34fbe27165772bcb5c061d267f09831028eece62029b2b01b6db7a0e1ab684f"
+      },
+      {
+        "bytes": 6117,
+        "path": "tests/test_memory_persistence.py",
+        "sha256": "6d2f2ed5738aaf84b1b293c0f9d6ab8315db4dad49ffacd65d0c09f2f70aae19"
+      },
+      {
+        "bytes": 5058,
+        "path": "tests/test_model_cancellation.py",
+        "sha256": "ae5795858a9d7f6989f5df68b627e0521d14119d25744e3eb064055fa609079b"
+      },
+      {
+        "bytes": 4984,
+        "path": "tests/test_model_stream_lifecycle.py",
+        "sha256": "b0acc35bf10bfefb87aee80fab81501cd8eede1ea7f2ee8fab3ca5f973bdbe3b"
+      },
+      {
+        "bytes": 12146,
+        "path": "tests/test_phase3.py",
+        "sha256": "0817acbd604292ca265554bee83b9501446561c1e9a0216eb183a3b7f541b51d"
+      },
+      {
+        "bytes": 10093,
+        "path": "tests/test_phase4_cache.py",
+        "sha256": "0bf5c8b6b92a5882c8b58c8060a8d73c76624c5f31219d2aca8031fa34707831"
+      },
+      {
+        "bytes": 6334,
+        "path": "tests/test_phase4_model.py",
+        "sha256": "dcce708a96a258e11c88a35c10811bf0061bf527c7dc583b4346437e3ec6155d"
+      },
+      {
+        "bytes": 13349,
+        "path": "tests/test_phase4_queue.py",
+        "sha256": "9473fdd168ead8a4cf114656e9eac0658d21a48e33d8ef1faf6270c43902eafe"
+      },
+      {
+        "bytes": 11045,
+        "path": "tests/test_phase4_sql.py",
+        "sha256": "97b728ab6683e4e62efbfd3c3dc60acb1070d4706df16d931906e0b4a27e6706"
+      },
+      {
+        "bytes": 3013,
+        "path": "tests/test_phase4_throttle.py",
+        "sha256": "4b2f73585515a3dd1650a7e026a0fc6078d354f1ee7a3497a65ba5fc94dcfa81"
+      },
+      {
+        "bytes": 8325,
+        "path": "tests/test_preference_selector.py",
+        "sha256": "c8f5dc7719db98a2cdd112f0f73c97defa9f8535e214610f54155cc9305131b3"
+      },
+      {
+        "bytes": 5809,
+        "path": "tests/test_preference_tools.py",
+        "sha256": "e85c31f27d8c759f4d5f07be1573afec803e8419cc136cc9a3fd32d77daa4c72"
+      },
+      {
+        "bytes": 3901,
+        "path": "tests/test_pricing.py",
+        "sha256": "5b0005196284aee47570227df7248f247c8906bf9e7fedb945902e8c46caf3c6"
+      },
+      {
+        "bytes": 4496,
+        "path": "tests/test_product_card_presentation.py",
+        "sha256": "410ac2078714344e29011d4f36093dcd7853c9bf942e8439d946ff9ae247a7b8"
+      },
+      {
+        "bytes": 6220,
+        "path": "tests/test_queue_api.py",
+        "sha256": "bba47780dd3c0a110b215793ebf29b8510a9dd34769409366bdeb6b4bb3eaba0"
+      },
+      {
+        "bytes": 17176,
+        "path": "tests/test_queue_reliability.py",
+        "sha256": "23400952d24adc457e893459253b5cfdffb4d9ae64a3e2932a6e381e19d7b326"
+      },
+      {
+        "bytes": 9574,
+        "path": "tests/test_recall_metrics.py",
+        "sha256": "23901674e77f030f1f5dbc6b3372f59f98636318a19e5fe14d4270fb1373a410"
+      },
+      {
+        "bytes": 1982,
+        "path": "tests/test_reranker_client.py",
+        "sha256": "f4f549965d69158e588fad69d662e537c7ce07fbf945b6243ecee0604985454a"
+      },
+      {
+        "bytes": 14813,
+        "path": "tests/test_retrieval.py",
+        "sha256": "dc9f89a9e1834bf29432b6867e072e09551288012878df34c30b9efbc052ce86"
+      },
+      {
+        "bytes": 1672,
+        "path": "tests/test_runtime_distribution.py",
+        "sha256": "173727fcf2014e4a4702adb4de3afd9476f3bc1791911695d4ee129da10317a9"
+      },
+      {
+        "bytes": 2239,
+        "path": "tests/test_runtime_validation_scripts.py",
+        "sha256": "0c00e32686ff8516a0897be3698195ac3597f10800a0f3ea8b5f1ffd25594dfc"
+      },
+      {
+        "bytes": 8493,
+        "path": "tests/test_shared_throttle.py",
+        "sha256": "8c0d621539003e300db7ab8e7c5bdaa55b1d00bb8d15ee4b09d69986f55d0f1a"
+      },
+      {
+        "bytes": 8135,
+        "path": "tests/test_subagent_preference_inject.py",
+        "sha256": "3b1e6f60c6e9fa7ccabd7849d8cdcc1d9a65723e23d0e890dbb9513c1f8defc0"
+      },
+      {
+        "bytes": 10557,
+        "path": "tests/test_tools_and_eventbus.py",
+        "sha256": "5fc69bb48f6728a5f2ab5a3ab2052b2c4457b3e37879d63ab9192d89827e29d7"
+      },
+      {
+        "bytes": 17195,
+        "path": "tests/test_tracing.py",
+        "sha256": "d19239e20a39a72e43be660d6cb7f2cf0507f1c2f2694265ac42e8a6ec4f5a20"
+      },
+      {
+        "bytes": 20247,
+        "path": "tests/test_trade_store.py",
+        "sha256": "575b4c9af1319c51882d8cd10e0593a39485db9a8c8b075090a238074287d010"
+      },
+      {
+        "bytes": 5522,
+        "path": "tests/test_usecases.py",
+        "sha256": "3918b0db34585ce6f7bfc8d3421b993bb6f35fa891aa699e54e101d777d484c9"
+      },
+      {
+        "bytes": 4885,
+        "path": "tests/test_verify_ag_ui.py",
+        "sha256": "35e8da7d0c5942b10b5ac6ad1a0030204b41c7321440a6687dcd638ea18080d6"
+      },
+      {
+        "bytes": 1428,
+        "path": "tests/trade_test_helpers.py",
+        "sha256": "2f5bfe8dd8a6a915d427520acacc38cb38b5adfcca19a45e7c5d5cb15fbd5de7"
+      },
+      {
+        "bytes": 418259,
+        "path": "uv.lock",
+        "sha256": "362d003c7c383460c950763cba6d089a9dedcdcebbad40ffe936ef1e353152e1"
+      }
+    ],
+    "git_commit": "c5003861a87aba74b839cb9d1aaf1d5b9d507f98",
+    "git_dirty": true,
+    "scope": {
+      "directories": [
+        "app",
+        "scripts",
+        "tests",
+        "frontend/src",
+        "frontend/tests",
+        "docker",
+        ".github"
+      ],
+      "files": [
+        "pyproject.toml",
+        "uv.lock",
+        "frontend/package.json",
+        "frontend/package-lock.json",
+        "frontend/vite.config.ts",
+        "frontend/tsconfig.json"
+      ],
+      "suffixes": [
+        ".css",
+        ".json",
+        ".lock",
+        ".py",
+        ".sh",
+        ".toml",
+        ".ts",
+        ".tsx",
+        ".yaml",
+        ".yml"
+      ]
+    },
+    "sha256": "62e6c5e554ec4b60f5d99151e3b0bc09effcab41616021cf04d775cce6f24f85"
+  },
+  "data": {
+    "file_count": 48,
+    "files": [
+      {
+        "bytes": 447267,
+        "path": "data/catalog-v1.jsonl",
+        "sha256": "6f10c82aea773e727ac97476c8a1155659c4047f8cfa31dfb83d6dc2187f7390"
+      },
+      {
+        "bytes": 115003,
+        "path": "eval/v1/product_retrieval.jsonl",
+        "sha256": "58b806fa25c6e1355d43ea78f3dad6bde229f8f784d09d1cbc504b7483e8c63f"
+      },
+      {
+        "bytes": 2133,
+        "path": "knowledge/cross-border-guide.md",
+        "sha256": "4b282a52738d69fc32a4f3f5786c124b590eb54908376ef86e38b5b89550e29b"
+      },
+      {
+        "bytes": 2254,
+        "path": "knowledge/digital-accessories.md",
+        "sha256": "574292334f569c7dda4d7e5ac5a569e461f3b42045141d21df49748bb6534a4d"
+      },
+      {
+        "bytes": 5821,
+        "path": "knowledge/eval-baby-pet-价格与预算.md",
+        "sha256": "a3ec0b43da7a69be111d227a9a6e956ca14087c4a92d8453c2291e8db73b291e"
+      },
+      {
+        "bytes": 5725,
+        "path": "knowledge/eval-baby-pet-参数判断.md",
+        "sha256": "d0e968bdc05c6013e95853a7ee01f8bd2c775d262408068ed8503e27f678c3b7"
+      },
+      {
+        "bytes": 5533,
+        "path": "knowledge/eval-baby-pet-概览.md",
+        "sha256": "fa2fd182968db1c5fd70cb5ffb580ba48f292193c55da5c805666818aa7be395"
+      },
+      {
+        "bytes": 5821,
+        "path": "knowledge/eval-baby-pet-避坑与合规.md",
+        "sha256": "2a4cfbfe399a80309e12d1b34aed7e0ce77a1aafc2a374c53fcde876a4f1cfb2"
+      },
+      {
+        "bytes": 5821,
+        "path": "knowledge/eval-beauty-care-价格与预算.md",
+        "sha256": "ea1e8efe21519bbeae1d86d6c94afe5e5a3d141d367bafa427f9cec7400e30b6"
+      },
+      {
+        "bytes": 5725,
+        "path": "knowledge/eval-beauty-care-参数判断.md",
+        "sha256": "07bf102d17b0d7736d472d59ca32c716544f412f6291a2432e220e5429ec0f48"
+      },
+      {
+        "bytes": 5533,
+        "path": "knowledge/eval-beauty-care-概览.md",
+        "sha256": "189bfb57fef73bcae8eb3712660f8efd15703ee0a843650f1616218c0e648599"
+      },
+      {
+        "bytes": 5821,
+        "path": "knowledge/eval-beauty-care-避坑与合规.md",
+        "sha256": "1f38ba94265bef5f581cce0a2418d865e728a3da0c936b083911ea374935c08f"
+      },
+      {
+        "bytes": 5683,
+        "path": "knowledge/eval-digital-accessories-价格与预算.md",
+        "sha256": "1df1b6eaa5b48b56d738bab29a4e177c0832b6162abaeb598fcc15106bd9c67e"
+      },
+      {
+        "bytes": 5587,
+        "path": "knowledge/eval-digital-accessories-参数判断.md",
+        "sha256": "ffbeaf4e922ae3f136899ba97f5d0ab12829c482ec40bd36bd10e56e49927c3d"
+      },
+      {
+        "bytes": 5395,
+        "path": "knowledge/eval-digital-accessories-概览.md",
+        "sha256": "abfe178bbe305552e76c8ee7a40ffa47d58ed4bd2420c958bc496ebd229fd253"
+      },
+      {
+        "bytes": 5683,
+        "path": "knowledge/eval-digital-accessories-避坑与合规.md",
+        "sha256": "1bfdcf0ad978016647bdbcbe3faba3cb261bc456c3b73c6966da57e697ddfd82"
+      },
+      {
+        "bytes": 5821,
+        "path": "knowledge/eval-home-living-价格与预算.md",
+        "sha256": "79a352f5cf0f126f03be8c15c74f5d59a876e57328776af53746118d2e5e9cb2"
+      },
+      {
+        "bytes": 5725,
+        "path": "knowledge/eval-home-living-参数判断.md",
+        "sha256": "abdbf01d0e27c9b03c304f2453422e4a91090635bdce08c090dfcc53d748459e"
+      },
+      {
+        "bytes": 5533,
+        "path": "knowledge/eval-home-living-概览.md",
+        "sha256": "c73c8ec7e79d1c9838836089262c04352e282adf14da422d62f31fcf5666c353"
+      },
+      {
+        "bytes": 5821,
+        "path": "knowledge/eval-home-living-避坑与合规.md",
+        "sha256": "5d46ad1b6723c87cf9c2597d5f6903f5ce394163b849e050197a7fd3b2eae806"
+      },
+      {
+        "bytes": 5821,
+        "path": "knowledge/eval-kitchen-dining-价格与预算.md",
+        "sha256": "1e406570ad62603942d604a894b30e45e340a29f3774e6f247e446740409b2d2"
+      },
+      {
+        "bytes": 5725,
+        "path": "knowledge/eval-kitchen-dining-参数判断.md",
+        "sha256": "c79e227733153eee3dd764c4550e874ed2d8fa226a61d69a6a539f8283898bb8"
+      },
+      {
+        "bytes": 5533,
+        "path": "knowledge/eval-kitchen-dining-概览.md",
+        "sha256": "b7209ed01128bd96b4bad3ff579579a1d970f962f1860aa320f7beb1ef6f411e"
+      },
+      {
+        "bytes": 5821,
+        "path": "knowledge/eval-kitchen-dining-避坑与合规.md",
+        "sha256": "e7117a3f007e8189fe1a09f15876096c568cdd8fc7daca3b01bcd8c37c1b191d"
+      },
+      {
+        "bytes": 5821,
+        "path": "knowledge/eval-office-study-价格与预算.md",
+        "sha256": "57d1f367a030230f1b0868362b47ea771c1bba6144691e4684ea08584cb1d5dc"
+      },
+      {
+        "bytes": 5725,
+        "path": "knowledge/eval-office-study-参数判断.md",
+        "sha256": "f1e885eeea8d6b3535071e114582a71dcef5d5a941b712d86a8f64539faa1d73"
+      },
+      {
+        "bytes": 5533,
+        "path": "knowledge/eval-office-study-概览.md",
+        "sha256": "035272703feb20f9c253c761011dfb57aefce84b76d077e208713e8d07e980b5"
+      },
+      {
+        "bytes": 5821,
+        "path": "knowledge/eval-office-study-避坑与合规.md",
+        "sha256": "7da8b61c61c1a5ad63a7743801ac1b269ae3680de80e61ded8da223e975cbc5a"
+      },
+      {
+        "bytes": 5821,
+        "path": "knowledge/eval-outdoor-sports-价格与预算.md",
+        "sha256": "1c810c3d6a1d54cdbb87236e8f6e30a44d7f78e311971fde645c676712e3c2fd"
+      },
+      {
+        "bytes": 5725,
+        "path": "knowledge/eval-outdoor-sports-参数判断.md",
+        "sha256": "066f2e24d24a8cc44f38645e01db14ff5a8e14b2009d9a80a5894d42d1f1c0d2"
+      },
+      {
+        "bytes": 5533,
+        "path": "knowledge/eval-outdoor-sports-概览.md",
+        "sha256": "81d74c6efef13017f2c4e5b17f012a22ef8bff68426f6ff44414987db1409002"
+      },
+      {
+        "bytes": 5821,
+        "path": "knowledge/eval-outdoor-sports-避坑与合规.md",
+        "sha256": "3384ceba2f7c6ffe2bd8ba1bc098c1fcc326426d80e27291b5e03aa8e0b34a97"
+      },
+      {
+        "bytes": 6799,
+        "path": "knowledge/eval-policy-battery.md",
+        "sha256": "4b6e79c125fca79b19eacbec2cda36cbc20a6cc5a27eec94a90cfda8c641b9f8"
+      },
+      {
+        "bytes": 6154,
+        "path": "knowledge/eval-policy-cn.md",
+        "sha256": "74660aa2b8dd3dba3134280e0e348f4c6e7fb70d74cbd318d50399b28b80927a"
+      },
+      {
+        "bytes": 6154,
+        "path": "knowledge/eval-policy-eu.md",
+        "sha256": "2990c0498495eeefab15eae6b8ff88b235a810e86e3e1fb75694f51869f20903"
+      },
+      {
+        "bytes": 6967,
+        "path": "knowledge/eval-policy-global-shipping.md",
+        "sha256": "b06475b928198dd1c0d03b3f3b3df3c596ebad7baabb41b611212bb517eb2acc"
+      },
+      {
+        "bytes": 6154,
+        "path": "knowledge/eval-policy-jp.md",
+        "sha256": "cb390614a251e0b998f5b7d063a9f24feec549023da341dcdce30c7b0c4cdec0"
+      },
+      {
+        "bytes": 6799,
+        "path": "knowledge/eval-policy-material.md",
+        "sha256": "78eb0cfe974e7e48052df6fe3a5961035e10444abd877d0d742ab3288f00dceb"
+      },
+      {
+        "bytes": 6154,
+        "path": "knowledge/eval-policy-sg.md",
+        "sha256": "445b0d2302bed7c9ab1bc5a4807438d8a7c208bd77a654ea06196fe1dceb7239"
+      },
+      {
+        "bytes": 6154,
+        "path": "knowledge/eval-policy-us.md",
+        "sha256": "8e98b87eef0b569e872cfbe2e58f540e490cecef2022c43ae3c9be80b9164447"
+      },
+      {
+        "bytes": 5821,
+        "path": "knowledge/eval-travel-gear-价格与预算.md",
+        "sha256": "9e28c842b6baa8853dd5eecf6c6387504ad692450e547c65ba3a73789af00882"
+      },
+      {
+        "bytes": 5725,
+        "path": "knowledge/eval-travel-gear-参数判断.md",
+        "sha256": "6b841747f08229227d21c745630e374e941f5ec87cddef8dfc7bebdb34a7f90f"
+      },
+      {
+        "bytes": 5533,
+        "path": "knowledge/eval-travel-gear-概览.md",
+        "sha256": "fddef9f7343bb3bc1e29530c2e08cbcdffa318fc1dd1c994cc69a679cfc1f9e6"
+      },
+      {
+        "bytes": 5821,
+        "path": "knowledge/eval-travel-gear-避坑与合规.md",
+        "sha256": "e7a8bd0f290a131db2a8f45d1ae7dd9e6cc963f27a646fc7085362c0f14b313e"
+      },
+      {
+        "bytes": 2019,
+        "path": "knowledge/home-living.md",
+        "sha256": "f73552e5e50a9fda96678e8cb6f08bd8de4c673a20cc95db46177bc01709a7a1"
+      },
+      {
+        "bytes": 17722,
+        "path": "knowledge/manifest.jsonl",
+        "sha256": "5eba275ae031ef8e47a5b233ce353c4723e8a9d898484bc4192d466ee0c8f7f3"
+      },
+      {
+        "bytes": 2226,
+        "path": "knowledge/outdoor-sports.md",
+        "sha256": "caaa87e82c4294f05035f0b6c2d30cb907cf206828012f48ff9a55ccb3b34ca5"
+      },
+      {
+        "bytes": 2685,
+        "path": "knowledge/travel-gear.md",
+        "sha256": "75089473219e7da2e0c32b7737867364422c86a18f6fcc7d46cc70dc34941dc4"
+      }
+    ],
+    "sha256": "9c5bf40cd77799d0c324913ae78838f76b619f02acc3d71b3211f4e79cc6fd75"
+  },
+  "execution": {
+    "actual_strategies": [],
+    "gate": "NOT_RUN",
+    "status": "NOT_RUN"
+  },
+  "models": {
+    "embedding_configured": "text-embedding-v4",
+    "embedding_dimension_configured": "1024",
+    "fallback_configured": "qwen-plus",
+    "judge_requested": "qwen3-max",
+    "main_configured": "qwen3-max",
+    "reranker_configured": "qwen-text-rerank"
+  },
+  "parameters": {
+    "dry_run": true,
+    "gate_scope": "release",
+    "profile": "online-main",
+    "requested_strategies": [
+      "embedding_rerank"
+    ],
+    "thresholds": {
+      "empty_accuracy": 1.0,
+      "filter_accuracy": 1.0,
+      "mrr": 0.85,
+      "ndcg": 0.85,
+      "policy_rejection_accuracy": null,
+      "precision": null,
+      "recall": 0.9,
+      "required_recall_strategies": [
+        "embedding_rerank"
+      ]
+    },
+    "top_k": 8
+  },
+  "prompts": {
+    "file_count": 1,
+    "files": [
+      {
+        "bytes": 11035,
+        "path": "app/application/prompts/globex.yml",
+        "sha256": "4b2299133a077d9af99785ba7bab53d06b0562b7db1d6af41ff133724604bceb"
+      }
+    ],
+    "sha256": "3a0cc9529a204f7b7e3f2be29198b7e140ba25ed1ea3484869ca54efa469601e"
+  },
+  "runner": "product_recall",
+  "runtime": {
+    "dependencies": {
+      "agentscope": "2.0.6",
+      "httpx": "0.28.1",
+      "pyyaml": "6.0.3",
+      "qdrant-client": "1.19.0"
+    },
+    "python": "3.11.13"
+  },
+  "schema_version": 1,
+  "selection": {
+    "bucket_counts": {
+      "composite": 12,
+      "empty": 8,
+      "literal": 13,
+      "semantic": 12
+    },
+    "case_ids": [
+      "prod-033",
+      "prod-034",
+      "prod-035",
+      "prod-036",
+      "prod-037",
+      "prod-038",
+      "prod-039",
+      "prod-040",
+      "prod-041",
+      "prod-042",
+      "prod-043",
+      "prod-044",
+      "prod-045",
+      "prod-074",
+      "prod-075",
+      "prod-076",
+      "prod-077",
+      "prod-078",
+      "prod-079",
+      "prod-080",
+      "prod-081",
+      "prod-082",
+      "prod-083",
+      "prod-084",
+      "prod-085",
+      "prod-114",
+      "prod-115",
+      "prod-116",
+      "prod-117",
+      "prod-118",
+      "prod-119",
+      "prod-120",
+      "prod-121",
+      "prod-122",
+      "prod-123",
+      "prod-124",
+      "prod-125",
+      "prod-143",
+      "prod-144",
+      "prod-145",
+      "prod-146",
+      "prod-147",
+      "prod-148",
+      "prod-149",
+      "prod-150"
+    ],
+    "complete_split": true,
+    "only": null,
+    "selected_content_sha256": "0b91da9ebc061d4f454e1a66b9f55fe46d4a944a3d216f6cc021af4496df0b23",
+    "selected_count": 45,
+    "source_count": 150,
+    "split": "release",
+    "split_count": 45,
+    "split_counts": {
+      "release": 45
+    }
+  },
+  "services_configured": {
+    "embedding_endpoint": "http://1688openai.alibaba-inc.com/v1",
+    "llm_endpoint": "http://1688openai.alibaba-inc.com/v1",
+    "qdrant_category_collection": "globex_category_kb",
+    "qdrant_endpoint": "local_embedded",
+    "qdrant_product_collection": "globex_products",
+    "reranker_endpoint": "https://1688openai.alibaba-inc.com/v1/services/reranker"
+  },
+  "started_at": "2026-09-09T04:31:55.167799+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "source_ref": "/tmp/globex-trade-e2e-20260909-1219/ag_ui_runs.db#run/17683d80-d790-41fd-bcf2-d57821fbd42b",
+  "source_sha256": "47a438e468dcb41effbe87053c3cae34bae7741e6b3868d36e9984924aebbdf7",
+  "case_id": "17683d80-d790-41fd-bcf2-d57821fbd42b",
+  "kind": "product_relevance_candidate",
+  "query": "帮我选三款300元以内的轻便周末旅行背包，寄到中国。",
+  "observed_products": [],
+  "hypothesis": "背包查询出现腰包候选；需人工判断类目相关性，不是已批准gold",
+  "review_required": true
+}

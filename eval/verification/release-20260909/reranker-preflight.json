@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-09-09T05:06:21.658032+00:00",
+  "reranker_endpoint": "https://1688openai.alibaba-inc.com/v1/services/reranker",
+  "reranker_model": "qwen-text-rerank",
+  "llm_endpoint": "http://1688openai.alibaba-inc.com/v1",
+  "embedding_model": "text-embedding-v4",
+  "reranker": {
+    "status": "BLOCKED",
+    "error_type": "RuntimeError",
+    "message": "rerank 响应异常：{'success': False, 'message': '未找到模型对应的服务'}"
+  },
+  "models_probe": {
+    "http_status": 301
+  },
+  "https_models_probe": {
+    "endpoint": "https://1688openai.alibaba-inc.com/v1/models",
+    "http_status": 404,
+    "response_kind": "application/json"
+  }
+}

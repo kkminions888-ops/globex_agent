@@ -1,0 +1,33 @@
+{
+  "case": "update",
+  "query": "把长期偏好“喜欢蓝色”改成“喜欢绿色”，以后都按绿色。请直接更新长期记忆，只做这件事，不搜索商品。",
+  "run_id": "3da329dbf2b34ad8a913bd768f57921a",
+  "session_id": "a86b0beed1ec45389b7f7a1bfd0aab23",
+  "trace_id": "548bd69c08cc1a19ecd32792a465ebb8",
+  "tool_names": [
+    "update_preference_tool"
+  ],
+  "final_text": "已成功将您的长期偏好从“喜欢蓝色”更新为“喜欢绿色”。今后的推荐将优先考虑绿色商品。",
+  "preferences": [
+    {
+      "buyer_id": "319e4850-9d00-4ecc-8696-592597c6e349",
+      "kind": "like",
+      "statement": "喜欢绿色",
+      "created_at": "2026-09-09T07:42:30.122404+00:00"
+    }
+  ],
+  "events": {
+    "RUN_STARTED": 1,
+    "STATE_SNAPSHOT": 6,
+    "TOOL_CALL_START": 1,
+    "TOOL_CALL_ARGS": 6,
+    "TOOL_CALL_END": 1,
+    "TOOL_CALL_RESULT": 1,
+    "TEXT_MESSAGE_START": 1,
+    "TEXT_MESSAGE_CONTENT": 9,
+    "TEXT_MESSAGE_END": 1,
+    "MESSAGES_SNAPSHOT": 1,
+    "RUN_FINISHED": 1
+  },
+  "mechanism_pass": true
+}

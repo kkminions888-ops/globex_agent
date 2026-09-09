@@ -1,0 +1,110 @@
+[
+  {
+    "type": "RUN_STARTED",
+    "threadId": "997146f9e10b49dea699f9be84288542",
+    "runId": "d68911b8f7e24fda801a4cbfdaf4a27d"
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": []
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": []
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "running",
+      "progress": []
+    }
+  },
+  {
+    "type": "TEXT_MESSAGE_START",
+    "messageId": "d68911b8f7e24fda801a4cbfdaf4a27d:text:ea95278fa70b431398c7ff640a7ed3cb",
+    "role": "assistant"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "d68911b8f7e24fda801a4cbfdaf4a27d:text:ea95278fa70b431398c7ff640a7ed3cb",
+    "delta": "根据"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "d68911b8f7e24fda801a4cbfdaf4a27d:text:ea95278fa70b431398c7ff640a7ed3cb",
+    "delta": "你当前保存"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "d68911b8f7e24fda801a4cbfdaf4a27d:text:ea95278fa70b431398c7ff640a7ed3cb",
+    "delta": "的长期偏好"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "d68911b8f7e24fda801a4cbfdaf4a27d:text:ea95278fa70b431398c7ff640a7ed3cb",
+    "delta": "记忆"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "d68911b8f7e24fda801a4cbfdaf4a27d:text:ea95278fa70b431398c7ff640a7ed3cb",
+    "delta": "，你**喜欢绿色**"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "d68911b8f7e24fda801a4cbfdaf4a27d:text:ea95278fa70b431398c7ff640a7ed3cb",
+    "delta": "。"
+  },
+  {
+    "type": "TEXT_MESSAGE_END",
+    "messageId": "d68911b8f7e24fda801a4cbfdaf4a27d:text:ea95278fa70b431398c7ff640a7ed3cb"
+  },
+  {
+    "type": "MESSAGES_SNAPSHOT",
+    "messages": [
+      {
+        "id": "56e9ebaa3d55450fa3c35b601c737c6b",
+        "role": "user",
+        "content": "我长期喜欢什么颜色？只根据当前保存的长期记忆回答，不新增或修改记忆，不搜索商品。"
+      },
+      {
+        "id": "d68911b8f7e24fda801a4cbfdaf4a27d:final:answer",
+        "role": "assistant",
+        "content": "根据你当前保存的长期偏好记忆，你**喜欢绿色**。"
+      }
+    ]
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "completed",
+      "progress": []
+    }
+  },
+  {
+    "type": "RUN_FINISHED",
+    "threadId": "997146f9e10b49dea699f9be84288542",
+    "runId": "d68911b8f7e24fda801a4cbfdaf4a27d"
+  }
+]

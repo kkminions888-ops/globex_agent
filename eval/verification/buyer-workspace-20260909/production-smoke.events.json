@@ -1,0 +1,220 @@
+[
+  {
+    "type": "RUN_STARTED",
+    "threadId": "263677184db846359185700f0180e732",
+    "runId": "e054b28cafd14d2880871fb0d0d60716"
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": []
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": []
+    }
+  },
+  {
+    "type": "CUSTOM",
+    "name": "skill.preload",
+    "value": {
+      "toolCallId": "e054b28cafd14d2880871fb0d0d60716:preload:468ce4a1b85148d7aa980c7dab063840",
+      "source": "server_preload",
+      "status": "reading",
+      "id": "personal-515bba42a778499f82e87476736840c2",
+      "version": "1",
+      "contentHash": "c5f7e9aea77fb18396590a96ff13c2295b2b43311ec9f2c91e12a00b46ef6ce8"
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [
+        {
+          "toolCallId": "e054b28cafd14d2880871fb0d0d60716:preload:468ce4a1b85148d7aa980c7dab063840",
+          "source": "server_preload",
+          "status": "reading",
+          "id": "personal-515bba42a778499f82e87476736840c2",
+          "version": "1",
+          "contentHash": "c5f7e9aea77fb18396590a96ff13c2295b2b43311ec9f2c91e12a00b46ef6ce8"
+        }
+      ],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": [
+        {
+          "id": "e054b28cafd14d2880871fb0d0d60716:preload:468ce4a1b85148d7aa980c7dab063840",
+          "label": "读取所选方案",
+          "status": "running"
+        }
+      ]
+    }
+  },
+  {
+    "type": "CUSTOM",
+    "name": "skill.preload",
+    "value": {
+      "toolCallId": "e054b28cafd14d2880871fb0d0d60716:preload:468ce4a1b85148d7aa980c7dab063840",
+      "source": "server_preload",
+      "status": "used",
+      "id": "personal-515bba42a778499f82e87476736840c2",
+      "version": "1",
+      "contentHash": "c5f7e9aea77fb18396590a96ff13c2295b2b43311ec9f2c91e12a00b46ef6ce8",
+      "title": "本机验收清单"
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [
+        {
+          "toolCallId": "e054b28cafd14d2880871fb0d0d60716:preload:468ce4a1b85148d7aa980c7dab063840",
+          "source": "server_preload",
+          "status": "used",
+          "id": "personal-515bba42a778499f82e87476736840c2",
+          "version": "1",
+          "contentHash": "c5f7e9aea77fb18396590a96ff13c2295b2b43311ec9f2c91e12a00b46ef6ce8",
+          "title": "本机验收清单"
+        }
+      ],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": [
+        {
+          "id": "e054b28cafd14d2880871fb0d0d60716:preload:468ce4a1b85148d7aa980c7dab063840",
+          "label": "读取所选方案",
+          "status": "completed"
+        }
+      ]
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [
+        {
+          "toolCallId": "e054b28cafd14d2880871fb0d0d60716:preload:468ce4a1b85148d7aa980c7dab063840",
+          "source": "server_preload",
+          "status": "used",
+          "id": "personal-515bba42a778499f82e87476736840c2",
+          "version": "1",
+          "contentHash": "c5f7e9aea77fb18396590a96ff13c2295b2b43311ec9f2c91e12a00b46ef6ce8",
+          "title": "本机验收清单"
+        }
+      ],
+      "searchCompleted": false,
+      "status": "running",
+      "progress": [
+        {
+          "id": "e054b28cafd14d2880871fb0d0d60716:preload:468ce4a1b85148d7aa980c7dab063840",
+          "label": "读取所选方案",
+          "status": "completed"
+        }
+      ]
+    }
+  },
+  {
+    "type": "TEXT_MESSAGE_START",
+    "messageId": "e054b28cafd14d2880871fb0d0d60716:text:e4aa397a3ff146348cbb8d575e17bd86",
+    "role": "assistant"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "e054b28cafd14d2880871fb0d0d60716:text:e4aa397a3ff146348cbb8d575e17bd86",
+    "delta": "需求"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "e054b28cafd14d2880871fb0d0d60716:text:e4aa397a3ff146348cbb8d575e17bd86",
+    "delta": "：通"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "e054b28cafd14d2880871fb0d0d60716:text:e4aa397a3ff146348cbb8d575e17bd86",
+    "delta": "勤背包，"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "e054b28cafd14d2880871fb0d0d60716:text:e4aa397a3ff146348cbb8d575e17bd86",
+    "delta": "预算30"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "e054b28cafd14d2880871fb0d0d60716:text:e4aa397a3ff146348cbb8d575e17bd86",
+    "delta": "0元人民币  \n偏好："
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "e054b28cafd14d2880871fb0d0d60716:text:e4aa397a3ff146348cbb8d575e17bd86",
+    "delta": "喜欢蓝色"
+  },
+  {
+    "type": "TEXT_MESSAGE_END",
+    "messageId": "e054b28cafd14d2880871fb0d0d60716:text:e4aa397a3ff146348cbb8d575e17bd86"
+  },
+  {
+    "type": "MESSAGES_SNAPSHOT",
+    "messages": [
+      {
+        "id": "1bc64fcd753441199ba0ea9e76904aca",
+        "role": "user",
+        "content": "想买通勤背包，预算300元人民币。按我的清单整理，沿用长期颜色偏好，不查询商品。"
+      },
+      {
+        "id": "e054b28cafd14d2880871fb0d0d60716:final:answer",
+        "role": "assistant",
+        "content": "需求：通勤背包，预算300元人民币  \n偏好：喜欢蓝色"
+      }
+    ]
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [
+        {
+          "toolCallId": "e054b28cafd14d2880871fb0d0d60716:preload:468ce4a1b85148d7aa980c7dab063840",
+          "source": "server_preload",
+          "status": "used",
+          "id": "personal-515bba42a778499f82e87476736840c2",
+          "version": "1",
+          "contentHash": "c5f7e9aea77fb18396590a96ff13c2295b2b43311ec9f2c91e12a00b46ef6ce8",
+          "title": "本机验收清单"
+        }
+      ],
+      "searchCompleted": false,
+      "status": "completed",
+      "progress": [
+        {
+          "id": "e054b28cafd14d2880871fb0d0d60716:preload:468ce4a1b85148d7aa980c7dab063840",
+          "label": "读取所选方案",
+          "status": "completed"
+        }
+      ]
+    }
+  },
+  {
+    "type": "RUN_FINISHED",
+    "threadId": "263677184db846359185700f0180e732",
+    "runId": "e054b28cafd14d2880871fb0d0d60716"
+  }
+]

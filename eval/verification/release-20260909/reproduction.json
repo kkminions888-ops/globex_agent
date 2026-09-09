@@ -1,0 +1,24 @@
+{
+  "snapshot_archive": "frozen-source.tar.gz",
+  "source_code_sha256": "0efa153c1ef1ad0bc3a30fd11d889410f8eb86ec8d6ecf5d655eea6d898d2bc2",
+  "isolation_environment": {
+    "DATA_DIR": "每进程独立绝对路径",
+    "DATABASE_URL": "sqlite+aiosqlite:///每进程独立绝对路径/globex.db",
+    "QUEUE_ENABLED": "0",
+    "REDIS_URL": "",
+    "SEMANTIC_CACHE_ENABLED": "0",
+    "QDRANT_URL": "",
+    "IDENTITY_MODE": "hmac",
+    "SESSION_OWNER_BINDING": "1",
+    "HYBRID_RECALL_ENABLED": "false",
+    "OTEL_EXPORTER_OTLP_ENDPOINT": "",
+    "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT": ""
+  },
+  "secret_setup": "以既有模型环境变量启动；IDENTITY_HMAC_SECRET 本地安全生成至少32字节，API与Agent runner复用同一隔离secret；不能写进报告",
+  "api": "python -m uvicorn app.presentation.server:app --host 127.0.0.1 --port 8002 --workers 1",
+  "product": "python -m scripts.eval.run_product_recall --dataset eval/v1/product_retrieval.jsonl --split release --profile online-main --report-dir /独立报告目录/product",
+  "category": "python -m scripts.eval.run_category_recall --dataset eval/v1/knowledge_retrieval.jsonl --split release --formal-gates --report-dir /独立报告目录/category",
+  "agent_preflight": "python -m scripts.eval_regression --cases eval/v1/agent_cases.yaml --split release --only agent-051 --base-url http://127.0.0.1:8002 --report-dir /独立报告目录/action-preflight",
+  "agent": "python -m scripts.eval_regression --cases eval/v1/agent_cases.yaml --split release --base-url http://127.0.0.1:8002 --report-dir /独立报告目录/agent",
+  "dependencies": "源工作区既有.venv；锁文件随归档保留，但没有宣称本轮独立重建环境或上游模型版本冻结"
+}

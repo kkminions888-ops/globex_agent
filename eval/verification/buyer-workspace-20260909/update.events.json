@@ -1,0 +1,211 @@
+[
+  {
+    "type": "RUN_STARTED",
+    "threadId": "a86b0beed1ec45389b7f7a1bfd0aab23",
+    "runId": "3da329dbf2b34ad8a913bd768f57921a"
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": []
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "queued",
+      "progress": []
+    }
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "running",
+      "progress": []
+    }
+  },
+  {
+    "type": "TOOL_CALL_START",
+    "toolCallId": "3da329dbf2b34ad8a913bd768f57921a:tool:call_59ac25eabd3f4faaa0674385",
+    "toolCallName": "update_preference_tool"
+  },
+  {
+    "type": "TOOL_CALL_ARGS",
+    "toolCallId": "3da329dbf2b34ad8a913bd768f57921a:tool:call_59ac25eabd3f4faaa0674385",
+    "delta": "{\"previous_statement\": \"喜欢蓝色"
+  },
+  {
+    "type": "TOOL_CALL_ARGS",
+    "toolCallId": "3da329dbf2b34ad8a913bd768f57921a:tool:call_59ac25eabd3f4faaa0674385",
+    "delta": "\""
+  },
+  {
+    "type": "TOOL_CALL_ARGS",
+    "toolCallId": "3da329dbf2b34ad8a913bd768f57921a:tool:call_59ac25eabd3f4faaa0674385",
+    "delta": ", \"kind\": \"like"
+  },
+  {
+    "type": "TOOL_CALL_ARGS",
+    "toolCallId": "3da329dbf2b34ad8a913bd768f57921a:tool:call_59ac25eabd3f4faaa0674385",
+    "delta": "\""
+  },
+  {
+    "type": "TOOL_CALL_ARGS",
+    "toolCallId": "3da329dbf2b34ad8a913bd768f57921a:tool:call_59ac25eabd3f4faaa0674385",
+    "delta": ", \"statement\": \"喜欢绿色"
+  },
+  {
+    "type": "TOOL_CALL_ARGS",
+    "toolCallId": "3da329dbf2b34ad8a913bd768f57921a:tool:call_59ac25eabd3f4faaa0674385",
+    "delta": "\"}"
+  },
+  {
+    "type": "TOOL_CALL_END",
+    "toolCallId": "3da329dbf2b34ad8a913bd768f57921a:tool:call_59ac25eabd3f4faaa0674385"
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "running",
+      "progress": [
+        {
+          "id": "3da329dbf2b34ad8a913bd768f57921a:tool:call_59ac25eabd3f4faaa0674385",
+          "label": "update_preference_tool",
+          "status": "running"
+        }
+      ]
+    }
+  },
+  {
+    "type": "TOOL_CALL_RESULT",
+    "messageId": "3da329dbf2b34ad8a913bd768f57921a:result:call_59ac25eabd3f4faaa0674385",
+    "toolCallId": "3da329dbf2b34ad8a913bd768f57921a:tool:call_59ac25eabd3f4faaa0674385",
+    "content": "已更新长期偏好：[like] 喜欢绿色。旧条目已替换，下一轮按新偏好加载。",
+    "role": "tool"
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "running",
+      "progress": [
+        {
+          "id": "3da329dbf2b34ad8a913bd768f57921a:tool:call_59ac25eabd3f4faaa0674385",
+          "label": "update_preference_tool",
+          "status": "completed"
+        }
+      ]
+    }
+  },
+  {
+    "type": "TEXT_MESSAGE_START",
+    "messageId": "3da329dbf2b34ad8a913bd768f57921a:text:7875ca701ca943b6b89adc3cafd6b6aa",
+    "role": "assistant"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "3da329dbf2b34ad8a913bd768f57921a:text:7875ca701ca943b6b89adc3cafd6b6aa",
+    "delta": "已"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "3da329dbf2b34ad8a913bd768f57921a:text:7875ca701ca943b6b89adc3cafd6b6aa",
+    "delta": "成功"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "3da329dbf2b34ad8a913bd768f57921a:text:7875ca701ca943b6b89adc3cafd6b6aa",
+    "delta": "将您的"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "3da329dbf2b34ad8a913bd768f57921a:text:7875ca701ca943b6b89adc3cafd6b6aa",
+    "delta": "长期偏好从"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "3da329dbf2b34ad8a913bd768f57921a:text:7875ca701ca943b6b89adc3cafd6b6aa",
+    "delta": "“喜欢蓝色”更新"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "3da329dbf2b34ad8a913bd768f57921a:text:7875ca701ca943b6b89adc3cafd6b6aa",
+    "delta": "为“喜欢绿色"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "3da329dbf2b34ad8a913bd768f57921a:text:7875ca701ca943b6b89adc3cafd6b6aa",
+    "delta": "”。今后的推荐将"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "3da329dbf2b34ad8a913bd768f57921a:text:7875ca701ca943b6b89adc3cafd6b6aa",
+    "delta": "优先考虑绿色商品"
+  },
+  {
+    "type": "TEXT_MESSAGE_CONTENT",
+    "messageId": "3da329dbf2b34ad8a913bd768f57921a:text:7875ca701ca943b6b89adc3cafd6b6aa",
+    "delta": "。"
+  },
+  {
+    "type": "TEXT_MESSAGE_END",
+    "messageId": "3da329dbf2b34ad8a913bd768f57921a:text:7875ca701ca943b6b89adc3cafd6b6aa"
+  },
+  {
+    "type": "MESSAGES_SNAPSHOT",
+    "messages": [
+      {
+        "id": "fc7b2aa56e7d49dd882c867619807867",
+        "role": "user",
+        "content": "把长期偏好“喜欢蓝色”改成“喜欢绿色”，以后都按绿色。请直接更新长期记忆，只做这件事，不搜索商品。"
+      },
+      {
+        "id": "3da329dbf2b34ad8a913bd768f57921a:final:answer",
+        "role": "assistant",
+        "content": "已成功将您的长期偏好从“喜欢蓝色”更新为“喜欢绿色”。今后的推荐将优先考虑绿色商品。"
+      }
+    ]
+  },
+  {
+    "type": "STATE_SNAPSHOT",
+    "snapshot": {
+      "products": [],
+      "confirmations": [],
+      "skillUsages": [],
+      "searchCompleted": false,
+      "status": "completed",
+      "progress": [
+        {
+          "id": "3da329dbf2b34ad8a913bd768f57921a:tool:call_59ac25eabd3f4faaa0674385",
+          "label": "update_preference_tool",
+          "status": "completed"
+        }
+      ]
+    }
+  },
+  {
+    "type": "RUN_FINISHED",
+    "threadId": "a86b0beed1ec45389b7f7a1bfd0aab23",
+    "runId": "3da329dbf2b34ad8a913bd768f57921a"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "scope": "user_authorized_local_demo",
+  "human_review_claimed": false,
+  "skills": [
+    {
+      "id": "shopping-needs-clarification",
+      "version": "1.0",
+      "title": "选购需求梳理",
+      "content_hash": "ae938eb4006ae1ddba62590fec44d09d3f9fb6764192690a0efee1aaf09851d5"
+    }
+  ],
+  "backpack_skill_published": false
+}

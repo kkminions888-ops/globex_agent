@@ -21,8 +21,11 @@ from app.application.prompts.loader import load_prompts
 from app.application.tools.category_insight_tool import build_category_insight_tool
 from app.application.tools.product_search_tool import build_product_search_tool
 from app.application.tools.web_search_tool import build_web_search_tool
+from app.application.tools.conversation_fact_lookup import build_conversation_fact_lookup
+from app.infrastructure.persistence.context_evidence import ContextEvidenceStore
 from app.application.usecases.catalog_search import CatalogSearchUseCase
 from app.infrastructure.eventbus import TradeEventBus
+from app.infrastructure.rag.category_knowledge import KNOWLEDGE_DIR
 from app.infrastructure.llm import create_chat_model
 from app.infrastructure.throttle import GatewayThrottle
 from app.infrastructure.resilience import (
@@ -50,6 +53,7 @@ class SearchAgentFactory:
         self._circuit_registry = circuit_registry
         # 闸门由组装根下发，三个工厂必须共用同一个，否则各限一份等于没限
         self._throttle = throttle
+        self.evidence_store = ContextEvidenceStore(settings.data_dir / "context_evidence.db")
 
     def _resilience(self) -> list:
         return [ToolResilienceMiddleware(self._circuit_registry, self._bus)]
@@ -61,16 +65,22 @@ class SearchAgentFactory:
         """
         tools = [
             FunctionTool(
-                build_product_search_tool(self._catalog_search, self._bus),
+                build_product_search_tool(self._catalog_search, self._bus, self.evidence_store),
                 is_read_only=True,
                 middlewares=self._resilience(),
             ),
             FunctionTool(
-                build_category_insight_tool(self._knowledge_base, self._bus),
+                build_category_insight_tool(
+                    self._knowledge_base,
+                    self._bus,
+                    fallback_knowledge_dir=KNOWLEDGE_DIR,
+                ),
                 is_read_only=True,
                 middlewares=self._resilience(),
             ),
         ]
+        tools.append(FunctionTool(build_conversation_fact_lookup(self.evidence_store), is_read_only=True,
+                                  middlewares=self._resilience()))
         if self._settings.tavily_api_key:
             tools.append(
                 FunctionTool(

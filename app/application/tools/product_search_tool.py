@@ -16,11 +16,50 @@ from agentscope.tool import ToolChunk
 
 from app.application.usecases.catalog_search import CatalogSearchUseCase
 from app.domain.catalog.product_search_spec import ProductSearchSpec
+from app.domain.catalog.exchange_rate import ExchangeRateTable
+from app.domain.shipping.tariff_schedule import TariffSchedule
 from app.infrastructure.context import ShoppingContext
 from app.infrastructure.eventbus import TradeEventBus
+from app.infrastructure.budget import remember_verified_result
+from app.infrastructure.persistence.context_evidence import product_decision_view
 
 
-def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus):
+_KNOWN_CATEGORIES = (
+    "旅行装备",
+    "户外运动",
+    "数码配件",
+    "家居生活",
+    "美妆个护",
+    "厨房餐饮",
+    "办公学习",
+    "母婴宠物",
+)
+
+_CATEGORY_ALIASES = {
+    "旅行装备": ("行李箱", "旅行收纳", "颈枕", "眼罩", "旅行包"),
+    "户外运动": ("露营灯", "登山杖", "露营凳", "户外"),
+    "数码配件": ("耳机", "耳塞", "充电器", "扩展坞", "三脚架", "数码"),
+    "家居生活": ("家居", "收纳盒", "收纳架", "茶具", "香器"),
+    "美妆个护": ("美妆", "个护", "护肤", "化妆"),
+    "厨房餐饮": ("厨房", "餐具", "餐盒", "厨具"),
+    "办公学习": ("办公", "学习", "文具", "台灯"),
+    "母婴宠物": ("母婴", "宠物", "婴儿"),
+}
+
+
+def _normalize_category(category: Optional[str], normalized_query: str) -> Optional[str]:
+    """把模型给出的叶子类目收敛到目录一级类目；无法识别时不施加错误硬过滤。"""
+    for known in _KNOWN_CATEGORIES:
+        if category == known or (category and known in category):
+            return known
+    haystacks = [value for value in (category, normalized_query) if value]
+    for known, aliases in _CATEGORY_ALIASES.items():
+        if any(alias in value for value in haystacks for alias in aliases):
+            return known
+    return next((known for known in _KNOWN_CATEGORIES if known in normalized_query), None)
+
+
+def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus, evidence_store=None):
     async def product_search_tool(
         normalized_query: str,
         category: Optional[str] = None,
@@ -28,6 +67,8 @@ def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus)
         top_k: int | str = 5,
         price_max_major: float | str | None = None,
         target_currency: str = "CNY",
+        excluded_material_tags: list[str] | None = None,
+        required_material_tags: list[str] | None = None,
     ) -> ToolChunk:
         """检索跨境商品库（embedding+rerank 二阶段召回），返回 Top-K 商品卡 JSON。
         传入 ship_to 时商品卡自动内联 landed_price 到手价明细（小计+运费+关税，统一折算 target_currency），
@@ -46,6 +87,10 @@ def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus)
                 价格上限（target_currency 主单位），买家有预算硬约束时必传，由检索链路结构化过滤。
             target_currency (`str`):
                 价格口径币种，默认 "CNY"。
+            excluded_material_tags (`list[str] | None`):
+                材质黑名单，如买家明确不要塑料时传 ["合成聚合物"]。
+            required_material_tags (`list[str] | None`):
+                材质白名单，如必须是金属时传 ["金属"]。
         """
         # 模型有时会把数字参数当字符串传（实测 qwen3-max 传 "300"），
         # schema 层放宽为接受数字字符串，这里统一强转后再进检索链路。
@@ -65,6 +110,12 @@ def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus)
                     content=[TextBlock(type="text", text=f"[error] price_max_major 非法：{price_max_major}")],
                     state=ToolResultState.ERROR,
                 )
+        snapshot_ctx = ShoppingContext.current()
+        context_exclusions = list(snapshot_ctx.excluded_material_tags) if snapshot_ctx else []
+        excluded_material_tags = list(
+            dict.fromkeys([*context_exclusions, *(excluded_material_tags or [])]),
+        )
+        category = _normalize_category(category, normalized_query)
         session_id = ShoppingContext.current_session_id()
         args = {
             "normalized_query": normalized_query,
@@ -73,8 +124,17 @@ def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus)
             "top_k": top_k,
             "price_max_major": price_max_major,
             "target_currency": target_currency,
+            "excluded_material_tags": excluded_material_tags or [],
+            "required_material_tags": required_material_tags or [],
         }
         bus.publish(session_id, "tool.invoke", {"tool": "product_search_tool", "args": args})
+        if ship_to and ship_to not in TariffSchedule(ExchangeRateTable()).supported_destinations():
+            error = f"暂不支持的目的国：{ship_to}"
+            bus.publish(session_id, "tool.result", {"tool": "product_search_tool", "error": error})
+            return ToolChunk(
+                content=[TextBlock(type="text", text=f"[error] {error}")],
+                state=ToolResultState.ERROR,
+            )
         try:
             spec = ProductSearchSpec(
                 normalized_query=normalized_query,
@@ -83,6 +143,8 @@ def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus)
                 top_k=top_k,
                 price_max_major=price_max_major,
                 target_currency=target_currency,
+                excluded_material_tags=excluded_material_tags or [],
+                required_material_tags=required_material_tags or [],
             )
             result = await usecase.execute(spec)
         except ValueError as err:
@@ -91,6 +153,9 @@ def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus)
                 content=[TextBlock(type="text", text=f"[error] {err}")],
                 state=ToolResultState.ERROR,
             )
+        remember_verified_result("products", result)
+        if evidence_store is not None and snapshot_ctx is not None:
+            result["result_ref"] = await evidence_store.save(snapshot_ctx.buyer_id, session_id, "products", result)
         bus.publish(
             session_id,
             "tool.result",
@@ -98,12 +163,16 @@ def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus)
                 "tool": "product_search_tool",
                 "hit_count": len(result["hits"]),
                 "recall_strategy": result["recall_strategy"],
+                "total_candidates": result["total_candidates"],
+                "rerank_applied": result["rerank_applied"],
                 # 商品卡随事件下发，前端无需再调接口即可渲染（含 landed_price 到手价）
                 "hits": result["hits"],
+                **({"result_ref": result["result_ref"]} if "result_ref" in result else {}),
+                **({"filtered_out": result["filtered_out"]} if "filtered_out" in result else {}),
             },
         )
         return ToolChunk(
-            content=[TextBlock(type="text", text=json.dumps(result, ensure_ascii=False))],
+            content=[TextBlock(type="text", text=json.dumps(product_decision_view(result), ensure_ascii=False))],
             state=ToolResultState.SUCCESS,
         )
 

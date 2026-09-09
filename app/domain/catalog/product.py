@@ -29,15 +29,34 @@ class Product:
     highlights: list[ProductHighlight] = field(default_factory=list)
     ships_to: list[str] = field(default_factory=list)
     skus: list[Sku] = field(default_factory=list)
+    # 以下字段来自版本化商品数据集；用于评测跨平台去重、材质/配送约束与数据新鲜度。
+    source_platform: str = ""
+    external_product_id: str = ""
+    canonical_product_id: str = ""
+    material_tags: list[str] = field(default_factory=list)
+    weight_kg: float = 0.0
+    dimensions_cm: dict[str, float] = field(default_factory=dict)
+    tax_category: str = ""
+    rating_summary: dict[str, float | int] | None = None
+    updated_at: str = ""
 
     def __post_init__(self) -> None:
         if not self.product_id:
             raise ValueError("Product.product_id required")
         if not self.skus:
             raise ValueError(f"Product 至少要有一个 Sku：{self.product_id}")
+        if self.weight_kg < 0:
+            raise ValueError(f"Product.weight_kg 必须非负：{self.product_id}")
 
     def primary_sku(self) -> Sku:
         return self.skus[0]
+
+    def primary_available_sku(self) -> Sku:
+        """优先返回可售 SKU，避免部分缺货商品仍展示缺货的默认规格。"""
+        return next((sku for sku in self.skus if sku.stock > 0), self.primary_sku())
+
+    def has_available_sku(self) -> bool:
+        return any(sku.stock > 0 for sku in self.skus)
 
     def find_sku(self, sku_id: str) -> Optional[Sku]:
         return next((s for s in self.skus if s.sku_id == sku_id), None)
@@ -46,5 +65,8 @@ class Product:
         """召回用的可检索文本：标题 + 品牌 + 品类 + 描述 + 亮点。"""
         highlight_text = " ".join(f"{h.label} {h.detail}" for h in self.highlights)
         return " ".join(
-            [self.title, self.brand, self.category, self.origin_country, self.description, highlight_text],
+            [
+                self.title, self.brand, self.category, self.origin_country, self.description,
+                highlight_text, " ".join(self.material_tags), self.tax_category,
+            ],
         )

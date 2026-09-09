@@ -1,0 +1,26 @@
+{
+  "case": "auto_skill",
+  "query": "请使用我的“三行需求单”方案整理：通勤背包，预算300元人民币，寄到中国。不要搜索商品。",
+  "run_id": "240bbb992dac44ec8db1df7039b9647a",
+  "session_id": "6065ab979cd343e9a9277a603d09d532",
+  "trace_id": "13d4f5f9e0a2f2764ac237028e1044b2",
+  "tool_names": [
+    "load_agent_skill_tool"
+  ],
+  "final_text": "用途：通勤背包  \n预算：300元人民币  \n限制：寄到中国",
+  "preferences": [],
+  "events": {
+    "RUN_STARTED": 1,
+    "STATE_SNAPSHOT": 6,
+    "TOOL_CALL_START": 1,
+    "TOOL_CALL_ARGS": 8,
+    "TOOL_CALL_END": 1,
+    "TOOL_CALL_RESULT": 1,
+    "TEXT_MESSAGE_START": 1,
+    "TEXT_MESSAGE_CONTENT": 6,
+    "TEXT_MESSAGE_END": 1,
+    "MESSAGES_SNAPSHOT": 1,
+    "RUN_FINISHED": 1
+  },
+  "mechanism_pass": true
+}

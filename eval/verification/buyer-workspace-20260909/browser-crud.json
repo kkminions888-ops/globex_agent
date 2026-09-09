@@ -1,0 +1,29 @@
+{
+  "browser_url": "http://127.0.0.1:5181/",
+  "skill_created_in_browser": true,
+  "preference_created_in_browser": true,
+  "slash_selected_and_completed": true,
+  "three_line_format_verified": true,
+  "saved_color_injected": true,
+  "skill_edited_in_browser": true,
+  "skill_deleted_in_browser": true,
+  "tool_deleted_preference_visible_as_empty_in_browser": true,
+  "skill_head": {
+    "id": "personal-c09acc1fbcef4e93adbd958abf10b3ca",
+    "version": 2,
+    "active": 0
+  },
+  "skill_revisions": [
+    {
+      "id": "personal-c09acc1fbcef4e93adbd958abf10b3ca",
+      "version": 1,
+      "content_hash": "e0aa0ed081ef1c8c4afd8622a8a9e256355fc7614ce369656fd8d436bc851ac5"
+    },
+    {
+      "id": "personal-c09acc1fbcef4e93adbd958abf10b3ca",
+      "version": 2,
+      "content_hash": "5ef3eb1adbd2f68f7ae17527a3978d06d03e178d207a67d4301584ee09deedaf"
+    }
+  ],
+  "scope": "isolated_test_buyer_and_data"
+}

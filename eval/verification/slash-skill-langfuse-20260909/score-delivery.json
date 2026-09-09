@@ -1,0 +1,14 @@
+{
+  "first": {
+    "status": "DELIVERED",
+    "sent": 1,
+    "pending": 0,
+    "scope": "HTTP acknowledgement; does not prove remote read visibility"
+  },
+  "repeat": {
+    "status": "DELIVERED",
+    "sent": 0,
+    "pending": 0,
+    "scope": "HTTP acknowledgement; does not prove remote read visibility"
+  }
+}

@@ -99,6 +99,33 @@ class TestCategoryKnowledge:
         assert response.state == ToolResultState.ERROR
         assert "品类知识库不可用" in response.content[0].text
 
+    async def test_insight_tool_uses_versioned_keyword_fallback_when_vector_search_breaks(self, tmp_path):
+        class BrokenKnowledgeBase:
+            async def search(self, *args, **kwargs):
+                raise ValueError("Expecting value: line 1 column 1 (char 0)")
+
+        docs = tmp_path / "knowledge"
+        docs.mkdir()
+        (docs / "travel-gear.md").write_text(
+            "# 旅行装备\n\n## 材质与自重\n帆布是天然材料；三件套约 400g 算轻便。"
+            "\n\n## 价格区间\n三件套 80-150 元入门，180-260 元主力。",
+            encoding="utf-8",
+        )
+        bus = TradeEventBus()
+        queue = bus.subscribe("anonymous")
+        tool = build_category_insight_tool(
+            BrokenKnowledgeBase(), bus, fallback_knowledge_dir=docs,
+        )
+
+        response = await tool(question="旅行装备材质、自重和价格怎么判断", top_k=2)
+        payload = json.loads(response.content[0].text)
+        events = [await queue.get(), await queue.get()]
+
+        assert response.state == ToolResultState.SUCCESS
+        assert payload["insights"]
+        assert any("400g" in insight["content"] for insight in payload["insights"])
+        assert events[-1].payload["retrieval_mode"] == "keyword_fallback"
+
 
 class TestContextPolicy:
     def test_thresholds_and_limit(self):
@@ -166,7 +193,7 @@ def _ok_tool_factory(name: str, delay: float = 0.0, fail: bool = False):
             await asyncio.sleep(delay)
         if fail:
             return ToolChunk(
-                content=[TextBlock(type="text", text="[error] 下游报错")],
+                content=[TextBlock(type="text", text="[error] 503 Service Unavailable")],
                 state=ToolResultState.ERROR,
             )
         return ToolChunk(
@@ -234,3 +261,20 @@ class TestToolResilience:
         await _call(healthy)  # 成功清零
         await _call(failing)  # 再 1 次失败，仍未达阈值
         assert registry.status("mixed_tool") == "closed"
+
+    async def test_deterministic_business_error_does_not_trip_circuit(self):
+        """不支持目的国属于请求校验失败，不代表检索基础设施故障。"""
+        registry = CircuitBreakerRegistry(failure_threshold=2, reset_seconds=60)
+        middleware = ToolResilienceMiddleware(registry)
+
+        async def unsupported_destination() -> ToolChunk:
+            return ToolChunk(
+                content=[TextBlock(type="text", text="[error] 暂不支持的目的国：BR")],
+                state=ToolResultState.ERROR,
+            )
+
+        tool = FunctionTool(unsupported_destination, middlewares=[middleware])
+        for _ in range(4):
+            assert (await _call(tool)).state == ToolResultState.ERROR
+
+        assert registry.status("unsupported_destination") == "closed"

@@ -1,0 +1,20 @@
+{
+  "case": "read_deleted",
+  "query": "当前长期记忆里还记录了我的颜色偏好吗？没有就说未记录，不猜测，也不要新增记忆。",
+  "run_id": "185f811609084f65a4a708fbe5098bd0",
+  "session_id": "7382910777104333af56e06f680c97b4",
+  "trace_id": "d8d1695c690ea4f9fa42a07101b98eff",
+  "tool_names": [],
+  "final_text": "当前长期记忆中未记录您的颜色偏好。",
+  "preferences": [],
+  "events": {
+    "RUN_STARTED": 1,
+    "STATE_SNAPSHOT": 4,
+    "TEXT_MESSAGE_START": 1,
+    "TEXT_MESSAGE_CONTENT": 5,
+    "TEXT_MESSAGE_END": 1,
+    "MESSAGES_SNAPSHOT": 1,
+    "RUN_FINISHED": 1
+  },
+  "mechanism_pass": true
+}

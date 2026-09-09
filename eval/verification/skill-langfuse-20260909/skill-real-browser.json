@@ -1,0 +1,44 @@
+{
+  "scope": "isolated_real_browser_agui_skill_transport_verification",
+  "production_skill_published": false,
+  "run_id": "7a67c354-900d-4174-b1ca-4db860307cc0",
+  "run_status": "completed",
+  "event_counts": {
+    "RUN_STARTED": 1,
+    "STATE_SNAPSHOT": 9,
+    "TEXT_MESSAGE_START": 3,
+    "TEXT_MESSAGE_CONTENT": 155,
+    "TEXT_MESSAGE_END": 3,
+    "TOOL_CALL_START": 2,
+    "TOOL_CALL_ARGS": 21,
+    "TOOL_CALL_END": 2,
+    "TOOL_CALL_RESULT": 2,
+    "MESSAGES_SNAPSHOT": 1,
+    "RUN_FINISHED": 1
+  },
+  "tool_names": [
+    "load_agent_skill_tool",
+    "product_search_tool"
+  ],
+  "skill_usages": [
+    {
+      "toolCallId": "7a67c354-900d-4174-b1ca-4db860307cc0:tool:call_eef9b5c0880d41d7a6dc96f4",
+      "status": "used",
+      "id": "backpack-selection",
+      "version": "1.0",
+      "title": "周末背包选购",
+      "contentHash": "49fc9b043b8679d14c1b35847c840e7d99c6c99f14378dc75f0f8eac0dc55785"
+    }
+  ],
+  "product_count": 5,
+  "browser_console_errors": [],
+  "quality_acceptance": "NOT_PASSED",
+  "quality_findings": [
+    "背包需求召回了腰包与旅行收纳包",
+    "回复依据尺寸估算容量，未直接获得目录容量证据"
+  ],
+  "scope_limit": "证明真实Skill加载及页面投影，不证明选购方案遵循性或检索质量达标",
+  "runtime": {
+    "app_source_sha256": "e8b1011d630def197a6f92dcc992b51aab844946a3df86534753a23f8bb241bd"
+  }
+}

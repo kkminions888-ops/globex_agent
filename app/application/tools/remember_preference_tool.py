@@ -33,7 +33,9 @@ def build_remember_preference_tool(store: PreferenceStore, bus: TradeEventBus):
                 一句话偏好陈述，10 字以内最佳，如"不要塑料材质"。
         """
         snapshot = ShoppingContext.current()
-        buyer_id = snapshot.buyer_id if snapshot else "anonymous"
+        if snapshot is None:
+            return ToolChunk(content=[TextBlock(type="text", text="[error] 缺少可信买家上下文")], state=ToolResultState.ERROR)
+        buyer_id = snapshot.buyer_id
         session_id = ShoppingContext.current_session_id()
         bus.publish(
             session_id,

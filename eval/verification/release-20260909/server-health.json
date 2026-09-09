@@ -1,0 +1,13 @@
+{
+  "status": "ok",
+  "model": "qwen3-max",
+  "runtime": {
+    "app_source_sha256": "1ebc84302392004974026f1ffe1a132ce99525892ede8f0cf20ed531977f5388"
+  },
+  "database": "sqlite",
+  "trade_database": "sqlite",
+  "redis": "disabled",
+  "semantic_cache": false,
+  "queue": "disabled",
+  "queue_depth": 0
+}

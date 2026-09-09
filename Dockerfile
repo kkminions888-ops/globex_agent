@@ -23,6 +23,8 @@ COPY --from=builder /app/.venv /app/.venv
 COPY app ./app
 # 品类洞察知识库文档（启动时灌入 RAG 向量库）
 COPY knowledge ./knowledge
+# 版本化商品底座放在只读目录，不能放进会被命名卷遮蔽的 /app/data。
+COPY data/catalog-v1.jsonl ./catalog/catalog-v1.jsonl
 
 # 运行时数据目录（会话/偏好；向量库走 QDRANT_URL 指向 qdrant 服务）
 RUN mkdir -p /app/data

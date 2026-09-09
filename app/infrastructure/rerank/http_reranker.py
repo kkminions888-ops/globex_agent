@@ -15,7 +15,15 @@ from app.infrastructure.settings import Settings
 
 class HttpReranker(Reranker):
     def __init__(self, settings: Settings, timeout_seconds: float = 3.0) -> None:
-        self._base_url = settings.reranker_base_url.rstrip("/")
+        endpoint = settings.reranker_base_url.rstrip("/")
+        # 内部网关给出的是完整 /services/reranker endpoint；通用服务若只给根地址，
+        # 仍兼容补上 /rerank。
+        self._url = (
+            endpoint
+            if endpoint.endswith(("/rerank", "/reranker"))
+            else f"{endpoint}/rerank"
+        )
+        self._api_key = settings.llm_api_key
         self._model = settings.reranker_model
         self._timeout = timeout_seconds
 
@@ -24,7 +32,8 @@ class HttpReranker(Reranker):
             return []
         async with httpx.AsyncClient(timeout=self._timeout) as client:
             response = await client.post(
-                f"{self._base_url}/rerank",
+                self._url,
+                headers={"Authorization": f"Bearer {self._api_key}"},
                 json={"model": self._model, "query": query, "documents": documents},
             )
             response.raise_for_status()

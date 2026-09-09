@@ -1,0 +1,9 @@
+{
+  "tests": 798,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "duration_seconds": 89.743,
+  "redis_binary": "/tmp/globex-redis-build/redis-7.4.8/src/redis-server",
+  "scope": "工作区冻结时启动的全量后端pytest；后续源码修复另行回归"
+}
