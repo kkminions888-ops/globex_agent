@@ -12,7 +12,6 @@ eval/recall-report-*.md
 eval/category-recall-report-*.md
 
 # 课程资料与本地工具目录：只保留在本地，不入工程仓库
-/baoyu-skills/
 .baoyu-skills/
 .idea/
 .qoder/
@@ -22,3 +21,4 @@ eval/category-recall-report-*.md
 /实战项目-电商问数/
 /项目实战-校园跑腿抢单市场/
 /项目实战-电商搜索/
+node_modules/
