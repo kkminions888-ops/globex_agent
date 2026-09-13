@@ -1,0 +1,125 @@
+[
+  {
+    "case_id": "v2-dev-repeat",
+    "strategy": "entry",
+    "repetition": 1,
+    "answer": "The maximum reasoning-acting iterations are exceeded.",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": "",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "343",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为343元",
+          "message_id": "b0cacb8bc13342f8a92e22e7e2ca9f50"
+        },
+        "destination": {
+          "value": "US",
+          "scope": "本次选购",
+          "source": "寄到美国",
+          "message_id": "b0cacb8bc13342f8a92e22e7e2ca9f50"
+        }
+      },
+      "selected": [
+        "P8193-S1"
+      ],
+      "excluded": [
+        "P8192"
+      ],
+      "comparisons": [
+        "P8191-S2",
+        "P8193-S1"
+      ],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算493元，寄到中国。先展示这批商品。",
+      "latest_request": "对比P8191-S2和P8193-S1，列出两个完整SKU和对应规格。",
+      "source_message_id": "cdff50653adf44318dce446ad2edc29c",
+      "referenced": [
+        "P8191-S2",
+        "P8193-S1"
+      ],
+      "exclusion_reasons": {
+        "P8192": {
+          "source": "P8192太贵，淘汰",
+          "message_id": "b0cacb8bc13342f8a92e22e7e2ca9f50"
+        }
+      }
+    },
+    "summary_revision": null,
+    "last_tool_calls": [
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 21}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 22}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 23}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 24}",
+        "state": "finished"
+      },
+      {
+        "name": "current_business_state",
+        "input": "{}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"product_id\": \"P8191\", \"sku_id\": \"P8191-S2\", \"fields\": \"skus,ships_to\"}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 24}",
+        "state": "finished"
+      },
+      {
+        "name": "current_business_state",
+        "input": "{}",
+        "state": "finished"
+      },
+      {
+        "name": "current_business_state",
+        "input": "{}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"product_id\": \"P8191\", \"sku_id\": \"P8191-S2\", \"fields\": \"skus\"}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 1}",
+        "state": "finished"
+      },
+      {
+        "name": "current_business_state",
+        "input": "{}",
+        "state": "finished"
+      }
+    ],
+    "database_archive_prefix": "v2-dev-repeat-entry-1"
+  }
+]

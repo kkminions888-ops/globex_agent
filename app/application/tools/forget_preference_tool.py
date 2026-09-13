@@ -20,13 +20,15 @@ from app.infrastructure.eventbus import TradeEventBus
 
 
 def build_forget_preference_tool(store: PreferenceStore, bus: TradeEventBus):
-    async def forget_preference_tool(statement: str) -> ToolChunk:
+    async def forget_preference_tool(statement: str, memory_id: str = "", expected_version: int = 0) -> ToolChunk:
         """删除买家的一条长期偏好（撤回后不再影响后续推荐）。
 
         仅在买家明确表示某条历史偏好不再适用时调用，例如"以后不用避开塑料了"。
         本轮的一次性例外（如"这次可以接受塑料"）不要调用，那属于临时要求。
 
         Args:
+            memory_id (`str`): 最新记忆提示中的稳定 ID。
+            expected_version (`int`): 最新记忆版本，不允许猜测。
             statement (`str`):
                 要删除的偏好原文，必须与 <buyer-preferences> 里那一行的文字**完全一致**，
                 如"不要塑料材质"。写错不会误删，工具会把现存偏好列出来供你重试。
@@ -43,7 +45,10 @@ def build_forget_preference_tool(store: PreferenceStore, bus: TradeEventBus):
         )
 
         try:
-            deleted = await store.delete(buyer_id, statement)
+            if getattr(store,"semantic_memory",False):
+                if not memory_id or expected_version<1:raise ValueError("请从最新记忆列表读取 ID 和版本再操作")
+                deleted=await store.delete_by_id(buyer_id,memory_id,expected_version,source_kind="agent",source_ref=session_id)
+            else:deleted = await store.delete(buyer_id, statement)
         except Exception as err:  # noqa: BLE001 —— 记忆写失败如实回报，不假装成功
             bus.publish(session_id, "tool.result", {"tool": "forget_preference_tool", "error": str(err)})
             return ToolChunk(
@@ -83,4 +88,9 @@ def build_forget_preference_tool(store: PreferenceStore, bus: TradeEventBus):
             state=ToolResultState.SUCCESS,
         )
 
+    if getattr(store,"semantic_memory",False):
+        implementation=forget_preference_tool
+        async def forget_preference_tool(statement: str, memory_id: str, expected_version: int) -> ToolChunk:
+            return await implementation(statement,memory_id,expected_version)
+        forget_preference_tool.__doc__=implementation.__doc__
     return forget_preference_tool

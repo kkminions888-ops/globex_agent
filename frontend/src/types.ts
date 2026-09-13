@@ -87,7 +87,10 @@ export interface SessionSummary {
   source?: "server" | "local";
 }
 
+export interface ToolApproval { id: string; tool: string; label: string; arguments: string | Record<string, unknown> }
+
 export interface CommerceSnapshot {
+  toolApprovals?: ToolApproval[];
   skills: PublishedSkill[];
   skillsStatus: "loading" | "ready" | "error";
   skillsError: string | null;

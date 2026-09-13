@@ -3,12 +3,13 @@ import Icon from "./Icon";
 import "./buyerWorkspace.css";
 
 type PersonalSkill = { id: string; version: string; title: string; description: string; body: string };
-type Preference = { kind: "like" | "dislike"; statement: string };
+type Preference = { memory_id?: string; version?: number; source_kind?: string; source_ref?: string; kind: "like" | "dislike"; statement: string };
 export type WorkspaceRequest = (path: string, method?: string, body?: Record<string, unknown>) => Promise<Record<string, unknown>>;
 type Props = { mode: "skills" | "preferences"; busy: boolean; request: WorkspaceRequest; onSkillsChanged: () => Promise<void> };
 
 export default function BuyerWorkspace({ mode, busy, request, onSkillsChanged }: Props) {
   const [skills, setSkills] = useState<PersonalSkill[]>([]);
+  const [editingMemory, setEditingMemory] = useState<Preference | null>(null);
   const [preferences, setPreferences] = useState<Preference[]>([]);
   const [selected, setSelected] = useState<PersonalSkill | null>(null);
   const [title, setTitle] = useState(""), [description, setDescription] = useState(""), [body, setBody] = useState("");
@@ -17,6 +18,7 @@ export default function BuyerWorkspace({ mode, busy, request, onSkillsChanged }:
   const [loading, setLoading] = useState(true), [saving, setSaving] = useState(false);
   const [error, setError] = useState(""), [notice, setNotice] = useState("");
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [memoryHistory,setMemoryHistory] = useState<Record<string, { action: string; version: number; source_kind: string; occurred_at: string }[]>>({});
   const revision = useRef(0);
   const refresh = useCallback(async () => {
     const current = ++revision.current;
@@ -40,6 +42,7 @@ export default function BuyerWorkspace({ mode, busy, request, onSkillsChanged }:
     setBody(skill?.body ?? ""); setNotice(""); setDeleting(null);
   };
   const editPreference = (preference: Preference | null) => {
+    setEditingMemory(preference);
     setOriginal(preference?.statement ?? null); setStatement(preference?.statement ?? "");
     setKind(preference?.kind ?? "like"); setNotice(""); setDeleting(null);
   };
@@ -85,11 +88,19 @@ export default function BuyerWorkspace({ mode, busy, request, onSkillsChanged }:
           </article>) : <div className="workspace-empty"><Icon name="leaf" /><p>你的第一份选购方法，<br />从右侧的一段文字开始。</p></div>
         ) : preferences.length ? preferences.map(p => <article key={p.kind + p.statement} className="workspace-item">
           <span className={"preference-kind " + p.kind}>{p.kind === "like" ? "喜欢" : "避免"}</span>
-          <p>{p.statement}</p><div className="workspace-row-actions">
+          <p>{p.statement}</p>
+          {p.memory_id && <small>第 {p.version} 版 · {p.source_kind === "agent" ? "对话确认保存" : p.source_kind === "legacy" ? "历史偏好迁移" : "页面保存"}</small>}
+          <div className="workspace-row-actions">
+            {p.memory_id && <button type="button" disabled={disabled} onClick={() => {
+              const id=p.memory_id!;
+              if (memoryHistory[id]) { setMemoryHistory(current => {const next={...current};delete next[id];return next;});return; }
+              void request("/preferences/"+encodeURIComponent(id)+"/history").then(data => setMemoryHistory(current => ({...current,[id]:data.events as typeof memoryHistory[string]}))).catch(() => setError("变更记录读取失败，请重试"));
+            }}>变更记录</button>}
             <button type="button" disabled={disabled} aria-label={"编辑偏好：" + p.statement} onClick={() => editPreference(p)}>编辑</button>
             <button type="button" disabled={disabled} aria-label={"删除偏好：" + p.statement} onClick={() => void mutate(
-              () => request("/preferences", "DELETE", { statement: p.statement }), "这条偏好已删除，下一轮不再带入。", () => editPreference(null))}>删除</button>
+              () => request("/preferences", "DELETE", { statement: p.statement, memory_id: p.memory_id, expected_version: p.version }), "这条偏好已删除，下一轮不再带入。", () => editPreference(null))}>删除</button>
           </div>
+          {p.memory_id && memoryHistory[p.memory_id] && <ul aria-label="记忆变更记录">{memoryHistory[p.memory_id].map((event,i) => <li key={i}>{event.action === "create" ? "创建" : event.action === "update" ? "修改" : "删除"} · 第 {event.version} 版 · {new Date(event.occurred_at).toLocaleString()}</li>)}</ul>}
         </article>) : <div className="workspace-empty"><Icon name="heart" /><p>这里还没有长期偏好。<br />可以先写下一件你在意的小事。</p></div>}
       </aside>
       <div className="workspace-editor">
@@ -101,7 +112,7 @@ export default function BuyerWorkspace({ mode, busy, request, onSkillsChanged }:
             () => request(selected ? "/my-skills/" + encodeURIComponent(selected.id) : "/my-skills", selected ? "PUT" : "POST",
               { title, description, body, ...(selected ? { expected_version: selected.version } : {}) }),
             "Skill 已保存。回到选购，输入 / 就能使用。", () => editSkill(null));
-          else void mutate(() => request("/preferences", "POST", { kind, statement, ...(original ? { previous_statement: original } : {}) }),
+          else void mutate(() => request("/preferences", "POST", { kind, statement, ...(original ? { previous_statement: original, memory_id: editingMemory?.memory_id, expected_version: editingMemory?.version } : {}) }),
             "偏好已保存，下一轮和新会话都会读取。", () => editPreference(null));
         }}>
           <fieldset disabled={disabled}>
@@ -116,7 +127,7 @@ export default function BuyerWorkspace({ mode, busy, request, onSkillsChanged }:
                 <option value="like">喜欢 · 希望优先考虑</option><option value="dislike">避免 · 不想要的东西</option>
               </select></label>
               <label htmlFor="preference-statement">记住这件事<textarea id="preference-statement" required maxLength={500} rows={5} value={statement} onChange={e => setStatement(e.target.value)} placeholder="例如：喜欢轻便、小众设计的商品" /></label>
-              <p className="workspace-help">只保存长期习惯。本次预算、临时颜色等需求，直接在选购对话中告诉我。</p>
+              <p className="workspace-help">系统会先提炼稳定偏好、去除无关内容，再保存为独立记忆并建立语义索引。保存后请核对左侧实际记住的内容；临时需求请直接在对话中提出。</p>
               <div className="workspace-example"><Icon name="chat" /><p>也可以在对话中说：<br />“把喜欢黑色改成喜欢蓝色，以后都按这个偏好。”<br />“以后不用避开真皮了，删除这条偏好。”</p></div>
             </>}
             <div className="workspace-form-footer"><span>{mode === "skills" ? body.length + " / 12000" : statement.length + " / 500"}</span>

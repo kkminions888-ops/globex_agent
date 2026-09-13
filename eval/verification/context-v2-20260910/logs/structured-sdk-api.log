@@ -1,0 +1,1 @@
+{"passed": true, "sdk": "AgentScope 2.0.6", "stream": true, "model": "qwen3-max", "captured_usage": [{"kind": "summary", "input_tokens": 356, "output_tokens": 28, "elapsed_ms": 1503.2850839779712}], "native_usage": {"input_tokens": 356, "output_tokens": 28}}

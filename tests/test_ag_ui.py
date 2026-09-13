@@ -259,7 +259,7 @@ async def test_event_observers_are_task_scoped_including_children():
     assert [[event.payload["owner"] for event in events] for events in seen] == [[0], [1]]
 
 
-async def test_http_endpoint_contract_and_unsupported_resume():
+async def test_http_endpoint_contract_and_reject_stale_resume():
     orchestrator, _, _ = make_orchestrator()
     app = FastAPI()
     register_ag_ui_routes(app, lambda: orchestrator)
@@ -271,7 +271,8 @@ async def test_http_endpoint_contract_and_unsupported_resume():
         response = await client.post("/commerce/ag-ui/run", json=request_data(
             resume=[{"interruptId": "unavailable", "status": "resolved", "payload": {"approved": True}}],
         ))
-        assert response.status_code == 422
+        assert response.status_code == 200
+        assert decode_frames([response.text])[-1]["type"] == "RUN_ERROR"
 
 
 @pytest.mark.parametrize("swallow_cancel", [False, True])
@@ -312,3 +313,29 @@ async def test_http_disconnect_cancels_agent_and_persists_interruption(swallow_c
     assert any(turn.role == "agent" and turn.content == "[cancelled] 本轮执行已中断" for turn in saved_turns)
     assert not orchestrator._session_locks["session-test"].locked()
     assert not any(b"RUN_FINISHED" in message.get("body", b"") for message in responses)
+
+@pytest.mark.parametrize('kind',['capability','contract'])
+async def test_old_session_version_returns_actionable_protocol_error(kind):
+    from app.infrastructure.capability_registry import CapabilityVersionChanged
+    from app.infrastructure.prompt_registry import PromptContractChanged
+    orchestrator,agent,sessions=make_orchestrator()
+    error=CapabilityVersionChanged('old') if kind=='capability' else PromptContractChanged('old')
+    sessions.get_or_create=AsyncMock(side_effect=error)
+    frames=[frame async for frame in stream_run(orchestrator,RunAgentInput.model_validate(request_data()),parse_intent(RunAgentInput.model_validate(request_data())))]
+    last=decode_frames(frames)[-1]
+    assert last['type']=='RUN_ERROR' and last['code']=='SESSION_VERSION_CHANGED'
+    assert '旧记录仍保留' in last['message']
+    assert agent.calls==0
+
+
+async def test_context_capacity_error_is_actionable_and_never_retries_business():
+    from app.infrastructure.context_governance import ContextCapacityError
+    orchestrator,agent,sessions=make_orchestrator()
+    orchestrator._reply_with_retry=AsyncMock(side_effect=ContextCapacityError('unsafe input'))
+    body=RunAgentInput.model_validate(request_data())
+    frames=[frame async for frame in stream_run(orchestrator,body,parse_intent(body))]
+    last=decode_frames(frames)[-1]
+    assert last['type']=='RUN_ERROR' and last['code']=='CONTEXT_CAPACITY_EXCEEDED'
+    assert '分批比较' in last['message'] and '原始记录已保留' in last['message']
+    assert agent.calls==0
+    orchestrator._reply_with_retry.assert_awaited_once()

@@ -1,0 +1,12 @@
+{
+  "status": "OLD_COST_ACCEPTANCE_INVALID",
+  "reason": "SDK structured output bypassed __call__; prior business usage did not include summary usage",
+  "affected": [
+    "dev",
+    "holdout",
+    "holdout-recovery",
+    "preflight"
+  ],
+  "old_records_preserved": true,
+  "required_for_release": "metered-cost protocol passed, no unknown usage, at least two captured summaries per long run"
+}

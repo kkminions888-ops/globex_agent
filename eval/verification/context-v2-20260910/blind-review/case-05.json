@@ -1,0 +1,77 @@
+{
+  "case_id": "v3-hold-desc",
+  "ratings": [
+    {
+      "response_id": "answer_01",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰列出容量、折叠与防泼水信息，结构良好；完全回应问题；明确标注信息来源与时间。"
+    },
+    {
+      "response_id": "answer_02",
+      "clarity": 4,
+      "fitness": 3,
+      "temporal_clarity": 3,
+      "reason": "表达清晰；但关于防泼水的说法与多数答案矛盾，仅称‘未明确说明’，贴合度略低；未说明信息时间点。"
+    },
+    {
+      "response_id": "answer_03",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "信息明确，结构清晰；准确回答三个问题；清楚说明来源时间及信息性质。"
+    },
+    {
+      "response_id": "answer_04",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "简洁清晰回答全部问题；包含必要细节；明确标注信息时间。"
+    },
+    {
+      "response_id": "answer_05",
+      "clarity": 4,
+      "fitness": 3,
+      "temporal_clarity": 2,
+      "reason": "表达清楚；但对防泼水功能表述模糊，与多数答案不一致；未注明信息时间。"
+    },
+    {
+      "response_id": "answer_06",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "条理清晰，准确回应问题；明确指出描述位置；注明观察时间。"
+    },
+    {
+      "response_id": "answer_07",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "结构清晰，回答完整；明确标注时间来源；无多余或缺失信息。"
+    },
+    {
+      "response_id": "answer_08",
+      "clarity": 4,
+      "fitness": 3,
+      "temporal_clarity": 2,
+      "reason": "表达清晰；但对防泼水判断保守且与主流答案不符；未说明信息时效。"
+    },
+    {
+      "response_id": "answer_09",
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 2,
+      "reason": "回答贴合问题；但结构较简略，来源标注不规范（‘etsy-P18353’）；未说明时间。"
+    }
+  ],
+  "error": null,
+  "usage": [
+    {
+      "kind": "evaluation",
+      "input_tokens": 2054,
+      "output_tokens": 550,
+      "elapsed_ms": 12738.392917031888
+    }
+  ]
+}

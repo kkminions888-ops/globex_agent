@@ -1,3 +1,5 @@
+import ContextWorkspace from "./components/ContextWorkspace";
+import { ToolApprovalCards } from "./components/ToolApprovalCards";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useCommerceAgent } from "./hooks/useCommerceAgent";
 import { readProducts } from "./lib/commerceClient";
@@ -12,10 +14,11 @@ import OrderIntentForm from "./components/OrderIntentForm";
 import ProductComparison from "./components/ProductComparison";
 import ShoppingPlans, { SkillRunStatus } from "./components/ShoppingPlans";
 import SkillQueryInput from "./components/SkillQueryInput";
+import MyOrders from "./components/MyOrders";
 import BuyerWorkspace from "./components/BuyerWorkspace";
 import { skillQueryDraft, submitSkillQuery } from "./lib/skills";
 
-type View = "shopping" | "history" | "favorites" | "skills" | "preferences";
+type View = "shopping" | "history" | "favorites" | "skills" | "preferences" | "orders";
 const STARTERS = [
   "预算300元以内，找一个轻便的周末旅行背包，寄到中国。",
   "想买日常通勤耳机，帮我理一理选购思路。",
@@ -25,23 +28,11 @@ const VIEW_KEY = "globex.workspace.view";
 function readView(): View {
   try {
     const saved = sessionStorage.getItem(VIEW_KEY);
-    if (saved && ["shopping", "history", "favorites", "skills", "preferences"].includes(saved))
+    if (saved && ["shopping", "history", "favorites", "skills", "preferences", "orders"].includes(saved))
       return saved as View;
   } catch { /* 存储受限时使用首页。 */ }
   return "shopping";
 }
-const FAVORITES_KEY = "globex.favorites.v1";
-function readFavorites(): ProductCard[] {
-  try {
-    const data: unknown = JSON.parse(
-      localStorage.getItem(FAVORITES_KEY) || "[]",
-    );
-    return readProducts(data).slice(0, 100);
-  } catch {
-    return [];
-  }
-}
-
 export default function App() {
   const agent = useCommerceAgent();
   const [selectedSkill, setSelectedSkill] = useState<PublishedSkill | null>(null);
@@ -49,7 +40,7 @@ export default function App() {
   const [slashMenuOpen, setSlashMenuOpen] = useState(false);
   const [view, setView] = useState<View>(readView),
     [input, setInput] = useState("");
-  const [favorites, setFavorites] = useState<ProductCard[]>(readFavorites),
+  const [favorites, setFavorites] = useState<ProductCard[]>([]),
     [compared, setCompared] = useState<ProductCard[]>([]);
   const [detail, setDetail] = useState<ProductCard | null>(null),
     [showCompare, setShowCompare] = useState(false),
@@ -65,7 +56,8 @@ export default function App() {
   useEffect(() => {
     try { sessionStorage.setItem(VIEW_KEY, view); } catch {}
   }, [view]);
-  const busy = agent.status === "running";
+  const [contextBusy,setContextBusy] = useState(false);
+  const busy = agent.status === "running" || contextBusy;
   const favoriteIds = useMemo(
     () => new Set(favorites.map((p) => p.product_id)),
     [favorites],
@@ -81,13 +73,14 @@ export default function App() {
     (product) => product.landed_price?.ship_to,
   )?.landed_price?.ship_to;
 
+  const favoriteBusy = useRef(false);
   useEffect(() => {
-    try {
-      localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
-    } catch {
-      setToast("浏览器暂时无法保存收藏，本次使用仍可继续。 ");
-    }
-  }, [favorites]);
+    let disposed=false;
+    void agent.workspaceRequest("/favorites").then(data => {
+      if (!disposed) setFavorites(readProducts(data.products));
+    }).catch(() => { if (!disposed) setToast("收藏暂时读取失败，请稍后刷新；数据库中的收藏仍保留。"); });
+    return () => {disposed=true;};
+  }, [agent.workspaceRequest]);
   useEffect(() => {
     if (!toast) return;
     const timer = window.setTimeout(() => setToast(""), 2600);
@@ -227,17 +220,15 @@ export default function App() {
   };
   const toggleFavorite = useCallback(
     (product: ProductCard) => {
-      if (favoriteIds.has(product.product_id)) {
-        setFavorites((current) =>
-          current.filter((item) => item.product_id !== product.product_id),
-        );
-        setToast("已从心选收藏移除。");
-      } else {
-        setFavorites((current) => [product, ...current].slice(0, 100));
-        setToast("已收好，喜欢的可以慢慢选。 ");
-      }
+      if (favoriteBusy.current) return;
+      favoriteBusy.current=true;
+      const removing=favoriteIds.has(product.product_id);
+      void agent.workspaceRequest("/favorites/"+encodeURIComponent(product.product_id),removing ? "DELETE" : "PUT",removing ? undefined : {product})
+        .then(data => {setFavorites(readProducts(data.products));setToast(removing ? "已从心选收藏移除。" : "已保存到心选收藏。");})
+        .catch(() => setToast("收藏未能保存，请重试。"))
+        .finally(() => {favoriteBusy.current=false;});
     },
-    [favoriteIds],
+    [favoriteIds,agent.workspaceRequest],
   );
   const toggleCompare = useCallback(
     (product: ProductCard) => {
@@ -283,6 +274,7 @@ export default function App() {
   );
   const navItems: { id: View; label: string; icon: string }[] = [
     { id: "shopping", label: "我的选购", icon: "bag" },
+    { id: "orders", label: "我的订单", icon: "bag" },
     { id: "history", label: "对话历史", icon: "chat" },
     { id: "favorites", label: "心选收藏", icon: "heart" },
     { id: "skills", label: "我的 Skill", icon: "leaf" },
@@ -350,7 +342,7 @@ export default function App() {
           <div className="profile">
             <span className="avatar">旅</span>
             <span>
-              <span className="profile-name">好物探索家</span>
+              <span className="profile-name">{import.meta.env.VITE_BUYER_ID || "pao-coder"}</span>
               <span className="profile-caption">每一次选择，都有新发现</span>
             </span>
             <Icon name="leaf" />
@@ -364,7 +356,7 @@ export default function App() {
               <span>环球好物</span>
               <span>／</span>
               <span>
-                {view === "skills" ? "我的 Skill" : view === "preferences" ? "长期偏好" : view === "history"
+                {view === "orders" ? "我的订单" : view === "skills" ? "我的 Skill" : view === "preferences" ? "长期偏好" : view === "history"
                   ? "选购对话历史"
                   : view === "favorites"
                     ? "心选收藏"
@@ -399,6 +391,7 @@ export default function App() {
               </button>
             ))}
           </nav>
+          {view === "orders" && <MyOrders request={agent.workspaceRequest} confirmations={agent.confirmations} busy={agent.confirmationBusy || busy} error={agent.confirmationError} onPrepare={agent.prepareCancel} onResolve={agent.resolveConfirmation} onRefresh={agent.refreshConfirmations} />}
           {(view === "skills" || view === "preferences") && <BuyerWorkspace key={view} mode={view} busy={busy}
             request={agent.workspaceRequest} onSkillsChanged={agent.refreshSkills} />}
           {view === "shopping" && (
@@ -498,6 +491,8 @@ export default function App() {
                   )}
                 </div>
               )}
+              <ContextWorkspace sessionId={agent.sessionId} busy={agent.status === "running"} pending={!!agent.toolApprovals?.length || agent.confirmations.some(c=>c.status === "pending" && !c.expired)} hasMessages={agent.messages.length>0} request={agent.workspaceRequest} onBusyChange={setContextBusy} />
+              <ToolApprovalCards items={agent.toolApprovals ?? []} busy={busy} onResolve={agent.resolveToolApproval} />
               {(agent.confirmations.length > 0 || agent.confirmationError) && (
                 <ConfirmationCards
                   confirmations={agent.confirmations}
@@ -615,7 +610,7 @@ export default function App() {
             <>
               <h1 className="library-title">心动的，先留在这里。</h1>
               <p className="library-description">
-                收藏保存在本机浏览器。以下是上次查看的商品信息，价格与库存请重新查询确认。
+                收藏已保存到当前用户，刷新或更换浏览器后仍可查看。以下是上次查看的商品信息，价格与库存请重新查询确认。
               </p>
               {favorites.length ? (
                 renderCards(favorites)
@@ -636,7 +631,7 @@ export default function App() {
             <>
               <h1 className="library-title">每一次期待，都有迹可循。</h1>
               <p className="library-description">
-                同一买家身份的选购记录由服务端保存，断线后可恢复。浏览器另保留最近 12 段缓存；本机收藏与身份信息仍需自行保留。
+                选购记录按当前用户保存在服务端。刷新后会重新读取，浏览器缓存仅用于加快展示。
               </p>
               {agent.historyError && <p role="status">{agent.historyError}</p>}
               <div className="history-list">
@@ -677,7 +672,7 @@ export default function App() {
           )}
         </div>
       </main>
-      {view !== "skills" && view !== "preferences" && <div className="composer-dock">
+      {view !== "skills" && view !== "preferences" && view !== "orders" && <div className="composer-dock">
         <div className="composer-wrap">
           {compared.length > 0 && (
             <div className="compare-bar">

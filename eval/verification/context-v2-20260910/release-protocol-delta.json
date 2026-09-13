@@ -1,0 +1,12 @@
+{
+  "changes": [
+    {
+      "path": "app/infrastructure/context_products.py",
+      "frozen_sha256": "b79fcef971f25f48760a856df5e3af55d8336548c38690bb9b7e789d9d25ccf5",
+      "release_sha256": "68b01ce6bc548276c2e3a38b319cf722cdc510fda2494c20450c86e91daa98a5",
+      "diff": "--- frozen\n+++ release\n@@ -45,7 +45,12 @@\n         return None\n     if fields in FIELD_GROUPS:\n         return FIELD_GROUPS[fields]\n-    names = set(re.split(r'[,，\\s]+', fields.strip()))\n+    requested = set(re.split(r'[,，\\s]+', fields.strip()))\n+    aliases = {'stock_quantity': 'stock', 'inventory': 'stock', 'unit_price': 'price_major'}\n+    names = set()\n+    for name in requested:\n+        name = aliases.get(name, name)\n+        names.update(FIELD_GROUPS.get(name, {name}))\n     allowed = set().union(*FIELD_GROUPS.values()) | {\n         'sku_id', 'spec', 'stock', 'origin_country', 'brand', 'category',\n         'tax_major', 'shipping_major', 'total_major', 'quantity', 'ship_to',\n"
+    }
+  ],
+  "scope": "兼容字段组组合及明确库存/单价别名；裁剪、预算、摘要与恢复算法不变",
+  "validation": "protocol-compatibility.json + field protocol tests + final-source-api.json"
+}

@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-09-10T18:25:13.829331+08:00",
+  "clarification_only": true,
+  "fixture_history_rounds": 24,
+  "final_continuation_rounds": 1,
+  "total_buyer_rounds": 25,
+  "note": "协议rounds=24指选购历史轮次，随后执行固定验收续答。全部调用均在原runner中执行并计量；未改变案例、调用、模型或参数。"
+}

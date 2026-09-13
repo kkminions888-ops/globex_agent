@@ -1,0 +1,675 @@
+{
+  "gate": "PASS_METERED_LONG_DIALOGUE",
+  "errors": [],
+  "runs": 36,
+  "manifest": {
+    "fingerprint": "0fff9a724623b5fcbf45ff7ca25a4dd57d68d56ab6b9ebfa30d1e1e3065eb282",
+    "model": "qwen3-max",
+    "split": "holdout",
+    "strategies": [
+      "legacy",
+      "layered"
+    ],
+    "timing": "pressure",
+    "cases": [
+      "v3-hold-long-a",
+      "v3-hold-long-b",
+      "v3-hold-long-c",
+      "v3-hold-long-d",
+      "v3-hold-long-e",
+      "v3-hold-long-f"
+    ],
+    "repetitions": 3,
+    "status": "completed",
+    "limitations": "隔离工具夹具，不测试生产检索排序或交易写路径。快照历史固定；long按冻结场景轮数运行真实Agent和两次整理、一次数据库重建。",
+    "cases_sha256": "a59a4944c5d077dc69a5408c43c37a57c64146e877e7f3252c1f72279cb66c41",
+    "baseline": "v1-frozen-lookup-and-legacy-middleware",
+    "transport": {
+      "concurrency": 2,
+      "min_interval_seconds": 5.0,
+      "model_retries": 0
+    },
+    "code_stable": true,
+    "completed": 36,
+    "passed": 35
+  },
+  "protocol_sha256": "5267ae1b8406d1a7b2f29536995b2e784387e0016a89eaa22760c4c572f185e5",
+  "summary": {
+    "layered": {
+      "runs": 18,
+      "passed": 18,
+      "success_rate": 1,
+      "input_tokens": 5630956,
+      "long_input_tokens": 5630956,
+      "model_calls": 935,
+      "lookup_calls": 3,
+      "scenario_latency_p50_ms": 522621,
+      "scenario_latency_p95_ms": 600939,
+      "business_model_latency_p95_ms": 2991.843417054042,
+      "ordinary_round_p95_ms": 21813,
+      "mean_final_context_estimated_tokens": 13175.777777777777,
+      "mean_final_product_duplicate_ratio": 0.5,
+      "unknown_usage_runs": 0,
+      "manual_compaction_timings_complete": true,
+      "manual_compaction_p95_ms": 22692,
+      "summary_model_p95_ms": 14343.099333025748
+    },
+    "legacy": {
+      "runs": 18,
+      "passed": 18,
+      "success_rate": 1,
+      "input_tokens": 8778129,
+      "long_input_tokens": 8778129,
+      "model_calls": 942,
+      "lookup_calls": 6,
+      "scenario_latency_p50_ms": 520958,
+      "scenario_latency_p95_ms": 559670,
+      "business_model_latency_p95_ms": 2723.5294590354897,
+      "ordinary_round_p95_ms": 22292,
+      "mean_final_context_estimated_tokens": 17364.944444444445,
+      "mean_final_product_duplicate_ratio": 0.8134920634920635,
+      "unknown_usage_runs": 0,
+      "manual_compaction_timings_complete": true,
+      "manual_compaction_p95_ms": 21986,
+      "summary_model_p95_ms": 16228.056208987255
+    }
+  },
+  "paired_quality_interval": {
+    "unit": "scenario",
+    "difference": 0,
+    "ci95": [
+      0,
+      0
+    ]
+  },
+  "paired_cost_interval": {
+    "unit": "scenario",
+    "scenarios": 6,
+    "reduction": 0.35852435069022115,
+    "ci95": [
+      0.33300911600359984,
+      0.38851409752159505
+    ]
+  },
+  "ordinary_round_latency_ratio": 0.9785124708415575,
+  "usage_audit": [
+    {
+      "manual_compaction_ms": [
+        22692,
+        19814
+      ],
+      "case_id": "v3-hold-long-e",
+      "strategy": "layered",
+      "repetition": 2,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 9835,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        18255,
+        17470
+      ],
+      "case_id": "v3-hold-long-c",
+      "strategy": "layered",
+      "repetition": 1,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 7505,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        15570,
+        14163
+      ],
+      "case_id": "v3-hold-long-a",
+      "strategy": "layered",
+      "repetition": 1,
+      "summary_calls": 2,
+      "business_calls": 49,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 9719,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        24049,
+        17713
+      ],
+      "case_id": "v3-hold-long-e",
+      "strategy": "legacy",
+      "repetition": 0,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16833,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        19149,
+        18873
+      ],
+      "case_id": "v3-hold-long-a",
+      "strategy": "layered",
+      "repetition": 0,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 9715,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        19594,
+        17636
+      ],
+      "case_id": "v3-hold-long-f",
+      "strategy": "legacy",
+      "repetition": 2,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16681,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        18218,
+        20367
+      ],
+      "case_id": "v3-hold-long-b",
+      "strategy": "legacy",
+      "repetition": 0,
+      "summary_calls": 2,
+      "business_calls": 52,
+      "lookup_calls": 2,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16591,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        27013,
+        21676
+      ],
+      "case_id": "v3-hold-long-d",
+      "strategy": "layered",
+      "repetition": 1,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 9842,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        17329,
+        18636
+      ],
+      "case_id": "v3-hold-long-c",
+      "strategy": "legacy",
+      "repetition": 1,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16556,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        18272,
+        16119
+      ],
+      "case_id": "v3-hold-long-a",
+      "strategy": "layered",
+      "repetition": 2,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 9791,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        18897,
+        17679
+      ],
+      "case_id": "v3-hold-long-b",
+      "strategy": "legacy",
+      "repetition": 2,
+      "summary_calls": 2,
+      "business_calls": 52,
+      "lookup_calls": 2,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16516,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        19026,
+        20628
+      ],
+      "case_id": "v3-hold-long-b",
+      "strategy": "layered",
+      "repetition": 0,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 1,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 7646,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        16657,
+        20104
+      ],
+      "case_id": "v3-hold-long-b",
+      "strategy": "layered",
+      "repetition": 2,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 1,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 7422,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        8108,
+        16478
+      ],
+      "case_id": "v3-hold-long-e",
+      "strategy": "legacy",
+      "repetition": 1,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16606,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        17321,
+        16074
+      ],
+      "case_id": "v3-hold-long-a",
+      "strategy": "legacy",
+      "repetition": 2,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16343,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        21750,
+        18764
+      ],
+      "case_id": "v3-hold-long-f",
+      "strategy": "layered",
+      "repetition": 0,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 9860,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        18602,
+        19332
+      ],
+      "case_id": "v3-hold-long-c",
+      "strategy": "layered",
+      "repetition": 2,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 7440,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        19542,
+        12297
+      ],
+      "case_id": "v3-hold-long-f",
+      "strategy": "layered",
+      "repetition": 2,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 9647,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        16495,
+        15394
+      ],
+      "case_id": "v3-hold-long-d",
+      "strategy": "legacy",
+      "repetition": 0,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16585,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        20712,
+        16927
+      ],
+      "case_id": "v3-hold-long-b",
+      "strategy": "legacy",
+      "repetition": 1,
+      "summary_calls": 2,
+      "business_calls": 51,
+      "lookup_calls": 1,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16859,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        19109,
+        21986
+      ],
+      "case_id": "v3-hold-long-a",
+      "strategy": "legacy",
+      "repetition": 1,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16706,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        16568,
+        16376
+      ],
+      "case_id": "v3-hold-long-b",
+      "strategy": "layered",
+      "repetition": 1,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 1,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 7502,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        16809,
+        13998
+      ],
+      "case_id": "v3-hold-long-d",
+      "strategy": "legacy",
+      "repetition": 1,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16572,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        19525,
+        17093
+      ],
+      "case_id": "v3-hold-long-f",
+      "strategy": "layered",
+      "repetition": 1,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 9796,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        18487,
+        16609
+      ],
+      "case_id": "v3-hold-long-c",
+      "strategy": "legacy",
+      "repetition": 2,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16577,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        18565,
+        10053
+      ],
+      "case_id": "v3-hold-long-e",
+      "strategy": "legacy",
+      "repetition": 2,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16632,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        19549,
+        17262
+      ],
+      "case_id": "v3-hold-long-d",
+      "strategy": "layered",
+      "repetition": 2,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 9877,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        19193,
+        17145
+      ],
+      "case_id": "v3-hold-long-f",
+      "strategy": "legacy",
+      "repetition": 1,
+      "summary_calls": 2,
+      "business_calls": 51,
+      "lookup_calls": 1,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16652,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        22393,
+        16989
+      ],
+      "case_id": "v3-hold-long-e",
+      "strategy": "layered",
+      "repetition": 1,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 9987,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        12270,
+        18621
+      ],
+      "case_id": "v3-hold-long-e",
+      "strategy": "layered",
+      "repetition": 0,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 9450,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        21777,
+        19242
+      ],
+      "case_id": "v3-hold-long-a",
+      "strategy": "legacy",
+      "repetition": 0,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16657,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        19451,
+        15633
+      ],
+      "case_id": "v3-hold-long-d",
+      "strategy": "legacy",
+      "repetition": 2,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16696,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        19335,
+        17770
+      ],
+      "case_id": "v3-hold-long-d",
+      "strategy": "layered",
+      "repetition": 0,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 9717,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        17987,
+        18483
+      ],
+      "case_id": "v3-hold-long-f",
+      "strategy": "legacy",
+      "repetition": 0,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16650,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        20604,
+        18521
+      ],
+      "case_id": "v3-hold-long-c",
+      "strategy": "legacy",
+      "repetition": 0,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 16681,
+      "complete": true
+    },
+    {
+      "manual_compaction_ms": [
+        21009,
+        19612
+      ],
+      "case_id": "v3-hold-long-c",
+      "strategy": "layered",
+      "repetition": 0,
+      "summary_calls": 2,
+      "business_calls": 50,
+      "lookup_calls": 0,
+      "lookup_model_calls": null,
+      "lookup_accounting_note": "回查后的模型调用计入business和累计输入；单独实际token归因未测，不能记零",
+      "summary_input_tokens": 7502,
+      "complete": true
+    }
+  ],
+  "failures": [],
+  "limitations": "独立6场景、每组3次的完整长对话复核；按场景聚合重复。原主实验与网络恢复的成本缺摘要，不能混用。共享网关延迟不是生产流量P95。"
+}

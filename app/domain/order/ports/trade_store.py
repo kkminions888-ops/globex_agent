@@ -48,3 +48,7 @@ class TradeStore(ABC):
 
     @abstractmethod
     async def get_order(self, order_id: str, *, buyer_id: str) -> dict: ...
+
+    async def list_orders(self, *, buyer_id: str, status: str | None = None, offset: int = 0, limit: int = 20) -> dict:
+        """仅列出当前买家订单，分页与状态过滤由存储执行。"""
+        raise NotImplementedError

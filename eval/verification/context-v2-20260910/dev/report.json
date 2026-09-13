@@ -1,0 +1,470 @@
+{
+  "grading_version": "context-facts-v4-associations-and-aliases",
+  "manifest": {
+    "fingerprint": "c3bb6889de00bf13dc34b0bba9ec12aa8e6dde5b86e16051b5a750e355b5cc21",
+    "model": "qwen3-max",
+    "split": "dev",
+    "strategies": [
+      "entry",
+      "after_use",
+      "pressure"
+    ],
+    "timing": "after_use",
+    "cases": [
+      "v2-dev-sku",
+      "v2-dev-second",
+      "v2-dev-earliest",
+      "v2-dev-material",
+      "v2-dev-budget",
+      "v2-dev-country",
+      "v2-dev-selected",
+      "v2-dev-stock",
+      "v2-dev-cost",
+      "v2-dev-repeat",
+      "v2-dev-long-a",
+      "v2-dev-long-b"
+    ],
+    "repetitions": 3,
+    "status": "completed",
+    "limitations": "隔离工具夹具，不测试生产检索排序或交易写路径。快照历史固定；long使用真实20轮Agent和两次整理、一次数据库重建。",
+    "cases_sha256": "d621149badb972dab83f3d40e165883b9c6779067cac3ed90c5d53847b758ed5",
+    "baseline": "v1-frozen-lookup-and-legacy-middleware",
+    "code_stable": true,
+    "completed": 108,
+    "passed": 102
+  },
+  "summary": {
+    "after_use": {
+      "runs": 36,
+      "passed": 36,
+      "success_rate": 1,
+      "input_tokens": 2392465,
+      "long_input_tokens": 1792587,
+      "model_calls": 354,
+      "lookup_calls": 18,
+      "scenario_latency_p50_ms": 4056,
+      "scenario_latency_p95_ms": 125012,
+      "business_model_latency_p95_ms": 2751.469333015848,
+      "ordinary_round_p95_ms": 6339,
+      "mean_final_context_estimated_tokens": 27635.722222222223,
+      "mean_final_product_duplicate_ratio": 0.41435185185185186,
+      "unknown_usage_runs": 0
+    },
+    "entry": {
+      "runs": 36,
+      "passed": 35,
+      "success_rate": 0.9722222222222222,
+      "input_tokens": 2062234,
+      "long_input_tokens": 1423054,
+      "model_calls": 360,
+      "lookup_calls": 13,
+      "scenario_latency_p50_ms": 4182,
+      "scenario_latency_p95_ms": 118224,
+      "business_model_latency_p95_ms": 3213.5438330005854,
+      "ordinary_round_p95_ms": 7311,
+      "mean_final_context_estimated_tokens": 25155.166666666668,
+      "mean_final_product_duplicate_ratio": 0.07638888888888888,
+      "unknown_usage_runs": 0
+    },
+    "pressure": {
+      "runs": 36,
+      "passed": 36,
+      "success_rate": 1,
+      "input_tokens": 2315491,
+      "long_input_tokens": 1787699,
+      "model_calls": 348,
+      "lookup_calls": 14,
+      "scenario_latency_p50_ms": 3871,
+      "scenario_latency_p95_ms": 128748,
+      "business_model_latency_p95_ms": 3012.8054580127355,
+      "ordinary_round_p95_ms": 6081,
+      "mean_final_context_estimated_tokens": 27448.25,
+      "mean_final_product_duplicate_ratio": 0.40972222222222227,
+      "unknown_usage_runs": 0
+    }
+  },
+  "failures": [
+    {
+      "case_id": "v2-dev-repeat",
+      "split": "dev",
+      "mode": "snapshot",
+      "strategy": "entry",
+      "repetition": 1,
+      "answer": "The maximum reasoning-acting iterations are exceeded.",
+      "checks": {
+        "facts": false,
+        "current_lookup": true,
+        "no_error": true
+      },
+      "passed": false,
+      "error": null,
+      "usage": [
+        {
+          "kind": "business",
+          "input_tokens": 10084,
+          "output_tokens": 12,
+          "elapsed_ms": 1341.7563749826513
+        },
+        {
+          "kind": "business",
+          "input_tokens": 10195,
+          "output_tokens": 59,
+          "elapsed_ms": 1684.6748340176418
+        },
+        {
+          "kind": "business",
+          "input_tokens": 10363,
+          "output_tokens": 23,
+          "elapsed_ms": 1200.8087080030236
+        },
+        {
+          "kind": "business",
+          "input_tokens": 10515,
+          "output_tokens": 12,
+          "elapsed_ms": 1133.1928330182564
+        },
+        {
+          "kind": "business",
+          "input_tokens": 10626,
+          "output_tokens": 12,
+          "elapsed_ms": 1268.8111659954302
+        },
+        {
+          "kind": "business",
+          "input_tokens": 10737,
+          "output_tokens": 56,
+          "elapsed_ms": 1824.4904579769354
+        },
+        {
+          "kind": "business",
+          "input_tokens": 10902,
+          "output_tokens": 22,
+          "elapsed_ms": 1068.1217499950435
+        },
+        {
+          "kind": "business",
+          "input_tokens": 11054,
+          "output_tokens": 12,
+          "elapsed_ms": 1170.4210829921067
+        }
+      ],
+      "input_tokens": 84476,
+      "output_tokens": 208,
+      "model_calls": 8,
+      "lookup_calls": 2,
+      "current_calls": 4,
+      "elapsed_ms": 15905,
+      "compactions": [],
+      "round_metrics": [
+        {
+          "elapsed_ms": 15813,
+          "compacted": false,
+          "model_calls": 8
+        }
+      ],
+      "final_context_estimated_tokens": 25222,
+      "last_compaction": {
+        "policy_version": "layered-v2",
+        "reason": "pressure",
+        "before_tokens": 12387,
+        "after_tokens": 12148,
+        "archived_results": 1,
+        "summary_changed": false,
+        "elapsed_ms": 6,
+        "status": "completed"
+      },
+      "final_product_observations": 10,
+      "final_product_duplicate_ratio": 0.0,
+      "association_check": {
+        "applicable": false,
+        "status": "not_applicable"
+      },
+      "original_checks": {
+        "facts": false,
+        "current_lookup": true,
+        "no_error": true
+      }
+    }
+  ],
+  "gate": "DEV_COMPLETE",
+  "unmeasured": {
+    "first_recommendation_accuracy": null,
+    "explanation_blind_review": null,
+    "production_ordinary_round_latency": null
+  },
+  "metric_scope": "SKU/材质场景验证固定历史续答的信息保留；首次实际推荐正确率和盲评未测，不能据此宣称首次选品无损。",
+  "timing_selection_rule": "先排除SKU/金额/当前状态/预算/国家关键事实失败；再比成功率，接近且无关键失败时默认pressure",
+  "selected_timing": "pressure",
+  "paired_intervals": {
+    "after_use": {
+      "unit": "scenario",
+      "difference": 0,
+      "ci95": [
+        0,
+        0
+      ]
+    },
+    "entry": {
+      "unit": "scenario",
+      "difference": -0.02777777777777778,
+      "ci95": [
+        -0.08333333333333334,
+        0
+      ]
+    }
+  },
+  "scenario_pairs": [
+    {
+      "case_id": "v2-dev-budget",
+      "question": "现在本次选购预算上限是多少元？只回答数字和币种。",
+      "strategies": {
+        "after_use": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10238.666666666666
+        },
+        "entry": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10037
+        },
+        "pressure": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10227.666666666666
+        }
+      }
+    },
+    {
+      "case_id": "v2-dev-cost",
+      "question": "第一批P8183的到手价和运费分别是多少？用元回答。",
+      "strategies": {
+        "after_use": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 20993.666666666668
+        },
+        "entry": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 20286.333333333332
+        },
+        "pressure": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 17432.333333333332
+        }
+      }
+    },
+    {
+      "case_id": "v2-dev-country",
+      "question": "现在寄往哪个国家？用二位国家码回答。",
+      "strategies": {
+        "after_use": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10233
+        },
+        "entry": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10044.666666666666
+        },
+        "pressure": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10231.333333333334
+        }
+      }
+    },
+    {
+      "case_id": "v2-dev-earliest",
+      "question": "第一批第三件的product_id和石墨黑sku_id是什么？",
+      "strategies": {
+        "after_use": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21005.666666666668
+        },
+        "entry": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 20221.333333333332
+        },
+        "pressure": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21016.333333333332
+        }
+      }
+    },
+    {
+      "case_id": "v2-dev-long-a",
+      "question": "最后核对最初选中的背包SKU，以及更新后的预算。",
+      "strategies": {
+        "after_use": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 285257.6666666667
+        },
+        "entry": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 229409.33333333334
+        },
+        "pressure": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 282947.3333333333
+        }
+      }
+    },
+    {
+      "case_id": "v2-dev-long-b",
+      "question": "订单ORD-EVAL当前是什么状态？必须重新查账本。",
+      "strategies": {
+        "after_use": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 312271.3333333333
+        },
+        "entry": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 244942
+        },
+        "pressure": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 312952.3333333333
+        }
+      }
+    },
+    {
+      "case_id": "v2-dev-material",
+      "question": "最初商品描述里，P8131含不含再生尼龙和合成聚合物？",
+      "strategies": {
+        "after_use": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10330
+        },
+        "entry": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10139
+        },
+        "pressure": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10336.666666666666
+        }
+      }
+    },
+    {
+      "case_id": "v2-dev-repeat",
+      "question": "对比P8191-S2和P8193-S1，列出两个完整SKU和对应规格。",
+      "strategies": {
+        "after_use": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 56373
+        },
+        "entry": {
+          "passed": 2,
+          "runs": 3,
+          "mean_input_tokens": 62753.333333333336
+        },
+        "pressure": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 35911.666666666664
+        }
+      }
+    },
+    {
+      "case_id": "v2-dev-second",
+      "question": "只告诉我最新展示批次第二件商品的完整product_id。",
+      "strategies": {
+        "after_use": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10229.333333333334
+        },
+        "entry": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10043.333333333334
+        },
+        "pressure": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10224
+        }
+      }
+    },
+    {
+      "case_id": "v2-dev-selected",
+      "question": "我先前明确选中的石墨黑背包sku_id是什么？",
+      "strategies": {
+        "after_use": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10285.666666666666
+        },
+        "entry": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10090.333333333334
+        },
+        "pressure": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10287.333333333334
+        }
+      }
+    },
+    {
+      "case_id": "v2-dev-sku",
+      "question": "请从第一批商品中找出所有黑色规格，列出完整sku_id和价格。",
+      "strategies": {
+        "after_use": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21654.666666666668
+        },
+        "entry": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 30801
+        },
+        "pressure": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21635
+        }
+      }
+    },
+    {
+      "case_id": "v2-dev-stock",
+      "question": "请重新核对P8173-S1当前库存，不要用历史库存。",
+      "strategies": {
+        "after_use": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 28615.666666666668
+        },
+        "entry": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 28643.666666666668
+        },
+        "pressure": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 28628.333333333332
+        }
+      }
+    }
+  ]
+}

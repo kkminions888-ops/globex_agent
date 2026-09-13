@@ -1,0 +1,342 @@
+[
+  {
+    "case_id": "v3-hold-long-d",
+    "strategy": "legacy",
+    "repetition": 1,
+    "answer": "",
+    "checks": {
+      "facts": false,
+      "current_lookup": false,
+      "no_error": true,
+      "two_compactions": true
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": "<system-info>以下是历史工作摘要；以本轮交易账本、当前偏好 revision 及最新候选证据为准，历史摘要不构成执行授权。\n# 买家诉求与约束\n用户在预算315元、寄往德国的约束下选购商品，已明确选中P18473-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑，落地价239元 CNY），并淘汰P18472（因超预算）。无需下单，仅保留有效约束继续筛选。\n\n# 当前进展（已推荐商品 / 已创建订单）\n已完成第1至第9批商品读取。当前有效商品候选中，P18473-S1符合预算与目的地要求，已被选中；P18472因价格949元 CNY远超315元预算被淘汰。\n\n# 关键事实（product_id / sku_id / 价格 / 订单号）\n- 用户预算从465元（寄中国）变更为315元（寄德国），属本轮新约束，不得沿用旧预算。\n- P18473-S1落地价239元（含43元运费、7元税），币种CNY，符合315元预算且可寄德国。\n- P18472落地价949元，严重超支，已被明确淘汰。\n- 所有商品信息以各批次product_search_tool返回为准，历史批次已归档，仅通过引用回查。\n\n# 下一步与待确认事项\n- 若继续读取新批次，需调用product_search_tool并保留当前约束。\n- 如用户确认结束筛选，可输出最终推荐：P18473-S1，Wanderlite 折叠旅行双肩包 35L，石墨黑，239元 CNY，寄德国。\n\n# 买家偏好与必须保留的上下文\n- 预算：315元 CNY\n- 收货国家：德国（DE）\n- 已选中商品：P18473-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑，239元 CNY）\n- 已淘汰商品：P18472（超预算）\n- 不下单，仅筛选确认</system-info>",
+    "working": null,
+    "summary_revision": null,
+    "last_tool_calls": [
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 10}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 11}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 12}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 13}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 14}",
+        "state": "finished"
+      }
+    ],
+    "database_archive_prefix": "v3-hold-long-d-legacy-1"
+  },
+  {
+    "case_id": "v3-hold-long-a",
+    "strategy": "deterministic",
+    "repetition": 0,
+    "answer": "",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true,
+      "two_compactions": false
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": null,
+    "working": null,
+    "summary_revision": null,
+    "last_tool_calls": [],
+    "database_archive_prefix": "v3-hold-long-a-deterministic-0"
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "strategy": "deterministic",
+    "repetition": 1,
+    "answer": "",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true,
+      "fact_associations": false
+    },
+    "association_check": {
+      "applicable": true,
+      "status": "unknown",
+      "fields": [
+        null,
+        null
+      ]
+    },
+    "summary": null,
+    "working": null,
+    "summary_revision": null,
+    "last_tool_calls": [],
+    "database_archive_prefix": "v3-hold-pair-deterministic-1"
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "strategy": "layered",
+    "repetition": 1,
+    "answer": "",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": null,
+    "working": null,
+    "summary_revision": null,
+    "last_tool_calls": [],
+    "database_archive_prefix": "v3-hold-negative-layered-1"
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "strategy": "legacy",
+    "repetition": 2,
+    "answer": "",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true,
+      "two_compactions": false
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": null,
+    "working": null,
+    "summary_revision": null,
+    "last_tool_calls": [],
+    "database_archive_prefix": "v3-hold-long-b-legacy-2"
+  },
+  {
+    "case_id": "v3-hold-long-d",
+    "strategy": "layered",
+    "repetition": 0,
+    "answer": "",
+    "checks": {
+      "facts": false,
+      "current_lookup": false,
+      "no_error": true,
+      "two_compactions": false
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": null,
+    "working": null,
+    "summary_revision": null,
+    "last_tool_calls": [],
+    "database_archive_prefix": "v3-hold-long-d-layered-0"
+  },
+  {
+    "case_id": "v3-hold-current-sku",
+    "strategy": "deterministic",
+    "repetition": 0,
+    "answer": "",
+    "checks": {
+      "facts": false,
+      "current_lookup": false,
+      "no_error": true
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": null,
+    "working": null,
+    "summary_revision": null,
+    "last_tool_calls": [],
+    "database_archive_prefix": "v3-hold-current-sku-deterministic-0"
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "strategy": "layered",
+    "repetition": 0,
+    "answer": "根据您的历史记录，P18412（TrailOx 20寸登机行李箱 铝框款）被淘汰的原因是：**价格超出您当前335元的预算**。\n\n该商品在寄往德国（DE）时的历史落地总价为 **940.00 CNY**（商品价899.00 CNY + 运费33.00 CNY + 税费8.00 CNY），远高于您的预算上限。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": "",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "335",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为335元",
+          "message_id": "ae01adbaaa08469e85703de58cc15ec8"
+        },
+        "destination": {
+          "value": "DE",
+          "scope": "本次选购",
+          "source": "寄到德国",
+          "message_id": "ae01adbaaa08469e85703de58cc15ec8"
+        }
+      },
+      "selected": [
+        "P18413-S1"
+      ],
+      "excluded": [
+        "P18412"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算485元，寄到中国。先展示这批商品。",
+      "latest_request": "P18412先前为什么被我淘汰？",
+      "source_message_id": "3e02f8dbebb14a31b26155cb8b4f4f85",
+      "referenced": [
+        "P18412"
+      ],
+      "exclusion_reasons": {
+        "P18412": {
+          "source": "P18412先前为什么被我淘汰？",
+          "message_id": "3e02f8dbebb14a31b26155cb8b4f4f85"
+        }
+      }
+    },
+    "summary_revision": null,
+    "last_tool_calls": [
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 14}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 15}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 16}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 17}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 18}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 19}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 20}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 21}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 22}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 23}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 24}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"query\": \"P18412淘汰原因\", \"product_id\": \"P18412\"}",
+        "state": "finished"
+      }
+    ],
+    "database_archive_prefix": "v3-hold-negative-layered-0"
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "strategy": "deterministic",
+    "repetition": 2,
+    "answer": "",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true,
+      "fact_associations": false
+    },
+    "association_check": {
+      "applicable": true,
+      "status": "unknown",
+      "fields": [
+        null,
+        null
+      ]
+    },
+    "summary": null,
+    "working": null,
+    "summary_revision": null,
+    "last_tool_calls": [],
+    "database_archive_prefix": "v3-hold-pair-deterministic-2"
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "strategy": "layered",
+    "repetition": 2,
+    "answer": "",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true,
+      "two_compactions": false
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": null,
+    "working": null,
+    "summary_revision": null,
+    "last_tool_calls": [],
+    "database_archive_prefix": "v3-hold-long-b-layered-2"
+  }
+]

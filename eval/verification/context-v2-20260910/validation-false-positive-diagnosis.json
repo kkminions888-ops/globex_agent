@@ -1,0 +1,26 @@
+[
+  {
+    "case": "v2-hold-long-e-layered-2",
+    "reason": "摘要包含无法核验的商品或证据标识: P8483-S1",
+    "identifier_exists_in_original_product_evidence": true,
+    "attempt": 1
+  },
+  {
+    "case": "v2-hold-long-e-layered-2",
+    "reason": "摘要包含无法核验的商品或证据标识: P8483-S1",
+    "identifier_exists_in_original_product_evidence": true,
+    "attempt": 2
+  },
+  {
+    "case": "v2-hold-long-e-layered-0",
+    "reason": "摘要包含无法核验的商品或证据标识: P8482",
+    "identifier_exists_in_original_product_evidence": true,
+    "attempt": 1
+  },
+  {
+    "case": "v2-hold-long-e-layered-0",
+    "reason": "摘要包含无法核验的商品或证据标识: P8482",
+    "identifier_exists_in_original_product_evidence": true,
+    "attempt": 2
+  }
+]

@@ -1,0 +1,77 @@
+{
+  "case_id": "v3-hold-scope",
+  "ratings": [
+    {
+      "response_id": "answer_01",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰简洁，明确给出了预算上限和币种（CNY），完全贴合问题要求。"
+    },
+    {
+      "response_id": "answer_02",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰表达预算上限和币种，使用“元”和“CNY（人民币）”双重说明，信息完整且贴合问题。"
+    },
+    {
+      "response_id": "answer_03",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "表达简洁明确，直接给出预算上限和币种，符合问题要求。"
+    },
+    {
+      "response_id": "answer_04",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清楚说明预算上限和币种，使用“元人民币（CNY）”形式，信息完整且易理解。"
+    },
+    {
+      "response_id": "answer_05",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "简洁明确，直接回答预算上限和币种，贴合问题。"
+    },
+    {
+      "response_id": "answer_06",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰表达预算上限和币种，信息完整，完全符合问题要求。"
+    },
+    {
+      "response_id": "answer_07",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "明确给出预算上限和币种，表达简洁，贴合问题。"
+    },
+    {
+      "response_id": "answer_08",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清楚回答预算上限和币种，表达直接且无冗余，符合问题要求。"
+    },
+    {
+      "response_id": "answer_09",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "简洁明确地提供预算上限和币种，完全贴合问题。"
+    }
+  ],
+  "error": null,
+  "usage": [
+    {
+      "kind": "evaluation",
+      "input_tokens": 1085,
+      "output_tokens": 519,
+      "elapsed_ms": 9672.158625035081
+    }
+  ]
+}

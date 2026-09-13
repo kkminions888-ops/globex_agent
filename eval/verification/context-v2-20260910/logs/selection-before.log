@@ -1,0 +1,95 @@
+FFFFF                                                                    [100%]
+=================================== FAILURES ===================================
+_ test_comma_separates_opposite_product_decisions[\u9009\u4e2dP1003-S1\uff0c\u6392\u9664P1002] _
+
+sentence = '选中P1003-S1，排除P1002'
+
+    @pytest.mark.parametrize('sentence', [
+        '选中P1003-S1，排除P1002',
+        '选中P1003-S1, 不选P1002',
+        '排除P1002，选择P1003-S1',
+    ])
+    def test_comma_separates_opposite_product_decisions(sentence):
+        agent=fixture_agent()
+        update_working_state(agent,[UserMsg('b',sentence)])
+        work=governance(agent)['working']
+>       assert work['selected']==['P1003-S1']
+E       AssertionError: assert [] == ['P1003-S1']
+E         
+E         Right contains one more item: 'P1003-S1'
+E         Use -v to get more diff
+
+tests/test_layered_context.py:339: AssertionError
+_ test_comma_separates_opposite_product_decisions[\u9009\u4e2dP1003-S1, \u4e0d\u9009P1002] _
+
+sentence = '选中P1003-S1, 不选P1002'
+
+    @pytest.mark.parametrize('sentence', [
+        '选中P1003-S1，排除P1002',
+        '选中P1003-S1, 不选P1002',
+        '排除P1002，选择P1003-S1',
+    ])
+    def test_comma_separates_opposite_product_decisions(sentence):
+        agent=fixture_agent()
+        update_working_state(agent,[UserMsg('b',sentence)])
+        work=governance(agent)['working']
+>       assert work['selected']==['P1003-S1']
+E       AssertionError: assert [] == ['P1003-S1']
+E         
+E         Right contains one more item: 'P1003-S1'
+E         Use -v to get more diff
+
+tests/test_layered_context.py:339: AssertionError
+_ test_comma_separates_opposite_product_decisions[\u6392\u9664P1002\uff0c\u9009\u62e9P1003-S1] _
+
+sentence = '排除P1002，选择P1003-S1'
+
+    @pytest.mark.parametrize('sentence', [
+        '选中P1003-S1，排除P1002',
+        '选中P1003-S1, 不选P1002',
+        '排除P1002，选择P1003-S1',
+    ])
+    def test_comma_separates_opposite_product_decisions(sentence):
+        agent=fixture_agent()
+        update_working_state(agent,[UserMsg('b',sentence)])
+        work=governance(agent)['working']
+>       assert work['selected']==['P1003-S1']
+E       AssertionError: assert [] == ['P1003-S1']
+E         
+E         Right contains one more item: 'P1003-S1'
+E         Use -v to get more diff
+
+tests/test_layered_context.py:339: AssertionError
+_________________ test_comparison_comma_list_remains_complete __________________
+
+    def test_comparison_comma_list_remains_complete():
+        agent=fixture_agent()
+        update_working_state(agent,[UserMsg('b','比较P1001-S1，P1002-S1和P1003-S2，排除P1004')])
+        work=governance(agent)['working']
+>       assert work['comparisons']==['P1001-S1','P1002-S1','P1003-S2']
+E       AssertionError: assert [] == ['P1001-S1', ...', 'P1003-S2']
+E         
+E         Right contains 3 more items, first extra item: 'P1001-S1'
+E         Use -v to get more diff
+
+tests/test_layered_context.py:347: AssertionError
+____________ test_explicit_reselection_replaces_previous_selection _____________
+
+    def test_explicit_reselection_replaces_previous_selection():
+        agent=fixture_agent()
+        update_working_state(agent,[UserMsg('b','选中P1001-S1'),UserMsg('b','改选P1003-S2')])
+>       assert governance(agent)['working']['selected']==['P1003-S2']
+E       AssertionError: assert ['P1001-S1', 'P1003-S2'] == ['P1003-S2']
+E         
+E         At index 0 diff: 'P1001-S1' != 'P1003-S2'
+E         Left contains one more item: 'P1003-S2'
+E         Use -v to get more diff
+
+tests/test_layered_context.py:354: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_layered_context.py::test_comma_separates_opposite_product_decisions[\u9009\u4e2dP1003-S1\uff0c\u6392\u9664P1002]
+FAILED tests/test_layered_context.py::test_comma_separates_opposite_product_decisions[\u9009\u4e2dP1003-S1, \u4e0d\u9009P1002]
+FAILED tests/test_layered_context.py::test_comma_separates_opposite_product_decisions[\u6392\u9664P1002\uff0c\u9009\u62e9P1003-S1]
+FAILED tests/test_layered_context.py::test_comparison_comma_list_remains_complete
+FAILED tests/test_layered_context.py::test_explicit_reselection_replaces_previous_selection
+5 failed, 26 deselected in 1.08s

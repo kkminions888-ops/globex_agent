@@ -1,0 +1,161 @@
+[
+  {
+    "case_id": "v3-hold-current-sku",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "deterministic",
+    "repetition": 0,
+    "answer": "P18403-S1 当前价格为 135 CNY，库存 11 件。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 10296,
+        "output_tokens": 12,
+        "elapsed_ms": 1946.2011250143405
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10409,
+        "output_tokens": 26,
+        "elapsed_ms": 2948.1704579957295
+      }
+    ],
+    "input_tokens": 20705,
+    "output_tokens": 38,
+    "model_calls": 2,
+    "lookup_calls": 0,
+    "current_calls": 1,
+    "elapsed_ms": 13772,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 12993,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 25262,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 11432,
+      "after_tokens": 11432,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 7,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  },
+  {
+    "case_id": "v3-hold-current-sku",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "layered",
+    "repetition": 0,
+    "answer": "P18403-S1 当前价格为 135 CNY，库存 11 件。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 10317,
+        "output_tokens": 12,
+        "elapsed_ms": 1453.0294580035843
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10430,
+        "output_tokens": 26,
+        "elapsed_ms": 1150.0904169806745
+      }
+    ],
+    "input_tokens": 20747,
+    "output_tokens": 38,
+    "model_calls": 2,
+    "lookup_calls": 0,
+    "current_calls": 1,
+    "elapsed_ms": 16326,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 16186,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 25205,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 11455,
+      "after_tokens": 11455,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 5,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  },
+  {
+    "case_id": "v3-hold-current-sku",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "legacy",
+    "repetition": 0,
+    "answer": "P18403-S1 当前价格为 135 CNY，库存 11 件。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 47026,
+        "output_tokens": 12,
+        "elapsed_ms": 3457.365917012794
+      },
+      {
+        "kind": "business",
+        "input_tokens": 47139,
+        "output_tokens": 26,
+        "elapsed_ms": 2862.068083981285
+      }
+    ],
+    "input_tokens": 94165,
+    "output_tokens": 38,
+    "model_calls": 2,
+    "lookup_calls": 0,
+    "current_calls": 1,
+    "elapsed_ms": 14905,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 14808,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 61547,
+    "last_compaction": null,
+    "final_product_observations": 120,
+    "final_product_duplicate_ratio": 0.9166666666666666
+  }
+]

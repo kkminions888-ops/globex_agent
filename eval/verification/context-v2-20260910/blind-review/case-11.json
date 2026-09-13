@@ -1,0 +1,77 @@
+{
+  "case_id": "v3-hold-long-b",
+  "ratings": [
+    {
+      "response_id": "answer_01",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 2,
+      "reason": "清晰简洁地回答了问题，但未说明数据是否为历史或当前状态。"
+    },
+    {
+      "response_id": "answer_02",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清楚标明历史数据并提示当前状态需核验，贴合问题。"
+    },
+    {
+      "response_id": "answer_03",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 2,
+      "reason": "表达清楚、贴合问题，但未区分历史与当前状态。"
+    },
+    {
+      "response_id": "answer_04",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "简洁明了，并明确指出是历史观察，非当前状态。"
+    },
+    {
+      "response_id": "answer_05",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "信息完整，明确标注历史数据并提示需核验当前状态。"
+    },
+    {
+      "response_id": "answer_06",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "准确回答并清楚区分历史与当前状态，贴合问题要求。"
+    },
+    {
+      "response_id": "answer_07",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "简洁且明确标注为历史记录，非当前状态。"
+    },
+    {
+      "response_id": "answer_08",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "表达清晰，明确指出是历史观察，非当前状态。"
+    },
+    {
+      "response_id": "answer_09",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 2,
+      "reason": "清楚回答问题，但未说明数据时效性。"
+    }
+  ],
+  "error": null,
+  "usage": [
+    {
+      "kind": "evaluation",
+      "input_tokens": 1428,
+      "output_tokens": 477,
+      "elapsed_ms": 9280.554416996893
+    }
+  ]
+}

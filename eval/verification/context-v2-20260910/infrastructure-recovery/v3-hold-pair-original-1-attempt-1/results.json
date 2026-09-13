@@ -1,0 +1,179 @@
+[
+  {
+    "case_id": "v3-hold-pair",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "deterministic",
+    "repetition": 0,
+    "answer": "根据最初批次（第1批，观察时间 2026-09-01T10:01:00Z）的历史记录：\n\n- **P18341-S2**（沙漠黄）历史单价为 **249 CNY**  \n- **P18343-S1**（石墨黑）历史单价为 **213 CNY**\n\n以上均为寄到中国（CN）时的历史报价，非当前价格。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 14466,
+        "output_tokens": 139,
+        "elapsed_ms": 4279.883957991842
+      },
+      {
+        "kind": "business",
+        "input_tokens": 15604,
+        "output_tokens": 103,
+        "elapsed_ms": 4439.768166979775
+      }
+    ],
+    "input_tokens": 30070,
+    "output_tokens": 242,
+    "model_calls": 2,
+    "lookup_calls": 2,
+    "current_calls": 0,
+    "elapsed_ms": 15036,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 14469,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 76375,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 16996,
+      "after_tokens": 16996,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 14,
+      "status": "noop"
+    },
+    "final_product_observations": 120,
+    "final_product_duplicate_ratio": 0.9166666666666666
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "layered",
+    "repetition": 0,
+    "answer": "根据最初批次（第1批，观察时间 2026-09-01T10:01:00Z）的历史记录：\n\n- **P18341-S2**（沙漠黄）历史单价为 **249 CNY**  \n- **P18343-S1**（石墨黑）历史单价为 **213 CNY**\n\n以上均为历史快照数据，不代表当前价格。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 14464,
+        "output_tokens": 139,
+        "elapsed_ms": 3403.2122080097906
+      },
+      {
+        "kind": "business",
+        "input_tokens": 15604,
+        "output_tokens": 98,
+        "elapsed_ms": 2391.67675000499
+      }
+    ],
+    "input_tokens": 30068,
+    "output_tokens": 237,
+    "model_calls": 2,
+    "lookup_calls": 2,
+    "current_calls": 0,
+    "elapsed_ms": 17530,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 17072,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 76318,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 16992,
+      "after_tokens": 16992,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 15,
+      "status": "noop"
+    },
+    "final_product_observations": 120,
+    "final_product_duplicate_ratio": 0.9166666666666666
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "legacy",
+    "repetition": 0,
+    "answer": "在第1批商品中：\n\n- **P18341-S2**（Nomadica 旅行三件套 沙漠黄）的历史单价为 **249 CNY**。  \n- **P18343-S1**（Wanderlite 折叠旅行双肩包 石墨黑）的历史单价为 **213 CNY**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 47008,
+        "output_tokens": 103,
+        "elapsed_ms": 4597.923332999926
+      },
+      {
+        "kind": "business",
+        "input_tokens": 47159,
+        "output_tokens": 99,
+        "elapsed_ms": 2131.340166000882
+      },
+      {
+        "kind": "business",
+        "input_tokens": 47306,
+        "output_tokens": 93,
+        "elapsed_ms": 4648.076582991052
+      },
+      {
+        "kind": "business",
+        "input_tokens": 47447,
+        "output_tokens": 22,
+        "elapsed_ms": 1767.833582998719
+      },
+      {
+        "kind": "business",
+        "input_tokens": 49339,
+        "output_tokens": 83,
+        "elapsed_ms": 3711.065042007249
+      }
+    ],
+    "input_tokens": 238259,
+    "output_tokens": 400,
+    "model_calls": 5,
+    "lookup_calls": 6,
+    "current_calls": 0,
+    "elapsed_ms": 29264,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 29162,
+        "compacted": false,
+        "model_calls": 5
+      }
+    ],
+    "final_context_estimated_tokens": 65014,
+    "last_compaction": null,
+    "final_product_observations": 125,
+    "final_product_duplicate_ratio": 0.92
+  }
+]

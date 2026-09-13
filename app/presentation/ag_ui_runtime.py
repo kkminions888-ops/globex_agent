@@ -78,7 +78,7 @@ class AGUIRuntime:
 
     async def _produce(self, body, intent, entry):
         queue = asyncio.Queue()
-        adapter = AGUIRunAdapter(body, queue.put_nowait)
+        adapter = AGUIRunAdapter(body, queue.put_nowait, authoritative_state=body.state)
 
         async def write_events():
             while True:
@@ -140,8 +140,10 @@ class AGUIRuntime:
                     use_semantic_cache=False, persistence_guard=entry.is_valid)
             if not entry.is_valid():
                 raise asyncio.CancelledError()
+            if getattr(result,"error_code",None)=="SESSION_VERSION_CHANGED":
+                adapter.state["resumeDestination"]=await self.journal.latest_destination(intent.shopping_session_id,intent.buyer_id)
             if result.error or adapter.error:
-                adapter.fail(adapter.error or "本轮服务暂时未能完成请求，请重试。")
+                adapter.fail(result.error if getattr(result,"error_code",None) in {"SESSION_VERSION_CHANGED","CONTEXT_CAPACITY_EXCEEDED"} else adapter.error or "本轮服务暂时未能完成请求，请重试。", code=getattr(result,"error_code",None))
             else:
                 adapter.finish(result.final_text)
         except asyncio.CancelledError:

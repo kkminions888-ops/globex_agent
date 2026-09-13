@@ -1,0 +1,473 @@
+[
+  {
+    "case_id": "dev-earliest",
+    "strategy": "entry",
+    "repetition": 1,
+    "answer": "未找到第一批第三件商品的详细信息。建议重新查询或确认批次与位置是否正确。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": "",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "69cb6868f70648f0a846f426bc08fa9a"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "69cb6868f70648f0a846f426bc08fa9a"
+        },
+        "55c68aa6b200": {
+          "source": "选中P1003-S1，不要下单",
+          "message_id": "69cb6868f70648f0a846f426bc08fa9a",
+          "scope": "待模型结合原文核对"
+        }
+      },
+      "selected": [],
+      "excluded": [
+        "P1003-S1",
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "第一批第三件的product_id和石墨黑sku_id是什么？",
+      "source_message_id": "a41c6a93a9344617989c462c0b4d589c"
+    },
+    "summary_revision": null,
+    "database_archive_prefix": "dev-earliest-entry-1"
+  },
+  {
+    "case_id": "dev-earliest",
+    "strategy": "entry",
+    "repetition": 2,
+    "answer": "未在第一批中找到第三件商品的详细信息。可能该批次商品数据已归档或不存在。建议重新查询或确认批次与位置是否正确。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": "",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "fd1120d56baa45038fbd721ccd7e9075"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "fd1120d56baa45038fbd721ccd7e9075"
+        },
+        "55c68aa6b200": {
+          "source": "选中P1003-S1，不要下单",
+          "message_id": "fd1120d56baa45038fbd721ccd7e9075",
+          "scope": "待模型结合原文核对"
+        }
+      },
+      "selected": [],
+      "excluded": [
+        "P1003-S1",
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "第一批第三件的product_id和石墨黑sku_id是什么？",
+      "source_message_id": "2fa1020da464444eb375f1621ed0b3a2"
+    },
+    "summary_revision": null,
+    "database_archive_prefix": "dev-earliest-entry-2"
+  },
+  {
+    "case_id": "dev-sku",
+    "strategy": "entry",
+    "repetition": 2,
+    "answer": "当前无法从历史记录中提取第一批商品的详细规格信息。建议重新查询第一批商品以获取完整数据，或确认是否需要其他协助。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": "",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "9807f134877e49e88bdb7d936b66c158"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "9807f134877e49e88bdb7d936b66c158"
+        },
+        "55c68aa6b200": {
+          "source": "选中P1003-S1，不要下单",
+          "message_id": "9807f134877e49e88bdb7d936b66c158",
+          "scope": "待模型结合原文核对"
+        }
+      },
+      "selected": [],
+      "excluded": [
+        "P1003-S1",
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "请从第一批商品中找出所有黑色规格，列出完整sku_id和价格。",
+      "source_message_id": "fe8c91c4ec8b47d7a0c58268988e41fe"
+    },
+    "summary_revision": null,
+    "database_archive_prefix": "dev-sku-entry-2"
+  },
+  {
+    "case_id": "dev-second",
+    "strategy": "entry",
+    "repetition": 0,
+    "answer": "未能从最新批次（第20批）中检索到第二件商品的完整 product_id。请确认该批次是否包含至少两件商品，或提供更多信息以便进一步查询。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": "",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "b0e24a2880374dcb8bde53376f50edf8"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "b0e24a2880374dcb8bde53376f50edf8"
+        },
+        "55c68aa6b200": {
+          "source": "选中P1003-S1，不要下单",
+          "message_id": "b0e24a2880374dcb8bde53376f50edf8",
+          "scope": "待模型结合原文核对"
+        }
+      },
+      "selected": [],
+      "excluded": [
+        "P1003-S1",
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "只告诉我最新展示批次第二件商品的完整product_id。",
+      "source_message_id": "2acd00819aba43b58f980b7d7cfa67ef"
+    },
+    "summary_revision": null,
+    "database_archive_prefix": "dev-second-entry-0"
+  },
+  {
+    "case_id": "dev-second",
+    "strategy": "entry",
+    "repetition": 1,
+    "answer": "未能通过历史记录查询到第20批第二件商品的 product_id。建议重新获取该批次商品详情以确认信息。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": "",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "cb2e3d84dee947ec9bbde2bb3f66acd6"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "cb2e3d84dee947ec9bbde2bb3f66acd6"
+        },
+        "55c68aa6b200": {
+          "source": "选中P1003-S1，不要下单",
+          "message_id": "cb2e3d84dee947ec9bbde2bb3f66acd6",
+          "scope": "待模型结合原文核对"
+        }
+      },
+      "selected": [],
+      "excluded": [
+        "P1003-S1",
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "只告诉我最新展示批次第二件商品的完整product_id。",
+      "source_message_id": "b56e7c08809b4ee7a81e0aad3a19c3df"
+    },
+    "summary_revision": null,
+    "database_archive_prefix": "dev-second-entry-1"
+  },
+  {
+    "case_id": "dev-cost",
+    "strategy": "pressure",
+    "repetition": 1,
+    "answer": "根据第1批商品数据，P1003（Wanderlite 折叠旅行双肩包 35L）寄往日本的到手价为 **164元**，运费为 **35元**。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": "<system-info>以下是历史工作摘要；以本轮交易账本、当前偏好 revision 及最新候选证据为准，历史摘要不构成执行授权。\n# 买家诉求与约束\n用户最初要求预算300元寄到中国，随后更新为预算180元寄到日本。用户选中P1003-S1（Wanderlite折叠旅行双肩包35L，129元CNY）并明确不要下单，同时淘汰P1002（因价格过高）。当前任务是在新约束下继续为用户服务。\n\n# 当前进展（已推荐商品 / 已创建订单）\n已展示18批商品，每批内容重复。用户已明确当前预算180元、目的地日本，并选中P1003-S1但未下单。P1002已被排除。\n\n# 关键事实（product_id / sku_id / 价格 / 订单号）\n- 用户偏好发生变更：目的地从中国改为日本，预算从300元降至180元，此约束仅限本次选购。\n- P1003-S1到手价164元（含35元运费），符合当前预算。\n- 所有批次商品数据重复，无新商品出现。\n- 用户多次要求继续展示商品，但数据未更新。\n\n# 下一步与待确认事项\n1. 向用户确认是否仍需要继续展示商品（因数据重复）。\n2. 或建议基于当前选中商品P1003-S1进行下一步操作（如确认下单或对比其他符合预算商品）。\n3. 需明确用户意图以避免无效循环。\n\n# 买家偏好与必须保留的上下文\n- 预算180元CNY、目的地日本为本次选购硬约束。\n- P1003-S1已选中但未下单，P1002已排除。\n- 用户要求用元（CNY）回答价格问题。\n- 不得擅自下单，需用户明确授权。</system-info>",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "cc9b0e246d284270bf4a3069e419277b"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "cc9b0e246d284270bf4a3069e419277b"
+        },
+        "55c68aa6b200": {
+          "source": "选中P1003-S1，不要下单",
+          "message_id": "cc9b0e246d284270bf4a3069e419277b",
+          "scope": "待模型结合原文核对"
+        }
+      },
+      "selected": [],
+      "excluded": [
+        "P1003-S1",
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "第一批P1003的到手价和运费分别是多少？用元回答。",
+      "source_message_id": "e231c95756264a82a9eb98a0c5c91f08",
+      "referenced": [
+        "P1003"
+      ]
+    },
+    "summary_revision": 1,
+    "database_archive_prefix": "dev-cost-pressure-1"
+  },
+  {
+    "case_id": "dev-sku",
+    "strategy": "entry",
+    "repetition": 1,
+    "answer": "未能从第一批商品中提取到具体商品数据。请确认是否需要重新加载或提供更明确的查询条件。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": "",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "1e231112936642db925f8533ab2dac86"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "1e231112936642db925f8533ab2dac86"
+        },
+        "55c68aa6b200": {
+          "source": "选中P1003-S1，不要下单",
+          "message_id": "1e231112936642db925f8533ab2dac86",
+          "scope": "待模型结合原文核对"
+        }
+      },
+      "selected": [],
+      "excluded": [
+        "P1003-S1",
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "请从第一批商品中找出所有黑色规格，列出完整sku_id和价格。",
+      "source_message_id": "9d746a45e8bb40208831f0279462a15e"
+    },
+    "summary_revision": null,
+    "database_archive_prefix": "dev-sku-entry-1"
+  },
+  {
+    "case_id": "dev-second",
+    "strategy": "entry",
+    "repetition": 2,
+    "answer": "未能通过回查获取第20批第二件商品的 product_id。请确认该批次是否包含至少两件商品，或提供更多上下文以便进一步定位。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": "",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "4119273371274285b5ca06d47a00693b"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "4119273371274285b5ca06d47a00693b"
+        },
+        "55c68aa6b200": {
+          "source": "选中P1003-S1，不要下单",
+          "message_id": "4119273371274285b5ca06d47a00693b",
+          "scope": "待模型结合原文核对"
+        }
+      },
+      "selected": [],
+      "excluded": [
+        "P1003-S1",
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "只告诉我最新展示批次第二件商品的完整product_id。",
+      "source_message_id": "9edb6999430a477087a8dce3bcd2ad1e"
+    },
+    "summary_revision": null,
+    "database_archive_prefix": "dev-second-entry-2"
+  },
+  {
+    "case_id": "dev-sku",
+    "strategy": "entry",
+    "repetition": 0,
+    "answer": "未能从第一批商品中提取出具体商品及其 SKU 信息。请确认是否需要重新加载第一批商品，或提供更明确的指引以便查找黑色规格。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "association_check": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "summary": "",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "e473ffe3fa5040edbaa0fa132e3b645e"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "e473ffe3fa5040edbaa0fa132e3b645e"
+        },
+        "55c68aa6b200": {
+          "source": "选中P1003-S1，不要下单",
+          "message_id": "e473ffe3fa5040edbaa0fa132e3b645e",
+          "scope": "待模型结合原文核对"
+        }
+      },
+      "selected": [],
+      "excluded": [
+        "P1003-S1",
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "请从第一批商品中找出所有黑色规格，列出完整sku_id和价格。",
+      "source_message_id": "571a34237c124f778d3140e1fdf5e895"
+    },
+    "summary_revision": null,
+    "database_archive_prefix": "dev-sku-entry-0"
+  }
+]

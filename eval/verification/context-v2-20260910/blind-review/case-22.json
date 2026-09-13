@@ -1,0 +1,77 @@
+{
+  "case_id": "v3-hold-quote-cn",
+  "ratings": [
+    {
+      "response_id": "answer_01",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰说明是历史报价，明确区分批次、商品、价格构成与时间，完全贴合问题。"
+    },
+    {
+      "response_id": "answer_02",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "简洁准确，但未明确说明是历史记录，仅隐含在‘历史记录’中，略逊于最佳。"
+    },
+    {
+      "response_id": "answer_03",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "信息完整，但未明确指出是历史报价，时间维度稍显模糊。"
+    },
+    {
+      "response_id": "answer_04",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "表达清晰贴合问题，但缺乏对‘历史’性质的明确说明。"
+    },
+    {
+      "response_id": "answer_05",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "清楚传达价格信息，但未强调这是历史数据。"
+    },
+    {
+      "response_id": "answer_06",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "结构良好，但未突出时间属性，仅通过‘历史记录’间接体现。"
+    },
+    {
+      "response_id": "answer_07",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "信息准确简洁，但未明确说明是历史报价。"
+    },
+    {
+      "response_id": "answer_08",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "表达清楚，贴合问题，但时间属性未明示。"
+    },
+    {
+      "response_id": "answer_09",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰标明历史时间点，并提醒非当前价格，时间区分最明确。"
+    }
+  ],
+  "error": null,
+  "usage": [
+    {
+      "kind": "evaluation",
+      "input_tokens": 1527,
+      "output_tokens": 502,
+      "elapsed_ms": 9336.622958013322
+    }
+  ]
+}

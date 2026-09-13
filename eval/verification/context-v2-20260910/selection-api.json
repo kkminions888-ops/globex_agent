@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "evidence": [
+    {
+      "question": "选中P1003-S1，排除P1002。只确认选购意向，不要下单或修改长期偏好。",
+      "selected": [
+        "P1003-S1"
+      ],
+      "excluded": [
+        "P1002"
+      ],
+      "budget": "180",
+      "country": "JP",
+      "terminal": "RUN_FINISHED"
+    },
+    {
+      "question": "改选P1003-S2。只确认选购意向，不要下单或修改长期偏好。",
+      "selected": [
+        "P1003-S2"
+      ],
+      "excluded": [
+        "P1002"
+      ],
+      "budget": "180",
+      "country": "JP",
+      "terminal": "RUN_FINISHED"
+    }
+  ],
+  "restart_restored_selection": true,
+  "restart_context_revision": 17
+}

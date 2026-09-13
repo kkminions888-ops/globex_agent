@@ -1,0 +1,893 @@
+[
+  {
+    "case_id": "v2-hold-last",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "deterministic",
+    "repetition": 1,
+    "answer": "最新一批（第24批）第二件商品的 `product_id` 是 **P8233**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 10235,
+        "output_tokens": 25,
+        "elapsed_ms": 1625.3410830104258
+      }
+    ],
+    "input_tokens": 10235,
+    "output_tokens": 25,
+    "model_calls": 1,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 3348,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 2104,
+        "compacted": false,
+        "model_calls": 1
+      }
+    ],
+    "final_context_estimated_tokens": 24845,
+    "last_compaction": {
+      "policy_version": "layered-v2",
+      "reason": "pressure",
+      "before_tokens": 14232,
+      "after_tokens": 9839,
+      "archived_results": 21,
+      "summary_changed": false,
+      "elapsed_ms": 25,
+      "status": "completed"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  },
+  {
+    "case_id": "v2-hold-approval",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "deterministic",
+    "repetition": 2,
+    "answer": "当前订单状态为 **已取消（CANCELLED）**，订单ID为 **ORD-EVAL**。  \n所选商品为 **P8333-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑），当前价格为 **163 CNY**，库存为 **4** 件。  \n\n无任何长期偏好生效。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 10235,
+        "output_tokens": 12,
+        "elapsed_ms": 1337.046291999286
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10345,
+        "output_tokens": 82,
+        "elapsed_ms": 2198.6610830063
+      }
+    ],
+    "input_tokens": 20580,
+    "output_tokens": 94,
+    "model_calls": 2,
+    "lookup_calls": 0,
+    "current_calls": 1,
+    "elapsed_ms": 4854,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 4754,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 25275,
+    "last_compaction": {
+      "policy_version": "layered-v2",
+      "reason": "pressure",
+      "before_tokens": 11364,
+      "after_tokens": 11364,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 7,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  },
+  {
+    "case_id": "v2-hold-long-d",
+    "split": "holdout",
+    "mode": "long",
+    "strategy": "layered",
+    "repetition": 1,
+    "answer": "已核实 ORD-EVAL 的当前状态：  \n- 商品：P8473-S1  \n- 当前单价：139 CNY  \n- 当前库存：14 件  \n- 订单状态：CANCELLED（已取消）  \n\n当前无长期偏好约束。该商品符合预算322元及寄往英国（GB）的要求。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true,
+      "two_compactions": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 1136,
+        "output_tokens": 22,
+        "elapsed_ms": 1746.032583003398
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3497,
+        "output_tokens": 28,
+        "elapsed_ms": 1730.6747080001514
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3552,
+        "output_tokens": 22,
+        "elapsed_ms": 1071.9149590004236
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5912,
+        "output_tokens": 48,
+        "elapsed_ms": 2723.920457996428
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5993,
+        "output_tokens": 22,
+        "elapsed_ms": 1209.000290982658
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6450,
+        "output_tokens": 58,
+        "elapsed_ms": 2294.7022909938823
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4334,
+        "output_tokens": 22,
+        "elapsed_ms": 1141.3686249870807
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4794,
+        "output_tokens": 59,
+        "elapsed_ms": 1920.731959020486
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4572,
+        "output_tokens": 22,
+        "elapsed_ms": 1654.894332983531
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5021,
+        "output_tokens": 59,
+        "elapsed_ms": 2117.3414580116514
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4966,
+        "output_tokens": 22,
+        "elapsed_ms": 1137.0998329948634
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5409,
+        "output_tokens": 66,
+        "elapsed_ms": 2338.1039160012733
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5170,
+        "output_tokens": 22,
+        "elapsed_ms": 2350.5464589979965
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5612,
+        "output_tokens": 66,
+        "elapsed_ms": 4028.4082910220604
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5440,
+        "output_tokens": 22,
+        "elapsed_ms": 2173.1629999994766
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5897,
+        "output_tokens": 66,
+        "elapsed_ms": 3536.578458995791
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5666,
+        "output_tokens": 22,
+        "elapsed_ms": 1399.883125006454
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6101,
+        "output_tokens": 66,
+        "elapsed_ms": 1897.213374992134
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4977,
+        "output_tokens": 23,
+        "elapsed_ms": 2072.40204201662
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5428,
+        "output_tokens": 67,
+        "elapsed_ms": 1813.5868750105146
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5224,
+        "output_tokens": 23,
+        "elapsed_ms": 2246.3235830073245
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5661,
+        "output_tokens": 67,
+        "elapsed_ms": 2101.3753750012256
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5486,
+        "output_tokens": 23,
+        "elapsed_ms": 1428.7739999999758
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5936,
+        "output_tokens": 68,
+        "elapsed_ms": 4610.741790995235
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5735,
+        "output_tokens": 23,
+        "elapsed_ms": 1303.306124988012
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6177,
+        "output_tokens": 68,
+        "elapsed_ms": 1897.014082991518
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5977,
+        "output_tokens": 23,
+        "elapsed_ms": 3753.832667018287
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6404,
+        "output_tokens": 68,
+        "elapsed_ms": 6679.189916001633
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6250,
+        "output_tokens": 23,
+        "elapsed_ms": 3593.871916993521
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6697,
+        "output_tokens": 68,
+        "elapsed_ms": 7027.673792006681
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6506,
+        "output_tokens": 23,
+        "elapsed_ms": 3794.9866249982733
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6945,
+        "output_tokens": 68,
+        "elapsed_ms": 3509.449874982238
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6773,
+        "output_tokens": 23,
+        "elapsed_ms": 1345.8073750080075
+      },
+      {
+        "kind": "business",
+        "input_tokens": 7229,
+        "output_tokens": 68,
+        "elapsed_ms": 6700.80845800112
+      },
+      {
+        "kind": "business",
+        "input_tokens": 7023,
+        "output_tokens": 23,
+        "elapsed_ms": 1379.9971669795923
+      },
+      {
+        "kind": "business",
+        "input_tokens": 7467,
+        "output_tokens": 68,
+        "elapsed_ms": 1923.6935839871876
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4979,
+        "output_tokens": 23,
+        "elapsed_ms": 1274.331833992619
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5412,
+        "output_tokens": 68,
+        "elapsed_ms": 1750.713082990842
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5246,
+        "output_tokens": 23,
+        "elapsed_ms": 1184.4772909826133
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5688,
+        "output_tokens": 68,
+        "elapsed_ms": 2044.5057909819297
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5510,
+        "output_tokens": 23,
+        "elapsed_ms": 1112.8750839852728
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5962,
+        "output_tokens": 68,
+        "elapsed_ms": 10735.58879099437
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5763,
+        "output_tokens": 23,
+        "elapsed_ms": 6686.5089159982745
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6212,
+        "output_tokens": 68,
+        "elapsed_ms": 17609.145958995214
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6019,
+        "output_tokens": 23,
+        "elapsed_ms": 18448.070374986855
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6463,
+        "output_tokens": 68,
+        "elapsed_ms": 15669.02120798477
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6273,
+        "output_tokens": 23,
+        "elapsed_ms": 1915.5090000131167
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6721,
+        "output_tokens": 68,
+        "elapsed_ms": 5083.448416989995
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6488,
+        "output_tokens": 12,
+        "elapsed_ms": 5227.587708010105
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6599,
+        "output_tokens": 77,
+        "elapsed_ms": 10475.796290993458
+      }
+    ],
+    "input_tokens": 284752,
+    "output_tokens": 2166,
+    "model_calls": 50,
+    "lookup_calls": 0,
+    "current_calls": 1,
+    "elapsed_ms": 225229,
+    "compactions": [
+      {
+        "policy_version": "layered-v2",
+        "reason": "manual",
+        "before_tokens": 6901,
+        "after_tokens": 5890,
+        "archived_results": 0,
+        "summary_changed": true,
+        "elapsed_ms": 14205,
+        "status": "completed"
+      },
+      {
+        "policy_version": "layered-v2",
+        "reason": "manual",
+        "before_tokens": 8464,
+        "after_tokens": 5819,
+        "archived_results": 0,
+        "summary_changed": true,
+        "elapsed_ms": 9206,
+        "status": "completed"
+      }
+    ],
+    "round_metrics": [
+      {
+        "elapsed_ms": 3736,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 5098,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 4300,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 3082,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 4130,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 4467,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 7330,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 5751,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 3317,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 3928,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 4549,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 6056,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 3218,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 10456,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 11206,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 7337,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 8073,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 3936,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 3044,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 3253,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 12745,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 24316,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 34143,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 8232,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 16049,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 13290,
+    "last_compaction": {
+      "policy_version": "layered-v2",
+      "reason": "pressure",
+      "before_tokens": 7337,
+      "after_tokens": 7337,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 2,
+      "status": "noop"
+    },
+    "final_product_observations": 10,
+    "final_product_duplicate_ratio": 0.5
+  },
+  {
+    "case_id": "v2-hold-black",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "layered",
+    "repetition": 1,
+    "answer": "根据第一批商品的历史展示记录，有黑色规格的商品及对应 SKU 如下：\n\n- **P8252**（TrailOx 20寸登机行李箱 铝框款）  \n  - SKU: **P8252-S2**，规格：黑色 / 20寸（历史币种：CNY）\n\n- **P8253**（Wanderlite 折叠旅行双肩包 35L）  \n  - SKU: **P8253-S1**，规格：石墨黑（历史币种：CNY）\n\n- **P8254**（AeroHush 主动降噪蓝牙耳机 Pro）  \n  - SKU: **P8254-S1**，规格：曜石黑（历史币种：USD）\n\n> 注：以上 SKU 信息来源于第一批商品的历史展示（观察时间：2026-09-01T10:01:00Z），仅反映当时规格情况。当前库存与价格需通过 current_business_state 核验。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 10303,
+        "output_tokens": 33,
+        "elapsed_ms": 1819.4303329801187
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11316,
+        "output_tokens": 230,
+        "elapsed_ms": 6736.930250015575
+      }
+    ],
+    "input_tokens": 21619,
+    "output_tokens": 263,
+    "model_calls": 2,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 10336,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 10236,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 26230,
+    "last_compaction": {
+      "policy_version": "layered-v2",
+      "reason": "pressure",
+      "before_tokens": 12328,
+      "after_tokens": 12328,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 73,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  },
+  {
+    "case_id": "v2-hold-long-e",
+    "split": "holdout",
+    "mode": "long",
+    "strategy": "layered",
+    "repetition": 1,
+    "answer": "",
+    "checks": {
+      "facts": false,
+      "current_lookup": false,
+      "no_error": true,
+      "two_compactions": false
+    },
+    "passed": false,
+    "error": "ValueError: 摘要包含无法核验的商品或证据标识",
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 1133,
+        "output_tokens": 22,
+        "elapsed_ms": 1316.4861670229584
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3495,
+        "output_tokens": 26,
+        "elapsed_ms": 3634.7782500088215
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3541,
+        "output_tokens": 22,
+        "elapsed_ms": 2883.4210830100346
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5905,
+        "output_tokens": 43,
+        "elapsed_ms": 3347.6494579808787
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5985,
+        "output_tokens": 22,
+        "elapsed_ms": 3264.5402910129633
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6425,
+        "output_tokens": 43,
+        "elapsed_ms": 3119.962000026135
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4295,
+        "output_tokens": 22,
+        "elapsed_ms": 4147.9957080155145
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4736,
+        "output_tokens": 43,
+        "elapsed_ms": 1243.5457920073532
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4529,
+        "output_tokens": 22,
+        "elapsed_ms": 1164.0107909915969
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4975,
+        "output_tokens": 43,
+        "elapsed_ms": 1394.526832998963
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4763,
+        "output_tokens": 22,
+        "elapsed_ms": 3604.6835420129355
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5218,
+        "output_tokens": 43,
+        "elapsed_ms": 1393.7547499954235
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5129,
+        "output_tokens": 22,
+        "elapsed_ms": 1089.1275839821901
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5576,
+        "output_tokens": 53,
+        "elapsed_ms": 3756.32791701355
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5321,
+        "output_tokens": 22,
+        "elapsed_ms": 1261.5824170061387
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5766,
+        "output_tokens": 53,
+        "elapsed_ms": 1823.4340409981087
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5562,
+        "output_tokens": 22,
+        "elapsed_ms": 3779.7405419987626
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6003,
+        "output_tokens": 53,
+        "elapsed_ms": 1460.6881250219885
+      }
+    ],
+    "input_tokens": 88357,
+    "output_tokens": 598,
+    "model_calls": 18,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 59705,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 5638,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 6242,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 6397,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 5969,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 2579,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 5035,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 4868,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 4157,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 5690,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 14718,
+    "last_compaction": {
+      "status": "failed",
+      "reason": "ValueError"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.6666666666666667
+  },
+  {
+    "case_id": "v2-hold-delete",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "deterministic",
+    "repetition": 2,
+    "answer": "根据当前偏好工具返回的结果，**长期塑料排除偏好已删除，不再要求排除塑料**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 10327,
+        "output_tokens": 12,
+        "elapsed_ms": 1247.2486249753274
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10438,
+        "output_tokens": 21,
+        "elapsed_ms": 1123.9229579805396
+      }
+    ],
+    "input_tokens": 20765,
+    "output_tokens": 33,
+    "model_calls": 2,
+    "lookup_calls": 0,
+    "current_calls": 1,
+    "elapsed_ms": 3580,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 3165,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 25207,
+    "last_compaction": {
+      "policy_version": "layered-v2",
+      "reason": "pressure",
+      "before_tokens": 11465,
+      "after_tokens": 11465,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 5,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  }
+]

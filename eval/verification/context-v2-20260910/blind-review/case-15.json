@@ -1,0 +1,77 @@
+{
+  "case_id": "v3-hold-long-f",
+  "ratings": [
+    {
+      "response_id": "answer_01",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰列出SKU、单价和库存，格式简洁，完全回应问题。"
+    },
+    {
+      "response_id": "answer_02",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰列出SKU、单价和库存，格式简洁，完全回应问题。"
+    },
+    {
+      "response_id": "answer_03",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "结构清晰，信息完整，补充商品名称不影响核心信息传达。"
+    },
+    {
+      "response_id": "answer_04",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰列出SKU、单价和库存，格式简洁，完全回应问题。"
+    },
+    {
+      "response_id": "answer_05",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰列出SKU、单价和库存，格式简洁，完全回应问题。"
+    },
+    {
+      "response_id": "answer_06",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "结构清晰，信息完整，补充商品名称不影响核心信息传达。"
+    },
+    {
+      "response_id": "answer_07",
+      "clarity": 3,
+      "fitness": 3,
+      "temporal_clarity": 3,
+      "reason": "包含额外无关信息（预算、寄送地），略显冗余，但核心信息清楚。"
+    },
+    {
+      "response_id": "answer_08",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰列出SKU、单价和库存，格式简洁，完全回应问题。"
+    },
+    {
+      "response_id": "answer_09",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "结构清晰，信息完整，补充商品名称不影响核心信息传达。"
+    }
+  ],
+  "error": null,
+  "usage": [
+    {
+      "kind": "evaluation",
+      "input_tokens": 1388,
+      "output_tokens": 486,
+      "elapsed_ms": 9200.056250032503
+    }
+  ]
+}

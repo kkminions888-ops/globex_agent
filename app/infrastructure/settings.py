@@ -78,6 +78,10 @@ class Settings:
     # 默认 SQLite（零外部依赖，落在 DATA_DIR/globex.db）。
     # 换服务型数据库需自行装异步驱动（aiomysql / asyncpg）并改此 URL，本仓未验证。
     # 特殊值 "file" = 退回三期的 JSON 文件存储（无数据库）
+    context_strategy: str = "legacy"
+    context_pruning_timing: str = "after_use"
+    context_product_tokens: int = 6000
+    context_target_tokens: int = 48000
     database_url: str = ""
     # ---- 四期：Redis 缓存 ----
     redis_url: str = ""  # 空 = 全部缓存能力关闭（零外部依赖）
@@ -131,6 +135,10 @@ def load_settings() -> Settings:
     data_dir = Path(os.getenv("DATA_DIR", str(PROJECT_ROOT / "data")))
     data_dir.mkdir(parents=True, exist_ok=True)  # SQLite 默认落在此目录，建库前必须存在
     return Settings(
+        context_strategy=os.getenv("CONTEXT_STRATEGY", "legacy"),
+        context_pruning_timing=os.getenv("CONTEXT_PRUNING_TIMING", "after_use"),
+        context_product_tokens=int(os.getenv("CONTEXT_PRODUCT_TOKENS", "6000")),
+        context_target_tokens=int(os.getenv("CONTEXT_TARGET_TOKENS", "48000")),
         llm_base_url=llm_base_url,
         llm_api_key=llm_api_key,
         llm_model=os.getenv("LLM_MODEL", "qwen3-max"),

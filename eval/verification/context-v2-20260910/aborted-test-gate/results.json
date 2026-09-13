@@ -1,0 +1,108 @@
+[
+  {
+    "case_id": "v3-hold-delete",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "deterministic",
+    "repetition": 2,
+    "answer": "根据当前偏好工具返回的信息，**长期塑料排除偏好已删除，不再要求排除塑料**。因此，目前选购无需排除含塑料（或合成聚合物）的商品。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 10306,
+        "output_tokens": 12,
+        "elapsed_ms": 1284.9186249950435
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10419,
+        "output_tokens": 37,
+        "elapsed_ms": 2047.037750016898
+      }
+    ],
+    "input_tokens": 20725,
+    "output_tokens": 49,
+    "model_calls": 2,
+    "lookup_calls": 0,
+    "current_calls": 1,
+    "elapsed_ms": 20473,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 20373,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 25265,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 11444,
+      "after_tokens": 11444,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 5,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  },
+  {
+    "case_id": "v3-hold-last",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "deterministic",
+    "repetition": 1,
+    "answer": "最新一批（第24批）第二件商品的 `product_id` 是 **P18233**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 10223,
+        "output_tokens": 26,
+        "elapsed_ms": 1561.8666249793023
+      }
+    ],
+    "input_tokens": 10223,
+    "output_tokens": 26,
+    "model_calls": 1,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 7092,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 6168,
+        "compacted": false,
+        "model_calls": 1
+      }
+    ],
+    "final_context_estimated_tokens": 24873,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 14247,
+      "after_tokens": 9816,
+      "archived_results": 21,
+      "summary_changed": false,
+      "elapsed_ms": 22,
+      "status": "completed"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  }
+]

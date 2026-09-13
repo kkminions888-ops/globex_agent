@@ -1,0 +1,2170 @@
+[
+  {
+    "case_id": "dev-second",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "pressure",
+    "repetition": 2,
+    "answer": "最新展示批次（第20批）第二件商品的完整 product_id 是：**P1003**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 11749,
+        "output_tokens": 26,
+        "elapsed_ms": 1456.6726670018397
+      }
+    ],
+    "input_tokens": 11749,
+    "output_tokens": 26,
+    "model_calls": 1,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 2592,
+    "compactions": [],
+    "final_context_estimated_tokens": 22332,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 75237,
+      "after_tokens": 11612,
+      "archived_results": 18,
+      "summary_changed": false,
+      "elapsed_ms": 372,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-second",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "after_use",
+    "repetition": 0,
+    "answer": "最新展示批次（第20批）第二件商品的完整 product_id 是：**P1003**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 11711,
+        "output_tokens": 26,
+        "elapsed_ms": 1454.2657079873607
+      }
+    ],
+    "input_tokens": 11711,
+    "output_tokens": 26,
+    "model_calls": 1,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 2423,
+    "compactions": [],
+    "final_context_estimated_tokens": 22339,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 75237,
+      "after_tokens": 11612,
+      "archived_results": 18,
+      "summary_changed": false,
+      "elapsed_ms": 14,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-repeat",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "after_use",
+    "repetition": 0,
+    "answer": "根据历史展示记录，两个 SKU 的完整信息如下：\n\n- **P1001-S2**  \n  - 商品名称：Nomadica 旅行三件套（收纳袋+颈枕+眼罩）  \n  - SKU ID：P1001-S2  \n  - 规格：沙漠黄  \n  - 价格：199.0 CNY  \n  - 落地价（寄往 JP）：224.0 CNY（含 35 CNY 运费）  \n  - 是否支持寄往日本：❌ 不支持（仅支持 CN、US、SG）\n\n- **P1003-S1**  \n  - 商品名称：Wanderlite 折叠旅行双肩包 35L  \n  - SKU ID：P1003-S1  \n  - 规格：石墨黑  \n  - 价格：129.0 CNY  \n  - 落地价（寄往 JP）：164.0 CNY（含 35 CNY 运费）  \n  - 是否支持寄往日本：✅ 支持（支持 CN、JP、SG）\n\n> ⚠️ 注意：P1001-S2 **不支持寄往日本**，不符合您当前“寄到日本”的约束。P1003-S1 符合预算（180 CNY）和目的地要求，且已被您选中（不要下单）。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 8934,
+        "output_tokens": 111,
+        "elapsed_ms": 2530.326000007335
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10923,
+        "output_tokens": 316,
+        "elapsed_ms": 6985.783249983797
+      }
+    ],
+    "input_tokens": 19857,
+    "output_tokens": 427,
+    "model_calls": 2,
+    "lookup_calls": 2,
+    "current_calls": 0,
+    "elapsed_ms": 30471,
+    "compactions": [],
+    "final_context_estimated_tokens": 12300,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 11879,
+      "after_tokens": 11879,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 1,
+      "status": "noop"
+    }
+  },
+  {
+    "case_id": "dev-second",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "after_use",
+    "repetition": 1,
+    "answer": "P1003",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 11719,
+        "output_tokens": 5,
+        "elapsed_ms": 1421.8008750176523
+      }
+    ],
+    "input_tokens": 11719,
+    "output_tokens": 5,
+    "model_calls": 1,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 2040,
+    "compactions": [],
+    "final_context_estimated_tokens": 22308,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 75237,
+      "after_tokens": 11612,
+      "archived_results": 18,
+      "summary_changed": false,
+      "elapsed_ms": 21,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-country",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "entry",
+    "repetition": 1,
+    "answer": "JP",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 4860,
+        "output_tokens": 1,
+        "elapsed_ms": 730.990957992617
+      }
+    ],
+    "input_tokens": 4860,
+    "output_tokens": 1,
+    "model_calls": 1,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 1528,
+    "compactions": [],
+    "final_context_estimated_tokens": 14793,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 75227,
+      "after_tokens": 4532,
+      "archived_results": 20,
+      "summary_changed": false,
+      "elapsed_ms": 14,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-long-a",
+    "split": "dev",
+    "mode": "long",
+    "strategy": "after_use",
+    "repetition": 1,
+    "answer": "最初选中的背包 SKU 为 **P1003-S1**。  \n当前预算为 **180 元人民币（CNY）**，作用域仅限本次选购。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true,
+      "two_compactions": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 1090,
+        "output_tokens": 22,
+        "elapsed_ms": 1205.2538330026437
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4678,
+        "output_tokens": 30,
+        "elapsed_ms": 1888.4333749883808
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4731,
+        "output_tokens": 22,
+        "elapsed_ms": 889.7634169843514
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8320,
+        "output_tokens": 52,
+        "elapsed_ms": 1587.6665000105277
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8408,
+        "output_tokens": 22,
+        "elapsed_ms": 1318.4642499836627
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8559,
+        "output_tokens": 51,
+        "elapsed_ms": 2259.2468329821713
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8646,
+        "output_tokens": 22,
+        "elapsed_ms": 1043.1227090011816
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8796,
+        "output_tokens": 51,
+        "elapsed_ms": 1342.6254160003737
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9045,
+        "output_tokens": 22,
+        "elapsed_ms": 1143.5864579980262
+      },
+      {
+        "kind": "business",
+        "input_tokens": 12636,
+        "output_tokens": 66,
+        "elapsed_ms": 1843.1157079758123
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9269,
+        "output_tokens": 22,
+        "elapsed_ms": 1123.2199579826556
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9421,
+        "output_tokens": 66,
+        "elapsed_ms": 1893.1423329922836
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9518,
+        "output_tokens": 22,
+        "elapsed_ms": 1243.0845409980975
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9672,
+        "output_tokens": 66,
+        "elapsed_ms": 1800.6625830021221
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9774,
+        "output_tokens": 22,
+        "elapsed_ms": 1213.0023339996114
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9928,
+        "output_tokens": 66,
+        "elapsed_ms": 1831.2202079978306
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9335,
+        "output_tokens": 22,
+        "elapsed_ms": 1151.3988749939017
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9484,
+        "output_tokens": 66,
+        "elapsed_ms": 2009.2362079885788
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9590,
+        "output_tokens": 23,
+        "elapsed_ms": 1234.0416249935515
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9745,
+        "output_tokens": 67,
+        "elapsed_ms": 2002.6538749807514
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9845,
+        "output_tokens": 23,
+        "elapsed_ms": 1171.2147499783896
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9998,
+        "output_tokens": 67,
+        "elapsed_ms": 1826.871209021192
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10102,
+        "output_tokens": 23,
+        "elapsed_ms": 2889.0133750101086
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10251,
+        "output_tokens": 67,
+        "elapsed_ms": 2117.1055829909164
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10352,
+        "output_tokens": 23,
+        "elapsed_ms": 1262.2049580095336
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10507,
+        "output_tokens": 67,
+        "elapsed_ms": 1769.484457996441
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10613,
+        "output_tokens": 23,
+        "elapsed_ms": 1102.7137920027599
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10768,
+        "output_tokens": 67,
+        "elapsed_ms": 2010.8085419924464
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10867,
+        "output_tokens": 23,
+        "elapsed_ms": 1247.753833013121
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11019,
+        "output_tokens": 67,
+        "elapsed_ms": 1791.1612080060877
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11122,
+        "output_tokens": 23,
+        "elapsed_ms": 1310.1687079761177
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11278,
+        "output_tokens": 67,
+        "elapsed_ms": 2000.5572910013143
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9383,
+        "output_tokens": 23,
+        "elapsed_ms": 1776.3385420257691
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9537,
+        "output_tokens": 67,
+        "elapsed_ms": 1555.5638750083745
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9639,
+        "output_tokens": 23,
+        "elapsed_ms": 1174.4588750007097
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9791,
+        "output_tokens": 67,
+        "elapsed_ms": 1787.2747910150792
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9892,
+        "output_tokens": 23,
+        "elapsed_ms": 1234.7210409934632
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10048,
+        "output_tokens": 67,
+        "elapsed_ms": 1765.7412920088973
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10150,
+        "output_tokens": 23,
+        "elapsed_ms": 1224.890791985672
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10305,
+        "output_tokens": 67,
+        "elapsed_ms": 1722.6439169899095
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10388,
+        "output_tokens": 39,
+        "elapsed_ms": 1571.8815000145696
+      },
+      {
+        "kind": "business",
+        "input_tokens": 7138,
+        "output_tokens": 41,
+        "elapsed_ms": 1909.569207986351
+      }
+    ],
+    "input_tokens": 393638,
+    "output_tokens": 1782,
+    "model_calls": 42,
+    "lookup_calls": 1,
+    "current_calls": 1,
+    "elapsed_ms": 103050,
+    "compactions": [
+      {
+        "policy_version": "layered-v1",
+        "reason": "manual",
+        "before_tokens": 11011,
+        "after_tokens": 10354,
+        "archived_results": 0,
+        "summary_changed": true,
+        "elapsed_ms": 10562,
+        "status": "completed"
+      },
+      {
+        "policy_version": "layered-v1",
+        "reason": "manual",
+        "before_tokens": 12666,
+        "after_tokens": 10443,
+        "archived_results": 0,
+        "summary_changed": true,
+        "elapsed_ms": 10834,
+        "status": "completed"
+      }
+    ],
+    "final_context_estimated_tokens": 10812,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 11696,
+      "after_tokens": 7960,
+      "archived_results": 1,
+      "summary_changed": false,
+      "elapsed_ms": 2,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-sku",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "entry",
+    "repetition": 2,
+    "answer": "未能从第一批商品中检索到具体商品数据。可能该批次商品信息未被完整保留或已归档。\n\n建议重新执行搜索或提供更明确的商品标识（如 product_id 或 sku_id）以便精准查询。是否需要我协助重新检索第一批商品？",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": false,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 4878,
+        "output_tokens": 33,
+        "elapsed_ms": 1535.2704580000136
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4940,
+        "output_tokens": 32,
+        "elapsed_ms": 1142.9562910052482
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5085,
+        "output_tokens": 56,
+        "elapsed_ms": 2036.717792012496
+      }
+    ],
+    "input_tokens": 14903,
+    "output_tokens": 121,
+    "model_calls": 3,
+    "lookup_calls": 2,
+    "current_calls": 0,
+    "elapsed_ms": 5018,
+    "compactions": [],
+    "final_context_estimated_tokens": 15477,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 8298,
+      "after_tokens": 5570,
+      "archived_results": 1,
+      "summary_changed": false,
+      "elapsed_ms": 3,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-long-b",
+    "split": "dev",
+    "mode": "long",
+    "strategy": "entry",
+    "repetition": 0,
+    "answer": "订单 ORD-EVAL 当前状态为 **CANCELLED**（已取消）。  \n商品 P1003-S1 当前价格为 139 元（CNY），库存 7 件，符合 180 元预算并可寄往日本。  \n注意：长期偏好中已无塑料排除要求。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true,
+      "two_compactions": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 1090,
+        "output_tokens": 22,
+        "elapsed_ms": 1186.8892920028884
+      },
+      {
+        "kind": "business",
+        "input_tokens": 1243,
+        "output_tokens": 24,
+        "elapsed_ms": 956.5096249862108
+      },
+      {
+        "kind": "business",
+        "input_tokens": 1293,
+        "output_tokens": 22,
+        "elapsed_ms": 951.1455410101917
+      },
+      {
+        "kind": "business",
+        "input_tokens": 1442,
+        "output_tokens": 24,
+        "elapsed_ms": 1640.5859170190524
+      },
+      {
+        "kind": "business",
+        "input_tokens": 1500,
+        "output_tokens": 22,
+        "elapsed_ms": 1010.5086249823216
+      },
+      {
+        "kind": "business",
+        "input_tokens": 1649,
+        "output_tokens": 24,
+        "elapsed_ms": 947.2056249796879
+      },
+      {
+        "kind": "business",
+        "input_tokens": 1706,
+        "output_tokens": 22,
+        "elapsed_ms": 1005.5975409923121
+      },
+      {
+        "kind": "business",
+        "input_tokens": 1861,
+        "output_tokens": 24,
+        "elapsed_ms": 898.6120840127114
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2093,
+        "output_tokens": 22,
+        "elapsed_ms": 982.4911660107318
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5679,
+        "output_tokens": 48,
+        "elapsed_ms": 1822.6519999734592
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2291,
+        "output_tokens": 22,
+        "elapsed_ms": 997.8697499900591
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2445,
+        "output_tokens": 47,
+        "elapsed_ms": 1395.201791980071
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2527,
+        "output_tokens": 22,
+        "elapsed_ms": 954.7159999783617
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2674,
+        "output_tokens": 47,
+        "elapsed_ms": 1328.0565839959309
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2755,
+        "output_tokens": 22,
+        "elapsed_ms": 908.3979580027517
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2908,
+        "output_tokens": 47,
+        "elapsed_ms": 1737.5683750142343
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2422,
+        "output_tokens": 22,
+        "elapsed_ms": 813.2945830002427
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2573,
+        "output_tokens": 47,
+        "elapsed_ms": 1330.5980419972911
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2657,
+        "output_tokens": 23,
+        "elapsed_ms": 931.1316249950323
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2809,
+        "output_tokens": 48,
+        "elapsed_ms": 1404.0772920125164
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2895,
+        "output_tokens": 23,
+        "elapsed_ms": 1011.8835419998504
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3047,
+        "output_tokens": 48,
+        "elapsed_ms": 1294.5894590229727
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3126,
+        "output_tokens": 23,
+        "elapsed_ms": 1022.3988750076387
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3280,
+        "output_tokens": 48,
+        "elapsed_ms": 1323.031916981563
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3368,
+        "output_tokens": 23,
+        "elapsed_ms": 1010.4477910208516
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3520,
+        "output_tokens": 48,
+        "elapsed_ms": 1578.04562500678
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3603,
+        "output_tokens": 23,
+        "elapsed_ms": 1172.698540991405
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3757,
+        "output_tokens": 48,
+        "elapsed_ms": 1677.0551660156343
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3841,
+        "output_tokens": 23,
+        "elapsed_ms": 1000.687084015226
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3991,
+        "output_tokens": 48,
+        "elapsed_ms": 1411.2685829750262
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4077,
+        "output_tokens": 23,
+        "elapsed_ms": 1098.7923750071786
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4227,
+        "output_tokens": 48,
+        "elapsed_ms": 1201.3900839956477
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2408,
+        "output_tokens": 23,
+        "elapsed_ms": 879.8218329902738
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2560,
+        "output_tokens": 48,
+        "elapsed_ms": 1206.4984579919837
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2648,
+        "output_tokens": 23,
+        "elapsed_ms": 921.8799170048442
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2805,
+        "output_tokens": 48,
+        "elapsed_ms": 1408.030582999345
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2888,
+        "output_tokens": 23,
+        "elapsed_ms": 922.8004590258934
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3044,
+        "output_tokens": 48,
+        "elapsed_ms": 1271.9989579927642
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3129,
+        "output_tokens": 23,
+        "elapsed_ms": 1119.1907500033267
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3281,
+        "output_tokens": 48,
+        "elapsed_ms": 1189.561125007458
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3411,
+        "output_tokens": 12,
+        "elapsed_ms": 890.7277910038829
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3523,
+        "output_tokens": 71,
+        "elapsed_ms": 2503.0420830007643
+      }
+    ],
+    "input_tokens": 118046,
+    "output_tokens": 1394,
+    "model_calls": 42,
+    "lookup_calls": 0,
+    "current_calls": 1,
+    "elapsed_ms": 83202,
+    "compactions": [
+      {
+        "policy_version": "layered-v1",
+        "reason": "manual",
+        "before_tokens": 3256,
+        "after_tokens": 2809,
+        "archived_results": 0,
+        "summary_changed": true,
+        "elapsed_ms": 12033,
+        "status": "completed"
+      },
+      {
+        "policy_version": "layered-v1",
+        "reason": "manual",
+        "before_tokens": 4905,
+        "after_tokens": 2771,
+        "archived_results": 0,
+        "summary_changed": true,
+        "elapsed_ms": 8999,
+        "status": "completed"
+      }
+    ],
+    "final_context_estimated_tokens": 6510,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 3899,
+      "after_tokens": 3899,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 1,
+      "status": "noop"
+    }
+  },
+  {
+    "case_id": "dev-country",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "after_use",
+    "repetition": 1,
+    "answer": "JP",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 11738,
+        "output_tokens": 1,
+        "elapsed_ms": 1037.4848339997698
+      }
+    ],
+    "input_tokens": 11738,
+    "output_tokens": 1,
+    "model_calls": 1,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 1532,
+    "compactions": [],
+    "final_context_estimated_tokens": 22305,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 75227,
+      "after_tokens": 11601,
+      "archived_results": 18,
+      "summary_changed": false,
+      "elapsed_ms": 15,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-cost",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "entry",
+    "repetition": 0,
+    "answer": "第一批商品中，P1003（Wanderlite 折叠旅行双肩包 35L）寄往中国时的到手价为154元，运费为25元。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 8733,
+        "output_tokens": 49,
+        "elapsed_ms": 1632.887459010817
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8811,
+        "output_tokens": 22,
+        "elapsed_ms": 902.246167010162
+      },
+      {
+        "kind": "business",
+        "input_tokens": 12400,
+        "output_tokens": 45,
+        "elapsed_ms": 1677.6714580191765
+      }
+    ],
+    "input_tokens": 29944,
+    "output_tokens": 116,
+    "model_calls": 3,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 14095,
+    "compactions": [],
+    "final_context_estimated_tokens": 13928,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 13592,
+      "after_tokens": 13592,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 1,
+      "status": "noop"
+    }
+  },
+  {
+    "case_id": "dev-country",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "after_use",
+    "repetition": 0,
+    "answer": "JP",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 11721,
+        "output_tokens": 1,
+        "elapsed_ms": 1036.336291988846
+      }
+    ],
+    "input_tokens": 11721,
+    "output_tokens": 1,
+    "model_calls": 1,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 1597,
+    "compactions": [],
+    "final_context_estimated_tokens": 22305,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 75227,
+      "after_tokens": 11601,
+      "archived_results": 18,
+      "summary_changed": false,
+      "elapsed_ms": 15,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-sku",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "pressure",
+    "repetition": 1,
+    "answer": "第一批商品中的黑色规格如下：\n\n- **P1002-S2**：黑色 / 20寸，价格 **899.00 CNY**\n- **P1003-S1**：石墨黑，价格 **129.00 CNY**\n- **P1004-S1**：曜石黑，价格 **219.00 USD**（注意币种）",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 11737,
+        "output_tokens": 33,
+        "elapsed_ms": 1789.8637919861358
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11799,
+        "output_tokens": 22,
+        "elapsed_ms": 1120.2436669846065
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11949,
+        "output_tokens": 92,
+        "elapsed_ms": 2262.2523330210242
+      }
+    ],
+    "input_tokens": 35485,
+    "output_tokens": 147,
+    "model_calls": 3,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 7091,
+    "compactions": [],
+    "final_context_estimated_tokens": 23039,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 17031,
+      "after_tokens": 13127,
+      "archived_results": 1,
+      "summary_changed": false,
+      "elapsed_ms": 3,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-earliest",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "entry",
+    "repetition": 2,
+    "answer": "未能查到第一批第三件商品的详细信息。建议重新加载第一批商品数据或确认商品是否存在。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": false,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 4853,
+        "output_tokens": 46,
+        "elapsed_ms": 1660.3324589959811
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4928,
+        "output_tokens": 32,
+        "elapsed_ms": 1075.164040987147
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5075,
+        "output_tokens": 22,
+        "elapsed_ms": 1716.1911250150297
+      }
+    ],
+    "input_tokens": 14856,
+    "output_tokens": 100,
+    "model_calls": 3,
+    "lookup_calls": 2,
+    "current_calls": 0,
+    "elapsed_ms": 6278,
+    "compactions": [],
+    "final_context_estimated_tokens": 15460,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 6518,
+      "after_tokens": 5557,
+      "archived_results": 1,
+      "summary_changed": false,
+      "elapsed_ms": 3,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-budget",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "entry",
+    "repetition": 0,
+    "answer": "180元",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": false,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 4868,
+        "output_tokens": 4,
+        "elapsed_ms": 756.5243749995716
+      }
+    ],
+    "input_tokens": 4868,
+    "output_tokens": 4,
+    "model_calls": 1,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 877,
+    "compactions": [],
+    "final_context_estimated_tokens": 14794,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 75240,
+      "after_tokens": 4545,
+      "archived_results": 20,
+      "summary_changed": false,
+      "elapsed_ms": 14,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-earliest",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "pressure",
+    "repetition": 1,
+    "answer": "第一批第三件的商品信息如下：\n\n- **product_id**: P1003  \n- **石墨黑 sku_id**: P1003-S1",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 11729,
+        "output_tokens": 46,
+        "elapsed_ms": 1800.4955420037732
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11804,
+        "output_tokens": 22,
+        "elapsed_ms": 1198.4386249969248
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11957,
+        "output_tokens": 33,
+        "elapsed_ms": 1923.2234169903677
+      }
+    ],
+    "input_tokens": 35490,
+    "output_tokens": 101,
+    "model_calls": 3,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 6291,
+    "compactions": [],
+    "final_context_estimated_tokens": 23029,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 17040,
+      "after_tokens": 13134,
+      "archived_results": 1,
+      "summary_changed": false,
+      "elapsed_ms": 3,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-material",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "after_use",
+    "repetition": 0,
+    "answer": "根据最初第1批商品描述，**P1001（Nomadica 旅行三件套）确实含有再生尼龙和合成聚合物**。具体证据如下：\n\n- **商品描述**中明确提到：“帆布加尼龙材质……含再生尼龙”；\n- **亮点（highlights）** 标注材质为：“帆布+再生尼龙（含合成聚合物）”；\n- **material_tags** 字段包含：`[\"合成聚合物\"]`。\n\n因此，P1001 同时含有再生尼龙和合成聚合物。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 8935,
+        "output_tokens": 54,
+        "elapsed_ms": 1608.1715830077883
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9018,
+        "output_tokens": 44,
+        "elapsed_ms": 1361.8954590056092
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9119,
+        "output_tokens": 22,
+        "elapsed_ms": 1415.6371249991935
+      },
+      {
+        "kind": "business",
+        "input_tokens": 12705,
+        "output_tokens": 125,
+        "elapsed_ms": 2479.3981660041027
+      }
+    ],
+    "input_tokens": 39777,
+    "output_tokens": 245,
+    "model_calls": 4,
+    "lookup_calls": 2,
+    "current_calls": 0,
+    "elapsed_ms": 18274,
+    "compactions": [],
+    "final_context_estimated_tokens": 14388,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 13927,
+      "after_tokens": 13927,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 1,
+      "status": "noop"
+    }
+  },
+  {
+    "case_id": "dev-budget",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "after_use",
+    "repetition": 2,
+    "answer": "180 CNY",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 11733,
+        "output_tokens": 5,
+        "elapsed_ms": 1147.112417005701
+      }
+    ],
+    "input_tokens": 11733,
+    "output_tokens": 5,
+    "model_calls": 1,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 2417,
+    "compactions": [],
+    "final_context_estimated_tokens": 22311,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 75240,
+      "after_tokens": 11615,
+      "archived_results": 18,
+      "summary_changed": false,
+      "elapsed_ms": 12,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-long-a",
+    "split": "dev",
+    "mode": "long",
+    "strategy": "after_use",
+    "repetition": 2,
+    "answer": "最初选中的背包SKU为 **P1003-S1**，当前预算为 **180元（CNY）**，目的地为 **日本（JP）**。该SKU当前价格为139元（CNY），符合预算约束。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true,
+      "two_compactions": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 1090,
+        "output_tokens": 22,
+        "elapsed_ms": 879.1895000031218
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4679,
+        "output_tokens": 30,
+        "elapsed_ms": 1280.9069590002764
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4736,
+        "output_tokens": 22,
+        "elapsed_ms": 945.8910840039607
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8323,
+        "output_tokens": 49,
+        "elapsed_ms": 1797.7493329963181
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8406,
+        "output_tokens": 22,
+        "elapsed_ms": 1110.9925839991774
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8558,
+        "output_tokens": 49,
+        "elapsed_ms": 1514.6678749879356
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8642,
+        "output_tokens": 22,
+        "elapsed_ms": 1332.3806249827612
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8796,
+        "output_tokens": 49,
+        "elapsed_ms": 1366.3051670009736
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9046,
+        "output_tokens": 22,
+        "elapsed_ms": 1172.2945420187898
+      },
+      {
+        "kind": "business",
+        "input_tokens": 12633,
+        "output_tokens": 60,
+        "elapsed_ms": 2038.668916997267
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9255,
+        "output_tokens": 22,
+        "elapsed_ms": 1123.108041996602
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9407,
+        "output_tokens": 60,
+        "elapsed_ms": 1757.0503750175703
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9502,
+        "output_tokens": 22,
+        "elapsed_ms": 1182.2803750110324
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9654,
+        "output_tokens": 60,
+        "elapsed_ms": 1708.3982499898411
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9751,
+        "output_tokens": 22,
+        "elapsed_ms": 1149.2049579974264
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9903,
+        "output_tokens": 60,
+        "elapsed_ms": 1890.5941669945605
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9216,
+        "output_tokens": 22,
+        "elapsed_ms": 1240.174415986985
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9368,
+        "output_tokens": 60,
+        "elapsed_ms": 1624.8273749952205
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9464,
+        "output_tokens": 23,
+        "elapsed_ms": 1135.3877500223462
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9616,
+        "output_tokens": 61,
+        "elapsed_ms": 1647.7120000054128
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9712,
+        "output_tokens": 23,
+        "elapsed_ms": 1239.0162920055445
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9868,
+        "output_tokens": 61,
+        "elapsed_ms": 1513.5369589843322
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9966,
+        "output_tokens": 23,
+        "elapsed_ms": 1197.7547499991488
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10122,
+        "output_tokens": 61,
+        "elapsed_ms": 1671.2764999829233
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10218,
+        "output_tokens": 23,
+        "elapsed_ms": 1302.8829579998273
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10369,
+        "output_tokens": 61,
+        "elapsed_ms": 1703.9331249834504
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10464,
+        "output_tokens": 23,
+        "elapsed_ms": 1239.2541249864735
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10616,
+        "output_tokens": 61,
+        "elapsed_ms": 2292.0972919964697
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10715,
+        "output_tokens": 23,
+        "elapsed_ms": 1299.114624998765
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10869,
+        "output_tokens": 61,
+        "elapsed_ms": 1936.2612910044845
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10963,
+        "output_tokens": 23,
+        "elapsed_ms": 1368.2371669856366
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11115,
+        "output_tokens": 61,
+        "elapsed_ms": 1802.7745000144932
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9260,
+        "output_tokens": 23,
+        "elapsed_ms": 1389.7248750145081
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9414,
+        "output_tokens": 61,
+        "elapsed_ms": 2006.1393340001814
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9514,
+        "output_tokens": 23,
+        "elapsed_ms": 1240.490875003161
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9670,
+        "output_tokens": 61,
+        "elapsed_ms": 2098.2944999996107
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9762,
+        "output_tokens": 23,
+        "elapsed_ms": 1288.7114589975681
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9917,
+        "output_tokens": 61,
+        "elapsed_ms": 1825.1554580056109
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10016,
+        "output_tokens": 23,
+        "elapsed_ms": 1145.8706670091487
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10168,
+        "output_tokens": 61,
+        "elapsed_ms": 1627.3787090030964
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10244,
+        "output_tokens": 39,
+        "elapsed_ms": 1466.8532500218134
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6994,
+        "output_tokens": 56,
+        "elapsed_ms": 1731.0548329842277
+      }
+    ],
+    "input_tokens": 390001,
+    "output_tokens": 1694,
+    "model_calls": 42,
+    "lookup_calls": 1,
+    "current_calls": 1,
+    "elapsed_ms": 89333,
+    "compactions": [
+      {
+        "policy_version": "layered-v1",
+        "reason": "manual",
+        "before_tokens": 10971,
+        "after_tokens": 10188,
+        "archived_results": 0,
+        "summary_changed": true,
+        "elapsed_ms": 7603,
+        "status": "completed"
+      },
+      {
+        "policy_version": "layered-v1",
+        "reason": "manual",
+        "before_tokens": 12403,
+        "after_tokens": 10257,
+        "archived_results": 0,
+        "summary_changed": true,
+        "elapsed_ms": 8509,
+        "status": "completed"
+      }
+    ],
+    "final_context_estimated_tokens": 10744,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 11528,
+      "after_tokens": 7760,
+      "archived_results": 1,
+      "summary_changed": false,
+      "elapsed_ms": 2,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-material",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "entry",
+    "repetition": 2,
+    "answer": "根据第1批商品信息，P1001（Nomadica 旅行三件套）**含有再生尼龙和合成聚合物**：\n\n- 商品描述明确提到：“帆布加尼龙材质……含再生尼龙”；\n- 高亮信息注明：“帆布+再生尼龙（含合成聚合物）”；\n- 材质标签（material_tags）包含：`[\"合成聚合物\"]`。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 8852,
+        "output_tokens": 44,
+        "elapsed_ms": 1537.9470000043511
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8925,
+        "output_tokens": 22,
+        "elapsed_ms": 959.2084580217488
+      },
+      {
+        "kind": "business",
+        "input_tokens": 12516,
+        "output_tokens": 92,
+        "elapsed_ms": 2260.9755000157747
+      }
+    ],
+    "input_tokens": 30293,
+    "output_tokens": 158,
+    "model_calls": 3,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 15011,
+    "compactions": [],
+    "final_context_estimated_tokens": 14017,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 13718,
+      "after_tokens": 13718,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 1,
+      "status": "noop"
+    }
+  },
+  {
+    "case_id": "dev-selected",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "after_use",
+    "repetition": 0,
+    "answer": "根据您之前的消息“选中P1003-S1”，结合第20批商品信息，石墨黑背包对应的 SKU ID 是 **P1003-S1**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 11746,
+        "output_tokens": 36,
+        "elapsed_ms": 1515.6746659777127
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8403,
+        "output_tokens": 41,
+        "elapsed_ms": 1374.7330830083229
+      }
+    ],
+    "input_tokens": 20149,
+    "output_tokens": 77,
+    "model_calls": 2,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 3024,
+    "compactions": [],
+    "final_context_estimated_tokens": 18929,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 13017,
+      "after_tokens": 9115,
+      "archived_results": 1,
+      "summary_changed": false,
+      "elapsed_ms": 2,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-material",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "pressure",
+    "repetition": 1,
+    "answer": "根据最初第1批商品描述，**P1001（Nomadica 旅行三件套）含有再生尼龙和合成聚合物**。  \n\n证据如下：  \n- **商品描述**明确写有“含再生尼龙”；  \n- **高亮信息**中注明材质为“帆布+再生尼龙（含合成聚合物）”；  \n- **material_tags** 字段包含 `[\"合成聚合物\"]`。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 8982,
+        "output_tokens": 44,
+        "elapsed_ms": 1465.2806670055725
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9055,
+        "output_tokens": 22,
+        "elapsed_ms": 894.6538750024047
+      },
+      {
+        "kind": "business",
+        "input_tokens": 12644,
+        "output_tokens": 97,
+        "elapsed_ms": 2514.1626250115223
+      }
+    ],
+    "input_tokens": 30681,
+    "output_tokens": 163,
+    "model_calls": 3,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 25846,
+    "compactions": [],
+    "final_context_estimated_tokens": 14023,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 13856,
+      "after_tokens": 13856,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 1,
+      "status": "noop"
+    }
+  },
+  {
+    "case_id": "dev-cost",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "entry",
+    "repetition": 2,
+    "answer": "第一批 P1003（Wanderlite 折叠旅行双肩包 35L）寄到中国时，到手价为 **154 元**，运费为 **25 元**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 8933,
+        "output_tokens": 49,
+        "elapsed_ms": 1615.2384169981815
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9011,
+        "output_tokens": 22,
+        "elapsed_ms": 996.2110420165118
+      },
+      {
+        "kind": "business",
+        "input_tokens": 12601,
+        "output_tokens": 48,
+        "elapsed_ms": 1434.3897080107126
+      }
+    ],
+    "input_tokens": 30545,
+    "output_tokens": 119,
+    "model_calls": 3,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 19148,
+    "compactions": [],
+    "final_context_estimated_tokens": 13929,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 13809,
+      "after_tokens": 13809,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 1,
+      "status": "noop"
+    }
+  },
+  {
+    "case_id": "dev-earliest",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "after_use",
+    "repetition": 1,
+    "answer": "第一批第三件商品的 product_id 是 **P1003**，其石墨黑 SKU ID 是 **P1003-S1**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 11727,
+        "output_tokens": 46,
+        "elapsed_ms": 1731.593582982896
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11802,
+        "output_tokens": 22,
+        "elapsed_ms": 1035.4944999853615
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11951,
+        "output_tokens": 33,
+        "elapsed_ms": 1449.705790990265
+      }
+    ],
+    "input_tokens": 35480,
+    "output_tokens": 101,
+    "model_calls": 3,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 4345,
+    "compactions": [],
+    "final_context_estimated_tokens": 23036,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 17037,
+      "after_tokens": 13132,
+      "archived_results": 1,
+      "summary_changed": false,
+      "elapsed_ms": 3,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-repeat",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "pressure",
+    "repetition": 0,
+    "answer": "根据当前权威信息，两个 SKU 对比如下：\n\n- **P1001-S2**  \n  - 规格：沙漠黄  \n  - 价格：199 CNY  \n  - 库存：30  \n  - 目的地日本到手价：224 CNY（含35 CNY运费）  \n  - 不支持寄往日本（`ships_to` 为 [\"CN\", \"US\", \"SG\"]）\n\n- **P1003-S1**  \n  - 规格：石墨黑  \n  - 价格：139 CNY（当前业务状态）  \n  - 库存：7  \n  - 目的地日本到手价：174 CNY（139 + 35 CNY运费）  \n  - 支持寄往日本（`ships_to` 包含 \"JP\"）\n\n注：P1001-S2 不符合当前“寄到日本”的约束；P1003-S1 在预算 180 CNY 内且符合目的地要求。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 8932,
+        "output_tokens": 131,
+        "elapsed_ms": 2505.3774999978486
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9111,
+        "output_tokens": 22,
+        "elapsed_ms": 877.379249985097
+      },
+      {
+        "kind": "business",
+        "input_tokens": 12698,
+        "output_tokens": 12,
+        "elapsed_ms": 1184.2326670011971
+      },
+      {
+        "kind": "business",
+        "input_tokens": 12810,
+        "output_tokens": 233,
+        "elapsed_ms": 4441.627666994464
+      }
+    ],
+    "input_tokens": 43551,
+    "output_tokens": 398,
+    "model_calls": 4,
+    "lookup_calls": 2,
+    "current_calls": 1,
+    "elapsed_ms": 22466,
+    "compactions": [],
+    "final_context_estimated_tokens": 14729,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 14069,
+      "after_tokens": 14069,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 2,
+      "status": "noop"
+    }
+  },
+  {
+    "case_id": "dev-earliest",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "entry",
+    "repetition": 1,
+    "answer": "未能从第一批商品中检索到第三件的具体信息。建议重新查询或提供更明确的标识。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": false,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 4860,
+        "output_tokens": 46,
+        "elapsed_ms": 1579.3112079845741
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4935,
+        "output_tokens": 74,
+        "elapsed_ms": 1702.7644580230117
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5038,
+        "output_tokens": 84,
+        "elapsed_ms": 1893.5236249817535
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5151,
+        "output_tokens": 61,
+        "elapsed_ms": 1726.5448330144864
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5325,
+        "output_tokens": 22,
+        "elapsed_ms": 1034.709917003056
+      }
+    ],
+    "input_tokens": 25309,
+    "output_tokens": 287,
+    "model_calls": 5,
+    "lookup_calls": 4,
+    "current_calls": 0,
+    "elapsed_ms": 8546,
+    "compactions": [],
+    "final_context_estimated_tokens": 16024,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 8602,
+      "after_tokens": 5826,
+      "archived_results": 1,
+      "summary_changed": false,
+      "elapsed_ms": 5,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-repeat",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "pressure",
+    "repetition": 1,
+    "answer": "根据当前业务状态和商品数据：\n\n- **P1001-S2**：Nomadica 旅行三件套（收纳袋+颈枕+眼罩），沙漠黄，199 CNY，库存30，币种CNY  \n- **P1003-S1**：Wanderlite 折叠旅行双肩包 35L，石墨黑，139 CNY（当前价），库存7，币种CNY  \n\n注：P1003-S1当前价格已更新为139 CNY，高于此前的129 CNY。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 8860,
+        "output_tokens": 131,
+        "elapsed_ms": 2658.574166998733
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9039,
+        "output_tokens": 12,
+        "elapsed_ms": 806.3838329981081
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9151,
+        "output_tokens": 131,
+        "elapsed_ms": 3631.504582997877
+      }
+    ],
+    "input_tokens": 27050,
+    "output_tokens": 274,
+    "model_calls": 3,
+    "lookup_calls": 2,
+    "current_calls": 1,
+    "elapsed_ms": 17590,
+    "compactions": [],
+    "final_context_estimated_tokens": 10456,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 10045,
+      "after_tokens": 10045,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 1,
+      "status": "noop"
+    }
+  },
+  {
+    "case_id": "dev-earliest",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "pressure",
+    "repetition": 2,
+    "answer": "第一批第三件的商品信息如下：\n\n- **product_id**: P1003  \n- **石墨黑 sku_id**: P1003-S1",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 11735,
+        "output_tokens": 46,
+        "elapsed_ms": 1810.8222500013653
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11810,
+        "output_tokens": 22,
+        "elapsed_ms": 1053.1812499975786
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11962,
+        "output_tokens": 33,
+        "elapsed_ms": 1690.0940419873223
+      }
+    ],
+    "input_tokens": 35507,
+    "output_tokens": 101,
+    "model_calls": 3,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 4678,
+    "compactions": [],
+    "final_context_estimated_tokens": 23029,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 17049,
+      "after_tokens": 13141,
+      "archived_results": 1,
+      "summary_changed": false,
+      "elapsed_ms": 2,
+      "status": "completed"
+    }
+  },
+  {
+    "case_id": "dev-cost",
+    "split": "dev",
+    "mode": "snapshot",
+    "strategy": "pressure",
+    "repetition": 0,
+    "answer": "第一批商品中，P1003（Wanderlite 折叠旅行双肩包 35L）寄往中国时的到手价为154元，运费为25元。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 8745,
+        "output_tokens": 49,
+        "elapsed_ms": 1564.9211250129156
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8823,
+        "output_tokens": 22,
+        "elapsed_ms": 951.1279159924015
+      },
+      {
+        "kind": "business",
+        "input_tokens": 12414,
+        "output_tokens": 45,
+        "elapsed_ms": 1617.2849590075202
+      }
+    ],
+    "input_tokens": 29982,
+    "output_tokens": 116,
+    "model_calls": 3,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 14532,
+    "compactions": [],
+    "final_context_estimated_tokens": 13932,
+    "last_compaction": {
+      "policy_version": "layered-v1",
+      "reason": "pressure",
+      "before_tokens": 13614,
+      "after_tokens": 13614,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 1,
+      "status": "noop"
+    }
+  }
+]

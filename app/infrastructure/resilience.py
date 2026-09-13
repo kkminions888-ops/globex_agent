@@ -36,7 +36,8 @@ DEFAULT_TIMEOUTS: dict[str, float] = {
     "create_order_tool": 10.0,
     "query_order_tool": 10.0,
     "cancel_order_tool": 10.0,
-    "remember_preference_tool": 10.0,
+    "remember_preference_tool": 90.0,
+    "update_preference_tool": 90.0,
     "task_dispatch": 180.0,
 }
 _FALLBACK_TIMEOUT = 30.0

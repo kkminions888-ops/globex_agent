@@ -1,0 +1,13 @@
+{
+  "default_buyer": "pao-coder",
+  "page_history_sessions": 4,
+  "backend_focused_tests": 82,
+  "frontend_tests": 100,
+  "browser_original_refresh": "passed",
+  "browser_alternate_origin_history": "passed",
+  "favorite_write_database_cross_origin_reload_delete": "passed",
+  "test_favorite_removed": true,
+  "runtime": {
+    "app_source_sha256": "1bf0e22fd5f45e66a2f5e7944ea50bf5ec150795830de4649a9f8edf8954b587"
+  }
+}

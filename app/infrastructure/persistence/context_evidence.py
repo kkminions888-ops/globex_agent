@@ -57,8 +57,38 @@ class ContextEvidenceStore:
     async def search(self, buyer: str, session: str, *, kind: str = "", query: str = "", limit: int = 5) -> list[dict]:
         def read():
             with self._connect() as db:
-                rows = db.execute("SELECT * FROM context_evidence WHERE buyer=? AND session=? AND (?='' OR kind=?) AND instr(payload,?)>0 ORDER BY fence DESC,created DESC,ref DESC LIMIT ?", (buyer, session, kind, kind, query, min(10, max(1, limit)))).fetchall()
+                rows = db.execute("SELECT * FROM context_evidence WHERE buyer=? AND session=? AND kind!='rejected_summary' AND (?='' OR kind=?) AND instr(payload,?)>0 ORDER BY fence DESC,created DESC,ref DESC LIMIT ?", (buyer, session, kind, kind, query, min(10, max(1, limit)))).fetchall()
             return [self._decode(row) for row in rows]
+        return await asyncio.to_thread(read)
+
+    async def batch(self, buyer: str, session: str, number: int) -> dict | None:
+        """展示批次从1开始，按可信 fence/时间排列，跨买家不可查。"""
+        if number < 1:
+            raise ValueError("批次序号从1开始")
+        def read():
+            with self._connect() as db:
+                row = db.execute("SELECT * FROM context_evidence WHERE buyer=? AND session=? AND kind='display_batch' ORDER BY fence,created,ref LIMIT 1 OFFSET ?", (buyer, session, number-1)).fetchone()
+            return self._decode(row) if row else None
+        return await asyncio.to_thread(read)
+
+    async def find_product(self, buyer: str, session: str, *, product_id: str = '', sku_id: str = '') -> dict | None:
+        """先在买家/会话内匹配商品和规格，再取最新记录；不能先 LIMIT 后筛选。"""
+        if not product_id and not sku_id:
+            return None
+        def read():
+            with self._connect() as db:
+                row = db.execute("""
+                    SELECT e.* FROM context_evidence e
+                    WHERE buyer=? AND session=? AND kind IN ('products','display_batch')
+                    AND EXISTS (SELECT 1 FROM json_each(e.payload, '$.hits') h
+                        WHERE (?='' OR json_extract(h.value,'$.product_id')=?)
+                        AND (?='' OR json_extract(h.value,'$.sku_id')=?
+                            OR json_extract(h.value,'$.default_sku_id')=?
+                            OR EXISTS (SELECT 1 FROM json_each(h.value,'$.skus') s
+                                WHERE json_extract(s.value,'$.sku_id')=?)))
+                    ORDER BY fence DESC,created DESC,ref DESC LIMIT 1
+                """, (buyer, session, product_id, product_id, sku_id, sku_id, sku_id, sku_id)).fetchone()
+            return self._decode(row) if row else None
         return await asyncio.to_thread(read)
 
     @staticmethod

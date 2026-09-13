@@ -14,6 +14,7 @@ AgentState 每轮落盘 DATA_DIR/sessions/，服务重启后恢复多轮对话�
 子 Agent 则每次调度新建（上下文隔离）。
 """
 from __future__ import annotations
+from app.infrastructure.context_governance import ContextAwareAgent
 
 import logging
 from typing import Optional
@@ -110,6 +111,13 @@ class MainAgentFactory:
         chain.append(ToolResilienceMiddleware(self._circuit_registry, self._bus))
         return chain
 
+    def _memory_middlewares(self):
+        from app.application.agents.tool_confirmation import MemoryPermissionMiddleware
+        if not getattr(self._preference_store, "semantic_memory", False):
+            return [MemoryPermissionMiddleware(self._preference_store)]
+        from app.application.memory.middleware import BuyerMemoryMiddleware
+        return [MemoryPermissionMiddleware(self._preference_store), BuyerMemoryMiddleware(self._preference_store, self._settings.preference_top_k)]
+
     def build(self, restored_state: Optional[AgentState] = None) -> Agent:
         prompts = load_prompts()["main_agent"]
 
@@ -159,12 +167,12 @@ class MainAgentFactory:
                          for tool in build_capability_tools(self._capability_registry, available_tools, self._bus, self.buyer_skill_store))
 
         return allow_business_tools(
-            Agent(
+            ContextAwareAgent(
                 name=prompts["name"],
                 system_prompt=system_prompt,
                 model=create_chat_model(self._settings, throttle=self._throttle, bus=self._bus),
                 toolkit=Toolkit(tools=tools),
-                middlewares=build_agent_middlewares(self._settings),
+                middlewares=build_agent_middlewares(self._settings) + self._memory_middlewares(),
                 context_config=build_context_config(
                     self._settings.context_size,
                     self._settings.tool_result_limit,

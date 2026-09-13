@@ -1,0 +1,120 @@
+{
+  "session_id": "2861d30f-7da9-42d6-b61e-fdb998493dfc",
+  "buyer_id": "context-ui-verification",
+  "request": {
+    "buyer_id": "context-ui-verification",
+    "session_id": "2861d30f-7da9-42d6-b61e-fdb998493dfc",
+    "request_id": "ba1c4229-509f-4274-a7d7-91f0235dd015",
+    "expected_revision": 6
+  },
+  "operation": {
+    "operation_id": "4c9e0dd7304ccdfd5cb34a05e47408f33f96c3ad389dd34b17331fafac6f2be6",
+    "session_id": "2861d30f-7da9-42d6-b61e-fdb998493dfc",
+    "status": "completed",
+    "expected_revision": 6,
+    "statistics": {
+      "policy_version": "layered-v1",
+      "reason": "manual",
+      "before_tokens": 12423,
+      "after_tokens": 12812,
+      "archived_results": 0,
+      "summary_changed": true,
+      "elapsed_ms": 7596,
+      "status": "completed"
+    },
+    "message": "上下文已整理，原始记录保留"
+  },
+  "context": {
+    "operation": null,
+    "session_id": "2861d30f-7da9-42d6-b61e-fdb998493dfc",
+    "revision": 7,
+    "summary": "<system-info>以下是历史工作摘要；以本轮交易账本、当前偏好 revision 及最新候选证据为准，历史摘要不构成执行授权。\n# 买家诉求与约束\n买家寻求选购轻便背包，需记录其在本轮会话中逐步明确的硬性约束条件，不涉及商品推荐、记忆写入或下单操作。\n\n# 当前进展（已推荐商品 / 已创建订单）\n已完整梳理并确认以下仅限本次选购的约束条件：\n- 商品类型：轻便背包\n- 容量范围：20–25 升\n- 材质排除：真皮\n- 预算上限：180 元（CNY）\n- 收货国家：中国（CN）\n\n# 关键事实（product_id / sku_id / 价格 / 订单号）\n买家分三轮逐步细化需求：\n1. 初始预算为300元，后主动下调至180元，并强调仅确认变更；\n2. 后续补充容量与材质要求，明确“仅确认选购需求”；\n3. 所有约束均为一次性临时要求，未表达任何长期偏好，故无需调用记忆工具。\n\n# 下一步与待确认事项\n后续如买家提出“推荐”“找”“买”等明确商品获取意图，应基于上述约束调用 product_search_tool 进行检索，注意：\n- 传入 price_max_major=180、ship_to='CN'\n- 在 normalized_query 中体现“轻便背包 20-25L 非真皮”等关键属性\n- 不沿用任何未明说的跨轮预算或偏好\n\n# 买家偏好与必须保留的上下文\n- 本次预算为180元，非初始的300元；\n- “排除真皮”为本轮临时排除项，非长期材质禁忌；\n- 买家强调过“只确认需求”，此前未要求也不应主动提供商品列表或下单；\n- 所有约束仅作用于当前未完成的选购任务，不可自动复用至后续不同品类请求。</system-info>",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "f17a7a6499604d98aa03c6590f5b2afa"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "收货国家改为日本",
+          "message_id": "593669fe15084e1f9b7f269c5209f425"
+        },
+        "weight": {
+          "source": "我更看重轻便",
+          "excerpts": [
+            "我更看重轻便"
+          ],
+          "message_id": "80f70328956b4f08b152243edea9ff5c",
+          "scope": "本次选购；以最新原文为准"
+        },
+        "capacity": {
+          "source": "本次希望20到25升",
+          "excerpts": [
+            "本次希望20到25升"
+          ],
+          "message_id": "80a63be8f11945fc8d1b9a617e5a5e8a",
+          "scope": "本次选购；以最新原文为准"
+        },
+        "material_leather": {
+          "source": "排除真皮",
+          "excerpts": [
+            "排除真皮"
+          ],
+          "message_id": "80a63be8f11945fc8d1b9a617e5a5e8a",
+          "scope": "本次选购；以最新原文为准"
+        },
+        "color": {
+          "source": "颜色可以深色",
+          "excerpts": [
+            "颜色可以深色"
+          ],
+          "message_id": "80f70328956b4f08b152243edea9ff5c",
+          "scope": "本次选购；以最新原文为准"
+        },
+        "purpose": {
+          "source": "请记在本次对话：出差通勤；不是登山",
+          "excerpts": [
+            "请记在本次对话：出差通勤",
+            "不是登山"
+          ],
+          "message_id": "cf7b9cbcc07f4fb4a3a3eccaec3fd469",
+          "scope": "本次选购；以最新原文为准"
+        }
+      },
+      "selected": [],
+      "excluded": [],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "本次选购预算300元，寄到中国，想买轻便背包。先整理需求，不搜索、不写长期偏好，也不下单。",
+      "latest_request": "收货国家改为日本JP，预算仍是180元人民币。先不搜索，不下单。",
+      "source_message_id": "593669fe15084e1f9b7f269c5209f425",
+      "referenced": []
+    },
+    "statistics": {
+      "policy_version": "layered-v1",
+      "reason": "manual",
+      "before_tokens": 12423,
+      "after_tokens": 12812,
+      "archived_results": 0,
+      "summary_changed": true,
+      "elapsed_ms": 7596,
+      "status": "completed"
+    },
+    "checkpoint_id": "83507ef571df68fc6ca74a1056cc9e1db6e68551228f8a39f3d73a214dae9f9c",
+    "failures": 0,
+    "strategy": "legacy"
+  },
+  "message_count": 12,
+  "messages_hash": "a80bd7912d6921e8f64d2aba2c2ffcd9211b34824b14aa87384ca7ba5d0bd49e",
+  "history_unchanged": true,
+  "restart_verified": true,
+  "continuation_answer": "本次最终需求核对如下：  \n\n- **预算**：180 元人民币（CNY）  \n- **收货国家**：日本（JP）  \n- **容量**：20–25 升  \n- **排除材质**：真皮",
+  "browser_verified": true
+}

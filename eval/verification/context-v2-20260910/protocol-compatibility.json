@@ -1,0 +1,11 @@
+{
+  "unchanged_previously_accepted_field_forms": 329,
+  "new_supported_forms": [
+    "price,stock",
+    "price_major,stock_quantity",
+    "unit_price,inventory"
+  ],
+  "algorithm_delta": false,
+  "changed_file": "app/infrastructure/context_products.py",
+  "scope": "field_selection only"
+}

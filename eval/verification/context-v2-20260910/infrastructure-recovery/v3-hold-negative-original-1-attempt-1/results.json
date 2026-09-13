@@ -1,0 +1,155 @@
+[
+  {
+    "case_id": "v3-hold-negative",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "deterministic",
+    "repetition": 0,
+    "answer": "根据您的历史记录，P18412 被淘汰的原因是“太贵”。该商品寄往德国的到手价为 **940 元**（含运费 33 元和税费 8 元），超出了您当时设定的 **335 元预算**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 10288,
+        "output_tokens": 39,
+        "elapsed_ms": 2281.5822919947095
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11170,
+        "output_tokens": 68,
+        "elapsed_ms": 2810.621040989645
+      }
+    ],
+    "input_tokens": 21458,
+    "output_tokens": 107,
+    "model_calls": 2,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 13488,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 12853,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 26094,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 12258,
+      "after_tokens": 12258,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 5,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "layered",
+    "repetition": 0,
+    "answer": "根据您的历史记录，P18412（TrailOx 20寸登机行李箱）被您淘汰的原因是**价格超出预算**。  \n\n在您设定**预算335元、寄往德国**的条件下，该商品落地总价为 **940元**（含33元运费和8元税费），远高于预算，因此被排除。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": false,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 10285,
+        "output_tokens": 39,
+        "elapsed_ms": 1716.7689999914728
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11173,
+        "output_tokens": 83,
+        "elapsed_ms": 3143.218250013888
+      }
+    ],
+    "input_tokens": 21458,
+    "output_tokens": 122,
+    "model_calls": 2,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 18310,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 18176,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 26074,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 12254,
+      "after_tokens": 12254,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 6,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "legacy",
+    "repetition": 0,
+    "answer": "根据您在 **2026-09-01T10:06:00Z**（第6批商品展示后）的指令：\n\n> “预算改为335元，寄到德国。选中P18413-S1，不要下单。**P18412太贵，淘汰。**”\n\n当时 P18412（TrailOx 20寸登机行李箱 铝框款）寄往德国的到手价为 **940.0 CNY**，远超您设定的 **335元预算**，因此被您明确淘汰。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 47014,
+        "output_tokens": 139,
+        "elapsed_ms": 5017.274165991694
+      }
+    ],
+    "input_tokens": 47014,
+    "output_tokens": 139,
+    "model_calls": 1,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 12191,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 12100,
+        "compacted": false,
+        "model_calls": 1
+      }
+    ],
+    "final_context_estimated_tokens": 61309,
+    "last_compaction": null,
+    "final_product_observations": 120,
+    "final_product_duplicate_ratio": 0.9166666666666666
+  }
+]

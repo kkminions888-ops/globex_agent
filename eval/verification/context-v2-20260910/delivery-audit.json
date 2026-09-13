@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "primary_records_unchanged": 252,
+  "analysis_records_verified": 252,
+  "selected_whole_blocks": 7,
+  "supplementary_attempt_runs": 21,
+  "selected_supplementary_runs": 21,
+  "source_frozen": true,
+  "independent_full_usage_runs": 36,
+  "old_cost_metrics_rejected": true,
+  "original_unknown_usage_preserved": true,
+  "original_grading_preserved": true,
+  "first_complete_block_rule_verified": true,
+  "portable_failure_archives": true
+}

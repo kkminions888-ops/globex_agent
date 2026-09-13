@@ -1,0 +1,65 @@
+{
+  "backend": {
+    "passed": 969,
+    "skipped": 43,
+    "log": "logs/backend-final.log"
+  },
+  "redis_queue_restart": {
+    "passed": 16,
+    "overlaps_backend": true
+  },
+  "focused": {
+    "passed": 58,
+    "overlaps_backend": true
+  },
+  "production_api": {
+    "isolated_database": true,
+    "buyer": "context-v3-integration",
+    "query_sku_prices_stock": true,
+    "manual_compact_preserves_messages": true,
+    "restart_and_continuation": true,
+    "revision": "layered-v3 final freeze incl. field parser and selection boundaries",
+    "successful_history_lookup": true,
+    "lookup_result_assertions": true,
+    "selection_exclusion_reselection": true
+  },
+  "release_source_equals_frozen_holdout": true,
+  "release_delta": "none; release-protocol-delta.json保留此前未重冻时的历史差异",
+  "report_scoring": {
+    "passed": 13,
+    "overlaps_backend": true,
+    "new_test_after_full_suite": 1
+  },
+  "reason_scoring_review": {
+    "passed": 21,
+    "overlaps_backend": false,
+    "scope": "明确肯定的超预算原因；否定、错误商品、其它字段缺失均不得通过"
+  },
+  "metered_model_revision": {
+    "full_backend": {
+      "passed": 988,
+      "skipped": 43,
+      "log": "logs/backend-metered-final.log"
+    },
+    "targeted": {
+      "passed": 44,
+      "skipped": 3,
+      "overlaps_full_suite": true,
+      "log": "logs/structured-path-tests.log"
+    },
+    "real_sdk_streamed_summary": "metered-sdk-api.json",
+    "question_regression": {
+      "passed": 64,
+      "overlaps_full_suite": true,
+      "log": "logs/question-after.log"
+    },
+    "production_compact_api": "requirement-question-api.json",
+    "sdk_path_extended": {
+      "passed": 14,
+      "new_cases_not_in_full_suite_run": 2,
+      "other_cases_overlap_full_suite": true,
+      "log": "logs/sdk-unknown-usage-tests.log",
+      "scope": "含成功返回但缺usage的流式/非流式分支，必须保持未知"
+    }
+  }
+}

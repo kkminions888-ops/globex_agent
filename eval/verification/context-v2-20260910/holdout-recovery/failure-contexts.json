@@ -1,0 +1,27 @@
+[
+  {
+    "case_id": "v3-hold-pair",
+    "strategy": "deterministic",
+    "repetition": 2,
+    "answer": "",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true,
+      "fact_associations": false
+    },
+    "association_check": {
+      "applicable": true,
+      "status": "unknown",
+      "fields": [
+        null,
+        null
+      ]
+    },
+    "summary": null,
+    "working": null,
+    "summary_revision": null,
+    "last_tool_calls": [],
+    "database_archive_prefix": "v3-hold-pair-deterministic-2"
+  }
+]

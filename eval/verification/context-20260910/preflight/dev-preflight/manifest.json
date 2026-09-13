@@ -1,0 +1,28 @@
+{
+  "fingerprint": "f4e4fa7a722e72e4a268a53e70628897844cea364ba18dd48fc161cb3849bfc3",
+  "model": "qwen3-max",
+  "split": "dev",
+  "strategies": [
+    "entry",
+    "after_use",
+    "pressure"
+  ],
+  "cases": [
+    "dev-sku",
+    "dev-second",
+    "dev-earliest",
+    "dev-material",
+    "dev-budget",
+    "dev-country",
+    "dev-selected",
+    "dev-stock",
+    "dev-cost",
+    "dev-repeat",
+    "dev-long-a",
+    "dev-long-b"
+  ],
+  "repetitions": 3,
+  "status": "aborted_preflight",
+  "limitations": "隔离工具夹具，不测试生产检索排序或交易写路径。快照历史固定；long使用真实20轮Agent和两次整理、一次数据库重建。",
+  "reason": "页面测试发现Skill固定前缀阻止历史摘要，修复并重新冻结后重跑"
+}

@@ -261,3 +261,12 @@ async def test_real_tcp_disconnect_and_cursor_reconnect(tmp_path):
         server.should_exit = True
         await asyncio.wait_for(serving, 5)
         listener.close()
+
+async def test_version_recovery_reads_destination_after_failed_run_and_checks_owner(tmp_path):
+    journal=AGUIJournal(tmp_path/'journal.db');await journal.initialize()
+    await journal.reserve(body(),'b1','owner')
+    await journal.append('r1','owner',[{'type':'STATE_SNAPSHOT','snapshot':{'products':[{'landed_price':{'ship_to':'CN'}}]}},{'type':'RUN_FINISHED','threadId':'s1','runId':'r1'}])
+    await journal.reserve(body('r2'),'b1','owner2')
+    await journal.append('r2','owner2',[{'type':'STATE_SNAPSHOT','snapshot':{}},{'type':'RUN_ERROR','message':'过期'}])
+    assert await journal.latest_destination('s1','b1')=='CN'
+    with pytest.raises(JournalForbidden):await journal.latest_destination('s1','other')

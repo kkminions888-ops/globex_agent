@@ -1,0 +1,23 @@
+[
+  {
+    "path": "dev/report.md",
+    "before_sha256": "b17641771c72420fb6ff1a5b8e9d8fd9fbd4ca82605395269298b56635310db2",
+    "after_sha256": "cb5352e528dec59e1cd97e4b2c5a05892a02096ba7508535222a3017d1002d4e",
+    "reason": "轮数从冻结案例读取；成本区间引用成本指标，避免误引任务成功率区间",
+    "raw_results_and_json_metrics_changed": false
+  },
+  {
+    "path": "holdout/report.md",
+    "before_sha256": "c57b7e997f6e8960291cf27b1f46a51853ef62a4782c0279ec50a76959597cce",
+    "after_sha256": "89b1f3da159408f72c5eb728107a0df7901ad941e8a4fd8ee5a3bd632d77d3a7",
+    "reason": "轮数从冻结案例读取；成本区间引用成本指标，避免误引任务成功率区间",
+    "raw_results_and_json_metrics_changed": false
+  },
+  {
+    "path": "holdout-recovery/report.md",
+    "before_sha256": "d1bc7bbaed23930766a7ecf5f959d55b87fa315be15f58a8c8246c989b23ebb1",
+    "after_sha256": "fa211f0823ee296fbe190e61995e46152fb555639da0654deab60fa2a9ffcb7c",
+    "reason": "轮数从冻结案例读取；成本区间引用成本指标，避免误引任务成功率区间",
+    "raw_results_and_json_metrics_changed": false
+  }
+]

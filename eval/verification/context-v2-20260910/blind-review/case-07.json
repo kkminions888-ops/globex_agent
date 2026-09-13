@@ -1,0 +1,77 @@
+{
+  "case_id": "v3-hold-first",
+  "ratings": [
+    {
+      "response_id": "answer_01",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰直接地回答了问题，格式简洁，信息明确。"
+    },
+    {
+      "response_id": "answer_02",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "使用代码格式强调字段名，表达清晰且贴合问题。"
+    },
+    {
+      "response_id": "answer_03",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "回答简洁明了，准确提供所问的product_id。"
+    },
+    {
+      "response_id": "answer_04",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "直接回应问题，无多余信息，表达清楚。"
+    },
+    {
+      "response_id": "answer_05",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "用代码格式标出字段名，语句通顺，信息准确。"
+    },
+    {
+      "response_id": "answer_06",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "回答简洁、准确，完全贴合用户需求。"
+    },
+    {
+      "response_id": "answer_07",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "表述自然流畅，明确给出所需product_id。"
+    },
+    {
+      "response_id": "answer_08",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "直接准确地回答问题，无表达负担。"
+    },
+    {
+      "response_id": "answer_09",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰简洁，准确提供所查询的product_id。"
+    }
+  ],
+  "error": null,
+  "usage": [
+    {
+      "kind": "evaluation",
+      "input_tokens": 1055,
+      "output_tokens": 457,
+      "elapsed_ms": 9308.810833026655
+    }
+  ]
+}

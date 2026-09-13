@@ -1,0 +1,173 @@
+FFFFFF                                                                   [100%]
+=================================== FAILURES ===================================
+_ test_questions_preserve_constraints_and_selection[\u6211\u9009\u4e2d\u7684SKU\u3001\u5f53\u524d\u672c\u6b21\u9884\u7b97\u3001\u6536\u8d27\u56fd\u5bb6\u3001\u5bb9\u91cf\u548c\u6750\u8d28\u6392\u9664\u662f\u4ec0\u4e48\uff1f\u53ea\u56de\u987e\u9700\u6c42] _
+
+question = '我选中的SKU、当前本次预算、收货国家、容量和材质排除是什么？只回顾需求'
+
+    @pytest.mark.parametrize('question',[
+        '我选中的SKU、当前本次预算、收货国家、容量和材质排除是什么？只回顾需求',
+        '颜色是什么？数量多少？是否需要真皮？',
+        '预算300元吗？寄到中国吗？选中P1003-S1吗？',
+        '请回顾用途、容量、颜色和重量要求。',
+        'P1003-S1是35升、黑色、真皮的吗？',
+    ])
+    def test_questions_preserve_constraints_and_selection(question):
+        agent=SimpleNamespace(state=AgentState())
+        token=ShoppingContext.set(ShoppingContextSnapshot('s','buyer','zh-CN','CNY'))
+        try:
+            update_working_state(agent,[UserMsg(name='buyer',content='预算180元，寄到日本。容量35升，颜色蓝色，数量2件，用途通勤，要求轻便，排除真皮。选中P1003-S2。')])
+            before=copy.deepcopy(governance(agent)['working'])
+            update_working_state(agent,[UserMsg(name='buyer',content=question)])
+            after=governance(agent)['working']
+>           assert after['constraints']==before['constraints']
+E           AssertionError: assert {'budget': {'...最新原文为准'}, ...} == {'budget': {'...最新原文为准'}, ...}
+E             
+E             Omitting 7 identical items, use -vv to show
+E             Differing items:
+E             {'capacity': {'source': '我选中的SKU、当前本次预算、收货国家、容量和材质排除是什么？只回顾需求', 'excerpts': ['我选中的SKU、当前本次预算、收货国家、容量和材质排除是什么？只回顾需求'], 'message_id': 'f135a7d442ec4eb3a11dc580efb3ce6e', 'scope': '本次选购；以最新原文为准'}} != {'capacity': {'source': '容量35升', 'excerpts': ['容量35升'], 'message_id': 'a376f90c062347b99d244705b4944885', 'scope': '本次选购；以最新原文为准'}}
+E             Use -v to get more diff
+
+tests/test_working_state_questions.py:25: AssertionError
+_ test_questions_preserve_constraints_and_selection[\u989c\u8272\u662f\u4ec0\u4e48\uff1f\u6570\u91cf\u591a\u5c11\uff1f\u662f\u5426\u9700\u8981\u771f\u76ae\uff1f] _
+
+question = '颜色是什么？数量多少？是否需要真皮？'
+
+    @pytest.mark.parametrize('question',[
+        '我选中的SKU、当前本次预算、收货国家、容量和材质排除是什么？只回顾需求',
+        '颜色是什么？数量多少？是否需要真皮？',
+        '预算300元吗？寄到中国吗？选中P1003-S1吗？',
+        '请回顾用途、容量、颜色和重量要求。',
+        'P1003-S1是35升、黑色、真皮的吗？',
+    ])
+    def test_questions_preserve_constraints_and_selection(question):
+        agent=SimpleNamespace(state=AgentState())
+        token=ShoppingContext.set(ShoppingContextSnapshot('s','buyer','zh-CN','CNY'))
+        try:
+            update_working_state(agent,[UserMsg(name='buyer',content='预算180元，寄到日本。容量35升，颜色蓝色，数量2件，用途通勤，要求轻便，排除真皮。选中P1003-S2。')])
+            before=copy.deepcopy(governance(agent)['working'])
+            update_working_state(agent,[UserMsg(name='buyer',content=question)])
+            after=governance(agent)['working']
+>           assert after['constraints']==before['constraints']
+E           AssertionError: assert {'budget': {'...最新原文为准'}, ...} == {'budget': {'...最新原文为准'}, ...}
+E             
+E             Omitting 5 identical items, use -vv to show
+E             Differing items:
+E             {'material_leather': {'source': '颜色是什么？数量多少？是否需要真皮？', 'excerpts': ['颜色是什么？数量多少？是否需要真皮？'], 'message_id': '05c85b27ac5e40769a1e36fe6f346759', 'scope': '本次选购；以最新原文为准'}} != {'material_leather': {'source': '排除真皮', 'excerpts': ['排除真皮'], 'message_id': '12ddc119bba44962ba9bbed9d02b6e98', 'scope': '本次选购；以最新原文为准'}}
+E             {'color': {'source': '颜色是什么？数量多少？是否需要真皮？', 'excerpts': ['颜色是什么？数量多少？是否需要真皮？'], 'message_id': '05c85b27ac5e40769a1e36fe6f346759', 'scope': '本次选购；以最新原文为准'}} != {'color': {'source': '颜色蓝色', 'excerpts': ['颜色蓝色'], 'm...
+E             
+E             ...Full output truncated (3 lines hidden), use '-vv' to show
+
+tests/test_working_state_questions.py:25: AssertionError
+_ test_questions_preserve_constraints_and_selection[\u9884\u7b97300\u5143\u5417\uff1f\u5bc4\u5230\u4e2d\u56fd\u5417\uff1f\u9009\u4e2dP1003-S1\u5417\uff1f] _
+
+question = '预算300元吗？寄到中国吗？选中P1003-S1吗？'
+
+    @pytest.mark.parametrize('question',[
+        '我选中的SKU、当前本次预算、收货国家、容量和材质排除是什么？只回顾需求',
+        '颜色是什么？数量多少？是否需要真皮？',
+        '预算300元吗？寄到中国吗？选中P1003-S1吗？',
+        '请回顾用途、容量、颜色和重量要求。',
+        'P1003-S1是35升、黑色、真皮的吗？',
+    ])
+    def test_questions_preserve_constraints_and_selection(question):
+        agent=SimpleNamespace(state=AgentState())
+        token=ShoppingContext.set(ShoppingContextSnapshot('s','buyer','zh-CN','CNY'))
+        try:
+            update_working_state(agent,[UserMsg(name='buyer',content='预算180元，寄到日本。容量35升，颜色蓝色，数量2件，用途通勤，要求轻便，排除真皮。选中P1003-S2。')])
+            before=copy.deepcopy(governance(agent)['working'])
+            update_working_state(agent,[UserMsg(name='buyer',content=question)])
+            after=governance(agent)['working']
+>           assert after['constraints']==before['constraints']
+E           AssertionError: assert {'budget': {'...最新原文为准'}, ...} == {'budget': {'...最新原文为准'}, ...}
+E             
+E             Omitting 6 identical items, use -vv to show
+E             Differing items:
+E             {'budget': {'value': '300', 'currency': 'CNY', 'scope': '本次选购', 'source': '预算300元', ...}} != {'budget': {'value': '180', 'currency': 'CNY', 'scope': '本次选购', 'source': '预算180元', ...}}
+E             {'destination': {'value': 'CN', 'scope': '本次选购', 'source': '寄到中国', 'message_id': 'cea666ad8769411ba1483bacbe648941'}} != {'destination': {'value': 'JP', 'scope': '本次选购', 'source': '寄到日本', 'message_id': '54651f936838490d85c35a9d78579e53'}}
+E             Use -v to get more diff
+
+tests/test_working_state_questions.py:25: AssertionError
+_ test_questions_preserve_constraints_and_selection[\u8bf7\u56de\u987e\u7528\u9014\u3001\u5bb9\u91cf\u3001\u989c\u8272\u548c\u91cd\u91cf\u8981\u6c42\u3002] _
+
+question = '请回顾用途、容量、颜色和重量要求。'
+
+    @pytest.mark.parametrize('question',[
+        '我选中的SKU、当前本次预算、收货国家、容量和材质排除是什么？只回顾需求',
+        '颜色是什么？数量多少？是否需要真皮？',
+        '预算300元吗？寄到中国吗？选中P1003-S1吗？',
+        '请回顾用途、容量、颜色和重量要求。',
+        'P1003-S1是35升、黑色、真皮的吗？',
+    ])
+    def test_questions_preserve_constraints_and_selection(question):
+        agent=SimpleNamespace(state=AgentState())
+        token=ShoppingContext.set(ShoppingContextSnapshot('s','buyer','zh-CN','CNY'))
+        try:
+            update_working_state(agent,[UserMsg(name='buyer',content='预算180元，寄到日本。容量35升，颜色蓝色，数量2件，用途通勤，要求轻便，排除真皮。选中P1003-S2。')])
+            before=copy.deepcopy(governance(agent)['working'])
+            update_working_state(agent,[UserMsg(name='buyer',content=question)])
+            after=governance(agent)['working']
+>           assert after['constraints']==before['constraints']
+E           AssertionError: assert {'budget': {'...最新原文为准'}, ...} == {'budget': {'...最新原文为准'}, ...}
+E             
+E             Omitting 4 identical items, use -vv to show
+E             Differing items:
+E             {'purpose': {'source': '请回顾用途、容量、颜色和重量要求', 'excerpts': ['请回顾用途、容量、颜色和重量要求'], 'message_id': 'a77cff70b46b4f6aa90ead12eb481aac', 'scope': '本次选购；以最新原文为准'}} != {'purpose': {'source': '用途通勤', 'excerpts': ['用途通勤'], 'message_id': '7a50ce6fdf414b8a9159d7a914613e02', 'scope': '本次选购；以最新原文为准'}}
+E             {'weight': {'source': '请回顾用途、容量、颜色和重量要求', 'excerpts': ['请回顾用途、容量、颜色和重量要求'], 'message_id': 'a77cff70b46b4f6aa90ead12eb481aac', 'scope': '本次选购；以最新原文为准'}} != {'weight': {'source': '要求轻便', 'excerpts': ['要求轻便'], 'message_id': '7a50ce6fdf4...
+E             
+E             ...Full output truncated (4 lines hidden), use '-vv' to show
+
+tests/test_working_state_questions.py:25: AssertionError
+_ test_questions_preserve_constraints_and_selection[P1003-S1\u662f35\u5347\u3001\u9ed1\u8272\u3001\u771f\u76ae\u7684\u5417\uff1f] _
+
+question = 'P1003-S1是35升、黑色、真皮的吗？'
+
+    @pytest.mark.parametrize('question',[
+        '我选中的SKU、当前本次预算、收货国家、容量和材质排除是什么？只回顾需求',
+        '颜色是什么？数量多少？是否需要真皮？',
+        '预算300元吗？寄到中国吗？选中P1003-S1吗？',
+        '请回顾用途、容量、颜色和重量要求。',
+        'P1003-S1是35升、黑色、真皮的吗？',
+    ])
+    def test_questions_preserve_constraints_and_selection(question):
+        agent=SimpleNamespace(state=AgentState())
+        token=ShoppingContext.set(ShoppingContextSnapshot('s','buyer','zh-CN','CNY'))
+        try:
+            update_working_state(agent,[UserMsg(name='buyer',content='预算180元，寄到日本。容量35升，颜色蓝色，数量2件，用途通勤，要求轻便，排除真皮。选中P1003-S2。')])
+            before=copy.deepcopy(governance(agent)['working'])
+            update_working_state(agent,[UserMsg(name='buyer',content=question)])
+            after=governance(agent)['working']
+>           assert after['constraints']==before['constraints']
+E           AssertionError: assert {'budget': {'...最新原文为准'}, ...} == {'budget': {'...最新原文为准'}, ...}
+E             
+E             Omitting 5 identical items, use -vv to show
+E             Differing items:
+E             {'material_leather': {'source': 'P1003-S1是35升、黑色、真皮的吗？', 'excerpts': ['P1003-S1是35升、黑色、真皮的吗？'], 'message_id': 'a7268d0983d44db79ff77c0964d4ed5f', 'scope': '本次选购；以最新原文为准'}} != {'material_leather': {'source': '排除真皮', 'excerpts': ['排除真皮'], 'message_id': '04b792e4280e43d583524f7d3f87c359', 'scope': '本次选购；以最新原文为准'}}
+E             {'capacity': {'source': 'P1003-S1是35升、黑色、真皮的吗？', 'excerpts': ['P1003-S1是35升、黑色、真皮的吗？'], 'message_id': 'a7268d0983d44db79ff77c0964d4ed5f', 'scope': '本次选购；以最新原文为准'}} != {'capacity': {'source': '容量35升', 'exce...
+E             
+E             ...Full output truncated (3 lines hidden), use '-vv' to show
+
+tests/test_working_state_questions.py:25: AssertionError
+_________ test_explicit_change_in_same_message_as_question_is_applied __________
+
+    def test_explicit_change_in_same_message_as_question_is_applied():
+        agent=SimpleNamespace(state=AgentState())
+        token=ShoppingContext.set(ShoppingContextSnapshot('s','buyer','zh-CN','CNY'))
+        try:
+            update_working_state(agent,[UserMsg(name='buyer',content='容量35升，颜色蓝色。预算180元。')])
+            update_working_state(agent,[UserMsg(name='buyer',content='原来容量是多少？容量改为40升，颜色改为黑色。预算改为200元，寄到中国。')])
+            constraints=governance(agent)['working']['constraints']
+>           assert constraints['capacity']['source']=='容量改为40升'
+E           AssertionError: assert '原来容量是多少？容量改为40升' == '容量改为40升'
+E             
+E             - 容量改为40升
+E             + 原来容量是多少？容量改为40升
+
+tests/test_working_state_questions.py:38: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_working_state_questions.py::test_questions_preserve_constraints_and_selection[\u6211\u9009\u4e2d\u7684SKU\u3001\u5f53\u524d\u672c\u6b21\u9884\u7b97\u3001\u6536\u8d27\u56fd\u5bb6\u3001\u5bb9\u91cf\u548c\u6750\u8d28\u6392\u9664\u662f\u4ec0\u4e48\uff1f\u53ea\u56de\u987e\u9700\u6c42]
+FAILED tests/test_working_state_questions.py::test_questions_preserve_constraints_and_selection[\u989c\u8272\u662f\u4ec0\u4e48\uff1f\u6570\u91cf\u591a\u5c11\uff1f\u662f\u5426\u9700\u8981\u771f\u76ae\uff1f]
+FAILED tests/test_working_state_questions.py::test_questions_preserve_constraints_and_selection[\u9884\u7b97300\u5143\u5417\uff1f\u5bc4\u5230\u4e2d\u56fd\u5417\uff1f\u9009\u4e2dP1003-S1\u5417\uff1f]
+FAILED tests/test_working_state_questions.py::test_questions_preserve_constraints_and_selection[\u8bf7\u56de\u987e\u7528\u9014\u3001\u5bb9\u91cf\u3001\u989c\u8272\u548c\u91cd\u91cf\u8981\u6c42\u3002]
+FAILED tests/test_working_state_questions.py::test_questions_preserve_constraints_and_selection[P1003-S1\u662f35\u5347\u3001\u9ed1\u8272\u3001\u771f\u76ae\u7684\u5417\uff1f]
+FAILED tests/test_working_state_questions.py::test_explicit_change_in_same_message_as_question_is_applied
+6 failed in 0.83s

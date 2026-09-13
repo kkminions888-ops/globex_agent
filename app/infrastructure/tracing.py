@@ -418,6 +418,14 @@ def build_agent_middlewares(settings: Settings) -> list:
     from app.infrastructure.persistence.context_evidence import ContextEvidenceStore
     middlewares: list = [TracingMiddleware(), EvidenceCompactionMiddleware(
         ContextEvidenceStore(settings.data_dir / "context_evidence.db"))]
+    if settings.context_strategy not in {'legacy', 'layered'}:
+        raise ValueError('CONTEXT_STRATEGY 仅支持 legacy/layered')
+    if settings.context_pruning_timing not in {'after_use', 'pressure'}:
+        raise ValueError('CONTEXT_PRUNING_TIMING 必须是 after_use 或 pressure，入口有损只供实验')
+    if settings.context_strategy == 'layered':
+        from app.infrastructure.context_governance import LayeredContextMiddleware
+        middlewares[1] = LayeredContextMiddleware(ContextEvidenceStore(settings.data_dir / 'context_evidence.db'),
+            product_tokens=settings.context_product_tokens, target_tokens=settings.context_target_tokens, timing=settings.context_pruning_timing)
     if settings.reply_token_budget > 0:
         middlewares.append(
             ReplyBudgetControlMiddleware(

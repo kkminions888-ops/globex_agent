@@ -1,0 +1,7 @@
+saved {'saved': True, 'preferences': [{'buyer_id': 'orders-memory-verification', 'kind': 'like', 'statement': '喜欢深蓝色的衣服', 'created_at': '2026-09-09T09:51:39.812295+00:00'}]}
+turn {'query': '请仅用一句话说明我长期喜欢什么颜色的穿搭，不要查商品。', 'reply': '你长期喜欢深蓝色的穿搭。', 'tools': []}
+turn {'query': '把我长期喜欢深蓝色衣服的偏好改成喜欢浅绿色衣服，保存修改。', 'reply': '我将帮您修改长期偏好，把"喜欢深蓝色的衣服"改为"喜欢浅绿色的衣服"。\n\n好的！我已经成功将您的长期偏好从"喜欢深蓝色的衣服"修改为"喜欢浅绿色的衣服"。这个修改会跨会话生效，今后在为您推荐衣服时会优先考虑浅绿色的款式。', 'tools': ['update_preference_tool']}
+updated [{'buyer_id': 'orders-memory-verification', 'kind': 'like', 'statement': '喜欢浅绿色的衣服', 'created_at': '2026-09-09T09:51:45.771043+00:00'}]
+turn {'query': '删除我喜欢浅绿色衣服这条长期偏好，以后不需要记住。', 'reply': '已成功删除“喜欢浅绿色的衣服”这条长期偏好，后续推荐将不再考虑该偏好。', 'tools': ['forget_preference_tool']}
+deleted True
+orders {'orders': [{'order_id': '10986667f0dc4104b146974e3c167359', 'buyer_id': 'orders-memory-verification', 'status': 'CANCELLED', 'total_amount_major': 189.0, 'currency': 'CNY', 'shipping_address': 'CN 浙江 杭州 本地演示测试地址（隔离验收买家 ）', 'lines': [{'product_id': 'P1001', 'sku_id': 'P1001-S1', 'title': 'Nomadica 旅行三件套（收纳袋+颈枕+眼罩）（军绿色）', 'unit_price_major': 189.0, 'quantity': 1}], 'created_at': '2026-09-09T09:50:34.231672+00:00', 'cancel_reason': '隔离验收完成，取消测试订单', 'total_amount_minor': 18900, 'amount_scope': 'merchandise_only', 'order_kind': 'purchase_intent'}], 'total': 1, 'offset': 0, 'limit': 20}

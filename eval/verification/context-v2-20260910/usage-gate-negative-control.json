@@ -1,0 +1,5 @@
+{
+  "passed": true,
+  "negative_control": "旧36条长对话只有业务usage，不含summary；新门禁逐条拒绝",
+  "rejected_rows": 36
+}

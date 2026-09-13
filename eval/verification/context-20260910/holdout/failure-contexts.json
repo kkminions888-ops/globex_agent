@@ -1,0 +1,841 @@
+[
+  {
+    "case_id": "hold-old-price",
+    "strategy": "layered",
+    "repetition": 0,
+    "answer": "根据回查结果：\n\n- **第一批历史单价**：P1003-S1 在第1批展示时的单价为 **CNY 139.0**。\n- **当前单价**：根据当前业务状态，P1003-S1 的现价为 **CNY 129.0**（见第19、20批商品信息）。\n\n价格已从 139 元下调至 129 元。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true,
+      "fact_associations": false
+    },
+    "association_check": {
+      "applicable": true,
+      "status": "failed",
+      "fields": [
+        false,
+        false
+      ]
+    },
+    "summary": "<system-info>以下是历史工作摘要；以本轮交易账本、当前偏好 revision 及最新候选证据为准，历史摘要不构成执行授权。\n# 买家诉求与约束\n用户初始请求为预算300元寄到中国，展示商品。后续更新为预算180元寄到日本，选中P1003-S1（Wanderlite 折叠旅行双肩包 35L，CNY 129.0），并淘汰P1002（因太贵）。用户要求不要下单，仅展示商品。目前已展示至第18批商品。\n\n# 当前进展（已推荐商品 / 已创建订单）\n已根据用户最新约束（预算180元，寄到日本）筛选商品。P1003-S1已选中，P1002已排除。未执行任何下单操作。所有商品批次（1-18）均已展示完毕。\n\n# 关键事实（product_id / sku_id / 价格 / 订单号）\n1. 用户预算和目的地发生变更，新约束为预算180 CNY、目的地JP，作用域为本次选购。\n2. P1003-S1（Wanderlite 折叠旅行双肩包 35L，CNY 129.0）符合预算且可寄往日本，落地总价164.0 CNY（含35 CNY运费）。\n3. P1002（TrailOx 20寸登机行李箱 铝框款）因价格899.0 CNY远超预算被用户明确淘汰。\n4. 所有商品批次内容重复，无新增商品。\n\n# 下一步与待确认事项\n1. 确认用户是否需要基于当前选中商品P1003-S1进行下一步操作（如查看详情、比价或下单）。\n2. 询问用户是否需要调整筛选条件或查看其他类型商品。\n3. 提醒用户当前预算180 CNY，P1003-S1落地价164.0 CNY符合要求。\n\n# 买家偏好与必须保留的上下文\n1. 用户硬约束：预算180 CNY（本次选购）、目的地JP。\n2. 选中商品：P1003-S1（Wanderlite 折叠旅行双肩包 35L，CNY 129.0）。\n3. 排除商品：P1002（因价格过高）。\n4. 用户明确要求不要下单，仅展示和筛选商品。</system-info>",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "f310f5fa3a9b4471a3578708a8c6a95b"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "f310f5fa3a9b4471a3578708a8c6a95b"
+        }
+      },
+      "selected": [
+        "P1003-S1"
+      ],
+      "excluded": [
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "P1003-S1第一批的历史单价和现在单价是多少？",
+      "source_message_id": "dd157bc14f334b179a4236f8630cd7d2",
+      "referenced": [
+        "P1003-S1"
+      ],
+      "exclusion_reasons": {
+        "P1002": {
+          "source": "P1002太贵，淘汰",
+          "message_id": "f310f5fa3a9b4471a3578708a8c6a95b"
+        }
+      }
+    },
+    "summary_revision": 1,
+    "last_tool_calls": [
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 19}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 20}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"batch\": 1, \"product_id\": \"P1003\", \"sku_id\": \"P1003-S1\", \"fields\": \"price_major,currency\"}",
+        "state": "finished"
+      },
+      {
+        "name": "current_business_state",
+        "input": "{}",
+        "state": "finished"
+      }
+    ],
+    "database_archive_prefix": "hold-old-price-layered-0"
+  },
+  {
+    "case_id": "hold-old-price",
+    "strategy": "layered",
+    "repetition": 1,
+    "answer": "P1003-S1 在第一批的历史单价为 **139.0 CNY**，当前单价为 **129.0 CNY**（币种：CNY）。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true,
+      "fact_associations": false
+    },
+    "association_check": {
+      "applicable": true,
+      "status": "failed",
+      "fields": [
+        false,
+        false
+      ]
+    },
+    "summary": "<system-info>以下是历史工作摘要；以本轮交易账本、当前偏好 revision 及最新候选证据为准，历史摘要不构成执行授权。\n# 买家诉求与约束\n用户初始请求为预算300元、寄到中国，展示商品。后续调整为预算180元、寄到日本，选中商品P1003-S1（Wanderlite 折叠旅行双肩包 35L，129.0 CNY），并明确排除P1002（因太贵）。用户未要求下单。\n\n# 当前进展（已推荐商品 / 已创建订单）\n已展示第1至18批商品。用户当前选中商品为P1003-S1（Wanderlite 折叠旅行双肩包 35L，129.0 CNY），寄往日本，符合180元预算。P1002已被排除。尚未创建订单。\n\n# 关键事实（product_id / sku_id / 价格 / 订单号）\n1. 用户预算和目的地发生变更，需按最新约束（180元，JP）筛选商品。\n2. 商品P1003-S1符合当前预算和目的地要求（落地价164.0 CNY，含35 CNY运费）。\n3. P1002因价格过高（899.0 CNY）被用户明确淘汰。\n4. 所有批次商品数据重复，未出现新商品。\n\n# 下一步与待确认事项\n1. 确认用户是否需要基于当前选中商品P1003-S1进行下单或进一步操作。\n2. 若用户无进一步操作需求，可结束当前选购流程。\n\n# 买家偏好与必须保留的上下文\n1. 用户当前预算为180元（CNY），目的地为日本（JP），仅限本次选购。\n2. 已选中商品：P1003-S1（Wanderlite 折叠旅行双肩包 35L，129.0 CNY）。\n3. 已排除商品：P1002（因价格过高）。\n4. 用户明确表示“不要下单”，需等待进一步指令。</system-info>",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "19a9be775b524de19509b2adc5df29c1"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "19a9be775b524de19509b2adc5df29c1"
+        }
+      },
+      "selected": [
+        "P1003-S1"
+      ],
+      "excluded": [
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "P1003-S1第一批的历史单价和现在单价是多少？",
+      "source_message_id": "78c125be45714b45a50204a4d456446c",
+      "referenced": [
+        "P1003-S1"
+      ],
+      "exclusion_reasons": {
+        "P1002": {
+          "source": "P1002太贵，淘汰",
+          "message_id": "19a9be775b524de19509b2adc5df29c1"
+        }
+      }
+    },
+    "summary_revision": 1,
+    "last_tool_calls": [
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 19}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 20}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"product_id\": \"P1003\", \"sku_id\": \"P1003-S1\", \"batch\": 1, \"fields\": \"price_major,currency\"}",
+        "state": "finished"
+      },
+      {
+        "name": "current_business_state",
+        "input": "{}",
+        "state": "finished"
+      }
+    ],
+    "database_archive_prefix": "hold-old-price-layered-1"
+  },
+  {
+    "case_id": "hold-blue",
+    "strategy": "deterministic",
+    "repetition": 0,
+    "answer": "P1003 雾霾蓝对应的 SKU 为 **P1003-S2**，当前库存为 **60** 件，价格为 **129 CNY**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true,
+      "fact_associations": false
+    },
+    "association_check": {
+      "applicable": true,
+      "status": "failed",
+      "fields": [
+        false
+      ]
+    },
+    "summary": "",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "ef55970db1f44834a171484bac4ab03e"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "ef55970db1f44834a171484bac4ab03e"
+        }
+      },
+      "selected": [
+        "P1003-S1"
+      ],
+      "excluded": [
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "第一批P1003雾霾蓝的完整SKU和库存是多少？",
+      "source_message_id": "5d7f8399b92a49b998822fa094a4e993",
+      "referenced": [
+        "P1003"
+      ],
+      "exclusion_reasons": {
+        "P1002": {
+          "source": "P1002太贵，淘汰",
+          "message_id": "ef55970db1f44834a171484bac4ab03e"
+        }
+      }
+    },
+    "summary_revision": null,
+    "last_tool_calls": [
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 13}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 14}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 15}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 16}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 17}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 18}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 19}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 20}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"batch\": 1, \"product_id\": \"P1003\", \"fields\": \"skus\"}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"batch\": 1, \"position\": 3, \"fields\": \"skus\"}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"query\": \"P1003\", \"fields\": \"skus\"}",
+        "state": "finished"
+      },
+      {
+        "name": "current_business_state",
+        "input": "{}",
+        "state": "finished"
+      }
+    ],
+    "database_archive_prefix": "hold-blue-deterministic-0"
+  },
+  {
+    "case_id": "hold-blue",
+    "strategy": "deterministic",
+    "repetition": 1,
+    "answer": "根据当前业务状态，P1003 的雾霾蓝 SKU 为 **P1003-S2**，但当前权威库存中仅返回了 **P1003-S1（石墨黑）** 的信息：价格为 **139 CNY**，库存为 **7**。\n\n若需确认 **P1003-S2（雾霾蓝）** 的最新库存和价格，请明确指示，我将进一步查询。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true,
+      "fact_associations": false
+    },
+    "association_check": {
+      "applicable": true,
+      "status": "unknown",
+      "fields": [
+        null
+      ]
+    },
+    "summary": "",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "fff01fd032e64c599f4c1dab6a2a5aee"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "fff01fd032e64c599f4c1dab6a2a5aee"
+        }
+      },
+      "selected": [
+        "P1003-S1"
+      ],
+      "excluded": [
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "第一批P1003雾霾蓝的完整SKU和库存是多少？",
+      "source_message_id": "b4e0d06006be4b2fba8537637e8a2137",
+      "referenced": [
+        "P1003"
+      ],
+      "exclusion_reasons": {
+        "P1002": {
+          "source": "P1002太贵，淘汰",
+          "message_id": "fff01fd032e64c599f4c1dab6a2a5aee"
+        }
+      }
+    },
+    "summary_revision": null,
+    "last_tool_calls": [
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 13}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 14}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 15}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 16}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 17}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 18}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 19}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 20}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"batch\": 1, \"product_id\": \"P1003\", \"fields\": \"skus\"}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"batch\": 1, \"position\": 3, \"fields\": \"skus\"}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"query\": \"P1003\", \"fields\": \"skus\"}",
+        "state": "finished"
+      },
+      {
+        "name": "current_business_state",
+        "input": "{}",
+        "state": "finished"
+      }
+    ],
+    "database_archive_prefix": "hold-blue-deterministic-1"
+  },
+  {
+    "case_id": "hold-old-price",
+    "strategy": "layered",
+    "repetition": 2,
+    "answer": "根据查询结果：\n\n- **第一批历史单价**：139.0 CNY（来自第一批展示时的数据）  \n- **当前单价**：129.0 CNY（当前业务状态）\n\n商品 P1003-S1 当前价格比第一批时**降低了 10 元**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true,
+      "fact_associations": false
+    },
+    "association_check": {
+      "applicable": true,
+      "status": "failed",
+      "fields": [
+        false,
+        false
+      ]
+    },
+    "summary": "<system-info>以下是历史工作摘要；以本轮交易账本、当前偏好 revision 及最新候选证据为准，历史摘要不构成执行授权。\n# 买家诉求与约束\n用户最初要求预算300元寄到中国并展示商品，后续修改为预算180元寄到日本。用户已选中商品P1003-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑，129.0 CNY），并明确排除P1002（因价格过高）。用户要求不要下单，仅浏览商品。\n\n# 当前进展（已推荐商品 / 已创建订单）\n已展示第1至18批商品。用户当前选中P1003-S1，排除P1002。未生成任何订单。当前预算约束为180 CNY，目的地为JP，仅适用于本次选购。\n\n# 关键事实（product_id / sku_id / 价格 / 订单号）\n1. 用户多次要求继续展示商品，但各批次商品内容重复，未出现新商品。\n2. 用户明确预算和目的地变更，并指定了选中与排除的商品。\n3. 用户强调不要下单，仅为浏览。\n\n# 下一步与待确认事项\n1. 确认用户是否需要继续浏览新商品（但当前商品池可能已耗尽）。\n2. 或根据已选中的P1003-S1提供进一步信息（如历史价格查询）。\n3. 或确认是否结束选购流程。\n\n# 买家偏好与必须保留的上下文\n1. 预算：180 CNY，仅限本次选购。\n2. 目的地：JP（日本），仅限本次选购。\n3. 选中商品：P1003-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑，129.0 CNY）。\n4. 排除商品：P1002（因价格过高）。\n5. 用户明确不要下单。</system-info>",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "f9658a21dc274229b7396e835199bf55"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "f9658a21dc274229b7396e835199bf55"
+        }
+      },
+      "selected": [
+        "P1003-S1"
+      ],
+      "excluded": [
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "P1003-S1第一批的历史单价和现在单价是多少？",
+      "source_message_id": "1d8777ef868549e898f85480ff15e0af",
+      "referenced": [
+        "P1003-S1"
+      ],
+      "exclusion_reasons": {
+        "P1002": {
+          "source": "P1002太贵，淘汰",
+          "message_id": "f9658a21dc274229b7396e835199bf55"
+        }
+      }
+    },
+    "summary_revision": 1,
+    "last_tool_calls": [
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 19}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 20}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"batch\": 1, \"product_id\": \"P1003\", \"sku_id\": \"P1003-S1\", \"fields\": \"price_major,currency\"}",
+        "state": "finished"
+      },
+      {
+        "name": "current_business_state",
+        "input": "{}",
+        "state": "finished"
+      }
+    ],
+    "database_archive_prefix": "hold-old-price-layered-2"
+  },
+  {
+    "case_id": "hold-old-price",
+    "strategy": "deterministic",
+    "repetition": 2,
+    "answer": "P1003-S1 在第一批展示时的历史单价为 **139 CNY**，当前单价为 **129 CNY**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true,
+      "fact_associations": false
+    },
+    "association_check": {
+      "applicable": true,
+      "status": "failed",
+      "fields": [
+        false,
+        false
+      ]
+    },
+    "summary": "",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "cbe1e44143af4773836509de54287d88"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "cbe1e44143af4773836509de54287d88"
+        }
+      },
+      "selected": [
+        "P1003-S1"
+      ],
+      "excluded": [
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "P1003-S1第一批的历史单价和现在单价是多少？",
+      "source_message_id": "c6240c19fd2b4ab0b7d41c5dd321ec40",
+      "referenced": [
+        "P1003-S1"
+      ],
+      "exclusion_reasons": {
+        "P1002": {
+          "source": "P1002太贵，淘汰",
+          "message_id": "cbe1e44143af4773836509de54287d88"
+        }
+      }
+    },
+    "summary_revision": null,
+    "last_tool_calls": [
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 11}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 12}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 13}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 14}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 15}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 16}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 17}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 18}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 19}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 20}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"product_id\": \"P1003\", \"sku_id\": \"P1003-S1\", \"batch\": 1, \"fields\": \"price_major,currency\"}",
+        "state": "finished"
+      },
+      {
+        "name": "current_business_state",
+        "input": "{}",
+        "state": "finished"
+      }
+    ],
+    "database_archive_prefix": "hold-old-price-deterministic-2"
+  },
+  {
+    "case_id": "hold-sku-stock",
+    "strategy": "layered",
+    "repetition": 2,
+    "answer": "抱歉，无法通过当前工具准确回查第一批商品 P1003 石墨黑（P1003-S1）和雾霾蓝（P1003-S2）的历史库存数据。建议以当前库存为准，或提供更多上下文帮助定位。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true,
+      "fact_associations": false
+    },
+    "association_check": {
+      "applicable": true,
+      "status": "unknown",
+      "fields": [
+        null,
+        null
+      ]
+    },
+    "summary": "<system-info>以下是历史工作摘要；以本轮交易账本、当前偏好 revision 及最新候选证据为准，历史摘要不构成执行授权。\n# 买家诉求与约束\n用户初始请求为预算300元寄到中国，展示商品。后续调整为预算180元寄到日本，选中P1003-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑，129.0 CNY），并明确淘汰P1002（因太贵）。用户未要求下单。\n\n# 当前进展（已推荐商品 / 已创建订单）\n已展示多批次商品（至少18批），所有批次内容重复。用户最终选中商品P1003-S1，未执行下单操作。历史预算300元已失效，当前预算为180元（作用域：本次选购）。\n\n# 关键事实（product_id / sku_id / 价格 / 订单号）\n1. 用户偏好发生变化：目的地从中国变更为日本，预算从300元调整为180元。\n2. 用户明确选中P1003-S1，并淘汰P1002。\n3. 所有商品批次返回结果相同，无新商品。\n\n# 下一步与待确认事项\n1. 确认用户是否需要基于当前选中商品P1003-S1进行下单或进一步操作。\n2. 若用户无新请求，可结束当前选购流程。\n\n# 买家偏好与必须保留的上下文\n1. 当前约束：预算180元（CNY），目的地日本（JP）。\n2. 已选商品：P1003-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑，129.0 CNY）。\n3. 已淘汰商品：P1002（因价格超出预算）。\n4. 用户强调不要下单，仅为选中。</system-info>",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "a9215c04c8ed4bb094e476cba462e349"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "a9215c04c8ed4bb094e476cba462e349"
+        }
+      },
+      "selected": [
+        "P1003-S1"
+      ],
+      "excluded": [
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "第一批P1003石墨黑和雾霾蓝的历史库存分别多少？",
+      "source_message_id": "752ea7b0eb414b368fc84d5fd7fd6ffa",
+      "referenced": [
+        "P1003"
+      ],
+      "exclusion_reasons": {
+        "P1002": {
+          "source": "P1002太贵，淘汰",
+          "message_id": "a9215c04c8ed4bb094e476cba462e349"
+        }
+      }
+    },
+    "summary_revision": 1,
+    "last_tool_calls": [
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 19}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 20}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"batch\": 1, \"product_id\": \"P1003\", \"fields\": \"stock\"}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"batch\": 1, \"position\": 2, \"fields\": \"skus\"}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"batch\": 1, \"product_id\": \"P1003\", \"sku_id\": \"P1003-S1\", \"fields\": \"stock\"}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"batch\": 1, \"product_id\": \"P1003\", \"sku_id\": \"P1003-S2\", \"fields\": \"stock\"}",
+        "state": "finished"
+      }
+    ],
+    "database_archive_prefix": "hold-sku-stock-layered-2"
+  },
+  {
+    "case_id": "hold-blue",
+    "strategy": "layered",
+    "repetition": 1,
+    "answer": "根据当前业务状态，P1003 的雾霾蓝 SKU 是 **P1003-S2**，但当前工具仅返回了 P1003-S1（石墨黑）的状态：  \n- **SKU ID**: P1003-S1  \n- **价格**: ¥139 CNY  \n- **库存**: 7 件  \n\n如需雾霾蓝（P1003-S2）的最新库存和价格，请明确告知，我将尝试进一步查询。",
+    "checks": {
+      "facts": false,
+      "current_lookup": true,
+      "no_error": true,
+      "fact_associations": false
+    },
+    "association_check": {
+      "applicable": true,
+      "status": "unknown",
+      "fields": [
+        null
+      ]
+    },
+    "summary": "",
+    "working": {
+      "constraints": {
+        "budget": {
+          "value": "180",
+          "currency": "CNY",
+          "scope": "本次选购",
+          "source": "预算改为180元",
+          "message_id": "e395946760a646c49c6cd8c96f7aa789"
+        },
+        "destination": {
+          "value": "JP",
+          "scope": "本次选购",
+          "source": "寄到日本",
+          "message_id": "e395946760a646c49c6cd8c96f7aa789"
+        }
+      },
+      "selected": [
+        "P1003-S1"
+      ],
+      "excluded": [
+        "P1002"
+      ],
+      "comparisons": [],
+      "pending": [
+        "需按当前工具/账本核验，摘要不构成授权"
+      ],
+      "goal": "预算300元，寄到中国。先展示这批商品。",
+      "latest_request": "第一批P1003雾霾蓝的完整SKU和库存是多少？",
+      "source_message_id": "050b82f6920a4b8d87f3f8dd1ab22a6e",
+      "referenced": [
+        "P1003"
+      ],
+      "exclusion_reasons": {
+        "P1002": {
+          "source": "P1002太贵，淘汰",
+          "message_id": "e395946760a646c49c6cd8c96f7aa789"
+        }
+      }
+    },
+    "summary_revision": null,
+    "last_tool_calls": [
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 13}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 14}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 15}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 16}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 17}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 18}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 19}",
+        "state": "finished"
+      },
+      {
+        "name": "product_search_tool",
+        "input": "{\"batch\": 20}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"batch\": 1, \"product_id\": \"P1003\", \"fields\": \"skus\"}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"batch\": 1, \"position\": 3, \"fields\": \"skus\"}",
+        "state": "finished"
+      },
+      {
+        "name": "conversation_fact_lookup",
+        "input": "{\"query\": \"P1003\", \"fields\": \"skus\"}",
+        "state": "finished"
+      },
+      {
+        "name": "current_business_state",
+        "input": "{}",
+        "state": "finished"
+      }
+    ],
+    "database_archive_prefix": "hold-blue-layered-1"
+  }
+]

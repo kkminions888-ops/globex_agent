@@ -1,0 +1,50 @@
+{
+  "case_id": "v2-hold-last",
+  "split": "holdout",
+  "mode": "snapshot",
+  "strategy": "deterministic",
+  "repetition": 1,
+  "answer": "最新一批（第24批）第二件商品的 `product_id` 是 **P8233**。",
+  "checks": {
+    "facts": true,
+    "current_lookup": true,
+    "no_error": true
+  },
+  "passed": true,
+  "error": null,
+  "usage": [
+    {
+      "kind": "business",
+      "input_tokens": 10235,
+      "output_tokens": 25,
+      "elapsed_ms": 1625.3410830104258
+    }
+  ],
+  "input_tokens": 10235,
+  "output_tokens": 25,
+  "model_calls": 1,
+  "lookup_calls": 0,
+  "current_calls": 0,
+  "elapsed_ms": 3348,
+  "compactions": [],
+  "round_metrics": [
+    {
+      "elapsed_ms": 2104,
+      "compacted": false,
+      "model_calls": 1
+    }
+  ],
+  "final_context_estimated_tokens": 24845,
+  "last_compaction": {
+    "policy_version": "layered-v2",
+    "reason": "pressure",
+    "before_tokens": 14232,
+    "after_tokens": 9839,
+    "archived_results": 21,
+    "summary_changed": false,
+    "elapsed_ms": 25,
+    "status": "completed"
+  },
+  "final_product_observations": 15,
+  "final_product_duplicate_ratio": 0.33333333333333337
+}

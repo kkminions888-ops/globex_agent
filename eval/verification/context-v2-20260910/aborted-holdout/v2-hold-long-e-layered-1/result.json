@@ -1,0 +1,187 @@
+{
+  "case_id": "v2-hold-long-e",
+  "split": "holdout",
+  "mode": "long",
+  "strategy": "layered",
+  "repetition": 1,
+  "answer": "",
+  "checks": {
+    "facts": false,
+    "current_lookup": false,
+    "no_error": true,
+    "two_compactions": false
+  },
+  "passed": false,
+  "error": "ValueError: 摘要包含无法核验的商品或证据标识",
+  "usage": [
+    {
+      "kind": "business",
+      "input_tokens": 1133,
+      "output_tokens": 22,
+      "elapsed_ms": 1316.4861670229584
+    },
+    {
+      "kind": "business",
+      "input_tokens": 3495,
+      "output_tokens": 26,
+      "elapsed_ms": 3634.7782500088215
+    },
+    {
+      "kind": "business",
+      "input_tokens": 3541,
+      "output_tokens": 22,
+      "elapsed_ms": 2883.4210830100346
+    },
+    {
+      "kind": "business",
+      "input_tokens": 5905,
+      "output_tokens": 43,
+      "elapsed_ms": 3347.6494579808787
+    },
+    {
+      "kind": "business",
+      "input_tokens": 5985,
+      "output_tokens": 22,
+      "elapsed_ms": 3264.5402910129633
+    },
+    {
+      "kind": "business",
+      "input_tokens": 6425,
+      "output_tokens": 43,
+      "elapsed_ms": 3119.962000026135
+    },
+    {
+      "kind": "business",
+      "input_tokens": 4295,
+      "output_tokens": 22,
+      "elapsed_ms": 4147.9957080155145
+    },
+    {
+      "kind": "business",
+      "input_tokens": 4736,
+      "output_tokens": 43,
+      "elapsed_ms": 1243.5457920073532
+    },
+    {
+      "kind": "business",
+      "input_tokens": 4529,
+      "output_tokens": 22,
+      "elapsed_ms": 1164.0107909915969
+    },
+    {
+      "kind": "business",
+      "input_tokens": 4975,
+      "output_tokens": 43,
+      "elapsed_ms": 1394.526832998963
+    },
+    {
+      "kind": "business",
+      "input_tokens": 4763,
+      "output_tokens": 22,
+      "elapsed_ms": 3604.6835420129355
+    },
+    {
+      "kind": "business",
+      "input_tokens": 5218,
+      "output_tokens": 43,
+      "elapsed_ms": 1393.7547499954235
+    },
+    {
+      "kind": "business",
+      "input_tokens": 5129,
+      "output_tokens": 22,
+      "elapsed_ms": 1089.1275839821901
+    },
+    {
+      "kind": "business",
+      "input_tokens": 5576,
+      "output_tokens": 53,
+      "elapsed_ms": 3756.32791701355
+    },
+    {
+      "kind": "business",
+      "input_tokens": 5321,
+      "output_tokens": 22,
+      "elapsed_ms": 1261.5824170061387
+    },
+    {
+      "kind": "business",
+      "input_tokens": 5766,
+      "output_tokens": 53,
+      "elapsed_ms": 1823.4340409981087
+    },
+    {
+      "kind": "business",
+      "input_tokens": 5562,
+      "output_tokens": 22,
+      "elapsed_ms": 3779.7405419987626
+    },
+    {
+      "kind": "business",
+      "input_tokens": 6003,
+      "output_tokens": 53,
+      "elapsed_ms": 1460.6881250219885
+    }
+  ],
+  "input_tokens": 88357,
+  "output_tokens": 598,
+  "model_calls": 18,
+  "lookup_calls": 0,
+  "current_calls": 0,
+  "elapsed_ms": 59705,
+  "compactions": [],
+  "round_metrics": [
+    {
+      "elapsed_ms": 5638,
+      "compacted": false,
+      "model_calls": 2
+    },
+    {
+      "elapsed_ms": 6242,
+      "compacted": false,
+      "model_calls": 2
+    },
+    {
+      "elapsed_ms": 6397,
+      "compacted": false,
+      "model_calls": 2
+    },
+    {
+      "elapsed_ms": 5969,
+      "compacted": false,
+      "model_calls": 2
+    },
+    {
+      "elapsed_ms": 2579,
+      "compacted": false,
+      "model_calls": 2
+    },
+    {
+      "elapsed_ms": 5035,
+      "compacted": false,
+      "model_calls": 2
+    },
+    {
+      "elapsed_ms": 4868,
+      "compacted": false,
+      "model_calls": 2
+    },
+    {
+      "elapsed_ms": 4157,
+      "compacted": false,
+      "model_calls": 2
+    },
+    {
+      "elapsed_ms": 5690,
+      "compacted": false,
+      "model_calls": 2
+    }
+  ],
+  "final_context_estimated_tokens": 14718,
+  "last_compaction": {
+    "status": "failed",
+    "reason": "ValueError"
+  },
+  "final_product_observations": 15,
+  "final_product_duplicate_ratio": 0.6666666666666667
+}

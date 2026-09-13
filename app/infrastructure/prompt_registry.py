@@ -31,7 +31,12 @@ def toolset_contract(root: Path, *, web_search_enabled: bool = False) -> dict:
              *(root / "app/application/agents" / name for name in
                ("permissions.py", "main_agent.py", "search_agent.py", "trade_agent.py")),
              root / "app/infrastructure/capability_registry.py",
-             root / "app/infrastructure/buyer_skills.py"]
+             root / "app/infrastructure/buyer_skills.py",
+             root / "app/infrastructure/semantic_memory.py",
+             root / "app/application/agents/tool_confirmation.py",
+             root / "app/application/memory/middleware.py",
+             root / "app/application/memory/preference_selector.py",
+             root / "app/domain/buyer/preference.py"]
     # Skill/策略白名单放入这个目录后自动参与契约，未安装时不会宣称有能力。
     capability_paths = [*sorted((root / "app/application/skills").rglob("*.py")),
                         *sorted((root / "app/application/strategies").rglob("*.py"))]
@@ -56,6 +61,10 @@ def read_prompt(path: Path) -> tuple[dict, str]:
     except (KeyError, TypeError, ValueError) as error:
         raise PromptRegistryError("Prompt 需要有效的 main_agent/sub_agents.search/sub_agents.trade 名称和正文") from error
     return document, sha256(raw)
+
+
+class PromptContractChanged(PromptRegistryError):
+    """旧会话工具合同不可复用，可在新会话中重新发起当前需求。"""
 
 
 class PromptRegistry:
@@ -97,7 +106,7 @@ class PromptRegistry:
         if sha256(canonical(payload.get("toolset"))) != row["toolset_sha256"]:
             raise PromptRegistryError("Prompt 工具契约元数据 hash 不符，拒绝加载")
         if check_contract and row["toolset_sha256"] != self.contract_hash:
-            raise PromptRegistryError("Prompt 绑定工具契约与当前代码不一致，请重新评测发布；不能静默换版本")
+            raise PromptContractChanged("Prompt 绑定工具契约与当前代码不一致，请重新评测发布；不能静默换版本")
         return {"version_id": version_id, "content_sha256": version_id[2:], "yaml_sha256": row["yaml_sha256"],
                 "toolset_sha256": row["toolset_sha256"], "created_at": row["created_at"], "document": payload["prompts"]}
 

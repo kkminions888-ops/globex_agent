@@ -1,0 +1,3 @@
+{"case_id": "v3-hold-pair", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 30070, "error": null}
+{"case_id": "v3-hold-pair", "strategy": "layered", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 30068, "error": null}
+{"case_id": "v3-hold-pair", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 5, "input_tokens": 238259, "error": null}

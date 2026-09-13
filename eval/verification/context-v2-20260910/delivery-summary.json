@@ -1,0 +1,258 @@
+{
+  "gate": "PASS_SCOPED_QUALITY_AND_METERED_COST",
+  "scope": "冻结参数场景与真实业务接口；不代表全站生产质量门禁",
+  "formal_runs": 360,
+  "development_runs": 108,
+  "primary_holdout_runs": 252,
+  "primary_holdout_gate": "BLOCK",
+  "quality_recovery_runs": 21,
+  "quality_recovery_summary": {
+    "deterministic": {
+      "runs": 84,
+      "passed": 83,
+      "success_rate": 0.9880952380952381,
+      "input_tokens": null,
+      "long_input_tokens": 4873857,
+      "model_calls": 1012,
+      "lookup_calls": 38,
+      "scenario_latency_p50_ms": 18654,
+      "scenario_latency_p95_ms": 513196,
+      "business_model_latency_p95_ms": 3251.9576250051614,
+      "ordinary_round_p95_ms": 21625,
+      "mean_final_context_estimated_tokens": 27684.79761904762,
+      "mean_final_product_duplicate_ratio": 0.43154761904761907,
+      "unknown_usage_runs": 1
+    },
+    "layered": {
+      "runs": 84,
+      "passed": 84,
+      "success_rate": 1,
+      "input_tokens": 6727154,
+      "long_input_tokens": 5463170,
+      "model_calls": 1011,
+      "lookup_calls": 39,
+      "scenario_latency_p50_ms": 19400,
+      "scenario_latency_p95_ms": 509843,
+      "business_model_latency_p95_ms": 4173.736500000814,
+      "ordinary_round_p95_ms": 22582,
+      "mean_final_context_estimated_tokens": 28160.654761904763,
+      "mean_final_product_duplicate_ratio": 0.43154761904761907,
+      "unknown_usage_runs": 0
+    },
+    "legacy": {
+      "runs": 84,
+      "passed": 84,
+      "success_rate": 1,
+      "input_tokens": 16537157,
+      "long_input_tokens": 8445891,
+      "model_calls": 1074,
+      "lookup_calls": 106,
+      "scenario_latency_p50_ms": 28737,
+      "scenario_latency_p95_ms": 511704,
+      "business_model_latency_p95_ms": 5230.780249985401,
+      "ordinary_round_p95_ms": 30474,
+      "mean_final_context_estimated_tokens": 52718.42857142857,
+      "mean_final_product_duplicate_ratio": 0.894795918367347,
+      "unknown_usage_runs": 0
+    }
+  },
+  "independent_metered_cost_runs": 36,
+  "metered_summary": {
+    "layered": {
+      "runs": 18,
+      "passed": 18,
+      "success_rate": 1,
+      "input_tokens": 5630956,
+      "long_input_tokens": 5630956,
+      "model_calls": 935,
+      "lookup_calls": 3,
+      "scenario_latency_p50_ms": 522621,
+      "scenario_latency_p95_ms": 600939,
+      "business_model_latency_p95_ms": 2991.843417054042,
+      "ordinary_round_p95_ms": 21813,
+      "mean_final_context_estimated_tokens": 13175.777777777777,
+      "mean_final_product_duplicate_ratio": 0.5,
+      "unknown_usage_runs": 0,
+      "manual_compaction_timings_complete": true,
+      "manual_compaction_p95_ms": 22692,
+      "summary_model_p95_ms": 14343.099333025748
+    },
+    "legacy": {
+      "runs": 18,
+      "passed": 18,
+      "success_rate": 1,
+      "input_tokens": 8778129,
+      "long_input_tokens": 8778129,
+      "model_calls": 942,
+      "lookup_calls": 6,
+      "scenario_latency_p50_ms": 520958,
+      "scenario_latency_p95_ms": 559670,
+      "business_model_latency_p95_ms": 2723.5294590354897,
+      "ordinary_round_p95_ms": 22292,
+      "mean_final_context_estimated_tokens": 17364.944444444445,
+      "mean_final_product_duplicate_ratio": 0.8134920634920635,
+      "unknown_usage_runs": 0,
+      "manual_compaction_timings_complete": true,
+      "manual_compaction_p95_ms": 21986,
+      "summary_model_p95_ms": 16228.056208987255
+    }
+  },
+  "actual_input_reduction": 0.35852435069022115,
+  "paired_scenario_ci95": [
+    0.33300911600359984,
+    0.38851409752159505
+  ],
+  "ordinary_round_p95_ratio": 0.9785124708415575,
+  "old_cost_metrics_invalid": true,
+  "timing": "pressure",
+  "development_selection": "两个无关键失败策略正确率同为36/36；开发完整成本因漏计摘要未知，按预定证据不足规则默认pressure",
+  "full_backend": {
+    "passed": 988,
+    "skipped": 43
+  },
+  "additional_nonoverlapping_usage_tests": 2,
+  "auxiliary_blind_review": {
+    "scope": "辅助单模型表达质量盲评，无预设硬分数门槛，不替代事实安全验收",
+    "source": "holdout-recovery/results.json",
+    "judge_model": "qwen3-max",
+    "summary": {
+      "legacy": {
+        "rated_answers": 84,
+        "unknown_answers": 0,
+        "rated_scenarios": 28,
+        "scenario_mean": {
+          "clarity": 3.7976190476190474,
+          "fitness": 3.6666666666666665,
+          "temporal_clarity": 3.4047619047619047,
+          "overall": 3.623015873015873
+        }
+      },
+      "deterministic": {
+        "rated_answers": 83,
+        "unknown_answers": 1,
+        "rated_scenarios": 28,
+        "scenario_mean": {
+          "clarity": 3.880952380952381,
+          "fitness": 3.9404761904761907,
+          "temporal_clarity": 3.7976190476190474,
+          "overall": 3.873015873015873
+        }
+      },
+      "layered": {
+        "rated_answers": 84,
+        "unknown_answers": 0,
+        "rated_scenarios": 28,
+        "scenario_mean": {
+          "clarity": 3.892857142857143,
+          "fitness": 3.9047619047619047,
+          "temporal_clarity": 3.8214285714285716,
+          "overall": 3.873015873015873
+        }
+      }
+    },
+    "paired_scenario_difference": {
+      "legacy": {
+        "clarity": {
+          "scenarios": 28,
+          "mean_difference_C_minus_reference": 0.09523809523809523,
+          "ci95": [
+            -0.011904761904761894,
+            0.2023809523809524
+          ]
+        },
+        "fitness": {
+          "scenarios": 28,
+          "mean_difference_C_minus_reference": 0.23809523809523808,
+          "ci95": [
+            0.10714285714285712,
+            0.38095238095238093
+          ]
+        },
+        "temporal_clarity": {
+          "scenarios": 28,
+          "mean_difference_C_minus_reference": 0.41666666666666663,
+          "ci95": [
+            0.15446428571428594,
+            0.7023809523809523
+          ]
+        },
+        "overall": {
+          "scenarios": 28,
+          "mean_difference_C_minus_reference": 0.25,
+          "ci95": [
+            0.11507936507936509,
+            0.39285714285714285
+          ]
+        }
+      },
+      "deterministic": {
+        "clarity": {
+          "scenarios": 28,
+          "mean_difference_C_minus_reference": 0.011904761904761894,
+          "ci95": [
+            -0.07142857142857144,
+            0.09523809523809522
+          ]
+        },
+        "fitness": {
+          "scenarios": 28,
+          "mean_difference_C_minus_reference": -0.03571428571428571,
+          "ci95": [
+            -0.13095238095238096,
+            0.04761904761904764
+          ]
+        },
+        "temporal_clarity": {
+          "scenarios": 28,
+          "mean_difference_C_minus_reference": 0.023809523809523787,
+          "ci95": [
+            -0.08333333333333329,
+            0.1309523809523809
+          ]
+        },
+        "overall": {
+          "scenarios": 28,
+          "mean_difference_C_minus_reference": -3.172065784643304e-17,
+          "ci95": [
+            -0.08730158730158732,
+            0.07539682539682538
+          ]
+        }
+      }
+    },
+    "errors": [],
+    "excluded": [
+      {
+        "case_id": "v3-hold-pair",
+        "strategy": "deterministic",
+        "repetition": 2,
+        "reason": "无有效回答，表达质量不可评，不记零"
+      }
+    ],
+    "usage": {
+      "calls": 28,
+      "complete": true,
+      "input_tokens": 42591,
+      "output_tokens": 14214,
+      "cost_scope": "评委调用消耗单列，不计入买家长对话成本实验。"
+    },
+    "limitations": "单一模型辅助盲评；与被评模型同型号，未测跨评委一致性，不冒充人工盲评。",
+    "coverage": {
+      "logical_answers": 252,
+      "eligible_answers": 251,
+      "rated_answers": 251,
+      "unknown_answers": 1
+    }
+  },
+  "production_sdk_and_state_api_verified": true,
+  "source_archive": "frozen-release-source.tar.gz",
+  "source_archive_sha256": "801efe6ba66df597c3b632031f862f0a36f7363d15f2c6c3c73d14980c4ba334",
+  "unmeasured": [
+    "首次推荐质量的独立评分",
+    "生产流量P95",
+    "人工解释质量盲评与跨评委一致性",
+    "回查单独实际token归因（整体消耗已包含）",
+    "包含未知网络失败在内的整个研发实验总消耗",
+    "冻结参数以外的真实目录检索与交易质量"
+  ]
+}

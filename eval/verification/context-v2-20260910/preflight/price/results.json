@@ -1,0 +1,170 @@
+[
+  {
+    "case_id": "hold-old-price",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "layered",
+    "repetition": 1,
+    "answer": "- **P1003-S1 第一批历史单价**：129.0 CNY（来源：2026-09-09T10:00:00Z 第1批展示）\n- **P1003-S1 当前单价**：139 CNY（来源：current_business_state，查询时间 2026-09-10T02:15:13 UTC）",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 12767,
+        "output_tokens": 80,
+        "elapsed_ms": 3003.732041019248
+      },
+      {
+        "kind": "business",
+        "input_tokens": 13426,
+        "output_tokens": 100,
+        "elapsed_ms": 2637.3692500055768
+      }
+    ],
+    "input_tokens": 26193,
+    "output_tokens": 180,
+    "model_calls": 2,
+    "lookup_calls": 1,
+    "current_calls": 1,
+    "elapsed_ms": 6288,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 5694,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 63399,
+    "last_compaction": {
+      "policy_version": "layered-v2",
+      "reason": "pressure",
+      "before_tokens": 14671,
+      "after_tokens": 14671,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 12,
+      "status": "noop"
+    },
+    "final_product_observations": 100,
+    "final_product_duplicate_ratio": 0.9
+  },
+  {
+    "case_id": "hold-old-price",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "layered",
+    "repetition": 2,
+    "answer": "- **P1003-S1 第一批历史单价**：129.0 CNY（来源：batch 1，观察时间 2026-09-09T10:00:00Z）  \n- **P1003-S1 当前单价**：139 CNY（来源：current_business_state，查询时间 2026-09-10T02:15:14 UTC）",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 12784,
+        "output_tokens": 78,
+        "elapsed_ms": 2405.55100000347
+      },
+      {
+        "kind": "business",
+        "input_tokens": 13424,
+        "output_tokens": 104,
+        "elapsed_ms": 2317.1157909964677
+      }
+    ],
+    "input_tokens": 26208,
+    "output_tokens": 182,
+    "model_calls": 2,
+    "lookup_calls": 1,
+    "current_calls": 1,
+    "elapsed_ms": 6480,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 6011,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 63391,
+    "last_compaction": {
+      "policy_version": "layered-v2",
+      "reason": "pressure",
+      "before_tokens": 14679,
+      "after_tokens": 14679,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 12,
+      "status": "noop"
+    },
+    "final_product_observations": 100,
+    "final_product_duplicate_ratio": 0.9
+  },
+  {
+    "case_id": "hold-old-price",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "layered",
+    "repetition": 0,
+    "answer": "- **P1003-S1 第一批历史单价**：129.0 CNY（来源：2026-09-09T10:00:00Z 第1批展示）  \n- **P1003-S1 当前单价**：139 CNY（来源：current_business_state，查询时间 2026-09-10T02:15:19 UTC）",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 12747,
+        "output_tokens": 80,
+        "elapsed_ms": 3291.5247500059195
+      },
+      {
+        "kind": "business",
+        "input_tokens": 13407,
+        "output_tokens": 101,
+        "elapsed_ms": 2446.094291022746
+      }
+    ],
+    "input_tokens": 26154,
+    "output_tokens": 181,
+    "model_calls": 2,
+    "lookup_calls": 1,
+    "current_calls": 1,
+    "elapsed_ms": 5872,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 5790,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 63400,
+    "last_compaction": {
+      "policy_version": "layered-v2",
+      "reason": "pressure",
+      "before_tokens": 14648,
+      "after_tokens": 14648,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 13,
+      "status": "noop"
+    },
+    "final_product_observations": 100,
+    "final_product_duplicate_ratio": 0.9
+  }
+]

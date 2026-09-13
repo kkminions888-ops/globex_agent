@@ -1,0 +1,19 @@
+{
+  "fingerprint": "0afa519df7c59c54b26d3e044029c5b678ddd426e976983daa572d9a44ba2647",
+  "model": "qwen3-max",
+  "split": "holdout",
+  "strategies": [
+    "layered",
+    "legacy"
+  ],
+  "timing": "after_use",
+  "cases": [
+    "hold-long-f"
+  ],
+  "repetitions": 1,
+  "status": "completed",
+  "limitations": "隔离工具夹具，不测试生产检索排序或交易写路径。快照历史固定；long使用真实20轮Agent和两次整理、一次数据库重建。",
+  "code_stable": true,
+  "completed": 2,
+  "passed": 2
+}

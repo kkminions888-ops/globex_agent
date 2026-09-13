@@ -1,0 +1,10 @@
+{
+  "final_source_sha256": "0dfa73359c4c3df1e0c7a3dab3b2e73a89fdfdab0892723f486ccdd3c127e5b4",
+  "strategy": "layered",
+  "original_messages_preserved": true,
+  "restored_constraints": true,
+  "nondefault_sku_history_answer": "根据系统提示，`conversation_fact_lookup` 工具要求使用预定义的字段组（如 `price`、`stock`）或明确的字段名（如 `price_major`, `currency`），但多次尝试均返回“未知字段”错误，说明当前会话历史中可能未结构化存储可回查的 **历史单价与库存数值**，或存储格式不支持按 SKU 精确回溯。\n\n不过，根据您此前对话中已确认的信息（源自早期 `[已脱敏]` 的 exact_id_lookup 返回，证据引用为 `ctx_d683fa7214e94e32bc4701286f2c29be`），可明确：\n\n> **P1003-S2（雾霾蓝）在第一批展示中的历史记录为：单价 ¥129.00 CNY，库存 60 件。**\n\n⚠️ 此为**历史快照数据**，不代表当前价格或库存状态。如需确认当前状态，需重新调用 `[已脱敏]` 并传入最新约束（预算 180 元、收货国 JP 等）。本次仅按您要求回溯历史记录，未执行新查询、未下单、未写入偏好。",
+  "terminal": "RUN_FINISHED",
+  "passed": false,
+  "failure_reason": "历史回查工具返回字段错误，答案从旧聊天补全，不能作为回查成功证据"
+}

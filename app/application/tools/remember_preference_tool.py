@@ -43,13 +43,14 @@ def build_remember_preference_tool(store: PreferenceStore, bus: TradeEventBus):
             {"tool": "remember_preference_tool", "args": {"kind": kind, "statement": statement}},
         )
         try:
-            await store.append(BuyerPreference(buyer_id=buyer_id, kind=kind, statement=statement))
+            normalized = await store.append(BuyerPreference(buyer_id=buyer_id, kind=kind, statement=statement, source_kind="agent", source_ref=session_id))
         except ValueError as err:
             bus.publish(session_id, "tool.result", {"tool": "remember_preference_tool", "error": str(err)})
             return ToolChunk(
                 content=[TextBlock(type="text", text=f"[error] {err}")],
                 state=ToolResultState.ERROR,
             )
+        statement = "；".join(p.statement for p in normalized) if normalized is not None else statement
         bus.publish(session_id, "tool.result", {"tool": "remember_preference_tool", "saved": statement})
         return ToolChunk(
             content=[TextBlock(type="text", text=f"已记住买家偏好：[{kind}] {statement}")],

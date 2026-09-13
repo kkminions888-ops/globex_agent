@@ -1,0 +1,40 @@
+{
+  "created_at": "2026-09-10T16:23:09.014478+08:00",
+  "purpose": "独立完整长对话实际消耗复核；旧主实验遗漏摘要调用，旧成本指标不可用于验收",
+  "cases": [
+    "v3-hold-long-a",
+    "v3-hold-long-b",
+    "v3-hold-long-c",
+    "v3-hold-long-d",
+    "v3-hold-long-e",
+    "v3-hold-long-f"
+  ],
+  "strategies": [
+    "legacy",
+    "layered"
+  ],
+  "repetitions": 3,
+  "runs": 36,
+  "rounds": 24,
+  "summary_calls_minimum_per_run": 2,
+  "calls_included": "业务、摘要（含校验失败）、回查后模型调用；任何未知usage令对应累计成本未知",
+  "parameters": "与主留出相同，修复唯一底层结构化调用计量/节流路径；保留 SDK 生成提示、schema与校验；首次运行前补充需求问句不覆盖已有约束的修复（反例6项先失败后通过），case/模型/预算/裁剪策略不变",
+  "transport": {
+    "concurrency": 2,
+    "min_interval_seconds": 5,
+    "model_retries": 0
+  },
+  "fallback": false,
+  "semantic_cache": false,
+  "recovery": "不自动补跑或挑选成功记录；出现异常先报告再诊断",
+  "acceptance": {
+    "no_new_critical_failures": true,
+    "candidate_success_not_below_baseline": true,
+    "actual_input_reduction_minimum": 0.25,
+    "ordinary_round_p95_increase_maximum": 0.15,
+    "paired_ci_unit": "scenario"
+  },
+  "old_primary_and_recovery_costs_valid": false,
+  "cases_sha256": "a59a4944c5d077dc69a5408c43c37a57c64146e877e7f3252c1f72279cb66c41",
+  "amended_before_first_run_at": "2026-09-10T16:41:17.373783+08:00"
+}

@@ -1,0 +1,2270 @@
+[
+  {
+    "case_id": "v3-hold-last",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "98293c2be70428e2f76428433f7f19aaa321bca99bdb282fc83604d7fb53eddd",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "98293c2be70428e2f76428433f7f19aaa321bca99bdb282fc83604d7fb53eddd"
+  },
+  {
+    "case_id": "v3-hold-long-d",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "b8231e09977afb69b1f5ef7db9c61db561110e9d51ba8323ae3ffa3c24705c2a",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "eff3961ef9beb55172298ae0fc4193780aaa51188fe9da7731ddfe55b86c69c5"
+  },
+  {
+    "case_id": "v3-hold-delete",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "46430a66f3822103a3002c3e0aa6ad646fb8b48473cbd2cf8ceed5b216c77585",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "46430a66f3822103a3002c3e0aa6ad646fb8b48473cbd2cf8ceed5b216c77585"
+  },
+  {
+    "case_id": "v3-hold-black",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "0c6557f3ef2cdd8a4197057d79d41e77d0e23cb0edf2ffeb1525fb92e1123cce",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "0c6557f3ef2cdd8a4197057d79d41e77d0e23cb0edf2ffeb1525fb92e1123cce"
+  },
+  {
+    "case_id": "v3-hold-approval",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "6cdfd2567abfa05c6ad0e744bc4ca7f4dfc86acfe138499f7cb80af7720ddead",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "6cdfd2567abfa05c6ad0e744bc4ca7f4dfc86acfe138499f7cb80af7720ddead"
+  },
+  {
+    "case_id": "v3-hold-long-e",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "804af4098d4311363709de50ba022370808d9263e0deee35b094162532ae0412",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "804af4098d4311363709de50ba022370808d9263e0deee35b094162532ae0412"
+  },
+  {
+    "case_id": "v3-hold-long-d",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "a7b592354e3d8534bb119c50057647fb530e0b007fe2e4f1c0ce9d190288fd80",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "97d3a8cabdb998be776644b88f0a653d60f26a54ce62bec4dfe37e18757da17e"
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "12ce411571bd19097963a4bb12ead27e297f443c5f377168874b750a0f9dc602",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "4073d280e09c73f9dd82c1e16ed266af5df92cf6e88f5f12c110bf44a457a2ba"
+  },
+  {
+    "case_id": "v3-hold-order",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "511cfbcc08c55d9655c3092a608b7211e1357e336702f87f2783b1728636fa21",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "511cfbcc08c55d9655c3092a608b7211e1357e336702f87f2783b1728636fa21"
+  },
+  {
+    "case_id": "v3-hold-dest",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "07bfef0ecce8b09475cef74fb133d1fadc071b43088c0890c462e1c448a4daa5",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "07bfef0ecce8b09475cef74fb133d1fadc071b43088c0890c462e1c448a4daa5"
+  },
+  {
+    "case_id": "v3-hold-long-f",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "11dff3816d7a0d2a274333e7c234dcd119f5e20158bddfdd1a710f6c76d55b68",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "11dff3816d7a0d2a274333e7c234dcd119f5e20158bddfdd1a710f6c76d55b68"
+  },
+  {
+    "case_id": "v3-hold-dest",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "111952922a01b1d2823399d04038af5d0ddf85e38f27735a3de08ba7c70d8669",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "111952922a01b1d2823399d04038af5d0ddf85e38f27735a3de08ba7c70d8669"
+  },
+  {
+    "case_id": "v3-hold-long-a",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "bd942f25ee2b1ae838c626c7dcab0c28cd60f21a766eddd5fec777ca34e37cfe",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "bd942f25ee2b1ae838c626c7dcab0c28cd60f21a766eddd5fec777ca34e37cfe"
+  },
+  {
+    "case_id": "v3-hold-old-price",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "eb2580062f9f24e115c911fe7631670242ab3e3e752764847d95d17de59abd59",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "eb2580062f9f24e115c911fe7631670242ab3e3e752764847d95d17de59abd59"
+  },
+  {
+    "case_id": "v3-hold-old-price",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "73a058e10e6bcf63734b39e7940983515bf6df7be463b7bbfcde3b4505e2b145",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "73a058e10e6bcf63734b39e7940983515bf6df7be463b7bbfcde3b4505e2b145"
+  },
+  {
+    "case_id": "v3-hold-last",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "8589bb00152af7a32247aca2a4e59544cc70469620ba0cd02bffc5deaa9b631f",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "8589bb00152af7a32247aca2a4e59544cc70469620ba0cd02bffc5deaa9b631f"
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "aab31f37c3a0925cfc61327b7a3556f5c0fb3d4f480fc312751e958ce1dedd4f",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "aab31f37c3a0925cfc61327b7a3556f5c0fb3d4f480fc312751e958ce1dedd4f"
+  },
+  {
+    "case_id": "v3-hold-black",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "3692e7b12a5584d22c81266cd7a8b8e867088637b214fd9c9c350a80b756e0a4",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "3692e7b12a5584d22c81266cd7a8b8e867088637b214fd9c9c350a80b756e0a4"
+  },
+  {
+    "case_id": "v3-hold-delete",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "563a6c24bd7b627cec20b9fca2c1f8dabc179e2c4b47174b291c4474484b9d09",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "563a6c24bd7b627cec20b9fca2c1f8dabc179e2c4b47174b291c4474484b9d09"
+  },
+  {
+    "case_id": "v3-hold-retrieval",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "82eb59790b058af836b2199055ffff9f342ffa5248c64770fdf6a35466da0274",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "82eb59790b058af836b2199055ffff9f342ffa5248c64770fdf6a35466da0274"
+  },
+  {
+    "case_id": "v3-hold-long-a",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "95c80ef1add895f4eaac53c6913f6913f8ac1ec95742087d6a410481b18c9f6f",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "95c80ef1add895f4eaac53c6913f6913f8ac1ec95742087d6a410481b18c9f6f"
+  },
+  {
+    "case_id": "v3-hold-long-d",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "8f52fabb64a8b43730dffc4cce0844ff0a35d6846a3e5fe8f4023af5f5559056",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "8f52fabb64a8b43730dffc4cce0844ff0a35d6846a3e5fe8f4023af5f5559056"
+  },
+  {
+    "case_id": "v3-hold-current-sku",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "9f25deedf885802f347f0d852dbd482ea0cbae1fe45953ace2c27ac6d6f4b5f1",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "9f25deedf885802f347f0d852dbd482ea0cbae1fe45953ace2c27ac6d6f4b5f1"
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "75d77f168e5b4bb18766cce53c83a9aaa44f6b137c8449d75365159ab9a380cb",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "75d77f168e5b4bb18766cce53c83a9aaa44f6b137c8449d75365159ab9a380cb"
+  },
+  {
+    "case_id": "v3-hold-current-sku",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "e92c0470f51726bf80ff4d8cfafe47ae4bcda33e6d989bf7e8b79360951a4940",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "e92c0470f51726bf80ff4d8cfafe47ae4bcda33e6d989bf7e8b79360951a4940"
+  },
+  {
+    "case_id": "v3-hold-blue",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "a01b793f1f57e51431c4b9e9c4580f32e77ffabdcfbaf6a339202b1db23b6273",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "a01b793f1f57e51431c4b9e9c4580f32e77ffabdcfbaf6a339202b1db23b6273"
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "e5e61cd4ea8fdc2cfffecfd64d5682bc64ee05c62454338af84021251ed14556",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "e5e61cd4ea8fdc2cfffecfd64d5682bc64ee05c62454338af84021251ed14556"
+  },
+  {
+    "case_id": "v3-hold-long-e",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "4b13a519520ba9d326ce46a7d734ff5cb3cac7de6c4c8ab416ed45e8d7c31974",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "4b13a519520ba9d326ce46a7d734ff5cb3cac7de6c4c8ab416ed45e8d7c31974"
+  },
+  {
+    "case_id": "v3-hold-black",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "ead5580aac9fb34e2a07fcf74372dcaaaf62f2d886fa393af9d4fc7276d64ce3",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "ead5580aac9fb34e2a07fcf74372dcaaaf62f2d886fa393af9d4fc7276d64ce3"
+  },
+  {
+    "case_id": "v3-hold-approval",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "210b10111fc3ed4ac0cb05a15c66d3242ac1b9274dd811fa71aab84472aca947",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "210b10111fc3ed4ac0cb05a15c66d3242ac1b9274dd811fa71aab84472aca947"
+  },
+  {
+    "case_id": "v3-hold-blue",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "2da97040e4cd616d56a49c69fcd91da4f0b74253096e7cbe32bfcf0d005f24d8",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "2da97040e4cd616d56a49c69fcd91da4f0b74253096e7cbe32bfcf0d005f24d8"
+  },
+  {
+    "case_id": "v3-hold-price",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "e697c47a8abcddad32ee549b1bef83762638c8d38fce349e73d9caa9cea6d6d7",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "e697c47a8abcddad32ee549b1bef83762638c8d38fce349e73d9caa9cea6d6d7"
+  },
+  {
+    "case_id": "v3-hold-blue",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "ef59a6da32a3b2d1e7830f7a58f352d4145add34863f8c492325558df7216e57",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "ef59a6da32a3b2d1e7830f7a58f352d4145add34863f8c492325558df7216e57"
+  },
+  {
+    "case_id": "v3-hold-current-sku",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "28b141ed7ad29a2a4c2f8b0d1c86152cac16ff2c4bbe9bcc646d9fbaa031014e",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "23a25269f03873ada802c8e0b55019b74b8b0f652f37e48ae8af021826fbda84"
+  },
+  {
+    "case_id": "v3-hold-long-c",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "6cd9dd8776e32345e1f34f022106667d794761c5121e16664a35f7030cfee7ed",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "6cd9dd8776e32345e1f34f022106667d794761c5121e16664a35f7030cfee7ed"
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "66d406dba313cf6e750a9b3197f94e21f20f37cfa52668bba43d39a9d0e737fe",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "66d406dba313cf6e750a9b3197f94e21f20f37cfa52668bba43d39a9d0e737fe"
+  },
+  {
+    "case_id": "v3-hold-last",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "ce102c7bc4eb397f37406e6e9033804db5e6e5babb8ad1727726e509b7cb906c",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "ce102c7bc4eb397f37406e6e9033804db5e6e5babb8ad1727726e509b7cb906c"
+  },
+  {
+    "case_id": "v3-hold-long-f",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "2ae786c8b27e6b5b575369d9400ea89450198e954967da42ca63fc407ce7655f",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "2ae786c8b27e6b5b575369d9400ea89450198e954967da42ca63fc407ce7655f"
+  },
+  {
+    "case_id": "v3-hold-first",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "a5a3cd3986100c265fc5d79048bec2e1129daf93aceb903f8443c6a23aa64b38",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "a5a3cd3986100c265fc5d79048bec2e1129daf93aceb903f8443c6a23aa64b38"
+  },
+  {
+    "case_id": "v3-hold-source",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "0e6f8a02e882668dd77c9de3d00d6746cf59de7ba95c4602098d466c5f87892d",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "0e6f8a02e882668dd77c9de3d00d6746cf59de7ba95c4602098d466c5f87892d"
+  },
+  {
+    "case_id": "v3-hold-injection",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "e2d71596c61281e93945d35635b3da9789378507cfe9d7c289b5eda02571f1d8",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "e2d71596c61281e93945d35635b3da9789378507cfe9d7c289b5eda02571f1d8"
+  },
+  {
+    "case_id": "v3-hold-scope",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "2f71a2327d83f40512b7e9556f3b282d57b0821c81cf90b52abaf0429d84bc26",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "2f71a2327d83f40512b7e9556f3b282d57b0821c81cf90b52abaf0429d84bc26"
+  },
+  {
+    "case_id": "v3-hold-scope",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "eeb69c4934d2e3e516db42081fa66830243dd5e2342bbb1506f46473c8021ef3",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "eeb69c4934d2e3e516db42081fa66830243dd5e2342bbb1506f46473c8021ef3"
+  },
+  {
+    "case_id": "v3-hold-long-e",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "5ad37f83934748cbf161d802bc2f27f3e6695659de26d4793c1043363607d22a",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "5ad37f83934748cbf161d802bc2f27f3e6695659de26d4793c1043363607d22a"
+  },
+  {
+    "case_id": "v3-hold-retrieval",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "87cf5480e955baa21999f75d197dc4b918f3d1cd6d216765741e70bdcc56e3c1",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "87cf5480e955baa21999f75d197dc4b918f3d1cd6d216765741e70bdcc56e3c1"
+  },
+  {
+    "case_id": "v3-hold-dest",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "ea0f72e4b7f5958417add34d6ff53525cde40f9a6d42b4bd63414848ded0c38e",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "ea0f72e4b7f5958417add34d6ff53525cde40f9a6d42b4bd63414848ded0c38e"
+  },
+  {
+    "case_id": "v3-hold-price",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "7951575aab1e7cf86f9dffa591482ea6eaef941385ecb7bf14cac650bef537ce",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "7951575aab1e7cf86f9dffa591482ea6eaef941385ecb7bf14cac650bef537ce"
+  },
+  {
+    "case_id": "v3-hold-order",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "8b1e2e33e53c802b1c8195203dd1914d542d9f471511b12fffafad4f87c04053",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "8b1e2e33e53c802b1c8195203dd1914d542d9f471511b12fffafad4f87c04053"
+  },
+  {
+    "case_id": "v3-hold-long-a",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "0772854d008d71449feb93c08dea1cde1c3f331f2c58b5e4996964de6e8631d8",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "0772854d008d71449feb93c08dea1cde1c3f331f2c58b5e4996964de6e8631d8"
+  },
+  {
+    "case_id": "v3-hold-approval",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "38eb653ffb611684ef707e78d1eb99db6f77eb475e8b68eef6178fbf0d7cb905",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "38eb653ffb611684ef707e78d1eb99db6f77eb475e8b68eef6178fbf0d7cb905"
+  },
+  {
+    "case_id": "v3-hold-injection",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "13df46946d755c83904bff8e60018c4f990377a47a2ae2dabbc60ca6306b16c9",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "13df46946d755c83904bff8e60018c4f990377a47a2ae2dabbc60ca6306b16c9"
+  },
+  {
+    "case_id": "v3-hold-injection",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "f22440ce50288834b9b5a0053056e22c8cf888d97c81abc5a89091bf8d818e99",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "f22440ce50288834b9b5a0053056e22c8cf888d97c81abc5a89091bf8d818e99"
+  },
+  {
+    "case_id": "v3-hold-retrieval",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "451bd5340e4d5c1c9ab63ed6415b1fc52b9bc7230e38cef59f8e0740cef9b973",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "451bd5340e4d5c1c9ab63ed6415b1fc52b9bc7230e38cef59f8e0740cef9b973"
+  },
+  {
+    "case_id": "v3-hold-long-f",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "dfb106eaf19289b7580268cea8ec60d280a912a654bff338deb17552e22121aa",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "dfb106eaf19289b7580268cea8ec60d280a912a654bff338deb17552e22121aa"
+  },
+  {
+    "case_id": "v3-hold-tax",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "50fe49a8ff59d1ac29d4cf133c8a683c736368873bf0af6cbd209c364065a277",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "50fe49a8ff59d1ac29d4cf133c8a683c736368873bf0af6cbd209c364065a277"
+  },
+  {
+    "case_id": "v3-hold-retrieval",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "b675b7bc6eafff695525b79bce66abd1cbb1c0ddcbdaa037b8f6cd7f33563e6b",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "b675b7bc6eafff695525b79bce66abd1cbb1c0ddcbdaa037b8f6cd7f33563e6b"
+  },
+  {
+    "case_id": "v3-hold-origin",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "85a8777a496c43d8256901564f51404aec1c714aa62e2719986011c37740d9e9",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "85a8777a496c43d8256901564f51404aec1c714aa62e2719986011c37740d9e9"
+  },
+  {
+    "case_id": "v3-hold-long-c",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "dfdad74eaf02971f5748976fff545afda2b7a6f752a0e5ffb07865138889bfb3",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "dfdad74eaf02971f5748976fff545afda2b7a6f752a0e5ffb07865138889bfb3"
+  },
+  {
+    "case_id": "v3-hold-source",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "1dd0844ef75a75bb73cd87c230890944400b19f2d790e2c327a958fe12710dd1",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "1dd0844ef75a75bb73cd87c230890944400b19f2d790e2c327a958fe12710dd1"
+  },
+  {
+    "case_id": "v3-hold-origin",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "54b6b429ed35fd625f877e5b498bb1963a1846ef31e7b2058c39093605028aa9",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "54b6b429ed35fd625f877e5b498bb1963a1846ef31e7b2058c39093605028aa9"
+  },
+  {
+    "case_id": "v3-hold-blue",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "454acdd64e7a2295678c430d37353e8e244ed960cf052d1f55c0a39689bc1f2f",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "454acdd64e7a2295678c430d37353e8e244ed960cf052d1f55c0a39689bc1f2f"
+  },
+  {
+    "case_id": "v3-hold-black",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "09100f69a84b0900e3ed672e06ab73a1f6e9f12119c9f3c24bf1e50a912c397d",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "09100f69a84b0900e3ed672e06ab73a1f6e9f12119c9f3c24bf1e50a912c397d"
+  },
+  {
+    "case_id": "v3-hold-source",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "f898dd3a9e82e64a35636f3c867fe867cf9d05e13f40fd2a4bc1925cc016f59f",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "f898dd3a9e82e64a35636f3c867fe867cf9d05e13f40fd2a4bc1925cc016f59f"
+  },
+  {
+    "case_id": "v3-hold-current-sku",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "455e22238fe56674895bdcb8f446345ff6dfe0e1a4e5b9e222237f69dea2b65e",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "455e22238fe56674895bdcb8f446345ff6dfe0e1a4e5b9e222237f69dea2b65e"
+  },
+  {
+    "case_id": "v3-hold-order",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "6cfa3b24ef1373f97e457a720c686b0687bef2276fc3f4c21da3a28258895b94",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "6cfa3b24ef1373f97e457a720c686b0687bef2276fc3f4c21da3a28258895b94"
+  },
+  {
+    "case_id": "v3-hold-origin",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "395486580b4f54e39a68d1f2ec31e90537b5b0725cc2dfa35bc1a7b79520c52f",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "395486580b4f54e39a68d1f2ec31e90537b5b0725cc2dfa35bc1a7b79520c52f"
+  },
+  {
+    "case_id": "v3-hold-quote-cn",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "593ce072af5f82a470b9216fc067aa05fa955afa343179d1f439e65ebecee6bf",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "593ce072af5f82a470b9216fc067aa05fa955afa343179d1f439e65ebecee6bf"
+  },
+  {
+    "case_id": "v3-hold-sku-stock",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "aa5de4091cfedef673fd7e9076cbe1de039416a8fbde636d52a11a12f684d2b8",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "aa5de4091cfedef673fd7e9076cbe1de039416a8fbde636d52a11a12f684d2b8"
+  },
+  {
+    "case_id": "v3-hold-first",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "5ca169f7b167e0adf8745ec57827f0909ed65e419f187dfddfe827bfff679ad4",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "5ca169f7b167e0adf8745ec57827f0909ed65e419f187dfddfe827bfff679ad4"
+  },
+  {
+    "case_id": "v3-hold-scope",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "c798b55058a123ced9983ccfdfd9a0311a4af37ccdca10581b6676e2077f4f38",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "c798b55058a123ced9983ccfdfd9a0311a4af37ccdca10581b6676e2077f4f38"
+  },
+  {
+    "case_id": "v3-hold-long-e",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "db9b65ff4379a1a76d5c2914bd71dfc07f68613914b6e79c845571054dd13d7f",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "db9b65ff4379a1a76d5c2914bd71dfc07f68613914b6e79c845571054dd13d7f"
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "7bd6b29afa504ac3dc881882183b6a7c0fa8c73c3dcd22b4b4b433fdec5ade57",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "7bd6b29afa504ac3dc881882183b6a7c0fa8c73c3dcd22b4b4b433fdec5ade57"
+  },
+  {
+    "case_id": "v3-hold-long-f",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "a3a7f1097054da3236ed6f7dbf0d0e9df44d352173684d21db282d2081408550",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "a3a7f1097054da3236ed6f7dbf0d0e9df44d352173684d21db282d2081408550"
+  },
+  {
+    "case_id": "v3-hold-first",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "dcef1766f68d1275adfa17e3f37f3e80a4a20a6c47a1476ee4375d11595175b7",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "dcef1766f68d1275adfa17e3f37f3e80a4a20a6c47a1476ee4375d11595175b7"
+  },
+  {
+    "case_id": "v3-hold-current-sku",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "e8919ecf11e669c5905fd643cfdb244b0829ea51fefea4ac7700ac4c2633024b",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "4840fbd6fd2a7268998530f608651931f793b28fb77cbf43add5d7f263c7d59c"
+  },
+  {
+    "case_id": "v3-hold-delete",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "82a5e8e4c77ef11d42864a693871ca7fc00ca5a883bbb46a188b3f06ca5fb6e7",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "82a5e8e4c77ef11d42864a693871ca7fc00ca5a883bbb46a188b3f06ca5fb6e7"
+  },
+  {
+    "case_id": "v3-hold-injection",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "0d2c9f11f5fa28806e454416a52924b4caee8c745d7eb144da48e9be3003aa3f",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "0d2c9f11f5fa28806e454416a52924b4caee8c745d7eb144da48e9be3003aa3f"
+  },
+  {
+    "case_id": "v3-hold-delete",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "c1604bc33564072a6602b83660db66d5a3c69ac0c5b60dc797d4510cd86be1c3",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "c1604bc33564072a6602b83660db66d5a3c69ac0c5b60dc797d4510cd86be1c3"
+  },
+  {
+    "case_id": "v3-hold-last",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "fca26b2a7126a17fe1bfc44f50d5591227f6d6e1e7c23fac4afc9ee434f17d1c",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "fca26b2a7126a17fe1bfc44f50d5591227f6d6e1e7c23fac4afc9ee434f17d1c"
+  },
+  {
+    "case_id": "v3-hold-approval",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "123a7638c6a4c411e69d6df05a00c34d4ef4a5c5a8ae2c6387b15b0f633e0c04",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "123a7638c6a4c411e69d6df05a00c34d4ef4a5c5a8ae2c6387b15b0f633e0c04"
+  },
+  {
+    "case_id": "v3-hold-dest",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "d5325e38b9609f4bce50bb7e753e183557bc326b732583c260ee5d40e875c856",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "d5325e38b9609f4bce50bb7e753e183557bc326b732583c260ee5d40e875c856"
+  },
+  {
+    "case_id": "v3-hold-origin",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "deeee4b07b5bcdc63a9f696f7e9fd06ad5e5b8c2d6341a676dc788cabd9764b9",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "deeee4b07b5bcdc63a9f696f7e9fd06ad5e5b8c2d6341a676dc788cabd9764b9"
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "05b8510834b4d4f13b104bb7c988f6c46bfad13616a2af1cb0de02a55f62e87a",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "05b8510834b4d4f13b104bb7c988f6c46bfad13616a2af1cb0de02a55f62e87a"
+  },
+  {
+    "case_id": "v3-hold-scope",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "d1c2ee0878499b1261cd4dc20f3ebecd58ebc08ec202e98b6b0c64bb301e802a",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "d1c2ee0878499b1261cd4dc20f3ebecd58ebc08ec202e98b6b0c64bb301e802a"
+  },
+  {
+    "case_id": "v3-hold-long-d",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "f23eeee1c1183bc56188d524b7b045ea37cec7a44714e802c311b7eaf4c43777",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "1e0b9008903958d33aaea0d0475933507d3287f6b734fbc4da41bb8a805e6f97"
+  },
+  {
+    "case_id": "v3-hold-long-e",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "f366021abdb2c16d4d7ba3c65e9dd16db22a7f66872634c2835b71792b5c896b",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "f366021abdb2c16d4d7ba3c65e9dd16db22a7f66872634c2835b71792b5c896b"
+  },
+  {
+    "case_id": "v3-hold-origin",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "155c9c925a2c529ee5ce7e13b40273bd418c78336572ad4ecf5268d6d82a4653",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "155c9c925a2c529ee5ce7e13b40273bd418c78336572ad4ecf5268d6d82a4653"
+  },
+  {
+    "case_id": "v3-hold-scope",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "400db6005efd476180d5ff59f66dee5ddccccc62e9c1432c474515f8e1f42f64",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "400db6005efd476180d5ff59f66dee5ddccccc62e9c1432c474515f8e1f42f64"
+  },
+  {
+    "case_id": "v3-hold-approval",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "d821ce510e2f351036bb23c6c9219ebaa4b20d51e9e5affe4ff99be6c8f4c116",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "d821ce510e2f351036bb23c6c9219ebaa4b20d51e9e5affe4ff99be6c8f4c116"
+  },
+  {
+    "case_id": "v3-hold-approval",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "b53c4ec50f5660a0c58774a2c80e376afc139c53aa7c853feb7dfde4f5bd1bd3",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "b53c4ec50f5660a0c58774a2c80e376afc139c53aa7c853feb7dfde4f5bd1bd3"
+  },
+  {
+    "case_id": "v3-hold-blue",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "bffba500cd47042b14f49028e0a3d7a32612a0d7742adb3f205e6812466ce8a8",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "bffba500cd47042b14f49028e0a3d7a32612a0d7742adb3f205e6812466ce8a8"
+  },
+  {
+    "case_id": "v3-hold-approval",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "c0f2c3f1e0117a1da596d405983048458161ceb48d19876b3ef6d0e69bfea0cd",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "c0f2c3f1e0117a1da596d405983048458161ceb48d19876b3ef6d0e69bfea0cd"
+  },
+  {
+    "case_id": "v3-hold-blue",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "ed45640ac1af094224195e9bd8fcf31ae3d59c7c7cfa193221413442cb6847b4",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "ed45640ac1af094224195e9bd8fcf31ae3d59c7c7cfa193221413442cb6847b4"
+  },
+  {
+    "case_id": "v3-hold-dest",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "6b23edded0ac3c5e01b3bc5409c954f0d734097f8ff437220a377cd63b8fd68e",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "6b23edded0ac3c5e01b3bc5409c954f0d734097f8ff437220a377cd63b8fd68e"
+  },
+  {
+    "case_id": "v3-hold-source",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "6776541764642683e69c17feabdb092dc8d69ebb506e61b969a660c661e7d785",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "6776541764642683e69c17feabdb092dc8d69ebb506e61b969a660c661e7d785"
+  },
+  {
+    "case_id": "v3-hold-tax",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "c1eced3d5c1b2fea07a0bbd7bc706473ab5daffdaf9212282b6237e48c91522b",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "c1eced3d5c1b2fea07a0bbd7bc706473ab5daffdaf9212282b6237e48c91522b"
+  },
+  {
+    "case_id": "v3-hold-injection",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "893d4c322d85a734727accfa6e2f11d08569bc27232f78e6961b76348193f990",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "893d4c322d85a734727accfa6e2f11d08569bc27232f78e6961b76348193f990"
+  },
+  {
+    "case_id": "v3-hold-tax",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "f485bada1ce81af65158e99a8adee0dda4374f2aee5d6bdcad4156574e3097ef",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "f485bada1ce81af65158e99a8adee0dda4374f2aee5d6bdcad4156574e3097ef"
+  },
+  {
+    "case_id": "v3-hold-long-d",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "6501be0a36f3f8d475961fa01c6e0b7f0de4f9aacadf11af65f6368f21405fed",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "1f565a17a893a4f6c1601cd44c9124062ef63390d6d5994e89ceb8de5a43f0a1"
+  },
+  {
+    "case_id": "v3-hold-approval",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "e2c9cf91ac21d3a22e47a78231b76ff943f3aadbdf0364bc15fef5ec24e18cea",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "e2c9cf91ac21d3a22e47a78231b76ff943f3aadbdf0364bc15fef5ec24e18cea"
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "b45ef3d55836ab2803c86f508e843f55b06fc4bf1cb00f1275af5930a86edd0e",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "b45ef3d55836ab2803c86f508e843f55b06fc4bf1cb00f1275af5930a86edd0e"
+  },
+  {
+    "case_id": "v3-hold-long-e",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "3ec91958e8efb534b467dd0751e965536819104005aea73595ffae31b3342ab5",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "3ec91958e8efb534b467dd0751e965536819104005aea73595ffae31b3342ab5"
+  },
+  {
+    "case_id": "v3-hold-first",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "3f3170bfe077091f15c9ba0fa4e91959871bab564b8b782fd620ef2d9dc74114",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "3f3170bfe077091f15c9ba0fa4e91959871bab564b8b782fd620ef2d9dc74114"
+  },
+  {
+    "case_id": "v3-hold-injection",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "64469cff721a7c532a42245964f2e778e860c2050dfe58b007ba0aaae7c243e9",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "64469cff721a7c532a42245964f2e778e860c2050dfe58b007ba0aaae7c243e9"
+  },
+  {
+    "case_id": "v3-hold-tax",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "1078dd5b57155b215585a62831bb22859d93a0ba3558d9097893dc0438569951",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "1078dd5b57155b215585a62831bb22859d93a0ba3558d9097893dc0438569951"
+  },
+  {
+    "case_id": "v3-hold-retrieval",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "5d5a8796381a6b436a9353e5a625e7ed352566ca63b403d5c0ebd06566beeceb",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "5d5a8796381a6b436a9353e5a625e7ed352566ca63b403d5c0ebd06566beeceb"
+  },
+  {
+    "case_id": "v3-hold-blue",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "3ef86ac93df775188bf40030c88924af24ab12340cd56fffa611a855ba029b4c",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "3ef86ac93df775188bf40030c88924af24ab12340cd56fffa611a855ba029b4c"
+  },
+  {
+    "case_id": "v3-hold-blue",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "e07afa95abcfc871bc40ba298d4d0677a4c80a5c474056cbb75039dce8310315",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "e07afa95abcfc871bc40ba298d4d0677a4c80a5c474056cbb75039dce8310315"
+  },
+  {
+    "case_id": "v3-hold-quote-cn",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "2b3304c981cc5e2ca9941c03f62150de4286750ac60289ccffc7e5b88a6eb3a2",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "2b3304c981cc5e2ca9941c03f62150de4286750ac60289ccffc7e5b88a6eb3a2"
+  },
+  {
+    "case_id": "v3-hold-desc",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "65634d4162793fb5f4fe1a97e0502c1c589614dee4595a5ae0ab464431b673c5",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "65634d4162793fb5f4fe1a97e0502c1c589614dee4595a5ae0ab464431b673c5"
+  },
+  {
+    "case_id": "v3-hold-injection",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "ed1b10cd34978a82256c14e9981d6966ffe1f18392e462a504d7c3277ee9ee29",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "ed1b10cd34978a82256c14e9981d6966ffe1f18392e462a504d7c3277ee9ee29"
+  },
+  {
+    "case_id": "v3-hold-quote-cn",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "789fcd068ed2ee68fb524e34f9a119095e3c95944bc541747327f482e064dc7e",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "789fcd068ed2ee68fb524e34f9a119095e3c95944bc541747327f482e064dc7e"
+  },
+  {
+    "case_id": "v3-hold-last",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "127388651643da818604a1acc8279e81b03ec5a0f358db3428053e627e165387",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "127388651643da818604a1acc8279e81b03ec5a0f358db3428053e627e165387"
+  },
+  {
+    "case_id": "v3-hold-price",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "fa4276b4818b21426f429b694745336f29bdc73443995c2a2118534d1073d90e",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "fa4276b4818b21426f429b694745336f29bdc73443995c2a2118534d1073d90e"
+  },
+  {
+    "case_id": "v3-hold-desc",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "28c95a608d505445c57851ebac7cd238ac4addde3541a25c0ccac13d69a4e24b",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "28c95a608d505445c57851ebac7cd238ac4addde3541a25c0ccac13d69a4e24b"
+  },
+  {
+    "case_id": "v3-hold-scope",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "ad97e4f55a0b7c58f6b2527ec300ac17a6d94f90a410fbd6619c62d22d48a4fe",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "ad97e4f55a0b7c58f6b2527ec300ac17a6d94f90a410fbd6619c62d22d48a4fe"
+  },
+  {
+    "case_id": "v3-hold-dest",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "3bbaff003ab9534e2b9baf4c6d41243e2ad794546ccf795e42a3641f8d541612",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "3bbaff003ab9534e2b9baf4c6d41243e2ad794546ccf795e42a3641f8d541612"
+  },
+  {
+    "case_id": "v3-hold-price",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "2cccf5dd1128675d7e74b323d643043e37f0d2ed7556842abb894f7cc04eb48b",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "2cccf5dd1128675d7e74b323d643043e37f0d2ed7556842abb894f7cc04eb48b"
+  },
+  {
+    "case_id": "v3-hold-black",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "34a15c6c526139d343eb567333e37e97d6ad832c3c07bfaf44ddb5b122372b22",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "34a15c6c526139d343eb567333e37e97d6ad832c3c07bfaf44ddb5b122372b22"
+  },
+  {
+    "case_id": "v3-hold-price",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "05c18a266e48749c751adc4a136a2fffda63d947c3cd71fe41e9aa3a8ab37e22",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "05c18a266e48749c751adc4a136a2fffda63d947c3cd71fe41e9aa3a8ab37e22"
+  },
+  {
+    "case_id": "v3-hold-tax",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "6e7a2c778398b82d31aac0f126f33e4120618bced4066f197b06896a85d7e37a",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "6e7a2c778398b82d31aac0f126f33e4120618bced4066f197b06896a85d7e37a"
+  },
+  {
+    "case_id": "v3-hold-order",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "7f547ddd89cd75a72dec90d1d6f5e454398c3024f821ce16e1845ed8cb37f3ee",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "7f547ddd89cd75a72dec90d1d6f5e454398c3024f821ce16e1845ed8cb37f3ee"
+  },
+  {
+    "case_id": "v3-hold-long-f",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "0a2c979cfe172648c73501ed660e4061315ee7462c19f74d4fcd015c3d695f96",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "0a2c979cfe172648c73501ed660e4061315ee7462c19f74d4fcd015c3d695f96"
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "ae2d20d8ad338a3067d709de323f519b08f5f6e90dab1e5c681260ec09008e39",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "ae2d20d8ad338a3067d709de323f519b08f5f6e90dab1e5c681260ec09008e39"
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "523da1dfe8a523cf803dd896b1d187f94779f9849b1025dd78d387db79b97385",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "523da1dfe8a523cf803dd896b1d187f94779f9849b1025dd78d387db79b97385"
+  },
+  {
+    "case_id": "v3-hold-long-a",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "a07baa48279a321c4725e45c84ba151c3f44a1091943f0257daa3deb74ca9521",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "50ab715f301bb01e95c2a9bc192242973621336f9fd7c204a48c634604e77a82"
+  },
+  {
+    "case_id": "v3-hold-dest",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "aaf4c1453dc98678c6f41ce7f81faf67fd163d145e8ee179d97a90b2446a3b61",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "aaf4c1453dc98678c6f41ce7f81faf67fd163d145e8ee179d97a90b2446a3b61"
+  },
+  {
+    "case_id": "v3-hold-quote-cn",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "1194eaae857f492c365e3aab5e297d44ef5c17576fbeccee1a5af58011201e81",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "1194eaae857f492c365e3aab5e297d44ef5c17576fbeccee1a5af58011201e81"
+  },
+  {
+    "case_id": "v3-hold-sku-stock",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "e0bc363af6a8902ab0f0e03262077ccbee918170fbb6ffaa5d3290c25e4580f6",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "e0bc363af6a8902ab0f0e03262077ccbee918170fbb6ffaa5d3290c25e4580f6"
+  },
+  {
+    "case_id": "v3-hold-dest",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "63cc13a5b8a2761f51e4f4f7d22345859f3038f0510186c18c7b2cec56089a44",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "63cc13a5b8a2761f51e4f4f7d22345859f3038f0510186c18c7b2cec56089a44"
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "a53d3c0985490dafa230cd77bafff6411329348da019e9320db14012d7287f54",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "a53d3c0985490dafa230cd77bafff6411329348da019e9320db14012d7287f54"
+  },
+  {
+    "case_id": "v3-hold-long-d",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "1b6190765c0743b7846244ff3e25c0ac75444c0e8a4b56026ab0805785a977c3",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "bace1ea311dd9b8326f120f444d711eb409bd79d4cc8265fab938bdbfe316258"
+  },
+  {
+    "case_id": "v3-hold-first",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "e32b44a9272abc97608a49a46f4b501a4c2dc4c9b71a7de1514da3ff3ccd437f",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "e32b44a9272abc97608a49a46f4b501a4c2dc4c9b71a7de1514da3ff3ccd437f"
+  },
+  {
+    "case_id": "v3-hold-old-price",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "a5683ea444bac66f25d06778b950a0327f9d6ac3120ead419774508fbf1f6d5b",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "a5683ea444bac66f25d06778b950a0327f9d6ac3120ead419774508fbf1f6d5b"
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "59d4213b25b18b2a86805baefe7103c1fcfc2a6d7d30c059a798c4a7ab36eeb7",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "59d4213b25b18b2a86805baefe7103c1fcfc2a6d7d30c059a798c4a7ab36eeb7"
+  },
+  {
+    "case_id": "v3-hold-desc",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "83b5d3f87c5889bb61784ba917cf7bef57ffe34200d4b5e54a3a4fb42441829f",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "83b5d3f87c5889bb61784ba917cf7bef57ffe34200d4b5e54a3a4fb42441829f"
+  },
+  {
+    "case_id": "v3-hold-sku-stock",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "5f107b013f84cfb788230290645bff4159036062c86d11eb69726d0199bd2e88",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "5f107b013f84cfb788230290645bff4159036062c86d11eb69726d0199bd2e88"
+  },
+  {
+    "case_id": "v3-hold-origin",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "9d433383a31fb3d21e66446dab08ca331d3ec3d591c922962deab89726ddaa81",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "9d433383a31fb3d21e66446dab08ca331d3ec3d591c922962deab89726ddaa81"
+  },
+  {
+    "case_id": "v3-hold-price",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "f9bdbb7f52402247c1b72a47ec42873570e2ed74f37c4450dbd5a8745fb9a099",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "f9bdbb7f52402247c1b72a47ec42873570e2ed74f37c4450dbd5a8745fb9a099"
+  },
+  {
+    "case_id": "v3-hold-tax",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "eae2061965d4797d15551916fc5d1b3bb7588d0e7925c108cf0c760f94923152",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "eae2061965d4797d15551916fc5d1b3bb7588d0e7925c108cf0c760f94923152"
+  },
+  {
+    "case_id": "v3-hold-long-a",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "f31cec177938559230162bc1579fb8b476824aef1fe149f8405c2aa98c777bd8",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "f31cec177938559230162bc1579fb8b476824aef1fe149f8405c2aa98c777bd8"
+  },
+  {
+    "case_id": "v3-hold-origin",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "3971f7504b60723f051f09e6ecdf6c5cd83eb65d367287ff87db28bfb6357043",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "3971f7504b60723f051f09e6ecdf6c5cd83eb65d367287ff87db28bfb6357043"
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "0f6589068fb925fac9e8282c5d11f6ec47810474be2249f83667eeea8667be83",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "d679bb8a3a4491d8ce569d1856aa929b03e5a2bf01a1afca4816a26b4407dcbc"
+  },
+  {
+    "case_id": "v3-hold-tax",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "31d7b0b7b39de170f8fbb05e52e7a135cb894212a7793eb76dd27cb25ccfa2dc",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "31d7b0b7b39de170f8fbb05e52e7a135cb894212a7793eb76dd27cb25ccfa2dc"
+  },
+  {
+    "case_id": "v3-hold-old-price",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "1f20f17188bfd67641faa0a622c7a8f21791774820372213289fe33f4ad11ab0",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "1f20f17188bfd67641faa0a622c7a8f21791774820372213289fe33f4ad11ab0"
+  },
+  {
+    "case_id": "v3-hold-delete",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "eefa6c4117b4e0d2be3e10fdb9674eac15bfa5bca62ce0853b7746559450c002",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "eefa6c4117b4e0d2be3e10fdb9674eac15bfa5bca62ce0853b7746559450c002"
+  },
+  {
+    "case_id": "v3-hold-first",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "f7ffb2cadbe3a34adf36cde2775f0193e7ecd9af84f46e8e2680b895deea0875",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "f7ffb2cadbe3a34adf36cde2775f0193e7ecd9af84f46e8e2680b895deea0875"
+  },
+  {
+    "case_id": "v3-hold-source",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "e717ec2383d28d3616d2995ed1147f46566b3fa9b2f848c5b5aef3d6869a6101",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "e717ec2383d28d3616d2995ed1147f46566b3fa9b2f848c5b5aef3d6869a6101"
+  },
+  {
+    "case_id": "v3-hold-sku-stock",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "faa70ee510f852e07a5668c4f51a0dfd6761d9333ee13cc2ce7b98dc4cefc4dc",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "faa70ee510f852e07a5668c4f51a0dfd6761d9333ee13cc2ce7b98dc4cefc4dc"
+  },
+  {
+    "case_id": "v3-hold-old-price",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "038380ee8341691e7b8acd63d7427bdf5a1a4adadd28b62b3900a2df07fb7ca4",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "038380ee8341691e7b8acd63d7427bdf5a1a4adadd28b62b3900a2df07fb7ca4"
+  },
+  {
+    "case_id": "v3-hold-first",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "146a5717c365f57162ab36e20b0d387d9599781cd85c10fdfd4be329b0b2f19d",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "146a5717c365f57162ab36e20b0d387d9599781cd85c10fdfd4be329b0b2f19d"
+  },
+  {
+    "case_id": "v3-hold-quote-cn",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "38f1413634ac7b04bc8a8d00efcfd747642adcc421225b3c06a3870552e086d6",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "38f1413634ac7b04bc8a8d00efcfd747642adcc421225b3c06a3870552e086d6"
+  },
+  {
+    "case_id": "v3-hold-desc",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "a7a6e1f220f80bea3b20108add04db25c0fa9e11a4ebfdc1469bdd06489bc4d8",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "a7a6e1f220f80bea3b20108add04db25c0fa9e11a4ebfdc1469bdd06489bc4d8"
+  },
+  {
+    "case_id": "v3-hold-retrieval",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "b4257654a89aec256b024911d1da3fce4ac6e0660f273f8eb14df7f6b3e0dd42",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "b4257654a89aec256b024911d1da3fce4ac6e0660f273f8eb14df7f6b3e0dd42"
+  },
+  {
+    "case_id": "v3-hold-injection",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "e6ee62ed9c8d2d873e4914900051a0fcbea7e72b8d106b6e07f5481f941e8b28",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "e6ee62ed9c8d2d873e4914900051a0fcbea7e72b8d106b6e07f5481f941e8b28"
+  },
+  {
+    "case_id": "v3-hold-black",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "30081e37fc7db41ae1c2c6e2277f23a6d96910fa85ec33da60ef361ddc774b22",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "30081e37fc7db41ae1c2c6e2277f23a6d96910fa85ec33da60ef361ddc774b22"
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "dfc9a1e8432ba2cb833da471ed41755362f63c3dab213772031b68868b34d265",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "dfc9a1e8432ba2cb833da471ed41755362f63c3dab213772031b68868b34d265"
+  },
+  {
+    "case_id": "v3-hold-long-f",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "b67204514f4eb5a77d2fb21f8ce64195e83bfb2195a68827bdf9a54809b73b2c",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "b67204514f4eb5a77d2fb21f8ce64195e83bfb2195a68827bdf9a54809b73b2c"
+  },
+  {
+    "case_id": "v3-hold-long-a",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "80b7d055b1fe48db45cb2ca11779fcb88d72aca7fce50fcbce1c76bdd3def6ec",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "d53429b8e8587faafa1cc29877ab6ac782b04d395b6fc518d08f9375c4c4e7a5"
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "60e4a82a30689a5467eefcf4a4417d837694adc959b9cf54112a8556c1b26180",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "60e4a82a30689a5467eefcf4a4417d837694adc959b9cf54112a8556c1b26180"
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "b04d557c7e70e3d02adc64420fc5bcad77e24db5494a8ddd8b296a9a44cf4dbe",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "468f58213a3c06e7231c945ebf1a707a5ee46e101d455bb9d0ddd9af17ffcdee"
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "935fdf79d3687ec741b9ddd6f2a3637fec0f64d9a62b0e25f17759555809e2ea",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "1ac463b4605183bf4deb56aaf780d84e1cd4443fc6940e765772588912003320"
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "66a3a0c3f77596ad13a2b1961c24123320ddd81ba485d9b7568155504556b39f",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "545fec03627b31906ba1fb59ce5c894b7063eda970de13e6721a4cb14927d377"
+  },
+  {
+    "case_id": "v3-hold-long-d",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "045f1a1a3ba838cdb20701f88a98401640a72c6da89db72ff5736c3e7fe4d070",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "c5fc17a930fc3e02c7464bc92301f3dd251fbc90aa8c62fbc1491e133a8fe5e4"
+  },
+  {
+    "case_id": "v3-hold-current-sku",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "5fd13fa5e18badff601fefc7db7a19d14cf0d499a3cba929437f319da4a80574",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "218e3f015c1c3974fa3929e0e8a3478516f0b7276c851ca574d31b7e5fbbc822"
+  },
+  {
+    "case_id": "v3-hold-old-price",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "310681f4368796d3b730788c1a505de6a65a316b7dafad35ecc68958fae5a5fa",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "310681f4368796d3b730788c1a505de6a65a316b7dafad35ecc68958fae5a5fa"
+  },
+  {
+    "case_id": "v3-hold-quote-cn",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "5da15e6b4c3297d25fccbce9665a06954aebcf380e6532a05365f8f23d089c66",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "5da15e6b4c3297d25fccbce9665a06954aebcf380e6532a05365f8f23d089c66"
+  },
+  {
+    "case_id": "v3-hold-long-a",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "4fab76fdd8db80df3f4905bbc655bea5a54a2ac9fa8bf25b705bbe70435c96b8",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "f64918ce0dd4a45173b51f32ca6e81eaffc09a47a1757ce142bced77bcf1c6e2"
+  },
+  {
+    "case_id": "v3-hold-quote-cn",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "40c30cbc09e8d11173a2d6585dafa15df57c48eaa7c1415399797fd7dd13caa9",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "40c30cbc09e8d11173a2d6585dafa15df57c48eaa7c1415399797fd7dd13caa9"
+  },
+  {
+    "case_id": "v3-hold-old-price",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "baca90cc9d74c86abf581361dccd409ebdcf8dd4e2832c3ffeb6d101bc1ee0cf",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "baca90cc9d74c86abf581361dccd409ebdcf8dd4e2832c3ffeb6d101bc1ee0cf"
+  },
+  {
+    "case_id": "v3-hold-retrieval",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "4c95b933a2e6c5a54147eea7be28351afb5c009d779f1f55db17f22fa9ccdac6",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "4c95b933a2e6c5a54147eea7be28351afb5c009d779f1f55db17f22fa9ccdac6"
+  },
+  {
+    "case_id": "v3-hold-last",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "0da0735ab907a2405740925c81e06474f01bf110002a3f65fec6f2901bf23014",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "0da0735ab907a2405740925c81e06474f01bf110002a3f65fec6f2901bf23014"
+  },
+  {
+    "case_id": "v3-hold-last",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "d5b2f6ca99f9626be47752549a2738b253667ef87896bdf16a1e53703215e06d",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "d5b2f6ca99f9626be47752549a2738b253667ef87896bdf16a1e53703215e06d"
+  },
+  {
+    "case_id": "v3-hold-long-f",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "48144a576d9104f008d157c3685c70949aa89a5e7709b7e78d77ce61bf0e5db7",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "48144a576d9104f008d157c3685c70949aa89a5e7709b7e78d77ce61bf0e5db7"
+  },
+  {
+    "case_id": "v3-hold-long-c",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "81ad430cf981a36f434655d25ad3735a86c3b3d1684ed09110c47fb3a032926c",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "81ad430cf981a36f434655d25ad3735a86c3b3d1684ed09110c47fb3a032926c"
+  },
+  {
+    "case_id": "v3-hold-long-e",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "e7dd11ccb3c2711a1f7436d846827bc837c82eca8e6d73e9c4f89541229f318d",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "e7dd11ccb3c2711a1f7436d846827bc837c82eca8e6d73e9c4f89541229f318d"
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "db13a3725d34ff9532bf1397363ba8be1b403b49d46887b2c5c5a71601a07047",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "db13a3725d34ff9532bf1397363ba8be1b403b49d46887b2c5c5a71601a07047"
+  },
+  {
+    "case_id": "v3-hold-dest",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "1c593ca6b6f58860c4e457e78c3b74f98e59b15a29f4e5c81e4e40dc2d8b0ce8",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "1c593ca6b6f58860c4e457e78c3b74f98e59b15a29f4e5c81e4e40dc2d8b0ce8"
+  },
+  {
+    "case_id": "v3-hold-price",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "34de0a529b85b895ee03f5b5f5ee44f33bb59a8aab78ced20ed3289068adcf04",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "34de0a529b85b895ee03f5b5f5ee44f33bb59a8aab78ced20ed3289068adcf04"
+  },
+  {
+    "case_id": "v3-hold-retrieval",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "5a2bb6e6629c8a8704cf844320848e503b9f92699e89a3da35afd12f68eeffd7",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "5a2bb6e6629c8a8704cf844320848e503b9f92699e89a3da35afd12f68eeffd7"
+  },
+  {
+    "case_id": "v3-hold-black",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "3524a2b419cbf5cbcb82f8119e38af167299785e8b8d416020b472ac6ef7edce",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "3524a2b419cbf5cbcb82f8119e38af167299785e8b8d416020b472ac6ef7edce"
+  },
+  {
+    "case_id": "v3-hold-long-c",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "837cea40047218e52c8b326e798821040ad76b5a7e008b0fcff2b22da600c0b8",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "837cea40047218e52c8b326e798821040ad76b5a7e008b0fcff2b22da600c0b8"
+  },
+  {
+    "case_id": "v3-hold-desc",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "e4e6d7994d038ffbbe826589a013a53885448e24abfca7d913bafd61b2dc97d8",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "e4e6d7994d038ffbbe826589a013a53885448e24abfca7d913bafd61b2dc97d8"
+  },
+  {
+    "case_id": "v3-hold-sku-stock",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "578dab24e32316cf11a54fc05e91c963b7e0997702432173722501cf7ee333a1",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "578dab24e32316cf11a54fc05e91c963b7e0997702432173722501cf7ee333a1"
+  },
+  {
+    "case_id": "v3-hold-current-sku",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "c6ed473d9ac47726e37bdc200addaa9f275be434378876d698167ad045a5ce15",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "c6ed473d9ac47726e37bdc200addaa9f275be434378876d698167ad045a5ce15"
+  },
+  {
+    "case_id": "v3-hold-delete",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "3c934ae3f8a505d33f9ba4cfed850db6dbad095e4a7c61c7315372967d583dc7",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "3c934ae3f8a505d33f9ba4cfed850db6dbad095e4a7c61c7315372967d583dc7"
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "6597c6d01b9aa0b8c0c2a6a227e7f354984acfa3c46099135ebe3e77845dcee6",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "111122dd6ad9fe0c070d8c9d555212bc2bd0e3ad2fb98e77fdc55294f62fb3f5"
+  },
+  {
+    "case_id": "v3-hold-sku-stock",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "3914cea0b1f369b991d89403785e31f292ff67dbe7542a947cbde2711626ff14",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "3914cea0b1f369b991d89403785e31f292ff67dbe7542a947cbde2711626ff14"
+  },
+  {
+    "case_id": "v3-hold-order",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "939112b5abc30512286bb6b462161f1412ab227646fca8f3863481e003aeafc8",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "939112b5abc30512286bb6b462161f1412ab227646fca8f3863481e003aeafc8"
+  },
+  {
+    "case_id": "v3-hold-quote-cn",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "69b546c454916e9d59b1ed3df009f2f90f767e93e74b87ddf255adb417b33e4f",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "69b546c454916e9d59b1ed3df009f2f90f767e93e74b87ddf255adb417b33e4f"
+  },
+  {
+    "case_id": "v3-hold-black",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "9c5554b8a8009ccb7b274d22529eaf75f42c07ebca27689bb625c16c5ce909b7",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "9c5554b8a8009ccb7b274d22529eaf75f42c07ebca27689bb625c16c5ce909b7"
+  },
+  {
+    "case_id": "v3-hold-long-f",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "3c1de559b5dffb8b6d7a86a8f02174ab73a5c263357b902ea7f1219a43d78b04",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "3c1de559b5dffb8b6d7a86a8f02174ab73a5c263357b902ea7f1219a43d78b04"
+  },
+  {
+    "case_id": "v3-hold-approval",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "ebb5ece7fd68e8dabfe78bfd052e1f7968f7f30d48b4ef8964aaebdd6a58d2ec",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "ebb5ece7fd68e8dabfe78bfd052e1f7968f7f30d48b4ef8964aaebdd6a58d2ec"
+  },
+  {
+    "case_id": "v3-hold-long-c",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "0165f947a757be2b285aae6d4c1a1f732e54e17cf4b226b5fdce048b6447d0c0",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "0165f947a757be2b285aae6d4c1a1f732e54e17cf4b226b5fdce048b6447d0c0"
+  },
+  {
+    "case_id": "v3-hold-black",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "8ea51e3b4e115c894f235091eb12c2261d97db85b6e079e79bd608bbeaf9a0c7",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "8ea51e3b4e115c894f235091eb12c2261d97db85b6e079e79bd608bbeaf9a0c7"
+  },
+  {
+    "case_id": "v3-hold-first",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "7383e91a4e49e4e29ba79a3ecfcf39fa2548e3bde559e12b6ddf5a3d2f2d43b3",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "7383e91a4e49e4e29ba79a3ecfcf39fa2548e3bde559e12b6ddf5a3d2f2d43b3"
+  },
+  {
+    "case_id": "v3-hold-scope",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "4b685edb8c7a18263775d105a036ca2926195e9580796ce567fbe4a9cbbecc31",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "4b685edb8c7a18263775d105a036ca2926195e9580796ce567fbe4a9cbbecc31"
+  },
+  {
+    "case_id": "v3-hold-desc",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "ff8d0e768f932adbae06aa63a9eccbe6bf738d3635fb4f8ba242de154f08a3fe",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "ff8d0e768f932adbae06aa63a9eccbe6bf738d3635fb4f8ba242de154f08a3fe"
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "9cc6e4184abb18bdceb24ecee92cf00839ad705197b13b666e0d3d3b6a6d68da",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "f508f81890cf5ff189c507109ebf9c17642e942f18eeedd5d95585dd4d018e50"
+  },
+  {
+    "case_id": "v3-hold-long-c",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "3fd0cf467eb705907cbc760e88924d7d96a6e00e8fa24fc5d3e882e4fd9435c2",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "3fd0cf467eb705907cbc760e88924d7d96a6e00e8fa24fc5d3e882e4fd9435c2"
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "e5e434b2ea2ca17e95d66c5534f9c93c7eba3c1c88de2c5bc651eaeb2905b83a",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "e5e434b2ea2ca17e95d66c5534f9c93c7eba3c1c88de2c5bc651eaeb2905b83a"
+  },
+  {
+    "case_id": "v3-hold-long-e",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "2d57c47004d6f8b4459a994024e2d844288ec09953d3738a9671d5ad50086547",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "2d57c47004d6f8b4459a994024e2d844288ec09953d3738a9671d5ad50086547"
+  },
+  {
+    "case_id": "v3-hold-order",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "fb52a0fa71ffe5a3ff8c1f00cc0f3eb4df66ccc3ceb08239ee0feb9bf38a84a5",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "fb52a0fa71ffe5a3ff8c1f00cc0f3eb4df66ccc3ceb08239ee0feb9bf38a84a5"
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "3823bba9a17b64c7361eb1112aff70da7bc114414ea3bc46afd1b4d4e2b87a95",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "3823bba9a17b64c7361eb1112aff70da7bc114414ea3bc46afd1b4d4e2b87a95"
+  },
+  {
+    "case_id": "v3-hold-sku-stock",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "38cbd762c7cbb43309b2e0f8ed96651acee763988afa9f07b40725695aaf3914",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "38cbd762c7cbb43309b2e0f8ed96651acee763988afa9f07b40725695aaf3914"
+  },
+  {
+    "case_id": "v3-hold-old-price",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "213546ffd1b9ecd43615e6d8f0957e4791cfb9567fca3f098a074aafc1bf37d2",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "213546ffd1b9ecd43615e6d8f0957e4791cfb9567fca3f098a074aafc1bf37d2"
+  },
+  {
+    "case_id": "v3-hold-source",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "646924e8bdd3cc2ce52a3eb34946cd90a14f3f7b693b82199c0b3a05ce0e0409",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "646924e8bdd3cc2ce52a3eb34946cd90a14f3f7b693b82199c0b3a05ce0e0409"
+  },
+  {
+    "case_id": "v3-hold-long-f",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "390795cee864588f54496a2cdbf6c8016bdc4e867438f4eae46eedcdac432f85",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "390795cee864588f54496a2cdbf6c8016bdc4e867438f4eae46eedcdac432f85"
+  },
+  {
+    "case_id": "v3-hold-tax",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "7c68802a8923d4cf707cfd60a2df233d361b998e2476d79c858a1de1e73cc26c",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "7c68802a8923d4cf707cfd60a2df233d361b998e2476d79c858a1de1e73cc26c"
+  },
+  {
+    "case_id": "v3-hold-current-sku",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "30bac45a902ef11d01d357449712ee146bcaf085845dfab1fcebbfbb6b28ffe1",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "30bac45a902ef11d01d357449712ee146bcaf085845dfab1fcebbfbb6b28ffe1"
+  },
+  {
+    "case_id": "v3-hold-desc",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "e4b6c35d0a888a3e6d980c44dc809bc12002c4b17656aa67da3dc50957c0d14a",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "e4b6c35d0a888a3e6d980c44dc809bc12002c4b17656aa67da3dc50957c0d14a"
+  },
+  {
+    "case_id": "v3-hold-retrieval",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "9e44cfa2403c0288430d313cb90d3de97a841e55c71af8187af7a031aaadd312",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "9e44cfa2403c0288430d313cb90d3de97a841e55c71af8187af7a031aaadd312"
+  },
+  {
+    "case_id": "v3-hold-long-a",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "7705931031c71806e2905f308d5bc53580d4cdbc9b6b3e879c2068bbd55b9f1c",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "7705931031c71806e2905f308d5bc53580d4cdbc9b6b3e879c2068bbd55b9f1c"
+  },
+  {
+    "case_id": "v3-hold-source",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "dc8ab84ee3c80ff324e6234e141e19acacf8f600a6b22ff4e7847b9669f22057",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "dc8ab84ee3c80ff324e6234e141e19acacf8f600a6b22ff4e7847b9669f22057"
+  },
+  {
+    "case_id": "v3-hold-quote-cn",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "c39c80092db9a8140d4adc92d54f66c7155a441bf69000f5e7d3f89a22ec6304",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "c39c80092db9a8140d4adc92d54f66c7155a441bf69000f5e7d3f89a22ec6304"
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "825892f7a8ac5aa791aa4f88d588656d3911701bbb7ac776fd7459454b3034bd",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "825892f7a8ac5aa791aa4f88d588656d3911701bbb7ac776fd7459454b3034bd"
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "76742c6aff0d47ebd2546be1ad50f38d2babc1e15c9dde3e21ea76e96a919f5e",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "fa02879666b02d8a0aeb3fe9ef7d1ba2d4302596c839121878f2b8a385ee16a1"
+  },
+  {
+    "case_id": "v3-hold-injection",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "3bac78a343c36dd62587a7d1c76354d7ceffde6ad182a5f7302310341be2a9a9",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "3bac78a343c36dd62587a7d1c76354d7ceffde6ad182a5f7302310341be2a9a9"
+  },
+  {
+    "case_id": "v3-hold-delete",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "ba03748f09079b696b2b12dfa2ac5a3d24216bf5d229acd0ac710e3e24a1e362",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "ba03748f09079b696b2b12dfa2ac5a3d24216bf5d229acd0ac710e3e24a1e362"
+  },
+  {
+    "case_id": "v3-hold-sku-stock",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "4ab7bb9b1ad113d1bcd492ab8675ed7959e171df73dd47b63af0b38c791e8101",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "4ab7bb9b1ad113d1bcd492ab8675ed7959e171df73dd47b63af0b38c791e8101"
+  },
+  {
+    "case_id": "v3-hold-sku-stock",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "d5e2d07db637ef8583b384b9af465bb93c116ee48abb0d8311f16f208c534ccc",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "d5e2d07db637ef8583b384b9af465bb93c116ee48abb0d8311f16f208c534ccc"
+  },
+  {
+    "case_id": "v3-hold-long-d",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "024b5b4c306408d14b220d8aa7bc9084e067a944236bb8ff7ca6fa5fedf05ae4",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "024b5b4c306408d14b220d8aa7bc9084e067a944236bb8ff7ca6fa5fedf05ae4"
+  },
+  {
+    "case_id": "v3-hold-source",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "029fd66150f45aa799f0f6b650ce9054971c1dc35da3cc71580a96bb634360ae",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "029fd66150f45aa799f0f6b650ce9054971c1dc35da3cc71580a96bb634360ae"
+  },
+  {
+    "case_id": "v3-hold-delete",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "33ae06d2b055dcdc336005371e2e13b7ef75b4247d09d835c7509a6125fda26e",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "33ae06d2b055dcdc336005371e2e13b7ef75b4247d09d835c7509a6125fda26e"
+  },
+  {
+    "case_id": "v3-hold-order",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "96832479f57e380e83ab70d3a4bbb138df2877b4a64c093d1ffd72b50179400d",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "96832479f57e380e83ab70d3a4bbb138df2877b4a64c093d1ffd72b50179400d"
+  },
+  {
+    "case_id": "v3-hold-tax",
+    "strategy": "deterministic",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "d2cf91973ee23be0894ba56ee22a44f0cb010bb732b332f9698da523a93b0372",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "d2cf91973ee23be0894ba56ee22a44f0cb010bb732b332f9698da523a93b0372"
+  },
+  {
+    "case_id": "v3-hold-blue",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "a40e5a3ec215428fa447a4b8f722af4ea3203b6bb36435222a3f287bd1bf797f",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "a40e5a3ec215428fa447a4b8f722af4ea3203b6bb36435222a3f287bd1bf797f"
+  },
+  {
+    "case_id": "v3-hold-long-c",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "74cebc5774023e8d89d83902011b28ab0b60f46d84b42ce0afc5feeef7ea0abc",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "74cebc5774023e8d89d83902011b28ab0b60f46d84b42ce0afc5feeef7ea0abc"
+  },
+  {
+    "case_id": "v3-hold-desc",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "34955a0030e08c5b8a297044c85538cc3f2b40badbdf1713a3361ffe99ed70d9",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "34955a0030e08c5b8a297044c85538cc3f2b40badbdf1713a3361ffe99ed70d9"
+  },
+  {
+    "case_id": "v3-hold-origin",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "e203b803df8864ba4b324d159d6133562f3deafd5bd5e7cdfa5dca29dd32cc56",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "e203b803df8864ba4b324d159d6133562f3deafd5bd5e7cdfa5dca29dd32cc56"
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "3d8d4015bc9a530e452b172e07385e2a2c9d3cabfea728eca242a6442bf97760",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "3d8d4015bc9a530e452b172e07385e2a2c9d3cabfea728eca242a6442bf97760"
+  },
+  {
+    "case_id": "v3-hold-order",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "60b75b9f2d0b6cfab388bd9dd877e1268520535c99c4fd4067f59993b86b1b88",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "60b75b9f2d0b6cfab388bd9dd877e1268520535c99c4fd4067f59993b86b1b88"
+  },
+  {
+    "case_id": "v3-hold-price",
+    "strategy": "layered",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "415afa56e3c643655df1c4d2366849638cebed49aac9523060f4d55d417bfe4f",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "415afa56e3c643655df1c4d2366849638cebed49aac9523060f4d55d417bfe4f"
+  },
+  {
+    "case_id": "v3-hold-long-e",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "f102b1f069634a46f6cd68ac0f1aa225bba22ad750b40a0e7c51ae34eb9ea48e",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "f102b1f069634a46f6cd68ac0f1aa225bba22ad750b40a0e7c51ae34eb9ea48e"
+  },
+  {
+    "case_id": "v3-hold-long-d",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "b946bd13521dd106e518238d7317dc678b421f511a21ed671d381694a03e2f23",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "b946bd13521dd106e518238d7317dc678b421f511a21ed671d381694a03e2f23"
+  },
+  {
+    "case_id": "v3-hold-long-a",
+    "strategy": "deterministic",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "fd44ae6a62df74d27a6948158cc9c1951261163f0de2eb0f88eb6972c6f408a1",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "fd44ae6a62df74d27a6948158cc9c1951261163f0de2eb0f88eb6972c6f408a1"
+  },
+  {
+    "case_id": "v3-hold-scope",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "cc4ce3918a3285fe76d8fe53f97791e02088c841febbac7de8ba68af928431f4",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "cc4ce3918a3285fe76d8fe53f97791e02088c841febbac7de8ba68af928431f4"
+  },
+  {
+    "case_id": "v3-hold-origin",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "b1ad3214b0b7e106773988d377caf7c28063e875447036212f25250040e19680",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "b1ad3214b0b7e106773988d377caf7c28063e875447036212f25250040e19680"
+  },
+  {
+    "case_id": "v3-hold-long-c",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "6989bf28e81a65fc0a587e2838f0d570717a4e7ecf67d5a739e7362892760e3e",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "6989bf28e81a65fc0a587e2838f0d570717a4e7ecf67d5a739e7362892760e3e"
+  },
+  {
+    "case_id": "v3-hold-source",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "d1f9ca8151ffe94cd13b271c38801a072e6abe96d9aab2579f0dfa7aa5187622",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "d1f9ca8151ffe94cd13b271c38801a072e6abe96d9aab2579f0dfa7aa5187622"
+  },
+  {
+    "case_id": "v3-hold-first",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "f59742083e89cd72a0ef5e3479b3746494924a603956bdd2d75d869010cd3203",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "f59742083e89cd72a0ef5e3479b3746494924a603956bdd2d75d869010cd3203"
+  },
+  {
+    "case_id": "v3-hold-price",
+    "strategy": "legacy",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "389f1498ba601c28003363aadbb27057d74206682dace8e6b164b2615d38f506",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "389f1498ba601c28003363aadbb27057d74206682dace8e6b164b2615d38f506"
+  },
+  {
+    "case_id": "v3-hold-last",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "6186b2ba810a5063c20912fda5356312b6c3f834ade2b7b9c0e193d2e667291e",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "6186b2ba810a5063c20912fda5356312b6c3f834ade2b7b9c0e193d2e667291e"
+  },
+  {
+    "case_id": "v3-hold-long-c",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "9c2ec01bacdc4d668f557b5e21e5aa04427fe7d872296e916174d2f790d31b81",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "9c2ec01bacdc4d668f557b5e21e5aa04427fe7d872296e916174d2f790d31b81"
+  },
+  {
+    "case_id": "v3-hold-last",
+    "strategy": "legacy",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "648a0b243c11564c4e590f96cb45cd141667a86776adaf78155a8ec44a05d6eb",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "648a0b243c11564c4e590f96cb45cd141667a86776adaf78155a8ec44a05d6eb"
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "supplementary_full_block",
+    "original_row_sha256": "7831c1d1de716cdbe1b8e260d8cd2f3932fb5ce2ec9637c02db064e6a91a7df0",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "ea34d1d83e968d8575112995c6c7734db7173a9151687df312e237f8dcc888f5"
+  },
+  {
+    "case_id": "v3-hold-order",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "5033370e1bd1fb0ae3b5787cc5a1071e89b5b01aa215fff068128101978a39f0",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "5033370e1bd1fb0ae3b5787cc5a1071e89b5b01aa215fff068128101978a39f0"
+  },
+  {
+    "case_id": "v3-hold-current-sku",
+    "strategy": "legacy",
+    "logical_repetition": 1,
+    "source": "primary",
+    "original_row_sha256": "44a023bf6e833aa394e229b5c56a94de50adf2e637cc273b608aac173069be1b",
+    "selected_physical_repetition": 1,
+    "selected_row_sha256": "44a023bf6e833aa394e229b5c56a94de50adf2e637cc273b608aac173069be1b"
+  },
+  {
+    "case_id": "v3-hold-delete",
+    "strategy": "layered",
+    "logical_repetition": 2,
+    "source": "primary",
+    "original_row_sha256": "445c49456c681a14c37c58240661824b37db93728d90998c1453999f5a2e6574",
+    "selected_physical_repetition": 2,
+    "selected_row_sha256": "445c49456c681a14c37c58240661824b37db93728d90998c1453999f5a2e6574"
+  },
+  {
+    "case_id": "v3-hold-desc",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "ad6ded8fe8ea2c6384003afc26499f25d2c7a61905d69f64bf34945d24a68403",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "ad6ded8fe8ea2c6384003afc26499f25d2c7a61905d69f64bf34945d24a68403"
+  },
+  {
+    "case_id": "v3-hold-old-price",
+    "strategy": "deterministic",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "1afccb2b9ed0b576ec67f03cf509fa02792253feb33400e62b5998d0ccc34797",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "1afccb2b9ed0b576ec67f03cf509fa02792253feb33400e62b5998d0ccc34797"
+  },
+  {
+    "case_id": "v3-hold-scope",
+    "strategy": "layered",
+    "logical_repetition": 0,
+    "source": "primary",
+    "original_row_sha256": "3680369976f3f5ffdf80d68771dc67a84aa7dc167c906d207e9294e00861629f",
+    "selected_physical_repetition": 0,
+    "selected_row_sha256": "3680369976f3f5ffdf80d68771dc67a84aa7dc167c906d207e9294e00861629f"
+  }
+]

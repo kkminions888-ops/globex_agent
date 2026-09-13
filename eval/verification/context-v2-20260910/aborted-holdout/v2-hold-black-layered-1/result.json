@@ -1,0 +1,56 @@
+{
+  "case_id": "v2-hold-black",
+  "split": "holdout",
+  "mode": "snapshot",
+  "strategy": "layered",
+  "repetition": 1,
+  "answer": "根据第一批商品的历史展示记录，有黑色规格的商品及对应 SKU 如下：\n\n- **P8252**（TrailOx 20寸登机行李箱 铝框款）  \n  - SKU: **P8252-S2**，规格：黑色 / 20寸（历史币种：CNY）\n\n- **P8253**（Wanderlite 折叠旅行双肩包 35L）  \n  - SKU: **P8253-S1**，规格：石墨黑（历史币种：CNY）\n\n- **P8254**（AeroHush 主动降噪蓝牙耳机 Pro）  \n  - SKU: **P8254-S1**，规格：曜石黑（历史币种：USD）\n\n> 注：以上 SKU 信息来源于第一批商品的历史展示（观察时间：2026-09-01T10:01:00Z），仅反映当时规格情况。当前库存与价格需通过 current_business_state 核验。",
+  "checks": {
+    "facts": true,
+    "current_lookup": true,
+    "no_error": true
+  },
+  "passed": true,
+  "error": null,
+  "usage": [
+    {
+      "kind": "business",
+      "input_tokens": 10303,
+      "output_tokens": 33,
+      "elapsed_ms": 1819.4303329801187
+    },
+    {
+      "kind": "business",
+      "input_tokens": 11316,
+      "output_tokens": 230,
+      "elapsed_ms": 6736.930250015575
+    }
+  ],
+  "input_tokens": 21619,
+  "output_tokens": 263,
+  "model_calls": 2,
+  "lookup_calls": 1,
+  "current_calls": 0,
+  "elapsed_ms": 10336,
+  "compactions": [],
+  "round_metrics": [
+    {
+      "elapsed_ms": 10236,
+      "compacted": false,
+      "model_calls": 2
+    }
+  ],
+  "final_context_estimated_tokens": 26230,
+  "last_compaction": {
+    "policy_version": "layered-v2",
+    "reason": "pressure",
+    "before_tokens": 12328,
+    "after_tokens": 12328,
+    "archived_results": 0,
+    "summary_changed": false,
+    "elapsed_ms": 73,
+    "status": "noop"
+  },
+  "final_product_observations": 15,
+  "final_product_duplicate_ratio": 0.33333333333333337
+}

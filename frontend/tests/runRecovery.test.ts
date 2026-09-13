@@ -106,7 +106,7 @@ describe("持久运行恢复（使用官方 AG-UI SDK）", () => {
     values.setItem("globex.agui.active-session", "s1");
     values.setItem("globex.agui.sessions.v1", JSON.stringify([{ id: "s1", title: "旧记录", updatedAt: 1, messages: [{ id: "u", role: "user", content: "查询" }], products: [], searchCompleted: false, runId: "r1" }]));
     let posts = 0;
-    const client = new CommerceClient({ url: "/commerce/ag-ui/run", storage: values, fetch: async (url, init) => {
+    const client = new CommerceClient({ url: "/commerce/ag-ui/run", storage: values, buyerId:"b1", fetch: async (url, init) => {
       if (init.method === "POST") posts++;
       if (String(url).includes("/sessions?")) return json({ sessions: [{ id: "s1", title: "服务端记录", updatedAt: 2 }] });
       return json({ run: { runId: "r1", threadId: "s1", status: "interrupted", messages: [{ id: "a", role: "assistant", content: "已保存的部分结果" }], state: {} } });
@@ -128,7 +128,7 @@ describe("刷新时以服务端记录恢复，缓存仅用于加速", () => {
     storage.setItem("globex.buyer","b1");
     storage.setItem("globex.agui.active-session","saved");
     if(cache!==null) storage.setItem("globex.agui.sessions.v1",cache);
-    const client=new CommerceClient({url:"/commerce/ag-ui/run",storage,fetch:historyFetch});
+    const client=new CommerceClient({url:"/commerce/ag-ui/run",storage,buyerId:"b1",fetch:historyFetch});
     expect(client.getSnapshot().sessionId).toBe("saved");
     await client.initialize();
     expect(client.getSnapshot().messages[0].content).toBe("完整的已保存对话");
@@ -143,15 +143,16 @@ describe("刷新时以服务端记录恢复，缓存仅用于加速", () => {
     expect(storage.getItem("globex.agui.active-session")).toBe("saved");
   });
 
-  it("主动开启的新选购刷新后保持空白，不被旧对话覆盖",async()=>{
+  it("空白草稿刷新后恢复买家最近持久会话",async()=>{
     const storage=store();
-    const first=new CommerceClient({url:"/commerce/ag-ui/run",storage,fetch:historyFetch});
+    const first=new CommerceClient({url:"/commerce/ag-ui/run",storage,buyerId:"b1",fetch:historyFetch});
     await first.initialize(); first.reset();
     const draft=first.getSnapshot().sessionId;
-    const restored=new CommerceClient({url:"/commerce/ag-ui/run",storage,fetch:historyFetch});
+    const restored=new CommerceClient({url:"/commerce/ag-ui/run",storage,buyerId:"b1",fetch:historyFetch});
     await restored.initialize();
-    expect(restored.getSnapshot().sessionId).toBe(draft);
-    expect(restored.getSnapshot().messages).toEqual([]);
+    expect(restored.getSnapshot().sessionId).not.toBe(draft);
+    expect(restored.getSnapshot().sessionId).toBe("saved");
+    expect(restored.getSnapshot().messages[0].content).toBe("完整的已保存对话");
   });
 
   it("买家切换时不读取上一个买家的本机记录和会话指针",async()=>{
@@ -168,3 +169,65 @@ describe("刷新时以服务端记录恢复，缓存仅用于加速", () => {
     expect(client.getSnapshot().sessionId).not.toBe("private-old");
   });
 });
+
+it("原生记忆审批通过 SDK resume 回传，不重发普通文本执行", async () => {
+  const posts: any[] = [];
+  const client = new CommerceClient({url:'/commerce/ag-ui/run',fetch:async (_url,init)=>{
+    const request=JSON.parse(String(init.body));posts.push(request);
+    const approval={id:'reply:call',tool:'remember_preference_tool',label:'保存购物偏好',arguments:'{"statement":"喜欢裙子"}'};
+    return sse(request.runId,[[1,{type:'RUN_STARTED',threadId:request.threadId,runId:request.runId}],
+      [2,{type:'STATE_SNAPSHOT',snapshot:{toolApprovals:posts.length===1?[approval]:[],products:[],progress:[]}}],
+      [3,{type:'RUN_FINISHED',threadId:request.threadId,runId:request.runId,outcome:posts.length===1?{type:'interrupt',interrupts:[{id:approval.id,reason:'tool_confirmation'}]}:{type:'success'}}]]);
+  }});
+  await client.submit('记住我喜欢裙子');
+  expect(client.getSnapshot().error).toBeNull();
+  expect(client.getSnapshot().toolApprovals).toHaveLength(1);
+  await client.resolveToolApproval('reply:call',true);
+  expect(posts[1].resume).toEqual([{interruptId:'reply:call',status:'resolved',payload:{approved:true}}]);
+  expect(client.getSnapshot().toolApprovals).toEqual([]);
+});
+
+it("默认固定 pao-coder，忽略随机缓存身份并从数据库恢复",async()=>{
+ const storage=store();storage.setItem("globex.buyer","random-old-id");storage.setItem("globex.agui.active-session","empty-draft");
+ const requested:string[]=[];
+ const fetch=async(url:string)=>{requested.push(url);return url.includes("/sessions?") ? json({sessions:[{id:"pao-history",title:"数据库历史",updatedAt:1}]}) : json({run:{runId:"r",threadId:"pao-history",status:"completed",messages:[{id:"u",role:"user",content:"数据库中的对话"}],state:{}}});};
+ const first=new CommerceClient({url:"/commerce/ag-ui/run",storage,fetch});await first.initialize();
+ expect(storage.getItem("globex.buyer")).toBe("pao-coder");expect(requested.every(url=>url.includes("buyer_id=pao-coder"))).toBe(true);
+ expect(first.getSnapshot().messages[0].content).toBe("数据库中的对话");
+ const withoutCache=new CommerceClient({url:"/commerce/ag-ui/run",fetch});await withoutCache.initialize();
+ expect(withoutCache.getSnapshot().sessionId).toBe("pao-history");
+});
+
+it.each([false,true])("版本过期保留旧历史并仅在新会话重试一次（再次过期=%s）",async(repeat)=>{
+ const posts:any[]=[];
+ const client=new CommerceClient({url:'/commerce/ag-ui/run',fetch:async(_url,init)=>{
+  const body=JSON.parse(String(init.body));posts.push(body);
+  return sse(body.runId,[[1,{type:'RUN_STARTED',threadId:body.threadId,runId:body.runId}],
+   [2,{type:'STATE_SNAPSHOT',snapshot:{products:[],resumeDestination:'CN'}}],
+   [3, posts.length===1 || repeat ? {type:'RUN_ERROR',code:'SESSION_VERSION_CHANGED',message:'选购环境已更新，旧记录仍保留'} : {type:'RUN_FINISHED',threadId:body.threadId,runId:body.runId}]]);
+ }});
+ const query='请核对 product_id=P1003，sku_id=P1003-S1 的库存与到手价';
+ await client.submit(query);
+ expect(posts).toHaveLength(2);
+ expect(posts[0].threadId).not.toBe(posts[1].threadId);
+ expect(posts[1].messages).toHaveLength(1);
+ expect(posts[1].messages[0].content).toBe(query+'\n收货国家：CN。');
+ expect(posts[1].forwardedProps.buyerId).toBe('pao-coder');
+ expect(client.getSnapshot().history.some(item=>item.id===posts[0].threadId)).toBe(true);
+ expect(client.getSnapshot().status).toBe(repeat?'error':'idle');
+});
+
+ it("首轮模型运行早于会话落库时，确认列表404不会成为交易报错",async()=>{
+  let finish:()=>void=()=>{};
+  const client=new CommerceClient({url:'/commerce/ag-ui/run',fetch:async(_url,init)=>{
+   if(init.method!=="POST") return new Response(JSON.stringify({detail:"会话不存在"}),{status:404,headers:{"Content-Type":"application/json"}});
+   const body=JSON.parse(String(init.body));
+   return new Response(new ReadableStream({start(controller){
+    finish=()=>{controller.enqueue(new TextEncoder().encode(`id: ${body.runId}:1\ndata: ${JSON.stringify({type:"RUN_FINISHED",threadId:body.threadId,runId:body.runId})}\n\n`));controller.close();};
+   }}),{headers:{"Content-Type":"text/event-stream"}});
+  }});
+  const pending=client.submit("核对背包库存");
+  await client.refreshConfirmations();
+  expect(client.getSnapshot().confirmationError).toBeNull();
+  finish();await pending;
+ });

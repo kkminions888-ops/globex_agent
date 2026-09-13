@@ -69,7 +69,7 @@ const input = {
 describe("权威确认快照与用户动作", () => {
   it("新空会话尚未绑定的404为空，权限403和已有确认的404仍报错", async () => {
     let status = 404;
-    const client = new CommerceClient({ url: "/commerce/ag-ui/run", storage,
+    const client = new CommerceClient({ buyerId: "b1", url: "/commerce/ag-ui/run", storage,
       fetch: async (_url, init) => {
         if (init?.method === "POST") {
           const body = JSON.parse(String(init.body));
@@ -122,7 +122,7 @@ describe("权威确认快照与用户动作", () => {
   });
   it("准备只发商品地址；批准只发凭证绑定，不接收客户端金额", async () => {
     const requests: Record<string, unknown>[] = [];
-    const client = new CommerceClient({
+    const client = new CommerceClient({ buyerId: "b1",
       url: "/commerce/ag-ui/run",
       storage,
       fetch: async (url, init) => {
@@ -158,7 +158,7 @@ describe("权威确认快照与用户动作", () => {
     let finish!: (response: Response) => void,
       body: Record<string, string> = {},
       calls = 0;
-    const client = new CommerceClient({
+    const client = new CommerceClient({ buyerId: "b1",
       url: "/commerce/ag-ui/run",
       storage,
       fetch: async (_, init) => {
@@ -181,7 +181,7 @@ describe("权威确认快照与用户动作", () => {
   });
   it("确认后的迟到列表刷新不能恢复旧pending卡", async () => {
     let finish!: (response: Response) => void, saved: TradeConfirmation;
-    const client = new CommerceClient({
+    const client = new CommerceClient({ buyerId: "b1",
       url: "/commerce/ag-ui/run",
       storage,
       fetch: async (url, init) => {
@@ -209,7 +209,7 @@ describe("权威确认快照与用户动作", () => {
     expect(client.getSnapshot().confirmations[0].status).toBe("approved");
   });
   it("错误归属不可显示；断网保留原凭证用于幂等重试", async () => {
-    const wrong = new CommerceClient({
+    const wrong = new CommerceClient({ buyerId: "b1",
       url: "/commerce/ag-ui/run",
       storage,
       fetch: async () => response({ confirmation: card }),
@@ -217,7 +217,7 @@ describe("权威确认快照与用户动作", () => {
     expect(await wrong.prepareOrder(input)).toBe(false);
     expect(wrong.getSnapshot().confirmations).toEqual([]);
     let fail = false;
-    const client = new CommerceClient({
+    const client = new CommerceClient({ buyerId: "b1",
       url: "/commerce/ag-ui/run",
       storage,
       fetch: async (_, init) => {
@@ -260,13 +260,13 @@ it("刷新恢复当前会话，并从服务端读取确认；收货快照不写�
     saved = { ...card, session_id: JSON.parse(String(init.body)).session_id };
     return response({ confirmation: saved });
   };
-  const first = new CommerceClient({
+  const first = new CommerceClient({ buyerId: "b1",
     url: "/commerce/ag-ui/run",
     storage: persistent,
     fetch,
   });
   await first.prepareOrder(input);
-  const restored = new CommerceClient({
+  const restored = new CommerceClient({ buyerId: "b1",
     url: "/commerce/ag-ui/run",
     storage: persistent,
     fetch,
@@ -277,7 +277,7 @@ it("刷新恢复当前会话，并从服务端读取确认；收货快照不写�
   await restored.refreshConfirmations();
   expect(restored.getSnapshot().confirmations[0].status).toBe("approved");
   restored.reset();
-  const fresh = new CommerceClient({
+  const fresh = new CommerceClient({ buyerId: "b1",
     url: "/commerce/ag-ui/run",
     storage: persistent,
     fetch,

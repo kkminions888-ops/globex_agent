@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "original_history_preserved": true,
+  "question_preserves_constraints_and_selection": true,
+  "answer": "根据您最近的明确指令，当前本次任务的需求回顾如下（**仅限本次，不涉及长期偏好**）：\n\n- **选中的 SKU**：P1003-S2  \n- **本次预算**：180 元（CNY）  \n- **收货国家**：日本（JP）  \n- **容量**：35 升  \n- **材质排除**：真皮  \n\n以上内容严格依据您在对话中逐项确认的临时约束汇总，未添加、未修改、未查询，仅作回顾。",
+  "capacity": {
+    "source": "本次容量仍然要求35升",
+    "excerpts": [
+      "本次容量仍然要求35升"
+    ],
+    "message_id": "e66f951cbe9a4742856267768983a508",
+    "scope": "本次选购；以最新原文为准"
+  },
+  "selected": [
+    "P1003-S2"
+  ],
+  "summary_usage": [
+    {
+      "kind": "summary",
+      "input_tokens": 4773,
+      "output_tokens": 673,
+      "elapsed_ms": 13887.744625011692
+    }
+  ],
+  "operation": {
+    "operation_id": "3b1eb53f9e59714f668a68b19f31e8cfbaa93189dfd2519b57b961650c95b625",
+    "session_id": "bdcfc5af-681e-44c1-8adb-5302b0c3c6c4",
+    "status": "completed",
+    "expected_revision": 16,
+    "statistics": {
+      "policy_version": "layered-v3",
+      "reason": "manual",
+      "before_tokens": 13875,
+      "after_tokens": 13353,
+      "archived_results": 0,
+      "summary_changed": true,
+      "elapsed_ms": 13897,
+      "status": "completed"
+    },
+    "message": "上下文已整理，原始记录保留"
+  },
+  "source_sha256": "9b7a98dbf9d7b98eb23c366aa244b4082e53874ed433399bb3568e72cac61f39"
+}

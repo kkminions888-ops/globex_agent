@@ -1,0 +1,1433 @@
+[
+  {
+    "case_id": "v3-hold-long-b",
+    "split": "holdout",
+    "mode": "long",
+    "strategy": "deterministic",
+    "repetition": 0,
+    "answer": "第一批第三件商品为 Wanderlite 折叠旅行双肩包 35L（商品ID：P18453），其石墨黑 SKU 为 **P18453-S1**（历史观察单价155 CNY，库存38，来源：第一批，目的地CN）。注意：此为历史数据，当前状态需通过 current_business_state 核验。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true,
+      "two_compactions": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 1133,
+        "output_tokens": 22,
+        "elapsed_ms": 1629.599292005878
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3515,
+        "output_tokens": 26,
+        "elapsed_ms": 1238.89812498237
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3563,
+        "output_tokens": 22,
+        "elapsed_ms": 1025.5606670107227
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5947,
+        "output_tokens": 42,
+        "elapsed_ms": 2716.614375007339
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6026,
+        "output_tokens": 22,
+        "elapsed_ms": 1180.7027919858228
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6488,
+        "output_tokens": 42,
+        "elapsed_ms": 1459.8783749970607
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4334,
+        "output_tokens": 22,
+        "elapsed_ms": 1266.592917003436
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4799,
+        "output_tokens": 42,
+        "elapsed_ms": 1431.56262501725
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4557,
+        "output_tokens": 22,
+        "elapsed_ms": 1009.3931669835001
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5007,
+        "output_tokens": 42,
+        "elapsed_ms": 1319.2295409971848
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4768,
+        "output_tokens": 22,
+        "elapsed_ms": 1483.3362079807557
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5213,
+        "output_tokens": 42,
+        "elapsed_ms": 1440.292874991428
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5149,
+        "output_tokens": 22,
+        "elapsed_ms": 1881.4946670026984
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5588,
+        "output_tokens": 55,
+        "elapsed_ms": 1855.3092920046765
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5346,
+        "output_tokens": 22,
+        "elapsed_ms": 1143.2841249916237
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5785,
+        "output_tokens": 55,
+        "elapsed_ms": 1897.3737499909475
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5586,
+        "output_tokens": 22,
+        "elapsed_ms": 1419.544834003318
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6023,
+        "output_tokens": 55,
+        "elapsed_ms": 1841.2152079981752
+      },
+      {
+        "kind": "business",
+        "input_tokens": 1781,
+        "output_tokens": 23,
+        "elapsed_ms": 1272.973290993832
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4165,
+        "output_tokens": 55,
+        "elapsed_ms": 2144.902957981685
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4257,
+        "output_tokens": 23,
+        "elapsed_ms": 1050.8325840055477
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4700,
+        "output_tokens": 63,
+        "elapsed_ms": 1680.1952499954496
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4793,
+        "output_tokens": 23,
+        "elapsed_ms": 1355.9445000137202
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5234,
+        "output_tokens": 63,
+        "elapsed_ms": 1982.081416004803
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5059,
+        "output_tokens": 23,
+        "elapsed_ms": 1235.4840000043623
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5506,
+        "output_tokens": 63,
+        "elapsed_ms": 1544.061667023925
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5319,
+        "output_tokens": 23,
+        "elapsed_ms": 1278.6067909910344
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5777,
+        "output_tokens": 63,
+        "elapsed_ms": 2296.4084170234855
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5560,
+        "output_tokens": 23,
+        "elapsed_ms": 1409.953124995809
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6008,
+        "output_tokens": 63,
+        "elapsed_ms": 2003.3487909822725
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5808,
+        "output_tokens": 23,
+        "elapsed_ms": 1107.7208750066347
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6247,
+        "output_tokens": 63,
+        "elapsed_ms": 1781.5432499919552
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6058,
+        "output_tokens": 23,
+        "elapsed_ms": 1272.6033339858986
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6509,
+        "output_tokens": 63,
+        "elapsed_ms": 1672.9680830030702
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6314,
+        "output_tokens": 23,
+        "elapsed_ms": 2137.632208003197
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6761,
+        "output_tokens": 63,
+        "elapsed_ms": 2072.583500004839
+      },
+      {
+        "kind": "business",
+        "input_tokens": 1769,
+        "output_tokens": 23,
+        "elapsed_ms": 1170.095500012394
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4156,
+        "output_tokens": 63,
+        "elapsed_ms": 1768.5820420156233
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4256,
+        "output_tokens": 23,
+        "elapsed_ms": 1137.155458010966
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4700,
+        "output_tokens": 58,
+        "elapsed_ms": 1680.5512080027256
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4795,
+        "output_tokens": 23,
+        "elapsed_ms": 1265.1604169805069
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5238,
+        "output_tokens": 58,
+        "elapsed_ms": 3361.2992499838583
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5048,
+        "output_tokens": 23,
+        "elapsed_ms": 1266.4193749951664
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5499,
+        "output_tokens": 58,
+        "elapsed_ms": 2075.6202499906067
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5284,
+        "output_tokens": 23,
+        "elapsed_ms": 1209.5346660062205
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5723,
+        "output_tokens": 58,
+        "elapsed_ms": 1533.211083005881
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5551,
+        "output_tokens": 23,
+        "elapsed_ms": 1307.1985419956036
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6007,
+        "output_tokens": 58,
+        "elapsed_ms": 1782.9839589830954
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5760,
+        "output_tokens": 43,
+        "elapsed_ms": 1747.3234579956625
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6314,
+        "output_tokens": 85,
+        "elapsed_ms": 3508.1493339966983
+      }
+    ],
+    "input_tokens": 254783,
+    "output_tokens": 1984,
+    "model_calls": 50,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 498887,
+    "compactions": [
+      {
+        "summary_changed": true,
+        "reason": "manual"
+      },
+      {
+        "summary_changed": true,
+        "reason": "manual"
+      }
+    ],
+    "round_metrics": [
+      {
+        "elapsed_ms": 11245,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 21481,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 18746,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19976,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19891,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20126,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20420,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20046,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19948,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 12149,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19544,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20305,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19566,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20761,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19700,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19781,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19896,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20402,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 6772,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19916,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 21685,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 18717,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19461,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20252,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 21729,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 11123,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 6954,
+      "after_tokens": 6954,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 2,
+      "status": "noop"
+    },
+    "final_product_observations": 10,
+    "final_product_duplicate_ratio": 0.5
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "split": "holdout",
+    "mode": "long",
+    "strategy": "layered",
+    "repetition": 0,
+    "answer": "第一批第三件商品为 P18453，其石墨黑 SKU 为 **P18453-S1**（历史记录，非当前状态）。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true,
+      "two_compactions": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 1136,
+        "output_tokens": 22,
+        "elapsed_ms": 1511.0285000118893
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3521,
+        "output_tokens": 26,
+        "elapsed_ms": 1295.0948329817038
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3573,
+        "output_tokens": 22,
+        "elapsed_ms": 1115.2850420039613
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5956,
+        "output_tokens": 49,
+        "elapsed_ms": 1737.6691660028882
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6039,
+        "output_tokens": 22,
+        "elapsed_ms": 1252.8019580058753
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6485,
+        "output_tokens": 34,
+        "elapsed_ms": 1372.691541997483
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4319,
+        "output_tokens": 22,
+        "elapsed_ms": 1116.3815839972813
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4764,
+        "output_tokens": 34,
+        "elapsed_ms": 1459.273916989332
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4547,
+        "output_tokens": 22,
+        "elapsed_ms": 1263.4109999926295
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4992,
+        "output_tokens": 34,
+        "elapsed_ms": 1427.0995410042815
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4778,
+        "output_tokens": 22,
+        "elapsed_ms": 1362.5476250017527
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5229,
+        "output_tokens": 34,
+        "elapsed_ms": 3463.100958004361
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5153,
+        "output_tokens": 22,
+        "elapsed_ms": 1216.5239170135465
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5600,
+        "output_tokens": 55,
+        "elapsed_ms": 2158.5475000028964
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5334,
+        "output_tokens": 22,
+        "elapsed_ms": 1044.2350409866776
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5778,
+        "output_tokens": 55,
+        "elapsed_ms": 1715.7443329924718
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5589,
+        "output_tokens": 22,
+        "elapsed_ms": 1857.4816249893047
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6044,
+        "output_tokens": 55,
+        "elapsed_ms": 1717.1536670066416
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4977,
+        "output_tokens": 23,
+        "elapsed_ms": 1166.840999998385
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5428,
+        "output_tokens": 56,
+        "elapsed_ms": 1555.9945839922875
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5226,
+        "output_tokens": 23,
+        "elapsed_ms": 1176.7928749904968
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5675,
+        "output_tokens": 56,
+        "elapsed_ms": 1857.9701659909915
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5481,
+        "output_tokens": 23,
+        "elapsed_ms": 3993.4569589968305
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5943,
+        "output_tokens": 57,
+        "elapsed_ms": 1609.5245420001447
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5728,
+        "output_tokens": 23,
+        "elapsed_ms": 1193.1164999841712
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6188,
+        "output_tokens": 57,
+        "elapsed_ms": 2231.791875005001
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5948,
+        "output_tokens": 23,
+        "elapsed_ms": 1173.019292007666
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6382,
+        "output_tokens": 57,
+        "elapsed_ms": 1881.2252920179162
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6215,
+        "output_tokens": 23,
+        "elapsed_ms": 1178.2846660062205
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6668,
+        "output_tokens": 57,
+        "elapsed_ms": 1607.556333008688
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6446,
+        "output_tokens": 23,
+        "elapsed_ms": 1250.1283750170842
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6884,
+        "output_tokens": 57,
+        "elapsed_ms": 1715.1367499900516
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6687,
+        "output_tokens": 23,
+        "elapsed_ms": 1192.1741249971092
+      },
+      {
+        "kind": "business",
+        "input_tokens": 7123,
+        "output_tokens": 57,
+        "elapsed_ms": 1871.8205409822986
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6949,
+        "output_tokens": 23,
+        "elapsed_ms": 1365.589833992999
+      },
+      {
+        "kind": "business",
+        "input_tokens": 7404,
+        "output_tokens": 57,
+        "elapsed_ms": 2497.4585409800056
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5075,
+        "output_tokens": 23,
+        "elapsed_ms": 1167.8711250133347
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5527,
+        "output_tokens": 57,
+        "elapsed_ms": 1577.803208027035
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5309,
+        "output_tokens": 23,
+        "elapsed_ms": 1112.128250009846
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5746,
+        "output_tokens": 57,
+        "elapsed_ms": 1535.282124998048
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5568,
+        "output_tokens": 23,
+        "elapsed_ms": 1413.6410420178436
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6013,
+        "output_tokens": 57,
+        "elapsed_ms": 1909.789917001035
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5831,
+        "output_tokens": 23,
+        "elapsed_ms": 1204.5007089909632
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6288,
+        "output_tokens": 57,
+        "elapsed_ms": 1582.899166009156
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6069,
+        "output_tokens": 23,
+        "elapsed_ms": 1201.0277499794029
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6522,
+        "output_tokens": 57,
+        "elapsed_ms": 1895.9787079948
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6309,
+        "output_tokens": 23,
+        "elapsed_ms": 1355.6964169838466
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6761,
+        "output_tokens": 57,
+        "elapsed_ms": 1792.520000017248
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6543,
+        "output_tokens": 43,
+        "elapsed_ms": 1963.0079589842353
+      },
+      {
+        "kind": "business",
+        "input_tokens": 7100,
+        "output_tokens": 37,
+        "elapsed_ms": 1587.2733330179472
+      }
+    ],
+    "input_tokens": 284850,
+    "output_tokens": 1852,
+    "model_calls": 50,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 511071,
+    "compactions": [
+      {
+        "policy_version": "layered-v3",
+        "reason": "manual",
+        "before_tokens": 6716,
+        "after_tokens": 5834,
+        "archived_results": 0,
+        "summary_changed": true,
+        "elapsed_ms": 11135,
+        "status": "completed"
+      },
+      {
+        "policy_version": "layered-v3",
+        "reason": "manual",
+        "before_tokens": 8303,
+        "after_tokens": 6027,
+        "archived_results": 0,
+        "summary_changed": true,
+        "elapsed_ms": 11017,
+        "status": "completed"
+      }
+    ],
+    "round_metrics": [
+      {
+        "elapsed_ms": 15909,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20447,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19639,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20090,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19972,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 22040,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 18700,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19561,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20005,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 16011,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20310,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19755,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20627,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19657,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19732,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20111,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20160,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20629,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 15472,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19961,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20378,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19676,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20316,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19899,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 19798,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 13453,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 7877,
+      "after_tokens": 7877,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 3,
+      "status": "noop"
+    },
+    "final_product_observations": 10,
+    "final_product_duplicate_ratio": 0.5
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "split": "holdout",
+    "mode": "long",
+    "strategy": "legacy",
+    "repetition": 0,
+    "answer": "第一批第三件商品为 **P18453**（Wanderlite 折叠旅行双肩包 35L），其石墨黑 SKU 为 **P18453-S1**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true,
+      "two_compactions": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 748,
+        "output_tokens": 22,
+        "elapsed_ms": 1797.6536669884808
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2642,
+        "output_tokens": 18,
+        "elapsed_ms": 1022.6183749909978
+      },
+      {
+        "kind": "business",
+        "input_tokens": 2695,
+        "output_tokens": 22,
+        "elapsed_ms": 1044.5141249801964
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4585,
+        "output_tokens": 18,
+        "elapsed_ms": 1078.4557500155643
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4638,
+        "output_tokens": 22,
+        "elapsed_ms": 1034.8712080158293
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6529,
+        "output_tokens": 18,
+        "elapsed_ms": 993.48779200227
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6582,
+        "output_tokens": 22,
+        "elapsed_ms": 1058.562417019857
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8473,
+        "output_tokens": 18,
+        "elapsed_ms": 878.6167499783915
+      },
+      {
+        "kind": "business",
+        "input_tokens": 8526,
+        "output_tokens": 22,
+        "elapsed_ms": 1383.9092499983963
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10421,
+        "output_tokens": 18,
+        "elapsed_ms": 1120.0737910112366
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10474,
+        "output_tokens": 22,
+        "elapsed_ms": 1226.8040830094833
+      },
+      {
+        "kind": "business",
+        "input_tokens": 12368,
+        "output_tokens": 18,
+        "elapsed_ms": 880.2195829921402
+      },
+      {
+        "kind": "business",
+        "input_tokens": 12457,
+        "output_tokens": 22,
+        "elapsed_ms": 1274.0860000194516
+      },
+      {
+        "kind": "business",
+        "input_tokens": 14351,
+        "output_tokens": 38,
+        "elapsed_ms": 1703.1749589950778
+      },
+      {
+        "kind": "business",
+        "input_tokens": 14424,
+        "output_tokens": 22,
+        "elapsed_ms": 1082.3477499943692
+      },
+      {
+        "kind": "business",
+        "input_tokens": 16318,
+        "output_tokens": 38,
+        "elapsed_ms": 1570.8603329840116
+      },
+      {
+        "kind": "business",
+        "input_tokens": 16391,
+        "output_tokens": 22,
+        "elapsed_ms": 1897.7455419953912
+      },
+      {
+        "kind": "business",
+        "input_tokens": 18285,
+        "output_tokens": 38,
+        "elapsed_ms": 1484.3790830054786
+      },
+      {
+        "kind": "business",
+        "input_tokens": 1239,
+        "output_tokens": 23,
+        "elapsed_ms": 1095.617916987976
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3136,
+        "output_tokens": 42,
+        "elapsed_ms": 1232.0047919929493
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3214,
+        "output_tokens": 23,
+        "elapsed_ms": 1085.9597499947995
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5109,
+        "output_tokens": 42,
+        "elapsed_ms": 1718.342042004224
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5187,
+        "output_tokens": 23,
+        "elapsed_ms": 1075.3683329967316
+      },
+      {
+        "kind": "business",
+        "input_tokens": 7078,
+        "output_tokens": 42,
+        "elapsed_ms": 1658.9213330007624
+      },
+      {
+        "kind": "business",
+        "input_tokens": 7156,
+        "output_tokens": 23,
+        "elapsed_ms": 1198.0845840007532
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9053,
+        "output_tokens": 42,
+        "elapsed_ms": 1821.7188340204302
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9131,
+        "output_tokens": 23,
+        "elapsed_ms": 1134.5335409860127
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11026,
+        "output_tokens": 42,
+        "elapsed_ms": 1535.048541991273
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11104,
+        "output_tokens": 23,
+        "elapsed_ms": 1096.451082994463
+      },
+      {
+        "kind": "business",
+        "input_tokens": 13000,
+        "output_tokens": 42,
+        "elapsed_ms": 1368.5919159906916
+      },
+      {
+        "kind": "business",
+        "input_tokens": 13078,
+        "output_tokens": 23,
+        "elapsed_ms": 1422.737250017235
+      },
+      {
+        "kind": "business",
+        "input_tokens": 14971,
+        "output_tokens": 42,
+        "elapsed_ms": 1726.4871249790303
+      },
+      {
+        "kind": "business",
+        "input_tokens": 15049,
+        "output_tokens": 23,
+        "elapsed_ms": 1546.0797499981709
+      },
+      {
+        "kind": "business",
+        "input_tokens": 16942,
+        "output_tokens": 42,
+        "elapsed_ms": 1547.2523329954129
+      },
+      {
+        "kind": "business",
+        "input_tokens": 17020,
+        "output_tokens": 23,
+        "elapsed_ms": 1165.4279580106959
+      },
+      {
+        "kind": "business",
+        "input_tokens": 18916,
+        "output_tokens": 42,
+        "elapsed_ms": 2002.7721250080504
+      },
+      {
+        "kind": "business",
+        "input_tokens": 1214,
+        "output_tokens": 23,
+        "elapsed_ms": 1565.6335419917013
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3107,
+        "output_tokens": 115,
+        "elapsed_ms": 2613.020958000561
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3258,
+        "output_tokens": 23,
+        "elapsed_ms": 1291.7076660087332
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5152,
+        "output_tokens": 93,
+        "elapsed_ms": 3950.6136249983683
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5281,
+        "output_tokens": 23,
+        "elapsed_ms": 974.1460410004947
+      },
+      {
+        "kind": "business",
+        "input_tokens": 7174,
+        "output_tokens": 91,
+        "elapsed_ms": 2125.373540999135
+      },
+      {
+        "kind": "business",
+        "input_tokens": 7301,
+        "output_tokens": 23,
+        "elapsed_ms": 1390.5851249874104
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9194,
+        "output_tokens": 92,
+        "elapsed_ms": 2131.17891701404
+      },
+      {
+        "kind": "business",
+        "input_tokens": 9322,
+        "output_tokens": 23,
+        "elapsed_ms": 1182.6398750126828
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11213,
+        "output_tokens": 93,
+        "elapsed_ms": 2916.417582979193
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11342,
+        "output_tokens": 23,
+        "elapsed_ms": 1133.9356249955017
+      },
+      {
+        "kind": "business",
+        "input_tokens": 13237,
+        "output_tokens": 92,
+        "elapsed_ms": 2233.4836249938235
+      },
+      {
+        "kind": "business",
+        "input_tokens": 13351,
+        "output_tokens": 43,
+        "elapsed_ms": 1705.2485000167508
+      },
+      {
+        "kind": "business",
+        "input_tokens": 13423,
+        "output_tokens": 22,
+        "elapsed_ms": 1670.263458014233
+      },
+      {
+        "kind": "business",
+        "input_tokens": 15314,
+        "output_tokens": 47,
+        "elapsed_ms": 1786.2487920210697
+      }
+    ],
+    "input_tokens": 481199,
+    "output_tokens": 1831,
+    "model_calls": 51,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 274856,
+    "compactions": [
+      {
+        "summary_changed": true,
+        "reason": "manual"
+      },
+      {
+        "summary_changed": true,
+        "reason": "manual"
+      }
+    ],
+    "round_metrics": [
+      {
+        "elapsed_ms": 17480,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 10058,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 9916,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 9887,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 10243,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 9762,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 10825,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 9868,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 9916,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 6234,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 10489,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 9942,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 10165,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 9715,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 9809,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 10361,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 9821,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 10457,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 7614,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 11338,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 8177,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 10008,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 10787,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 9319,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 14556,
+        "compacted": false,
+        "model_calls": 3
+      }
+    ],
+    "final_context_estimated_tokens": 19428,
+    "last_compaction": null,
+    "final_product_observations": 35,
+    "final_product_duplicate_ratio": 0.7142857142857143
+  }
+]

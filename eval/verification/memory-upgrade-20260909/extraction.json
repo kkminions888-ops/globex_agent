@@ -1,0 +1,201 @@
+{
+  "model": "qwen3-max",
+  "cases": 12,
+  "passed": 12,
+  "results": [
+    {
+      "id": "noise",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "temporary",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "third_person",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "hypothetical",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "injection",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "stable_noise",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢小香风连衣裙",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "negative_scope",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢塑料食品盒",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "negative",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢羊毛围巾，因为会扎脖子",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "duplicate",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢蓝色衣服",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "scope_distinction",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢蓝色上衣",
+          "conflicts": []
+        },
+        {
+          "kind": "like",
+          "statement": "偏爱黑色裤子",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "conflict",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢蓝色上衣",
+          "conflicts": [
+            "blue-shirt"
+          ]
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "not_conflict",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢蓝色裤子",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    }
+  ],
+  "limitation": "小样本规则评测；不代表完整事实蕴含、召回质量或生产准确率"
+}

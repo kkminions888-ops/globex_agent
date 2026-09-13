@@ -59,7 +59,7 @@ def _normalize_category(category: Optional[str], normalized_query: str) -> Optio
     return next((known for known in _KNOWN_CATEGORIES if known in normalized_query), None)
 
 
-def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus, evidence_store=None):
+def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus, evidence_store=None, context_strategy="legacy"):
     async def product_search_tool(
         normalized_query: str,
         category: Optional[str] = None,
@@ -153,6 +153,9 @@ def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus,
                 content=[TextBlock(type="text", text=f"[error] {err}")],
                 state=ToolResultState.ERROR,
             )
+        result["query_conditions"] = args
+        from datetime import datetime, timezone
+        result["observed_at"] = datetime.now(timezone.utc).isoformat()
         remember_verified_result("products", result)
         if evidence_store is not None and snapshot_ctx is not None:
             result["result_ref"] = await evidence_store.save(snapshot_ctx.buyer_id, session_id, "products", result)
@@ -171,8 +174,14 @@ def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus,
                 **({"filtered_out": result["filtered_out"]} if "filtered_out" in result else {}),
             },
         )
+        from app.infrastructure.context_products import business_view, product_page, token_estimate
+        view = product_decision_view(result) if context_strategy == "legacy" else business_view(result)
+        if context_strategy != "legacy" and token_estimate(view) > 12000:
+            if not result.get("result_ref"):
+                raise RuntimeError("大型商品结果未归档，不能安全分页")
+            view = {**product_page(result, token_limit=12000), "query_conditions": args, "observed_at": result["observed_at"]}
         return ToolChunk(
-            content=[TextBlock(type="text", text=json.dumps(product_decision_view(result), ensure_ascii=False))],
+            content=[TextBlock(type="text", text=json.dumps(view, ensure_ascii=False))],
             state=ToolResultState.SUCCESS,
         )
 

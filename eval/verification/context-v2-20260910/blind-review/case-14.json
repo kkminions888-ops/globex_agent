@@ -1,0 +1,77 @@
+{
+  "case_id": "v3-hold-long-e",
+  "ratings": [
+    {
+      "response_id": "answer_01",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰直接回答问题，明确当前偏好变化，并附带其他有效约束，信息组织良好。"
+    },
+    {
+      "response_id": "answer_02",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "简洁准确回应问题，明确指出偏好已更新，无多余信息干扰。"
+    },
+    {
+      "response_id": "answer_03",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "表达清楚，明确说明“已删除”该要求，贴合问题，同时附带其他有效约束，结构清晰。"
+    },
+    {
+      "response_id": "answer_04",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "简洁明了，准确传达偏好更新，同时提供其他相关约束，信息完整且易读。"
+    },
+    {
+      "response_id": "answer_05",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "回答清晰，不仅说明塑料限制取消，还补充商品详情和不下单要求，贴合上下文。"
+    },
+    {
+      "response_id": "answer_06",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "极简但完整回应问题，明确当前无该偏好，表达无歧义。"
+    },
+    {
+      "response_id": "answer_07",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "详尽说明偏好变更及其影响，明确时间状态（“已被删除”），并关联当前推荐，信息准确无负担。"
+    },
+    {
+      "response_id": "answer_08",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "简洁准确，明确指出限制已取消，贴合问题且无表达问题。"
+    },
+    {
+      "response_id": "answer_09",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "表达清楚，用词准确（“已取消”），直接回应问题，无冗余或模糊。"
+    }
+  ],
+  "error": null,
+  "usage": [
+    {
+      "kind": "evaluation",
+      "input_tokens": 1314,
+      "output_tokens": 538,
+      "elapsed_ms": 14951.20341697475
+    }
+  ]
+}

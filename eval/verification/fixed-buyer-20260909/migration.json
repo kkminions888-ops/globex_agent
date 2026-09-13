@@ -1,0 +1,16 @@
+{
+  "source": "039a7e3f-53ac-418a-9877-ca400803dec4",
+  "target": "pao-coder",
+  "backup": "data/backups/buyer-migration-20260909T133743106086Z",
+  "tables": {
+    "globex.db/conversation_sessions": 7,
+    "globex.db/conversation_messages": 16,
+    "globex.db/session_write_claims": 4,
+    "ag_ui_runs.db/agui_sessions": 4,
+    "ag_ui_runs.db/agui_runs": 5,
+    "buyer_memory.db/memory_migrations": 1,
+    "context_evidence.db/context_evidence": 16,
+    "capabilities.db/capability_sessions": 4,
+    "registry.sqlite3/prompt_assignments": 4
+  }
+}

@@ -95,10 +95,16 @@ class BudgetCall:
                           output_tokens=output_tokens if output_tokens is not None else _safe_field(usage, "completion_tokens"),
                           ttft_ms=(self.first_text_at-self.started_at)*1000 if self.first_text_at is not None else None,
                           elapsed_ms=(time.monotonic()-self.started_at)*1000, cost_usd=None)
+            from app.infrastructure.context_usage import record_context_usage
+            record_context_usage(input_tokens if input_tokens is not None else _safe_field(usage, "prompt_tokens"),
+                                 output_tokens if output_tokens is not None else _safe_field(usage, "completion_tokens"),
+                                 (time.monotonic()-self.started_at)*1000)
             self.started_at = None
 
 
 _budget_call: ContextVar[BudgetCall | None] = ContextVar("globex_budget_call", default=None)
+_structured_call: ContextVar[bool] = ContextVar("globex_structured_call", default=False)
+_structured_finalizers: ContextVar[list | None] = ContextVar("globex_structured_finalizers", default=None)
 
 
 class StreamClosingOpenAIChatModel(OpenAIChatModel):
@@ -132,6 +138,61 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
         self._max_transient_retries = max_transient_retries
         self._retry_base_seconds = retry_base_seconds
         self._bus = bus
+
+    async def generate_structured_output(self, messages, structured_model, **kwargs):
+        # SDK 2.0.6 的结构化生成直接调用 _call_api，不经过 __call__。
+        token = _structured_call.set(True)
+        resources = []
+        resource_token = _structured_finalizers.set(resources)
+        try:
+            return await super().generate_structured_output(messages, structured_model, **kwargs)
+        finally:
+            try:
+                for resource in reversed(resources):
+                    await resource.close(sys.exc_info())
+            finally:
+                _structured_finalizers.reset(resource_token)
+                _structured_call.reset(token)
+
+    async def _call_api(self, model_name, messages, tools=None, tool_choice=None, **kwargs):
+        if not _structured_call.get():
+            return await super()._call_api(model_name, messages, tools, tool_choice, **kwargs)
+        # 在 SDK 添加 schema 和提示后计预算；每个真实请求独立计量，
+        # 包括 SDK 的 tool_choice 兼容重试以及输出格式校验失败的请求。
+        call = BudgetCall(messages, tools, kwargs)
+        if not call.acquire():
+            raise RuntimeError("本轮预算不足，保留最后有效摘要")
+        if call.budget is not None:
+            kwargs.pop("max_tokens", None)
+            kwargs["max_completion_tokens"] = call.maximum_output
+        slot = self._throttle.slot()
+        try:
+            await slot.__aenter__()
+        except BaseException:
+            if call.reservation is not None:
+                call.reservation.settle(0)
+            raise
+        finalizer = StreamFinalizer(slot, call.settle)
+        _structured_finalizers.get().append(finalizer)
+        token = current_stream_finalizer.set(finalizer)
+        try:
+            call.mark_started()
+            result = await super()._call_api(model_name, messages, tools, tool_choice, **kwargs)
+            if isinstance(result, AsyncIterable):
+                finalizer.add(result)
+                finalizer.bind_current_task()
+                wrapped = self._release_after_stream(finalizer, result, call)
+                await anext(wrapped)
+                return wrapped
+            finalizer.last = result
+            _raise_if_interrupted(result)
+        except BaseException:
+            await finalizer.close(sys.exc_info())
+            raise
+        finally:
+            current_stream_finalizer.reset(token)
+        await finalizer.close()
+        return result
 
     async def __call__(  # type: ignore[override]
         self,

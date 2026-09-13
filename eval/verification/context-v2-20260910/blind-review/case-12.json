@@ -1,0 +1,77 @@
+{
+  "case_id": "v3-hold-long-c",
+  "ratings": [
+    {
+      "response_id": "answer_01",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清楚回答当前库存和价格，并明确区分当前与历史价格，贴合问题。"
+    },
+    {
+      "response_id": "answer_02",
+      "clarity": 3,
+      "fitness": 2,
+      "temporal_clarity": 3,
+      "reason": "包含过多与库存查询无关的信息（如订单状态、偏好、预算、配送地），虽可理解但偏离核心问题。"
+    },
+    {
+      "response_id": "answer_03",
+      "clarity": 3,
+      "fitness": 2,
+      "temporal_clarity": 3,
+      "reason": "提供商品全名等额外信息，虽有助识别但非问题所需；加入无关的订单和偏好信息。"
+    },
+    {
+      "response_id": "answer_04",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "简洁准确回应当前库存和价格，无多余信息，完全贴合问题。"
+    },
+    {
+      "response_id": "answer_05",
+      "clarity": 3,
+      "fitness": 2,
+      "temporal_clarity": 3,
+      "reason": "包含商品全称、订单状态和偏好历史等与库存查询无关内容，影响贴合度。"
+    },
+    {
+      "response_id": "answer_06",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "简洁明了地提供当前库存和价格，表达清晰，完全贴合问题。"
+    },
+    {
+      "response_id": "answer_07",
+      "clarity": 4,
+      "fitness": 3,
+      "temporal_clarity": 4,
+      "reason": "清楚区分当前与历史价格，但额外提及预算和目的地，略偏离纯库存查询。"
+    },
+    {
+      "response_id": "answer_08",
+      "clarity": 3,
+      "fitness": 2,
+      "temporal_clarity": 3,
+      "reason": "包含运费、税费、配送地等非请求信息，虽清晰但不够贴合库存查询焦点。"
+    },
+    {
+      "response_id": "answer_09",
+      "clarity": 3,
+      "fitness": 2,
+      "temporal_clarity": 3,
+      "reason": "加入商品全名、订单状态和偏好信息，虽可读但包含不必要细节，降低贴合度。"
+    }
+  ],
+  "error": null,
+  "usage": [
+    {
+      "kind": "evaluation",
+      "input_tokens": 1356,
+      "output_tokens": 541,
+      "elapsed_ms": 10983.104459010065
+    }
+  ]
+}

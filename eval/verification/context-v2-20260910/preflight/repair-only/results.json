@@ -1,0 +1,569 @@
+[
+  {
+    "case_id": "v2-hold-long-e",
+    "split": "holdout",
+    "mode": "long",
+    "strategy": "layered",
+    "repetition": 1,
+    "answer": "",
+    "checks": {
+      "facts": false,
+      "current_lookup": false,
+      "no_error": true,
+      "two_compactions": false
+    },
+    "passed": false,
+    "error": "InternalServerError: <!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n<html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body>\r\n<center><h1>502 Bad Gateway</h1></center>\r\n Sorry for the inconvenience.<br/>\r\nPlease report this message and include the following information to us.<br/>\r\nThank you very much!</p>\r\n<table>\r\n<tr>\r\n<td>URL:</td>\r\n<td>http://1688openai.alibaba-inc.com/v1/chat/completions</td>\r\n</tr>\r\n<tr",
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 1130,
+        "output_tokens": 22,
+        "elapsed_ms": 14658.298958005616
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3487,
+        "output_tokens": 26,
+        "elapsed_ms": 5162.361166003393
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3540,
+        "output_tokens": 22,
+        "elapsed_ms": 3500.6778340029996
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5901,
+        "output_tokens": 43,
+        "elapsed_ms": 7353.364166017855
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5980,
+        "output_tokens": 22,
+        "elapsed_ms": 10849.86020802171
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6409,
+        "output_tokens": 43,
+        "elapsed_ms": 11148.566166986711
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4276,
+        "output_tokens": 22,
+        "elapsed_ms": 15396.730582986493
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4701,
+        "output_tokens": 43,
+        "elapsed_ms": 1359.5168750034645
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4518,
+        "output_tokens": 22,
+        "elapsed_ms": 1036.5827920031734
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4960,
+        "output_tokens": 43,
+        "elapsed_ms": 1522.6720829959959
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4744,
+        "output_tokens": 22,
+        "elapsed_ms": 1198.7844160175882
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5183,
+        "output_tokens": 43,
+        "elapsed_ms": 1298.8969169964548
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5140,
+        "output_tokens": 22,
+        "elapsed_ms": 1081.8776660016738
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5590,
+        "output_tokens": 53,
+        "elapsed_ms": 1720.690458023455
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5334,
+        "output_tokens": 22,
+        "elapsed_ms": 1157.4505419994239
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5780,
+        "output_tokens": 53,
+        "elapsed_ms": 1802.004457975272
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5564,
+        "output_tokens": 22,
+        "elapsed_ms": 1122.1963749849238
+      },
+      {
+        "kind": "business",
+        "input_tokens": null,
+        "output_tokens": null,
+        "elapsed_ms": 74.61195898940787
+      }
+    ],
+    "input_tokens": null,
+    "output_tokens": null,
+    "model_calls": 18,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 85896,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 19834,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 11802,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 22015,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 16781,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 2581,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 2532,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 3519,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 4084,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 2275,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 14602,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 6619,
+      "after_tokens": 6619,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 3,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.6666666666666667
+  },
+  {
+    "case_id": "v2-hold-long-e",
+    "split": "holdout",
+    "mode": "long",
+    "strategy": "layered",
+    "repetition": 2,
+    "answer": "",
+    "checks": {
+      "facts": false,
+      "current_lookup": false,
+      "no_error": true,
+      "two_compactions": false
+    },
+    "passed": false,
+    "error": "ValueError: 摘要包含无法核验的商品或证据标识: P8483-S1",
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 1133,
+        "output_tokens": 22,
+        "elapsed_ms": 5682.081458013272
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3494,
+        "output_tokens": 27,
+        "elapsed_ms": 1211.6617920110002
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3547,
+        "output_tokens": 22,
+        "elapsed_ms": 966.9295829953626
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5905,
+        "output_tokens": 44,
+        "elapsed_ms": 1707.2549579897895
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5982,
+        "output_tokens": 22,
+        "elapsed_ms": 1088.7835420144256
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6405,
+        "output_tokens": 51,
+        "elapsed_ms": 1690.646957984427
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4284,
+        "output_tokens": 22,
+        "elapsed_ms": 1921.2181250040885
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4707,
+        "output_tokens": 51,
+        "elapsed_ms": 4085.676874994533
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4547,
+        "output_tokens": 22,
+        "elapsed_ms": 7437.206750008045
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4998,
+        "output_tokens": 51,
+        "elapsed_ms": 8621.895499993116
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4787,
+        "output_tokens": 22,
+        "elapsed_ms": 8361.113791994285
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5238,
+        "output_tokens": 51,
+        "elapsed_ms": 12288.137541996548
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5177,
+        "output_tokens": 22,
+        "elapsed_ms": 18210.50895799999
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5614,
+        "output_tokens": 91,
+        "elapsed_ms": 2915.527834004024
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5414,
+        "output_tokens": 22,
+        "elapsed_ms": 1031.7798330215737
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5861,
+        "output_tokens": 88,
+        "elapsed_ms": 1961.2293339741882
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5678,
+        "output_tokens": 22,
+        "elapsed_ms": 1154.9729999969713
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6117,
+        "output_tokens": 88,
+        "elapsed_ms": 2070.2157500199974
+      }
+    ],
+    "input_tokens": 88888,
+    "output_tokens": 740,
+    "model_calls": 18,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 107513,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 7548,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 2712,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 2799,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 6339,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 16080,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 20681,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 21642,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 4144,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 4111,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 14884,
+    "last_compaction": {
+      "status": "failed",
+      "reason": "ValueError"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.6666666666666667
+  },
+  {
+    "case_id": "v2-hold-long-e",
+    "split": "holdout",
+    "mode": "long",
+    "strategy": "layered",
+    "repetition": 0,
+    "answer": "",
+    "checks": {
+      "facts": false,
+      "current_lookup": false,
+      "no_error": true,
+      "two_compactions": false
+    },
+    "passed": false,
+    "error": "ValueError: 摘要包含无法核验的商品或证据标识: P8482",
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 1127,
+        "output_tokens": 22,
+        "elapsed_ms": 1733.6693750112318
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3486,
+        "output_tokens": 27,
+        "elapsed_ms": 1070.602666004561
+      },
+      {
+        "kind": "business",
+        "input_tokens": 3540,
+        "output_tokens": 22,
+        "elapsed_ms": 1074.8734579829033
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5902,
+        "output_tokens": 46,
+        "elapsed_ms": 1935.9251669957303
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5984,
+        "output_tokens": 22,
+        "elapsed_ms": 1130.8579159958754
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6441,
+        "output_tokens": 56,
+        "elapsed_ms": 2383.839290996548
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4324,
+        "output_tokens": 22,
+        "elapsed_ms": 1003.216084005544
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4783,
+        "output_tokens": 57,
+        "elapsed_ms": 1455.0295420049224
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4556,
+        "output_tokens": 22,
+        "elapsed_ms": 1147.4269999889657
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5005,
+        "output_tokens": 57,
+        "elapsed_ms": 1369.73104099161
+      },
+      {
+        "kind": "business",
+        "input_tokens": 4809,
+        "output_tokens": 22,
+        "elapsed_ms": 1117.0493329991587
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5259,
+        "output_tokens": 57,
+        "elapsed_ms": 1482.0502919901628
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5193,
+        "output_tokens": 22,
+        "elapsed_ms": 1311.276916996576
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5637,
+        "output_tokens": 99,
+        "elapsed_ms": 2580.6432499957737
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5429,
+        "output_tokens": 22,
+        "elapsed_ms": 1262.3385000042617
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5867,
+        "output_tokens": 69,
+        "elapsed_ms": 1864.2384159902576
+      },
+      {
+        "kind": "business",
+        "input_tokens": 5677,
+        "output_tokens": 22,
+        "elapsed_ms": 1415.2999579964671
+      },
+      {
+        "kind": "business",
+        "input_tokens": 6110,
+        "output_tokens": 69,
+        "elapsed_ms": 1982.9165829869453
+      }
+    ],
+    "input_tokens": 89129,
+    "output_tokens": 735,
+    "model_calls": 18,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 43646,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 3713,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 3020,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 3526,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 2490,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 2536,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 2627,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 3907,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 3145,
+        "compacted": false,
+        "model_calls": 2
+      },
+      {
+        "elapsed_ms": 3429,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 14922,
+    "last_compaction": {
+      "status": "failed",
+      "reason": "ValueError"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.6666666666666667
+  }
+]

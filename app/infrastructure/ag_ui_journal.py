@@ -119,6 +119,22 @@ class AGUIJournal:
                 "input": json.loads(row["input_json"]), "messages": projection["messages"],
                 "state": projection["state"], "updatedAt": int(row["updated_at"] * 1000)}
 
+    async def latest_destination(self,session_id,buyer_id):
+        """仅从本会话已保存的商品报价恢复目的地，不迁移旧 Agent/Skill 正文。"""
+        async with self._db() as db:
+            session=await self._one(db,"SELECT * FROM agui_sessions WHERE session_id=?",(session_id,))
+            self._owned(session,buyer_id)
+            async with db.execute("SELECT projection_json FROM agui_runs WHERE session_id=? AND buyer_id=? ORDER BY created_at DESC LIMIT 30",(session_id,buyer_id)) as cursor:
+                rows=await cursor.fetchall()
+            for row in rows:
+                products=json.loads(row["projection_json"]).get("state",{}).get("products",[])
+                destinations={(p.get("landed_price") or {}).get("ship_to") for p in products}
+                destinations.discard(None)
+                if len(destinations)==1:
+                    country=destinations.pop()
+                    if isinstance(country,str) and len(country)==2 and country.isascii() and country.isalpha():return country.upper()
+        return None
+
     async def reserve(self, body: dict, buyer_id: str, owner: str, lease_seconds=30) -> tuple[dict, bool]:
         now, run_id, session_id = time.time(), body["runId"], body["threadId"]
         user = body["messages"][-1]
@@ -128,6 +144,8 @@ class AGUIJournal:
         # 未选择时保持旧运行指纹；有明确选择时版本/hash均属于本次请求身份。
         if "selectedSkill" in props:
             identity["selectedSkill"] = props["selectedSkill"]
+        if body.get("resume"):
+            identity["resume"] = body["resume"]
         fingerprint = hashlib.sha256(json.dumps(identity, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
         async with self._db(True) as db:
             await self._recover(db, now)
@@ -143,10 +161,17 @@ class AGUIJournal:
             running = await self._one(db, "SELECT run_id FROM agui_runs WHERE session_id=? AND status='running'", (session_id,))
             if running:
                 raise JournalConflict("该会话仍有执行中的运行，请先恢复或明确停止它")
+            previous_state=json.loads(session["state_json"]) if session else {}
+            if body.get("resume"):
+                pending={p['id'] for p in previous_state.get('toolApprovals',[])}
+                requested=[p['interruptId'] for p in body['resume']]
+                if not requested or len(set(requested))!=len(requested) or not set(requested)<=pending:
+                    raise JournalConflict("确认已处理或与当前待执行操作不一致，请刷新会话")
+            trusted_state={k:previous_state[k] for k in ('products','searchCompleted','skillUsages') if k in previous_state} if body.get('resume') else {}
             messages = json.loads(session["messages_json"]) if session else []
             # 客户端历史/state 不是事实来源；只接受本轮 user，旧历史由日志恢复。
             messages = [*messages[-99:], {"id": user["id"], "role": "user", "content": user["content"]}]
-            body = {**body, "messages": messages, "state": {}}
+            body = {**body, "messages": messages, "state": trusted_state}
             projection = {"messages": messages, "state": {}, "openMessages": [], "openTools": []}
             await db.execute("INSERT INTO agui_runs(run_id,session_id,buyer_id,fingerprint,input_json,projection_json,status,owner,lease_until,created_at,updated_at) VALUES(?,?,?,?,?,?,'running',?,?,?,?)",
                 (run_id, session_id, buyer_id, fingerprint, _json(body), _json(projection), owner, now + lease_seconds, now, now))

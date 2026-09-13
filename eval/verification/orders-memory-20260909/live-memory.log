@@ -1,0 +1,4 @@
+normalized ['喜欢小香风的连衣裙']
+semantic_recall ['喜欢小香风的连衣裙']
+noise_rejected True
+deleted_not_recalled True

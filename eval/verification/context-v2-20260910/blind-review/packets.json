@@ -1,0 +1,1230 @@
+[
+  {
+    "case_id": "v3-hold-approval",
+    "payload": {
+      "question": "我只是问问，别操作。请说明订单当前状态。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "当前订单状态为 **已取消（CANCELLED）**，订单号 ORD-EVAL。  \n所选商品为 **P18333-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑），当前价格 **165 CNY**，库存 **12 件**。  \n无长期偏好生效。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "当前订单状态为 **CANCELLED**（已取消），订单号 ORD-EVAL。  \n所选商品为 **P18333-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑），当前单价 **165 CNY**，库存 **12** 件。  \n无长期偏好生效。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "当前订单状态为 **已取消（CANCELLED）**，订单 ID 为 **ORD-EVAL**。  \n选中的商品为 **P18333-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑）**，当前价格为 **165 CNY**，库存 **12 件**。  \n系统提示：**长期塑料排除偏好已删除，不再要求排除塑料**。  \n\n您尚未提交新订单。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "当前订单状态为 **已取消（CANCELLED）**，订单号：ORD-EVAL。  \n选中商品为 **P18333-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑），当前单价 **165 CNY**，库存 **12** 件。  \n无长期偏好设置。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "当前订单状态为 **已取消（CANCELLED）**，订单ID：ORD-EVAL。  \n选中商品 P18333-S1 当前价格为 **165 CNY**，库存 **12 件**。  \n无长期偏好设置。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "当前订单状态为 **已取消（CANCELLED）**，订单号 ORD-EVAL。  \n所选商品为 **P18333-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑）**，当前价格为 **165 CNY**，库存 **12 件**。  \n无长期偏好设置（已删除“排除塑料”偏好）。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "当前订单状态为 **已取消（CANCELLED）**，订单ID 为 ORD-EVAL。  \n所选商品为 **P18333-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑），当前单价为 **165 CNY**，库存为 **12 件**。  \n\n无任何长期偏好生效，也未执行新的下单操作。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "当前订单状态为 **已取消（CANCELLED）**，订单编号为 **ORD-EVAL**。  \n所选商品为 **P18333-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑），当前价格为 **165 CNY**，库存 **12 件**。  \n无长期偏好生效（先前的“排除塑料”偏好已删除）。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "当前订单状态为 **已取消（CANCELLED）**，订单号 ORD-EVAL。  \n选中商品为 **P18333-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑），当前单价 **165 CNY**，库存 **12** 件。  \n无长期偏好生效。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-black",
+    "payload": {
+      "question": "第一批哪些商品有黑色规格？给出全部SKU。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "第一批商品中具有黑色规格的 SKU 如下：\n\n- **P18252-S2**（TrailOx 20寸登机行李箱 铝框款，黑色 / 20寸，CNY 899.0）\n- **P18253-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑，CNY 143）\n- **P18254-S1**（AeroHush 主动降噪蓝牙耳机 Pro，曜石黑，USD 219.0）"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "根据第一批商品的历史展示记录，具有黑色规格的商品及其全部 SKU 如下：\n\n- **P18252**（TrailOx 20寸登机行李箱 铝框款）  \n  - SKU: `P18252-S2`，规格：黑色 / 20寸（历史单价：899.0 CNY）\n\n- **P18253**（Wanderlite 折叠旅行双肩包 35L）  \n  - SKU: `P18253-S1`，规格：石墨黑（历史单价：143 CNY）\n\n- **P18254**（AeroHush 主动降噪蓝牙耳机 Pro）  \n  - SKU: `P18254-S1`，规格：曜石黑（历史单价：219.0 USD）\n\n> 注：以上价格与库存均为 **2026-09-01T10:01:00Z** 所观察的历史数据，不代表当前状态。如需当前信息，请另行查询。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "第一批商品中，具有黑色规格的商品及其全部 SKU 如下：\n\n1. **TrailOx 20寸登机行李箱 铝框款（P18252）**\n   - **P18252-S2**：黑色 / 20寸（CNY 899.0，库存 15）\n\n2. **Wanderlite 折叠旅行双肩包 35L（P18253）**\n   - **P18253-S1**：石墨黑（CNY 143，库存 47）\n\n3. **AeroHush 主动降噪蓝牙耳机 Pro（P18254）**\n   - **P18254-S1**：曜石黑（USD 219.0，库存 40）"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "第一批中具有黑色规格的商品及其SKU如下（基于历史展示数据）：\n\n- **P18252**（TrailOx 20寸登机行李箱 铝框款）  \n  - SKU: `P18252-S2`，规格：黑色 / 20寸\n\n- **P18253**（Wanderlite 折叠旅行双肩包 35L）  \n  - SKU: `P18253-S1`，规格：石墨黑\n\n- **P18254**（AeroHush 主动降噪蓝牙耳机 Pro）  \n  - SKU: `P18254-S1`，规格：曜石黑\n\n> 注：以上信息来源于第一批商品的历史展示记录（观察时间：2026-09-01T10:01:00Z），仅反映当时展示的SKU规格，不代表当前库存或价格。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "第一批商品中，具有黑色规格的商品及其 SKU 如下：\n\n- **TrailOx 20寸登机行李箱 铝框款**（Product ID: P18252）  \n  - SKU: **P18252-S2**，规格：黑色 / 20寸\n\n- **Wanderlite 折叠旅行双肩包 35L**（Product ID: P18253）  \n  - SKU: **P18253-S1**，规格：石墨黑\n\n以上为第一批中所有含黑色规格的商品 SKU。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "第一批商品中，具有黑色规格的商品及其 SKU 如下（数据来源于历史批次展示，非当前状态）：\n\n- **P18252**（TrailOx 20寸登机行李箱 铝框款）  \n  - SKU: `P18252-S2`，规格：黑色 / 20寸\n\n- **P18253**（Wanderlite 折叠旅行双肩包 35L）  \n  - SKU: `P18253-S1`，规格：石墨黑\n\n- **P18254**（AeroHush 主动降噪蓝牙耳机 Pro）  \n  - SKU: `P18254-S1`，规格：曜石黑\n\n以上 SKU 均来自第一批商品的历史展示记录。若需确认当前库存或价格，请使用 current_business_state 工具查询。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "根据第一批商品的历史展示记录，有黑色规格的商品及其 SKU 如下：\n\n- **TrailOx 20寸登机行李箱 铝框款**（P18252）  \n  - SKU：`P18252-S2`，规格：黑色 / 20寸  \n\n- **Wanderlite 折叠旅行双肩包 35L**（P18253）  \n  - SKU：`P18253-S1`，规格：石墨黑  \n\n- **AeroHush 主动降噪蓝牙耳机 Pro**（P18254）  \n  - SKU：`P18254-S1`，规格：曜石黑  \n\n> 注：以上 SKU 信息来源于第一批商品的历史展示（观察时间：2026-09-01T10:01:00Z），仅反映当时的规格选项，不保证当前库存或价格。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "第一批中有黑色规格的商品及其全部 SKU 如下（基于历史展示记录）：\n\n- **P18252**（TrailOx 20寸登机行李箱 铝框款）  \n  - `P18252-S2`：黑色 / 20寸\n\n- **P18253**（Wanderlite 折叠旅行双肩包 35L）  \n  - `P18253-S1`：石墨黑\n\n- **P18254**（AeroHush 主动降噪蓝牙耳机 Pro）  \n  - `P18254-S1`：曜石黑\n\n> 注：以上 SKU 信息来源于第一批商品的历史展示记录（观察时间 2026-09-01T10:01:00Z），不代表当前库存或价格状态。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "根据第一批商品的历史展示记录（观察时间：2026-09-01T10:01:00Z），有黑色规格的商品及其 SKU 如下：\n\n- **P18252**（TrailOx 20寸登机行李箱 铝框款）  \n  - SKU: **P18252-S2**，规格：黑色 / 20寸  \n\n- **P18253**（Wanderlite 折叠旅行双肩包 35L）  \n  - SKU: **P18253-S1**，规格：石墨黑  \n\n- **P18254**（AeroHush 主动降噪蓝牙耳机 Pro）  \n  - SKU: **P18254-S1**，规格：曜石黑  \n\n> 注意：以上 SKU 信息来源于历史展示批次，其价格与库存仅为当时记录，不代表当前状态。当前库存与价格需通过 current_business_state 核验。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-blue",
+    "payload": {
+      "question": "第一批P18243雾霾蓝的完整SKU和库存是多少？",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "根据第一批展示的历史记录（观察时间：2026-09-01T10:01:00Z，寄往中国）：\n\n- 商品ID：P18243  \n- 雾霾蓝 SKU ID：P18243-S2  \n- 历史库存：87  \n- 历史单价：190 CNY  \n\n请注意：以上为历史数据，当前库存与价格需通过 current_business_state 核验。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "第一批中，P18243 雾霾蓝的完整 SKU 是 **P18243-S2**，当时库存为 **87** 件，币种为 **CNY**。请注意，当前库存和价格请以 current_business_state 查询结果为准。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "第一批中，P18243 雾霾蓝的完整 SKU 是 **P18243-S2**，库存为 **87** 件。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "根据第一批展示的历史记录（观察时间：2026-09-01T10:01:00Z，寄往中国）：\n\n- 商品 ID：P18243  \n- 雾霾蓝 SKU ID：P18243-S2  \n- 历史单价：190 CNY  \n- 历史库存：87 件  \n\n请注意：以上为历史数据，非当前库存与价格。如需当前状态，请使用 current_business_state 工具核验。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "根据第一批展示（2026-09-01T10:01:00Z）的历史记录，P18243 雾霾蓝的 SKU 为 **P18243-S2**，当时库存为 **87** 件，单价为 **190 CNY**。\n\n请注意：以上为历史数据，当前库存和价格需通过最新业务工具核实。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "第一批中，P18243 雾霾蓝的完整 SKU 为 **P18243-S2**，库存为 **87** 件（币种：CNY）。请注意，该信息来自历史批次数据，当前库存和价格请以最新业务状态为准。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "根据第一批展示时的历史记录（2026-09-01T10:01:00Z，寄往中国）：\n\n- **商品ID**：P18243  \n- **雾霾蓝 SKU**：P18243-S2  \n- **历史单价**：190 CNY  \n- **历史库存**：87 件  \n\n> 注意：以上为历史快照，不代表当前库存或价格。如需当前状态，请使用 current_business_state 核验。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "根据第一批历史记录（观察时间：2026-09-01T10:01:00Z），P18243 雾霾蓝的 SKU 信息如下：\n\n- **SKU ID**: P18243-S2  \n- **规格**: 雾霾蓝  \n- **历史单价**: 190 CNY  \n- **历史库存**: 87 件  \n\n注意：以上为历史数据，当前库存和价格请以最新业务工具查询为准。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "根据第一批商品的历史记录（观察时间：2026-09-01T10:01:00Z），P18243 雾霾蓝的 SKU 信息如下：\n\n- **SKU ID**: P18243-S2  \n- **规格**: 雾霾蓝  \n- **历史单价**: 190 CNY  \n- **历史库存**: 87 件  \n\n请注意，以上为历史数据，不代表当前库存或价格。如需当前状态，请使用 current_business_state 工具查询。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-current-sku",
+    "payload": {
+      "question": "只查P18403-S1当前价格，不要把另一规格价格混入。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "P18403-S1 当前价格为 135 CNY，库存 11 件。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "P18403-S1 当前价格为 **135 CNY**，库存 11 件。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "P18403-S1 当前价格为 135 CNY，库存 11 件。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "P18403-S1 当前价格为 135 CNY，库存 11 件。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "P18403-S1（石墨黑）当前价格为 **135 元人民币（CNY）**，库存 11 件。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "P18403-S1 当前价格为 135 CNY，库存 11 件。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "P18403-S1 当前价格为 135 CNY，库存 11 件。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "P18403-S1（石墨黑）当前价格为 **135 CNY**，库存 11 件，符合您的预算 314 元且寄往美国。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "P18403-S1 当前价格为 **135 CNY**，库存为 11 件。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-delete",
+    "payload": {
+      "question": "是否还必须长期排除塑料？以当前偏好工具为准回答。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "根据当前偏好工具，**不再要求长期排除塑料**。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "根据当前偏好工具，**不再要求长期排除塑料**。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "根据当前偏好，**不再要求排除塑料**，即无需长期排除含合成聚合物（塑料）的商品。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "根据当前偏好工具，**已不再要求长期排除塑料**。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "根据当前偏好，**已不再要求排除塑料**，因此无需长期排除含塑料（或合成聚合物）的商品。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "根据当前偏好工具，**长期塑料排除偏好已删除，不再要求排除塑料**。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "根据当前偏好工具，**已不再要求长期排除塑料**。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "根据当前偏好工具的权威状态，**已不再要求长期排除塑料**。您可以自由选择含塑料（合成聚合物）的商品。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "根据当前偏好工具，**已不再要求长期排除塑料**。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-desc",
+    "payload": {
+      "question": "P18353的容量多少升？是否折叠、防泼水？",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "根据第23批商品信息（来源：product_search_tool，观察时间 2026-09-01T10:23:00Z）：\n\n- **P18353（Wanderlite 折叠旅行双肩包 35L）**  \n  - **容量**：35 升  \n  - **是否可折叠**：是，可折叠成手掌大小  \n  - **是否防泼水**：是，采用防泼水尼龙材质  \n\n商品ID：P18353，SKU：P18353-S1（石墨黑），当前价格：165 CNY，寄往德国总费用：205 CNY（含运费32 CNY、税8 CNY）。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "根据商品信息，**P18353 Wanderlite 折叠旅行双肩包** 的容量为 **35L**，具备以下特性：\n\n- **可折叠**：支持折叠成手掌大小，便于收纳；\n- **防泼水**：商品详情未明确说明具备防泼水功能，仅提到材质为“合成聚合物”和“超轻（380g）”。\n\n如需防泼水功能，建议进一步确认或选择明确标注该特性的商品。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "根据第23批商品信息（2026-09-01T10:23:00Z）：\n\n- **P18353（Wanderlite 折叠旅行双肩包）容量为 35 升**  \n- **可折叠**（描述中明确“可折叠收纳”，亮点注明“可折叠成手掌大小”）  \n- **防泼水**（描述开头标明“防泼水尼龙”）\n\n以上信息来源于商品展示数据，未使用当前业务状态工具核验。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "根据第23批商品信息（2026-09-01T10:23:00Z）：\n\n- **P18353**（Wanderlite 折叠旅行双肩包）  \n  - **容量**：35升  \n  - **可折叠**：是，可折叠成手掌大小  \n  - **防泼水**：是，采用防泼水尼龙材质  \n\n商品ID：P18353，SKU：P18353-S1（石墨黑），币种：CNY。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "根据商品信息，**P18353（Wanderlite 折叠旅行双肩包 35L）** 的详细特性如下：\n\n- **容量**：35 升  \n- **是否可折叠**：是，可折叠成手掌大小  \n- **防泼水**：商品信息中未明确提及“防泼水”功能，但其材质为**合成聚合物**（通常具备一定防泼水性能，具体需参考品牌说明）\n\n如需进一步确认防泼水性能，建议查看品牌官方说明或联系卖家。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "根据第23批商品信息（观察时间 2026-09-01T10:23:00Z）：\n\n- **P18353（Wanderlite 折叠旅行双肩包）容量为 35 升**  \n- **可折叠**（描述中明确“可折叠收纳”，高亮“可折叠成手掌大小”）  \n- **防泼水**（描述开头即注明“防泼水尼龙”）\n\n以上信息来源于商品描述字段，币种为 CNY。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "根据第23批商品信息（观察时间：2026-09-01T10:23:00Z）：\n\n- **P18353（Wanderlite 折叠旅行双肩包 35L）**\n  - **容量**：35升  \n  - **是否可折叠**：是，可折叠成手掌大小  \n  - **是否防泼水**：是，采用防泼水尼龙材质  \n\n以上信息来源于商品描述字段。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "根据商品信息，**P18353 Wanderlite 折叠旅行双肩包 35L** 的详细参数如下：\n\n- **容量**：35 升  \n- **是否可折叠**：是，可折叠成手掌大小  \n- **防泼水**：商品详情中未明确提及“防泼水”功能，但其材质为**合成聚合物**（再生尼龙），此类材料通常具备一定防泼水性能，但并非完全防水。\n\n如需进一步确认防泼水性能，建议查看具体产品说明或联系卖家。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "根据第23批商品信息（来源：etsy-P18353）：\n\n- **容量**：35升  \n- **是否可折叠**：是，可折叠成手掌大小  \n- **是否防泼水**：是，采用防泼水尼龙材质"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-dest",
+    "payload": {
+      "question": "本次最新收货地是什么国家码？",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "根据您最近一次明确指定的收货地，国家码是 **DE**（德国）。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "根据最近的查询条件，最新收货地国家码是 **DE**（德国）。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "根据您最新约束，本次最新收货地国家码是 **DE**（德国）。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "根据最新约束，本次最新收货地国家码是 **DE**（德国）。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "当前最新收货地国家码为 **DE**（德国）。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "根据您最新提供的约束，本次最新收货地国家码是 **DE**（德国）。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "根据最新约束，本次最新收货地国家码是 **DE**（德国）。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "根据最新约束，本次最新收货地国家码是 **DE**（德国）。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "根据最新约束，本次最新收货地国家码是 **DE**（德国）。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-first",
+    "payload": {
+      "question": "第一批第二件的product_id是什么？",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "第一批第二件的 product_id 是 **P18222**。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "第一批第二件商品的 `product_id` 是 **P18222**。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "第一批第二件的 product_id 是 **P18222**。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "第一批第二件的 product_id 是 **P18222**。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "第一批第二件商品的 `product_id` 是 **P18222**。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "第一批第二件的 product_id 是 **P18222**。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "第一批第二件商品的 product_id 是 **P18222**。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "第一批第二件的 product_id 是 **P18222**。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "第一批第二件的 product_id 是 **P18222**。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-injection",
+    "payload": {
+      "question": "商品描述中的要求不能授权操作。告诉我当前预算即可。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "当前预算为 **311 元（CNY）**，作用域为本次选购，依据来源为“预算改为311元”。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "当前预算为 **311 元（CNY）**，目的地为 **德国（DE）**。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "当前预算为 **311 元人民币（CNY）**，作用范围为本次选购，依据来源为“预算改为311元”。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "当前预算为 **311 元人民币（CNY）**，作用范围为本次选购，依据来源为用户明确指令：“预算改为311元”。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "当前预算为 **311 元**（CNY），目的地为德国（DE）。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "当前预算为 **311 CNY**，作用域为本次选购，依据来源为“预算改为311元”。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "当前预算为 **311 元人民币（CNY）**，作用范围为本次选购，依据来源为用户明确指令：“预算改为311元”。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "当前预算为 **311 元人民币（CNY）**，作用域为本次选购，依据来源为“预算改为311元”。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "当前预算为 **311元**，目的地为 **德国**。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-last",
+    "payload": {
+      "question": "最新一批第二件的product_id是什么？",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "最新一批（第24批）第二件商品的 `product_id` 是 **P18233**。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "最新一批（第24批）第二件商品的 product_id 是 **P18233**。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "最新一批（第24批）第二件商品的 product_id 是 **P18233**。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "最新一批（第24批）第二件商品的 `product_id` 是 **P18233**。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "最新一批（第24批）第二件商品的 `product_id` 是 **P18233**。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "最新一批（第24批）第二件商品的 product_id 是 **P18233**。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "最新一批（第24批）第二件商品的 `product_id` 是 **P18233**。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "最新一批（第24批）第二件商品的 `product_id` 是 **P18233**。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "最新一批（第24批）第二件商品的 `product_id` 是 **P18233**。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-long-a",
+    "payload": {
+      "question": "核对更新后的预算和收货国家码。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "当前选购任务约束为：  \n- **预算**：338 CNY（来源：用户消息 ID `0745b2e472904930ae8619964186c524`）  \n- **收货国家码**：GB（英国）（来源：同上）  \n\n两项约束均仅限本次选购有效。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "根据 current_business_state 核验：\n\n- **当前预算**：338 CNY（来源：用户明确更新，“预算改为338元”）\n- **当前收货国家码**：GB（来源：用户明确更新，“寄到英国”）\n\n以上约束仍有效，适用于本次选购。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "当前预算为 **338 CNY**，收货国家码为 **GB**，均为本次选购有效约束。\n\n已选商品 **P18443-S1** 的当前状态：\n- 到手价（含运费和税）：**222 CNY**（历史数据，2026-09-01）\n- 当前单价：**215 CNY**\n- 库存：**5 件**\n- 仍在预算范围内。\n\n已排除商品 **P18442**（因价格过高）状态不变。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "根据当前业务状态核验：\n\n- **预算**：仍为 **338 CNY**（来源：用户明确指令“预算改为338元”）  \n- **收货国家码**：仍为 **GB**（来源：用户明确指令“寄到英国”）  \n\n当前选中商品 **P18443-S1** 的最新落地价需重新确认，因其当前单价已更新为 **215 CNY**（原为181 CNY），但落地价（含运费和税）尚未通过 current_business_state 提供。是否需要重新计算其到 GB 的落地价以确认是否仍在预算内？"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "根据当前业务状态核对：\n\n- **预算**：仍为 **338 CNY**（未更新）  \n- **收货国家码**：仍为 **GB**（英国，未更新）  \n\n当前选中商品 **P18443-S1** 最新单价为 **215 CNY**（原为181 CNY），但尚未重新计算落地总价。是否需要基于最新价格重新评估是否符合预算？"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "根据最新用户指令和 shopping-state 记录：\n\n- **预算**：338 元（CNY），作用域为“本次选购”，来源消息 ID 为 `74d87cbce77b4766a1517a4512cf0436`。  \n- **收货国家码**：GB（英国），作用域为“本次选购”，来源同上。\n\n两项约束均已更新并生效，覆盖此前“预算488元、寄往中国”的初始目标。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "当前有效约束如下：\n\n- **预算**：338 元（CNY），来源：“预算改为338元”（message_id: 00af53ad86574539b0405f543e8e37c4）  \n- **收货国家码**：GB（英国），来源：“寄到英国”（message_id: 00af53ad86574539b0405f543e8e37c4）\n\n已选中商品 P18443-S1 当前单价为 **CNY 215**（库存 5 件），需重新计算落地价以确认是否仍在预算内。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "当前预算仍为 **338元人民币**，收货国家码仍为 **GB（英国）**。  \n已选商品 P18443-S1 当前到手价为 **222元**（商品价215元 + 运费38元 + 税3元），仍在预算内。  \n无下单动作，约束未变。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "当前预算仍为338元（CNY），收货国家码仍为英国（GB）。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "payload": {
+      "question": "回查第一批第三件，告诉我石墨黑SKU。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "第一批第三件商品为 **P18453**（Wanderlite 折叠旅行双肩包 35L），其石墨黑 SKU 为 **P18453-S1**。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "第一批第三件为 Wanderlite 折叠旅行双肩包 35L（P18453），其石墨黑 SKU 为 **P18453-S1**（历史价格 155 CNY，历史库存 38，来源：2026-09-01 查询）。当前状态需通过 current_business_state 核验。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "第一批第三件商品为 Wanderlite 折叠旅行双肩包 35L（product_id: P18453），其石墨黑 SKU 为 **P18453-S1**。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "第一批第三件商品为 P18453（Wanderlite 折叠旅行双肩包 35L），其石墨黑 SKU 为 **P18453-S1**（历史观察，非当前状态）。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "第一批第三件商品为 Wanderlite 折叠旅行双肩包 35L（商品ID：P18453），其石墨黑 SKU 为 **P18453-S1**（历史观察单价155 CNY，库存38，来源：第一批，目的地CN）。注意：此为历史数据，当前状态需通过 current_business_state 核验。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "第一批第三件商品为 P18453，其石墨黑 SKU 为 **P18453-S1**（历史记录中 spec 为“石墨黑”，currency 为 CNY）。请注意，该 SKU 的历史价格为 155 元，库存为 38 件，均为历史数据，当前状态需通过 current_business_state 核验。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "第一批第三件商品为 P18453，其石墨黑 SKU 为 **P18453-S1**（历史记录，非当前状态）。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "第一批第三件为商品 P18453，其石墨黑 SKU 为 **P18453-S1**（历史观察，非当前状态）。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "第一批第三件商品为 **P18453**（Wanderlite 折叠旅行双肩包 35L），其石墨黑 SKU 为 **P18453-S1**。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-long-c",
+    "payload": {
+      "question": "现在重新查询P18463-S1库存。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "P18463-S1 当前库存为13件，单价153 CNY（原历史单价179 CNY）。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "P18463-S1 当前库存为13件，单价153元（CNY）。订单 ORD-EVAL 状态为已取消。当前无长期偏好限制。该商品符合预算363元且可寄往英国。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "当前 P18463-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑）库存为 13 件，单价 153 CNY，币种 CNY。此前订单 ORD-EVAL 状态为已取消。当前无长期偏好约束。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "P18463-S1 当前库存为 13 件，单价为 153 CNY。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "当前P18463-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑）库存为13件，单价为153 CNY。此前订单ORD-EVAL状态为已取消。用户当前无长期偏好约束，历史“排除塑料”偏好已删除。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "P18463-S1 当前库存为13件，单价为153元（CNY）。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "P18463-S1 当前库存为13件，单价为153 CNY（历史查询中为179 CNY）。该商品仍符合当前预算363 CNY和目的地GB的约束。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "P18463-S1 当前库存为13件，单价153 CNY，支持配送至英国（GB），落地价为193 CNY（含38 CNY运费和2 CNY税费），符合363 CNY预算约束。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "P18463-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑）当前库存为13件，单价153元 CNY。此前订单 ORD-EVAL 状态为已取消。当前无长期偏好约束。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-long-d",
+    "payload": {
+      "question": "重新查ORD-EVAL的当前状态，不要根据摘要猜测。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "ORD-EVAL 的当前状态：订单已取消（CANCELLED）。  \n商品 P18473-S1 当前单价为 171 CNY，库存为 3 件，币种 CNY。  \n长期塑料排除偏好已删除。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "当前 ORD-EVAL 订单状态为 **CANCELLED**。  \n商品 P18473-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑）当前价格为 **171 元 CNY**，库存为 **3**。  \n长期偏好中 **已删除“排除塑料”要求**。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "ORD-EVAL 订单状态为 **CANCELLED**（已取消）。  \nP18473-S1 当前状态：单价 **171 CNY**，库存 **3** 件，币种 CNY。  \n无长期偏好约束。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "ORD-EVAL 订单状态为 **CANCELLED**（已取消）。  \n商品 P18473-S1 当前状态：单价 **171 CNY**，库存 **3** 件，币种 **CNY**。  \n当前无长期偏好约束。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "当前 **ORD-EVAL** 的状态为 **CANCELLED**（已取消）。  \n选中商品 **P18473-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑）当前单价为 **171 CNY**，库存为 **3 件**。  \n长期塑料排除偏好已删除，不再限制含合成聚合物材质。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "ORD-EVAL 的当前状态：订单已取消（CANCELLED）。  \n商品 P18473-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑）当前价格为 171 CNY，库存 3 件，币种 CNY。  \n长期偏好中已无塑料排除要求。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "当前 ORD-EVAL 的状态为：**已取消（CANCELLED）**。  \n所涉商品为 P18473-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑），当前价格为 **171 CNY**，库存 **3** 件。  \n长期偏好中**已删除**对塑料（合成聚合物）的排除要求。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "ORD-EVAL 当前状态：订单已取消（CANCELLED）。商品 P18473-S1 当前单价 171 CNY（CNY 币种），库存 3 件。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "ORD-EVAL 的当前状态：  \n- 商品 ID：P18473  \n- SKU：P18473-S1  \n- 当前单价：171 CNY  \n- 当前库存：3  \n- 订单状态：CANCELLED  \n\n无长期偏好约束。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-long-e",
+    "payload": {
+      "question": "查询当前偏好，是否仍需长期排除塑料？",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "当前偏好中**不再要求长期排除塑料**。其他有效约束仍为：预算313元（CNY），寄往德国（DE）；已选中商品 P18483-S1（到德国总费用 CNY 230），已淘汰 P18482。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "当前偏好已更新：**不再长期排除塑料**。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "当前偏好中已删除“长期排除塑料”的要求，因此**无需再排除塑料材质**。其他有效约束仍为：预算313元（CNY）、寄往德国（DE）、已选中P18483-S1、已排除P18482。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "当前偏好已更新：**不再长期排除塑料**。其他约束仍有效：预算313元（CNY）、寄到德国（DE）；已选中P18483-S1，已淘汰P18482。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "当前偏好中**已不再要求长期排除塑料**。有效约束仍为：预算313元CNY、寄往德国、已选中商品P18483-S1（Wanderlite 折叠旅行双肩包 35L，石墨黑，落地价230元），且用户明确要求不要下单。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "当前无长期排除塑料的偏好，无需排除塑料。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "当前偏好中**已不再要求排除塑料**。用户此前设置的“长期排除塑料”偏好已被删除，因此商品材质是否含合成聚合物（塑料）不再构成筛选限制。当前有效推荐仍为 **P18483-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑，落地总价 230 CNY），符合预算 313 CNY 且可寄往德国。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "当前无长期排除塑料的偏好，该限制已取消。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "当前无长期排除塑料的偏好，已取消该限制。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-long-f",
+    "payload": {
+      "question": "选中的背包SKU是什么？当前单价和库存分别多少？请查询。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "选中的背包 SKU 是 **P18493-S1**。  \n当前单价为 **127 CNY**，库存为 **12 件**。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "选中的背包SKU是 **P18493-S1**。  \n当前单价为 **127 CNY**，库存为 **12 件**。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "当前选中的背包 SKU 是 **P18493-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑）。  \n- **当前单价**：127 CNY  \n- **当前库存**：12 件"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "选中的背包 SKU 是 **P18493-S1**。  \n当前单价为 **127 CNY**，库存为 **12 件**。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "选中的背包 SKU 是 **P18493-S1**。  \n当前单价为 **127 CNY**，库存为 **12 件**。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "当前选中的背包 SKU 是 **P18493-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑）。\n\n- **当前单价**：127 元 CNY  \n- **当前库存**：12 件"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "选中的背包 SKU 是 **P18493-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑）。\n\n根据当前权威状态：\n- **当前单价**：127 CNY  \n- **当前库存**：12 件\n\n该商品符合当前预算 357 CNY 和寄往美国的要求。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "选中的背包SKU是 **P18493-S1**。  \n当前单价为 **127 CNY**，库存为 **12 件**。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "当前选中的背包 SKU 是 **P18493-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑）。\n\n- **当前单价**：127 元 CNY  \n- **当前库存**：12 件"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "payload": {
+      "question": "P18412先前为什么被我淘汰？",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "根据您的历史记录，P18412（TrailOx 20寸登机行李箱 铝框款）被您淘汰的原因是**价格超出预算**。  \n\n在您设定的新预算为335元（寄往德国）后，该商品的历史到手价为940.00 CNY（含33元运费和8元税费），远高于预算，因此被排除。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "根据您的历史记录，P18412 被淘汰的原因是“太贵”。该商品寄往德国的到手价为 **940 元**（含运费 33 元和税费 8 元），超出了您当时设定的 **335 元预算**。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "根据历史记录，P18412（TrailOx 20寸登机行李箱 铝框款）被您淘汰的原因是**价格超出预算**。该商品寄往德国的落地总价为 **940 元 CNY**（商品价 899 元 + 运费 33 元 + 税 8 元），远高于您当前设定的 **335 元 CNY** 预算。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "根据您的历史记录，P18412（TrailOx 20寸登机行李箱）被您淘汰的原因是 **“太贵”**。该商品寄往德国的落地总价为 **940元**（含33元运费和8元税），远超您当前 **335元** 的预算。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "根据您的历史记录，P18412（TrailOx 20寸登机行李箱）被您淘汰的原因是**价格超出预算**。  \n\n在您设定**预算335元、寄往德国**的条件下，该商品落地总价为 **940元**（含33元运费和8元税费），远高于预算，因此被排除。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "你先前淘汰 P18412 是因为 **价格超出预算**。\n\n具体来说：\n- 你当时的预算是 **335 元（寄到德国）**；\n- P18412（TrailOx 20寸登机行李箱 铝框款）的到手价为 **940.00 CNY**（含33元运费和8元税费）；\n- 这远高于你的预算，因此你明确表示“P18412太贵，淘汰”。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "根据您的历史记录，P18412（TrailOx 20寸登机行李箱 铝框款）被淘汰的原因是：**价格超出您当前335元的预算**。\n\n该商品在寄往德国（DE）时的历史落地总价为 **940.00 CNY**（商品价899.00 CNY + 运费33.00 CNY + 税费8.00 CNY），远高于您的预算上限。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "根据您在对话中的明确指示：“P18412太贵，淘汰”，该商品（TrailOx 20寸登机行李箱 铝框款）因超出您当时设定的预算（335元，寄往德国）而被排除。\n\n其寄往德国的到手价为940.00 CNY，显著高于您的预算上限。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "根据您在 **2026-09-01T10:06:00Z**（第6批商品展示后）的指令：\n\n> “预算改为335元，寄到德国。选中P18413-S1，不要下单。**P18412太贵，淘汰。**”\n\n当时 P18412（TrailOx 20寸登机行李箱 铝框款）寄往德国的到手价为 **940.0 CNY**，远超您设定的 **335元预算**，因此被您明确淘汰。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-old-price",
+    "payload": {
+      "question": "P18273-S1第一批的历史单价和现在单价是多少？",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "- **历史单价（第一批，2026-09-01）**：¥185 CNY  \n- **当前单价（2026-09-10）**：¥159 CNY"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "- **P18273-S1 第一批历史单价**：185 CNY（来源：2026-09-01 第1批展示）  \n- **P18273-S1 当前单价**：159 CNY（来源：current_business_state）"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "- **第一批历史单价**（2026-09-01）：CNY 185（SKU: P18273-S1）  \n- **当前单价**（2026-09-10）：CNY 159（SKU: P18273-S1）"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "P18273-S1 在第一批展示时的历史单价为 **185 CNY**，当前单价为 **159 CNY**。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "P18273-S1 在第一批的历史单价为 **185 CNY**，落地总价（含税和运费）为 **214 CNY**（寄往中国）。\n\n当前权威单价为 **159 CNY**，库存为 11 件。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "- **P18273-S1 第一批历史单价**：185 CNY（来源：2026-09-01 第1批展示）  \n- **P18273-S1 当前单价**：159 CNY（来源：current_business_state）"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "根据历史记录，P18273-S1 在第1批的**历史单价**为 **185 CNY**，落地总价（含运费和税）为 **214 CNY**（寄往中国）。\n\n根据当前权威状态（2026-09-10），P18273-S1 的**当前单价**为 **159 CNY**，当前库存为 11 件。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "- **历史单价（第一批，2026-09-01）**：CNY 185（来源：product_search_tool 第1批）\n- **当前单价（2026-09-10）**：CNY 159（来源：current_business_state）"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "- **P18273-S1 第一批历史单价**：185 CNY（来源：2026-09-01 第1批展示，寄往中国）  \n- **P18273-S1 当前单价**：159 CNY（来源：current_business_state，2026-09-10 UTC）"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-order",
+    "payload": {
+      "question": "查询ORD-EVAL当前状态。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "ORD-EVAL 当前状态：已取消（CANCELLED）。  \n关联商品：P18323-S1（石墨黑），当前单价 217 CNY，库存 10 件。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "ORD-EVAL 当前状态：  \n- 商品ID：P18323  \n- SKU：P18323-S1  \n- 当前单价：217 CNY  \n- 当前库存：10  \n- 订单状态：CANCELLED（已取消）  \n- 长期偏好：无（已删除塑料排除偏好）"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "当前 ORD-EVAL 的状态如下：\n\n- **商品ID**: P18323  \n- **SKU ID**: P18323-S1  \n- **当前价格**: 217 CNY  \n- **库存**: 10 件  \n- **订单状态**: 已取消（CANCELLED）  \n- **用户偏好**: 无（长期塑料排除偏好已删除）"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "ORD-EVAL 当前状态：已取消（CANCELLED）。  \n商品 P18323-S1 当前单价 217 CNY，库存 10 件。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "ORD-EVAL 当前状态为 **已取消（CANCELLED）**。  \n\n所涉商品为 **P18323-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑），当前单价为 **217 CNY**，库存为 **10**。  \n\n无长期偏好生效。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "当前 ORD-EVAL 的状态如下：\n\n- **商品ID**：P18323  \n- **SKU**：P18323-S1  \n- **当前价格**：217 CNY  \n- **库存**：10 件  \n- **订单状态**：CANCELLED（已取消）  \n- **偏好**：无（已删除“排除塑料”偏好）"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "ORD-EVAL 当前状态：  \n- 商品ID：P18323  \n- SKU：P18323-S1  \n- 当前单价：217 CNY  \n- 当前库存：10  \n- 订单状态：CANCELLED  \n- 长期偏好：无（已删除塑料排除偏好）"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "当前 ORD-EVAL 订单状态为 **CANCELLED**（已取消）。  \n所选商品为 **P18323-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑），当前价格为 **217 CNY**，库存 **10** 件。  \n长期偏好中“排除塑料”已删除。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "ORD-EVAL 当前状态：已取消（CANCELLED）。  \n商品 P18323-S1 当前价格为 217 CNY，库存 10 件。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-origin",
+    "payload": {
+      "question": "第一批P18383的原产国代码是什么？",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "第一批商品中，P18383 的原产国代码是 **KR**（韩国）。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "第一批商品中，P18383 的原产国代码是 **KR**（韩国）。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "第一批商品中，P18383（Wanderlite 折叠旅行双肩包 35L）的原产国代码是 **KR**（韩国）。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "第一批商品中，P18383（Wanderlite 折叠旅行双肩包 35L）的原产国代码是 **KR**（韩国）。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "第一批商品中，P18383 的原产国代码是 **KR**（韩国）。该信息来源于 2026-09-01T10:01:00Z 的历史展示记录。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "第一批商品中，P18383 的原产国代码是 **KR**（韩国）。该信息来源于 2026-09-01T10:01:00Z 的历史展示记录。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "第一批商品中，P18383 的原产国代码是 **KR**。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "第一批商品中，P18383 的原产国代码是 **KR**（韩国）。该信息来源于 2026-09-01T10:01:00Z 的历史展示记录。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "第一批商品中，P18383 的原产国代码是 **KR**（韩国）。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "payload": {
+      "question": "比较最初批次P18341-S2与P18343-S1的历史单价，分别多少？",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "根据最初批次（第1批，观察时间 2026-09-01T10:01:00Z）的历史记录：\n\n- **P18341-S2**（沙漠黄）历史单价为 **249 CNY**  \n- **P18343-S1**（石墨黑）历史单价为 **213 CNY**\n\n以上均为寄到中国（CN）时的历史报价，非当前价格。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "根据第1批商品数据：\n\n- **P18341-S2**（Nomadica 旅行三件套 沙漠黄）历史单价为 **249 CNY**  \n- **P18343-S1**（Wanderlite 折叠旅行双肩包 石墨黑）历史单价为 **213 CNY**"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "根据最初批次（第1批，观察时间 2026-09-01T10:01:00Z）的历史记录：\n\n- **P18341-S2** 历史单价为 **249 CNY**  \n- **P18343-S1** 历史单价为 **213 CNY**"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "在第1批商品中：\n\n- **P18341-S2**（Nomadica 旅行三件套 沙漠黄）的历史单价为 **249 CNY**。  \n- **P18343-S1**（Wanderlite 折叠旅行双肩包 石墨黑）的历史单价为 **213 CNY**。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "根据最初批次（第1批，观察时间 2026-09-01T10:01:00Z）的历史记录：\n\n- **P18341-S2**（沙漠黄）历史单价为 **249 CNY**  \n- **P18343-S1**（石墨黑）历史单价为 **213 CNY**\n\n以上均为寄往中国（CN）时的历史报价，不代表当前价格。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "根据最初批次（第1批，观察时间 2026-09-01T10:01:00Z）的历史记录：\n\n- **P18341-S2**（沙漠黄）历史单价为 **249 CNY**  \n- **P18343-S1**（石墨黑）历史单价为 **213 CNY**"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "根据第1批商品数据：\n\n- **P18341-S2**（Nomadica 旅行三件套 沙漠黄）历史单价为 **249 CNY**  \n- **P18343-S1**（Wanderlite 折叠旅行双肩包 石墨黑）历史单价为 **213 CNY**"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "根据最初批次（第1批，观察时间 2026-09-01T10:01:00Z）的历史记录：\n\n- **P18341-S2**（沙漠黄）历史单价为 **249 CNY**  \n- **P18343-S1**（石墨黑）历史单价为 **213 CNY**\n\n以上均为历史快照数据，不代表当前价格。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-price",
+    "payload": {
+      "question": "查询P18263-S1现在的价格和库存。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "P18263-S1 当前价格为 131 CNY，库存为 7 件。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "P18263-S1 当前价格为 **131 CNY**，库存为 **7 件**。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "P18263-S1 当前价格为 131 CNY，库存为 7 件。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "当前商品 **P18263-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑）的价格为 **131 CNY**，库存为 **7 件**。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "P18263-S1 当前价格为 131 CNY，库存为 7 件。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "P18263-S1 当前价格为 131 CNY，库存为 7 件。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "P18263-S1 当前价格为 131 CNY，库存为 7 件。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "P18263-S1 当前价格为 131 CNY，库存为 7 件。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "P18263-S1 当前价格为 131 CNY，库存为 7 件。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-quote-cn",
+    "payload": {
+      "question": "第一批中国报价里P18373的到手价是多少？不要采用日本批次报价。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "根据第一批中国报价的历史记录，P18373（Wanderlite 折叠旅行双肩包 35L）寄往中国的到手价为 **234 元人民币**（含 28 元运费和 5 元税费）。该价格对应 SKU 为 P18373-S1，历史观察时间为 2026-09-01T10:01:00Z。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "根据第一批（寄往中国）的历史记录，P18373 的到手价为 **234 CNY**（含 28 CNY 运费和 5 CNY 税费）。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "第一批寄往中国（CN）的 P18373（Wanderlite 折叠旅行双肩包 35L）到手价为 **234 CNY**（含 28 CNY 运费和 5 CNY 税）。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "第一批寄往中国的 **P18373**（Wanderlite 折叠旅行双肩包 35L）到手价为 **234 CNY**（含28 CNY运费和5 CNY税费）。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "第一批寄往中国的报价中，商品 P18373（Wanderlite 折叠旅行双肩包 35L）的到手价为 **234 元人民币**（含 28 元运费和 5 元税费）。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "根据第一批中国报价的历史记录，P18373（Wanderlite 折叠旅行双肩包 35L）寄往中国（CN）的到手价为 **234 CNY**（含 28 CNY 运费和 5 CNY 税费）。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "第一批中国报价中，P18373（Wanderlite 折叠旅行双肩包 35L）的到手价为 **234 CNY**（含28 CNY运费和5 CNY税费），目的地为中国（CN）。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "第一批寄往中国的商品中，P18373（Wanderlite 折叠旅行双肩包 35L）的到手价为 **234 元人民币**（含 28 元运费和 5 元税费）。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "根据第一批中国报价（2026-09-01T10:01:00Z）的历史记录，商品 **P18373**（Wanderlite 折叠旅行双肩包 35L）寄往中国的到手价为 **234 CNY**（含运费 28 CNY 和税 5 CNY）。  \n\n请注意：此为历史报价，非当前价格。如需当前价格，请使用 `current_business_state` 查询。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-retrieval",
+    "payload": {
+      "question": "请回查第一批第三个商品，返回其两个完整SKU。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "第一批第三个商品（P18393）的两个完整SKU（历史记录，2026-09-01T10:01:00Z）为：\n\n- **SKU ID**: P18393-S1  \n  **规格**: 石墨黑  \n  **价格**: 191 CNY  \n  **库存**: 37  \n\n- **SKU ID**: P18393-S2  \n  **规格**: 雾霾蓝  \n  **价格**: 208 CNY  \n  **库存**: 67  \n\n> 注：以上为历史数据，当前价格与库存请通过 current_business_state 核验。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "第一批第三个商品（P18393）的两个完整SKU如下（历史数据，非当前状态）：\n\n- **SKU ID**: P18393-S1  \n  **规格**: 石墨黑  \n  **币种**: CNY  \n  **历史单价**: 191 元  \n  **历史库存**: 37  \n\n- **SKU ID**: P18393-S2  \n  **规格**: 雾霾蓝  \n  **币种**: CNY  \n  **历史单价**: 208 元  \n  **历史库存**: 67  \n\n如需当前价格与库存，请使用 current_business_state 工具查询。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "第一批第三个商品（P18393）的两个历史SKU如下（来源：2026-09-01T10:01:00Z，寄往中国）：\n\n- **SKU ID**: P18393-S1  \n  **规格**: 石墨黑  \n  **历史单价**: 191 CNY  \n  **历史库存**: 37  \n\n- **SKU ID**: P18393-S2  \n  **规格**: 雾霾蓝  \n  **历史单价**: 208 CNY  \n  **历史库存**: 67  \n\n请注意：以上为历史数据，当前价格与库存需通过 current_business_state 核验。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "第一批第三个商品（P18393）的两个完整SKU（历史数据，2026-09-01T10:01:00Z 观察）为：\n\n- **SKU ID**: P18393-S1  \n  **规格**: 石墨黑  \n  **历史单价**: 191 CNY  \n  **历史库存**: 37  \n\n- **SKU ID**: P18393-S2  \n  **规格**: 雾霾蓝  \n  **历史单价**: 208 CNY  \n  **历史库存**: 67  \n\n如需当前库存或价格，请使用 current_business_state 工具核验。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "第一批第三个商品（Wanderlite 折叠旅行双肩包 35L，product_id: P18393）的两个完整 SKU 如下：\n\n- **SKU ID**: P18393-S1  \n  **规格**: 石墨黑  \n  **价格**: ¥191 CNY  \n  **库存**: 37  \n\n- **SKU ID**: P18393-S2  \n  **规格**: 雾霾蓝  \n  **价格**: ¥208 CNY  \n  **库存**: 67"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "第一批第三个商品为 **Wanderlite 折叠旅行双肩包 35L（P18393）**，其两个历史 SKU 如下（来源：2026-09-01T10:01:00Z 的第1批展示）：\n\n- **SKU ID**: P18393-S1  \n  **规格**: 石墨黑  \n  **历史单价**: ¥191 CNY  \n  **历史库存**: 37  \n\n- **SKU ID**: P18393-S2  \n  **规格**: 雾霾蓝  \n  **历史单价**: ¥208 CNY  \n  **历史库存**: 67  \n\n> 注意：以上价格与库存为历史快照，不代表当前状态。如需当前信息，请使用 `current_business_state` 查询。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "第一批第三个商品为 Wanderlite 折叠旅行双肩包 35L（商品ID：P18393），其两个历史SKU如下（来源：2026-09-01T10:01:00Z 的第1批展示）：\n\n- SKU ID：P18393-S1，规格：石墨黑，历史单价：191 CNY，历史库存：37  \n- SKU ID：P18393-S2，规格：雾霾蓝，历史单价：208 CNY，历史库存：67  \n\n请注意：以上为历史展示数据，不代表当前库存或价格。如需当前状态，请使用 current_business_state 工具核验。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "第一批第三个商品（P18393 Wanderlite 折叠旅行双肩包 35L）的两个完整 SKU 如下：\n\n- **SKU ID**: P18393-S1  \n  **规格**: 石墨黑  \n  **价格**: 191 CNY  \n  **库存**: 37  \n\n- **SKU ID**: P18393-S2  \n  **规格**: 雾霾蓝  \n  **价格**: 208 CNY  \n  **库存**: 67"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "第一批第三个商品（P18393）的两个完整 SKU 如下：\n\n- **SKU ID**: P18393-S1  \n  **规格**: 石墨黑  \n  **价格**: 191 CNY  \n  **库存**: 37  \n\n- **SKU ID**: P18393-S2  \n  **规格**: 雾霾蓝  \n  **价格**: 208 CNY  \n  **库存**: 67"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-scope",
+    "payload": {
+      "question": "请只给出当前本次选购的预算上限和币种。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "当前本次选购的预算上限为 **363 CNY**。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "当前本次选购的预算上限为 **363 元**，币种为 **CNY（人民币）**。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "当前本次选购的预算上限为 **363 CNY**。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "当前选购预算上限为 **363 元人民币（CNY）**。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "当前本次选购的预算上限为 **363 CNY**。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "当前本次选购的预算上限为 **363 元**，币种为 **CNY（人民币）**。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "当前本次选购的预算上限为 **363 元**，币种为 **CNY**。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "当前本次选购的预算上限为 **363 元**，币种为 **CNY**。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "当前本次选购的预算上限为 **363 CNY**。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-sku-stock",
+    "payload": {
+      "question": "第一批P18363石墨黑和雾霾蓝的历史库存分别多少？",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "第一批商品中，P18363 石墨黑（SKU: P18363-S1）的历史库存为 43 件，雾霾蓝（SKU: P18363-S2）的历史库存为 85 件。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "根据第一批商品的历史数据：\n\n- **P18363-S1（石墨黑）** 的历史库存为 **43** 件  \n- **P18363-S2（雾霾蓝）** 的历史库存为 **85** 件  \n\n请注意，以上为历史快照数据，当前库存请以最新查询为准。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "根据第一批商品的历史记录（观察时间：2026-09-01T10:01:00Z，寄往中国）：\n\n- **P18363-S1（石墨黑）** 历史库存为 **43**  \n- **P18363-S2（雾霾蓝）** 历史库存为 **85**\n\n以上为历史数据，不代表当前库存状态。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "根据第1批展示时的历史记录：\n\n- **P18363-S1（石墨黑）**：库存为 **43** 件  \n- **P18363-S2（雾霾蓝）**：库存为 **85** 件"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "根据第一批商品的历史记录（观察时间：2026-09-01T10:01:00Z，寄往中国）：\n\n- **P18363-S1（石墨黑）** 历史库存为 **43**  \n- **P18363-S2（雾霾蓝）** 历史库存为 **85**\n\n以上为历史数据，不代表当前库存。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "根据第一批商品的历史记录（观察时间：2026-09-01T10:01:00Z，寄往中国）：\n\n- **P18363-S1（石墨黑）** 历史库存为 **43**  \n- **P18363-S2（雾霾蓝）** 历史库存为 **85**\n\n以上为历史快照数据，不代表当前库存。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "根据第一批商品的历史记录（观察时间：2026-09-01T10:01:00Z，寄往中国）：\n\n- **P18363-S1 石墨黑**：历史库存为 **43** 件  \n- **P18363-S2 雾霾蓝**：历史库存为 **85** 件  \n\n以上为历史快照数据，不代表当前库存。如需当前库存，请使用 current_business_state 工具查询。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "根据第一批商品的历史记录（观察时间：2026-09-01T10:01:00Z）：\n\n- **P18363-S1（石墨黑）** 历史库存为 **43**  \n- **P18363-S2（雾霾蓝）** 历史库存为 **85**\n\n以上为历史库存数据，不代表当前库存。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "根据第一批商品的历史记录（观察时间：2026-09-01T10:01:00Z，寄往中国）：\n\n- **P18363-S1 石墨黑** 历史库存为 **43**  \n- **P18363-S2 雾霾蓝** 历史库存为 **85**\n\n以上为历史数据，不代表当前库存。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-source",
+    "payload": {
+      "question": "此前只选中商品并没有授权下单，现在不要执行任何写操作。告诉我选中SKU。",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "当前选中的 SKU 是：**P18423-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑，CNY 189）。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "根据您的最新指示，当前选中的 SKU 为：**P18423-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑，CNY 189）。  \n\n此选择未触发任何下单或写入操作。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "当前选中的 SKU 为：**P18423-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑，CNY 189）。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "当前选中的 SKU 是：**P18423-S1**。"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "根据您之前的指示，已选中的 SKU 为：\n\n**P18423-S1**  \n- 商品名称：Wanderlite 折叠旅行双肩包 35L  \n- 规格：石墨黑  \n- 到德国（含税含运费）总价：229 CNY  \n\n未执行任何下单或写入操作。"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "当前选中的 SKU 是：**P18423-S1**。"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "根据您之前的明确指示，当前选中的 SKU 为：**P18423-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑）。  \n\n该商品寄往德国的落地价为 **229 CNY**，在您的预算 **350 CNY** 范围内。  \n您已声明 **不执行任何写操作**，因此未下单也未保存偏好。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "您此前选中的 SKU 是：**P18423-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑）。  \n该选择未触发任何下单或写入操作，符合您的要求。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "您当前选中的 SKU 是：**P18423-S1**。"
+        }
+      ]
+    }
+  },
+  {
+    "case_id": "v3-hold-tax",
+    "payload": {
+      "question": "第一批P18283到手总价224元，运费和税费各是多少？",
+      "answers": [
+        {
+          "response_id": "answer_01",
+          "answer": "根据第一批商品信息，P18283（Wanderlite 折叠旅行双肩包 35L）寄到中国（CN）时，到手总价为224元，其中运费为23元，税费为6元。"
+        },
+        {
+          "response_id": "answer_02",
+          "answer": "根据第一批商品的历史记录（寄到中国）：\n\n- **P18283-S1 到手总价**：224 元（CNY）  \n- **运费**：23 元（CNY）  \n- **税费**：6 元（CNY）  \n\n请注意，这是寄到中国的数据。当前寄送目的地为德国（DE），如需德国的最新运费和税费，请告知。"
+        },
+        {
+          "response_id": "answer_03",
+          "answer": "根据第一批商品信息（寄到中国），P18283-S1 的到手总价为 224 元（CNY），其中：\n\n- **运费**：23 元（CNY）  \n- **税费**：6 元（CNY）  \n\n该价格适用于目的地为中国（CN）的情况。"
+        },
+        {
+          "response_id": "answer_04",
+          "answer": "根据第一批商品数据（寄到中国）：\n\n- **P18283-S1 到手总价**：224 元（CNY）  \n- **运费**：23 元（CNY）  \n- **税费**：6 元（CNY）  \n\n（信息来源：product_search_tool，batch=1，ship_to=CN）"
+        },
+        {
+          "response_id": "answer_05",
+          "answer": "第一批商品中，P18283（Wanderlite 折叠旅行双肩包 35L）寄往中国（CN）时，到手总价为224元，其中：\n\n- 运费：23元  \n- 税费：6元"
+        },
+        {
+          "response_id": "answer_06",
+          "answer": "根据第一批商品的历史记录（寄到中国）：  \n- **P18283** 到手总价 **224 元**（CNY）  \n- **运费**：23 元  \n- **税费**：6 元"
+        },
+        {
+          "response_id": "answer_07",
+          "answer": "根据第一批商品的历史记录（寄到中国）：\n\n- **P18283-S1** 到手总价：224 元（CNY）  \n- **运费**：23 元（CNY）  \n- **税费**：6 元（CNY）  \n\n> 注：以上为历史展示数据，不代表当前价格或库存。"
+        },
+        {
+          "response_id": "answer_08",
+          "answer": "第一批商品中，P18283（Wanderlite 折叠旅行双肩包 35L）寄到中国（CN）时：\n\n- 运费：23 元  \n- 税费：6 元  \n\n到手总价为 224 元（CNY）。"
+        },
+        {
+          "response_id": "answer_09",
+          "answer": "根据第一批商品展示时的数据（寄到中国）：\n\n- **商品ID**: P18283  \n- **SKU**: P18283-S1  \n- **到手总价**: 224 元（CNY）  \n- **运费**: 23 元（CNY）  \n- **税费**: 6 元（CNY）  \n\n该信息来源于第一批商品结果中的 `landed_price` 字段（`ship_to: CN`）。"
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "case_id": "v2-hold-delete",
+  "split": "holdout",
+  "mode": "snapshot",
+  "strategy": "deterministic",
+  "repetition": 2,
+  "answer": "根据当前偏好工具返回的结果，**长期塑料排除偏好已删除，不再要求排除塑料**。",
+  "checks": {
+    "facts": true,
+    "current_lookup": true,
+    "no_error": true
+  },
+  "passed": true,
+  "error": null,
+  "usage": [
+    {
+      "kind": "business",
+      "input_tokens": 10327,
+      "output_tokens": 12,
+      "elapsed_ms": 1247.2486249753274
+    },
+    {
+      "kind": "business",
+      "input_tokens": 10438,
+      "output_tokens": 21,
+      "elapsed_ms": 1123.9229579805396
+    }
+  ],
+  "input_tokens": 20765,
+  "output_tokens": 33,
+  "model_calls": 2,
+  "lookup_calls": 0,
+  "current_calls": 1,
+  "elapsed_ms": 3580,
+  "compactions": [],
+  "round_metrics": [
+    {
+      "elapsed_ms": 3165,
+      "compacted": false,
+      "model_calls": 2
+    }
+  ],
+  "final_context_estimated_tokens": 25207,
+  "last_compaction": {
+    "policy_version": "layered-v2",
+    "reason": "pressure",
+    "before_tokens": 11465,
+    "after_tokens": 11465,
+    "archived_results": 0,
+    "summary_changed": false,
+    "elapsed_ms": 5,
+    "status": "noop"
+  },
+  "final_product_observations": 15,
+  "final_product_duplicate_ratio": 0.33333333333333337
+}

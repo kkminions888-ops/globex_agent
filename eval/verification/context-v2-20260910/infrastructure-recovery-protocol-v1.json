@@ -1,0 +1,32 @@
+{
+  "registered_at": "2026-09-10T14:07:10.363284+08:00",
+  "scope": "基础设施恢复补测；原始主实验252条不覆盖，单独保留原始门禁与未知usage",
+  "eligible_error_types": [
+    "APITimeoutError",
+    "APIConnectionError",
+    "RateLimitError"
+  ],
+  "eligibility": "仅主实验明确网络/连接/限流异常；事实错误、摘要校验失败、迭代耗尽和审批错误均不能通过补跑替换",
+  "affected_blocks": [
+    {
+      "case_id": "v3-hold-long-d",
+      "original_repetition": 1,
+      "strategy_reporting_error": "legacy",
+      "error": "APITimeoutError: Request timed out."
+    }
+  ],
+  "recovery_unit": "同场景、同原始重复的A/B/C三策略整组复测；所有策略均纳入，不挑选答案",
+  "maximum_recovery_attempts_per_block": 1,
+  "source": "/tmp/globex-context-v3-accepted-frozen",
+  "transport": {
+    "concurrency": 2,
+    "min_interval_seconds": 5,
+    "model_retries": 0
+  },
+  "model": "qwen3-max",
+  "timing": "pressure",
+  "field_rules_budgets_grader": "与主实验冻结源码完全相同",
+  "successful_recovery_analysis": "原始主实验报告保留；另产出成对恢复分析与逐行来源映射。复测失败则阻断；不因错误答案再次复测。",
+  "missing_usage_policy": "原始失败调用消耗保持null，额外消耗仅报告已知下界；恢复分析只计完整可观测的成对运行，不宣称整个实验含未知失败的总成本已知。",
+  "freeze_policy": "本记录在任何恢复补测开始前创建，后续基础设施异常可按同一规则追加整组，但不可改变算法、评分器或请求速率。"
+}

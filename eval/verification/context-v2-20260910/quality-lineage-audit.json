@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "primary_records_unchanged": 252,
+  "analysis_records_verified": 252,
+  "selected_whole_blocks": 7,
+  "supplementary_attempt_runs": 21,
+  "first_complete_block_rule_verified": true,
+  "cost_acceptance": false
+}

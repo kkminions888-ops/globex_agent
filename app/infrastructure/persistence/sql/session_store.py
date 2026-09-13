@@ -11,7 +11,7 @@ from contextlib import asynccontextmanager
 from dataclasses import replace
 from datetime import datetime, timezone
 
-from sqlalchemy import Integer, String, select, text, update
+from sqlalchemy import Integer, String, Text, Float, select, text, update
 from sqlalchemy.ext.asyncio import AsyncEngine, async_sessionmaker
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -37,6 +37,27 @@ class TaskAccessBindingRow(Base):
     task_id: Mapped[str] = mapped_column(String(128), primary_key=True)
     session_id: Mapped[str] = mapped_column(String(256))
     buyer_id: Mapped[str] = mapped_column(String(128))
+
+
+class ContextCheckpointRow(Base):
+    __tablename__ = "context_checkpoints"
+    checkpoint_id: Mapped[str] = mapped_column(String(128), primary_key=True)
+    session_id: Mapped[str] = mapped_column(String(256), index=True)
+    buyer_id: Mapped[str] = mapped_column(String(128))
+    revision: Mapped[int] = mapped_column(Integer)
+    payload: Mapped[str] = mapped_column(Text)
+
+
+class ContextOperationRow(Base):
+    __tablename__ = "context_operations"
+    operation_id: Mapped[str] = mapped_column(String(128), primary_key=True)
+    session_id: Mapped[str] = mapped_column(String(256), index=True)
+    buyer_id: Mapped[str] = mapped_column(String(128))
+    request_id: Mapped[str] = mapped_column(String(128))
+    expected_revision: Mapped[int] = mapped_column(Integer)
+    status: Mapped[str] = mapped_column(String(32))
+    payload: Mapped[str] = mapped_column(Text, default='{}')
+    deadline: Mapped[float] = mapped_column(Float, default=0)
 
 
 def _identifier(value: str, label: str) -> str:
@@ -73,7 +94,7 @@ class SqlFencedSessionStore(SessionStore):
                     await connection.execute(text("BEGIN IMMEDIATE"))
                     await connection.run_sync(lambda sync: Base.metadata.create_all(sync, tables=[
                         AgentSessionStateRow.__table__, ConversationSessionRow.__table__, SessionWriteClaimRow.__table__,
-                        TaskAccessBindingRow.__table__,
+                        TaskAccessBindingRow.__table__, ContextCheckpointRow.__table__, ContextOperationRow.__table__,
                     ]))
                     await connection.commit()
                     self._ready = True
@@ -176,6 +197,20 @@ class SqlFencedSessionStore(SessionStore):
             else:
                 state.state_json = state_json
                 state.updated_at = datetime.now(timezone.utc)
+            governance = json.loads(state_json).get('middle_context', {}).get('globex_context', {})
+            checkpoint_id = governance.get('checkpoint_id')
+            if checkpoint_id and await db.get(ContextCheckpointRow, checkpoint_id) is None:
+                db.add(ContextCheckpointRow(checkpoint_id=checkpoint_id, session_id=claim.session_id,
+                    buyer_id=claim.owner_id, revision=claim.revision+1,
+                    payload=json.dumps({'summary':json.loads(state_json).get('summary'), **governance}, ensure_ascii=False)))
+            operation_id = governance.get('operation_id')
+            if operation_id:
+                operation = await db.get(ContextOperationRow, operation_id)
+                if operation and operation.expected_revision == claim.revision and (operation.status != 'running' or operation.deadline < __import__('time').time()):
+                    raise StaleSessionWrite('整理操作已中断，拒绝提交迟到的快照')
+                if operation and operation.buyer_id == claim.owner_id and operation.status == 'running':
+                    operation.status = governance.get('last_compaction',{}).get('status','completed')
+                    operation.payload = json.dumps({'statistics':governance.get('last_compaction',{}), 'message':'当前无需整理' if operation.status=='noop' else '上下文已整理，原始记录保留'},ensure_ascii=False)
             await db.flush()
             return replace(claim, revision=claim.revision + 1, state_json=state_json)
 
@@ -204,3 +239,67 @@ class SqlFencedSessionStore(SessionStore):
         async with self._sessions() as db:
             row = await db.get(AgentSessionStateRow, session_id)
             return row.state_json if row else None
+
+    async def context_view(self, session_id: str, buyer_id: str) -> dict:
+        async with self._transaction() as db:
+            row, state = await self._ownership(db, session_id, buyer_id, create=False, enforce_owner=True)
+            payload = json.loads(state.state_json) if state else {}
+            governance = payload.get('middle_context', {}).get('globex_context', {})
+            active = await db.scalar(select(ContextOperationRow).where(ContextOperationRow.session_id==session_id, ContextOperationRow.buyer_id==buyer_id, ContextOperationRow.status=='running'))
+            return {'operation':self._context_operation(active) if active else None, 'session_id':session_id, 'revision':row.revision, 'summary':payload.get('summary') or '',
+                    'working':governance.get('working',{}), 'statistics':governance.get('last_compaction',{}),
+                    'checkpoint_id':governance.get('checkpoint_id'), 'failures':governance.get('failures',0)}
+
+    async def create_context_operation(self, session_id, buyer_id, request_id, expected_revision):
+        import hashlib
+        _identifier(request_id, 'request_id')
+        identifier = hashlib.sha256(json.dumps([session_id,buyer_id,request_id]).encode()).hexdigest()
+        async with self._transaction() as db:
+            row, _ = await self._ownership(db, session_id, buyer_id, create=False, enforce_owner=True)
+            existing = await db.get(ContextOperationRow, identifier)
+            if existing:
+                if existing.expected_revision != expected_revision:
+                    raise StaleSessionWrite('相同 request_id 不可用于不同会话版本')
+                return self._context_operation(existing), False
+            if row.revision != expected_revision:
+                raise StaleSessionWrite('会话已更新，请读取最新摘要后重试')
+            await db.execute(update(ContextOperationRow).where(ContextOperationRow.session_id==session_id, ContextOperationRow.status=='running', ContextOperationRow.deadline < __import__('time').time()).values(status='interrupted'))
+            current = await db.scalar(select(ContextOperationRow).where(ContextOperationRow.session_id==session_id, ContextOperationRow.status=='running'))
+            if current:
+                raise StaleSessionWrite('会话正在整理，请等待完成')
+            operation = ContextOperationRow(operation_id=identifier, session_id=session_id, buyer_id=buyer_id,
+                request_id=request_id, expected_revision=expected_revision, status='running', payload='{}', deadline=__import__('time').time()+30)
+            db.add(operation)
+            return self._context_operation(operation), True
+
+    @staticmethod
+    def _context_operation(row):
+        return {'operation_id':row.operation_id, 'session_id':row.session_id, 'status':row.status,
+                'expected_revision':row.expected_revision, **json.loads(row.payload)}
+
+    async def context_operation(self, operation_id, buyer_id):
+        await self.initialize()
+        async with self._transaction() as db:
+            row = await db.get(ContextOperationRow, operation_id)
+            if row is None: raise SessionNotFound('整理操作不存在')
+            if row.buyer_id != buyer_id: raise SessionOwnerMismatch('无权读取该整理操作')
+            if row.status=='running' and row.deadline < __import__('time').time():
+                row.status, row.payload = 'interrupted', '{"message":"整理任务已中断，原始记录保留"}'
+            return self._context_operation(row)
+
+    async def finish_context_operation(self, operation_id, buyer_id, status, payload):
+        async with self._transaction() as db:
+            row = await db.get(ContextOperationRow, operation_id)
+            if row is None or row.buyer_id != buyer_id:
+                raise SessionOwnerMismatch('无权写入整理操作')
+            if row.status == 'running':
+                row.status, row.payload = status, json.dumps(payload,ensure_ascii=False)
+
+    async def recover_context_operations(self):
+        async with self._transaction() as db:
+            await db.execute(update(ContextOperationRow).where(ContextOperationRow.status=='running', ContextOperationRow.deadline < __import__('time').time()).values(status='interrupted',payload='{"message":"服务重启，未提交的整理已中断；原记录保留"}'))
+
+    async def renew_context_operation(self, operation_id):
+        async with self._transaction() as db:
+            updated = await db.execute(update(ContextOperationRow).where(ContextOperationRow.operation_id==operation_id, ContextOperationRow.status=='running', ContextOperationRow.deadline >= __import__('time').time()).values(deadline=__import__('time').time()+30))
+            if updated.rowcount != 1: raise StaleSessionWrite('整理操作租约已失效')

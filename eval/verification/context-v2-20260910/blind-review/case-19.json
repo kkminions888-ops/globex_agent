@@ -1,0 +1,77 @@
+{
+  "case_id": "v3-hold-origin",
+  "ratings": [
+    {
+      "response_id": "answer_01",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "清晰简洁地回答了问题，但未说明信息的时间属性。"
+    },
+    {
+      "response_id": "answer_02",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "清晰简洁地回答了问题，但未说明信息的时间属性。"
+    },
+    {
+      "response_id": "answer_03",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "清晰并补充了商品名称，但未说明信息的时间属性。"
+    },
+    {
+      "response_id": "answer_04",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "清晰并补充了商品名称，但未说明信息的时间属性。"
+    },
+    {
+      "response_id": "answer_05",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰回答并明确标注信息来源于历史记录，时间属性清楚。"
+    },
+    {
+      "response_id": "answer_06",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰回答并明确标注信息来源于历史记录，时间属性清楚。"
+    },
+    {
+      "response_id": "answer_07",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "回答准确但未展开国家全称，也未说明时间属性。"
+    },
+    {
+      "response_id": "answer_08",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰回答并明确标注信息来源于历史记录，时间属性清楚。"
+    },
+    {
+      "response_id": "answer_09",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "清晰简洁地回答了问题，但未说明信息的时间属性。"
+    }
+  ],
+  "error": null,
+  "usage": [
+    {
+      "kind": "evaluation",
+      "input_tokens": 1225,
+      "output_tokens": 475,
+      "elapsed_ms": 8658.881707990076
+    }
+  ]
+}

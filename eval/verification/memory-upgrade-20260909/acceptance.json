@@ -1,0 +1,20 @@
+{
+  "backend_passed": 948,
+  "frontend_passed": 99,
+  "frontend_build": "passed",
+  "extraction_cases": 12,
+  "extraction_passed": 12,
+  "native_live_flow": "passed",
+  "browser_refresh_approval_and_rejection": "passed",
+  "buyer_scope": "isolated memory-upgrade-verification",
+  "storage": "SQLite (unchanged backend)",
+  "runtime": {
+    "app_source_sha256": "e8830d1c9b499e448f24ad765d235e59bb7932fd620cffc640842d0d3c1c06b3"
+  },
+  "prompt_version": "p-f22c2022836d93d1f05e0794ba41ac2029424a7f3eeb31075deafa0425bea968",
+  "limitations": [
+    "12 个合成样本不代表生产准确率",
+    "语义冲突识别依赖模型；保守拒写，不自动合并",
+    "订单业务确认继续保留事务台账"
+  ]
+}

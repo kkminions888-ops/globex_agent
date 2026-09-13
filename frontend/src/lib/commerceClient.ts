@@ -253,6 +253,7 @@ function emptySnapshot(sessionId = newId()): CommerceSnapshot {
     searchCompleted: false,
     history: [],
     confirmations: [],
+    toolApprovals: [],
     confirmationBusy: false,
     confirmationError: null,
     recoverableRunId: null,
@@ -292,7 +293,7 @@ export class CommerceClient {
   private sessions: SavedSession[] = [];
   private listeners = new Set<() => void>();
   private active?: { agent: HttpAgent; runId: string };
-  private buyerId = newId();
+  private buyerId = "pao-coder";
   private mutationId: string | undefined;
   private confirmationRevision = 0;
   private serverHistory: SessionSummary[] = [];
@@ -304,8 +305,8 @@ export class CommerceClient {
     // 身份、当前会话和正文缓存分别读取，坏缓存不能阻断服务端恢复。
     let storedBuyer: string | null = null;
     try { storedBuyer = options.storage?.getItem(BUYER_KEY) ?? null; } catch {}
-    this.buyerId = options.buyerId || storedBuyer || this.buyerId;
-    const cacheBelongsToBuyer = !storedBuyer || storedBuyer === this.buyerId;
+    this.buyerId = options.buyerId || "pao-coder";
+    const cacheBelongsToBuyer = storedBuyer === this.buyerId;
     try {
       if (!cacheBelongsToBuyer) {
         options.storage?.setItem(STORAGE_KEY, "[]");
@@ -317,7 +318,7 @@ export class CommerceClient {
       const activeId = cacheBelongsToBuyer ? options.storage?.getItem(ACTIVE_SESSION_KEY) : null;
       if (activeId) {
         this.snapshot = emptySnapshot(activeId);
-        this.restoreLatestSession = false;
+        // 本地空会话不存在于数据库时，启动仍恢复该买家最近的持久会话。
       }
     } catch {}
     try {
@@ -423,6 +424,10 @@ export class CommerceClient {
       this.update({ error: "所选方案信息无效，请刷新方案后重新选择。" });
       return;
     }
+    if (this.snapshot.toolApprovals?.length) {
+      this.update({ error: "请先批准或拒绝待处理的记忆操作。" });
+      return;
+    }
     if (this.snapshot.recoverableRunId) {
       this.update({ error: "上一轮尚可恢复，请先恢复或明确停止该运行。" });
       return;
@@ -437,7 +442,10 @@ export class CommerceClient {
     await this.executeRun(runId, messages, false, selectedSkill);
   };
 
-  private async executeRun(runId: string, messages: ChatMessage[], resume = false, selectedSkill?: SelectedSkill): Promise<void> {
+  private async executeRun(runId: string, messages: ChatMessage[], resume = false, selectedSkill?: SelectedSkill, approval?: { id: string; approved: boolean }, allowVersionRestart = true): Promise<void> {
+    const priorSessionId=this.snapshot.sessionId;
+    let destination=this.snapshot.products.find(p=>p.landed_price?.ship_to)?.landed_price?.ship_to;
+    let restartVersion=false;
     const journaled = /\/ag-ui\/run\/?$/.test(this.options.url);
     const baseFetch = this.options.fetch ?? globalThis.fetch;
     const agent = new HttpAgent({
@@ -489,6 +497,7 @@ export class CommerceClient {
       },
       onStateChanged: ({ state }) => {
         if (!current() || !isRecord(state)) return;
+        if (typeof state.resumeDestination === "string" && /^[A-Z]{2}$/.test(state.resumeDestination)) destination=state.resumeDestination;
         const progress = Array.isArray(state.progress)
           ? state.progress.filter(isRecord)
           : [];
@@ -497,8 +506,9 @@ export class CommerceClient {
           .find((step) => step.status === "running");
         const latest = ongoing ?? progress[progress.length - 1];
         this.update({
+          toolApprovals: readApprovals(state.toolApprovals),
           products: readProducts(state.products),
-          skillUsages: readSkillUsages(state.skillUsages),
+      skillUsages: readSkillUsages(state.skillUsages),
           searchCompleted: state.searchCompleted === true,
           confirmations: mergeConfirmations(
             this.snapshot.confirmations,
@@ -529,14 +539,19 @@ export class CommerceClient {
       onRunFinishedEvent: ({ outcome }) => {
         terminal = true;
         if (current()) this.update({ recoverableRunId: null });
-        if (outcome === "interrupt")
+        if (outcome === "interrupt" && !this.snapshot.toolApprovals?.length)
           fail("当前页面暂不支持此确认流程，请重新描述需求。");
         else if (current())
-          this.update({ status: "idle", step: "已为你整理好选购建议" });
+          this.update({ status: "idle", step: this.snapshot.toolApprovals?.length ? "请确认长期记忆变更" : "已为你整理好选购建议" });
       },
       onRunErrorEvent: ({ event }) => {
         terminal = true;
         if (current()) this.update({ recoverableRunId: null });
+        if (event.code === "SESSION_VERSION_CHANGED" && current() && allowVersionRestart && !approval && !resume && !selectedSkill) {
+          restartVersion=true;
+          this.update({status:"idle",error:null,step:"选购环境已更新，正在保留旧记录并继续查询"});
+          return;
+        }
         if (event.code === "CANCELLED" && current()) this.update({ status: "stopped", error: null, step: "本轮已停止，可继续补充需求" });
         else fail(event.message);
       },
@@ -550,6 +565,7 @@ export class CommerceClient {
           runId,
           tools: [],
           context: [],
+          ...(approval ? { resume: [{ interruptId: approval.id, status: "resolved" as const, payload: { approved: approval.approved } }] } : {}),
           forwardedProps: {
             buyerId: this.buyerId,
             locale: "zh-CN",
@@ -566,6 +582,16 @@ export class CommerceClient {
       if (current()) {
         this.active = undefined;
         this.save();
+      }
+    }
+    if (restartVersion && this.snapshot.sessionId===priorSessionId && !this.active) {
+      const latest=[...messages].reverse().find(m=>m.role==="user");
+      if (latest) {
+        // 只续发本轮明确需求与已知目的地，不复制过期 Skill、助手结论或工具上下文。
+        const query=latest.content+(destination && !/收货|寄到|寄往|配送至/.test(latest.content) ? `\n收货国家：${destination}。` : "");
+        this.reset();
+        const nextRun=newId();
+        await this.executeRun(nextRun,[{id:newId(),role:"user",content:query,runId:nextRun}],false,undefined,undefined,false);
       }
     }
   }
@@ -599,7 +625,7 @@ export class CommerceClient {
           ? [{ id: item.id, title: item.title, updatedAt: item.updatedAt, source: "server" as const }] : []) : [];
       this.update({ history: this.history(), historyError: null });
       const chosen = this.serverHistory.find((item) => item.id === this.snapshot.sessionId)
-        ?? (this.restoreLatestSession && !this.snapshot.messages.length
+        ?? (this.restoreLatestSession
           ? [...this.serverHistory].sort((a, b) => b.updatedAt - a.updatedAt)[0] : undefined);
       if (chosen && !this.active) {
         this.restoreLatestSession = false;
@@ -616,6 +642,7 @@ export class CommerceClient {
     const state = isRecord(run.state) ? run.state : {};
     const running = run.status === "running";
     this.update({
+      toolApprovals: readApprovals(state.toolApprovals),
       messages: readMessages(run.messages), products: readProducts(state.products),
       skillUsages: readSkillUsages(state.skillUsages),
       searchCompleted: state.searchCompleted === true,
@@ -641,6 +668,14 @@ export class CommerceClient {
         this.update({ historyError: "该会话暂时无法从服务端恢复，显示已有缓存。", status: "error", error: "连接恢复未完成，可再次打开本段历史重试。" });
     }
   }
+
+  resolveToolApproval = async (id: string, approved: boolean): Promise<void> => {
+    if (this.active || !this.snapshot.toolApprovals?.some(item => item.id === id)) return;
+    const runId = newId();
+    const messages: ChatMessage[] = [...this.snapshot.messages,
+      { id: newId(), role: "user", content: approved ? "批准这次长期记忆操作" : "拒绝这次长期记忆操作", runId }];
+    await this.executeRun(runId, messages, false, undefined, { id, approved });
+  };
 
   resume = async (): Promise<void> => {
     const runId = this.snapshot.recoverableRunId, sessionId = this.snapshot.sessionId;
@@ -703,13 +738,13 @@ export class CommerceClient {
     const separator = path.includes("?") ? "&" : "?";
     const response = await (this.options.fetch ?? globalThis.fetch)(`${base}${path}${separator}buyer_id=${encodeURIComponent(this.buyerId)}`, {
       method, headers: { ...this.authHeaders(), ...(body ? { "Content-Type": "application/json" } : {}) },
-      body: body ? JSON.stringify(body) : undefined,
+      body: body ? JSON.stringify(path === "/context/compact" ? {...body,buyer_id:this.buyerId} : body) : undefined,
     });
     const data: unknown = await response.json().catch(() => { throw new Error("服务暂时不可用，请稍后重试。输入已保留。"); });
     if (!response.ok) {
       const detail = isRecord(data) ? data.detail : null;
-      throw new Error(typeof detail === "string" ? detail : response.status === 401 || response.status === 403
-        ? "无法访问个人资料，请检查当前登录身份。" : "未能保存或读取，请刷新后重试。输入已保留。");
+      throw Object.assign(new Error(typeof detail === "string" ? detail : isRecord(detail) && typeof detail.message === "string" ? detail.message : response.status === 401 || response.status === 403
+        ? "无法访问个人资料，请检查当前登录身份。" : "未能保存或读取，请刷新后重试。输入已保留。"),{status:response.status});
     }
     if (!isRecord(data)) throw new Error("个人资料服务返回格式无效");
     return data;
@@ -737,6 +772,10 @@ export class CommerceClient {
   refreshConfirmations = async (): Promise<void> => {
     const sessionId = this.snapshot.sessionId;
     const revision = ++this.confirmationRevision;
+    // 首轮执行可能先发起确认列表请求，此时服务端尚未建立会话。
+    const newSession = !this.snapshot.confirmations.length
+      && (!this.snapshot.messages.length || this.snapshot.status === "running")
+      && !this.snapshot.history.some(entry => entry.id === sessionId && entry.source === "server");
     try {
       const query = new URLSearchParams({
         buyer_id: this.buyerId,
@@ -759,8 +798,7 @@ export class CommerceClient {
         revision === this.confirmationRevision
       ) {
         // 尚未运行的新会话还没有服务端 owner 记录；只对这个正常 404 视作空列表。
-        const emptyNewSession = !this.snapshot.messages.length && !this.snapshot.confirmations.length
-          && !this.snapshot.history.some((entry) => entry.id === sessionId && entry.source === "server");
+        const emptyNewSession = newSession && !this.snapshot.confirmations.length;
         if (emptyNewSession && error instanceof Error && "status" in error && error.status === 404) {
           this.update({ confirmations: [], confirmationError: null });
           return;
@@ -909,4 +947,10 @@ export class CommerceClient {
     this.saveActiveSession();
     if (remote) void this.loadSession(id);
   };
+}
+
+function readApprovals(value: unknown): import("../types").ToolApproval[] {
+  if (!Array.isArray(value)) return [];
+  return value.filter(isRecord).flatMap(item => typeof item.id === "string" && typeof item.tool === "string" && typeof item.label === "string"
+    ? [{ id: item.id, tool: item.tool, label: item.label, arguments: typeof item.arguments === "string" || isRecord(item.arguments) ? item.arguments : {} }] : []);
 }

@@ -1,0 +1,9 @@
+{
+  "source_matches_metered_frozen": true,
+  "python_files": 168,
+  "archive_sha256": "801efe6ba66df597c3b632031f862f0a36f7363d15f2c6c3c73d14980c4ba334",
+  "full_backend_passed": 988,
+  "full_backend_skipped": 43,
+  "real_sdk_usage_verified": true,
+  "real_compaction_and_query_state_verified": true
+}

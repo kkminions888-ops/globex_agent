@@ -393,3 +393,15 @@ async def test_list_confirmations_returns_newest_twenty_for_exact_owner(stores):
     assert found[0]["operation_id"] == "op-21"
     assert found[-1]["operation_id"] == "op-2"
     assert len(await first.list_confirmations(buyer_id="buyer-1", session_id="session-1", limit=3)) == 3
+
+async def test_order_list_filters_buyer_status_and_pagination(stores):
+    store=stores[0]
+    a=await prepare(store);await resolve(store,a)
+    b=await prepare(store,operation_id='op-b',buyer_id='buyer-2',session_id='s2')
+    await resolve(store,b,buyer_id='buyer-2',session_id='s2')
+    result=await store.list_orders(buyer_id='buyer-1',status='CONFIRMED',limit=1)
+    assert result['total']==1 and len(result['orders'])==1
+    assert result['orders'][0]['buyer_id']=='buyer-1'
+    assert (await store.list_orders(buyer_id='buyer-1',offset=1))['orders']==[]
+    assert (await store.list_orders(buyer_id='buyer-1',status='CANCELLED'))['total']==0
+    assert (await store.list_orders(buyer_id='nobody'))['total']==0

@@ -1,0 +1,12 @@
+{
+  "buyer": "pao-coder",
+  "old_session": "a30e87f3-58f5-48a5-9c64-3b5ece677d2d",
+  "continued_session": "9d72ff57-1743-425c-969f-eb5930a67ad4",
+  "product_id": "P1003",
+  "sku_id": "P1003-S1",
+  "stock": 80,
+  "unit_price_cny": 129,
+  "landed_price_cny": 154,
+  "ship_to": "CN",
+  "validation": "在原浏览器旧会话重新提交原查询，自动创建新会话一次，继承历史报价目的地CN，得到完整模型与工具结果。旧会话仍在侧栏。"
+}

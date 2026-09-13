@@ -1,0 +1,77 @@
+{
+  "case_id": "v3-hold-delete",
+  "ratings": [
+    {
+      "response_id": "answer_01",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清楚说明当前状态，贴合问题，明确指出不再要求长期排除塑料。"
+    },
+    {
+      "response_id": "answer_02",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "表达清晰，准确回应问题，明确当前偏好工具下的状态。"
+    },
+    {
+      "response_id": "answer_03",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰说明当前偏好，解释“不再要求排除塑料”，并补充说明适用范围，无冗余。"
+    },
+    {
+      "response_id": "answer_04",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "简洁明了，准确传达当前状态，时间表述清晰。"
+    },
+    {
+      "response_id": "answer_05",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "表达清楚，贴合问题，明确说明当前不再要求排除塑料。"
+    },
+    {
+      "response_id": "answer_06",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰指出偏好已删除，当前不再要求，时间与状态明确。"
+    },
+    {
+      "response_id": "answer_07",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "简洁准确，清楚说明当前状态，符合问题要求。"
+    },
+    {
+      "response_id": "answer_08",
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "内容准确但添加了“权威状态”和建议性语句，略增表达负担。"
+    },
+    {
+      "response_id": "answer_09",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "表达简洁清晰，准确反映当前偏好工具状态。"
+    }
+  ],
+  "error": null,
+  "usage": [
+    {
+      "kind": "evaluation",
+      "input_tokens": 1076,
+      "output_tokens": 487,
+      "elapsed_ms": 9999.956708052196
+    }
+  ]
+}

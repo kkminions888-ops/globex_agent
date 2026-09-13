@@ -116,8 +116,13 @@ def build_app() -> FastAPI:
     # AG-UI 首版在本进程直跑；旧 intents 接口继续使用原有 Redis 队列语义。
     register_ag_ui_routes(api, lambda: container().orchestrator, lambda: container().confirmations,
                          lambda: container().ag_ui_runtime)
+    from app.presentation.context_workspace import register_context_routes
+    register_context_routes(api, lambda: container().context_service)
     register_confirmation_routes(api, lambda: container().confirmations)
     register_buyer_workspace_routes(api, lambda: container().orchestrator)
+    from app.presentation.favorites import register_favorite_routes
+    from app.infrastructure.buyer_favorites import BuyerFavoriteStore
+    register_favorite_routes(api, lambda: BuyerFavoriteStore(container().settings.data_dir / "buyer_favorites.db"))
 
     @api.get("/health")
     async def health() -> dict:
@@ -247,6 +252,13 @@ def build_app() -> FastAPI:
     @api.websocket("/commerce/events")
     async def commerce_events(websocket: WebSocket) -> None:
         await state["connections"].serve(websocket)
+
+    @api.get("/commerce/orders")
+    async def list_orders(request: Request, buyer_id: str = Query(min_length=1),
+                          status: str | None = Query(default=None, pattern="^(CONFIRMED|CANCELLED|DRAFT)$"),
+                          offset: int = Query(default=0, ge=0), limit: int = Query(default=20, ge=1, le=100)) -> dict:
+        buyer = await require_buyer(request, buyer_id)
+        return await container().trade_store.list_orders(buyer_id=buyer, status=status, offset=offset, limit=limit)
 
     @api.get("/commerce/orders/{order_id}")
     async def get_order(request: Request, order_id: str, buyer_id: str = Query(min_length=1)) -> dict:

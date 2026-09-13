@@ -1,0 +1,77 @@
+{
+  "case_id": "v3-hold-dest",
+  "ratings": [
+    {
+      "response_id": "answer_01",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "明确指出“最近一次明确指定”，清晰贴合“本次最新”的时间要求，表达简洁准确。"
+    },
+    {
+      "response_id": "answer_02",
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "“最近的查询条件”不如“收货地指定”直接，时间指代略模糊但不影响理解。"
+    },
+    {
+      "response_id": "answer_03",
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "“最新约束”表述不够具体，但基本传达了当前收货地信息。"
+    },
+    {
+      "response_id": "answer_04",
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "同上，“最新约束”略显模糊，但答案内容正确且简洁。"
+    },
+    {
+      "response_id": "answer_05",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "直接说明“当前最新”，时间清晰，表达简洁明确。"
+    },
+    {
+      "response_id": "answer_06",
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "“最新提供的约束”略绕，但意思可理解，贴合问题。"
+    },
+    {
+      "response_id": "answer_07",
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "重复使用“最新约束”，虽稍显模糊但不影响核心信息传达。"
+    },
+    {
+      "response_id": "answer_08",
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "同上，表达略泛但内容正确。"
+    },
+    {
+      "response_id": "answer_09",
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "同其他“最新约束”类表述，基本可接受但不如明确时间指代清晰。"
+    }
+  ],
+  "error": null,
+  "usage": [
+    {
+      "kind": "evaluation",
+      "input_tokens": 1069,
+      "output_tokens": 505,
+      "elapsed_ms": 10501.876333961263
+    }
+  ]
+}

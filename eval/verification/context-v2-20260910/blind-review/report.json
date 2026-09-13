@@ -1,0 +1,133 @@
+{
+  "scope": "辅助单模型表达质量盲评，无预设硬分数门槛，不替代事实安全验收",
+  "source": "holdout-recovery/results.json",
+  "judge_model": "qwen3-max",
+  "summary": {
+    "legacy": {
+      "rated_answers": 84,
+      "unknown_answers": 0,
+      "rated_scenarios": 28,
+      "scenario_mean": {
+        "clarity": 3.7976190476190474,
+        "fitness": 3.6666666666666665,
+        "temporal_clarity": 3.4047619047619047,
+        "overall": 3.623015873015873
+      }
+    },
+    "deterministic": {
+      "rated_answers": 83,
+      "unknown_answers": 1,
+      "rated_scenarios": 28,
+      "scenario_mean": {
+        "clarity": 3.880952380952381,
+        "fitness": 3.9404761904761907,
+        "temporal_clarity": 3.7976190476190474,
+        "overall": 3.873015873015873
+      }
+    },
+    "layered": {
+      "rated_answers": 84,
+      "unknown_answers": 0,
+      "rated_scenarios": 28,
+      "scenario_mean": {
+        "clarity": 3.892857142857143,
+        "fitness": 3.9047619047619047,
+        "temporal_clarity": 3.8214285714285716,
+        "overall": 3.873015873015873
+      }
+    }
+  },
+  "paired_scenario_difference": {
+    "legacy": {
+      "clarity": {
+        "scenarios": 28,
+        "mean_difference_C_minus_reference": 0.09523809523809523,
+        "ci95": [
+          -0.011904761904761894,
+          0.2023809523809524
+        ]
+      },
+      "fitness": {
+        "scenarios": 28,
+        "mean_difference_C_minus_reference": 0.23809523809523808,
+        "ci95": [
+          0.10714285714285712,
+          0.38095238095238093
+        ]
+      },
+      "temporal_clarity": {
+        "scenarios": 28,
+        "mean_difference_C_minus_reference": 0.41666666666666663,
+        "ci95": [
+          0.15446428571428594,
+          0.7023809523809523
+        ]
+      },
+      "overall": {
+        "scenarios": 28,
+        "mean_difference_C_minus_reference": 0.25,
+        "ci95": [
+          0.11507936507936509,
+          0.39285714285714285
+        ]
+      }
+    },
+    "deterministic": {
+      "clarity": {
+        "scenarios": 28,
+        "mean_difference_C_minus_reference": 0.011904761904761894,
+        "ci95": [
+          -0.07142857142857144,
+          0.09523809523809522
+        ]
+      },
+      "fitness": {
+        "scenarios": 28,
+        "mean_difference_C_minus_reference": -0.03571428571428571,
+        "ci95": [
+          -0.13095238095238096,
+          0.04761904761904764
+        ]
+      },
+      "temporal_clarity": {
+        "scenarios": 28,
+        "mean_difference_C_minus_reference": 0.023809523809523787,
+        "ci95": [
+          -0.08333333333333329,
+          0.1309523809523809
+        ]
+      },
+      "overall": {
+        "scenarios": 28,
+        "mean_difference_C_minus_reference": -3.172065784643304e-17,
+        "ci95": [
+          -0.08730158730158732,
+          0.07539682539682538
+        ]
+      }
+    }
+  },
+  "errors": [],
+  "excluded": [
+    {
+      "case_id": "v3-hold-pair",
+      "strategy": "deterministic",
+      "repetition": 2,
+      "reason": "无有效回答，表达质量不可评，不记零"
+    }
+  ],
+  "usage": {
+    "calls": 28,
+    "complete": true,
+    "input_tokens": 42591,
+    "output_tokens": 14214,
+    "cost_scope": "评委调用消耗单列，不计入买家长对话成本实验。"
+  },
+  "limitations": "单一模型辅助盲评；与被评模型同型号，未测跨评委一致性，不冒充人工盲评。",
+  "coverage": {
+    "logical_answers": 252,
+    "eligible_answers": 251,
+    "rated_answers": 251,
+    "unknown_answers": 1
+  }
+}

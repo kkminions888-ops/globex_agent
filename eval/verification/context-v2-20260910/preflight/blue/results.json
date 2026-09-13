@@ -1,0 +1,170 @@
+[
+  {
+    "case_id": "hold-blue",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "layered",
+    "repetition": 1,
+    "answer": "根据第一批商品的历史记录（观察时间：2026-09-01T10:01:00Z），P1003 雾霾蓝的 SKU 信息如下：\n\n- **商品ID**：P1003  \n- **SKU ID**：P1003-S2  \n- **规格**：雾霾蓝  \n- **历史单价**：129.00 CNY  \n- **历史库存**：60 件  \n\n请注意：以上为历史数据，**不代表当前库存或价格**。如需当前状态，请使用 `current_business_state` 工具核验。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 9510,
+        "output_tokens": 48,
+        "elapsed_ms": 2190.199542004848
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10081,
+        "output_tokens": 138,
+        "elapsed_ms": 3189.404917007778
+      }
+    ],
+    "input_tokens": 19591,
+    "output_tokens": 186,
+    "model_calls": 2,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 6074,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 5432,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 22816,
+    "last_compaction": {
+      "policy_version": "layered-v2",
+      "reason": "pressure",
+      "before_tokens": 11010,
+      "after_tokens": 11010,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 4,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  },
+  {
+    "case_id": "hold-blue",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "layered",
+    "repetition": 2,
+    "answer": "根据第一批商品的历史记录（观察时间：2026-09-01T10:01:00Z），P1003 雾霾蓝的完整 SKU 信息如下：\n\n- **商品ID**：P1003  \n- **SKU ID**：P1003-S2  \n- **规格**：雾霾蓝  \n- **历史单价**：129.0 CNY  \n- **历史库存**：60  \n\n请注意，以上为历史数据，当前库存与价格需通过 current_business_state 核验。是否需要查询当前状态？",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 9520,
+        "output_tokens": 48,
+        "elapsed_ms": 1886.8404579989146
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10087,
+        "output_tokens": 130,
+        "elapsed_ms": 4189.681749994634
+      }
+    ],
+    "input_tokens": 19607,
+    "output_tokens": 178,
+    "model_calls": 2,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 7574,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 7426,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 22811,
+    "last_compaction": {
+      "policy_version": "layered-v2",
+      "reason": "pressure",
+      "before_tokens": 11022,
+      "after_tokens": 11022,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 5,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  },
+  {
+    "case_id": "hold-blue",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "layered",
+    "repetition": 0,
+    "answer": "根据第一批商品的历史记录（观察时间：2026-09-01T10:01:00Z），P1003 雾霾蓝的 SKU 信息如下：\n\n- **商品ID**：P1003  \n- **SKU ID**：P1003-S2  \n- **规格**：雾霾蓝  \n- **历史库存**：60  \n- **历史单价**：129.0 CNY  \n\n请注意，以上为历史数据。如需当前库存与价格，请使用 current_business_state 工具核验。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 9523,
+        "output_tokens": 48,
+        "elapsed_ms": 1768.4552499849815
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10090,
+        "output_tokens": 127,
+        "elapsed_ms": 2995.582082978217
+      }
+    ],
+    "input_tokens": 19613,
+    "output_tokens": 175,
+    "model_calls": 2,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 4883,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 4802,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 22802,
+    "last_compaction": {
+      "policy_version": "layered-v2",
+      "reason": "pressure",
+      "before_tokens": 11025,
+      "after_tokens": 11025,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 5,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  }
+]

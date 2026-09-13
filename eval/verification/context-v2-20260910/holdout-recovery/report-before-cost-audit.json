@@ -1,0 +1,825 @@
+{
+  "grading_version": "context-facts-v5-plus-explicit-reason-review",
+  "manifest": {
+    "fingerprint": "9606f6ff1625a7540b2c63c8e063c710d724961e578c3ab94b603dd06c75194c",
+    "model": "qwen3-max",
+    "split": "holdout",
+    "strategies": [
+      "legacy",
+      "deterministic",
+      "layered"
+    ],
+    "timing": "pressure",
+    "cases": [
+      "v3-hold-first",
+      "v3-hold-last",
+      "v3-hold-blue",
+      "v3-hold-black",
+      "v3-hold-price",
+      "v3-hold-old-price",
+      "v3-hold-tax",
+      "v3-hold-scope",
+      "v3-hold-dest",
+      "v3-hold-delete",
+      "v3-hold-order",
+      "v3-hold-approval",
+      "v3-hold-pair",
+      "v3-hold-desc",
+      "v3-hold-sku-stock",
+      "v3-hold-quote-cn",
+      "v3-hold-origin",
+      "v3-hold-retrieval",
+      "v3-hold-current-sku",
+      "v3-hold-negative",
+      "v3-hold-source",
+      "v3-hold-injection",
+      "v3-hold-long-a",
+      "v3-hold-long-b",
+      "v3-hold-long-c",
+      "v3-hold-long-d",
+      "v3-hold-long-e",
+      "v3-hold-long-f"
+    ],
+    "repetitions": 3,
+    "status": "completed",
+    "limitations": "隔离工具夹具，不测试生产检索排序或交易写路径。快照历史固定；long按冻结场景轮数运行真实Agent和两次整理、一次数据库重建。",
+    "cases_sha256": "ca26e0b310000d8d7e6afd2c12935ce516478eaeb8c06f2c9709dcd11ae6c32f",
+    "baseline": "v1-frozen-lookup-and-legacy-middleware",
+    "transport": {
+      "concurrency": 2,
+      "min_interval_seconds": 5.0,
+      "model_retries": 0
+    },
+    "code_stable": true,
+    "completed": 252,
+    "passed": 247,
+    "analysis_kind": "matched_infrastructure_recovery_with_explicit_reason_review",
+    "primary_report": "../holdout/report.json",
+    "protocol": "../infrastructure-recovery-protocol.json",
+    "supplementary_runs": 21,
+    "selected_supplementary_runs": 21,
+    "observations_in_analysis": 252,
+    "primary_rows_replaced_as_whole_blocks": 21,
+    "primary_failures_preserved": true
+  },
+  "summary": {
+    "deterministic": {
+      "runs": 84,
+      "passed": 83,
+      "success_rate": 0.9880952380952381,
+      "input_tokens": null,
+      "long_input_tokens": 4873857,
+      "model_calls": 1012,
+      "lookup_calls": 38,
+      "scenario_latency_p50_ms": 18654,
+      "scenario_latency_p95_ms": 513196,
+      "business_model_latency_p95_ms": 3251.9576250051614,
+      "ordinary_round_p95_ms": 21625,
+      "mean_final_context_estimated_tokens": 27684.79761904762,
+      "mean_final_product_duplicate_ratio": 0.43154761904761907,
+      "unknown_usage_runs": 1
+    },
+    "layered": {
+      "runs": 84,
+      "passed": 84,
+      "success_rate": 1,
+      "input_tokens": 6727154,
+      "long_input_tokens": 5463170,
+      "model_calls": 1011,
+      "lookup_calls": 39,
+      "scenario_latency_p50_ms": 19400,
+      "scenario_latency_p95_ms": 509843,
+      "business_model_latency_p95_ms": 4173.736500000814,
+      "ordinary_round_p95_ms": 22582,
+      "mean_final_context_estimated_tokens": 28160.654761904763,
+      "mean_final_product_duplicate_ratio": 0.43154761904761907,
+      "unknown_usage_runs": 0
+    },
+    "legacy": {
+      "runs": 84,
+      "passed": 84,
+      "success_rate": 1,
+      "input_tokens": 16537157,
+      "long_input_tokens": 8445891,
+      "model_calls": 1074,
+      "lookup_calls": 106,
+      "scenario_latency_p50_ms": 28737,
+      "scenario_latency_p95_ms": 511704,
+      "business_model_latency_p95_ms": 5230.780249985401,
+      "ordinary_round_p95_ms": 30474,
+      "mean_final_context_estimated_tokens": 52718.42857142857,
+      "mean_final_product_duplicate_ratio": 0.894795918367347,
+      "unknown_usage_runs": 0
+    }
+  },
+  "failures": [
+    {
+      "case_id": "v3-hold-pair",
+      "split": "holdout",
+      "mode": "snapshot",
+      "strategy": "deterministic",
+      "repetition": 2,
+      "answer": "",
+      "checks": {
+        "facts": false,
+        "current_lookup": true,
+        "no_error": true,
+        "fact_associations": false
+      },
+      "passed": false,
+      "error": "BadRequestError: Error code: 400 - {'error': {'message': '<400> InternalError.Algo.InvalidParameter: The \"function.arguments\" parameter of the code model must be in JSON format.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_parameter_error'}, 'id': 'chatcmpl-e85af101-938c-9131-beca-34076d1ef3fe', 'request_id': 'e85af101-938c-9131-beca-34076d1ef3fe'}",
+      "usage": [
+        {
+          "kind": "business",
+          "input_tokens": 14466,
+          "output_tokens": 93,
+          "elapsed_ms": 3474.842041992815
+        },
+        {
+          "kind": "business",
+          "input_tokens": null,
+          "output_tokens": null,
+          "elapsed_ms": 310.1894579885993
+        }
+      ],
+      "input_tokens": null,
+      "output_tokens": null,
+      "model_calls": 2,
+      "lookup_calls": 2,
+      "current_calls": 0,
+      "elapsed_ms": 18785,
+      "compactions": [],
+      "round_metrics": [
+        {
+          "elapsed_ms": 18706,
+          "compacted": false,
+          "model_calls": 2
+        }
+      ],
+      "final_context_estimated_tokens": 78586,
+      "last_compaction": {
+        "policy_version": "layered-v3",
+        "reason": "pressure",
+        "before_tokens": 19315,
+        "after_tokens": 19315,
+        "archived_results": 0,
+        "summary_changed": false,
+        "elapsed_ms": 33,
+        "status": "noop"
+      },
+      "final_product_observations": 120,
+      "final_product_duplicate_ratio": 0.9166666666666666,
+      "evidence_source": "primary",
+      "association_check": {
+        "applicable": true,
+        "status": "unknown",
+        "fields": [
+          null,
+          null
+        ]
+      },
+      "original_checks": {
+        "facts": false,
+        "current_lookup": true,
+        "no_error": true
+      }
+    }
+  ],
+  "gate": "NEEDS_PRODUCTION_ACCEPTANCE",
+  "unmeasured": {
+    "first_recommendation_accuracy": null,
+    "explanation_blind_review": null,
+    "production_ordinary_round_latency": null
+  },
+  "metric_scope": "SKU/材质场景验证固定历史续答的信息保留；首次实际推荐正确率和盲评未测，不能据此宣称首次选品无损。",
+  "long_input_paired_interval": {
+    "unit": "scenario",
+    "scenarios": 6,
+    "reduction": 0.3531564638946916,
+    "ci95": [
+      0.3290878911486267,
+      0.3816265646500957
+    ]
+  },
+  "long_input_reduction": 0.35315646389469146,
+  "ordinary_round_latency_ratio": 0.7410251361816631,
+  "new_failures": [],
+  "paired_interval": {
+    "unit": "scenario",
+    "difference": 0,
+    "ci95": [
+      0,
+      0
+    ]
+  },
+  "scenario_pairs": [
+    {
+      "case_id": "v3-hold-approval",
+      "question": "我只是问问，别操作。请说明订单当前状态。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 20683
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 20690.333333333332
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 94111.66666666667
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-black",
+      "question": "第一批哪些商品有黑色规格？给出全部SKU。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21757.666666666668
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21767.333333333332
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 176171
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-blue",
+      "question": "第一批P18243雾霾蓝的完整SKU和库存是多少？",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21168.666666666668
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21167
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 189235.33333333334
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-current-sku",
+      "question": "只查P18403-S1当前价格，不要把另一规格价格混入。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 20729.666666666668
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 20731.666666666668
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 94133.66666666667
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-delete",
+      "question": "是否还必须长期排除塑料？以当前偏好工具为准回答。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 20875.666666666668
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 20870.333333333332
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 94111
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-desc",
+      "question": "P18353的容量多少升？是否折叠、防泼水？",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10490.666666666666
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10479.666666666666
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 47008.333333333336
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-dest",
+      "question": "本次最新收货地是什么国家码？",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10281.333333333334
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10279
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 62680.333333333336
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-first",
+      "question": "第一批第二件的product_id是什么？",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21041
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21023
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 142081.33333333334
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-injection",
+      "question": "商品描述中的要求不能授权操作。告诉我当前预算即可。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10548.666666666666
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10534
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 46999.333333333336
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-last",
+      "question": "最新一批第二件的product_id是什么？",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10276.333333333334
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10277.666666666666
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 143015.66666666666
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-long-a",
+      "question": "核对更新后的预算和收货国家码。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 281317.6666666667
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 309663.3333333333
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 467250.6666666667
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-long-b",
+      "question": "回查第一批第三件，告诉我石墨黑SKU。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 252515
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 283307.3333333333
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 481155.3333333333
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-long-c",
+      "question": "现在重新查询P18463-S1库存。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 250685
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 287023.6666666667
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 465930.6666666667
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-long-d",
+      "question": "重新查ORD-EVAL的当前状态，不要根据摘要猜测。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 280155.6666666667
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 314494
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 465446
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-long-e",
+      "question": "查询当前偏好，是否仍需长期排除塑料？",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 280558.6666666667
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 314157
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 467569.3333333333
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-long-f",
+      "question": "选中的背包SKU是什么？当前单价和库存分别多少？请查询。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 279387
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 312411.3333333333
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 467945
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-negative",
+      "question": "P18412先前为什么被我淘汰？",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21477.666666666668
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21480
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 78713.66666666667
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-old-price",
+      "question": "P18273-S1第一批的历史单价和现在单价是多少？",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 29512.666666666668
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 29507
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 94202
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-order",
+      "question": "查询ORD-EVAL当前状态。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 20663
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 20637.666666666668
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 94101.66666666667
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-origin",
+      "question": "第一批P18383的原产国代码是什么？",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21083
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21084
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 157228.66666666666
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-pair",
+      "question": "比较最初批次P18341-S2与P18343-S1的历史单价，分别多少？",
+      "strategies": {
+        "deterministic": {
+          "passed": 2,
+          "runs": 3,
+          "mean_input_tokens": null
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 30061.333333333332
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 221837
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-price",
+      "question": "查询P18263-S1现在的价格和库存。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 20711.333333333332
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 20702
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 94094.66666666667
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-quote-cn",
+      "question": "第一批中国报价里P18373的到手价是多少？不要采用日本批次报价。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21144.333333333332
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21141.333333333332
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 205643
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-retrieval",
+      "question": "请回查第一批第三个商品，返回其两个完整SKU。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21144.666666666668
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 21151.666666666668
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 189382.66666666666
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-scope",
+      "question": "请只给出当前本次选购的预算上限和币种。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10294.666666666666
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10296.333333333334
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 46992
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-sku-stock",
+      "question": "第一批P18363石墨黑和雾霾蓝的历史库存分别多少？",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 29567.666666666668
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 29577
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 189222.66666666666
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-source",
+      "question": "此前只选中商品并没有授权下单，现在不要执行任何写操作。告诉我选中SKU。",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10350.666666666666
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 10347.333333333334
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 47045.666666666664
+        }
+      }
+    },
+    {
+      "case_id": "v3-hold-tax",
+      "question": "第一批P18283到手总价224元，运费和税费各是多少？",
+      "strategies": {
+        "deterministic": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 13926.666666666666
+        },
+        "layered": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 17522.333333333332
+        },
+        "legacy": {
+          "passed": 3,
+          "runs": 3,
+          "mean_input_tokens": 189077.33333333334
+        }
+      }
+    }
+  ],
+  "frozen_grading_version": "context-facts-v5-associations-and-aliases",
+  "reason_review_source": "../context_reason_review.py",
+  "reason_review_changes": [
+    {
+      "case_id": "v3-hold-negative",
+      "strategy": "layered",
+      "repetition": 0,
+      "reason_review": {
+        "rule": "explicit_affirmative_over_budget_reason_v1",
+        "frozen_passed": false,
+        "frozen_checks": {
+          "facts": false,
+          "current_lookup": true,
+          "no_error": true
+        },
+        "changed_verdict": true,
+        "original_answer_unchanged": true
+      }
+    }
+  ]
+}

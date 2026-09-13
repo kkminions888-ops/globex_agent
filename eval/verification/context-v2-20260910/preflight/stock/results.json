@@ -1,0 +1,170 @@
+[
+  {
+    "case_id": "hold-sku-stock",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "layered",
+    "repetition": 1,
+    "answer": "根据第一批商品的历史记录（观察时间：2026-09-09T10:00:00Z）：\n\n- P1003-S1（石墨黑）历史库存为 **80**；\n- P1003-S2（雾霾蓝）历史库存为 **60**。\n\n以上为历史库存数据，不代表当前库存状态。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 12759,
+        "output_tokens": 129,
+        "elapsed_ms": 3955.68845802336
+      },
+      {
+        "kind": "business",
+        "input_tokens": 13813,
+        "output_tokens": 83,
+        "elapsed_ms": 2339.669957989827
+      }
+    ],
+    "input_tokens": 26572,
+    "output_tokens": 212,
+    "model_calls": 2,
+    "lookup_calls": 2,
+    "current_calls": 0,
+    "elapsed_ms": 6944,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 6349,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 63793,
+    "last_compaction": {
+      "policy_version": "layered-v2",
+      "reason": "pressure",
+      "before_tokens": 15038,
+      "after_tokens": 15038,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 11,
+      "status": "noop"
+    },
+    "final_product_observations": 100,
+    "final_product_duplicate_ratio": 0.9
+  },
+  {
+    "case_id": "hold-sku-stock",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "layered",
+    "repetition": 2,
+    "answer": "根据第一批商品的历史记录（观察时间：2026-09-09T10:00:00Z）：\n\n- **P1003-S1（石墨黑）** 历史库存为 **80**  \n- **P1003-S2（雾霾蓝）** 历史库存为 **60**\n\n以上为历史数据，不代表当前库存。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 12757,
+        "output_tokens": 129,
+        "elapsed_ms": 3173.5142079996876
+      },
+      {
+        "kind": "business",
+        "input_tokens": 13801,
+        "output_tokens": 90,
+        "elapsed_ms": 2749.0165419876575
+      }
+    ],
+    "input_tokens": 26558,
+    "output_tokens": 219,
+    "model_calls": 2,
+    "lookup_calls": 2,
+    "current_calls": 0,
+    "elapsed_ms": 7867,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 7382,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 63790,
+    "last_compaction": {
+      "policy_version": "layered-v2",
+      "reason": "pressure",
+      "before_tokens": 15034,
+      "after_tokens": 15034,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 12,
+      "status": "noop"
+    },
+    "final_product_observations": 100,
+    "final_product_duplicate_ratio": 0.9
+  },
+  {
+    "case_id": "hold-sku-stock",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "layered",
+    "repetition": 0,
+    "answer": "根据第一批商品的历史记录（观察时间：2026-09-09T10:00:00Z）：\n\n- P1003-S1（石墨黑）历史库存为 **80**  \n- P1003-S2（雾霾蓝）历史库存为 **60**\n\n请注意，以上为历史库存数据，不代表当前库存状态。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 12754,
+        "output_tokens": 129,
+        "elapsed_ms": 3364.338332990883
+      },
+      {
+        "kind": "business",
+        "input_tokens": 13808,
+        "output_tokens": 84,
+        "elapsed_ms": 2333.4422090265434
+      }
+    ],
+    "input_tokens": 26562,
+    "output_tokens": 213,
+    "model_calls": 2,
+    "lookup_calls": 2,
+    "current_calls": 0,
+    "elapsed_ms": 5871,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 5753,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 63795,
+    "last_compaction": {
+      "policy_version": "layered-v2",
+      "reason": "pressure",
+      "before_tokens": 15030,
+      "after_tokens": 15030,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 13,
+      "status": "noop"
+    },
+    "final_product_observations": 100,
+    "final_product_duplicate_ratio": 0.9
+  }
+]

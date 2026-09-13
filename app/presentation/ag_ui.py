@@ -31,8 +31,14 @@ def parse_intent(body: RunAgentInput) -> SubmitIntentInput:
     """只提取本轮用户文本；历史由后端 AgentState 维护，客户端 state 不能覆盖业务事实。"""
     if not body.thread_id.strip() or not body.run_id.strip():
         raise HTTPException(status_code=422, detail="threadId 和 runId 不能为空")
-    if body.resume:
-        raise HTTPException(status_code=422, detail="当前接口尚未支持人工确认 resume")
+    confirmations=[]
+    for entry in body.resume or []:
+        if entry.status=="cancelled":approved=False
+        elif isinstance(entry.payload,dict) and set(entry.payload)=={"approved"} and type(entry.payload["approved"]) is bool:
+            approved=entry.payload["approved"]
+        else:raise HTTPException(422,"确认只接受 approved 布尔值")
+        confirmations.append({"interrupt_id":entry.interrupt_id,"approved":approved})
+    if len(confirmations)>20:raise HTTPException(422,"单次确认过多")
     if body.tools:
         raise HTTPException(status_code=422, detail="当前接口只执行后端工具，尚未支持前端 tools")
     if not body.messages or body.messages[-1].role != "user":
@@ -55,6 +61,7 @@ def parse_intent(body: RunAgentInput) -> SubmitIntentInput:
         currency=str(props.get("currency", "CNY")),
         raw_query=content.strip(),
         selected_skill=selected_skill,
+        confirmations=tuple(confirmations),
     )
 
 
@@ -83,7 +90,7 @@ async def stream_run(
                 )
             error = result.error or adapter.error
             if error:
-                adapter.fail(adapter.error or "本轮服务暂时未能完成请求，请重试。")
+                adapter.fail(result.error if getattr(result,"error_code",None) in {"SESSION_VERSION_CHANGED","CONTEXT_CAPACITY_EXCEEDED"} else adapter.error or "本轮服务暂时未能完成请求，请重试。", code=getattr(result,"error_code",None))
             else:
                 adapter.finish(result.final_text)
         except asyncio.CancelledError:

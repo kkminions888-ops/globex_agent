@@ -1,0 +1,7 @@
+{
+  "previous_prompt_pin": "p-9866346f512fb58247b15cf0a1cc32abffd8d4e9773faaaa8ea6a53fe1877a2c",
+  "previous_strategy": "legacy",
+  "previous_timing": "after_use",
+  "new_prompt_pin": "p-b0119a0a43a7d761dbe83faa0112e0ff4940cfb8b0eb5f64ef9f429c5398a79a",
+  "reason": "context lookup compatibility and validation repair"
+}

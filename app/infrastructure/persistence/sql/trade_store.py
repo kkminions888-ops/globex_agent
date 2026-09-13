@@ -347,6 +347,21 @@ class SqlTradeStore(TradeStore):
         self._owner(row, buyer_id, session_id)
         return row
 
+    async def list_orders(self, *, buyer_id: str, status: str | None = None, offset: int = 0, limit: int = 20) -> dict:
+        _string(buyer_id, "buyer_id", 64)
+        if status not in (None, "CONFIRMED", "CANCELLED", "DRAFT") or offset < 0 or not 1 <= limit <= 100:
+            raise TradeStoreError("INVALID_QUERY", "订单筛选或分页参数无效")
+        conditions=[OrderRow.buyer_id == buyer_id]
+        if status: conditions.append(OrderRow.status == status)
+        async with self._sessions() as db:
+            total=int(await db.scalar(select(func.count()).select_from(OrderRow).where(*conditions)) or 0)
+            rows=list(await db.scalars(select(OrderRow).where(*conditions).order_by(OrderRow.created_at.desc(), OrderRow.order_id.desc()).offset(offset).limit(limit)))
+            ids=[r.order_id for r in rows]
+            lines=list(await db.scalars(select(OrderLineRow).where(OrderLineRow.order_id.in_(ids)).order_by(OrderLineRow.id))) if ids else []
+            grouped={id:[] for id in ids}
+            for line in lines:grouped[line.order_id].append(line)
+            return {"orders":[self._order_snapshot(r,grouped[r.order_id]) for r in rows],"total":total,"offset":offset,"limit":limit}
+
     @staticmethod
     async def _owned_order(db: AsyncSession, order_id: str, buyer_id: str) -> tuple[OrderRow, list[OrderLineRow]]:
         _string(buyer_id, "buyer_id", 64)

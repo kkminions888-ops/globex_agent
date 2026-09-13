@@ -121,9 +121,12 @@ class Container:
     session_store: Any = None
     identity_policy: Any = None
     prompt_registry: Any = None
+    context_service: Any = None
 
     async def startup(self) -> None:
         """建表 / 建向量库 / 建知识库。任一失败只告警，对应能力降级但服务可用。"""
+        if self.context_service is not None:
+            await self.context_service.startup()
         if self.ag_ui_runtime is not None:
             await self.ag_ui_runtime.startup()
         if self.db_engine is not None and (self.trade_store is None or self.db_engine is not self.trade_db_engine):
@@ -144,6 +147,8 @@ class Container:
         await bootstrap_category_knowledge(self.knowledge_base)
 
     async def shutdown(self) -> None:
+        if self.context_service is not None:
+            await self.context_service.shutdown()
         if self.ag_ui_runtime is not None:
             await self.ag_ui_runtime.shutdown()
         if isinstance(self.session_store, JsonFileSessionStore):
@@ -273,12 +278,15 @@ async def build_container() -> Container:
     trade_factory = TradeAgentFactory(
         settings, place_order, query_order, cancel_order, bus, circuit_registry, throttle,
     )
-    # 偏好选取器：主 Agent 注入与子 Agent 注入共用同一实例，口径不会两头漂。
-    # 用带缓存的 embedder：重复的偏好 statement 不会每轮重复 embed。
-    preference_selector = PreferenceSelector(
-        embedder=embedder,
-        relevance_enabled=settings.preference_relevance_enabled,
+    # 规范化事实与向量同库提交；默认长期记忆走语义检索。
+    from app.infrastructure.semantic_memory import SemanticPreferenceStore, PreferenceDistiller
+    from app.infrastructure.llm import create_chat_model
+    preference_store = SemanticPreferenceStore(
+        settings.data_dir / "buyer_memory.db", preference_store,
+        PreferenceDistiller(create_chat_model(settings, stream=False, throttle=throttle, bus=bus)),
+        embedder, settings.embedding_model + ":" + str(settings.embedding_dim),
     )
+    preference_selector = preference_store
     main_factory = MainAgentFactory(
         settings, search_factory, trade_factory, bus, preference_store, circuit_registry, throttle,
         sequencing=sequencing_tracker,
@@ -301,10 +309,12 @@ async def build_container() -> Container:
         trade_state_provider=confirmations.agent_state,
     )
 
+    from app.application.agents.context_service import ContextService
     return Container(
         settings=settings,
         bus=bus,
         orchestrator=orchestrator,
+        context_service=ContextService(orchestrator, session_store, search_factory.evidence_store, confirmations, settings),
         cache=cache,
         semantic_cache=semantic_cache,
         task_queue=task_queue,

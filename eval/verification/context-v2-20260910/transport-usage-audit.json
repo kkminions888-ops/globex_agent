@@ -1,0 +1,13 @@
+{
+  "application_retries": 0,
+  "sdk_client_retries": 0,
+  "fallback_enabled": false,
+  "framework_max_retries": 0,
+  "success_usage_basis": "upstream response usage; unknown retained as null",
+  "failed_interrupted_usage": "known lower bound only; unobserved attempts not counted as zero",
+  "post_audit_correction": {
+    "summary_usage_missing": true,
+    "old_cost_totals_valid_for_acceptance": false,
+    "source": "usage-accounting-correction.json"
+  }
+}

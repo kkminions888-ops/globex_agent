@@ -1,0 +1,56 @@
+{
+  "case_id": "v2-hold-approval",
+  "split": "holdout",
+  "mode": "snapshot",
+  "strategy": "deterministic",
+  "repetition": 2,
+  "answer": "当前订单状态为 **已取消（CANCELLED）**，订单ID为 **ORD-EVAL**。  \n所选商品为 **P8333-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑），当前价格为 **163 CNY**，库存为 **4** 件。  \n\n无任何长期偏好生效。",
+  "checks": {
+    "facts": true,
+    "current_lookup": true,
+    "no_error": true
+  },
+  "passed": true,
+  "error": null,
+  "usage": [
+    {
+      "kind": "business",
+      "input_tokens": 10235,
+      "output_tokens": 12,
+      "elapsed_ms": 1337.046291999286
+    },
+    {
+      "kind": "business",
+      "input_tokens": 10345,
+      "output_tokens": 82,
+      "elapsed_ms": 2198.6610830063
+    }
+  ],
+  "input_tokens": 20580,
+  "output_tokens": 94,
+  "model_calls": 2,
+  "lookup_calls": 0,
+  "current_calls": 1,
+  "elapsed_ms": 4854,
+  "compactions": [],
+  "round_metrics": [
+    {
+      "elapsed_ms": 4754,
+      "compacted": false,
+      "model_calls": 2
+    }
+  ],
+  "final_context_estimated_tokens": 25275,
+  "last_compaction": {
+    "policy_version": "layered-v2",
+    "reason": "pressure",
+    "before_tokens": 11364,
+    "after_tokens": 11364,
+    "archived_results": 0,
+    "summary_changed": false,
+    "elapsed_ms": 7,
+    "status": "noop"
+  },
+  "final_product_observations": 15,
+  "final_product_duplicate_ratio": 0.33333333333333337
+}

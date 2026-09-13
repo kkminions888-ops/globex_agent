@@ -1,0 +1,31 @@
+{
+  "fingerprint": "0fff9a724623b5fcbf45ff7ca25a4dd57d68d56ab6b9ebfa30d1e1e3065eb282",
+  "model": "qwen3-max",
+  "split": "holdout",
+  "strategies": [
+    "legacy",
+    "layered"
+  ],
+  "timing": "pressure",
+  "cases": [
+    "v3-hold-long-a",
+    "v3-hold-long-b",
+    "v3-hold-long-c",
+    "v3-hold-long-d",
+    "v3-hold-long-e",
+    "v3-hold-long-f"
+  ],
+  "repetitions": 3,
+  "status": "completed",
+  "limitations": "隔离工具夹具，不测试生产检索排序或交易写路径。快照历史固定；long按冻结场景轮数运行真实Agent和两次整理、一次数据库重建。",
+  "cases_sha256": "a59a4944c5d077dc69a5408c43c37a57c64146e877e7f3252c1f72279cb66c41",
+  "baseline": "v1-frozen-lookup-and-legacy-middleware",
+  "transport": {
+    "concurrency": 2,
+    "min_interval_seconds": 5.0,
+    "model_retries": 0
+  },
+  "code_stable": true,
+  "completed": 36,
+  "passed": 35
+}

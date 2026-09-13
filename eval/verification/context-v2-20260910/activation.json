@@ -1,0 +1,18 @@
+{
+  "activated": true,
+  "strategy": "layered",
+  "timing": "pressure",
+  "pid": 87866,
+  "prior_session_count": 7,
+  "after_session_count": 7,
+  "read_only_context_verified": true,
+  "buyer_data_migrated": false,
+  "no_active_buyer_run_interrupted": true,
+  "existing_session_ids_preserved": true,
+  "existing_chat_history_preserved": true,
+  "chat_histories_verified": 7,
+  "metered_gate": "PASS_METERED_LONG_DIALOGUE",
+  "quality_source": "holdout-recovery/report.json",
+  "cost_source": "metered-cost/report.json",
+  "source_archive_sha256": "801efe6ba66df597c3b632031f862f0a36f7363d15f2c6c3c73d14980c4ba334"
+}

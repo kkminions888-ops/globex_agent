@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import logging
 import math
+import re
 from typing import Optional, Sequence
 
 from app.domain.buyer.preference import BuyerPreference
@@ -36,7 +37,12 @@ _MATERIAL_ALIASES: tuple[tuple[str, tuple[str, ...]], ...] = (
 
 def material_exclusion_tags(preferences: Sequence[BuyerPreference]) -> list[str]:
     """把材质类 dislike 映射为目录使用的结构化标签，其他偏好不误伤。"""
-    statements = [preference.statement for preference in preferences if preference.kind == "dislike"]
+    # 只有明确的全局材质偏好进入目录硬过滤。“不喜欢塑料食品盒”不能扩大成排除所有塑料。
+    # 带商品范围、例外或其它限定的负向事实仍完整注入，让 Agent 结合本轮商品解释。
+    materials="|".join(re.escape(a) for _, aliases in _MATERIAL_ALIASES for a in aliases)
+    material=rf"(?:再生)?(?:{materials})"
+    blanket=rf"(?:我)?(?:长期|一直)?(?:不要|不喜欢|避免|不买|排除|拒绝|不接受)(?:任何|所有)?{material}(?:和{material})*(?:材质|材料|制品|产品|的商品)?[。！!]*"
+    statements = [p.statement for p in preferences if p.kind == "dislike" and re.fullmatch(blanket,p.statement)]
     return [
         tag
         for tag, aliases in _MATERIAL_ALIASES
@@ -57,7 +63,7 @@ def _cosine(left: Sequence[float], right: Sequence[float]) -> float:
 
 def render_preference_lines(preferences: Sequence[BuyerPreference]) -> str:
     """渲染偏好正文行。主 Agent 与子 Agent 共用同一个实现，避免两处格式漂。"""
-    return "\n".join(f"- [{p.kind}] {p.statement}" for p in preferences)
+    return "\n".join(f"- [{p.kind}] {p.statement}" + (f" (memory_id={p.memory_id}, version={p.version})" if p.memory_id else "") for p in preferences)
 
 
 def render_preference_hint(preferences: Sequence[BuyerPreference]) -> str:

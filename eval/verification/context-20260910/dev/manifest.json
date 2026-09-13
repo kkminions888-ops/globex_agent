@@ -1,0 +1,30 @@
+{
+  "fingerprint": "40d16bfe216d750357cf61d7295a7785916efe22b39432623afbbcfd7b0c1c4f",
+  "model": "qwen3-max",
+  "split": "dev",
+  "strategies": [
+    "entry",
+    "after_use",
+    "pressure"
+  ],
+  "cases": [
+    "dev-sku",
+    "dev-second",
+    "dev-earliest",
+    "dev-material",
+    "dev-budget",
+    "dev-country",
+    "dev-selected",
+    "dev-stock",
+    "dev-cost",
+    "dev-repeat",
+    "dev-long-a",
+    "dev-long-b"
+  ],
+  "repetitions": 3,
+  "status": "completed",
+  "limitations": "隔离工具夹具，不测试生产检索排序或交易写路径。快照历史固定；long使用真实20轮Agent和两次整理、一次数据库重建。",
+  "code_stable": true,
+  "completed": 108,
+  "passed": 97
+}

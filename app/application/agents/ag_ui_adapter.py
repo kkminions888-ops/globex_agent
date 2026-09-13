@@ -35,7 +35,8 @@ _TOOL_LABELS = {
     "web_search_tool": "核实外部资料",
     "task_dispatch": "协调专家任务",
     "remember_preference_tool": "保存购物偏好",
-    "forget_preference_tool": "更新购物偏好",
+    "forget_preference_tool": "删除购物偏好",
+    "update_preference_tool": "修改购物偏好",
     "create_order_tool": "准备订单意向",
     "query_order_tool": "查询订单",
     "cancel_order_tool": "准备取消确认",
@@ -45,7 +46,7 @@ _TOOL_LABELS = {
 
 
 class AGUIRunAdapter:
-    def __init__(self, request: RunAgentInput, emit: Callable[[BaseEvent], None]) -> None:
+    def __init__(self, request: RunAgentInput, emit: Callable[[BaseEvent], None], *, authoritative_state: dict | None = None) -> None:
         self.request = request
         self.emit = emit
         last = request.messages[-1] if request.messages else None
@@ -54,11 +55,14 @@ class AGUIRunAdapter:
         self.state: dict[str, Any] = {
             "products": [],
             "confirmations": [],
+            "toolApprovals": [],
             "skillUsages": [],
             "searchCompleted": False,
             "status": "queued",
             "progress": [],
         }
+        if authoritative_state:
+            self.state.update({k:copy.deepcopy(authoritative_state[k]) for k in ("products","searchCompleted","skillUsages") if k in authoritative_state})
         self.error: str | None = None
         self._text_open: set[str] = set()
         self._tool_open: set[str] = set()
@@ -158,7 +162,13 @@ class AGUIRunAdapter:
             reason = str(event.finished_reason).lower()
             if reason in {"error", "interrupted", "exceed_max_iters"}:
                 self.error = "本轮执行未正常完成，请重试或缩小问题范围。"
-        elif kind in {"REQUIRE_USER_CONFIRM", "REQUIRE_EXTERNAL_EXECUTION"}:
+        elif kind == "REQUIRE_USER_CONFIRM":
+            self.state["status"]="awaiting_confirmation"
+            for call in event.tool_calls:
+                item={"id":f"{event.reply_id}:{call.id}","tool":call.name,"label":_TOOL_LABELS.get(call.name,call.name),"arguments":call.input}
+                if not any(p["id"]==item["id"] for p in self.state["toolApprovals"]):self.state["toolApprovals"].append(item)
+            self.snapshot()
+        elif kind == "REQUIRE_EXTERNAL_EXECUTION":
             # 首版不接受 resume，遇到暂停必须如实结束，不能把未执行动作展示成成功。
             self.error = "本次操作需要人工确认或外部执行，当前流式入口尚未接入此续接流程。"
 
@@ -249,6 +259,9 @@ class AGUIRunAdapter:
             self.snapshot()
         elif event.type in {"agent.dispatch", "cache.hit", "model.fallback", "context.compressed", "error"}:
             self.emit(CustomEvent(name=event.type, value=payload))
+            if event.type == "context.compressed":
+                self.state["contextStatistics"] = payload
+                self.snapshot()
 
     def _close_streams(self) -> None:
         # 中断/错误时关闭已打开的消息和参数流，客户端不会残留永久 loading。
@@ -270,11 +283,12 @@ class AGUIRunAdapter:
             *self.request.messages,
             AssistantMessage(id=self._id("final", "answer"), content=final_text),
         ]))
-        self.state["status"] = "completed"
+        self.state["status"] = "awaiting_confirmation" if self.state["toolApprovals"] else "completed"
         self.snapshot()
-        self.emit(RunFinishedEvent(thread_id=self.request.thread_id, run_id=self.request.run_id))
+        outcome={"type":"interrupt","interrupts":[{"id":p["id"],"reason":"tool_confirmation","message":p["label"]} for p in self.state["toolApprovals"]]} if self.state["toolApprovals"] else {"type":"success"}
+        self.emit(RunFinishedEvent(thread_id=self.request.thread_id, run_id=self.request.run_id,outcome=outcome))
 
-    def fail(self, message: str, *, cancelled: bool = False) -> None:
+    def fail(self, message: str, *, cancelled: bool = False, code: str | None = None) -> None:
         if self._completed:
             return
         self._completed = True
@@ -285,4 +299,4 @@ class AGUIRunAdapter:
             if entry["status"] == "running":
                 entry["status"] = "error"
         self.snapshot()
-        self.emit(RunErrorEvent(message=message, code="CANCELLED" if cancelled else "AGENT_ERROR"))
+        self.emit(RunErrorEvent(message=message, code="CANCELLED" if cancelled else (code or "AGENT_ERROR")))

@@ -1,0 +1,79 @@
+{
+  "health": {
+    "status": "ok",
+    "model": "qwen3-max",
+    "runtime": {
+      "app_source_sha256": "1bf0e22fd5f45e66a2f5e7944ea50bf5ec150795830de4649a9f8edf8954b587"
+    },
+    "database": "sqlite",
+    "trade_database": "sqlite",
+    "redis": "disabled",
+    "semantic_cache": false,
+    "queue": "disabled",
+    "queue_depth": 0,
+    "prompt_registry": {
+      "deployment_id": "pd-5920587fdf2542e180f9a98c79cec9f5",
+      "baseline": "p-93793c7894dfb6b41c52275dfe103666f26cdd55eab0aa022bfc026054fa6fbb",
+      "candidate": null,
+      "candidate_bps": 0,
+      "experiment": "bootstrap",
+      "action": "bootstrap",
+      "created_at": "2026-09-09T05:42:42.025441+00:00",
+      "pinned_version": "p-f22c2022836d93d1f05e0794ba41ac2029424a7f3eeb31075deafa0425bea968",
+      "effective_version": {
+        "version_id": "p-f22c2022836d93d1f05e0794ba41ac2029424a7f3eeb31075deafa0425bea968",
+        "content_sha256": "f22c2022836d93d1f05e0794ba41ac2029424a7f3eeb31075deafa0425bea968",
+        "yaml_sha256": "786d184a8562f09cc321e438abf2c80d708e4527f7445502f74aec1fa053b8a5",
+        "toolset_sha256": "15efd422042292fcb05a7739363db68d64bd7cf97651075e4c3f8fe2b81b9f77",
+        "created_at": "2026-09-09T13:23:08.373554+00:00"
+      }
+    }
+  },
+  "history": {
+    "sessions": [
+      {
+        "id": "53f5861c-3ec9-46a1-b077-e6b47e12836b",
+        "title": "我喜欢小香风连衣裙",
+        "updatedAt": 1788940328116,
+        "runId": "0a157c46-4c9f-4365-8c7f-a1e3ab0b434e",
+        "source": "server"
+      },
+      {
+        "id": "015da3fe-1487-4582-b456-12f82d9f4dec",
+        "title": "请整理我的选购需求：通勤背包，300元人民币以内，寄到中国，20到25升、不要真皮，优先黑色。先",
+        "updatedAt": 1788938418279,
+        "runId": "b95c0cd0-489f-4798-b231-5868e804a1b2",
+        "source": "server"
+      },
+      {
+        "id": "06ccd8d8-5049-41fb-a849-893593d40c19",
+        "title": "分别查询 P1001-S2 和 P1003-S1，再按这个顺序展示两件商品。每件预算200元以内",
+        "updatedAt": 1788934791695,
+        "runId": "55149f11-4f44-404e-8d1c-f9f3b08f23a8",
+        "source": "server"
+      },
+      {
+        "id": "a30e87f3-58f5-48a5-9c64-3b5ece677d2d",
+        "title": "对比 P1001-S2 和 P1003-S1，预算每件200元以内，寄到中国。只查询，按商品卡顺",
+        "updatedAt": 1788932655175,
+        "runId": "c211f6b7-906a-4d93-b919-67288ef31e9e",
+        "source": "server"
+      }
+    ]
+  },
+  "preferences": {
+    "preferences": []
+  },
+  "skills": {
+    "skills": []
+  },
+  "orders": {
+    "orders": [],
+    "total": 0,
+    "offset": 0,
+    "limit": 20
+  },
+  "favorites": {
+    "products": []
+  }
+}

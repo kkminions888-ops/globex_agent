@@ -1,0 +1,220 @@
+[
+  {
+    "case_id": "v3-hold-approval",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "deterministic",
+    "repetition": 2,
+    "answer": "当前订单状态为 **已取消（CANCELLED）**，订单号为 ORD-EVAL。  \n所选商品为 **P18333-S1**（Wanderlite 折叠旅行双肩包 35L，石墨黑），当前单价为 **165 CNY**，库存 **12 件**。  \n无长期偏好生效。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 10298,
+        "output_tokens": 12,
+        "elapsed_ms": 1623.759957990842
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10411,
+        "output_tokens": 80,
+        "elapsed_ms": 3312.9209999751765
+      }
+    ],
+    "input_tokens": 20709,
+    "output_tokens": 92,
+    "model_calls": 2,
+    "lookup_calls": 0,
+    "current_calls": 1,
+    "elapsed_ms": 17514,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 17307,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 25300,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 11436,
+      "after_tokens": 11436,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 5,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  },
+  {
+    "case_id": "v3-hold-black",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "layered",
+    "repetition": 1,
+    "answer": "根据第一批商品的历史记录，有黑色规格的商品及其 SKU 如下：\n\n- **P18252**（TrailOx 20寸登机行李箱 铝框款）  \n  - SKU: `P18252-S2`，规格：黑色 / 20寸（历史单价：899.0 CNY）\n\n- **P18253**（Wanderlite 折叠旅行双肩包 35L）  \n  - SKU: `P18253-S1`，规格：石墨黑（历史单价：143 CNY）\n\n- **P18254**（AeroHush 主动降噪蓝牙耳机 Pro）  \n  - SKU: `P18254-S1`，规格：曜石黑（历史单价：219.0 USD）\n\n> 注：以上价格与库存均为历史观察值（2026-09-01T10:01:00Z），不代表当前状态。如需当前信息，请使用 current_business_state 工具核验。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 10329,
+        "output_tokens": 33,
+        "elapsed_ms": 1752.011875010794
+      },
+      {
+        "kind": "business",
+        "input_tokens": 11360,
+        "output_tokens": 240,
+        "elapsed_ms": 5821.74745798693
+      }
+    ],
+    "input_tokens": 21689,
+    "output_tokens": 273,
+    "model_calls": 2,
+    "lookup_calls": 1,
+    "current_calls": 0,
+    "elapsed_ms": 23874,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 23759,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 26255,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 12362,
+      "after_tokens": 12362,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 69,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  },
+  {
+    "case_id": "v3-hold-delete",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "deterministic",
+    "repetition": 2,
+    "answer": "根据当前偏好工具返回的结果，**长期塑料排除偏好已删除，不再要求排除塑料**。因此，您现在无需排除含塑料（或合成聚合物）的商品。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 10377,
+        "output_tokens": 12,
+        "elapsed_ms": 1489.5536249969155
+      },
+      {
+        "kind": "business",
+        "input_tokens": 10490,
+        "output_tokens": 37,
+        "elapsed_ms": 1947.2080830018967
+      }
+    ],
+    "input_tokens": 20867,
+    "output_tokens": 49,
+    "model_calls": 2,
+    "lookup_calls": 0,
+    "current_calls": 1,
+    "elapsed_ms": 20276,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 20166,
+        "compacted": false,
+        "model_calls": 2
+      }
+    ],
+    "final_context_estimated_tokens": 25264,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 11520,
+      "after_tokens": 11520,
+      "archived_results": 0,
+      "summary_changed": false,
+      "elapsed_ms": 5,
+      "status": "noop"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  },
+  {
+    "case_id": "v3-hold-last",
+    "split": "holdout",
+    "mode": "snapshot",
+    "strategy": "deterministic",
+    "repetition": 1,
+    "answer": "最新一批（第24批）第二件商品的 `product_id` 是 **P18233**。",
+    "checks": {
+      "facts": true,
+      "current_lookup": true,
+      "no_error": true
+    },
+    "passed": true,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 10285,
+        "output_tokens": 26,
+        "elapsed_ms": 1661.1047920014244
+      }
+    ],
+    "input_tokens": 10285,
+    "output_tokens": 26,
+    "model_calls": 1,
+    "lookup_calls": 0,
+    "current_calls": 0,
+    "elapsed_ms": 7755,
+    "compactions": [],
+    "round_metrics": [
+      {
+        "elapsed_ms": 6087,
+        "compacted": false,
+        "model_calls": 1
+      }
+    ],
+    "final_context_estimated_tokens": 24873,
+    "last_compaction": {
+      "policy_version": "layered-v3",
+      "reason": "pressure",
+      "before_tokens": 14294,
+      "after_tokens": 9861,
+      "archived_results": 21,
+      "summary_changed": false,
+      "elapsed_ms": 21,
+      "status": "completed"
+    },
+    "final_product_observations": 15,
+    "final_product_duplicate_ratio": 0.33333333333333337
+  }
+]

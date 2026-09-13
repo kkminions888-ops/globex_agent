@@ -8,6 +8,7 @@ create_order_tool / query_order_tool / cancel_order_tool。
 `build_tools()` 同时供 MainAgent 复用——主 Agent 持有同一批业务工具，可以不派发自己单干。
 """
 from __future__ import annotations
+from app.infrastructure.context_governance import ContextAwareAgent
 
 from agentscope.agent import Agent, ReActConfig
 from agentscope.tool import FunctionTool, Toolkit
@@ -79,7 +80,7 @@ class TradeAgentFactory:
     def build(self) -> Agent:
         prompts = load_prompts()["sub_agents"]["trade"]
         return allow_business_tools(
-            Agent(
+            ContextAwareAgent(
                 name=prompts["name"],
                 system_prompt=prompts["system_prompt"],
                 model=create_chat_model(self._settings, throttle=self._throttle, bus=self._bus),

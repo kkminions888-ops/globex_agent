@@ -1,0 +1,121 @@
+{
+  "buyer": "memory-upgrade-verification",
+  "session": "memory-upgrade-final-4c326f163a90400db83a93e06bdb6435",
+  "steps": [
+    {
+      "run_id": "c3515b2c09e74edca0687170f5dfeda6",
+      "text": "请把长期偏好“喜欢深蓝色上衣”修改为“喜欢浅绿色上衣”，使用修改长期偏好工具。",
+      "outcome": {
+        "type": "interrupt",
+        "interrupts": [
+          {
+            "id": "e2afce832dc7462b96b7e02ca900de9f:call_1ea2d3d5237e4929893592db",
+            "reason": "tool_confirmation",
+            "message": "修改购物偏好"
+          }
+        ]
+      },
+      "approvals": [
+        {
+          "id": "e2afce832dc7462b96b7e02ca900de9f:call_1ea2d3d5237e4929893592db",
+          "tool": "update_preference_tool",
+          "label": "修改购物偏好",
+          "arguments": "{\"previous_statement\": \"喜欢深蓝色上衣\", \"kind\": \"like\", \"statement\": \"喜欢浅绿色上衣\", \"memory_id\": \"bfdf966184804280b6dcefd044358110\", \"expected_version\": 1}"
+        }
+      ]
+    },
+    {
+      "run_id": "a3bffa17f6184fe28e3cf9fa64b635e5",
+      "text": "批准本次操作",
+      "outcome": {
+        "type": "success"
+      },
+      "approvals": []
+    },
+    {
+      "run_id": "a3bffa17f6184fe28e3cf9fa64b635e5",
+      "text": "重复请求",
+      "outcome": {
+        "type": "success"
+      },
+      "approvals": []
+    },
+    {
+      "run_id": "c11f37312ffe4298abc363cda0a2dfca",
+      "text": "请删除刚才保存的浅绿色上衣长期偏好，以后不要再记住这个偏好。",
+      "outcome": {
+        "type": "interrupt",
+        "interrupts": [
+          {
+            "id": "a671798920304220bab21dfda8d4ab48:call_3b8dc39da5234da891dfffb1",
+            "reason": "tool_confirmation",
+            "message": "删除购物偏好"
+          }
+        ]
+      },
+      "approvals": [
+        {
+          "id": "a671798920304220bab21dfda8d4ab48:call_3b8dc39da5234da891dfffb1",
+          "tool": "forget_preference_tool",
+          "label": "删除购物偏好",
+          "arguments": "{\"statement\": \"喜欢浅绿色上衣\", \"memory_id\": \"bfdf966184804280b6dcefd044358110\", \"expected_version\": 2}"
+        }
+      ]
+    },
+    {
+      "run_id": "962f370107654373a5cf81ebcd6a2cbb",
+      "text": "批准删除",
+      "outcome": {
+        "type": "success"
+      },
+      "approvals": []
+    }
+  ],
+  "original": {
+    "buyer_id": "memory-upgrade-verification",
+    "kind": "like",
+    "statement": "喜欢深蓝色上衣",
+    "created_at": "2026-09-09T13:16:49.871311+00:00",
+    "memory_id": "bfdf966184804280b6dcefd044358110",
+    "version": 1,
+    "source_kind": "agent",
+    "source_ref": "acb62521-b4eb-4663-b0b5-883fc8b5f763"
+  },
+  "updated": {
+    "buyer_id": "memory-upgrade-verification",
+    "kind": "like",
+    "statement": "喜欢浅绿色上衣",
+    "created_at": "2026-09-09T13:16:49.871311+00:00",
+    "memory_id": "bfdf966184804280b6dcefd044358110",
+    "version": 2,
+    "source_kind": "agent",
+    "source_ref": "memory-upgrade-final-4c326f163a90400db83a93e06bdb6435"
+  },
+  "audit": {
+    "events": [
+      {
+        "action": "create",
+        "version": 1,
+        "source_kind": "agent",
+        "source_ref": "acb62521-b4eb-4663-b0b5-883fc8b5f763",
+        "occurred_at": "2026-09-09T13:16:49.872699+00:00"
+      },
+      {
+        "action": "update",
+        "version": 2,
+        "source_kind": "agent",
+        "source_ref": "memory-upgrade-final-4c326f163a90400db83a93e06bdb6435",
+        "occurred_at": "2026-09-09T13:24:32.906866+00:00"
+      },
+      {
+        "action": "delete",
+        "version": 3,
+        "source_kind": "agent",
+        "source_ref": "memory-upgrade-final-4c326f163a90400db83a93e06bdb6435",
+        "occurred_at": "2026-09-09T13:24:37.729563+00:00"
+      }
+    ]
+  },
+  "passed": true,
+  "deleted_from_authoritative_store": true
+}

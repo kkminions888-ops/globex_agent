@@ -1,0 +1,65 @@
+[
+  {
+    "case_id": "v3-hold-current-sku",
+    "original_repetition": 0,
+    "attempt": 1,
+    "complete_observable": true,
+    "result_sha256": "6fcef5b2b02e33b217f37b88fc92871defa022d6a04c6622517cdd2498cd9dc8",
+    "errors": [],
+    "folder": "infrastructure-recovery/v3-hold-current-sku-original-0-attempt-1"
+  },
+  {
+    "case_id": "v3-hold-long-a",
+    "original_repetition": 0,
+    "attempt": 1,
+    "complete_observable": true,
+    "result_sha256": "a730ccd5bc9a9be762a39d8ddee2b109c53accb6664d527ced649113a45e525b",
+    "errors": [],
+    "folder": "infrastructure-recovery/v3-hold-long-a-original-0-attempt-1"
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "original_repetition": 2,
+    "attempt": 1,
+    "complete_observable": true,
+    "result_sha256": "5d9fd948822d730a76a5b43f40ee88086a4b63d5f5d8fdc3bc63eb50424a763a",
+    "errors": [],
+    "folder": "infrastructure-recovery/v3-hold-long-b-original-2-attempt-1"
+  },
+  {
+    "case_id": "v3-hold-long-d",
+    "original_repetition": 0,
+    "attempt": 1,
+    "complete_observable": true,
+    "result_sha256": "c031d08163047e90e70c58cc33a09cf302a596bfc394d3ef697dacf9de96b950",
+    "errors": [],
+    "folder": "infrastructure-recovery/v3-hold-long-d-original-0-attempt-1"
+  },
+  {
+    "case_id": "v3-hold-long-d",
+    "original_repetition": 1,
+    "attempt": 1,
+    "complete_observable": true,
+    "result_sha256": "b87c4925b53ff7289c5ad2d05906fc1364c6d764dc842bbf189f1f1ab0f8b305",
+    "errors": [],
+    "folder": "infrastructure-recovery/v3-hold-long-d-original-1-attempt-1"
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "original_repetition": 1,
+    "attempt": 1,
+    "complete_observable": true,
+    "result_sha256": "7770d2e2fe3612fd67f3105a0068b333168df86cd2af3b5999f7f5221d1a88f2",
+    "errors": [],
+    "folder": "infrastructure-recovery/v3-hold-negative-original-1-attempt-1"
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "original_repetition": 1,
+    "attempt": 1,
+    "complete_observable": true,
+    "result_sha256": "44e5183903c4eff5a843e196c66df2e9d861af6db1b05a462e356ea44ff96465",
+    "errors": [],
+    "folder": "infrastructure-recovery/v3-hold-pair-original-1-attempt-1"
+  }
+]

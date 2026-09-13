@@ -1,0 +1,77 @@
+{
+  "case_id": "v3-hold-blue",
+  "ratings": [
+    {
+      "response_id": "answer_01",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "结构清晰，准确提供SKU和历史库存，并明确区分历史与当前状态。"
+    },
+    {
+      "response_id": "answer_02",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "简洁直接回答问题，包含完整SKU和库存，并注明为历史数据。"
+    },
+    {
+      "response_id": "answer_03",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 2,
+      "reason": "虽准确回答SKU与库存，但未说明数据为历史信息，缺乏时间状态区分。"
+    },
+    {
+      "response_id": "answer_04",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "信息组织良好，明确标示历史数据，并提示当前状态需另行核验。"
+    },
+    {
+      "response_id": "answer_05",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "内容完整，清晰说明为历史记录，并提示当前数据需核实。"
+    },
+    {
+      "response_id": "answer_06",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "准确回答问题，注明历史来源，并提示当前状态需确认。"
+    },
+    {
+      "response_id": "answer_07",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "结构清晰，信息完整，明确历史快照性质并引导核验当前状态。"
+    },
+    {
+      "response_id": "answer_08",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "条理清楚，包含所需信息，并明确说明为历史数据。"
+    },
+    {
+      "response_id": "answer_09",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "完整回答问题，清晰区分历史记录，并提示使用工具查询当前状态。"
+    }
+  ],
+  "error": null,
+  "usage": [
+    {
+      "kind": "evaluation",
+      "input_tokens": 1801,
+      "output_tokens": 496,
+      "elapsed_ms": 9011.209917021915
+    }
+  ]
+}

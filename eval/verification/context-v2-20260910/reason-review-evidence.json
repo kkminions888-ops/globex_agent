@@ -1,0 +1,24 @@
+{
+  "reviewed_at": "2026-09-10T14:48:04.907174+08:00",
+  "case_id": "v3-hold-negative",
+  "strategy": "layered",
+  "repetition": 0,
+  "original_result_sha256": "0c98206b3083b9cad11204bcd7d35ab2d63a926519590f53388f21ec603177dd",
+  "original_answer": "根据您的历史记录，P18412（TrailOx 20寸登机行李箱 铝框款）被淘汰的原因是：**价格超出您当前335元的预算**。\n\n该商品在寄往德国（DE）时的历史落地总价为 **940.00 CNY**（商品价899.00 CNY + 运费33.00 CNY + 税费8.00 CNY），远高于您的预算上限。",
+  "frozen_expected_reason": "太贵",
+  "verified_fixture": {
+    "product_id": "P18412",
+    "budget_cny": 335,
+    "sku_price_cny": 899,
+    "shipping_cny": 33,
+    "tax_cny": 8,
+    "landed_price_cny": 940,
+    "destination": "DE"
+  },
+  "conclusion": "明确陈述淘汰原因是价格超出当前预算，与太贵同义；数值及商品身份与冻结证据一致。",
+  "scope": "仅显式肯定的原因短语复核；否定、错误商品及其它事实缺失不能因此通过。",
+  "rule_sha256": "5c8b12154ba523d5208eec627cf2320fb40a768b0d302bff1feda6dad5005f41",
+  "unit_tests_passed": 21,
+  "applies_to_all_strategies": true,
+  "primary_grader_and_answers_changed": false
+}

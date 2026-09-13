@@ -1,0 +1,33 @@
+{
+  "fingerprint": "c3bb6889de00bf13dc34b0bba9ec12aa8e6dde5b86e16051b5a750e355b5cc21",
+  "model": "qwen3-max",
+  "split": "dev",
+  "strategies": [
+    "entry",
+    "after_use",
+    "pressure"
+  ],
+  "timing": "after_use",
+  "cases": [
+    "v2-dev-sku",
+    "v2-dev-second",
+    "v2-dev-earliest",
+    "v2-dev-material",
+    "v2-dev-budget",
+    "v2-dev-country",
+    "v2-dev-selected",
+    "v2-dev-stock",
+    "v2-dev-cost",
+    "v2-dev-repeat",
+    "v2-dev-long-a",
+    "v2-dev-long-b"
+  ],
+  "repetitions": 3,
+  "status": "completed",
+  "limitations": "隔离工具夹具，不测试生产检索排序或交易写路径。快照历史固定；long使用真实20轮Agent和两次整理、一次数据库重建。",
+  "cases_sha256": "d621149badb972dab83f3d40e165883b9c6779067cac3ed90c5d53847b758ed5",
+  "baseline": "v1-frozen-lookup-and-legacy-middleware",
+  "code_stable": true,
+  "completed": 108,
+  "passed": 102
+}

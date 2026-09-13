@@ -1,0 +1,512 @@
+{
+  "legacy": {
+    "v3-hold-approval": {
+      "clarity": 3,
+      "fitness": 3,
+      "temporal_clarity": 3,
+      "overall": 3
+    },
+    "v3-hold-black": {
+      "clarity": 3.6666666666666665,
+      "fitness": 3.3333333333333335,
+      "temporal_clarity": 2,
+      "overall": 3.0
+    },
+    "v3-hold-blue": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3.3333333333333335,
+      "overall": 3.7777777777777777
+    },
+    "v3-hold-current-sku": {
+      "clarity": 3.6666666666666665,
+      "fitness": 3.6666666666666665,
+      "temporal_clarity": 4,
+      "overall": 3.7777777777777777
+    },
+    "v3-hold-delete": {
+      "clarity": 3.6666666666666665,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 3.888888888888889
+    },
+    "v3-hold-desc": {
+      "clarity": 4,
+      "fitness": 3,
+      "temporal_clarity": 2.3333333333333335,
+      "overall": 3.111111111111111
+    },
+    "v3-hold-dest": {
+      "clarity": 3.6666666666666665,
+      "fitness": 4,
+      "temporal_clarity": 3.6666666666666665,
+      "overall": 3.7777777777777777
+    },
+    "v3-hold-first": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-injection": {
+      "clarity": 3,
+      "fitness": 3,
+      "temporal_clarity": 4,
+      "overall": 3.3333333333333335
+    },
+    "v3-hold-last": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-long-a": {
+      "clarity": 3.3333333333333335,
+      "fitness": 2.6666666666666665,
+      "temporal_clarity": 3.3333333333333335,
+      "overall": 3.111111111111111
+    },
+    "v3-hold-long-b": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 2,
+      "overall": 3.3333333333333335
+    },
+    "v3-hold-long-c": {
+      "clarity": 3,
+      "fitness": 2,
+      "temporal_clarity": 3,
+      "overall": 2.6666666666666665
+    },
+    "v3-hold-long-d": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-long-e": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-long-f": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-negative": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-old-price": {
+      "clarity": 3.3333333333333335,
+      "fitness": 3.3333333333333335,
+      "temporal_clarity": 3.3333333333333335,
+      "overall": 3.3333333333333335
+    },
+    "v3-hold-order": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-origin": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "overall": 3.6666666666666665
+    },
+    "v3-hold-pair": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "overall": 3.6666666666666665
+    },
+    "v3-hold-price": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-quote-cn": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "overall": 3.6666666666666665
+    },
+    "v3-hold-retrieval": {
+      "clarity": 4,
+      "fitness": 3,
+      "temporal_clarity": 2,
+      "overall": 3
+    },
+    "v3-hold-scope": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-sku-stock": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3.3333333333333335,
+      "overall": 3.7777777777777777
+    },
+    "v3-hold-source": {
+      "clarity": 4,
+      "fitness": 3.6666666666666665,
+      "temporal_clarity": 4,
+      "overall": 3.888888888888889
+    },
+    "v3-hold-tax": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "overall": 3.6666666666666665
+    }
+  },
+  "deterministic": {
+    "v3-hold-approval": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-black": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-blue": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-current-sku": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-delete": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-desc": {
+      "clarity": 3.6666666666666665,
+      "fitness": 4,
+      "temporal_clarity": 3.3333333333333335,
+      "overall": 3.6666666666666665
+    },
+    "v3-hold-dest": {
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "overall": 3.3333333333333335
+    },
+    "v3-hold-first": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-injection": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-last": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-long-a": {
+      "clarity": 3.3333333333333335,
+      "fitness": 2.6666666666666665,
+      "temporal_clarity": 3.3333333333333335,
+      "overall": 3.111111111111111
+    },
+    "v3-hold-long-b": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-long-c": {
+      "clarity": 4,
+      "fitness": 3.6666666666666665,
+      "temporal_clarity": 4,
+      "overall": 3.888888888888889
+    },
+    "v3-hold-long-d": {
+      "clarity": 3.6666666666666665,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 3.888888888888889
+    },
+    "v3-hold-long-e": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-long-f": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-negative": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-old-price": {
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 3.3333333333333335,
+      "overall": 3.4444444444444446
+    },
+    "v3-hold-order": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-origin": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3.6666666666666665,
+      "overall": 3.888888888888889
+    },
+    "v3-hold-pair": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-price": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-quote-cn": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3.3333333333333335,
+      "overall": 3.7777777777777777
+    },
+    "v3-hold-retrieval": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-scope": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-sku-stock": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-source": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 2.3333333333333335,
+      "overall": 3.4444444444444446
+    },
+    "v3-hold-tax": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    }
+  },
+  "layered": {
+    "v3-hold-approval": {
+      "clarity": 3.6666666666666665,
+      "fitness": 3.6666666666666665,
+      "temporal_clarity": 3.6666666666666665,
+      "overall": 3.6666666666666665
+    },
+    "v3-hold-black": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-blue": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-current-sku": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-delete": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-desc": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-dest": {
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "overall": 3.3333333333333335
+    },
+    "v3-hold-first": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-injection": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-last": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-long-a": {
+      "clarity": 3.6666666666666665,
+      "fitness": 3.3333333333333335,
+      "temporal_clarity": 3.6666666666666665,
+      "overall": 3.5555555555555554
+    },
+    "v3-hold-long-b": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-long-c": {
+      "clarity": 3.3333333333333335,
+      "fitness": 2.6666666666666665,
+      "temporal_clarity": 3.3333333333333335,
+      "overall": 3.111111111111111
+    },
+    "v3-hold-long-d": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-long-e": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-long-f": {
+      "clarity": 3.6666666666666665,
+      "fitness": 3.6666666666666665,
+      "temporal_clarity": 3.6666666666666665,
+      "overall": 3.6666666666666665
+    },
+    "v3-hold-negative": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-old-price": {
+      "clarity": 3.6666666666666665,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 3.888888888888889
+    },
+    "v3-hold-order": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-origin": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3.3333333333333335,
+      "overall": 3.7777777777777777
+    },
+    "v3-hold-pair": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-price": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-quote-cn": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3.3333333333333335,
+      "overall": 3.7777777777777777
+    },
+    "v3-hold-retrieval": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-scope": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-sku-stock": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    },
+    "v3-hold-source": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "overall": 3.6666666666666665
+    },
+    "v3-hold-tax": {
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "overall": 4
+    }
+  }
+}

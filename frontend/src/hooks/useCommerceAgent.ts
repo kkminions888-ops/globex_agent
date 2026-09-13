@@ -13,7 +13,7 @@ export function useCommerceAgent() {
     let accessToken = import.meta.env.VITE_API_TOKEN;
     try { accessToken ||= storage?.getItem("globex.access-token"); } catch { /* 可使用构建配置。 */ }
     return new CommerceClient({ url: `${base}/commerce/ag-ui/run`, storage,
-      buyerId: import.meta.env.VITE_BUYER_ID, accessToken });
+      buyerId: import.meta.env.VITE_BUYER_ID || "pao-coder", accessToken });
   });
   const snapshot = useSyncExternalStore(client.subscribe, client.getSnapshot);
   useEffect(() => { void client.initialize(); return () => client.detach(); }, [client]);
@@ -24,6 +24,7 @@ export function useCommerceAgent() {
   return {
     ...snapshot,
     submit: client.submit,
+    resolveToolApproval: client.resolveToolApproval,
     stop: client.stop,
     reset: client.reset,
     setSession: client.setSession,

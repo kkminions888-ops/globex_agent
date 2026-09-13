@@ -6,7 +6,7 @@ from typing import Literal
 from fastapi import HTTPException, Query, Request
 from pydantic import BaseModel, ConfigDict, Field
 
-from app.domain.buyer.preference import BuyerPreference
+from app.domain.buyer.preference import BuyerPreference, MemoryConflict
 from app.infrastructure.buyer_skills import BuyerSkillConflict
 from app.presentation.identity import require_buyer
 
@@ -23,10 +23,14 @@ class PreferenceWrite(BaseModel):
     model_config = ConfigDict(extra="forbid", str_strip_whitespace=True)
     kind: Literal["like","dislike"]
     statement: str = Field(min_length=1,max_length=500)
+    memory_id: str | None = Field(default=None,min_length=1,max_length=128)
+    expected_version: int | None = Field(default=None,ge=1)
     previous_statement: str | None = Field(default=None,min_length=1,max_length=500)
 
 
 class PreferenceDelete(BaseModel):
+    memory_id: str | None = Field(default=None,min_length=1,max_length=128)
+    expected_version: int | None = Field(default=None,ge=1)
     model_config = ConfigDict(extra="forbid")
     statement: str = Field(min_length=1,max_length=500)
 
@@ -88,15 +92,36 @@ def register_buyer_workspace_routes(api, get_orchestrator):
     async def write_preference(body: PreferenceWrite,request: Request,buyer_id: str=Query(min_length=1)):
         buyer=await require_buyer(request,buyer_id)
         _,store=stores()
-        preference=BuyerPreference(buyer,body.kind,body.statement)
-        if body.previous_statement is None:
-            await store.append(preference)
-        elif not await store.replace(buyer,body.previous_statement,preference):
-            raise HTTPException(409,"原偏好已变化，请刷新后再编辑")
-        return {"saved":True}
+        try:
+            preference=BuyerPreference(buyer,body.kind,body.statement)
+            if body.memory_id is not None:
+                if body.expected_version is None:raise HTTPException(422,"编辑需要原版本")
+                await store.replace_by_id(buyer,body.memory_id,body.expected_version,preference)
+            elif body.previous_statement is not None and getattr(store,'semantic_memory',False):
+                raise HTTPException(409,"编辑需要记忆 ID 和版本，请刷新页面")
+            elif body.previous_statement is None:
+                result=await store.append(preference)
+            elif not await store.replace(buyer,body.previous_statement,preference):
+                raise HTTPException(409,"原偏好已变化，请刷新后再编辑")
+            return {"saved":True,"preferences":[asdict(p) for p in await store.list_by_buyer(buyer)]}
+        except MemoryConflict as error:
+            raise HTTPException(409,str(error)) from error
+        except ValueError as error:
+            raise HTTPException(422,str(error)) from error
 
     @api.delete("/commerce/preferences")
     async def delete_preference(body: PreferenceDelete,request: Request,buyer_id: str=Query(min_length=1)):
         buyer=await require_buyer(request,buyer_id)
         _,store=stores()
-        return {"deleted":await store.delete(buyer,body.statement)}
+        try:
+            if getattr(store,'semantic_memory',False):
+                if not body.memory_id or body.expected_version is None:raise HTTPException(409,"删除需要记忆 ID 和版本，请刷新页面")
+                return {"deleted":await store.delete_by_id(buyer,body.memory_id,body.expected_version)}
+            return {"deleted":await store.delete(buyer,body.statement)}
+        except MemoryConflict as error:raise HTTPException(409,str(error)) from error
+
+    @api.get("/commerce/preferences/{memory_id}/history")
+    async def preference_history(memory_id: str,request: Request,buyer_id: str=Query(min_length=1)):
+        buyer=await require_buyer(request,buyer_id)
+        _,store=stores()
+        return {"events":await store.audit(buyer,memory_id)}

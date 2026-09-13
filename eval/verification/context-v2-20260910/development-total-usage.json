@@ -1,0 +1,22 @@
+{
+  "after_use": {
+    "input_tokens": 2392465,
+    "output_tokens": 14927,
+    "total_tokens": 2407392
+  },
+  "entry": {
+    "input_tokens": 2062234,
+    "output_tokens": 13489,
+    "total_tokens": 2075723
+  },
+  "pressure": {
+    "input_tokens": 2315491,
+    "output_tokens": 14658,
+    "total_tokens": 2330149
+  },
+  "post_audit_correction": {
+    "summary_usage_missing": true,
+    "old_cost_totals_valid_for_acceptance": false,
+    "source": "usage-accounting-correction.json"
+  }
+}

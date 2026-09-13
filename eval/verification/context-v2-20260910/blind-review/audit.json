@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "source_hash_verified": true,
+  "rubric_hash_verified": true,
+  "anonymous_payload_fields_verified": true,
+  "answer_mapping_hashes_verified": 251,
+  "rating_ids_and_schema_verified": true,
+  "rated_answers": 251,
+  "errors_preserved": 0,
+  "unknown_not_zero": true,
+  "statistical_unit": "scenario"
+}

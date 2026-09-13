@@ -1,0 +1,107 @@
+{
+  "formal_runs": 360,
+  "development_runs": 108,
+  "holdout_runs": 252,
+  "gate": "BLOCK",
+  "automatic_strategy": "legacy",
+  "selected_candidate_timing": "after_use",
+  "summary": {
+    "deterministic": {
+      "runs": 84,
+      "passed": 81,
+      "success_rate": 0.9642857142857143,
+      "input_tokens": 11058534,
+      "long_input_tokens": 7114531,
+      "model_calls": 909,
+      "lookup_calls": 72,
+      "scenario_latency_p50_ms": 7319,
+      "scenario_latency_p95_ms": 174597,
+      "business_model_latency_p95_ms": 15514.519624994136,
+      "ordinary_round_p95_ms": 29344,
+      "mean_final_context_estimated_tokens": 30531.190476190477,
+      "mean_final_product_duplicate_ratio": 0.4278344671201814,
+      "unknown_usage_runs": 0
+    },
+    "layered": {
+      "runs": 84,
+      "passed": 79,
+      "success_rate": 0.9404761904761905,
+      "input_tokens": 10328299,
+      "long_input_tokens": 8165874,
+      "model_calls": 908,
+      "lookup_calls": 73,
+      "scenario_latency_p50_ms": 7927,
+      "scenario_latency_p95_ms": 108532,
+      "business_model_latency_p95_ms": 3850.684375007404,
+      "ordinary_round_p95_ms": 9761,
+      "mean_final_context_estimated_tokens": 22418.916666666668,
+      "mean_final_product_duplicate_ratio": 0.3869047619047619,
+      "unknown_usage_runs": 0
+    },
+    "legacy": {
+      "runs": 84,
+      "passed": 84,
+      "success_rate": 1,
+      "input_tokens": 13412267,
+      "long_input_tokens": 6199895,
+      "model_calls": 944,
+      "lookup_calls": 127,
+      "scenario_latency_p50_ms": 10611,
+      "scenario_latency_p95_ms": 103487,
+      "business_model_latency_p95_ms": 8594.897917006165,
+      "ordinary_round_p95_ms": 18366,
+      "mean_final_context_estimated_tokens": 43597.04761904762,
+      "mean_final_product_duplicate_ratio": 0.8626133786848073,
+      "unknown_usage_runs": 0
+    }
+  },
+  "long_input_reduction": -0.31709875731766424,
+  "ordinary_round_latency_ratio": 0.5314711967766526,
+  "new_failures": [
+    {
+      "case_id": "hold-old-price",
+      "repetition": 0
+    },
+    {
+      "case_id": "hold-old-price",
+      "repetition": 1
+    },
+    {
+      "case_id": "hold-old-price",
+      "repetition": 2
+    },
+    {
+      "case_id": "hold-sku-stock",
+      "repetition": 2
+    },
+    {
+      "case_id": "hold-blue",
+      "repetition": 1
+    }
+  ],
+  "preflights_not_in_formal_results": [
+    {
+      "phase": "dev-preflight",
+      "completed_rows": 28,
+      "known_input_tokens_lower_bound": 1480643,
+      "interrupted_inflight_usage": null
+    },
+    {
+      "phase": "holdout-harness-preflight",
+      "completed_rows": 29,
+      "known_input_tokens_lower_bound": 4203023,
+      "interrupted_inflight_usage": null
+    },
+    {
+      "phase": "holdout-preflight",
+      "completed_rows": 13,
+      "known_input_tokens_lower_bound": 2011498,
+      "interrupted_inflight_usage": null
+    }
+  ],
+  "unmeasured": {
+    "first_recommendation_accuracy": null,
+    "explanation_blind_review": null,
+    "production_ordinary_round_latency": null
+  }
+}

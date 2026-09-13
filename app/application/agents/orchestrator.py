@@ -30,6 +30,7 @@ from dataclasses import dataclass
 from contextvars import ContextVar
 from typing import Any, Awaitable, Callable, Optional
 
+from app.infrastructure.context_governance import ContextCapacityError
 from agentscope.agent import Agent
 from agentscope.event import (
     ReplyEndEvent,
@@ -64,6 +65,8 @@ from app.infrastructure.eventbus import TradeEventBus, observe_run_events
 from app.infrastructure.budget import init_budget, remember_verified_result, get_budget, rule_fallback_text
 from app.infrastructure.security.output_guard import audit_output
 from app.infrastructure.transient import is_transient_error
+from app.infrastructure.capability_registry import CapabilityVersionChanged
+from app.infrastructure.prompt_registry import PromptContractChanged
 
 from app.infrastructure.operational_metrics import begin_request, finish_request
 
@@ -87,6 +90,7 @@ class SubmitIntentInput:
     currency: str
     raw_query: str
     selected_skill: SelectedSkill | None = None
+    confirmations: tuple[dict, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -94,6 +98,7 @@ class SubmitIntentOutput:
     shopping_session_id: str
     final_text: str
     error: str | None = None
+    error_code: str | None = None
 
 
 def _tasks_snapshot(agent: Agent) -> dict:
@@ -238,6 +243,7 @@ class MainAgentOrchestrator:
         # 开始录事件轨迹（本轮结束后批量入库）
         trace = self._bus.subscribe(session_id) if self._conversation_store else None
         final_text = ""
+        agent = None
         selected_reference = None
         selection_loaded = False
         selection_id = uuid.uuid4().hex if intent.selected_skill else None
@@ -254,6 +260,19 @@ class MainAgentOrchestrator:
         try:
             selected_event("reading")
             agent = await self._sessions.get_or_create(session_id)
+            from app.application.agents.tool_confirmation import awaiting_event, confirmation_inputs
+            pending=awaiting_event(agent)
+            if intent.confirmations:
+                incoming=confirmation_inputs(agent,intent.confirmations)
+                # 原生恢复事件必须直接传给框架，不能伪造成 user 消息或混入上下文提示。
+                final_text=await self._consume_reply(session_id,agent,incoming)
+                self._bus.publish(session_id,"final.result",{"text":final_text})
+                return SubmitIntentOutput(shopping_session_id=session_id,final_text=final_text)
+            if pending is not None:
+                observer=self._native_observer.get()
+                if observer is not None:observer(pending)
+                final_text="请先确认或拒绝待处理的长期记忆操作，再继续对话。"
+                return SubmitIntentOutput(shopping_session_id=session_id,final_text=final_text)
             if intent.selected_skill:
                 factory = getattr(self._sessions, "_main_factory", None)
                 selected_reference, metadata = await preload_selected_skill(intent.selected_skill,
@@ -314,6 +333,12 @@ class MainAgentOrchestrator:
             if use_semantic_cache:
                 await self._remember_cache(intent, final_text, has_history)
             return SubmitIntentOutput(shopping_session_id=session_id, final_text=final_text)
+        except ContextCapacityError:
+            final_text="本次比较的内容超过安全上下文容量。原始记录已保留，请缩小商品范围或分批比较；不会自动重放交易操作。"
+            return SubmitIntentOutput(shopping_session_id=session_id,final_text=final_text,error=final_text,error_code="CONTEXT_CAPACITY_EXCEEDED")
+        except (CapabilityVersionChanged, PromptContractChanged):
+            final_text="选购环境已更新，旧记录仍保留。请在新会话中继续本次需求。"
+            return SubmitIntentOutput(shopping_session_id=session_id,final_text=final_text,error=final_text,error_code="SESSION_VERSION_CHANGED")
         except asyncio.CancelledError:
             if not selection_loaded:
                 selected_event("error", error="所选方案读取已中断，请重新选择后重试。")
@@ -333,6 +358,11 @@ class MainAgentOrchestrator:
                 final_text = self._guard_final_text(session_id, rule_fallback_text())
                 self._bus.publish(session_id, "final.result", {"text": final_text, "budget_fallback": True})
                 return SubmitIntentOutput(shopping_session_id=session_id, final_text=final_text)
+            if intent.confirmations and agent is not None:
+                # 恢复失败时重新投影尚未决议的原生调用，避免页面丢失确认入口。
+                pending=awaiting_event(agent)
+                observer=self._native_observer.get()
+                if pending is not None and observer is not None:observer(pending)
             logger.exception("MainAgent 异常")
             self._bus.publish(session_id, "error", {"message": str(err)})
             final_text = f"[error] {err}"
@@ -348,6 +378,7 @@ class MainAgentOrchestrator:
                             if candidate_projection.has_result:
                                 # 与本轮前端卡片共享投影规则，精确多商品对比不会被最后一个工具结果覆盖。
                                 await self._evidence_store.save(intent.buyer_id, session_id, "products", candidate_projection.result)
+                                await self._evidence_store.save(intent.buyer_id, session_id, "display_batch", candidate_projection.result)
                             await self._evidence_store.save(intent.buyer_id, session_id, "conversation", {"buyer": intent.raw_query, "agent": final_text})
                 else:
                     await self._sessions.invalidate(session_id)
@@ -535,6 +566,9 @@ class MainAgentOrchestrator:
             raise asyncio.CancelledError()
         if reply_error:
             raise RuntimeError(reply_error)
+        from app.application.agents.tool_confirmation import awaiting_event
+        if awaiting_event(agent) is not None:
+            return "这次长期记忆变更还未执行，请在下方确认或拒绝。"
         return final_text
 
     def _observe_for_drift(self, session_id: str, tool_name: Optional[str], event: Any) -> None:
@@ -582,19 +616,14 @@ class MainAgentOrchestrator:
             )
 
     def _publish_compression(self, session_id: str, agent: Agent, summary_before: str | None) -> None:
-        """上下文压缩发生时，2.0 会把早期消息压成摘要写入 AgentState.summary，
-        比对本轮前后的 summary 即可判定并上报。"""
         summary_after = agent.state.summary
-        if not summary_after or summary_after == summary_before:
+        governance = getattr(agent.state, 'middle_context', {}).get('globex_context', {})
+        report = governance.get('last_compaction', {})
+        if summary_after == summary_before and not report.get('archived_results'):
             return
-        self._bus.publish(
-            session_id,
-            "context.compressed",
-            {
-                "summary_length": len(summary_after),
-                "context_messages": len(agent.state.context),
-            },
-        )
+        self._bus.publish(session_id, 'context.compressed', {
+            'summary_length':len(summary_after or ''), 'context_messages':len(agent.state.context),
+            'checkpoint_id':governance.get('checkpoint_id'), **report})
 
     async def _build_inputs(self, intent: SubmitIntentInput, session_id: str) -> list[Msg]:
         """长期记忆读路径：偏好有变化时随本轮输入注入 hint 消息。"""
@@ -612,6 +641,11 @@ class MainAgentOrchestrator:
         if not preferences:
             self._injected_preferences[session_id] = revision
             return [UserMsg("memory_hint", f"当前持久偏好 revision={revision[:16]}：无。历史已撤回偏好不得恢复；本轮用户显式约束仍有效。"), user_msg]
+
+        if getattr(self._preference_store, "semantic_memory", False):
+            # 正向偏好由 AgentScope 中间件召回；硬约束先落实到业务过滤上下文。
+            ShoppingContext.set_excluded_material_tags(material_exclusion_tags(preferences))
+            return [user_msg]
 
         # 按与本轮 query 的相关性挑选：偏好越攒越多时，全量铺进去会把真正相关的那几条稀释。
         # dislike 不参与截断（见 PreferenceSelector 文档字符串）。

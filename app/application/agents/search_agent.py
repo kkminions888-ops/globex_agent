@@ -11,6 +11,7 @@
 `build_tools()` 同时供 MainAgent 复用——主 Agent 持有同一批业务工具，可以不派发自己单干。
 """
 from __future__ import annotations
+from app.infrastructure.context_governance import ContextAwareAgent
 
 from agentscope.agent import Agent, ReActConfig
 from agentscope.rag import KnowledgeBase
@@ -65,7 +66,7 @@ class SearchAgentFactory:
         """
         tools = [
             FunctionTool(
-                build_product_search_tool(self._catalog_search, self._bus, self.evidence_store),
+                build_product_search_tool(self._catalog_search, self._bus, self.evidence_store, self._settings.context_strategy),
                 is_read_only=True,
                 middlewares=self._resilience(),
             ),
@@ -93,7 +94,7 @@ class SearchAgentFactory:
 
     def build(self) -> Agent:
         prompts = load_prompts()["sub_agents"]["search"]
-        return Agent(
+        return ContextAwareAgent(
             name=prompts["name"],
             system_prompt=prompts["system_prompt"],
             model=create_chat_model(self._settings, throttle=self._throttle, bus=self._bus),

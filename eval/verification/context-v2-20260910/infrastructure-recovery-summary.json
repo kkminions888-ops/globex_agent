@@ -1,0 +1,17 @@
+{
+  "primary_runs": 252,
+  "supplementary_runs": 21,
+  "selected_supplementary_runs": 21,
+  "valid_matched_analysis_runs": 252,
+  "primary_gate": "BLOCK",
+  "recovery_gate": "QUALITY_ONLY_COST_INVALID",
+  "primary_total_usage": null,
+  "primary_known_input_tokens_lower_bound": 27964618,
+  "supplementary_input_tokens": 4721893,
+  "supplementary_known_input_tokens_lower_bound": 4721893,
+  "selected_supplementary_input_tokens": 4721893,
+  "unknown_usage_preserved": true,
+  "meaning": "完整成对正确性恢复；usage只有已捕获业务部分，缺少摘要，不能用于成本验收。原网络失败保留。",
+  "cost_accounting_valid": false,
+  "recovery_gate_before_cost_audit": "NEEDS_PRODUCTION_ACCEPTANCE"
+}

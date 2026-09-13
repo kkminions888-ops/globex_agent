@@ -1,0 +1,77 @@
+{
+  "case_id": "v3-hold-sku-stock",
+  "ratings": [
+    {
+      "response_id": "answer_01",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "清晰简洁地回答了问题，但未明确说明是历史快照数据。"
+    },
+    {
+      "response_id": "answer_02",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "条理清晰，准确回答问题，并明确区分历史与当前库存。"
+    },
+    {
+      "response_id": "answer_03",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "信息完整，明确标注观察时间与历史属性，符合时间清晰性要求。"
+    },
+    {
+      "response_id": "answer_04",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "回答贴切、清晰，但未说明数据的时间属性或是否为快照。"
+    },
+    {
+      "response_id": "answer_05",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "内容清晰，明确标注观察时间和历史性质，时间表达清楚。"
+    },
+    {
+      "response_id": "answer_06",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "结构清晰，明确指出是历史快照，时间信息完整。"
+    },
+    {
+      "response_id": "answer_07",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰准确，并额外说明如何查当前库存，时间区分明确。"
+    },
+    {
+      "response_id": "answer_08",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "简洁明了，明确标注观察时间与历史属性。"
+    },
+    {
+      "response_id": "answer_09",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "信息组织良好，明确指出是历史数据，时间属性清楚。"
+    }
+  ],
+  "error": null,
+  "usage": [
+    {
+      "kind": "evaluation",
+      "input_tokens": 1761,
+      "output_tokens": 483,
+      "elapsed_ms": 8659.737167006824
+    }
+  ]
+}

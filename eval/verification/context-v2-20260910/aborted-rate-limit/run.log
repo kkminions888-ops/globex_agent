@@ -1,0 +1,232 @@
+{"case_id": "v3-hold-last", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 10259, "error": null}
+{"case_id": "v3-hold-delete", "strategy": "deterministic", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 20857, "error": null}
+{"case_id": "v3-hold-black", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 21757, "error": null}
+{"case_id": "v3-hold-approval", "strategy": "deterministic", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 20723, "error": null}
+2026-09-10 10:59:33,138 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 8155 exceeds the threshold 4077, activating compression.
+2026-09-10 10:59:43,339 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 10:59:47,982 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 8135 exceeds the threshold 4067, activating compression.
+2026-09-10 11:00:01,518 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:00:17,135 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7607 exceeds the threshold 3803, activating compression.
+2026-09-10 11:00:28,418 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:00:35,763 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7768 exceeds the threshold 3884, activating compression.
+2026-09-10 11:00:47,151 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-long-d", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 50, "input_tokens": 313374, "error": null}
+{"case_id": "v3-hold-long-e", "strategy": "layered", "repetition": 1, "passed": false, "model_calls": 50, "input_tokens": 317563, "error": null}
+{"case_id": "v3-hold-negative", "strategy": "legacy", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 47007, "error": null}
+{"case_id": "v3-hold-order", "strategy": "legacy", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 94087, "error": null}
+2026-09-10 11:01:29,992 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 8178 exceeds the threshold 0, activating compression.
+{"case_id": "v3-hold-dest", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 10281, "error": null}
+2026-09-10 11:01:44,947 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:01:58,156 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 4910 exceeds the threshold 0, activating compression.
+2026-09-10 11:02:07,330 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:02:16,351 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7062 exceeds the threshold 0, activating compression.
+2026-09-10 11:02:29,720 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:02:38,272 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 5331 exceeds the threshold 0, activating compression.
+2026-09-10 11:02:48,925 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-long-d", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 50, "input_tokens": 282826, "error": null}
+{"case_id": "v3-hold-dest", "strategy": "deterministic", "repetition": 2, "passed": true, "model_calls": 1, "input_tokens": 10284, "error": null}
+{"case_id": "v3-hold-long-f", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 50, "input_tokens": 466261, "error": null}
+{"case_id": "v3-hold-old-price", "strategy": "layered", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 29508, "error": null}
+{"case_id": "v3-hold-old-price", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 29498, "error": null}
+2026-09-10 11:03:30,532 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 4876 exceeds the threshold 0, activating compression.
+{"case_id": "v3-hold-last", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 10292, "error": null}
+2026-09-10 11:03:42,941 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:03:59,964 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 4845 exceeds the threshold 0, activating compression.
+2026-09-10 11:04:06,937 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:04:13,833 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 5407 exceeds the threshold 0, activating compression.
+2026-09-10 11:04:22,854 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:04:37,924 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 5258 exceeds the threshold 0, activating compression.
+2026-09-10 11:04:45,980 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-long-a", "strategy": "legacy", "repetition": 1, "passed": true, "model_calls": 50, "input_tokens": 468069, "error": null}
+{"case_id": "v3-hold-black", "strategy": "deterministic", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 21717, "error": null}
+{"case_id": "v3-hold-delete", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 20879, "error": null}
+{"case_id": "v3-hold-long-b", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 51, "input_tokens": 478220, "error": null}
+{"case_id": "v3-hold-retrieval", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 4, "input_tokens": 189333, "error": null}
+2026-09-10 11:05:52,618 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 8079 exceeds the threshold 4039, activating compression.
+2026-09-10 11:05:54,338 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 4876 exceeds the threshold 0, activating compression.
+2026-09-10 11:06:03,880 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:06:06,703 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:06:40,949 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7623 exceeds the threshold 3811, activating compression.
+2026-09-10 11:06:41,803 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 5374 exceeds the threshold 0, activating compression.
+2026-09-10 11:06:50,864 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:06:53,711 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-long-a", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 50, "input_tokens": 313070, "error": null}
+{"case_id": "v3-hold-long-d", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 50, "input_tokens": 468692, "error": null}
+{"case_id": "v3-hold-current-sku", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 20765, "error": null}
+{"case_id": "v3-hold-current-sku", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 20743, "error": null}
+{"case_id": "v3-hold-blue", "strategy": "deterministic", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 21193, "error": null}
+{"case_id": "v3-hold-pair", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 4, "input_tokens": 189048, "error": null}
+{"case_id": "v3-hold-negative", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 1, "input_tokens": 47004, "error": null}
+{"case_id": "v3-hold-black", "strategy": "layered", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 21735, "error": null}
+{"case_id": "v3-hold-approval", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 20733, "error": null}
+{"case_id": "v3-hold-blue", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 21161, "error": null}
+2026-09-10 11:08:05,223 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 8080 exceeds the threshold 0, activating compression.
+{"case_id": "v3-hold-price", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 20720, "error": null}
+2026-09-10 11:08:44,067 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-blue", "strategy": "legacy", "repetition": 1, "passed": true, "model_calls": 3, "input_tokens": 142010, "error": null}
+{"case_id": "v3-hold-current-sku", "strategy": "layered", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 20699, "error": null}
+2026-09-10 11:09:42,369 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 6621 exceeds the threshold 3310, activating compression.
+2026-09-10 11:09:51,817 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7117 exceeds the threshold 0, activating compression.
+2026-09-10 11:09:55,324 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:10:05,555 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:10:37,230 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7557 exceeds the threshold 3778, activating compression.
+{"case_id": "v3-hold-long-e", "strategy": "deterministic", "repetition": 2, "passed": true, "model_calls": 50, "input_tokens": 283339, "error": null}
+{"case_id": "v3-hold-pair", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 30118, "error": null}
+{"case_id": "v3-hold-last", "strategy": "layered", "repetition": 0, "passed": true, "model_calls": 1, "input_tokens": 10288, "error": null}
+2026-09-10 11:10:47,248 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-long-c", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 50, "input_tokens": 283911, "error": null}
+2026-09-10 11:11:20,568 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 4901 exceeds the threshold 0, activating compression.
+{"case_id": "v3-hold-first", "strategy": "deterministic", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 21047, "error": null}
+{"case_id": "v3-hold-source", "strategy": "layered", "repetition": 2, "passed": true, "model_calls": 1, "input_tokens": 10346, "error": null}
+{"case_id": "v3-hold-injection", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 1, "input_tokens": 10546, "error": null}
+{"case_id": "v3-hold-scope", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 1, "input_tokens": 46982, "error": null}
+2026-09-10 11:11:35,046 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-scope", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 1, "input_tokens": 46998, "error": null}
+2026-09-10 11:12:11,255 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 4872 exceeds the threshold 0, activating compression.
+2026-09-10 11:12:12,425 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 5391 exceeds the threshold 0, activating compression.
+2026-09-10 11:12:23,887 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:12:24,200 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-long-f", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 50, "input_tokens": 466982, "error": null}
+2026-09-10 11:12:57,736 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 5366 exceeds the threshold 0, activating compression.
+{"case_id": "v3-hold-retrieval", "strategy": "legacy", "repetition": 1, "passed": true, "model_calls": 5, "input_tokens": 238171, "error": null}
+2026-09-10 11:13:09,856 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-dest", "strategy": "legacy", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 46997, "error": null}
+{"case_id": "v3-hold-price", "strategy": "layered", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 20654, "error": null}
+{"case_id": "v3-hold-order", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 94103, "error": null}
+{"case_id": "v3-hold-long-e", "strategy": "legacy", "repetition": 2, "passed": false, "model_calls": 50, "input_tokens": 467195, "error": null}
+{"case_id": "v3-hold-approval", "strategy": "legacy", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 94099, "error": null}
+{"case_id": "v3-hold-injection", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 10554, "error": null}
+{"case_id": "v3-hold-injection", "strategy": "layered", "repetition": 0, "passed": true, "model_calls": 1, "input_tokens": 10543, "error": null}
+2026-09-10 11:13:55,708 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 8132 exceeds the threshold 4066, activating compression.
+{"case_id": "v3-hold-retrieval", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 4, "input_tokens": 189320, "error": null}
+2026-09-10 11:14:06,937 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:14:36,607 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 8052 exceeds the threshold 0, activating compression.
+2026-09-10 11:14:41,980 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7754 exceeds the threshold 3877, activating compression.
+2026-09-10 11:14:50,061 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:14:52,397 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-long-a", "strategy": "layered", "repetition": 2, "passed": true, "model_calls": 50, "input_tokens": 316153, "error": null}
+2026-09-10 11:15:26,039 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7052 exceeds the threshold 0, activating compression.
+{"case_id": "v3-hold-tax", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 21128, "error": null}
+2026-09-10 11:15:34,001 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-retrieval", "strategy": "layered", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 21138, "error": null}
+{"case_id": "v3-hold-origin", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 21067, "error": null}
+{"case_id": "v3-hold-long-f", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 50, "input_tokens": 279371, "error": null}
+{"case_id": "v3-hold-source", "strategy": "legacy", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 47058, "error": null}
+{"case_id": "v3-hold-origin", "strategy": "deterministic", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 21067, "error": null}
+2026-09-10 11:16:16,812 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 4876 exceeds the threshold 0, activating compression.
+2026-09-10 11:16:25,936 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-blue", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 4, "input_tokens": 189278, "error": null}
+{"case_id": "v3-hold-black", "strategy": "layered", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 21707, "error": null}
+{"case_id": "v3-hold-source", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 10342, "error": null}
+{"case_id": "v3-hold-current-sku", "strategy": "layered", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 20763, "error": null}
+{"case_id": "v3-hold-order", "strategy": "deterministic", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 20719, "error": null}
+{"case_id": "v3-hold-origin", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 21090, "error": null}
+2026-09-10 11:16:57,675 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 5324 exceeds the threshold 0, activating compression.
+{"case_id": "v3-hold-quote-cn", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 4, "input_tokens": 189104, "error": null}
+2026-09-10 11:17:07,273 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-sku-stock", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 29375, "error": null}
+{"case_id": "v3-hold-first", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 21030, "error": null}
+{"case_id": "v3-hold-scope", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 10269, "error": null}
+{"case_id": "v3-hold-long-c", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 50, "input_tokens": 467209, "error": null}
+2026-09-10 11:17:50,333 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 4876 exceeds the threshold 0, activating compression.
+{"case_id": "v3-hold-pair", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 4, "input_tokens": 188964, "error": null}
+2026-09-10 11:17:57,823 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:19:22,952 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 8054 exceeds the threshold 4027, activating compression.
+2026-09-10 11:19:26,837 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 5323 exceeds the threshold 0, activating compression.
+2026-09-10 11:19:36,272 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:19:37,711 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-long-e", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 50, "input_tokens": 464262, "error": null}
+{"case_id": "v3-hold-first", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 21014, "error": null}
+2026-09-10 11:20:13,719 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7606 exceeds the threshold 3803, activating compression.
+{"case_id": "v3-hold-current-sku", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 94121, "error": null}
+{"case_id": "v3-hold-delete", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 20881, "error": null}
+{"case_id": "v3-hold-injection", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 10537, "error": null}
+2026-09-10 11:20:25,217 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-delete", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 94105, "error": null}
+{"case_id": "v3-hold-last", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 1, "input_tokens": 10285, "error": null}
+{"case_id": "v3-hold-approval", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 94101, "error": null}
+{"case_id": "v3-hold-long-f", "strategy": "layered", "repetition": 0, "passed": true, "model_calls": 50, "input_tokens": 313021, "error": null}
+{"case_id": "v3-hold-dest", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 94099, "error": null}
+{"case_id": "v3-hold-pair", "strategy": "layered", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 30036, "error": null}
+{"case_id": "v3-hold-scope", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 1, "input_tokens": 10291, "error": null}
+{"case_id": "v3-hold-origin", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 4, "input_tokens": 189200, "error": null}
+2026-09-10 11:21:32,897 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 8062 exceeds the threshold 0, activating compression.
+2026-09-10 11:21:35,337 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 8081 exceeds the threshold 0, activating compression.
+2026-09-10 11:21:48,117 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:21:51,842 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:22:21,727 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7050 exceeds the threshold 0, activating compression.
+2026-09-10 11:22:28,213 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7292 exceeds the threshold 0, activating compression.
+2026-09-10 11:22:32,141 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:22:39,772 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-long-d", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 50, "input_tokens": 280356, "error": null}
+{"case_id": "v3-hold-origin", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 21139, "error": null}
+{"case_id": "v3-hold-scope", "strategy": "legacy", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 47012, "error": null}
+{"case_id": "v3-hold-long-e", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 50, "input_tokens": 285150, "error": null}
+{"case_id": "v3-hold-approval", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 20691, "error": null}
+{"case_id": "v3-hold-approval", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 94091, "error": null}
+{"case_id": "v3-hold-blue", "strategy": "layered", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 21167, "error": null}
+{"case_id": "v3-hold-approval", "strategy": "layered", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 20697, "error": null}
+{"case_id": "v3-hold-dest", "strategy": "layered", "repetition": 2, "passed": true, "model_calls": 1, "input_tokens": 10281, "error": null}
+{"case_id": "v3-hold-source", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 10348, "error": null}
+{"case_id": "v3-hold-tax", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 21167, "error": null}
+{"case_id": "v3-hold-injection", "strategy": "layered", "repetition": 2, "passed": true, "model_calls": 1, "input_tokens": 10527, "error": null}
+{"case_id": "v3-hold-blue", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 4, "input_tokens": 189282, "error": null}
+{"case_id": "v3-hold-tax", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 4, "input_tokens": 189375, "error": null}
+{"case_id": "v3-hold-approval", "strategy": "layered", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 20675, "error": null}
+{"case_id": "v3-hold-negative", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 1, "input_tokens": 10305, "error": null}
+2026-09-10 11:24:03,363 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 4909 exceeds the threshold 0, activating compression.
+2026-09-10 11:24:13,524 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:24:19,019 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 4876 exceeds the threshold 0, activating compression.
+2026-09-10 11:24:31,797 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:24:43,292 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 5288 exceeds the threshold 0, activating compression.
+2026-09-10 11:24:51,382 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:25:01,531 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 5335 exceeds the threshold 0, activating compression.
+2026-09-10 11:25:11,734 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-long-d", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 50, "input_tokens": 464731, "error": null}
+{"case_id": "v3-hold-long-e", "strategy": "legacy", "repetition": 1, "passed": true, "model_calls": 50, "input_tokens": 466293, "error": null}
+{"case_id": "v3-hold-first", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 3, "input_tokens": 142047, "error": null}
+{"case_id": "v3-hold-injection", "strategy": "deterministic", "repetition": 2, "passed": true, "model_calls": 1, "input_tokens": 10510, "error": null}
+{"case_id": "v3-hold-retrieval", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 21139, "error": null}
+{"case_id": "v3-hold-blue", "strategy": "layered", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 21171, "error": null}
+{"case_id": "v3-hold-blue", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 21175, "error": null}
+{"case_id": "v3-hold-quote-cn", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 21145, "error": null}
+{"case_id": "v3-hold-tax", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 5, "input_tokens": 236768, "error": null}
+{"case_id": "v3-hold-desc", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 1, "input_tokens": 46990, "error": null}
+{"case_id": "v3-hold-injection", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 1, "input_tokens": 47002, "error": null}
+{"case_id": "v3-hold-quote-cn", "strategy": "layered", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 21180, "error": null}
+{"case_id": "v3-hold-price", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 20694, "error": null}
+{"case_id": "v3-hold-last", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 3, "input_tokens": 143025, "error": null}
+{"case_id": "v3-hold-desc", "strategy": "deterministic", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 10478, "error": null}
+{"case_id": "v3-hold-scope", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 10291, "error": null}
+{"case_id": "v3-hold-dest", "strategy": "layered", "repetition": 1, "passed": true, "model_calls": 1, "input_tokens": 10273, "error": null}
+{"case_id": "v3-hold-price", "strategy": "deterministic", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 20728, "error": null}
+{"case_id": "v3-hold-price", "strategy": "legacy", "repetition": 1, "passed": true, "model_calls": 2, "input_tokens": 94110, "error": null}
+{"case_id": "v3-hold-tax", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 21115, "error": null}
+{"case_id": "v3-hold-black", "strategy": "legacy", "repetition": 2, "passed": true, "model_calls": 4, "input_tokens": 191243, "error": null}
+{"case_id": "v3-hold-order", "strategy": "layered", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 20677, "error": null}
+2026-09-10 11:27:13,481 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 8051 exceeds the threshold 0, activating compression.
+2026-09-10 11:27:16,268 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 6696 exceeds the threshold 3348, activating compression.
+2026-09-10 11:27:24,894 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:27:26,899 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:29:18,726 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7704 exceeds the threshold 3852, activating compression.
+2026-09-10 11:29:29,029 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:29:30,547 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 6961 exceeds the threshold 0, activating compression.
+2026-09-10 11:29:51,563 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:30:06,863 | WARNING | _base:__call__:217 - All 1 attempt(s) failed for model qwen3-max.
+2026-09-10 11:30:06,863 | WARNING | _agent:_call_model:2948 - Model qwen3-max exhausted all 1 attempt(s) for agent commerce.
+{"case_id": "v3-hold-long-b", "strategy": "layered", "repetition": 1, "passed": false, "model_calls": 42, "input_tokens": null, "error": "RateLimitError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For details, see: https://help.aliyun.com/zh/model-studio/error-code#token-limit', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}, 'request_id': '1cc4ae45-b64f-9935-bda5-090a51abe1b7'}"}
+{"case_id": "v3-hold-pair", "strategy": "layered", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 30076, "error": null}
+{"case_id": "v3-hold-long-f", "strategy": "deterministic", "repetition": 2, "passed": true, "model_calls": 50, "input_tokens": 278717, "error": null}
+{"case_id": "v3-hold-dest", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 2, "input_tokens": 94119, "error": null}
+{"case_id": "v3-hold-quote-cn", "strategy": "layered", "repetition": 2, "passed": true, "model_calls": 2, "input_tokens": 21176, "error": null}
+{"case_id": "v3-hold-sku-stock", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 4, "input_tokens": 189251, "error": null}
+{"case_id": "v3-hold-dest", "strategy": "layered", "repetition": 0, "passed": true, "model_calls": 1, "input_tokens": 10271, "error": null}
+2026-09-10 11:32:03,333 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 4872 exceeds the threshold 0, activating compression.
+2026-09-10 11:32:13,867 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:32:18,593 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 6617 exceeds the threshold 0, activating compression.
+2026-09-10 11:32:32,038 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:32:41,990 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 5383 exceeds the threshold 0, activating compression.
+2026-09-10 11:32:51,039 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 11:33:05,109 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7021 exceeds the threshold 0, activating compression.
+2026-09-10 11:33:16,063 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-long-a", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 50, "input_tokens": 466814, "error": null}

@@ -1,0 +1,18 @@
+{
+  "health": "ok",
+  "runtime": {
+    "app_source_sha256": "04d29027eb2fab9335398b8eea2f285d3011e6c128e9e2b8a82b497b19ff1b46"
+  },
+  "browser": {
+    "orders_list": true,
+    "details": true,
+    "cancel_confirmation": true,
+    "cancelled_after_reload": true,
+    "console_errors": []
+  },
+  "backend_tests": 938,
+  "frontend_tests": 97,
+  "memory_backend": "sqlite_exact_vector",
+  "agentscope_interface": "MiddlewareBase.on_reply",
+  "mem0_installed": false
+}

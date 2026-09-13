@@ -1,0 +1,32 @@
+{
+  "backend": {
+    "passed": 937,
+    "skipped": 43,
+    "command": ".venv/bin/python -m pytest -q"
+  },
+  "frontend": {
+    "passed": 105,
+    "build": "passed"
+  },
+  "freeze_regressions": {
+    "passed": 44
+  },
+  "report_regressions": {
+    "passed": 12
+  },
+  "browser": {
+    "isolated_buyer": "context-ui-verification",
+    "refresh": true,
+    "server_restart": true,
+    "continuation_facts": true
+  },
+  "strategy": "legacy",
+  "redis_supplement": {
+    "queue_and_restart_passed": 16,
+    "retention_shared_gateway_stream_passed": 28,
+    "binary": "official Redis 7.4.8, isolated Unix sockets"
+  },
+  "protocol_regressions": {
+    "passed": 58
+  }
+}

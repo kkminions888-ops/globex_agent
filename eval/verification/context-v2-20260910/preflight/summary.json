@@ -1,0 +1,156 @@
+[
+  {
+    "scenario": "hold-old-price",
+    "strategy": "layered",
+    "repetition": 1,
+    "passed": true,
+    "association": {
+      "applicable": true,
+      "status": "passed",
+      "fields": [
+        true,
+        true
+      ]
+    },
+    "input_tokens": 26193
+  },
+  {
+    "scenario": "hold-old-price",
+    "strategy": "layered",
+    "repetition": 2,
+    "passed": true,
+    "association": {
+      "applicable": true,
+      "status": "passed",
+      "fields": [
+        true,
+        true
+      ]
+    },
+    "input_tokens": 26208
+  },
+  {
+    "scenario": "hold-old-price",
+    "strategy": "layered",
+    "repetition": 0,
+    "passed": true,
+    "association": {
+      "applicable": true,
+      "status": "passed",
+      "fields": [
+        true,
+        true
+      ]
+    },
+    "input_tokens": 26154
+  },
+  {
+    "scenario": "hold-sku-stock",
+    "strategy": "layered",
+    "repetition": 1,
+    "passed": true,
+    "association": {
+      "applicable": true,
+      "status": "passed",
+      "fields": [
+        true,
+        true
+      ]
+    },
+    "input_tokens": 26572
+  },
+  {
+    "scenario": "hold-sku-stock",
+    "strategy": "layered",
+    "repetition": 2,
+    "passed": true,
+    "association": {
+      "applicable": true,
+      "status": "passed",
+      "fields": [
+        true,
+        true
+      ]
+    },
+    "input_tokens": 26558
+  },
+  {
+    "scenario": "hold-sku-stock",
+    "strategy": "layered",
+    "repetition": 0,
+    "passed": true,
+    "association": {
+      "applicable": true,
+      "status": "passed",
+      "fields": [
+        true,
+        true
+      ]
+    },
+    "input_tokens": 26562
+  },
+  {
+    "scenario": "hold-blue",
+    "strategy": "layered",
+    "repetition": 1,
+    "passed": true,
+    "association": {
+      "applicable": true,
+      "status": "passed",
+      "fields": [
+        true
+      ]
+    },
+    "input_tokens": 19591
+  },
+  {
+    "scenario": "hold-blue",
+    "strategy": "layered",
+    "repetition": 2,
+    "passed": true,
+    "association": {
+      "applicable": true,
+      "status": "passed",
+      "fields": [
+        true
+      ]
+    },
+    "input_tokens": 19607
+  },
+  {
+    "scenario": "hold-blue",
+    "strategy": "layered",
+    "repetition": 0,
+    "passed": true,
+    "association": {
+      "applicable": true,
+      "status": "passed",
+      "fields": [
+        true
+      ]
+    },
+    "input_tokens": 19613
+  },
+  {
+    "scenario": "hold-long-f",
+    "strategy": "legacy",
+    "repetition": 0,
+    "passed": true,
+    "association": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "input_tokens": 340896
+  },
+  {
+    "scenario": "hold-long-f",
+    "strategy": "layered",
+    "repetition": 0,
+    "passed": true,
+    "association": {
+      "applicable": false,
+      "status": "not_applicable"
+    },
+    "input_tokens": 229992
+  }
+]

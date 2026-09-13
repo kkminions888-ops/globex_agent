@@ -1,0 +1,15 @@
+2026-09-10 16:16:00,422 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 6605 exceeds the threshold 0, activating compression.
+2026-09-10 16:16:05,316 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 6566 exceeds the threshold 3283, activating compression.
+2026-09-10 16:16:15,884 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 16:16:16,433 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 16:19:08,024 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7150 exceeds the threshold 0, activating compression.
+2026-09-10 16:19:13,465 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 7515 exceeds the threshold 3757, activating compression.
+2026-09-10 16:19:18,357 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 16:19:24,467 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-long-b", "strategy": "deterministic", "repetition": 0, "passed": true, "model_calls": 50, "input_tokens": 254783, "error": null}
+{"case_id": "v3-hold-long-b", "strategy": "layered", "repetition": 0, "passed": true, "model_calls": 50, "input_tokens": 284850, "error": null}
+2026-09-10 16:23:04,891 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 4845 exceeds the threshold 0, activating compression.
+2026-09-10 16:23:13,928 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+2026-09-10 16:24:40,960 | INFO    | _agent:_compress_context_impl:433 - [AGENT commerce]: Current token count 5322 exceeds the threshold 0, activating compression.
+2026-09-10 16:24:49,947 | INFO    | _agent:_apply_change:617 - [AGENT commerce]: The context compression finished.
+{"case_id": "v3-hold-long-b", "strategy": "legacy", "repetition": 0, "passed": true, "model_calls": 51, "input_tokens": 481199, "error": null}

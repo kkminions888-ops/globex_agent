@@ -1,0 +1,26 @@
+{
+  "changes": [
+    {
+      "file": "app/application/agents/orchestrator.py",
+      "evaluated_sha256": "ff3da21871e59e33f5d42a704a4eec28d0971a1a3d7cdae3113a74a0aaf20e90",
+      "delivery_sha256": "be4f4a97e07e0596c49d4a2f3c070c807759d3488079591d1ae2aaf7e5cce565"
+    },
+    {
+      "file": "app/application/agents/context_service.py",
+      "evaluated_sha256": "ffefe3bb0059f416e7e6214a4f3ca6361d17c66076403aa18026c6d1e67c3189",
+      "delivery_sha256": "5e0a50909746782c1419173db701fa1bd4a3e9b4d053a261259761370e286890"
+    },
+    {
+      "file": "app/presentation/ag_ui_runtime.py",
+      "evaluated_sha256": "07ab12ebd16a48e35d0d5cc128dd5c56d028bc0eeaaf6e97a4e3a6c7a5a0cdb3",
+      "delivery_sha256": "a2f14d95d66b68c5a5224fa7bffb00a37db53f815c53717034eebeec4d35c116"
+    },
+    {
+      "file": "app/presentation/ag_ui.py",
+      "evaluated_sha256": "b3c5996934b37e10572801b59eb4233e8aba49080dd23baaf95df3cdd2576c1b",
+      "delivery_sha256": "cfd33742a373d87ca54f742ef2bb3e4b34f7c48a6ae1bba53f84a2aaf7f94d61"
+    }
+  ],
+  "scope": "仅容量不足/版本变化的生产接口提示；冻结的治理、分页、工作状态和摘要算法没有变更",
+  "verification": "58 passed"
+}

@@ -45,7 +45,12 @@ class EvidenceCompactionMiddleware(MiddlewareBase):
                 archived += 1
         after = await agent.model.count_tokens(**(await agent._prepare_model_input()))
         previous_summary = agent.state.summary
-        await next_handler()  # SDK 重新计数；清理已足够时不会再调用摘要模型。
+        from app.infrastructure.context_usage import context_call_kind
+        kind_token = context_call_kind.set("summary")
+        try:
+            await next_handler()  # SDK 重新计数；清理已足够时不会再调用摘要模型。
+        finally:
+            context_call_kind.reset(kind_token)
         await self.store.save(ctx.buyer_id, ctx.shopping_session_id, "compression", {
             "before_tokens": before, "after_tool_cleanup_tokens": after, "archived_results": archived,
             "summary_changed": agent.state.summary != previous_summary,

@@ -1,0 +1,77 @@
+{
+  "case_id": "v3-hold-old-price",
+  "ratings": [
+    {
+      "response_id": "answer_01",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "清晰列出历史与当前单价，时间明确，贴合问题。"
+    },
+    {
+      "response_id": "answer_02",
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "信息准确但来源标注略显技术化，时间表达稍弱。"
+    },
+    {
+      "response_id": "answer_03",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "结构清晰，时间与价格对应明确，完全贴合问题。"
+    },
+    {
+      "response_id": "answer_04",
+      "clarity": 4,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "简洁准确，但未标明具体时间点，时间清晰度略低。"
+    },
+    {
+      "response_id": "answer_05",
+      "clarity": 3,
+      "fitness": 3,
+      "temporal_clarity": 3,
+      "reason": "多出落地总价和库存，虽有用但偏离核心问题，时间信息缺失。"
+    },
+    {
+      "response_id": "answer_06",
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 3,
+      "reason": "与answer_02重复，来源标注技术化，时间表达不足。"
+    },
+    {
+      "response_id": "answer_07",
+      "clarity": 3,
+      "fitness": 3,
+      "temporal_clarity": 4,
+      "reason": "信息完整但包含额外内容（落地价、库存），略微偏离问题焦点。"
+    },
+    {
+      "response_id": "answer_08",
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "时间明确，但工具来源名称略显冗余，轻微表达负担。"
+    },
+    {
+      "response_id": "answer_09",
+      "clarity": 3,
+      "fitness": 4,
+      "temporal_clarity": 4,
+      "reason": "时间与来源详细，但寄送地和UTC标注对问题非必需，稍显冗余。"
+    }
+  ],
+  "error": null,
+  "usage": [
+    {
+      "kind": "evaluation",
+      "input_tokens": 1527,
+      "output_tokens": 496,
+      "elapsed_ms": 8860.439333016984
+    }
+  ]
+}

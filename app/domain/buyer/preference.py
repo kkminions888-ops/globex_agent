@@ -21,6 +21,10 @@ class BuyerPreference:
     kind: str  # like / dislike
     statement: str  # 一句话偏好陈述，如"不要塑料材质"
     created_at: str = ""
+    memory_id: str = ""
+    version: int = 1
+    source_kind: str = "user"
+    source_ref: str = ""
 
     def __post_init__(self) -> None:
         if self.kind not in VALID_KINDS:
@@ -57,3 +61,7 @@ class PreferenceStore(ABC):
     async def replace(self, buyer_id: str, previous_statement: str, preference: BuyerPreference) -> bool:
         """原子替换原文匹配的偏好，未命中不写入新值。"""
         raise NotImplementedError("当前偏好存储不支持原子替换")
+
+
+class MemoryConflict(ValueError):
+    """记忆版本过期或存在需要用户明确解决的冲突。"""

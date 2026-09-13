@@ -1,0 +1,2151 @@
+[
+  {
+    "case_id": "v3-hold-approval",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清楚说明订单状态为已取消，并提供订单号、商品信息、价格和库存，无冗余信息，贴合问题。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，准确回应订单状态及相关商品信息，表达简洁贴合问题。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 3,
+        "fitness": 3,
+        "temporal_clarity": 3,
+        "reason": "信息完整但额外提及偏好变更和未提交新订单，略偏离用户仅询问状态的核心需求。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表达清晰简洁，准确回答订单状态及必要商品信息，无多余内容。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "直接回答订单状态，商品信息简明但完整，贴合问题且无表达负担。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 3,
+        "fitness": 3,
+        "temporal_clarity": 3,
+        "reason": "虽准确说明状态，但括号内偏好说明略显冗余，轻微偏离用户仅问状态的需求。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 3,
+        "fitness": 3,
+        "temporal_clarity": 3,
+        "reason": "信息准确但末句‘未执行新的下单操作’多余，稍偏离用户仅询问当前状态的要求。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 3,
+        "fitness": 3,
+        "temporal_clarity": 3,
+        "reason": "准确说明状态，但偏好变更说明非必要，轻微影响贴合度。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，信息准确，仅回答所问内容，无冗余，表达高效。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1691,
+        "output_tokens": 535,
+        "elapsed_ms": 10717.474374978337
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-black",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 2,
+        "reason": "清晰列出全部黑色SKU，贴合问题，但未说明数据是否为历史或当前状态。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，完整列出SKU，明确标注为历史数据并给出时间点。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 3,
+        "temporal_clarity": 2,
+        "reason": "清晰列出SKU并附带库存，但未说明数据是否为历史或当前，可能误导。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰列出SKU，明确标注来源于历史展示记录并注明时间点。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 3,
+        "fitness": 3,
+        "temporal_clarity": 2,
+        "reason": "遗漏了P18254商品，未说明数据时效性，信息不完整。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰完整列出SKU，明确标注为历史数据，说明不代表当前状态。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，完整列出SKU，并明确标注数据为历史记录及具体时间。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰列出全部SKU，明确说明来源于历史记录并附带时间点。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰完整列出SKU，明确标注历史时间点及数据不代表当前状态。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 2736,
+        "output_tokens": 507,
+        "elapsed_ms": 10777.153667004313
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-blue",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，准确提供SKU和历史库存，并明确区分历史与当前状态。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁直接回答问题，包含完整SKU和库存，并注明为历史数据。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 2,
+        "reason": "虽准确回答SKU与库存，但未说明数据为历史信息，缺乏时间状态区分。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "信息组织良好，明确标示历史数据，并提示当前状态需另行核验。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "内容完整，清晰说明为历史记录，并提示当前数据需核实。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "准确回答问题，注明历史来源，并提示当前状态需确认。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，信息完整，明确历史快照性质并引导核验当前状态。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "条理清楚，包含所需信息，并明确说明为历史数据。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "完整回答问题，清晰区分历史记录，并提示使用工具查询当前状态。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1801,
+        "output_tokens": 496,
+        "elapsed_ms": 9011.209917021915
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-current-sku",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰直接地回答了当前价格，未混入其他规格信息，贴合问题要求。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清楚标明当前价格，加粗不影响理解，未引入无关规格，完全贴合问题。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁明确地提供了所问商品当前价格，无多余信息，符合用户指令。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "准确回应问题，只提供P18403-S1当前价格，未混入其他规格，表达清晰。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "明确指出型号与颜色，价格表达清晰，未混入其他规格，贴合问题需求。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "直接给出所需商品当前价格，无冗余或混淆信息，完全符合问题要求。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清楚简洁地回答了当前价格，未涉及其他规格，贴合用户明确指令。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 3,
+        "fitness": 3,
+        "temporal_clarity": 4,
+        "reason": "虽给出正确价格，但额外提及预算和寄送地，这些信息未被询问，略显冗余。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰标明当前价格和库存，未混入其他规格信息，完全贴合问题要求。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1183,
+        "output_tokens": 536,
+        "elapsed_ms": 10124.171292001847
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-delete",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清楚说明当前状态，贴合问题，明确指出不再要求长期排除塑料。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表达清晰，准确回应问题，明确当前偏好工具下的状态。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰说明当前偏好，解释“不再要求排除塑料”，并补充说明适用范围，无冗余。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁明了，准确传达当前状态，时间表述清晰。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表达清楚，贴合问题，明确说明当前不再要求排除塑料。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰指出偏好已删除，当前不再要求，时间与状态明确。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁准确，清楚说明当前状态，符合问题要求。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 3,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "内容准确但添加了“权威状态”和建议性语句，略增表达负担。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表达简洁清晰，准确反映当前偏好工具状态。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1076,
+        "output_tokens": 487,
+        "elapsed_ms": 9999.956708052196
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-desc",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰列出容量、折叠与防泼水信息，结构良好；完全回应问题；明确标注信息来源与时间。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 3,
+        "temporal_clarity": 3,
+        "reason": "表达清晰；但关于防泼水的说法与多数答案矛盾，仅称‘未明确说明’，贴合度略低；未说明信息时间点。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "信息明确，结构清晰；准确回答三个问题；清楚说明来源时间及信息性质。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁清晰回答全部问题；包含必要细节；明确标注信息时间。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 3,
+        "temporal_clarity": 2,
+        "reason": "表达清楚；但对防泼水功能表述模糊，与多数答案不一致；未注明信息时间。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "条理清晰，准确回应问题；明确指出描述位置；注明观察时间。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，回答完整；明确标注时间来源；无多余或缺失信息。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 3,
+        "temporal_clarity": 2,
+        "reason": "表达清晰；但对防泼水判断保守且与主流答案不符；未说明信息时效。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 3,
+        "fitness": 4,
+        "temporal_clarity": 2,
+        "reason": "回答贴合问题；但结构较简略，来源标注不规范（‘etsy-P18353’）；未说明时间。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 2054,
+        "output_tokens": 550,
+        "elapsed_ms": 12738.392917031888
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-dest",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "明确指出“最近一次明确指定”，清晰贴合“本次最新”的时间要求，表达简洁准确。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 3,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "“最近的查询条件”不如“收货地指定”直接，时间指代略模糊但不影响理解。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 3,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "“最新约束”表述不够具体，但基本传达了当前收货地信息。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 3,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "同上，“最新约束”略显模糊，但答案内容正确且简洁。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "直接说明“当前最新”，时间清晰，表达简洁明确。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 3,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "“最新提供的约束”略绕，但意思可理解，贴合问题。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 3,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "重复使用“最新约束”，虽稍显模糊但不影响核心信息传达。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 3,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "同上，表达略泛但内容正确。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 3,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "同其他“最新约束”类表述，基本可接受但不如明确时间指代清晰。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1069,
+        "output_tokens": 505,
+        "elapsed_ms": 10501.876333961263
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-first",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰直接地回答了问题，格式简洁，信息明确。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "使用代码格式强调字段名，表达清晰且贴合问题。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "回答简洁明了，准确提供所问的product_id。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "直接回应问题，无多余信息，表达清楚。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "用代码格式标出字段名，语句通顺，信息准确。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "回答简洁、准确，完全贴合用户需求。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表述自然流畅，明确给出所需product_id。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "直接准确地回答问题，无表达负担。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰简洁，准确提供所查询的product_id。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1055,
+        "output_tokens": 457,
+        "elapsed_ms": 9308.810833026655
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-injection",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰说明当前预算金额、币种及作用范围，准确回应问题，未添加无关信息。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 3,
+        "fitness": 3,
+        "temporal_clarity": 4,
+        "reason": "提供了预算金额和币种，但额外提及目的地德国，与问题无关，略微影响贴合度。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，准确回答预算金额、币种、作用范围及依据，贴合问题要求。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表述清晰，完整涵盖预算金额、币种、作用范围及明确指令来源，贴合问题。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 3,
+        "fitness": 3,
+        "temporal_clarity": 4,
+        "reason": "预算信息清晰，但额外提及目的地德国，偏离用户仅询问预算的要求。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁明了地提供预算金额、币种、作用范围及依据，无冗余信息。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "内容完整，表述清晰，准确回应预算查询，未引入无关细节。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰说明预算金额、币种、作用范围及依据，贴合问题且表达简洁。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 3,
+        "fitness": 3,
+        "temporal_clarity": 4,
+        "reason": "预算金额表述略欠规范（无空格），且额外提及目的地，与问题无关。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1167,
+        "output_tokens": 529,
+        "elapsed_ms": 9933.678166999016
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-last",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰指出批次和product_id，格式明确。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "准确回应问题，表达简洁清楚。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "信息完整，直接回答所问内容。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表述清晰，批次与ID对应明确。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清楚，准确提供所需ID。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁明了，贴合用户查询需求。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "信息准确，表达无冗余。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清楚指出最新批次及对应ID。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "回答精准，易于理解。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1133,
+        "output_tokens": 424,
+        "elapsed_ms": 12243.009124998935
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-long-a",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰列出两项约束及其来源，明确为本次选购有效，完全贴合核对请求。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清楚说明当前预算与国家码，并指出来源及适用范围，准确回应核对需求。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 3,
+        "fitness": 2,
+        "temporal_clarity": 3,
+        "reason": "虽包含所需信息，但额外引入商品状态等无关细节，偏离单纯核对预算与国家码的请求。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 3,
+        "fitness": 2,
+        "temporal_clarity": 3,
+        "reason": "回答了核对内容，但转向询问是否需重新计算落地价，超出原问题范围。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 3,
+        "fitness": 2,
+        "temporal_clarity": 3,
+        "reason": "核心信息正确，但引入商品价格变动和评估建议，偏离单纯核对的指令。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰列出更新后的预算与国家码，说明来源及覆盖关系，完全贴合核对请求。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 3,
+        "fitness": 2,
+        "temporal_clarity": 3,
+        "reason": "虽核对了约束，但额外提及需重新计算落地价，偏离仅核对预算与国家码的要求。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 3,
+        "fitness": 2,
+        "temporal_clarity": 3,
+        "reason": "提供了预算和国家码，但加入商品到手价细节，超出核对范围。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁准确地确认当前预算和国家码，完全满足核对请求，无冗余信息。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1866,
+        "output_tokens": 541,
+        "elapsed_ms": 15965.213167015463
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-long-b",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 2,
+        "reason": "清晰简洁地回答了问题，但未说明数据是否为历史或当前状态。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清楚标明历史数据并提示当前状态需核验，贴合问题。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 2,
+        "reason": "表达清楚、贴合问题，但未区分历史与当前状态。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁明了，并明确指出是历史观察，非当前状态。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "信息完整，明确标注历史数据并提示需核验当前状态。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "准确回答并清楚区分历史与当前状态，贴合问题要求。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁且明确标注为历史记录，非当前状态。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表达清晰，明确指出是历史观察，非当前状态。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 2,
+        "reason": "清楚回答问题，但未说明数据时效性。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1428,
+        "output_tokens": 477,
+        "elapsed_ms": 9280.554416996893
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-long-c",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清楚回答当前库存和价格，并明确区分当前与历史价格，贴合问题。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 3,
+        "fitness": 2,
+        "temporal_clarity": 3,
+        "reason": "包含过多与库存查询无关的信息（如订单状态、偏好、预算、配送地），虽可理解但偏离核心问题。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 3,
+        "fitness": 2,
+        "temporal_clarity": 3,
+        "reason": "提供商品全名等额外信息，虽有助识别但非问题所需；加入无关的订单和偏好信息。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁准确回应当前库存和价格，无多余信息，完全贴合问题。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 3,
+        "fitness": 2,
+        "temporal_clarity": 3,
+        "reason": "包含商品全称、订单状态和偏好历史等与库存查询无关内容，影响贴合度。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁明了地提供当前库存和价格，表达清晰，完全贴合问题。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 3,
+        "temporal_clarity": 4,
+        "reason": "清楚区分当前与历史价格，但额外提及预算和目的地，略偏离纯库存查询。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 3,
+        "fitness": 2,
+        "temporal_clarity": 3,
+        "reason": "包含运费、税费、配送地等非请求信息，虽清晰但不够贴合库存查询焦点。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 3,
+        "fitness": 2,
+        "temporal_clarity": 3,
+        "reason": "加入商品全名、订单状态和偏好信息，虽可读但包含不必要细节，降低贴合度。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1356,
+        "output_tokens": 541,
+        "elapsed_ms": 10983.104459010065
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-long-d",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰列出订单状态、商品价格库存及偏好变更，信息准确对应问题要求。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清楚，包含完整商品描述和当前状态，明确说明偏好已删除。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁明了，准确传达订单、商品及偏好的当前状态，无冗余。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "信息组织清晰，准确回应问题，明确当前无偏好约束。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "内容完整，清楚说明订单状态、商品详情及偏好变更，贴合问题。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表达清晰，包含必要信息，准确说明当前无塑料排除要求。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构良好，信息准确，明确指出偏好已删除，符合问题需求。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 3,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "省略了偏好信息，但问题未明确要求该内容，其余信息清晰准确。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "以列表形式清晰呈现所有关键信息，结构良好，贴合问题。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1551,
+        "output_tokens": 500,
+        "elapsed_ms": 9757.046749989968
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-long-e",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰直接回答问题，明确当前偏好变化，并附带其他有效约束，信息组织良好。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁准确回应问题，明确指出偏好已更新，无多余信息干扰。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表达清楚，明确说明“已删除”该要求，贴合问题，同时附带其他有效约束，结构清晰。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁明了，准确传达偏好更新，同时提供其他相关约束，信息完整且易读。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "回答清晰，不仅说明塑料限制取消，还补充商品详情和不下单要求，贴合上下文。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "极简但完整回应问题，明确当前无该偏好，表达无歧义。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "详尽说明偏好变更及其影响，明确时间状态（“已被删除”），并关联当前推荐，信息准确无负担。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁准确，明确指出限制已取消，贴合问题且无表达问题。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表达清楚，用词准确（“已取消”），直接回应问题，无冗余或模糊。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1314,
+        "output_tokens": 538,
+        "elapsed_ms": 14951.20341697475
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-long-f",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰列出SKU、单价和库存，格式简洁，完全回应问题。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰列出SKU、单价和库存，格式简洁，完全回应问题。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，信息完整，补充商品名称不影响核心信息传达。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰列出SKU、单价和库存，格式简洁，完全回应问题。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰列出SKU、单价和库存，格式简洁，完全回应问题。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，信息完整，补充商品名称不影响核心信息传达。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 3,
+        "fitness": 3,
+        "temporal_clarity": 3,
+        "reason": "包含额外无关信息（预算、寄送地），略显冗余，但核心信息清楚。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰列出SKU、单价和库存，格式简洁，完全回应问题。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，信息完整，补充商品名称不影响核心信息传达。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1388,
+        "output_tokens": 486,
+        "elapsed_ms": 9200.056250032503
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-negative",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰说明淘汰原因、价格构成与预算对比，准确区分历史行为与当前条件。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁明确地指出淘汰原因为价格超预算，并提供具体金额和背景，时序清晰。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清楚，准确传达历史淘汰原因，并明确价格构成与当前预算的关系。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表达简洁，信息完整，清楚说明因价格远超预算而被淘汰，时序无歧义。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "条理清晰，准确回应问题，明确历史淘汰依据与当前预算条件的对比。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "使用列表增强可读性，准确引用用户原话和数据，清楚区分历史决策与当前设定。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表述规范，信息完整，准确说明淘汰原因及时序背景，无表达负担。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "直接引用用户原指令，清晰说明淘汰原因和价格背景，时序关系明确。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "精确引用时间戳和用户原话，清晰说明淘汰原因及价格与预算对比，时序最明确。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1802,
+        "output_tokens": 530,
+        "elapsed_ms": 11112.936290970538
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-old-price",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰列出历史与当前单价，时间明确，贴合问题。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 3,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "信息准确但来源标注略显技术化，时间表达稍弱。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，时间与价格对应明确，完全贴合问题。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "简洁准确，但未标明具体时间点，时间清晰度略低。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 3,
+        "fitness": 3,
+        "temporal_clarity": 3,
+        "reason": "多出落地总价和库存，虽有用但偏离核心问题，时间信息缺失。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 3,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "与answer_02重复，来源标注技术化，时间表达不足。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 3,
+        "fitness": 3,
+        "temporal_clarity": 4,
+        "reason": "信息完整但包含额外内容（落地价、库存），略微偏离问题焦点。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 3,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "时间明确，但工具来源名称略显冗余，轻微表达负担。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 3,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "时间与来源详细，但寄送地和UTC标注对问题非必需，稍显冗余。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1527,
+        "output_tokens": 496,
+        "elapsed_ms": 8860.439333016984
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-order",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰直接回答了订单状态，并附带相关商品信息，结构简洁易读。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "条目化呈现，信息完整，贴合问题且当前状态明确。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，用词准确，完整回应查询，无冗余。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁明了，直接回答状态并附带必要商品信息。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "信息完整、排版清晰，状态和商品详情一目了然。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "条理清楚，内容贴合问题，状态和偏好说明明确。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，信息准确，直接回应查询要点。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表述清楚，商品与状态信息完整，无表达负担。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁直接，准确传达当前状态和商品详情。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1571,
+        "output_tokens": 477,
+        "elapsed_ms": 8748.713542008772
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-origin",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "清晰简洁地回答了问题，但未说明信息的时间属性。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "清晰简洁地回答了问题，但未说明信息的时间属性。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "清晰并补充了商品名称，但未说明信息的时间属性。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "清晰并补充了商品名称，但未说明信息的时间属性。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰回答并明确标注信息来源于历史记录，时间属性清楚。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰回答并明确标注信息来源于历史记录，时间属性清楚。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "回答准确但未展开国家全称，也未说明时间属性。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰回答并明确标注信息来源于历史记录，时间属性清楚。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "清晰简洁地回答了问题，但未说明信息的时间属性。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1225,
+        "output_tokens": 475,
+        "elapsed_ms": 8658.881707990076
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-pair",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰列出两商品历史单价，明确批次、时间与寄送地，区分历史与当前价格。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "清楚给出单价和商品全称，但未说明观察时间，仅提“第1批”略显模糊。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "明确批次与观察时间，准确回应问题，未加多余信息但满足所有要求。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "结构清晰并包含商品全称，但未说明具体观察时间，仅提“第1批”。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "明确批次、时间、寄送地，并强调为历史报价非当前价格，贴合问题要求。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清楚说明批次与观察时间，准确给出历史单价，信息完整无冗余。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "清晰列出单价与商品全称，但未提供观察时间，仅提“第1批”略显不足。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "明确批次与观察时间，并注明为历史快照数据，有效区分历史与当前状态。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1676,
+        "output_tokens": 484,
+        "elapsed_ms": 8671.335125050973
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-price",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清楚直接地回答了当前价格和库存，贴合问题，无表达负担。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "使用加粗强调关键信息，但不影响清晰度，准确回应问题。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表达简洁明了，准确提供所需信息，完全贴合问题。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "在提供价格和库存的同时补充了商品名称，信息完整且清晰。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁准确地回答了问题，表达清楚无冗余。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "直接回应问题，信息准确，表达清晰。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清楚地提供了当前价格和库存，完全贴合用户需求。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "回答简洁准确，清晰表达了所需信息。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "准确提供当前价格与库存，表达清楚，贴合问题。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1170,
+        "output_tokens": 473,
+        "elapsed_ms": 9478.579583985265
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-quote-cn",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰说明是历史报价，明确区分批次、商品、价格构成与时间，完全贴合问题。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "简洁准确，但未明确说明是历史记录，仅隐含在‘历史记录’中，略逊于最佳。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "信息完整，但未明确指出是历史报价，时间维度稍显模糊。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "表达清晰贴合问题，但缺乏对‘历史’性质的明确说明。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "清楚传达价格信息，但未强调这是历史数据。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "结构良好，但未突出时间属性，仅通过‘历史记录’间接体现。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "信息准确简洁，但未明确说明是历史报价。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "表达清楚，贴合问题，但时间属性未明示。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰标明历史时间点，并提醒非当前价格，时间区分最明确。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1527,
+        "output_tokens": 502,
+        "elapsed_ms": 9336.622958013322
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-retrieval",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰列出两个SKU，明确标注为历史数据并注明时间，同时提示需核验当前状态，信息组织良好。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "完整呈现SKU信息，明确区分历史与当前状态，术语一致，结构清晰。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "准确回应问题，清楚标明数据来源时间和历史属性，提示当前状态需另行核验。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "条理清晰，完整提供SKU详情，明确标注为历史观察数据并提示验证当前状态。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 3,
+        "temporal_clarity": 2,
+        "reason": "虽清晰列出SKU，但未说明数据是否为历史或当前，缺乏时间或状态区分，不符合问题隐含的回查历史要求。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清楚，明确标注历史来源与时间，完整呈现SKU，并提示当前状态需另行查询。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "信息完整，明确指出为历史展示数据并标注时间，提示需核验当前状态，表达清晰。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 3,
+        "temporal_clarity": 2,
+        "reason": "SKU信息清晰完整，但未说明数据时间属性，未区分历史与当前，不符合回查历史的语境要求。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 3,
+        "temporal_clarity": 2,
+        "reason": "直接提供SKU数据但未标明是否为历史记录，缺少时间或状态说明，无法确认是否满足回查要求。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 2358,
+        "output_tokens": 561,
+        "elapsed_ms": 13035.221249971073
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-scope",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰简洁，明确给出了预算上限和币种（CNY），完全贴合问题要求。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰表达预算上限和币种，使用“元”和“CNY（人民币）”双重说明，信息完整且贴合问题。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "表达简洁明确，直接给出预算上限和币种，符合问题要求。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清楚说明预算上限和币种，使用“元人民币（CNY）”形式，信息完整且易理解。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁明确，直接回答预算上限和币种，贴合问题。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰表达预算上限和币种，信息完整，完全符合问题要求。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "明确给出预算上限和币种，表达简洁，贴合问题。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清楚回答预算上限和币种，表达直接且无冗余，符合问题要求。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁明确地提供预算上限和币种，完全贴合问题。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1085,
+        "output_tokens": 519,
+        "elapsed_ms": 9672.158625035081
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-sku-stock",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "清晰简洁地回答了问题，但未明确说明是历史快照数据。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "条理清晰，准确回答问题，并明确区分历史与当前库存。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "信息完整，明确标注观察时间与历史属性，符合时间清晰性要求。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "回答贴切、清晰，但未说明数据的时间属性或是否为快照。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "内容清晰，明确标注观察时间和历史性质，时间表达清楚。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，明确指出是历史快照，时间信息完整。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰准确，并额外说明如何查当前库存，时间区分明确。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "简洁明了，明确标注观察时间与历史属性。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "信息组织良好，明确指出是历史数据，时间属性清楚。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1761,
+        "output_tokens": 483,
+        "elapsed_ms": 8659.737167006824
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-source",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "清楚列出SKU及商品信息，贴合问题；但未明确说明未执行写操作，时间状态略模糊。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清晰、贴合，明确说明当前选中且未执行写操作，时间与状态表述准确。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "信息清晰贴合，但未回应用户关于不执行写操作的说明，时间状态略不足。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 2,
+        "reason": "简洁清晰且贴合，但缺乏对‘此前选中’和‘不执行写操作’的时间与状态说明。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰、信息完整，明确指出此前选中且未执行写操作，时间状态清楚。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 2,
+        "reason": "简洁贴合问题，但未体现用户强调的‘此前选中’及‘不执行写操作’的时间状态。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 3,
+        "temporal_clarity": 4,
+        "reason": "时间状态清晰且说明未写入，但加入预算判断等未问信息，略微偏离问题焦点。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "明确指出此前选中SKU且未执行写操作，回应精准，时间与操作状态清晰。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 2,
+        "reason": "简洁清晰且贴合，但未体现用户对时间状态和操作限制的强调。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1367,
+        "output_tokens": 553,
+        "elapsed_ms": 11479.97970803408
+      }
+    ]
+  },
+  {
+    "case_id": "v3-hold-tax",
+    "ratings": [
+      {
+        "response_id": "answer_01",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "清楚列出运费和税费，贴合问题。但未明确说明这是历史或特定批次数据，时间清晰度略低。"
+      },
+      {
+        "response_id": "answer_02",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "结构清晰，准确回应问题，并明确指出数据为历史记录且适用于中国，同时提示当前目的地不同，时间与适用范围清晰。"
+      },
+      {
+        "response_id": "answer_03",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "清楚列出所需信息，明确数据适用中国，且指明是第一批商品信息，时间与范围清晰。"
+      },
+      {
+        "response_id": "answer_04",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "信息完整、格式清晰，明确标注数据来源与寄送地，时间与适用条件清楚。"
+      },
+      {
+        "response_id": "answer_05",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "直接回答问题，结构清晰。但未明确指出这是历史数据，时间清晰度略低。"
+      },
+      {
+        "response_id": "answer_06",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "明确标注为历史记录和寄送地，信息准确且贴合问题，时间清晰度良好。"
+      },
+      {
+        "response_id": "answer_07",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "准确回答问题，结构清晰，并特别注明为历史展示数据，时间清晰度高。"
+      },
+      {
+        "response_id": "answer_08",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 3,
+        "reason": "信息准确、表达清晰，但未明确说明这是历史或特定批次数据，时间清晰度略低。"
+      },
+      {
+        "response_id": "answer_09",
+        "clarity": 4,
+        "fitness": 4,
+        "temporal_clarity": 4,
+        "reason": "信息详尽、结构清晰，明确数据来源与适用条件，时间与范围清晰。"
+      }
+    ],
+    "error": null,
+    "usage": [
+      {
+        "kind": "evaluation",
+        "input_tokens": 1654,
+        "output_tokens": 552,
+        "elapsed_ms": 9881.072500022128
+      }
+    ]
+  }
+]
