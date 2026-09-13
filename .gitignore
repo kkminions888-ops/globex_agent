@@ -10,3 +10,15 @@ eval/report-*.md
 # 召回评测报告同样是每次跑测的产物，不入库；标注集（eval/*.jsonl）要入库
 eval/recall-report-*.md
 eval/category-recall-report-*.md
+
+# 课程资料与本地工具目录：只保留在本地，不入工程仓库
+/baoyu-skills/
+.baoyu-skills/
+.idea/
+.qoder/
+/images/
+/learn-claude-code/
+/pi/
+/实战项目-电商问数/
+/项目实战-校园跑腿抢单市场/
+/项目实战-电商搜索/
