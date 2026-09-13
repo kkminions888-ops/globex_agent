@@ -18,7 +18,22 @@ eval/category-recall-report-*.md
 /images/
 /learn-claude-code/
 /pi/
-/实战项目-电商问数/
-/项目实战-校园跑腿抢单市场/
-/项目实战-电商搜索/
 node_modules/
+
+# 课程仓库内容（根目录）：只保留在本地 main 分支，不入工程仓库
+/*.md
+!/README.md
+/*.html
+/*.json
+/*.xml
+/*.png
+/*.jpg
+/.nojekyll
+/.env-example
+/.husky/
+/.vscode/
+/lib/
+/odps_task/
+/案例与源码-*/
+/实战项目-*/
+/项目实战-*/
