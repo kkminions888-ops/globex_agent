@@ -27,6 +27,33 @@ Agent 根据需求调用检索与业务工具，页面随运行过程展示回�
 
 实际回答和候选商品取决于样例目录、模型与检索配置。
 
+## 技术栈
+
+基于 **Python + TypeScript** 构建，使用 **AgentScope 2.x** 编排 Agent，通过 **AG-UI** 将执行过程与结构化结果实时呈现在 React 页面。
+
+| 层次 | 技术选型 | 在项目中的用途 |
+| --- | --- | --- |
+| Agent 框架 | AgentScope 2.x | Agent 执行、工具调用、子 Agent 派发、Middleware 与人工审批 |
+| 后端服务 | Python 3.11–3.13、FastAPI、Uvicorn | 业务 API、Agent 运行入口与流式响应 |
+| 前端应用 | React 18、TypeScript、Vite | 对话界面、商品卡、Skill 编辑、偏好管理与订单页面 |
+| 交互协议 | AG-UI、SSE | 传输文本、工具调用与状态事件，配合持久日志实现重连和重放 |
+| 模型接入 | OpenAI 兼容 API | 聊天模型、工具调用与流式生成；示例配置使用通义千问 |
+| 商品检索 | Embedding、Qdrant、HTTP Reranker | 商品向量召回与精排，支持降级到向量排序或关键词检索 |
+| 品类知识 | Markdown、AgentScope KnowledgeBase | 管理品类知识，为选购与比较提供参考 |
+| 持久化 | SQLite、本地文件 | 保存会话、运行事件、偏好、Skill、确认单、订单与库存 |
+| 缓存与队列 | Redis、Redis Streams | 缓存、共享限流，以及旧意图接口的异步任务消费 |
+| 可观测性 | OpenTelemetry、OTLP、Langfuse | 关联 API、Agent、模型和工具调用，记录运行追踪与评分 |
+| 测试与评测 | 后端/前端回归测试、自定义评测脚本 | 验证业务行为，评估商品检索、知识检索、Agent 与上下文治理效果 |
+| 构建与部署 | uv、npm、Docker Compose、Nginx | 依赖管理、全栈部署、静态资源服务与 API 反向代理 |
+
+### 工程设计
+
+- **业务分层**：采用 DDD 洋葱架构，分离领域模型、应用用例、基础设施与接口层，通过 `composition.py` 统一装配依赖。
+- **Agent 协作**：MainAgent 直接处理简单任务，需要任务拆分或上下文隔离时，按需派发给 SearchAgent、TradeAgent。
+- **上下文与记忆**：结合语义偏好召回、Skill 按需加载、工具证据保存与上下文裁剪、摘要。
+- **可靠性机制**：使用事务、幂等控制、会话 lease/fencing/CAS，以及持久运行日志，处理重复请求、并发写入与断线恢复。
+
+
 ## 核心能力
 
 ### 结构化选购
