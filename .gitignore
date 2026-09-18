@@ -23,6 +23,7 @@ node_modules/
 # 课程仓库内容（根目录）：只保留在本地 main 分支，不入工程仓库
 /*.md
 !/README.md
+!/AGENTS.md
 /*.html
 /*.json
 /*.xml
