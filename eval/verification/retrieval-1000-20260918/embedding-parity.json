@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "products": 1000,
+  "max_absolute_vector_delta": 0.0,
+  "reason": "SDK协议兼容及长文本分块未改变短商品向量"
+}

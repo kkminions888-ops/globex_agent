@@ -74,6 +74,7 @@ class MainAgentFactory:
         preference_selector: Optional[PreferenceSelector] = None,
         capability_registry=None,
         buyer_skill_store=None,
+        shopping_form_store=None,
     ) -> None:
         self._settings = settings
         self._search_factory = search_factory
@@ -85,6 +86,7 @@ class MainAgentFactory:
         self._capability_registry = capability_registry
         self.capability_registry = capability_registry
         self.buyer_skill_store = buyer_skill_store
+        self.shopping_form_store = shopping_form_store
         # 与 orchestrator 共用同一个 selector，保证主/子 Agent 的偏好选取口径一致
         self._preference_selector = preference_selector or PreferenceSelector()
         # 护栏判定器按会话累积状态，须跨 Agent 实例共享（与熔断注册表同理）
@@ -160,6 +162,20 @@ class MainAgentFactory:
         ]
 
         system_prompt = prompts["system_prompt"]
+        if self.shopping_form_store is not None:
+            from app.application.tools.shopping_form_tool import build_shopping_form_tool
+            from app.infrastructure.shopping_forms import ClarificationRequest
+            tools.append(FunctionTool(build_shopping_form_tool(self.shopping_form_store, self._bus),
+                                      input_schema=ClarificationRequest,
+                                      middlewares=self._resilience()))
+            system_prompt += ("\n选购需求澄清使用 show_shopping_form：缺少影响选择的关键条件，或买家明确要求表单澄清时调用，"
+                              "由你根据每次上下文生成 questions：问题文字、顺序、输入类型、选项、说明和是否必填均由你决定，"
+                              "前端只渲染，系统不会自动添加预算、选购目标或旅行字段。仅询问相关未知内容，不重复已知信息。"
+                              "预算必须说明币种、数量及是否含税运；不要替买家预选答案，不知道的允许留空或选不确定。"
+                              "调用后提示买家填写并结束本轮，不基于未提交条件继续搜索。"
+                              "提交后以同一会话的新买家消息继续，重新核验商品/SKU、库存、报价和适用限制。"
+                              "航司名称或买家填写的尺寸不等于已核实的行李政策；缺少航线/舱位信息或商品尺寸证据时继续澄清。"
+                              "重量优先级只是本次取舍，不是具体重量上限。表单不写长期记忆，也不能批准记忆或订单操作。")
         if self._capability_registry is not None:
             available_tools = {tool.name for tool in tools}
             system_prompt += "\n\n" + capability_hint(self._capability_registry, available_tools)

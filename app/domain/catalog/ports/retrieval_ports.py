@@ -30,6 +30,10 @@ class VectorHit:
 
 
 class ProductVectorIndex(ABC):
+    async def search_filtered(self, embedding: list[float], top_n: int, *, product_ids: list[str]) -> list[VectorHit] | None:
+        """按权威目录许可的 ID 召回；旧适配器返回 None，由应用层渐进补召回。"""
+        return None
+
     @abstractmethod
     async def ensure_ready(self, vector_dim: int) -> None:
         """确保 collection 存在（幂等）。"""

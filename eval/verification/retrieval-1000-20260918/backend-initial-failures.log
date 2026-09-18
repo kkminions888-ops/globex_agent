@@ -1,0 +1,127 @@
+........................................................................ [  6%]
+........................................................................ [ 13%]
+........................................................................ [ 20%]
+........................................................................ [ 26%]
+........................................................................ [ 33%]
+........................................................................ [ 40%]
+........................................................................ [ 46%]
+........................................................................ [ 53%]
+........................................................................ [ 60%]
+........................................................................ [ 66%]
+........................................................................ [ 73%]
+........................................................................ [ 80%]
+......F...F.F..F........................................................ [ 86%]
+........................................................................ [ 93%]
+........................................................................ [100%]
+=================================== FAILURES ===================================
+______ TestTwoStageRecall.test_embedding_recall_ranks_camping_light_first ______
+
+self = <tests.test_retrieval.TestTwoStageRecall object at 0x11d0fb7d0>
+indexed = (<app.infrastructure.persistence.in_memory_repositories.InMemoryProductRepository object at 0x14a157410>, <tests.test_...ient object at 0x13d96eb10>, <app.infrastructure.vector.qdrant_product_index.QdrantProductIndex object at 0x13eb9c850>)
+
+    async def test_embedding_recall_ranks_camping_light_first(self, indexed):
+        repo, embedder, index = indexed
+        usecase = CatalogSearchUseCase(repo, embedder=embedder, vector_index=index)
+        result = await usecase.execute(ProductSearchSpec(normalized_query="露营灯 抗造"))
+        assert result["recall_strategy"] == "embedding_only"
+        assert result["rerank_applied"] is False
+>       assert result["hits"][0]["product_id"] == "P1008", "露营灯应排第一"
+E       AssertionError: 露营灯应排第一
+E       assert 'P3207' == 'P1008'
+E         
+E         - P1008
+E         + P3207
+
+tests/test_retrieval.py:185: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  app.application.usecases.catalog_search:catalog_search.py:177 rerank 不可用，按向量分排序：Reranker 未配置
+__ TestTwoStageRecall.test_over_price_cap_candidate_reported_in_filtered_out ___
+
+self = <tests.test_retrieval.TestTwoStageRecall object at 0x11d0fd9d0>
+indexed = (<app.infrastructure.persistence.in_memory_repositories.InMemoryProductRepository object at 0x148f60850>, <tests.test_...ient object at 0x148f60150>, <app.infrastructure.vector.qdrant_product_index.QdrantProductIndex object at 0x148f60b90>)
+
+    async def test_over_price_cap_candidate_reported_in_filtered_out(self, indexed):
+        """超预算候选必须如实回传，否则模型会把"有但超预算"答成"没有这个商品"
+        （三期评测 long-context-memory 曾暴露此缺陷）。"""
+        repo, embedder, index = indexed
+        usecase = CatalogSearchUseCase(repo, embedder=embedder, vector_index=index)
+        result = await usecase.execute(
+            ProductSearchSpec(normalized_query="行李箱 登机", price_max_major=500.0),
+        )
+        rejected = {item["product_id"]: item for item in result["filtered_out"]}
+>       assert "P1002" in rejected, "被价格上限挡掉的候选必须在 filtered_out 里可见"
+E       AssertionError: 被价格上限挡掉的候选必须在 filtered_out 里可见
+E       assert 'P1002' in {'P3045': {'product_id': 'P3045', 'title': 'Roamix 行李箱 GX-03-4 20寸 TSA锁静音轮', 'category': '旅行装备', 'price_major': 994.03...P3043': {'product_id': 'P3043', 'title': 'Roamix 行李箱 GX-03-3 20寸 仅密码锁', 'category': '旅行装备', 'price_major': 588.0, ...}}
+
+tests/test_retrieval.py:224: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  app.application.usecases.catalog_search:catalog_search.py:177 rerank 不可用，按向量分排序：Reranker 未配置
+_____ TestTwoStageRecall.test_no_filtered_out_key_without_hard_constraints _____
+
+self = <tests.test_retrieval.TestTwoStageRecall object at 0x11d0fedd0>
+indexed = (<app.infrastructure.persistence.in_memory_repositories.InMemoryProductRepository object at 0x1489a37d0>, <tests.test_...ient object at 0x13d96eb10>, <app.infrastructure.vector.qdrant_product_index.QdrantProductIndex object at 0x13ed87ad0>)
+
+    async def test_no_filtered_out_key_without_hard_constraints(self, indexed):
+        repo, embedder, index = indexed
+        usecase = CatalogSearchUseCase(repo, embedder=embedder, vector_index=index)
+        result = await usecase.execute(ProductSearchSpec(normalized_query="露营灯"))
+>       assert "filtered_out" not in result, "无硬约束时不应污染工具返回"
+E       AssertionError: 无硬约束时不应污染工具返回
+E       assert 'filtered_out' not in {'hits': [{'product_id': 'P3207', 'title': 'Roamix 露营灯 GX-13-4 800流明 IPX6磁吸挂钩', 'brand': 'Roamix', 'category': '户外运动',..., 'category': '户外运动', ...}], 'total_candidates': 31, 'recall_strategy': 'embedding_only', 'rerank_applied': False, ...}
+
+tests/test_retrieval.py:243: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  app.application.usecases.catalog_search:catalog_search.py:177 rerank 不可用，按向量分排序：Reranker 未配置
+_________ TestTwoStageRecall.test_tool_event_carries_hits_for_frontend _________
+
+self = <tests.test_retrieval.TestTwoStageRecall object at 0x11d100f50>
+indexed = (<app.infrastructure.persistence.in_memory_repositories.InMemoryProductRepository object at 0x13f8d8a10>, <tests.test_...ient object at 0x13e637410>, <app.infrastructure.vector.qdrant_product_index.QdrantProductIndex object at 0x13f8d85d0>)
+
+    async def test_tool_event_carries_hits_for_frontend(self, indexed):
+        """tool.result 事件必须带 hits，否则前端商品卡渲染不出来（三期浏览器验证曾暴露此缺陷）。"""
+        from app.application.tools.product_search_tool import build_product_search_tool
+        from app.infrastructure.context import ShoppingContext, ShoppingContextSnapshot
+        from app.infrastructure.eventbus import TradeEventBus
+    
+        repo, embedder, index = indexed
+        bus = TradeEventBus()
+        queue = bus.subscribe("s-cards")
+        tool = build_product_search_tool(
+            CatalogSearchUseCase(repo, embedder=embedder, vector_index=index),
+            bus,
+        )
+        token = ShoppingContext.set(
+            ShoppingContextSnapshot(
+                shopping_session_id="s-cards", buyer_id="b", locale="zh-CN", currency="CNY",
+            ),
+        )
+        try:
+            response = await tool(normalized_query="露营灯", ship_to="US", target_currency="USD")
+        finally:
+            ShoppingContext.reset(token)
+    
+        queue.get_nowait()  # tool.invoke
+        result_event = queue.get_nowait()
+        assert result_event.type == "tool.result"
+        hits = result_event.payload["hits"]
+>       assert hits and hits[0]["product_id"] == "P1008"
+E       AssertionError: assert ([{'product_id': 'P3207', 'title': 'Roamix 露营灯 GX-13-4 800流明 IPX6磁吸挂钩', 'brand': 'Roamix', 'category': '户外运动', ...}, {'...ry': '户外运动', ...}, {'product_id': 'P1039', 'title': 'SolarLamp 太阳能营地灯', 'brand': 'SolarLamp', 'category': '户外运动', ...}] and 'P3207' == 'P1008'
+E         
+E         - P1008
+E         + P3207)
+
+tests/test_retrieval.py:293: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  app.application.usecases.catalog_search:catalog_search.py:177 rerank 不可用，按向量分排序：Reranker 未配置
+=============================== warnings summary ===============================
+.venv/lib/python3.11/site-packages/fastapi/testclient.py:1
+  /Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本/项目工程/globex-agent/.venv/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_retrieval.py::TestTwoStageRecall::test_embedding_recall_ranks_camping_light_first
+FAILED tests/test_retrieval.py::TestTwoStageRecall::test_over_price_cap_candidate_reported_in_filtered_out
+FAILED tests/test_retrieval.py::TestTwoStageRecall::test_no_filtered_out_key_without_hard_constraints
+FAILED tests/test_retrieval.py::TestTwoStageRecall::test_tool_event_carries_hits_for_frontend
+4 failed, 1076 passed, 1 warning in 165.37s (0:02:45)

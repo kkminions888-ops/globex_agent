@@ -1,0 +1,89 @@
+{
+  "gepa": {
+    "model": "qwen3-max",
+    "metric": "tool_argument_constraint_preservation",
+    "scenarios": 12,
+    "evaluations": 20,
+    "reflection_calls": 2,
+    "candidate_changed": false,
+    "interpretation": "候选与基线正文相同，留出差异是重复生成波动，不能算优化收益",
+    "known_input_tokens_subtotal": 269901,
+    "known_output_tokens_subtotal": 19381,
+    "unknown_usage_calls": 1,
+    "model_calls_including_reflection": 76,
+    "promotion": "NOT_APPROVED"
+  },
+  "retrieval": [
+    {
+      "name": "full_lexical_diagnostic",
+      "scenarios": 150,
+      "variants": {
+        "keyword_2gram": {
+          "actual_model_calls": 0,
+          "unknown_usage_calls": 0,
+          "known_input_tokens_subtotal": 0,
+          "known_output_tokens_subtotal": 0,
+          "rerank_applied_cases": 0,
+          "hard_constraint_failures": 0,
+          "empty_failures": 0
+        },
+        "bm25": {
+          "actual_model_calls": 0,
+          "unknown_usage_calls": 0,
+          "known_input_tokens_subtotal": 0,
+          "known_output_tokens_subtotal": 0,
+          "rerank_applied_cases": 0,
+          "hard_constraint_failures": 0,
+          "empty_failures": 0
+        }
+      }
+    },
+    {
+      "name": "live_llm_rerank_pilot",
+      "scenarios": 12,
+      "variants": {
+        "bm25": {
+          "actual_model_calls": 0,
+          "unknown_usage_calls": 0,
+          "known_input_tokens_subtotal": 0,
+          "known_output_tokens_subtotal": 0,
+          "rerank_applied_cases": 0,
+          "hard_constraint_failures": 0,
+          "empty_failures": 0
+        },
+        "bm25_llm": {
+          "actual_model_calls": 12,
+          "unknown_usage_calls": 1,
+          "known_input_tokens_subtotal": 15980,
+          "known_output_tokens_subtotal": 2562,
+          "rerank_applied_cases": 11,
+          "hard_constraint_failures": 0,
+          "empty_failures": 0
+        }
+      }
+    }
+  ],
+  "tutorial_unchanged": {
+    "files_checked": 112,
+    "changed": []
+  },
+  "frozen_parameters": {
+    "sdk": "agentscope==2.0.8",
+    "gepa": "0.1.4",
+    "A2UI": "v0.9 / custom ShoppingForm catalog",
+    "ACP": "2026-04-17",
+    "acp_source_commit": "7fdd78df677a94dce04c770644b0fbbb1401272b",
+    "retrieval_weights": [
+      1,
+      1
+    ],
+    "recall_candidates": 32,
+    "hybrid_default_enabled": false,
+    "reranker_default": "http",
+    "gepa_metric_budget": 12,
+    "gepa_seed": 20260918,
+    "multimodal": false,
+    "recurring_tasks": false,
+    "qdrant_sparse_indexes": false
+  }
+}

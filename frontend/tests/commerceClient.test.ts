@@ -246,3 +246,29 @@ describe("通过官方 SDK 消费真实 AG-UI 协议", () => {
     expect(restricted.getSnapshot().status).toBe("idle");
   });
 });
+
+it("没有浏览器缓存或对话记录时，按买家从服务端恢复选购表单会话",async()=>{
+  const form={session_id:"draft-from-db",form_id:"form-a",created_at:Date.now(),revision:1};
+  const client=new CommerceClient({url:"/commerce/ag-ui/run",fetch:async(url)=>{
+    const body=String(url).includes("shopping-forms")?{form}:{sessions:[]};
+    return new Response(JSON.stringify(body),{headers:{"Content-Type":"application/json"}});
+  }});
+  await client.initialize();
+  expect(client.getSnapshot().sessionId).toBe("draft-from-db");
+  expect(client.getSnapshot().shoppingForm).toEqual(form);
+});
+
+it("已保存的表单重复继续使用相同运行和消息 ID，不重复插入买家消息",async()=>{
+  const sent:RequestBody[]=[];
+  const client=new CommerceClient({url:"/run",fetch:async(_url,init)=>{
+    const body=JSON.parse(String(init.body));sent.push(body);
+    return sse([started(body),finished(body)]);
+  }});
+  const runId="form-run-"+"a".repeat(32);
+  await client.submitForm("背包；单价300元",runId);
+  await client.submitForm("背包；单价300元",runId);
+  expect(sent).toHaveLength(2);
+  expect(sent[0].runId).toBe(sent[1].runId);
+  expect(sent[1].messages.filter(m=>m.id===runId+":user")).toHaveLength(1);
+  expect(client.getSnapshot().messages.filter(m=>m.role==="user")).toHaveLength(1);
+});

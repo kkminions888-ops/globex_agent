@@ -6,11 +6,14 @@ import App from "../src/App";
 
 let host: HTMLDivElement, root: Root;
 let personal: any[], preferences: any[], requests: any[], failure: boolean;
+let contextOperation: {operation_id:string;status:string}|null;
+let finishCompaction: ((response:Response)=>void)|undefined;
 beforeEach(() => {
   (globalThis as any).IS_REACT_ACT_ENVIRONMENT = true;
   sessionStorage.clear();
   localStorage.clear(); localStorage.setItem("globex.access-token", "test-token");
   personal=[]; preferences=[]; requests=[]; failure=false;
+  contextOperation=null; finishCompaction=undefined;
   vi.stubGlobal("scrollTo",vi.fn()); Element.prototype.scrollIntoView=vi.fn();
   vi.stubGlobal("fetch",vi.fn(async (input: string, init?: RequestInit) => {
     const url=new URL(String(input),"http://test"), path=url.pathname, method=init?.method ?? "GET";
@@ -18,6 +21,14 @@ beforeEach(() => {
     requests.push({ path, method, body, query:url.searchParams, headers:init?.headers });
     if (path.endsWith("/sessions")) return Response.json({sessions:[]});
     if (path.endsWith("/confirmations")) return Response.json({confirmations:[]});
+    if (path.endsWith("/favorites")) return Response.json({products:[]});
+    if (path === "/commerce/context") return Response.json({revision:3,operation:contextOperation});
+    if (path === "/commerce/context/compact") {
+      contextOperation={operation_id:"compact-1",status:"running"};
+      return Response.json(contextOperation);
+    }
+    if (path === "/commerce/context/operations/compact-1")
+      return new Promise<Response>(resolve=>{finishCompaction=resolve;});
     if (path === "/commerce/skills") return Response.json({capability_digest:"c".repeat(64),skills:personal});
     if (path.startsWith("/commerce/my-skills")) {
       if (method==="GET") return Response.json({skills:personal});
@@ -118,9 +129,41 @@ it("刷新后保留偏好页面并重新读取已保存的服务端偏好", asyn
   await mount();
   expect(host.textContent).toContain("喜欢小香风连衣裙");
   expect(host.querySelector('[aria-label="长期偏好"]')).not.toBeNull();
+  const readsBeforeReload=requests.filter(r=>r.path==="/commerce/preferences"&&r.method==="GET").length;
+  preferences=[{kind:"like",statement:"喜欢小香风连衣裙"},{kind:"dislike",statement:"不要塑料"}];
   await act(async()=>root.unmount());
   root=createRoot(host);
   await mount();
   expect(host.textContent).toContain("喜欢小香风连衣裙");
-  expect(requests.filter(r=>r.path==="/commerce/preferences" && r.method==="GET")).toHaveLength(2);
+  expect(host.textContent).toContain("不要塑料");
+  expect(requests.filter(r=>r.path==="/commerce/preferences" && r.method==="GET").length).toBeGreaterThan(readsBeforeReload);
+});
+
+it("整理中切到 Skill 页面，后台完成后解除全局忙碌状态", async () => {
+  await mount();await fill("query","帮我挑通勤包");
+  await click(host.querySelector('[aria-label="发送选购需求"]')!);
+  await click(button("整理上下文"));
+  await click(button("我的 Skill"));
+  expect(host.querySelector<HTMLInputElement>("#personal-skill-title")!.matches(":disabled")).toBe(true);
+  expect(finishCompaction).toBeTypeOf("function");
+  await act(async()=>{
+    contextOperation=null;
+    finishCompaction!(Response.json({status:"completed",message:"整理完成"}));
+  });
+  expect(host.querySelector<HTMLInputElement>("#personal-skill-title")!.matches(":disabled")).toBe(false);
+  await click(button("我的选购"));
+  expect(button("整理上下文").disabled).toBe(false);
+});
+
+it("在偏好页刷新也会恢复当前会话的整理状态", async () => {
+  sessionStorage.setItem("globex.workspace.view","preferences");
+  contextOperation={operation_id:"compact-1",status:"running"};
+  await mount();
+  expect(requests.some(r=>r.path==="/commerce/context")).toBe(true);
+  expect(host.querySelector<HTMLTextAreaElement>("#preference-statement")!.matches(":disabled")).toBe(true);
+  await act(async()=>{
+    contextOperation=null;
+    finishCompaction!(Response.json({status:"completed",message:"恢复完成"}));
+  });
+  expect(host.querySelector<HTMLTextAreaElement>("#preference-statement")!.matches(":disabled")).toBe(false);
 });

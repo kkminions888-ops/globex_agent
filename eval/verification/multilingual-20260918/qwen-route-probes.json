@@ -1,0 +1,88 @@
+[
+  {
+    "endpoint": "https://1688openai.alibaba-inc.com/v1/services/reranker",
+    "model": "qwen-text-rerank",
+    "protocol": "flat",
+    "status_code": 200,
+    "bytes": 60,
+    "response_keys": [
+      "success",
+      "message"
+    ],
+    "success": false,
+    "model_unavailable": true
+  },
+  {
+    "endpoint": "https://1688openai.alibaba-inc.com/v1/rerank",
+    "model": "qwen-text-rerank",
+    "protocol": "flat",
+    "status_code": 404,
+    "bytes": 98,
+    "response_keys": [
+      "timestamp",
+      "status",
+      "error",
+      "path"
+    ],
+    "success": null,
+    "model_unavailable": false
+  },
+  {
+    "endpoint": "https://1688openai.alibaba-inc.com/v1/reranker",
+    "model": "qwen-text-rerank",
+    "protocol": "flat",
+    "status_code": 404,
+    "bytes": 100,
+    "response_keys": [
+      "timestamp",
+      "status",
+      "error",
+      "path"
+    ],
+    "success": null,
+    "model_unavailable": false
+  },
+  {
+    "endpoint": "https://1688openai.alibaba-inc.com/v1/services/rerank/text-rerank",
+    "model": "qwen-text-rerank",
+    "protocol": "dashscope",
+    "status_code": 404,
+    "bytes": 119,
+    "response_keys": [
+      "timestamp",
+      "status",
+      "error",
+      "path"
+    ],
+    "success": null,
+    "model_unavailable": false
+  },
+  {
+    "endpoint": "https://1688openai.alibaba-inc.com/api/v1/services/rerank/text-rerank",
+    "model": "qwen-text-rerank",
+    "protocol": "dashscope",
+    "status_code": 404,
+    "bytes": 123,
+    "response_keys": [
+      "timestamp",
+      "status",
+      "error",
+      "path"
+    ],
+    "success": null,
+    "model_unavailable": false
+  },
+  {
+    "endpoint": "https://1688openai.alibaba-inc.com/v1/services/reranker",
+    "model": "qwen-text-rerank",
+    "protocol": "dashscope",
+    "status_code": 200,
+    "bytes": 60,
+    "response_keys": [
+      "success",
+      "message"
+    ],
+    "success": false,
+    "model_unavailable": true
+  }
+]

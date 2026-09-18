@@ -5,6 +5,7 @@ embedding 用确定性桩实现（关键词特征轴 + 余弦），向量索引�
 全程不依赖外部服务与 LLM。
 """
 import json
+from pathlib import Path
 
 import pytest
 
@@ -65,8 +66,13 @@ def _settings(tmp_path) -> Settings:
 
 @pytest.fixture()
 async def indexed(tmp_path):
-    """已建库的（repo, embedder, index）三元组。"""
-    repo = InMemoryProductRepository()
+    """固定 v1 测例目录验证链路；二元桩无法区分同类商品，不能随全站扩容漂移。
+
+    v2 千件目录的真实排序与过滤由 test_retrieval_v2 和独立模型评测覆盖。
+    """
+    from app.infrastructure.persistence.seed_products import _product_from_record
+    source = Path(__file__).resolve().parents[1] / "data/catalog-v1.jsonl"
+    repo = InMemoryProductRepository([_product_from_record(json.loads(l)) for l in source.read_text().splitlines()])
     embedder = AxisEmbeddingClient()
     index = QdrantProductIndex(_settings(tmp_path))
     ok = await bootstrap_product_index(repo, embedder, index)

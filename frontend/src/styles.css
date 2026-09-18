@@ -1915,6 +1915,16 @@ main {
   background: #eadeca;
   color: #94764c;
 }
+.historical-products {
+  margin: 28px 0;
+  padding: 20px;
+  border: 1px solid var(--line, #e4e6e2);
+  border-radius: 16px;
+}
+.historical-products summary { cursor: pointer; font-weight: 600; }
+.historical-products h3 { margin: 24px 0 16px; font-size: 14px; }
+.historical-products h4 { margin: 0 0 12px; }
+.historical-products li { margin: 8px 0; overflow-wrap: anywhere; }
 .diagnostics {
   margin: 35px 0 20px;
   border-top: 1px solid var(--line);

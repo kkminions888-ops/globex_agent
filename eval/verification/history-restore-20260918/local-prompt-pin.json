@@ -1,0 +1,6 @@
+{
+  "previous_pin": "p-b0119a0a43a7d761dbe83faa0112e0ff4940cfb8b0eb5f64ef9f429c5398a79a",
+  "current_pin": "p-29bdb4e57655dcb50f9b375fd73f2039f8adda56ad58aaa97a29072054fc089d",
+  "scope": "本机显式固定当前源码版本；未改部署基线或历史会话分组",
+  "toolset_sha256": "be05c62c01555f3f86360f985c1c496530d3e1b7ac026f9e094ce36fc829ff34"
+}

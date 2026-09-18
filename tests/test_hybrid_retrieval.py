@@ -24,6 +24,64 @@ def test_rrf_ignores_incomparable_raw_scores():
     assert ranked[0][1].product_id == "B"
 
 
+def test_rrf_supports_frozen_weights_and_rejects_invalid_configuration():
+    a, b = SimpleNamespace(product_id="A"), SimpleNamespace(product_id="B")
+    ranked = reciprocal_rank_fusion([(1, a), (.5, b)], [(1, b), (.5, a)], weights=(2, 1))
+    assert ranked[0][1].product_id == "A"
+    for weights in [(1,), (0, 0), (-1, 1), (float("nan"), 1)]:
+        with pytest.raises(ValueError):
+            reciprocal_rank_fusion([(1, a)], [(1, b)], weights=weights)
+
+
+async def test_default_vector_path_refills_after_hard_filters():
+    repo = InMemoryProductRepository()
+    products = await repo.list_all()
+    selected = products[40]
+    index = SimpleNamespace(search=AsyncMock(side_effect=lambda emb, top_n: [
+        VectorHit(p.product_id, 1/(i+1)) for i, p in enumerate(products[:top_n])
+    ]))
+    usecase = CatalogSearchUseCase(repo, embedder=SimpleNamespace(embed=AsyncMock(return_value=[1])),
+                                   vector_index=index)
+    usecase._reject_reason = lambda p, s: None if p.product_id == selected.product_id else "category_mismatch"
+    result = await usecase.execute(ProductSearchSpec(normalized_query="没有词项命中的查询xyz", top_k=1))
+    assert [h["product_id"] for h in result["hits"]] == [selected.product_id]
+
+
+async def test_hybrid_prefilters_dense_candidates_using_authoritative_product_ids():
+    repo = InMemoryProductRepository()
+    products = await repo.list_all()
+    selected = products[-1]
+    index = SimpleNamespace(
+        search=AsyncMock(side_effect=AssertionError("支持过滤的索引不应先取全库前几项")),
+        search_filtered=AsyncMock(return_value=[VectorHit(selected.product_id, 1)]),
+    )
+    usecase = CatalogSearchUseCase(repo, embedder=SimpleNamespace(embed=AsyncMock(return_value=[1])),
+                                   vector_index=index, hybrid_enabled=True)
+    usecase._reject_reason = lambda p, s: None if p.product_id == selected.product_id else "category_mismatch"
+    result = await usecase.execute(ProductSearchSpec(normalized_query="没有词项命中的查询xyz", top_k=1))
+    assert [h["product_id"] for h in result["hits"]] == [selected.product_id]
+    assert index.search_filtered.await_args.kwargs["product_ids"] == [selected.product_id]
+    assert result["retrieval_diagnostics"]["filter_mode"] == "authoritative_ids"
+
+
+async def test_qdrant_filtered_dense_search_uses_existing_ids_without_sparse_vectors(tmp_path):
+    from dataclasses import replace
+    from app.infrastructure.settings import load_settings
+    from app.infrastructure.vector.qdrant_product_index import QdrantProductIndex
+    products = (await InMemoryProductRepository().list_all())[:3]
+    index = QdrantProductIndex(replace(load_settings(), data_dir=tmp_path, qdrant_url=""))
+    try:
+        await index.ensure_ready(2)
+        await index.upsert_products(products, [[1, 0], [.9, .1], [0, 1]])
+        method = getattr(index, "search_filtered", None)
+        assert method is not None, "需要支持按权威目录 ID 过滤召回"
+        hits = await method([1, 0], top_n=2, product_ids=[products[2].product_id])
+        assert [hit.product_id for hit in hits] == [products[2].product_id]
+        assert await method([1, 0], top_n=2, product_ids=[]) == []
+    finally:
+        await index.close()
+
+
 async def test_hybrid_filters_before_lexical_cut_and_deduplicates():
     repo = InMemoryProductRepository()
     usecase = CatalogSearchUseCase(repo, hybrid_enabled=True)
@@ -60,7 +118,8 @@ async def test_knowledge_same_id_update_and_deleted_file_remove_old_chunks(knowl
     assert [doc.document_id for doc in docs] == ["outdoor"]
     assert docs[0].metadata["content_sha256"]
     results = await knowledge_base.search(queries=["登山杖"], top_k=4)
-    content = str(results)
+    # 只校验召回正文，时间戳和内容哈希中的数字不代表旧知识仍被检索到。
+    content = "\n".join(result.chunk.content.text for result in results)
     assert "新版本" in content and "防水等级" not in content and "800" not in content
 
 

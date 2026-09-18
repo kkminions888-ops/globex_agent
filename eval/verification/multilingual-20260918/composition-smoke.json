@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "catalog_size": 3700,
+  "sku_count": 7105,
+  "results": [
+    {
+      "query": "Ładowarka USB-C 65 W",
+      "top_id": "P26014",
+      "top_title": "Lingua Ładowarka USB-C — Moc: 65 W · ML-04-3",
+      "top_language": "pl",
+      "strategy": "bm25",
+      "elapsed_ms": 118.1422080117045
+    },
+    {
+      "query": "ヘッドホン",
+      "top_id": "P14017",
+      "top_title": "Lingua ノイズキャンセリングヘッドホン — 騒音低減量: 25 dB · ML-05-2",
+      "top_language": "ja",
+      "strategy": "bm25",
+      "elapsed_ms": 57.78020800789818
+    },
+    {
+      "query": "Wanderrucksack",
+      "top_id": "P12000",
+      "top_title": "Lingua Wanderrucksack — Kapazität: 20 L · ML-01-1",
+      "top_language": "de",
+      "strategy": "bm25",
+      "elapsed_ms": 71.56779200886376
+    },
+    {
+      "query": "Keramiktasse",
+      "top_id": "P12049",
+      "top_title": "Lingua Keramiktasse — Kapazität: 300 ml · ML-13-2",
+      "top_language": "de",
+      "strategy": "bm25",
+      "elapsed_ms": 68.59108399657998
+    },
+    {
+      "query": "Mörkläggningsgardin",
+      "top_id": "P17040",
+      "top_title": "Lingua Mörkläggningsgardin — Ljusblockering: 50 % · ML-11-1",
+      "top_language": "sv",
+      "strategy": "bm25",
+      "elapsed_ms": 74.58029199915472
+    }
+  ],
+  "startup_seconds": 9.140770915997564,
+  "restart_seconds": 8.533731875009835,
+  "v2_inventory_preserved": true,
+  "restart_inventory_preserved": true,
+  "chat_calls": 0,
+  "data_scope": "isolated_sqlite",
+  "remote_models_tested": false
+}

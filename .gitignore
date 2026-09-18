@@ -41,3 +41,10 @@ node_modules/
 /commitlint.config.js
 /requirements.txt
 /repo-auth-service/
+
+# 多语言合成目录随源码交付；本机依赖和构建缓存不入库。
+!data/catalog-v2.jsonl
+!data/catalog-v3.jsonl
+.cache/
+frontend/dist/
+*.tsbuildinfo

@@ -15,7 +15,7 @@ export default function EventTimeline({
         <span className="diagnostic-count">{events.length + skillUsages.length}</span>
       </summary>
       <p className="diagnostic-description">
-        展示可见执行步骤与状态，不包含模型隐式推理。
+        展示最近的可见执行步骤与状态，不包含模型隐式推理。
       </p>
       {events.length === 0 && skillUsages.length === 0 ? (
         <p className="diagnostic-empty">
@@ -32,11 +32,11 @@ export default function EventTimeline({
             <li key={event.id}>
               <div className="event-heading">
                 <span>{event.label || event.type}</span>
-                <time>
+                {event.timestamp !== null && <time>
                   {new Date(event.timestamp).toLocaleTimeString("zh-CN", {
                     hour12: false,
                   })}
-                </time>
+                </time>}
               </div>
               <span className="event-type">{event.type}</span>
               {event.detail && <p>{event.detail}</p>}

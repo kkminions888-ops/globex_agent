@@ -1,0 +1,106 @@
+{
+  "phase": "after",
+  "steps": [
+    {
+      "session": "long",
+      "messages": 110,
+      "products": 0,
+      "historical_product_batches": 1,
+      "events": 80
+    },
+    {
+      "session": "form",
+      "messages": 4,
+      "products": 0,
+      "historical_product_batches": 0,
+      "events": 29
+    },
+    {
+      "session": "product",
+      "messages": 4,
+      "products": 1,
+      "historical_product_batches": 0,
+      "events": 27
+    },
+    {
+      "session": "form",
+      "messages": 4,
+      "products": 0,
+      "historical_product_batches": 0,
+      "events": 29
+    },
+    {
+      "session": "form",
+      "messages": 4,
+      "products": 0,
+      "historical_product_batches": 0,
+      "events": 29
+    },
+    {
+      "session": "product",
+      "messages": 4,
+      "products": 1,
+      "historical_product_batches": 0,
+      "events": 27
+    },
+    {
+      "session": "form",
+      "messages": 4,
+      "products": 0,
+      "historical_product_batches": 0,
+      "events": 29
+    },
+    {
+      "session": "form",
+      "messages": 4,
+      "products": 0,
+      "historical_product_batches": 0,
+      "events": 29
+    },
+    {
+      "session": "product",
+      "messages": 4,
+      "products": 1,
+      "historical_product_batches": 0,
+      "events": 27
+    },
+    {
+      "session": "form",
+      "messages": 4,
+      "products": 0,
+      "historical_product_batches": 0,
+      "events": 29
+    },
+    {
+      "session": "form",
+      "messages": 4,
+      "products": 0,
+      "historical_product_batches": 0,
+      "events": 29
+    },
+    {
+      "session": "product",
+      "messages": 4,
+      "products": 1,
+      "historical_product_batches": 0,
+      "events": 27
+    },
+    {
+      "session": "long",
+      "messages": 110,
+      "products": 0,
+      "historical_product_batches": 1,
+      "events": 80
+    },
+    {
+      "session": "form",
+      "messages": 4,
+      "products": 0,
+      "historical_product_batches": 0,
+      "events": 29
+    }
+  ],
+  "posts": [],
+  "page_errors": [],
+  "status": "passed"
+}

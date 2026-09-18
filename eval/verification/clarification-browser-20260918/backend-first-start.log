@@ -1,0 +1,30 @@
+INFO:     Started server process [97428]
+INFO:     Waiting for application startup.
+ERROR:    Traceback (most recent call last):
+  File "/Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本/项目工程/globex-agent/.venv/lib/python3.11/site-packages/starlette/routing.py", line 648, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "/Users/haojunpan/.local/share/uv/python/cpython-3.11.13-macos-aarch64-none/lib/python3.11/contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本/项目工程/globex-agent/app/presentation/server.py", line 76, in lifespan
+    c = await build_container()
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本/项目工程/globex-agent/app/composition.py", line 172, in build_container
+    await asyncio.to_thread(prompt_registry.bootstrap, project_root / "app/application/prompts/globex.yml")
+  File "/Users/haojunpan/.local/share/uv/python/cpython-3.11.13-macos-aarch64-none/lib/python3.11/asyncio/threads.py", line 25, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/haojunpan/.local/share/uv/python/cpython-3.11.13-macos-aarch64-none/lib/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本/项目工程/globex-agent/app/infrastructure/prompt_registry.py", line 141, in bootstrap
+    return self.describe()
+           ^^^^^^^^^^^^^^^
+  File "/Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本/项目工程/globex-agent/app/infrastructure/prompt_registry.py", line 152, in describe
+    public["effective_version"] = self._public_version(self._version(db, version_id)) if version_id else None
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本/项目工程/globex-agent/app/infrastructure/prompt_registry.py", line 100, in _version
+    raise PromptRegistryError("Prompt 版本不存在，请先导入不可变版本")
+app.infrastructure.prompt_registry.PromptRegistryError: Prompt 版本不存在，请先导入不可变版本
+
+ERROR:    Application startup failed. Exiting.

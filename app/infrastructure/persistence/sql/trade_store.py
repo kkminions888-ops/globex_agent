@@ -138,6 +138,15 @@ class SqlTradeStore(TradeStore):
                 await connection.rollback()
                 raise
         async with self._transaction() as db:
+            # 扩充目录后逐 SKU 的 SELECT / 历史占用查询会拖慢启动。
+            # 在同一写锁内批量读快照，仍由一次事务提交报价更新和新增库存。
+            inventory = {row.sku_id: row for row in (await db.scalars(select(SkuInventoryRow))).all()}
+            occupied_by_sku = dict((await db.execute(
+                select(OrderLineRow.sku_id, func.sum(OrderLineRow.quantity))
+                .join(OrderRow, OrderRow.order_id == OrderLineRow.order_id)
+                .where(OrderRow.status == "CONFIRMED")
+                .group_by(OrderLineRow.sku_id)
+            )).all())
             seen: set[str] = set()
             for product in products:
                 for sku in product.skus:
@@ -146,12 +155,10 @@ class SqlTradeStore(TradeStore):
                     seen.add(sku.sku_id)
                     seed = _integer(sku.stock, "stock")
                     Money.of(sku.price.amount_in_minor_units, sku.price.currency)
-                    row = await db.get(SkuInventoryRow, sku.sku_id)
+                    row = inventory.get(sku.sku_id)
                     if row is None:
                         # 旧 SQL 订单仍是同一订单真相；首次迁移不得忽略其库存占用。
-                        occupied = int(await db.scalar(select(func.coalesce(func.sum(OrderLineRow.quantity), 0))
-                            .join(OrderRow, OrderRow.order_id == OrderLineRow.order_id)
-                            .where(OrderLineRow.sku_id == sku.sku_id, OrderRow.status == "CONFIRMED")) or 0)
+                        occupied = int(occupied_by_sku.get(sku.sku_id, 0))
                         if occupied < 0 or occupied > seed:
                             raise TradeStoreError("INVENTORY_MIGRATION_REQUIRED", f"SKU {sku.sku_id} 的历史订单占用超出库存种子，请核对迁移")
                         row = SkuInventoryRow(sku_id=sku.sku_id, stock=seed - occupied)

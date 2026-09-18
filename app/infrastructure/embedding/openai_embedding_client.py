@@ -60,11 +60,11 @@ class OpenAIEmbeddingClient(EmbeddingClient):
             # 明确指向批量上限，不要让调用方对着 JSONDecodeError 猜
             raise RuntimeError(
                 f"embedding 网关返回空 body（HTTP {response.status_code}，本批 {len(chunk)} 条）："
-                f"通常是单次批量超过网关上限，可调小 EMBEDDING_MAX_BATCH（当前 {_MAX_BATCH}）",
+                f"请检查服务路由、模型权限及协议；也可调小 EMBEDDING_MAX_BATCH（当前 {_MAX_BATCH}）",
             )
         body = response.json()
         if "data" not in body:
-            raise RuntimeError(f"embedding 响应异常：{str(body)[:200]}")
+            raise RuntimeError("embedding 响应异常：缺少 data 数组，请核对网关服务和模型")
         # 按 index 回位，避免网关乱序
         ordered = sorted(body["data"], key=lambda item: item["index"])
         return [item["embedding"] for item in ordered]

@@ -1,0 +1,26 @@
+[
+  {
+    "protocol": "flat",
+    "model": "qwen-text-rerank",
+    "query_parameter_model": true,
+    "status_code": 200,
+    "bytes": 60,
+    "response_keys": [
+      "success",
+      "message"
+    ],
+    "model_unavailable": true
+  },
+  {
+    "protocol": "dashscope",
+    "model": "qwen-text-rerank",
+    "query_parameter_model": true,
+    "status_code": 200,
+    "bytes": 60,
+    "response_keys": [
+      "success",
+      "message"
+    ],
+    "model_unavailable": true
+  }
+]

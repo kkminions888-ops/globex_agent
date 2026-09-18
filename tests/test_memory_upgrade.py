@@ -95,3 +95,21 @@ async def test_semantic_tools_require_ids_and_permission_checks_target_before_as
         assert result.behavior==PermissionBehavior.DENY
         assert (await store.list_by_buyer('a'))[0].memory_id in result.message
     finally:ShoppingContext.reset(token)
+
+
+def test_default_prompt_memory_signatures_match_required_tool_arguments(tmp_path):
+    import re
+    import yaml
+    from pathlib import Path
+    from agentscope.tool import FunctionTool
+    from app.application.tools.update_preference_tool import build_update_preference_tool
+    from app.application.tools.forget_preference_tool import build_forget_preference_tool
+    from app.infrastructure.eventbus import TradeEventBus
+    path=Path(__file__).resolve().parents[1]/"app/application/prompts/globex.yml"
+    prompt=yaml.safe_load(path.read_text())["main_agent"]["system_prompt"]
+    for builder in (build_update_preference_tool,build_forget_preference_tool):
+        tool=FunctionTool(builder(make(tmp_path),TradeEventBus()))
+        match=re.search(rf"{tool.name}\(([^)]+)\)",prompt)
+        assert match is not None
+        documented={part.strip() for part in match[1].split(",")}
+        assert set(tool.input_schema["required"])<=documented

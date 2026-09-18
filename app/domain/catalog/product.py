@@ -39,6 +39,11 @@ class Product:
     tax_category: str = ""
     rating_summary: dict[str, float | int] | None = None
     updated_at: str = ""
+    source_language: str = ""
+    source_locale: str = ""
+    localized_category: str = ""
+    localized_material: str = ""
+    data_provenance: str = ""
 
     def __post_init__(self) -> None:
         if not self.product_id:
@@ -66,7 +71,9 @@ class Product:
         highlight_text = " ".join(f"{h.label} {h.detail}" for h in self.highlights)
         return " ".join(
             [
-                self.title, self.brand, self.category, self.origin_country, self.description,
-                highlight_text, " ".join(self.material_tags), self.tax_category,
+                self.title, self.brand, self.localized_category or self.category,
+                self.origin_country, self.description, highlight_text,
+                self.localized_material or " ".join(self.material_tags),
+                self.localized_category or self.tax_category,
             ],
         )

@@ -27,10 +27,10 @@ from app.domain.catalog.sku import Sku
 
 
 _PROJECT_ROOT = Path(__file__).resolve().parents[3]
-_PACKAGED_CATALOG_FIXTURE = _PROJECT_ROOT / "catalog" / "catalog-v1.jsonl"
-_DEVELOPMENT_CATALOG_FIXTURE = _PROJECT_ROOT / "data" / "catalog-v1.jsonl"
+_PACKAGED_CATALOG_FIXTURE = _PROJECT_ROOT / "catalog" / "catalog-v3.jsonl"
+_DEVELOPMENT_CATALOG_FIXTURE = _PROJECT_ROOT / "data" / "catalog-v3.jsonl"
 # 容器内优先读取镜像自带的只读目录，避免 /app/data 数据卷遮蔽商品底座；
-# 本地开发仍读取版本化的 data/catalog-v1.jsonl。
+# 本地开发仍读取版本化的 data/catalog-v3.jsonl。
 _CATALOG_FIXTURE = (
     _PACKAGED_CATALOG_FIXTURE
     if _PACKAGED_CATALOG_FIXTURE.exists()
@@ -423,6 +423,11 @@ def _product_from_record(record: dict) -> Product:
         tax_category=record.get("tax_category", ""),
         rating_summary=record.get("rating_summary"),
         updated_at=record.get("updated_at", ""),
+        source_language=record.get("source_language", ""),
+        source_locale=record.get("source_locale", ""),
+        localized_category=record.get("localized_category", ""),
+        localized_material=record.get("localized_material", ""),
+        data_provenance=record.get("data_provenance", ""),
     )
 
 

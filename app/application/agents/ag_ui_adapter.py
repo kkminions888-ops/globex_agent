@@ -54,6 +54,7 @@ class AGUIRunAdapter:
         self._products = ProductCandidateProjection(raw_query)
         self.state: dict[str, Any] = {
             "products": [],
+            "shoppingForm": None,
             "confirmations": [],
             "toolApprovals": [],
             "skillUsages": [],
@@ -62,7 +63,7 @@ class AGUIRunAdapter:
             "progress": [],
         }
         if authoritative_state:
-            self.state.update({k:copy.deepcopy(authoritative_state[k]) for k in ("products","searchCompleted","skillUsages") if k in authoritative_state})
+            self.state.update({k:copy.deepcopy(authoritative_state[k]) for k in ("products","searchCompleted","skillUsages","shoppingForm") if k in authoritative_state})
         self.error: str | None = None
         self._text_open: set[str] = set()
         self._tool_open: set[str] = set()
@@ -236,6 +237,15 @@ class AGUIRunAdapter:
             # 明确是服务端确定读取，不发送任何伪造的模型 TOOL_CALL_* 事件。
             self.emit(CustomEvent(name="skill.preload", value=copy.deepcopy(item)))
             self.snapshot()
+        elif event.type == "ui.surface":
+            form = payload.get("form")
+            if (isinstance(form, dict) and form.get("session_id") == self.request.thread_id
+                    and isinstance(self.request.forwarded_props, dict)
+                    and payload.get("buyer_id") == self.request.forwarded_props.get("buyerId")):
+                self.state["shoppingForm"] = copy.deepcopy(form)
+                for message in form.get("messages", []):
+                    self.emit(CustomEvent(name="a2ui", value=copy.deepcopy(message)))
+                self.snapshot()
         elif event.type == "tool.result" and self._products.apply(payload):
             # 明确多 ID 的并发精确检索按本轮原始顺序合并，其余查询保持替换语义。
             self.state["products"] = copy.deepcopy(self._products.result["hits"])

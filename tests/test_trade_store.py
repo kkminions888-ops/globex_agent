@@ -405,3 +405,29 @@ async def test_order_list_filters_buyer_status_and_pagination(stores):
     assert (await store.list_orders(buyer_id='buyer-1',offset=1))['orders']==[]
     assert (await store.list_orders(buyer_id='buyer-1',status='CANCELLED'))['total']==0
     assert (await store.list_orders(buyer_id='nobody'))['total']==0
+
+
+async def test_large_catalog_refresh_avoids_per_sku_reads_and_preserves_sales(stores):
+    first, second, engine, _ = stores
+    confirmation = await prepare(first)
+    await resolve(first, confirmation)
+    reads = []
+
+    def count_reads(_conn, _cursor, statement, _params, _context, _many):
+        if statement.lstrip().upper().startswith('SELECT'):
+            reads.append(statement)
+
+    event.listen(engine.sync_engine, 'before_cursor_execute', count_reads)
+    try:
+        expanded = [product(stock=999)] + [product(sku_id=f'new-{i}',product_id=f'new-p-{i}') for i in range(1000)]
+        await first.initialize_inventory(expanded)
+        # 防止目录扩充后重新退回每个 SKU 都访问数据库的启动路径。
+        assert len(reads) < 10
+    finally:
+        event.remove(engine.sync_engine, 'before_cursor_execute', count_reads)
+    inventory = await second.get_inventory()
+    assert len(inventory) == 1001
+    assert inventory['sku-1'] == 3
+    assert all(inventory[f'new-{i}'] == 5 for i in range(1000))
+    assert (await resolve(second, confirmation))['result']['order_id']
+    assert (await first.get_inventory())['sku-1'] == 3

@@ -16,6 +16,11 @@ export default function MyOrders({request,confirmations,busy,error,onPrepare,onR
   const data=await request(`/orders?offset=${offset}&limit=10${status?`&status=${status}`:""}`);
   if(id!==revision.current)return;
   if(!Array.isArray(data.orders)||typeof data.total!=="number")throw new Error("订单数据格式无效");
+  const lastOffset=Math.max(0,Math.floor((data.total-1)/10)*10);
+  if(offset>lastOffset){
+   // 取消订单后当前页可能失效，回到仍存在的最后一页再读取。
+   ++revision.current;setDetail(null);setOffset(lastOffset);return;
+  }
   setOrders(data.orders);setTotal(data.total);
  }catch(e){if(id===revision.current)setFailure(e instanceof Error?e.message:"订单暂时无法读取");}finally{if(id===revision.current)setLoading(false);}},[request,status,offset]);
  useEffect(()=>{void refresh();return()=>{++revision.current;};},[refresh]);

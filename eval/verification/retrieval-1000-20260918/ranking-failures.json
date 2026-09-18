@@ -1,0 +1,2169 @@
+{
+  "keyword": [
+    {
+      "id": "v2-01-intent",
+      "family": 1,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，飞机上坐着打盹总是点头，想找能托住脑袋的东西",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.6366824387328317,
+      "empty_ok": null,
+      "elapsed_ms": 17.909540998516604,
+      "ids": [
+        "P3016",
+        "P3017",
+        "P3018",
+        "P3019",
+        "P3021"
+      ],
+      "gold": [
+        "CAN-GX-02-1",
+        "CAN-GX-02-2",
+        "CAN-GX-02-3",
+        "CAN-GX-02-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-02-intent",
+      "family": 2,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，机场中转要拖着走的箱子，轮子得灵活",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.6366824387328317,
+      "empty_ok": null,
+      "elapsed_ms": 17.824916998506524,
+      "ids": [
+        "P3032",
+        "P3034",
+        "P3035",
+        "P3036",
+        "P3037"
+      ],
+      "gold": [
+        "CAN-GX-03-1",
+        "CAN-GX-03-2",
+        "CAN-GX-03-3",
+        "CAN-GX-03-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-03-intent",
+      "family": 3,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，出门衣服塞不进行李箱，想分类后压小一点",
+      "recall": 0.0,
+      "mrr": 0,
+      "ndcg": 0.0,
+      "empty_ok": null,
+      "elapsed_ms": 17.569250005180947,
+      "ids": [
+        "P3032",
+        "P3034",
+        "P3035",
+        "P3036",
+        "P3037"
+      ],
+      "gold": [
+        "CAN-GX-04-3",
+        "CAN-GX-04-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-03-specification",
+      "family": 3,
+      "kind": "specification",
+      "query": "在 Roamix 系列中，行李整理要六件，能压缩并把湿衣服分开",
+      "recall": 0.0,
+      "mrr": 0,
+      "ndcg": 0.0,
+      "empty_ok": null,
+      "elapsed_ms": 18.517958000302315,
+      "ids": [
+        "P1014",
+        "P3048",
+        "P3049",
+        "P3051",
+        "P3052"
+      ],
+      "gold": [
+        "CAN-GX-04-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-05-intent",
+      "family": 5,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，地铁太吵，想听清播客，不想总调大音量",
+      "recall": 0.0,
+      "mrr": 0,
+      "ndcg": 0.0,
+      "empty_ok": null,
+      "elapsed_ms": 27.71883300738409,
+      "ids": [
+        "P3081",
+        "P3082",
+        "P3083",
+        "P3084",
+        "P3085"
+      ],
+      "gold": [
+        "CAN-GX-06-3",
+        "CAN-GX-06-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-06-intent",
+      "family": 6,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，轻薄电脑插口不够，想连显示器再接网线",
+      "recall": 0.0,
+      "mrr": 0,
+      "ndcg": 0.0,
+      "empty_ok": null,
+      "elapsed_ms": 17.702333003398962,
+      "ids": [
+        "P3096",
+        "P3097",
+        "P3098",
+        "P3101",
+        "P3102"
+      ],
+      "gold": [
+        "CAN-GX-07-3",
+        "CAN-GX-07-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-07-intent",
+      "family": 7,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，出门拍照手机下午就没电，找能放包里补电的",
+      "recall": 0.0,
+      "mrr": 0,
+      "ndcg": 0.0,
+      "empty_ok": null,
+      "elapsed_ms": 18.362666000030003,
+      "ids": [
+        "P3064",
+        "P3065",
+        "P3067",
+        "P3068",
+        "P3069"
+      ],
+      "gold": [
+        "CAN-GX-08-1",
+        "CAN-GX-08-2",
+        "CAN-GX-08-3",
+        "CAN-GX-08-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-09-intent",
+      "family": 9,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，桌上喝拿铁用的杯子，想要质朴中性色的",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.6366824387328317,
+      "empty_ok": null,
+      "elapsed_ms": 18.047791993012652,
+      "ids": [
+        "P3144",
+        "P3145",
+        "P3146",
+        "P3147",
+        "P3148"
+      ],
+      "gold": [
+        "CAN-GX-10-1",
+        "CAN-GX-10-2",
+        "CAN-GX-10-3",
+        "CAN-GX-10-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-10-intent",
+      "family": 10,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，换季衣服堆在柜子里，找能归拢起来的",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.6366824387328317,
+      "empty_ok": null,
+      "elapsed_ms": 17.501167007139884,
+      "ids": [
+        "P3161",
+        "P3162",
+        "P3163",
+        "P3164",
+        "P3166"
+      ],
+      "gold": [
+        "CAN-GX-11-1",
+        "CAN-GX-11-2",
+        "CAN-GX-11-3",
+        "CAN-GX-11-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-11-intent",
+      "family": 11,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，阳台空间小，晒完衣服想把架子收起来",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.6366824387328317,
+      "empty_ok": null,
+      "elapsed_ms": 17.96262500283774,
+      "ids": [
+        "P3177",
+        "P3178",
+        "P3179",
+        "P3181",
+        "P3182"
+      ],
+      "gold": [
+        "CAN-GX-12-1",
+        "CAN-GX-12-2",
+        "CAN-GX-12-3",
+        "CAN-GX-12-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-13-intent",
+      "family": 13,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，下山膝盖吃力，想要能撑着走的轻量装备",
+      "recall": 0.0,
+      "mrr": 0,
+      "ndcg": 0.0,
+      "empty_ok": null,
+      "elapsed_ms": 18.52487500582356,
+      "ids": [
+        "P1016",
+        "P1017",
+        "P2072",
+        "P2080",
+        "P2096"
+      ],
+      "gold": [
+        "CAN-GX-14-1",
+        "CAN-GX-14-2",
+        "CAN-GX-14-3",
+        "CAN-GX-14-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-14-intent",
+      "family": 14,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，野外过夜有点冷，找能钻进去保暖的装备",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.6366824387328317,
+      "empty_ok": null,
+      "elapsed_ms": 19.261582987383008,
+      "ids": [
+        "P3224",
+        "P3225",
+        "P3226",
+        "P3227",
+        "P3228"
+      ],
+      "gold": [
+        "CAN-GX-15-1",
+        "CAN-GX-15-2",
+        "CAN-GX-15-3",
+        "CAN-GX-15-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-15-intent",
+      "family": 15,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，冬天徒步想一路喝到热水，找个耐用容器",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.6366824387328317,
+      "empty_ok": null,
+      "elapsed_ms": 18.141082997317426,
+      "ids": [
+        "P3241",
+        "P3243",
+        "P3244",
+        "P3245",
+        "P3246"
+      ],
+      "gold": [
+        "CAN-GX-16-1",
+        "CAN-GX-16-2",
+        "CAN-GX-16-3",
+        "CAN-GX-16-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-17-intent",
+      "family": 17,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，洗发水大瓶太占地方，出行想分小份且不漏",
+      "recall": 0.0,
+      "mrr": 0,
+      "ndcg": 0.0,
+      "empty_ok": null,
+      "elapsed_ms": 17.818374995840713,
+      "ids": [
+        "P3448",
+        "P3449",
+        "P3452",
+        "P3453",
+        "P3454"
+      ],
+      "gold": [
+        "CAN-GX-18-3",
+        "CAN-GX-18-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-18-intent",
+      "family": 18,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，酒店洗完头想自己吹干，需要能塞进行李的",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.6366824387328317,
+      "empty_ok": null,
+      "elapsed_ms": 17.587082998943515,
+      "ids": [
+        "P3288",
+        "P3289",
+        "P3291",
+        "P3292",
+        "P3293"
+      ],
+      "gold": [
+        "CAN-GX-19-1",
+        "CAN-GX-19-2",
+        "CAN-GX-19-3",
+        "CAN-GX-19-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-19-intent",
+      "family": 19,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，洗脸之后不用毛巾，想找没香味的纯棉擦脸用品",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.6366824387328317,
+      "empty_ok": null,
+      "elapsed_ms": 17.927499997313134,
+      "ids": [
+        "P3304",
+        "P3305",
+        "P3306",
+        "P3307",
+        "P3309"
+      ],
+      "gold": [
+        "CAN-GX-20-1",
+        "CAN-GX-20-2",
+        "CAN-GX-20-3",
+        "CAN-GX-20-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-21-intent",
+      "family": 21,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，野餐不想用一次性叉勺，找能反复洗的轻餐具",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.6366824387328317,
+      "empty_ok": null,
+      "elapsed_ms": 18.573624998680316,
+      "ids": [
+        "P3342",
+        "P3343",
+        "P3344",
+        "P3345",
+        "P3346"
+      ],
+      "gold": [
+        "CAN-GX-22-1",
+        "CAN-GX-22-2",
+        "CAN-GX-22-3",
+        "CAN-GX-22-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-22-intent",
+      "family": 22,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，手冲咖啡水流太粗难控制，想找细嘴容器",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.6366824387328317,
+      "empty_ok": null,
+      "elapsed_ms": 18.290457999682985,
+      "ids": [
+        "P3353",
+        "P3354",
+        "P3355",
+        "P3356",
+        "P3357"
+      ],
+      "gold": [
+        "CAN-GX-23-1",
+        "CAN-GX-23-2",
+        "CAN-GX-23-3",
+        "CAN-GX-23-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-23-intent",
+      "family": 23,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，剩下的食材想小份放冰箱，容器能反复用",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.6366824387328317,
+      "empty_ok": null,
+      "elapsed_ms": 18.071708997013047,
+      "ids": [
+        "P3368",
+        "P3369",
+        "P3371",
+        "P3372",
+        "P3373"
+      ],
+      "gold": [
+        "CAN-GX-24-1",
+        "CAN-GX-24-2",
+        "CAN-GX-24-3",
+        "CAN-GX-24-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-25-intent",
+      "family": 25,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，电脑屏幕太低看得脖子酸，想抬高桌面设备",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.6366824387328317,
+      "empty_ok": null,
+      "elapsed_ms": 18.036458001006395,
+      "ids": [
+        "P3401",
+        "P3402",
+        "P3403",
+        "P3404",
+        "P3405"
+      ],
+      "gold": [
+        "CAN-GX-26-1",
+        "CAN-GX-26-2",
+        "CAN-GX-26-3",
+        "CAN-GX-26-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-26-intent",
+      "family": 26,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，办公室操作电脑不想让按键声音吵到同事",
+      "recall": 0.0,
+      "mrr": 0,
+      "ndcg": 0.0,
+      "empty_ok": null,
+      "elapsed_ms": 18.259250005939975,
+      "ids": [
+        "P3401",
+        "P3402",
+        "P3403",
+        "P3404",
+        "P3405"
+      ],
+      "gold": [
+        "CAN-GX-27-2",
+        "CAN-GX-27-3",
+        "CAN-GX-27-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-27-intent",
+      "family": 27,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，一堆A4票据要分类，不想翻遍整个包",
+      "recall": 0.6666666666666666,
+      "mrr": 1.0,
+      "ndcg": 0.7653606369886217,
+      "empty_ok": null,
+      "elapsed_ms": 18.522500002291054,
+      "ids": [
+        "P3436",
+        "P3437",
+        "P3438",
+        "P3439",
+        "P3441"
+      ],
+      "gold": [
+        "CAN-GX-28-2",
+        "CAN-GX-28-3",
+        "CAN-GX-28-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-29-intent",
+      "family": 29,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，猫平时喝水少，想试试循环水而不是普通碗",
+      "recall": 0.0,
+      "mrr": 0,
+      "ndcg": 0.0,
+      "empty_ok": null,
+      "elapsed_ms": 17.909417001646943,
+      "ids": [
+        "P3272",
+        "P3273",
+        "P3274",
+        "P3276",
+        "P3277"
+      ],
+      "gold": [
+        "CAN-GX-30-1",
+        "CAN-GX-30-2",
+        "CAN-GX-30-3",
+        "CAN-GX-30-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    },
+    {
+      "id": "v2-30-intent",
+      "family": 30,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，宝宝洗澡后想裹起来吸水，用柔软棉织物",
+      "recall": 0.5,
+      "mrr": 1.0,
+      "ndcg": 0.6366824387328317,
+      "empty_ok": null,
+      "elapsed_ms": 18.164915993111208,
+      "ids": [
+        "P3481",
+        "P3482",
+        "P3483",
+        "P3485",
+        "P3486"
+      ],
+      "gold": [
+        "CAN-GX-31-1",
+        "CAN-GX-31-2",
+        "CAN-GX-31-3",
+        "CAN-GX-31-4"
+      ],
+      "violations": {},
+      "strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "vector_available": null,
+      "diagnostics": {}
+    }
+  ],
+  "bm25": [
+    {
+      "id": "v2-01-intent",
+      "family": 1,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，飞机上坐着打盹总是点头，想找能托住脑袋的东西",
+      "recall": 0.0,
+      "mrr": 0,
+      "ndcg": 0.0,
+      "empty_ok": null,
+      "elapsed_ms": 23.409792003803886,
+      "ids": [
+        "P1020",
+        "P1053",
+        "P1021",
+        "P1023",
+        "P1013"
+      ],
+      "gold": [
+        "CAN-GX-02-1",
+        "CAN-GX-02-2",
+        "CAN-GX-02-3",
+        "CAN-GX-02-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-02-specification",
+      "family": 2,
+      "kind": "specification",
+      "query": "在 Roamix 系列中，要20寸带TSA锁且轮子安静的登机箱",
+      "recall": 1.0,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.5,
+      "empty_ok": null,
+      "elapsed_ms": 25.657792008132674,
+      "ids": [
+        "P1016",
+        "P1002",
+        "P3045",
+        "P1060",
+        "P3041"
+      ],
+      "gold": [
+        "CAN-GX-03-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-03-intent",
+      "family": 3,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，出门衣服塞不进行李箱，想分类后压小一点",
+      "recall": 0.0,
+      "mrr": 0,
+      "ndcg": 0.0,
+      "empty_ok": null,
+      "elapsed_ms": 25.572208993253298,
+      "ids": [
+        "P1060",
+        "P1015",
+        "P3032",
+        "P3036",
+        "P3041"
+      ],
+      "gold": [
+        "CAN-GX-04-3",
+        "CAN-GX-04-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-03-specification",
+      "family": 3,
+      "kind": "specification",
+      "query": "在 Roamix 系列中，行李整理要六件，能压缩并把湿衣服分开",
+      "recall": 1.0,
+      "mrr": 0.2,
+      "ndcg": 0.38685280723454163,
+      "empty_ok": null,
+      "elapsed_ms": 24.830875001498498,
+      "ids": [
+        "P1014",
+        "P3048",
+        "P3052",
+        "P3056",
+        "P3061"
+      ],
+      "gold": [
+        "CAN-GX-04-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-05-intent",
+      "family": 5,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，地铁太吵，想听清播客，不想总调大音量",
+      "recall": 1.0,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.5706417189553201,
+      "empty_ok": null,
+      "elapsed_ms": 23.965749991475604,
+      "ids": [
+        "P3081",
+        "P3084",
+        "P3089",
+        "P3092",
+        "P3177"
+      ],
+      "gold": [
+        "CAN-GX-06-3",
+        "CAN-GX-06-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-05-specification",
+      "family": 5,
+      "kind": "specification",
+      "query": "在 Roamix 系列中，耳机要主动降噪45分贝和至少50小时续航",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575,
+      "empty_ok": null,
+      "elapsed_ms": 25.656541998614557,
+      "ids": [
+        "P1004",
+        "P3092",
+        "P3089",
+        "P1023",
+        "P1022"
+      ],
+      "gold": [
+        "CAN-GX-06-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-06-intent",
+      "family": 6,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，轻薄电脑插口不够，想连显示器再接网线",
+      "recall": 1.0,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.5706417189553201,
+      "empty_ok": null,
+      "elapsed_ms": 25.4977919976227,
+      "ids": [
+        "P3096",
+        "P3101",
+        "P3104",
+        "P3108",
+        "P3361"
+      ],
+      "gold": [
+        "CAN-GX-07-3",
+        "CAN-GX-07-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-07-intent",
+      "family": 7,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，出门拍照手机下午就没电，找能放包里补电的",
+      "recall": 0.25,
+      "mrr": 0.2,
+      "ndcg": 0.15101961822780524,
+      "empty_ok": null,
+      "elapsed_ms": 24.623749995953403,
+      "ids": [
+        "P3064",
+        "P3068",
+        "P3072",
+        "P3076",
+        "P3112"
+      ],
+      "gold": [
+        "CAN-GX-08-1",
+        "CAN-GX-08-2",
+        "CAN-GX-08-3",
+        "CAN-GX-08-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-07-specification",
+      "family": 7,
+      "kind": "specification",
+      "query": "在 Roamix 系列中，移动电源要两万毫安时65瓦且自带C口线",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575,
+      "empty_ok": null,
+      "elapsed_ms": 24.61670800403226,
+      "ids": [
+        "P1026",
+        "P3124",
+        "P3112",
+        "P3116",
+        "P3122"
+      ],
+      "gold": [
+        "CAN-GX-08-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-09-intent",
+      "family": 9,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，桌上喝拿铁用的杯子，想要质朴中性色的",
+      "recall": 0.75,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.5143371794949736,
+      "empty_ok": null,
+      "elapsed_ms": 25.310499986517243,
+      "ids": [
+        "P1032",
+        "P1034",
+        "P3144",
+        "P3148",
+        "P3152"
+      ],
+      "gold": [
+        "CAN-GX-10-1",
+        "CAN-GX-10-2",
+        "CAN-GX-10-3",
+        "CAN-GX-10-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-10-specification",
+      "family": 10,
+      "kind": "specification",
+      "query": "在 Roamix 系列中，收纳箱要60升能叠放，防灰且能看见里面",
+      "recall": 1.0,
+      "mrr": 0.25,
+      "ndcg": 0.43067655807339306,
+      "empty_ok": null,
+      "elapsed_ms": 25.34345800813753,
+      "ids": [
+        "P3168",
+        "P3161",
+        "P3164",
+        "P3172",
+        "P2302"
+      ],
+      "gold": [
+        "CAN-GX-11-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-11-intent",
+      "family": 11,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，阳台空间小，晒完衣服想把架子收起来",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "ndcg": 0.7606395682357036,
+      "empty_ok": null,
+      "elapsed_ms": 23.93412499804981,
+      "ids": [
+        "P1059",
+        "P3177",
+        "P3181",
+        "P3184",
+        "P3188"
+      ],
+      "gold": [
+        "CAN-GX-12-1",
+        "CAN-GX-12-2",
+        "CAN-GX-12-3",
+        "CAN-GX-12-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-13-specification",
+      "family": 13,
+      "kind": "specification",
+      "query": "在 Roamix 系列中，登山杖单支220克，五节折叠带快锁",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575,
+      "empty_ok": null,
+      "elapsed_ms": 24.856333009665832,
+      "ids": [
+        "P1010",
+        "P3221",
+        "P1040",
+        "P1047",
+        "P3216"
+      ],
+      "gold": [
+        "CAN-GX-14-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-17-intent",
+      "family": 17,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，洗发水大瓶太占地方，出行想分小份且不漏",
+      "recall": 0.0,
+      "mrr": 0,
+      "ndcg": 0.0,
+      "empty_ok": null,
+      "elapsed_ms": 25.05616699636448,
+      "ids": [
+        "P1018",
+        "P3448",
+        "P3452",
+        "P3456",
+        "P3461"
+      ],
+      "gold": [
+        "CAN-GX-18-3",
+        "CAN-GX-18-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-21-intent",
+      "family": 21,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，野餐不想用一次性叉勺，找能反复洗的轻餐具",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "ndcg": 0.7606395682357036,
+      "empty_ok": null,
+      "elapsed_ms": 25.229625010979362,
+      "ids": [
+        "P1058",
+        "P3342",
+        "P3344",
+        "P3348",
+        "P3336"
+      ],
+      "gold": [
+        "CAN-GX-22-1",
+        "CAN-GX-22-2",
+        "CAN-GX-22-3",
+        "CAN-GX-22-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-26-intent",
+      "family": 26,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，办公室操作电脑不想让按键声音吵到同事",
+      "recall": 0.3333333333333333,
+      "mrr": 0.5,
+      "ndcg": 0.2960819109658652,
+      "empty_ok": null,
+      "elapsed_ms": 25.315124992630444,
+      "ids": [
+        "P3416",
+        "P3421",
+        "P3401",
+        "P3404",
+        "P3408"
+      ],
+      "gold": [
+        "CAN-GX-27-2",
+        "CAN-GX-27-3",
+        "CAN-GX-27-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-29-intent",
+      "family": 29,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，猫平时喝水少，想试试循环水而不是普通碗",
+      "recall": 0.75,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.5143371794949736,
+      "empty_ok": null,
+      "elapsed_ms": 25.345208996441215,
+      "ids": [
+        "P3272",
+        "P3276",
+        "P3464",
+        "P3468",
+        "P3472"
+      ],
+      "gold": [
+        "CAN-GX-30-1",
+        "CAN-GX-30-2",
+        "CAN-GX-30-3",
+        "CAN-GX-30-4"
+      ],
+      "violations": {},
+      "strategy": "bm25",
+      "rerank_applied": false,
+      "vector_available": false,
+      "diagnostics": {
+        "filter_mode": "adaptive_post_filter",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    }
+  ],
+  "dense": [
+    {
+      "id": "v2-01-intent",
+      "family": 1,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，飞机上坐着打盹总是点头，想找能托住脑袋的东西",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "ndcg": 0.9047172294870751,
+      "empty_ok": null,
+      "elapsed_ms": 69.2910419893451,
+      "ids": [
+        "P3031",
+        "P1012",
+        "P3027",
+        "P3016",
+        "P3023"
+      ],
+      "gold": [
+        "CAN-GX-02-1",
+        "CAN-GX-02-2",
+        "CAN-GX-02-3",
+        "CAN-GX-02-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-02-specification",
+      "family": 2,
+      "kind": "specification",
+      "query": "在 Roamix 系列中，要20寸带TSA锁且轮子安静的登机箱",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575,
+      "empty_ok": null,
+      "elapsed_ms": 69.7760840121191,
+      "ids": [
+        "P3043",
+        "P3045",
+        "P1002",
+        "P1016",
+        "P1015"
+      ],
+      "gold": [
+        "CAN-GX-03-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-03-intent",
+      "family": 3,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，出门衣服塞不进行李箱，想分类后压小一点",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "ndcg": 0.8772153153380493,
+      "empty_ok": null,
+      "elapsed_ms": 69.6135839971248,
+      "ids": [
+        "P3061",
+        "P3051",
+        "P3052",
+        "P3057",
+        "P1014"
+      ],
+      "gold": [
+        "CAN-GX-04-3",
+        "CAN-GX-04-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-05-intent",
+      "family": 5,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，地铁太吵，想听清播客，不想总调大音量",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "ndcg": 0.8772153153380493,
+      "empty_ok": null,
+      "elapsed_ms": 69.95950000418816,
+      "ids": [
+        "P3091",
+        "P3084",
+        "P3081",
+        "P3092",
+        "P1023"
+      ],
+      "gold": [
+        "CAN-GX-06-3",
+        "CAN-GX-06-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-06-intent",
+      "family": 6,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，轻薄电脑插口不够，想连显示器再接网线",
+      "recall": 1.0,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.5706417189553201,
+      "empty_ok": null,
+      "elapsed_ms": 70.60083300166298,
+      "ids": [
+        "P3103",
+        "P3096",
+        "P3104",
+        "P3108",
+        "P3125"
+      ],
+      "gold": [
+        "CAN-GX-07-3",
+        "CAN-GX-07-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-07-intent",
+      "family": 7,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，出门拍照手机下午就没电，找能放包里补电的",
+      "recall": 0.75,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.5143371794949736,
+      "empty_ok": null,
+      "elapsed_ms": 69.61287499871105,
+      "ids": [
+        "P1038",
+        "P1026",
+        "P3124",
+        "P3123",
+        "P3116"
+      ],
+      "gold": [
+        "CAN-GX-08-1",
+        "CAN-GX-08-2",
+        "CAN-GX-08-3",
+        "CAN-GX-08-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-09-intent",
+      "family": 9,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，桌上喝拿铁用的杯子，想要质朴中性色的",
+      "recall": 0.75,
+      "mrr": 0.5,
+      "ndcg": 0.6096199500078984,
+      "empty_ok": null,
+      "elapsed_ms": 71.72729099693242,
+      "ids": [
+        "P1032",
+        "P3152",
+        "P3149",
+        "P3144",
+        "P1031"
+      ],
+      "gold": [
+        "CAN-GX-10-1",
+        "CAN-GX-10-2",
+        "CAN-GX-10-3",
+        "CAN-GX-10-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-10-specification",
+      "family": 10,
+      "kind": "specification",
+      "query": "在 Roamix 系列中，收纳箱要60升能叠放，防灰且能看见里面",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575,
+      "empty_ok": null,
+      "elapsed_ms": 69.66287500108592,
+      "ids": [
+        "P3171",
+        "P3175",
+        "P3166",
+        "P3162",
+        "P3447"
+      ],
+      "gold": [
+        "CAN-GX-11-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-15-intent",
+      "family": 15,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，冬天徒步想一路喝到热水，找个耐用容器",
+      "recall": 0.5,
+      "mrr": 0.5,
+      "ndcg": 0.3973220069685352,
+      "empty_ok": null,
+      "elapsed_ms": 73.81558298948221,
+      "ids": [
+        "P2059",
+        "P3254",
+        "P2099",
+        "P2051",
+        "P3241"
+      ],
+      "gold": [
+        "CAN-GX-16-1",
+        "CAN-GX-16-2",
+        "CAN-GX-16-3",
+        "CAN-GX-16-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-17-intent",
+      "family": 17,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，洗发水大瓶太占地方，出行想分小份且不漏",
+      "recall": 0.5,
+      "mrr": 0.5,
+      "ndcg": 0.38685280723454163,
+      "empty_ok": null,
+      "elapsed_ms": 69.17591700039338,
+      "ids": [
+        "P2356",
+        "P3281",
+        "P2068",
+        "P2276",
+        "P2116"
+      ],
+      "gold": [
+        "CAN-GX-18-3",
+        "CAN-GX-18-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-26-intent",
+      "family": 26,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，办公室操作电脑不想让按键声音吵到同事",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "ndcg": 0.7328286204777911,
+      "empty_ok": null,
+      "elapsed_ms": 69.98983299126849,
+      "ids": [
+        "P3416",
+        "P3423",
+        "P3426",
+        "P3431",
+        "P2062"
+      ],
+      "gold": [
+        "CAN-GX-27-2",
+        "CAN-GX-27-3",
+        "CAN-GX-27-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-27-intent",
+      "family": 27,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，一堆A4票据要分类，不想翻遍整个包",
+      "recall": 0.0,
+      "mrr": 0,
+      "ndcg": 0.0,
+      "empty_ok": null,
+      "elapsed_ms": 67.3489589971723,
+      "ids": [
+        "P2072",
+        "P2176",
+        "P3062",
+        "P2080",
+        "P2296"
+      ],
+      "gold": [
+        "CAN-GX-28-2",
+        "CAN-GX-28-3",
+        "CAN-GX-28-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    }
+  ],
+  "hybrid": [
+    {
+      "id": "v2-01-intent",
+      "family": 1,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，飞机上坐着打盹总是点头，想找能托住脑袋的东西",
+      "recall": 0.75,
+      "mrr": 0.5,
+      "ndcg": 0.592512031964586,
+      "empty_ok": null,
+      "elapsed_ms": 68.42695799423382,
+      "ids": [
+        "P1012",
+        "P3024",
+        "P3031",
+        "P1053",
+        "P3021"
+      ],
+      "gold": [
+        "CAN-GX-02-1",
+        "CAN-GX-02-2",
+        "CAN-GX-02-3",
+        "CAN-GX-02-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-03-intent",
+      "family": 3,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，出门衣服塞不进行李箱，想分类后压小一点",
+      "recall": 0.0,
+      "mrr": 0,
+      "ndcg": 0.0,
+      "empty_ok": null,
+      "elapsed_ms": 70.73816700722091,
+      "ids": [
+        "P1060",
+        "P1015",
+        "P3036",
+        "P3032",
+        "P3041"
+      ],
+      "gold": [
+        "CAN-GX-04-3",
+        "CAN-GX-04-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-03-specification",
+      "family": 3,
+      "kind": "specification",
+      "query": "在 Roamix 系列中，行李整理要六件，能压缩并把湿衣服分开",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "ndcg": 0.6309297535714575,
+      "empty_ok": null,
+      "elapsed_ms": 71.15516699559521,
+      "ids": [
+        "P1014",
+        "P3061",
+        "P3052",
+        "P3057",
+        "P3048"
+      ],
+      "gold": [
+        "CAN-GX-04-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-05-intent",
+      "family": 5,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，地铁太吵，想听清播客，不想总调大音量",
+      "recall": 1.0,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.5706417189553201,
+      "empty_ok": null,
+      "elapsed_ms": 70.18554100068286,
+      "ids": [
+        "P3084",
+        "P3081",
+        "P3091",
+        "P3092",
+        "P1023"
+      ],
+      "gold": [
+        "CAN-GX-06-3",
+        "CAN-GX-06-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-06-intent",
+      "family": 6,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，轻薄电脑插口不够，想连显示器再接网线",
+      "recall": 1.0,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.5706417189553201,
+      "empty_ok": null,
+      "elapsed_ms": 69.88954200642183,
+      "ids": [
+        "P3096",
+        "P3103",
+        "P3104",
+        "P3108",
+        "P3125"
+      ],
+      "gold": [
+        "CAN-GX-07-3",
+        "CAN-GX-07-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-09-intent",
+      "family": 9,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，桌上喝拿铁用的杯子，想要质朴中性色的",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "ndcg": 0.7606395682357036,
+      "empty_ok": null,
+      "elapsed_ms": 68.61299999582116,
+      "ids": [
+        "P1032",
+        "P3144",
+        "P3152",
+        "P3149",
+        "P3157"
+      ],
+      "gold": [
+        "CAN-GX-10-1",
+        "CAN-GX-10-2",
+        "CAN-GX-10-3",
+        "CAN-GX-10-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-10-specification",
+      "family": 10,
+      "kind": "specification",
+      "query": "在 Roamix 系列中，收纳箱要60升能叠放，防灰且能看见里面",
+      "recall": 1.0,
+      "mrr": 0.25,
+      "ndcg": 0.43067655807339306,
+      "empty_ok": null,
+      "elapsed_ms": 71.08012499520555,
+      "ids": [
+        "P3168",
+        "P3161",
+        "P3166",
+        "P3175",
+        "P1014"
+      ],
+      "gold": [
+        "CAN-GX-11-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-17-intent",
+      "family": 17,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，洗发水大瓶太占地方，出行想分小份且不漏",
+      "recall": 0.5,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.3065735963827292,
+      "empty_ok": null,
+      "elapsed_ms": 68.80345899844542,
+      "ids": [
+        "P1018",
+        "P2356",
+        "P3281",
+        "P3448",
+        "P3452"
+      ],
+      "gold": [
+        "CAN-GX-18-3",
+        "CAN-GX-18-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-26-intent",
+      "family": 26,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，办公室操作电脑不想让按键声音吵到同事",
+      "recall": 0.6666666666666666,
+      "mrr": 0.5,
+      "ndcg": 0.5307212739772434,
+      "empty_ok": null,
+      "elapsed_ms": 70.331916998839,
+      "ids": [
+        "P3416",
+        "P3421",
+        "P3424",
+        "P3404",
+        "P3401"
+      ],
+      "gold": [
+        "CAN-GX-27-2",
+        "CAN-GX-27-3",
+        "CAN-GX-27-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-27-intent",
+      "family": 27,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，一堆A4票据要分类，不想翻遍整个包",
+      "recall": 0.6666666666666666,
+      "mrr": 1.0,
+      "ndcg": 0.7039180890341347,
+      "empty_ok": null,
+      "elapsed_ms": 68.41174999135546,
+      "ids": [
+        "P3437",
+        "P3433",
+        "P3441",
+        "P2072",
+        "P2176"
+      ],
+      "gold": [
+        "CAN-GX-28-2",
+        "CAN-GX-28-3",
+        "CAN-GX-28-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_only",
+      "rerank_applied": false,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    }
+  ],
+  "hybrid_reranker": [
+    {
+      "id": "v2-03-intent",
+      "family": 3,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，出门衣服塞不进行李箱，想分类后压小一点",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "ndcg": 0.8772153153380493,
+      "empty_ok": null,
+      "elapsed_ms": 570.4219589970307,
+      "ids": [
+        "P3057",
+        "P3052",
+        "P3051",
+        "P3061",
+        "P1059"
+      ],
+      "gold": [
+        "CAN-GX-04-3",
+        "CAN-GX-04-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_rerank",
+      "rerank_applied": true,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-05-intent",
+      "family": 5,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，地铁太吵，想听清播客，不想总调大音量",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "ndcg": 0.6509209298071326,
+      "empty_ok": null,
+      "elapsed_ms": 733.1114999979036,
+      "ids": [
+        "P3081",
+        "P3091",
+        "P3084",
+        "P3092",
+        "P3127"
+      ],
+      "gold": [
+        "CAN-GX-06-3",
+        "CAN-GX-06-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_rerank",
+      "rerank_applied": true,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-06-intent",
+      "family": 6,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，轻薄电脑插口不够，想连显示器再接网线",
+      "recall": 1.0,
+      "mrr": 1.0,
+      "ndcg": 0.8503449055347546,
+      "empty_ok": null,
+      "elapsed_ms": 534.1950830043061,
+      "ids": [
+        "P3108",
+        "P3103",
+        "P3096",
+        "P3125",
+        "P3104"
+      ],
+      "gold": [
+        "CAN-GX-07-3",
+        "CAN-GX-07-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_rerank",
+      "rerank_applied": true,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-07-intent",
+      "family": 7,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，出门拍照手机下午就没电，找能放包里补电的",
+      "recall": 0.5,
+      "mrr": 0.3333333333333333,
+      "ndcg": 0.36331756126716835,
+      "empty_ok": null,
+      "elapsed_ms": 565.3339580021566,
+      "ids": [
+        "P3064",
+        "P3068",
+        "P3116",
+        "P3123",
+        "P3072"
+      ],
+      "gold": [
+        "CAN-GX-08-1",
+        "CAN-GX-08-2",
+        "CAN-GX-08-3",
+        "CAN-GX-08-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_rerank",
+      "rerank_applied": true,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    },
+    {
+      "id": "v2-26-intent",
+      "family": 26,
+      "kind": "intent",
+      "query": "在 Roamix 系列中，办公室操作电脑不想让按键声音吵到同事",
+      "recall": 1.0,
+      "mrr": 0.5,
+      "ndcg": 0.7328286204777911,
+      "empty_ok": null,
+      "elapsed_ms": 451.5235839935485,
+      "ids": [
+        "P3416",
+        "P3421",
+        "P3431",
+        "P3424",
+        "P3401"
+      ],
+      "gold": [
+        "CAN-GX-27-2",
+        "CAN-GX-27-3",
+        "CAN-GX-27-4"
+      ],
+      "violations": {},
+      "strategy": "hybrid_rerank",
+      "rerank_applied": true,
+      "vector_available": true,
+      "diagnostics": {
+        "filter_mode": "authoritative_ids",
+        "eligible_products": 643,
+        "lexical_weight": 1.0,
+        "vector_weight": 1.0,
+        "candidate_limit": 32
+      }
+    }
+  ]
+}

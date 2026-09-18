@@ -1,0 +1,11 @@
+{
+  "app/infrastructure/ag_ui_journal.py": "597b6f05d25476f9cc1709bcc0959fa50585187c327e30e00920e6c9e563c092",
+  "frontend/src/lib/commerceClient.ts": "8756ec6325069f40fe3cef1c1499c8cc0441449cb281cee53d2365f117d9c34e",
+  "frontend/src/types.ts": "9140f5f3e072d90878bb5cb6e464908a800c1264b088e43245e8271bcb2f263e",
+  "frontend/src/components/ProductHistory.tsx": "3aad0107648923533c3684b6b841783c60f0145441e66cfd610bfe5e7e8bd615",
+  "frontend/src/components/EventTimeline.tsx": "c6bab5bcd909e89f3b3aeb97e285804d577db819656c2f4141229638c87cd001",
+  "frontend/src/App.tsx": "ff7d34c4adcbe2add8e04316874853bbcb7bdb20caaf0d906771dec16ab698e9",
+  "frontend/src/styles.css": "476432523188ec8af8ab941991a5d57c1e7933f645c7eef8dcf11001f7889a0b",
+  "tests/test_ag_ui_journal.py": "905f1132bc0c050a3b00520eb9997bdea48e50ac0c5645fe0d14ef51756eb02d",
+  "frontend/tests/runRecovery.test.ts": "f69b1c7553c92150ecf8d3fce88081c9029368167b1f82bdfc02e1332b8b882f"
+}

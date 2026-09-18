@@ -1,47 +1,74 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { WorkspaceRequest } from './BuyerWorkspace';
 import './contextWorkspace.css';
 
-type Props={sessionId:string;busy:boolean;pending:boolean;hasMessages:boolean;request:WorkspaceRequest;onBusyChange:(busy:boolean)=>void};
+type Options={sessionId:string;busy:boolean;pending:boolean;hasMessages:boolean;request:WorkspaceRequest};
 type View={revision:number;strategy?:string;summary?:string;working?:{goal?:string;latest_request?:string;constraints?:Record<string,{source?:string;value?:string;currency?:string}>;selected?:string[];comparisons?:string[]};statistics?:{status?:string;before_tokens?:number;after_tokens?:number}};
-export default function ContextWorkspace({sessionId,busy,pending,hasMessages,request,onBusyChange}:Props){
- const [view,setView]=useState<View|null>(null),[running,setRunning]=useState(false),[notice,setNotice]=useState(''),[error,setError]=useState('');
- const generation=useRef(0), operation=useRef('');
- const refresh=async(current:number)=>{
-  try{const data=await request('/context?session_id='+encodeURIComponent(sessionId));if(current===generation.current){setView(data as View);const active=data.operation as {operation_id?:string;status?:string}|undefined;if(active?.status==='running'&&active.operation_id){operation.current=active.operation_id;setRunning(true);onBusyChange(true);}}}
-  catch(e){if(current===generation.current && !(e instanceof Error && 'status' in e && e.status===404))setError(e instanceof Error?e.message:'摘要暂时无法读取');}
- };
+// 在 App 会话层调用，切到其它页面时仍继续恢复和轮询整理操作。
+export function useContextWorkspace({sessionId,busy,pending,hasMessages,request}:Options){
+ const [view,setView]=useState<View|null>(null),[operation,setOperation]=useState(''),[checking,setChecking]=useState(true),[submitting,setSubmitting]=useState(false);
+ const [notice,setNotice]=useState(''),[error,setError]=useState('');
+ const generation=useRef(0),readRevision=useRef(0),submitLock=useRef(false);
+ const refresh=useCallback(async(current:number)=>{
+  const revision=++readRevision.current;
+  try{
+   const data=await request('/context?session_id='+encodeURIComponent(sessionId));
+   if(current!==generation.current||revision!==readRevision.current)return;
+   setView(data as View);
+   const active=data.operation as {operation_id?:string;status?:string}|undefined;
+   setOperation(active?.status==='running'&&active.operation_id?active.operation_id:'');
+  }catch(e){
+   if(current===generation.current&&revision===readRevision.current&&!(e instanceof Error&&'status' in e&&e.status===404))
+    setError(e instanceof Error?e.message:'摘要暂时无法读取');
+  }finally{if(current===generation.current&&revision===readRevision.current)setChecking(false);}
+ },[request,sessionId]);
  useEffect(()=>{
-  const current=++generation.current;setView(null);setError('');setNotice('');setRunning(false);operation.current='';onBusyChange(false);
-  if(hasMessages) void refresh(current);
+  const current=++generation.current;
+  setView(null);setError('');setNotice('');setOperation('');setSubmitting(false);setChecking(true);submitLock.current=false;
+  // 没有浏览器消息缓存时也查询数据库，避免漏掉正在执行的整理。
+  void refresh(current);
   return()=>{++generation.current;};
- },[sessionId,hasMessages]);
- useEffect(()=>{if(!busy&&hasMessages)void refresh(generation.current);},[busy]);
+ },[refresh]);
+ const previous=useRef({busy,hasMessages});
  useEffect(()=>{
-  if(!running)return;
+  const before=previous.current;previous.current={busy,hasMessages};
+  if(!busy&&hasMessages&&(before.busy||!before.hasMessages))void refresh(generation.current);
+ },[busy,hasMessages,refresh]);
+ useEffect(()=>{
+  if(!operation)return;
+  const current=generation.current;
   let stopped=false,timer:ReturnType<typeof setTimeout>;
   const poll=async()=>{
    try{
-    const data=await request('/context/operations/'+encodeURIComponent(operation.current));
-    if(stopped)return;
+    const data=await request('/context/operations/'+encodeURIComponent(operation));
+    if(stopped||current!==generation.current)return;
     if(data.status!=='running'){
-     setRunning(false);onBusyChange(false);setNotice(typeof data.message==='string'?data.message:'整理已结束');
-     await refresh(generation.current);return;
+     setOperation('');setError('');setNotice(typeof data.message==='string'?data.message:'整理已结束');
+     await refresh(current);return;
     }
    }catch(e){if(!stopped)setError(e instanceof Error?e.message:'读取整理进度失败，正在重试');}
    if(!stopped)timer=setTimeout(poll,1500);
   };void poll();return()=>{stopped=true;clearTimeout(timer);};
- },[running,request,onBusyChange]);
+ },[operation,request,refresh]);
+ const running=checking||submitting||!!operation;
  const compact=async()=>{
-  if(!view||busy||pending||running)return;
-  const current=generation.current;setError('');setNotice('');onBusyChange(true);
+  if(!view||busy||pending||running||submitLock.current)return;
+  const current=generation.current;
+  submitLock.current=true;++readRevision.current;setSubmitting(true);setError('');setNotice('');
   try{
    const data=await request('/context/compact','POST',{session_id:sessionId,request_id:crypto.randomUUID(),expected_revision:view.revision});
    if(current!==generation.current)return;
-   operation.current=String(data.operation_id);setRunning(data.status==='running');
-   if(data.status!=='running'){onBusyChange(false);setNotice(String(data.message??'整理已结束'));}
-  }catch(e){if(current===generation.current){onBusyChange(false);setError(e instanceof Error?e.message:'未能整理，原记录保留');void refresh(current);}}
+   if(data.status==='running')setOperation(String(data.operation_id));
+   else{setNotice(String(data.message??'整理已结束'));await refresh(current);}
+  }catch(e){
+   if(current===generation.current){setError(e instanceof Error?e.message:'未能整理，原记录保留');await refresh(current);}
+  }finally{if(current===generation.current){submitLock.current=false;setSubmitting(false);}}
  };
+ return {view,running,notice,error,compact,busy,pending,hasMessages};
+}
+
+export default function ContextWorkspace({state}:{state:ReturnType<typeof useContextWorkspace>}){
+ const {view,running,notice,error,compact,busy,pending,hasMessages}=state;
  if(!hasMessages)return null;
  return <section className="context-workspace" aria-label="本次选购摘要">
   <div className="context-workspace-header"><details><summary>本次选购摘要</summary>

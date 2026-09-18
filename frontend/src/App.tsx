@@ -1,4 +1,5 @@
-import ContextWorkspace from "./components/ContextWorkspace";
+import ContextWorkspace, { useContextWorkspace } from "./components/ContextWorkspace";
+import ShoppingForm, { displayShoppingMessage } from "./components/ShoppingForm";
 import { ToolApprovalCards } from "./components/ToolApprovalCards";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useCommerceAgent } from "./hooks/useCommerceAgent";
@@ -8,6 +9,7 @@ import Icon from "./components/Icon";
 import Markdown from "./components/Markdown";
 import EventTimeline from "./components/EventTimeline";
 import ProductCards, { ProductImage } from "./components/ProductCards";
+import ProductHistory from "./components/ProductHistory";
 import ProductDetail from "./components/ProductDetail";
 import ConfirmationCards from "./components/ConfirmationCards";
 import OrderIntentForm from "./components/OrderIntentForm";
@@ -35,6 +37,18 @@ function readView(): View {
 }
 export default function App() {
   const agent = useCommerceAgent();
+  const [shoppingForm,setShoppingForm]=useState<unknown>(null);
+  const formGeneration=useRef(0);
+  useEffect(()=>{
+    setShoppingForm(null);
+  },[agent.sessionId]);
+  useEffect(()=>{
+    const generation=++formGeneration.current;
+    // AG-UI 快照可能早于表单提交；以数据库最新版为准，不能复活已提交的旧表单。
+    void agent.workspaceRequest("/shopping-forms?session_id="+encodeURIComponent(agent.sessionId))
+      .then(data=>{if(generation===formGeneration.current)setShoppingForm(data.form??null);}).catch(()=>{});
+    return()=>{if(generation===formGeneration.current)++formGeneration.current;};
+  },[agent.sessionId,agent.workspaceRequest,agent.shoppingForm]);
   const [selectedSkill, setSelectedSkill] = useState<PublishedSkill | null>(null);
   const [planPickerOpen, setPlanPickerOpen] = useState(false);
   const [slashMenuOpen, setSlashMenuOpen] = useState(false);
@@ -56,8 +70,14 @@ export default function App() {
   useEffect(() => {
     try { sessionStorage.setItem(VIEW_KEY, view); } catch {}
   }, [view]);
-  const [contextBusy,setContextBusy] = useState(false);
-  const busy = agent.status === "running" || contextBusy;
+  const contextWorkspace = useContextWorkspace({
+    sessionId:agent.sessionId,
+    busy:agent.status==="running",
+    pending:!!agent.toolApprovals?.length||agent.confirmations.some(c=>c.status==="pending"&&!c.expired),
+    hasMessages:agent.messages.length>0,
+    request:agent.workspaceRequest,
+  });
+  const busy = agent.status === "running" || contextWorkspace.running;
   const favoriteIds = useMemo(
     () => new Set(favorites.map((p) => p.product_id)),
     [favorites],
@@ -403,7 +423,7 @@ export default function App() {
                 </h1>
                 <p>说说你的期待。世界各地的好物，我陪你慢慢选。</p>
               </section>
-              {!agent.messages.length ? (
+              {!agent.messages.length && !shoppingForm ? (
                 <section className="welcome-panel">
                   <Icon name="globe" className="welcome-orbit" />
                   <h2>下一件好物，你想找什么？</h2>
@@ -431,7 +451,7 @@ export default function App() {
                   {agent.messages.map((message, index) =>
                     message.role === "user" ? (
                       <div className="query-row" key={message.id}>
-                        <div className="query-bubble">{message.content}</div>
+                        <div className="query-bubble">{displayShoppingMessage(message)}</div>
                       </div>
                     ) : (
                       <div className="assistant-row" key={message.id}>
@@ -453,7 +473,7 @@ export default function App() {
                   )}
                 </section>
               )}
-              {!agent.messages.length && <ShoppingPlans {...planProps} />}
+              {!agent.messages.length && !shoppingForm && <ShoppingPlans {...planProps} />}
               <SkillRunStatus usages={agent.skillUsages} running={busy} />
               {busy && (
                 <div className="progress-line running" role="status">
@@ -491,7 +511,10 @@ export default function App() {
                   )}
                 </div>
               )}
-              <ContextWorkspace sessionId={agent.sessionId} busy={agent.status === "running"} pending={!!agent.toolApprovals?.length || agent.confirmations.some(c=>c.status === "pending" && !c.expired)} hasMessages={agent.messages.length>0} request={agent.workspaceRequest} onBusyChange={setContextBusy} />
+              <ContextWorkspace state={contextWorkspace}/>
+              {shoppingForm&&<ShoppingForm key={agent.sessionId} form={shoppingForm}
+                busy={busy||!!agent.toolApprovals?.length||agent.confirmations.some(c=>c.status==="pending"&&!c.expired)}
+                request={agent.workspaceRequest} onApplied={agent.submitForm}/>}
               <ToolApprovalCards items={agent.toolApprovals ?? []} busy={busy} onResolve={agent.resolveToolApproval} />
               {(agent.confirmations.length > 0 || agent.confirmationError) && (
                 <ConfirmationCards
@@ -531,6 +554,7 @@ export default function App() {
                   </div>
                 </section>
               )}
+              <ProductHistory batches={agent.productHistory}/>
               {!busy &&
                 agent.searchCompleted &&
                 !agent.products.length &&
@@ -719,6 +743,13 @@ export default function App() {
             <label htmlFor="query" className="sr-only">
               告诉 Globex 你想寻找的好物
             </label>
+            <button type="button" className="composer-plan-toggle"
+              disabled={busy||!!agent.toolApprovals?.length||!!agent.recoverableRunId||agent.confirmations.some(c=>c.status==="pending"&&!c.expired)}
+              onClick={()=>submit([
+                input.trim(),
+                compared.length ? "正在比较的商品："+compared.map(p=>`${p.title}（${p.product_id}）`).join("、") : "",
+                "请根据本次选购目标，调用选购需求澄清工具，让我填写还缺少的必要条件；提交后再继续核验商品。",
+              ].filter(Boolean).join("\n"),selectedSkill)}>澄清选购需求</button>
             <SkillQueryInput
               key={agent.sessionId}
               ref={inputRef}

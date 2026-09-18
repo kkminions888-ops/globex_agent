@@ -227,8 +227,14 @@ function readMessages(value: unknown): ChatMessage[] {
         typeof item.id === "string" &&
         typeof item.content === "string" &&
         (item.role === "user" || item.role === "assistant"),
-    )
-    .slice(-100);
+    );
+}
+
+// 仅保留工作窗口之前的原文；窗口内由 SDK 快照整体替换，不能把流式草稿再合并回来。
+function historyPrefix(history: ChatMessage[], window: ChatMessage[]): ChatMessage[] {
+  const first = window[0]?.id;
+  const index = history.findIndex(message => message.id === first);
+  return index > 0 ? history.slice(0, index) : [];
 }
 
 function displayMessages(
@@ -246,6 +252,7 @@ function emptySnapshot(sessionId = newId()): CommerceSnapshot {
     sessionId,
     messages: [],
     products: [],
+    productHistory: [],
     events: [],
     status: "idle",
     step: "随时开始新的选购",
@@ -442,16 +449,30 @@ export class CommerceClient {
     await this.executeRun(runId, messages, false, selectedSkill);
   };
 
+  submitForm = async (query: string, runId: string): Promise<void> => {
+    if (this.active || this.snapshot.toolApprovals?.length || this.snapshot.recoverableRunId) {
+      this.update({error:"请先完成或停止当前运行及待处理确认。"});return;
+    }
+    if (!query.trim() || !/^form-run-[a-f0-9]{32}$/.test(runId)) return;
+    ++this.historyRevision;this.restoreLatestSession=false;
+    // 使用服务端保存的运行 ID 和稳定消息 ID，刷新后继续不会创建重复运行。
+    const messages:ChatMessage[]=[...this.snapshot.messages.filter(m=>m.runId!==runId&&m.id!==runId+":user"),
+      {id:runId+":user",role:"user",content:query,runId}];
+    await this.executeRun(runId,messages);
+  };
+
   private async executeRun(runId: string, messages: ChatMessage[], resume = false, selectedSkill?: SelectedSkill, approval?: { id: string; approved: boolean }, allowVersionRestart = true): Promise<void> {
     const priorSessionId=this.snapshot.sessionId;
     let destination=this.snapshot.products.find(p=>p.landed_price?.ship_to)?.landed_price?.ship_to;
     let restartVersion=false;
     const journaled = /\/ag-ui\/run\/?$/.test(this.options.url);
     const baseFetch = this.options.fetch ?? globalThis.fetch;
+    const workingMessages = messages.slice(-100);
+    const archivedMessages = historyPrefix(messages.length >= this.snapshot.messages.length ? messages : this.snapshot.messages, workingMessages);
     const agent = new HttpAgent({
       url: this.options.url,
       threadId: this.snapshot.sessionId,
-      initialMessages: messages.map(({ id, role, content }) => ({
+      initialMessages: workingMessages.map(({ id, role, content }) => ({
         id,
         role,
         content,
@@ -472,7 +493,7 @@ export class CommerceClient {
     const current = () => this.active === active;
     let terminal = false;
     this.update({
-      messages,
+      messages: [...archivedMessages, ...workingMessages],
       products: [],
       skillUsages: [],
       events: [],
@@ -493,7 +514,7 @@ export class CommerceClient {
     };
     const subscriber: AgentSubscriber = {
       onMessagesChanged: ({ messages: next }) => {
-        if (current()) this.update({ messages: displayMessages(next) });
+        if (current()) this.update({ messages: [...archivedMessages, ...displayMessages(next)] });
       },
       onStateChanged: ({ state }) => {
         if (!current() || !isRecord(state)) return;
@@ -508,6 +529,7 @@ export class CommerceClient {
         this.update({
           toolApprovals: readApprovals(state.toolApprovals),
           products: readProducts(state.products),
+          shoppingForm: state.shoppingForm ?? null,
       skillUsages: readSkillUsages(state.skillUsages),
           searchCompleted: state.searchCompleted === true,
           confirmations: mergeConfirmations(
@@ -618,12 +640,24 @@ export class CommerceClient {
     if (!/\/ag-ui\/run\/?$/.test(this.options.url)) return;
     const revision = ++this.historyRevision;
     try {
-      const data = await this.journalRequest("/sessions");
+      const [data, formData] = await Promise.all([
+        this.journalRequest("/sessions"),
+        this.workspaceRequest("/shopping-forms").catch(()=>null),
+      ]);
       if (revision !== this.historyRevision) return;
       this.serverHistory = Array.isArray(data.sessions) ? data.sessions.filter(isRecord).flatMap((item) =>
         typeof item.id === "string" && typeof item.title === "string" && typeof item.updatedAt === "number"
           ? [{ id: item.id, title: item.title, updatedAt: item.updatedAt, source: "server" as const }] : []) : [];
       this.update({ history: this.history(), historyError: null });
+      const form = isRecord(formData?.form) ? formData.form : null;
+      const latestHistoryTime = Math.max(0,...this.serverHistory.map(item=>item.updatedAt));
+      const restoreForm = form && typeof form.session_id==="string" && typeof form.created_at==="number"
+        && (form.session_id===this.snapshot.sessionId || (this.restoreLatestSession && !this.serverHistory.some(item=>item.id===this.snapshot.sessionId) && form.created_at>latestHistoryTime));
+      if (restoreForm && !this.active) {
+        this.restoreLatestSession=false;
+        this.update({sessionId:form.session_id as string,shoppingForm:form});
+        this.saveActiveSession();
+      }
       const chosen = this.serverHistory.find((item) => item.id === this.snapshot.sessionId)
         ?? (this.restoreLatestSession
           ? [...this.serverHistory].sort((a, b) => b.updatedAt - a.updatedAt)[0] : undefined);
@@ -641,9 +675,11 @@ export class CommerceClient {
   private applyServerRun(run: Record<string, unknown>) {
     const state = isRecord(run.state) ? run.state : {};
     const running = run.status === "running";
+    const messages = readMessages(run.messages);
     this.update({
       toolApprovals: readApprovals(state.toolApprovals),
-      messages: readMessages(run.messages), products: readProducts(state.products),
+      messages: [...historyPrefix(this.snapshot.messages, messages), ...messages], products: readProducts(state.products),
+      shoppingForm: state.shoppingForm ?? null,
       skillUsages: readSkillUsages(state.skillUsages),
       searchCompleted: state.searchCompleted === true,
       confirmations: mergeConfirmations(this.snapshot.confirmations, this.ownedConfirmations(state.confirmations)),
@@ -659,8 +695,19 @@ export class CommerceClient {
     try {
       const data = await this.journalRequest(`/sessions/${encodeURIComponent(id)}`);
       if (revision !== this.historyRevision || id !== this.snapshot.sessionId || this.active) return;
-      if (!isRecord(data.run)) throw new Error("服务端缺少运行记录");
+      if (!isRecord(data.run) || data.run.threadId !== id) throw new Error("服务端运行记录与当前会话不一致");
       this.applyServerRun(data.run);
+      this.update({
+        ...(Array.isArray(data.messages) ? {messages: readMessages(data.messages)} : {}),
+        productHistory: Array.isArray(data.productHistory) ? data.productHistory.filter(isRecord).flatMap(item =>
+          typeof item.runId === "string" && typeof item.updatedAt === "number"
+            ? [{runId: item.runId, updatedAt: item.updatedAt, products: readProducts(item.products)}] : []) : [],
+        events: Array.isArray(data.events) ? data.events.filter(isRecord).flatMap(item =>
+          typeof item.id === "string" && typeof item.type === "string"
+            ? [{id: item.id, type: item.type, label: EVENT_LABELS[item.type] ?? item.type,
+                timestamp: typeof item.timestamp === "number" ? item.timestamp : null}] : []) : [],
+        historyError: null,
+      });
       this.save();
       if (data.run.status === "running") await this.resume();
     } catch {
@@ -927,13 +974,14 @@ export class CommerceClient {
   setSession = (id: string) => {
     this.restoreLatestSession = false;
     if (id === this.snapshot.sessionId) {
-      if (!this.active && this.serverHistory.some((entry) => entry.id === id)) void this.loadSession(id);
+      if (!this.active && /\/ag-ui\/run\/?$/.test(this.options.url)) void this.loadSession(id);
       return;
     }
     const session = this.sessions.find((entry) => entry.id === id);
     const remote = this.serverHistory.some((entry) => entry.id === id);
     if (!session && !remote) return;
     this.detach();
+    ++this.historyRevision;
     this.save();
     this.update({
       ...emptySnapshot(id),
@@ -945,7 +993,7 @@ export class CommerceClient {
       step: "已恢复本机选购记录",
     });
     this.saveActiveSession();
-    if (remote) void this.loadSession(id);
+    if (/\/ag-ui\/run\/?$/.test(this.options.url)) void this.loadSession(id);
   };
 }
 

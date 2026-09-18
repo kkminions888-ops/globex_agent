@@ -3,6 +3,7 @@ import asyncio
 import pytest
 from pydantic import BaseModel
 from agentscope.credential import OpenAICredential
+from agentscope.exception import StructuredOutputError
 from agentscope.message import UserMsg, ToolCallBlock, TextBlock
 from agentscope.model import ChatResponse, ChatUsage, OpenAIChatModel
 from app.infrastructure.llm import ThrottledChatModel
@@ -38,9 +39,10 @@ async def test_sdk_structured_request_usage(monkeypatch, stream, outcome):
             res=await model.generate_structured_output([UserMsg(name='user',content='整理')],Summary)
             assert res.content == {'goal':'背包'}
         else:
-            with pytest.raises(asyncio.CancelledError if outcome == 'cancel' else RuntimeError):
-                await model.generate_structured_output([UserMsg(name='user',content='整理')],Summary)
-        assert len(samples)==1
+            with pytest.raises(asyncio.CancelledError if outcome == 'cancel' else StructuredOutputError if outcome == 'invalid' else RuntimeError):
+                await asyncio.wait_for(model.generate_structured_output([UserMsg(name='user',content='整理')],Summary), timeout=2)
+        # 当前 SDK 对格式错误依次尝试 forced / auto / none，每个真实调用单独计费。
+        assert len(samples)==(3 if outcome == 'invalid' else 1)
         assert samples[0]['kind']=='summary'
         assert samples[0]['input_tokens']==(123 if outcome in ('success','invalid') else None)
         assert samples[0]['output_tokens']==(17 if outcome in ('success','invalid') else None)
@@ -95,8 +97,7 @@ async def test_native_compatibility_retry_records_both_requests(monkeypatch):
     monkeypatch.setattr(OpenAIChatModel,'_call_api',raw)
     token=context_usage_sink.set(samples.append)
     try:
-        with pytest.warns(UserWarning,match='tool_choice'):
-            await model.generate_structured_output([UserMsg(name='user',content='整理')],Summary)
+        await model.generate_structured_output([UserMsg(name='user',content='整理')],Summary)
         assert calls==['generate_structured_output','auto']
         assert [s['input_tokens'] for s in samples]==[None,123]
     finally:context_usage_sink.reset(token)

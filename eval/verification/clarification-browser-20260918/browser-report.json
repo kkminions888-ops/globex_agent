@@ -1,0 +1,430 @@
+{
+  "steps": [
+    {
+      "step": "页面启动",
+      "url": "http://127.0.0.1:5174/"
+    },
+    {
+      "step": "真实Agent调用工具并显示问题",
+      "questions": [
+        "主要使用场景（可多选）",
+        "形态偏好",
+        "主动降噪（ANC）重要吗",
+        "单次续航最低要求",
+        "必须有 / 在意的点（可多选）",
+        "品牌倾向或排除",
+        "主要搭配的手机系统",
+        "其他硬性要求（可选）"
+      ]
+    },
+    {
+      "step": "未提交表单刷新恢复",
+      "count": 8
+    },
+    {
+      "step": "提交保存并结束后续Agent运行",
+      "run_id": "form-run-1a09966c145f40d888bfa69301eaf7ff"
+    },
+    {
+      "step": "已提交答案和对话刷新恢复且没有重新POST"
+    },
+    {
+      "step": "重复继续不重新提交表单",
+      "action_posts": 1
+    }
+  ],
+  "console_errors": [],
+  "failed_requests": [],
+  "posts": [
+    {
+      "url": "http://127.0.0.1:5174/commerce/ag-ui/run",
+      "body": {
+        "threadId": "31b76494-ed11-45bc-8420-45dd9a395fd9",
+        "runId": "4b75ca7d-fd17-43e2-94f1-41aa791f9e42",
+        "tools": [],
+        "context": [],
+        "forwardedProps": {
+          "buyerId": "clarification-browser-test",
+          "locale": "zh-CN",
+          "currency": "CNY"
+        },
+        "state": {},
+        "messages": [
+          {
+            "id": "3e737d41-5ad8-4b1a-b25b-03f9ded44cfc",
+            "role": "user",
+            "content": "我想买耳机，预算500元人民币，寄到中国。请根据需求先用表单澄清缺少的必要条件；我提交后先总结需求，暂时不要搜索或下单。\n请根据本次选购目标，调用选购需求澄清工具，让我填写还缺少的必要条件；提交后再继续核验商品。"
+          }
+        ]
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5174/commerce/shopping-forms/form_44d6c7ac7ce6462b9093f3623b163582/actions?buyer_id=clarification-browser-test",
+      "body": {
+        "session_id": "31b76494-ed11-45bc-8420-45dd9a395fd9",
+        "expected_revision": 1,
+        "request_id": "66c24c41-4149-4bee-91b7-4ba80aa92a12",
+        "version": "v0.9",
+        "action": {
+          "name": "applyShoppingRequirements",
+          "surfaceId": "form_44d6c7ac7ce6462b9093f3623b163582",
+          "sourceComponentId": "root",
+          "timestamp": "2026-09-18T03:56:35.299Z",
+          "context": {
+            "requirements": {
+              "usage_scene": [
+                "commute"
+              ],
+              "form_factor": "over_ear",
+              "anc": "must",
+              "battery": 2,
+              "must_have": [
+                "low_latency"
+              ],
+              "brand": "通勤使用，重视佩戴舒适，其余暂未确定。",
+              "phone_os": "ios",
+              "extras": "通勤使用，重视佩戴舒适，其余暂未确定。"
+            }
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5174/commerce/ag-ui/run",
+      "body": {
+        "threadId": "31b76494-ed11-45bc-8420-45dd9a395fd9",
+        "runId": "form-run-1a09966c145f40d888bfa69301eaf7ff",
+        "tools": [],
+        "context": [],
+        "forwardedProps": {
+          "buyerId": "clarification-browser-test",
+          "locale": "zh-CN",
+          "currency": "CNY"
+        },
+        "state": {},
+        "messages": [
+          {
+            "id": "3e737d41-5ad8-4b1a-b25b-03f9ded44cfc",
+            "role": "user",
+            "content": "我想买耳机，预算500元人民币，寄到中国。请根据需求先用表单澄清缺少的必要条件；我提交后先总结需求，暂时不要搜索或下单。\n请根据本次选购目标，调用选购需求澄清工具，让我填写还缺少的必要条件；提交后再继续核验商品。"
+          },
+          {
+            "id": "4b75ca7d-fd17-43e2-94f1-41aa791f9e42:final:answer",
+            "role": "assistant",
+            "content": "表单已经显示在页面上啦 ✅ 请花半分钟补几个关键条件：\n\n1. **主要使用场景**（通勤降噪 / 运动 / 会议通话 / 听音乐 / 游戏 / 学习，可多选）\n2. **形态偏好**（真无线入耳 / 半入耳 / 颈挂 / 头戴 / 开放式 / 有线 / 无所谓）\n3. **主动降噪**要不要（必须 / 有更好 / 不需要）\n4. **单次续航**最低要求（小时，留空=不设限）\n5. **必须有**的功能（低延迟、双设备连接、通透模式、防水、无线充电、App 调 EQ、轻巧）\n6. **品牌倾向或排除**\n7. **主要搭配的手机系统**（影响编解码与配对体验）\n8. 其他硬性要求（颜色、国内现货、保修等）\n\n不确定的项可以直接留空或选\"不确定\"，我不会替你预选。\n\n你提交后，我会先把需求整理成一份清晰的总结给你确认，**本轮不做任何搜索和下单**。已记录的本次约束：预算 500 元人民币、寄往中国（这两个条件仅对本次选购有效）。"
+          },
+          {
+            "id": "form-run-1a09966c145f40d888bfa69301eaf7ff:user",
+            "role": "user",
+            "content": "买家已提交本轮澄清答案。agent_context 仅为 Agent 整理的背景；未回答的问题仍未知，以下答案不是交易/记忆审批，也不是已核实的商品或政策事实。\n{\"form_id\": \"form_44d6c7ac7ce6462b9093f3623b163582\", \"title\": \"耳机选购补充条件（预算 500 元 / 寄往中国）\", \"agent_context\": \"买家诉求：买耳机，预算 500 元（人民币），寄到中国；要求先用表单澄清缺少条件，提交后先总结需求，暂不搜索与下单。\", \"answers\": [{\"id\": \"usage_scene\", \"question\": \"主要使用场景（可多选）\", \"value\": [\"commute\"], \"display_value\": [\"通勤 / 地铁公交（看重降噪）\"], \"unit\": \"\"}, {\"id\": \"form_factor\", \"question\": \"形态偏好\", \"value\": \"over_ear\", \"display_value\": \"头戴包耳式\", \"unit\": \"\"}, {\"id\": \"anc\", \"question\": \"主动降噪（ANC）重要吗\", \"value\": \"must\", \"display_value\": \"必须有，越强越好\", \"unit\": \"\"}, {\"id\": \"battery\", \"question\": \"单次续航最低要求\", \"value\": 2, \"display_value\": 2, \"unit\": \"小时（不含充电仓）\"}, {\"id\": \"must_have\", \"question\": \"必须有 / 在意的点（可多选）\", \"value\": [\"low_latency\"], \"display_value\": [\"低延迟游戏模式\"], \"unit\": \"\"}, {\"id\": \"brand\", \"question\": \"品牌倾向或排除\", \"value\": \"通勤使用，重视佩戴舒适，其余暂未确定。\", \"display_value\": \"通勤使用，重视佩戴舒适，其余暂未确定。\", \"unit\": \"\"}, {\"id\": \"phone_os\", \"question\": \"主要搭配的手机系统\", \"value\": \"ios\", \"display_value\": \"iPhone / iOS\", \"unit\": \"\"}, {\"id\": \"extras\", \"question\": \"其他硬性要求（可选）\", \"value\": \"通勤使用，重视佩戴舒适，其余暂未确定。\", \"display_value\": \"通勤使用，重视佩戴舒适，其余暂未确定。\", \"unit\": \"\"}], \"unanswered\": []}"
+          }
+        ]
+      }
+    },
+    {
+      "url": "http://127.0.0.1:5174/commerce/ag-ui/run",
+      "body": {
+        "threadId": "31b76494-ed11-45bc-8420-45dd9a395fd9",
+        "runId": "form-run-1a09966c145f40d888bfa69301eaf7ff",
+        "tools": [],
+        "context": [],
+        "forwardedProps": {
+          "buyerId": "clarification-browser-test",
+          "locale": "zh-CN",
+          "currency": "CNY"
+        },
+        "state": {},
+        "messages": [
+          {
+            "id": "3e737d41-5ad8-4b1a-b25b-03f9ded44cfc",
+            "role": "user",
+            "content": "我想买耳机，预算500元人民币，寄到中国。请根据需求先用表单澄清缺少的必要条件；我提交后先总结需求，暂时不要搜索或下单。\n请根据本次选购目标，调用选购需求澄清工具，让我填写还缺少的必要条件；提交后再继续核验商品。"
+          },
+          {
+            "id": "4b75ca7d-fd17-43e2-94f1-41aa791f9e42:final:answer",
+            "role": "assistant",
+            "content": "表单已经显示在页面上啦 ✅ 请花半分钟补几个关键条件：\n\n1. **主要使用场景**（通勤降噪 / 运动 / 会议通话 / 听音乐 / 游戏 / 学习，可多选）\n2. **形态偏好**（真无线入耳 / 半入耳 / 颈挂 / 头戴 / 开放式 / 有线 / 无所谓）\n3. **主动降噪**要不要（必须 / 有更好 / 不需要）\n4. **单次续航**最低要求（小时，留空=不设限）\n5. **必须有**的功能（低延迟、双设备连接、通透模式、防水、无线充电、App 调 EQ、轻巧）\n6. **品牌倾向或排除**\n7. **主要搭配的手机系统**（影响编解码与配对体验）\n8. 其他硬性要求（颜色、国内现货、保修等）\n\n不确定的项可以直接留空或选\"不确定\"，我不会替你预选。\n\n你提交后，我会先把需求整理成一份清晰的总结给你确认，**本轮不做任何搜索和下单**。已记录的本次约束：预算 500 元人民币、寄往中国（这两个条件仅对本次选购有效）。"
+          },
+          {
+            "id": "form-run-1a09966c145f40d888bfa69301eaf7ff:final:answer",
+            "role": "assistant",
+            "content": "收到你的表单答案了。先帮你把本次选购需求总结一遍，确认无误后我再开始搜索：\n\n**📋 本次选购需求总结**\n\n| 维度 | 你的选择 |\n|------|---------|\n| **预算** | 500 元人民币（硬约束） |\n| **收货地** | 中国 |\n| **使用场景** | 通勤（地铁/公交，看重降噪） |\n| **形态偏好** | 头戴包耳式 |\n| **主动降噪** | 必须有，越强越好 |\n| **单次续航** | ≥ 2 小时（不含充电仓） |\n| **必须功能** | 低延迟游戏模式 |\n| **品牌倾向** | 暂未确定（偏好佩戴舒适） |\n| **手机系统** | iPhone / iOS |\n| **其他** | 重视佩戴舒适 |\n\n**💡 需要跟你确认的一点：**\n- 你选了**头戴包耳式**，但同时也要求**低延迟游戏模式**。一般头戴式蓝牙耳机在低延迟方面表现参差不齐，500 元预算内可选范围会更窄。你确认头戴式是优先于低延迟的吗？还是说如果低延迟表现好的入耳式更好也可以考虑？\n\n另外：\n- **续航 2 小时**只是最低线，头戴式通常在 20 小时以上，你实际更关注的是否是\"足够用一整天\"这类？\n- 品牌暂时不限，我会在 500 元内筛选降噪强、佩戴舒适、带低延迟模式的头戴耳机优先推荐。\n\n确认以上需求没问题后，我这就开始搜索商品 🎧"
+          },
+          {
+            "id": "form-run-1a09966c145f40d888bfa69301eaf7ff:user",
+            "role": "user",
+            "content": "买家已提交本轮澄清答案。agent_context 仅为 Agent 整理的背景；未回答的问题仍未知，以下答案不是交易/记忆审批，也不是已核实的商品或政策事实。\n{\"form_id\": \"form_44d6c7ac7ce6462b9093f3623b163582\", \"title\": \"耳机选购补充条件（预算 500 元 / 寄往中国）\", \"agent_context\": \"买家诉求：买耳机，预算 500 元（人民币），寄到中国；要求先用表单澄清缺少条件，提交后先总结需求，暂不搜索与下单。\", \"answers\": [{\"id\": \"usage_scene\", \"question\": \"主要使用场景（可多选）\", \"value\": [\"commute\"], \"display_value\": [\"通勤 / 地铁公交（看重降噪）\"], \"unit\": \"\"}, {\"id\": \"form_factor\", \"question\": \"形态偏好\", \"value\": \"over_ear\", \"display_value\": \"头戴包耳式\", \"unit\": \"\"}, {\"id\": \"anc\", \"question\": \"主动降噪（ANC）重要吗\", \"value\": \"must\", \"display_value\": \"必须有，越强越好\", \"unit\": \"\"}, {\"id\": \"battery\", \"question\": \"单次续航最低要求\", \"value\": 2, \"display_value\": 2, \"unit\": \"小时（不含充电仓）\"}, {\"id\": \"must_have\", \"question\": \"必须有 / 在意的点（可多选）\", \"value\": [\"low_latency\"], \"display_value\": [\"低延迟游戏模式\"], \"unit\": \"\"}, {\"id\": \"brand\", \"question\": \"品牌倾向或排除\", \"value\": \"通勤使用，重视佩戴舒适，其余暂未确定。\", \"display_value\": \"通勤使用，重视佩戴舒适，其余暂未确定。\", \"unit\": \"\"}, {\"id\": \"phone_os\", \"question\": \"主要搭配的手机系统\", \"value\": \"ios\", \"display_value\": \"iPhone / iOS\", \"unit\": \"\"}, {\"id\": \"extras\", \"question\": \"其他硬性要求（可选）\", \"value\": \"通勤使用，重视佩戴舒适，其余暂未确定。\", \"display_value\": \"通勤使用，重视佩戴舒适，其余暂未确定。\", \"unit\": \"\"}], \"unanswered\": []}"
+          }
+        ]
+      }
+    }
+  ],
+  "form_id": "form_44d6c7ac7ce6462b9093f3623b163582",
+  "session_id": "31b76494-ed11-45bc-8420-45dd9a395fd9",
+  "questions": [
+    {
+      "id": "usage_scene",
+      "type": "multi_select",
+      "label": "主要使用场景（可多选）",
+      "required": false,
+      "help_text": "不同场景对降噪、防汗、通话、延迟的要求差别很大。",
+      "placeholder": "",
+      "unit": "",
+      "minimum": null,
+      "maximum": null,
+      "options": [
+        {
+          "value": "commute",
+          "label": "通勤 / 地铁公交（看重降噪）"
+        },
+        {
+          "value": "sport",
+          "label": "运动健身（看重佩戴稳、防汗）"
+        },
+        {
+          "value": "call",
+          "label": "会议通话（看重麦克风收音）"
+        },
+        {
+          "value": "music",
+          "label": "听音乐（看重音质）"
+        },
+        {
+          "value": "gaming",
+          "label": "游戏 / 看剧（看重低延迟）"
+        },
+        {
+          "value": "study",
+          "label": "学习办公（看重久戴舒适）"
+        },
+        {
+          "value": "unsure",
+          "label": "不确定 / 通用"
+        }
+      ]
+    },
+    {
+      "id": "form_factor",
+      "type": "single_select",
+      "label": "形态偏好",
+      "required": false,
+      "help_text": "预算 500 元档，头戴式通常以音质/舒适为主，主动降噪多见于入耳真无线。",
+      "placeholder": "",
+      "unit": "",
+      "minimum": null,
+      "maximum": null,
+      "options": [
+        {
+          "value": "tws",
+          "label": "真无线入耳（TWS）"
+        },
+        {
+          "value": "semi_in_ear",
+          "label": "半入耳真无线（不堵耳）"
+        },
+        {
+          "value": "neckband",
+          "label": "颈挂式蓝牙耳机"
+        },
+        {
+          "value": "over_ear",
+          "label": "头戴包耳式"
+        },
+        {
+          "value": "open",
+          "label": "开放式 / 骨传导"
+        },
+        {
+          "value": "wired",
+          "label": "有线耳机"
+        },
+        {
+          "value": "no_pref",
+          "label": "无所谓，看性价比"
+        },
+        {
+          "value": "unsure",
+          "label": "不确定，帮我推荐"
+        }
+      ]
+    },
+    {
+      "id": "anc",
+      "type": "single_select",
+      "label": "主动降噪（ANC）重要吗",
+      "required": false,
+      "help_text": "",
+      "placeholder": "",
+      "unit": "",
+      "minimum": null,
+      "maximum": null,
+      "options": [
+        {
+          "value": "must",
+          "label": "必须有，越强越好"
+        },
+        {
+          "value": "nice",
+          "label": "有更好，没有也行"
+        },
+        {
+          "value": "no",
+          "label": "不需要，反而不喜欢压耳感"
+        },
+        {
+          "value": "unsure",
+          "label": "不确定"
+        }
+      ]
+    },
+    {
+      "id": "battery",
+      "type": "number",
+      "label": "单次续航最低要求",
+      "required": false,
+      "help_text": "指耳机本身一次充电能连续用多久；留空表示不设限。",
+      "placeholder": "如 6",
+      "unit": "小时（不含充电仓）",
+      "minimum": null,
+      "maximum": null,
+      "options": []
+    },
+    {
+      "id": "must_have",
+      "type": "multi_select",
+      "label": "必须有 / 在意的点（可多选）",
+      "required": false,
+      "help_text": "",
+      "placeholder": "",
+      "unit": "",
+      "minimum": null,
+      "maximum": null,
+      "options": [
+        {
+          "value": "low_latency",
+          "label": "低延迟游戏模式"
+        },
+        {
+          "value": "multipoint",
+          "label": "双设备同时连接"
+        },
+        {
+          "value": "transparency",
+          "label": "通透模式（不用摘耳机听外界）"
+        },
+        {
+          "value": "waterproof",
+          "label": "防水防汗（运动可用）"
+        },
+        {
+          "value": "wireless_charge",
+          "label": "充电仓支持无线充电"
+        },
+        {
+          "value": "app_eq",
+          "label": "配套 App 可调 EQ"
+        },
+        {
+          "value": "light",
+          "label": "轻巧 / 久戴不胀耳"
+        },
+        {
+          "value": "none",
+          "label": "没有特别要求"
+        }
+      ]
+    },
+    {
+      "id": "brand",
+      "type": "text",
+      "label": "品牌倾向或排除",
+      "required": false,
+      "help_text": "",
+      "placeholder": "如：偏好索尼；不考虑某品牌",
+      "unit": "",
+      "minimum": null,
+      "maximum": null,
+      "options": []
+    },
+    {
+      "id": "phone_os",
+      "type": "single_select",
+      "label": "主要搭配的手机系统",
+      "required": false,
+      "help_text": "影响编解码（LDAC / AAC）与弹窗配对等体验。",
+      "placeholder": "",
+      "unit": "",
+      "minimum": null,
+      "maximum": null,
+      "options": [
+        {
+          "value": "ios",
+          "label": "iPhone / iOS"
+        },
+        {
+          "value": "android",
+          "label": "安卓"
+        },
+        {
+          "value": "both",
+          "label": "两个都有"
+        },
+        {
+          "value": "other",
+          "label": "电脑 / 平板为主"
+        },
+        {
+          "value": "unsure",
+          "label": "不确定"
+        }
+      ]
+    },
+    {
+      "id": "extras",
+      "type": "text",
+      "label": "其他硬性要求（可选）",
+      "required": false,
+      "help_text": "",
+      "placeholder": "如颜色、必须国内现货、保修要求等",
+      "unit": "",
+      "minimum": null,
+      "maximum": null,
+      "options": []
+    }
+  ],
+  "answers": {
+    "usage_scene": [
+      "commute"
+    ],
+    "form_factor": "over_ear",
+    "anc": "must",
+    "battery": 2,
+    "must_have": [
+      "low_latency"
+    ],
+    "brand": "通勤使用，重视佩戴舒适，其余暂未确定。",
+    "phone_os": "ios",
+    "extras": "通勤使用，重视佩戴舒适，其余暂未确定。"
+  },
+  "submission": {
+    "status": "submitted",
+    "query": "买家已提交本轮澄清答案。agent_context 仅为 Agent 整理的背景；未回答的问题仍未知，以下答案不是交易/记忆审批，也不是已核实的商品或政策事实。\n{\"form_id\": \"form_44d6c7ac7ce6462b9093f3623b163582\", \"title\": \"耳机选购补充条件（预算 500 元 / 寄往中国）\", \"agent_context\": \"买家诉求：买耳机，预算 500 元（人民币），寄到中国；要求先用表单澄清缺少条件，提交后先总结需求，暂不搜索与下单。\", \"answers\": [{\"id\": \"usage_scene\", \"question\": \"主要使用场景（可多选）\", \"value\": [\"commute\"], \"display_value\": [\"通勤 / 地铁公交（看重降噪）\"], \"unit\": \"\"}, {\"id\": \"form_factor\", \"question\": \"形态偏好\", \"value\": \"over_ear\", \"display_value\": \"头戴包耳式\", \"unit\": \"\"}, {\"id\": \"anc\", \"question\": \"主动降噪（ANC）重要吗\", \"value\": \"must\", \"display_value\": \"必须有，越强越好\", \"unit\": \"\"}, {\"id\": \"battery\", \"question\": \"单次续航最低要求\", \"value\": 2, \"display_value\": 2, \"unit\": \"小时（不含充电仓）\"}, {\"id\": \"must_have\", \"question\": \"必须有 / 在意的点（可多选）\", \"value\": [\"low_latency\"], \"display_value\": [\"低延迟游戏模式\"], \"unit\": \"\"}, {\"id\": \"brand\", \"question\": \"品牌倾向或排除\", \"value\": \"通勤使用，重视佩戴舒适，其余暂未确定。\", \"display_value\": \"通勤使用，重视佩戴舒适，其余暂未确定。\", \"unit\": \"\"}, {\"id\": \"phone_os\", \"question\": \"主要搭配的手机系统\", \"value\": \"ios\", \"display_value\": \"iPhone / iOS\", \"unit\": \"\"}, {\"id\": \"extras\", \"question\": \"其他硬性要求（可选）\", \"value\": \"通勤使用，重视佩戴舒适，其余暂未确定。\", \"display_value\": \"通勤使用，重视佩戴舒适，其余暂未确定。\", \"unit\": \"\"}], \"unanswered\": []}",
+    "revision": 2,
+    "run_id": "form-run-1a09966c145f40d888bfa69301eaf7ff",
+    "values": {
+      "usage_scene": [
+        "commute"
+      ],
+      "form_factor": "over_ear",
+      "anc": "must",
+      "battery": 2,
+      "must_have": [
+        "low_latency"
+      ],
+      "brand": "通勤使用，重视佩戴舒适，其余暂未确定。",
+      "phone_os": "ios",
+      "extras": "通勤使用，重视佩戴舒适，其余暂未确定。"
+    }
+  },
+  "status": "passed"
+}

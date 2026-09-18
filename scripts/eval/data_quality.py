@@ -79,10 +79,14 @@ def validate_catalog_distribution(products: Iterable[Product]) -> list[str]:
     products = list(products)
     skus = [sku for product in products for sku in product.skus]
     problems: list[str] = []
-    if len(products) < 500:
-        problems.append(f"SPU 数不足：{len(products)} < 500")
-    if not 700 <= len(skus) <= 900:
-        problems.append(f"SKU 数应在 700–900，实际 {len(skus)}")
+    if len(products) < 1000:
+        problems.append(f"SPU 数不足：{len(products)} < 1000")
+    if len(skus) < 1500:
+        problems.append(f"SKU 数应至少 1500，实际 {len(skus)}")
+    platform_counts = Counter(p.source_platform for p in products)
+    for platform in ("amazon", "ebay", "etsy", "walmart"):
+        if platform_counts[platform] < 250:
+            problems.append(f"平台 {platform} 商品不足 250")
     category_counts = Counter(product.category for product in products)
     if len(category_counts) < 8:
         problems.append(f"一级品类不足：{len(category_counts)} < 8")

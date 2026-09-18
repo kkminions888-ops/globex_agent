@@ -1,0 +1,1283 @@
+{
+  "scope": "isolated_search_tool_harness",
+  "publication": "manual_review_required",
+  "candidate": "你是 Globex 商品检索专家 (CatalogSearchAgent)。\n\n工作步骤：\n  1. 若买家诉求涉及品类选购常识（怎么挑、看哪些属性、价格是否合理、有什么坑），\n     先调 category_insight_tool 拉知识，拿到的属性口径用于改写检索词与筛选候选。\n  2. 把买家原始诉求改写为标准化检索词 normalized_query（保留品类词与关键属性词，\n     如\"抗造\"\"轻便\"\"无塑料\"，去掉语气词），并抽取槽位（category / ship_to / price_max_major）。\n     预算等价格硬约束必须传 price_max_major 参数，不要自己事后过滤。\n     买家明确提出“不要塑料”、塑料过敏或禁用尼龙/聚酯时，必须传\n     excluded_material_tags=[\"合成聚合物\"]；再生尼龙仍是合成聚合物，不能标为无塑料。\n  3. 调用 product_search_tool 拉取候选；候选不足 3 条时改写扩展 query 再召回一次。\n  4. 涉及跨境到手价/运费/关税：传 ship_to 后直接读商品卡内联的 landed_price，禁止自行估算；\n     知识库未覆盖的时效政策问题（若 web_search_tool 可用）联网查证后引用来源。\n     category_insight_tool 返回的政策片段若 policy_fact_status 不是 fact_eligible，\n     只能说明“资料不足或需核验”，不得将其写成确定的税率、免税额、禁运或时效事实。\n  5. 按买家偏好筛选候选，给出推荐理由。若上文含 <buyer-preferences> 块，\n     其中 [dislike] 视为**硬性排除**（命中的候选不得进 hits，并在 notes 里说明原因），\n     [like] 作为排序偏好。\n  6. 最终回复正文为 JSON：{ \"hits\": [...], \"notes\": \"筛选与推荐说明\" }，\n     hits 保留 product_id/sku_id/title/price_major/currency/stock/highlights/landed_price。\n约束：\n  - 禁止伪造商品；返回的 product_id/sku_id 必须来自 product_search_tool 的结果。\n  - 价格与库存数字必须原样透传工具返回值。\n  - 候选与买家意图不完全一致时，仍返回最接近的候选并在 notes 里如实说明差异，不要直接返回空结果。\n  - 工具返回的 filtered_out 里若有买家要的品类商品，在 notes 里如实标注它被哪条硬约束挡掉\n    （超价格上限 / 目的国不可达），不要报告为“没有该商品”。\n",
+  "candidate_changed": false,
+  "max_optimization_metric_calls": 12,
+  "total_evaluations_including_holdout": 20,
+  "dataset_sha256": "c943a3711e98c0f0cb669d584f47ada68a429bfc372d1a6cce20a8a2295d83bf",
+  "holdout": {
+    "baseline_scores": [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "candidate_scores": [
+      1.0,
+      1.0,
+      0.0,
+      0.0
+    ],
+    "paired_mean_delta": 0.25
+  },
+  "full_agent_release_gate": "NOT_RUN",
+  "records": [
+    {
+      "id": "val-1",
+      "split": "val",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 0.0,
+      "violations": [
+        "ship_to 未保留需求：预期 'GB'，得到 None",
+        "ship_to 未保留需求：预期 'GB'，得到 'UK'"
+      ],
+      "feedback": "ship_to 未保留需求：预期 'GB'，得到 None；ship_to 未保留需求：预期 'GB'，得到 'UK'",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "旅行收纳袋 轻便 大容量 分类整理",
+            "category": "旅行装备",
+            "ship_to": "GB",
+            "top_k": 5,
+            "price_max_major": 30.0,
+            "target_currency": "GBP",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "旅行收纳袋 轻便 大容量 分类整理",
+            "category": "旅行装备",
+            "ship_to": null,
+            "top_k": 6,
+            "price_max_major": 30.0,
+            "target_currency": "GBP",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "旅行收纳袋 套装 衣物整理袋 防水",
+            "category": "旅行装备",
+            "ship_to": "UK",
+            "top_k": 6,
+            "price_max_major": 30.0,
+            "target_currency": "GBP",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1355,
+          "output_tokens": 102,
+          "elapsed_ms": 2414.884791003715
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1485,
+          "output_tokens": 89,
+          "elapsed_ms": 2896.8870829994557
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 3640,
+          "output_tokens": 103,
+          "elapsed_ms": 1779.7959999952582
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 3150,
+          "output_tokens": 750,
+          "elapsed_ms": 11795.831584000553
+        }
+      ]
+    },
+    {
+      "id": "val-2",
+      "split": "val",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 1.0,
+      "violations": [],
+      "feedback": "查询参数完整保留买家约束",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "P1001",
+            "category": null,
+            "ship_to": null,
+            "top_k": 5,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1359,
+          "output_tokens": 44,
+          "elapsed_ms": 1545.0895000030869
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1894,
+          "output_tokens": 319,
+          "elapsed_ms": 7521.660291000444
+        }
+      ]
+    },
+    {
+      "id": "val-3",
+      "split": "val",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 0.0,
+      "violations": [
+        "excluded_material_tags 未保留需求：预期 ['真皮']，得到 []",
+        "excluded_material_tags 未保留需求：预期 ['真皮']，得到 []"
+      ],
+      "feedback": "excluded_material_tags 未保留需求：预期 ['真皮']，得到 []；excluded_material_tags 未保留需求：预期 ['真皮']，得到 []",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "旅行背包 轻便 耐磨 非真皮",
+            "category": null,
+            "ship_to": "JP",
+            "top_k": 5,
+            "price_max_major": 200.0,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "双肩背包 旅行 轻便 大容量 耐磨",
+            "category": "旅行装备",
+            "ship_to": "JP",
+            "top_k": 5,
+            "price_max_major": 200.0,
+            "target_currency": "CNY",
+            "excluded_material_tags": [
+              "真皮"
+            ],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "背包 backpack 徒步 通勤 防泼水",
+            "category": null,
+            "ship_to": "JP",
+            "top_k": 8,
+            "price_max_major": 200.0,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1357,
+          "output_tokens": 102,
+          "elapsed_ms": 1772.0074169992586
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 3609,
+          "output_tokens": 121,
+          "elapsed_ms": 1964.0014579999843
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 5931,
+          "output_tokens": 103,
+          "elapsed_ms": 2092.0792079996318
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 8255,
+          "output_tokens": 821,
+          "elapsed_ms": 13065.153957999428
+        }
+      ]
+    },
+    {
+      "id": "val-4",
+      "split": "val",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 0.0,
+      "violations": [
+        "没有执行商品查询"
+      ],
+      "feedback": "没有执行商品查询",
+      "output": {
+        "tool_calls": []
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1358,
+          "output_tokens": 448,
+          "elapsed_ms": 6210.277750004025
+        }
+      ]
+    },
+    {
+      "id": "train-4",
+      "split": "train",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 1.0,
+      "violations": [],
+      "feedback": "查询参数完整保留买家约束",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "陶瓷杯",
+            "category": null,
+            "ship_to": "US",
+            "top_k": 5,
+            "price_max_major": 40.0,
+            "target_currency": "USD",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "陶瓷马克杯 喝水杯 高温瓷 带把手",
+            "category": "厨房餐饮",
+            "ship_to": "US",
+            "top_k": 5,
+            "price_max_major": 40.0,
+            "target_currency": "USD",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "手工粗陶马克杯 陶瓷杯",
+            "category": null,
+            "ship_to": "US",
+            "top_k": 5,
+            "price_max_major": 40.0,
+            "target_currency": "USD",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1354,
+          "output_tokens": 94,
+          "elapsed_ms": 3166.2982499983627
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 3571,
+          "output_tokens": 137,
+          "elapsed_ms": 2362.0124160006526
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 5190,
+          "output_tokens": 122,
+          "elapsed_ms": 4854.6377919992665
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 6823,
+          "output_tokens": 1418,
+          "elapsed_ms": 19093.211041996256
+        }
+      ]
+    },
+    {
+      "id": "train-1",
+      "split": "train",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 0.0,
+      "violations": [
+        "price_max_major 未保留需求：预期 300，得到 None"
+      ],
+      "feedback": "price_max_major 未保留需求：预期 300，得到 None",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "旅行背包 大容量 轻便 耐磨",
+            "category": "旅行装备",
+            "ship_to": "JP",
+            "top_k": 5,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "旅行背包 双肩包 大容量 轻便",
+            "category": "旅行装备",
+            "ship_to": "JP",
+            "top_k": 10,
+            "price_max_major": 300.0,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "双肩背包 徒步包 daypack 旅行",
+            "category": null,
+            "ship_to": "JP",
+            "top_k": 8,
+            "price_max_major": 300.0,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1356,
+          "output_tokens": 100,
+          "elapsed_ms": 3143.8831249979557
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 3670,
+          "output_tokens": 91,
+          "elapsed_ms": 1791.8666249970556
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 7582,
+          "output_tokens": 89,
+          "elapsed_ms": 2221.4708750034333
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 10264,
+          "output_tokens": 1031,
+          "elapsed_ms": 28381.71033300023
+        }
+      ]
+    },
+    {
+      "id": "train-3",
+      "split": "train",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 1.0,
+      "violations": [],
+      "feedback": "查询参数完整保留买家约束",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "P1003-S1",
+            "category": null,
+            "ship_to": null,
+            "top_k": 5,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1361,
+          "output_tokens": 46,
+          "elapsed_ms": 995.7732080001733
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1842,
+          "output_tokens": 299,
+          "elapsed_ms": 4650.765416998183
+        }
+      ]
+    },
+    {
+      "id": "train-2",
+      "split": "train",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 1.0,
+      "violations": [],
+      "feedback": "查询参数完整保留买家约束",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "水杯 无塑料 不含塑料 材质安全",
+            "category": null,
+            "ship_to": "US",
+            "top_k": 5,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [
+              "合成聚合物"
+            ],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "水杯 随手杯 保温杯 玻璃杯 不锈钢杯 钛杯 无塑料",
+            "category": null,
+            "ship_to": "US",
+            "top_k": 5,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [
+              "合成聚合物"
+            ],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "钛杯 纯钛 水杯 便携 直饮杯",
+            "category": null,
+            "ship_to": "US",
+            "top_k": 5,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [
+              "合成聚合物"
+            ],
+            "required_material_tags": [
+              "金属"
+            ]
+          },
+          {
+            "normalized_query": "水杯 陶瓷杯 搪瓷杯 玻璃杯 便携",
+            "category": null,
+            "ship_to": "US",
+            "top_k": 5,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [
+              "合成聚合物"
+            ],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1355,
+          "output_tokens": 92,
+          "elapsed_ms": 1443.7120420043357
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 3581,
+          "output_tokens": 120,
+          "elapsed_ms": 2134.774375001143
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 5865,
+          "output_tokens": 183,
+          "elapsed_ms": 2957.0579580031335
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 9749,
+          "output_tokens": 1332,
+          "elapsed_ms": 19789.890833002573
+        }
+      ]
+    },
+    {
+      "id": "train-2",
+      "split": "train",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 1.0,
+      "violations": [],
+      "feedback": "查询参数完整保留买家约束",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "水杯 无塑料 不含塑料 材质安全",
+            "category": null,
+            "ship_to": "US",
+            "top_k": 8,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [
+              "合成聚合物"
+            ],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "随手杯 保温杯 玻璃杯 陶瓷杯 钛杯 不锈钢水杯 便携 饮水",
+            "category": null,
+            "ship_to": "US",
+            "top_k": 10,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [
+              "合成聚合物"
+            ],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "水杯 便携 随身 饮水杯 钛 不锈钢 金属杯",
+            "category": null,
+            "ship_to": "US",
+            "top_k": 8,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [
+              "合成聚合物"
+            ],
+            "required_material_tags": [
+              "金属"
+            ]
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1355,
+          "output_tokens": 106,
+          "elapsed_ms": 2170.4102080038865
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 4683,
+          "output_tokens": 136,
+          "elapsed_ms": 2568.7092920052237
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 8737,
+          "output_tokens": 136,
+          "elapsed_ms": 2671.667750000779
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 11404,
+          "output_tokens": 2180,
+          "elapsed_ms": 20750.84274999972
+        }
+      ]
+    },
+    {
+      "id": "train-1",
+      "split": "train",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 1.0,
+      "violations": [],
+      "feedback": "查询参数完整保留买家约束",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "旅行背包 大容量 轻便 防泼水",
+            "category": "旅行装备",
+            "ship_to": "JP",
+            "top_k": 5,
+            "price_max_major": 300.0,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "双肩包 旅行背包 耐磨 大容量 登机",
+            "category": "旅行装备",
+            "ship_to": "JP",
+            "top_k": 5,
+            "price_max_major": 300.0,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "背包 backpack 徒步包 日用包",
+            "category": null,
+            "ship_to": "JP",
+            "top_k": 8,
+            "price_max_major": 300.0,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1356,
+          "output_tokens": 104,
+          "elapsed_ms": 1359.5448339983704
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 3649,
+          "output_tokens": 92,
+          "elapsed_ms": 1556.5562909978325
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 5938,
+          "output_tokens": 76,
+          "elapsed_ms": 1472.7567080044537
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 7909,
+          "output_tokens": 779,
+          "elapsed_ms": 10638.264000001072
+        }
+      ]
+    },
+    {
+      "id": "train-4",
+      "split": "train",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 1.0,
+      "violations": [],
+      "feedback": "查询参数完整保留买家约束",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "陶瓷杯",
+            "category": "厨房餐饮",
+            "ship_to": "US",
+            "top_k": 5,
+            "price_max_major": 40.0,
+            "target_currency": "USD",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "陶瓷马克杯 水杯 咖啡杯 带把手",
+            "category": "厨房餐饮",
+            "ship_to": "US",
+            "top_k": 5,
+            "price_max_major": 40.0,
+            "target_currency": "USD",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "陶瓷马克杯 咖啡杯 水杯",
+            "category": "家居生活",
+            "ship_to": "US",
+            "top_k": 5,
+            "price_max_major": 40.0,
+            "target_currency": "USD",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1354,
+          "output_tokens": 93,
+          "elapsed_ms": 1783.2406250017812
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 2918,
+          "output_tokens": 102,
+          "elapsed_ms": 1775.5608330044197
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 4498,
+          "output_tokens": 100,
+          "elapsed_ms": 1834.8128340003313
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 5341,
+          "output_tokens": 1119,
+          "elapsed_ms": 14106.273583995062
+        }
+      ]
+    },
+    {
+      "id": "train-3",
+      "split": "train",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 1.0,
+      "violations": [],
+      "feedback": "查询参数完整保留买家约束",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "P1003-S1",
+            "category": null,
+            "ship_to": null,
+            "top_k": 5,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1361,
+          "output_tokens": 34,
+          "elapsed_ms": 811.3966250020894
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1830,
+          "output_tokens": 234,
+          "elapsed_ms": 3357.968709002307
+        }
+      ]
+    },
+    {
+      "id": "holdout-1",
+      "split": "holdout",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 1.0,
+      "violations": [],
+      "feedback": "查询参数完整保留买家约束",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "办公台灯 护眼 可调光 书桌阅读",
+            "category": "办公学习",
+            "ship_to": "SG",
+            "top_k": 8,
+            "price_max_major": 60.0,
+            "target_currency": "SGD",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "台灯 LED 护眼 阅读灯 办公桌面照明",
+            "category": "办公学习",
+            "ship_to": "SG",
+            "top_k": 8,
+            "price_max_major": 60.0,
+            "target_currency": "SGD",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "lamp desk lamp office lighting",
+            "category": null,
+            "ship_to": "SG",
+            "top_k": 8,
+            "price_max_major": 60.0,
+            "target_currency": "SGD",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1359,
+          "output_tokens": 103,
+          "elapsed_ms": 1993.3427500000107
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 3582,
+          "output_tokens": 91,
+          "elapsed_ms": 2043.3852080022916
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 5795,
+          "output_tokens": 85,
+          "elapsed_ms": 1888.8032500035479
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 5489,
+          "output_tokens": 161,
+          "elapsed_ms": 4849.3737500029965
+        }
+      ]
+    },
+    {
+      "id": "holdout-1",
+      "split": "holdout",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 1.0,
+      "violations": [],
+      "feedback": "查询参数完整保留买家约束",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "办公台灯 护眼 可调光 书桌 阅读",
+            "category": "办公学习",
+            "ship_to": "SG",
+            "top_k": 5,
+            "price_max_major": 60.0,
+            "target_currency": "SGD",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "LED台灯 护眼 阅读灯 办公 调光",
+            "category": "办公学习",
+            "ship_to": "SG",
+            "top_k": 8,
+            "price_max_major": 60.0,
+            "target_currency": "SGD",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1359,
+          "output_tokens": 104,
+          "elapsed_ms": 1482.644875002734
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 3584,
+          "output_tokens": 105,
+          "elapsed_ms": 2181.334082997637
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 5811,
+          "output_tokens": 1453,
+          "elapsed_ms": 21828.093750002154
+        }
+      ]
+    },
+    {
+      "id": "holdout-2",
+      "split": "holdout",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 1.0,
+      "violations": [],
+      "feedback": "查询参数完整保留买家约束",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "P1003-S2",
+            "category": null,
+            "ship_to": null,
+            "top_k": 5,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1354,
+          "output_tokens": 46,
+          "elapsed_ms": 2166.6475840029307
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1835,
+          "output_tokens": 195,
+          "elapsed_ms": 2702.202500004205
+        }
+      ]
+    },
+    {
+      "id": "holdout-2",
+      "split": "holdout",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 0.0,
+      "violations": [
+        "丢失商品身份词",
+        "丢失商品身份词"
+      ],
+      "feedback": "丢失商品身份词；丢失商品身份词",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "P1003-S2",
+            "category": null,
+            "ship_to": null,
+            "top_k": 10,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "折叠旅行双肩包 35L 超轻 可折叠",
+            "category": "旅行装备",
+            "ship_to": null,
+            "top_k": 10,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "旅行双肩包 35L 折叠 雾霾蓝",
+            "category": "旅行装备",
+            "ship_to": null,
+            "top_k": 10,
+            "price_max_major": null,
+            "target_currency": "CNY",
+            "excluded_material_tags": [],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1354,
+          "output_tokens": 47,
+          "elapsed_ms": 1084.7450000001118
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1837,
+          "output_tokens": 67,
+          "elapsed_ms": 1274.629499996081
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 4915,
+          "output_tokens": 65,
+          "elapsed_ms": 1825.152582998271
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 7346,
+          "output_tokens": 209,
+          "elapsed_ms": 3342.75712499948
+        }
+      ]
+    },
+    {
+      "id": "holdout-3",
+      "split": "holdout",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 0.0,
+      "violations": [
+        "ship_to 未保留需求：预期 'DE'，得到 None",
+        "ship_to 未保留需求：预期 'DE'，得到 None"
+      ],
+      "feedback": "ship_to 未保留需求：预期 'DE'，得到 None；ship_to 未保留需求：预期 'DE'，得到 None",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "背包 轻便 耐磨 无真皮 无塑料",
+            "category": null,
+            "ship_to": "DE",
+            "top_k": 5,
+            "price_max_major": 50.0,
+            "target_currency": "EUR",
+            "excluded_material_tags": [
+              "真皮",
+              "合成聚合物"
+            ],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "背包 轻便 耐磨 无真皮 无塑料",
+            "category": null,
+            "ship_to": null,
+            "top_k": 5,
+            "price_max_major": 50.0,
+            "target_currency": "EUR",
+            "excluded_material_tags": [
+              "真皮",
+              "合成聚合物"
+            ],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "双肩包 背包 帆布 棉麻 电脑包 徒步包",
+            "category": null,
+            "ship_to": null,
+            "top_k": 8,
+            "price_max_major": 50.0,
+            "target_currency": "EUR",
+            "excluded_material_tags": [
+              "真皮",
+              "合成聚合物"
+            ],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1357,
+          "output_tokens": 123,
+          "elapsed_ms": 1551.121875003446
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1508,
+          "output_tokens": 110,
+          "elapsed_ms": 1369.5398749987362
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 3231,
+          "output_tokens": 114,
+          "elapsed_ms": 1701.2097080005333
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 5230,
+          "output_tokens": 336,
+          "elapsed_ms": 8063.236750000215
+        }
+      ]
+    },
+    {
+      "id": "holdout-3",
+      "split": "holdout",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 0.0,
+      "violations": [
+        "ship_to 未保留需求：预期 'DE'，得到 None",
+        "price_max_major 未保留需求：预期 50，得到 None",
+        "ship_to 未保留需求：预期 'DE'，得到 'EU'"
+      ],
+      "feedback": "ship_to 未保留需求：预期 'DE'，得到 None；price_max_major 未保留需求：预期 50，得到 None；ship_to 未保留需求：预期 'DE'，得到 'EU'",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "背包 轻便 耐磨 无真皮 无塑料材质",
+            "category": null,
+            "ship_to": "DE",
+            "top_k": 8,
+            "price_max_major": 50.0,
+            "target_currency": "EUR",
+            "excluded_material_tags": [
+              "真皮",
+              "合成聚合物"
+            ],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "背包 轻便 耐磨 无真皮 无塑料材质",
+            "category": null,
+            "ship_to": null,
+            "top_k": 8,
+            "price_max_major": null,
+            "target_currency": "EUR",
+            "excluded_material_tags": [
+              "真皮",
+              "合成聚合物"
+            ],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "双肩包 背包 帆布 棉 帆布背包 通勤",
+            "category": null,
+            "ship_to": "EU",
+            "top_k": 8,
+            "price_max_major": 50.0,
+            "target_currency": "EUR",
+            "excluded_material_tags": [
+              "真皮",
+              "合成聚合物"
+            ],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1357,
+          "output_tokens": 124,
+          "elapsed_ms": 1482.3014590001549
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1509,
+          "output_tokens": 96,
+          "elapsed_ms": 1411.064207997697
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 4050,
+          "output_tokens": 125,
+          "elapsed_ms": 3740.675667002506
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 6796,
+          "output_tokens": 903,
+          "elapsed_ms": 16034.79766700184
+        }
+      ]
+    },
+    {
+      "id": "holdout-4",
+      "split": "holdout",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 0.0,
+      "violations": [
+        "ship_to 未保留需求：预期 'AU'，得到 None",
+        "ship_to 未保留需求：预期 'AU'，得到 None"
+      ],
+      "feedback": "ship_to 未保留需求：预期 'AU'，得到 None；ship_to 未保留需求：预期 'AU'，得到 None",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "杯子 便携 无玻璃 非玻璃材质",
+            "category": null,
+            "ship_to": "AU",
+            "top_k": 8,
+            "price_max_major": 70.0,
+            "target_currency": "AUD",
+            "excluded_material_tags": [
+              "玻璃"
+            ],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "杯子 便携 无玻璃 非玻璃材质",
+            "category": null,
+            "ship_to": null,
+            "top_k": 8,
+            "price_max_major": 70.0,
+            "target_currency": "AUD",
+            "excluded_material_tags": [
+              "玻璃"
+            ],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "不锈钢杯 保温杯 随行杯 金属杯",
+            "category": null,
+            "ship_to": null,
+            "top_k": 8,
+            "price_max_major": 70.0,
+            "target_currency": "AUD",
+            "excluded_material_tags": [
+              "玻璃"
+            ],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1355,
+          "output_tokens": 128,
+          "elapsed_ms": 1797.7387920036563
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1511,
+          "output_tokens": 106,
+          "elapsed_ms": 1719.8500000013155
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 4031,
+          "output_tokens": 107,
+          "elapsed_ms": 2858.1610830005957
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 5945,
+          "output_tokens": 819,
+          "elapsed_ms": 10951.749833002395
+        }
+      ]
+    },
+    {
+      "id": "holdout-4",
+      "split": "holdout",
+      "candidate_hash": "ca214965807b9ab41d9d8eb3fb51c2629af6f959e900e12535f141b8c5593c6d",
+      "score": 0.0,
+      "violations": [
+        "ship_to 未保留需求：预期 'AU'，得到 None",
+        "price_max_major 未保留需求：预期 70，得到 None",
+        "ship_to 未保留需求：预期 'AU'，得到 None",
+        "price_max_major 未保留需求：预期 70，得到 None"
+      ],
+      "feedback": "ship_to 未保留需求：预期 'AU'，得到 None；price_max_major 未保留需求：预期 70，得到 None；ship_to 未保留需求：预期 'AU'，得到 None；price_max_major 未保留需求：预期 70，得到 None",
+      "output": {
+        "tool_calls": [
+          {
+            "normalized_query": "杯子 便携 无玻璃 送人",
+            "category": null,
+            "ship_to": "AU",
+            "top_k": 5,
+            "price_max_major": 70.0,
+            "target_currency": "AUD",
+            "excluded_material_tags": [
+              "玻璃"
+            ],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "杯子 便携 无玻璃 送人",
+            "category": null,
+            "ship_to": null,
+            "top_k": 5,
+            "price_max_major": null,
+            "target_currency": "AUD",
+            "excluded_material_tags": [
+              "玻璃"
+            ],
+            "required_material_tags": []
+          },
+          {
+            "normalized_query": "保温杯 不锈钢 水杯 随行杯",
+            "category": null,
+            "ship_to": null,
+            "top_k": 8,
+            "price_max_major": null,
+            "target_currency": "AUD",
+            "excluded_material_tags": [
+              "玻璃"
+            ],
+            "required_material_tags": []
+          }
+        ]
+      },
+      "usage": [
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1355,
+          "output_tokens": 118,
+          "elapsed_ms": 2258.384707994992
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 1501,
+          "output_tokens": 90,
+          "elapsed_ms": 1390.7777909989818
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 3198,
+          "output_tokens": 77,
+          "elapsed_ms": 1873.1738749993383
+        },
+        {
+          "kind": "optimization_evaluation",
+          "input_tokens": 5086,
+          "output_tokens": 108,
+          "elapsed_ms": 4383.54483400326
+        }
+      ]
+    }
+  ],
+  "reflection_usage": []
+}

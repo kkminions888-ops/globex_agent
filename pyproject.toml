@@ -7,7 +7,7 @@ readme = "README.md"
 requires-python = ">=3.11,<3.14"
 dependencies = [
     "ag-ui-protocol==0.1.22",
-    "agentscope>=2,<3",
+    "agentscope==2.0.8",
     "aiosqlite>=0.22.1",
     "fastapi>=0.115",
     "httpx>=0.28.1",
@@ -21,6 +21,14 @@ dependencies = [
     "redis>=8.1.0",
     "sqlalchemy[asyncio]>=2.0",
     "uvicorn[standard]>=0.30",
+]
+
+[project.optional-dependencies]
+retrieval = [
+    "fastembed==0.7.4",
+]
+optimization = [
+    "gepa==0.1.4",
 ]
 
 # 声明为独立 workspace root，避免 uv 向上探测课程仓库根部的 pyproject

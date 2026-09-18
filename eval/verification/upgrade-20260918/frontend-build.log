@@ -1,0 +1,15 @@
+
+> globex-frontend@0.3.0 build
+> tsc -b && vite build
+
+vite v5.4.21 building for production...
+transforming...
+✓ 602 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                      0.70 kB │ gzip:  0.47 kB
+dist/assets/index-CfRma5Wm.css      53.29 kB │ gzip: 12.06 kB
+dist/assets/index-Bkw1Z7PY.js       97.15 kB │ gzip: 33.77 kB
+dist/assets/agent-Df8uD0bz.js      203.99 kB │ gzip: 44.60 kB
+dist/assets/ui-vendor-DlihoXsq.js  318.44 kB │ gzip: 98.93 kB
+✓ built in 1.23s

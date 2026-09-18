@@ -188,7 +188,7 @@ async def test_real_agentscope_summary_keeps_whole_tail_and_persists_checkpoint(
     source=fixture_agent().state
     model.generate_structured_output=AsyncMock(return_value=SimpleNamespace(content={
         'task_overview':'查询背包','current_state':'待比较','important_discoveries':'P0-S1',
-        'next_steps':'核对最新库存','context_to_preserve':'历史不是授权'},finished_reason="stop"))
+        'next_steps':'核对最新库存','context_to_preserve':'历史不是授权'},finished_reason="stop",usage=None))
     agent=ContextAwareAgent('agent','测试',model,state=source,context_config=build_context_config(128000,20000))
     governance(agent)['calibration']={'identity':model.model+'|'+str(model.client.base_url),'factor':3,'ratios':[3]}
     mw=LayeredContextMiddleware(ContextEvidenceStore(tmp_path/'e.db'),target_tokens=100)

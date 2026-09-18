@@ -1,5 +1,6 @@
 """真实 SQLite 验证规范化、持久向量、隔离、更新删除与失败原子性。"""
 import json
+import asyncio
 from types import SimpleNamespace
 import pytest
 from agentscope.message import TextBlock, UserMsg
@@ -89,3 +90,92 @@ async def test_agentscope_middleware_injects_query_scoped_memory(tmp_path):
         assert events==['ok']
 
     finally: ShoppingContext.reset(token)
+
+
+async def test_model_change_reindexes_facts_without_changing_identity_or_audit(tmp_path):
+    original=make(tmp_path)
+    await original.append(BuyerPreference('a','like','喜欢裙子',source_kind='user',source_ref='form'))
+    await original.append(BuyerPreference('b','like','喜欢裙子'))
+    old=(await original.list_by_buyer('a'))[0]
+    audit=await original.audit('a',old.memory_id)
+    changed=SemanticPreferenceStore(original.path,Legacy(),Extract(),Embed(),'next-model',.5)
+    await changed.append(BuyerPreference('a','like','喜欢风衣'))
+    found=await changed.select(await changed.list_by_buyer('a'),'裙子风衣',5)
+    assert {p.statement for p in found}=={'喜欢裙子','喜欢风衣'}
+    assert next(p for p in found if p.memory_id==old.memory_id)==old
+    assert await changed.audit('a',old.memory_id)==audit
+    restarted=SemanticPreferenceStore(original.path,Legacy(),Extract(),Embed(),'next-model',.5)
+    assert {p.statement for p in await restarted.select(await restarted.list_by_buyer('a'),'裙子风衣',5)}=={'喜欢裙子','喜欢风衣'}
+    with changed._db() as db:
+        assert {r['model_id'] for r in db.execute("SELECT model_id FROM memory_facts WHERE buyer_id='a'")}=={'next-model'}
+        assert db.execute("SELECT model_id FROM memory_facts WHERE buyer_id='b'").fetchone()[0]=='test'
+
+
+@pytest.mark.parametrize('failure',['unavailable','partial','nan','zero','wrong_dimension'])
+async def test_failed_reindex_retains_old_vectors_and_recalls_valid_new_facts(tmp_path,failure):
+    original=make(tmp_path)
+    await original.append(BuyerPreference('a','like','喜欢裙子'))
+    changed=SemanticPreferenceStore(original.path,Legacy(),Extract(),Embed(),'next-model',.5)
+    await changed.append(BuyerPreference('a','like','喜欢风衣'))
+    await changed.append(BuyerPreference('a','dislike','不要塑料'))
+    before=await changed._rows('a')
+    async def broken_batch(texts):
+        if failure=='unavailable':raise RuntimeError('测试服务不可用')
+        return {'partial':[],'nan':[[float('nan'),1]],'zero':[[0,0]],'wrong_dimension':[[1,0,0]]}[failure]
+    changed.embedder.embed_batch=broken_batch
+    found=await changed.select(await changed.list_by_buyer('a'),'裙子风衣',5)
+    assert {p.statement for p in found}=={'喜欢风衣','不要塑料'}
+    assert await changed._rows('a')==before
+
+
+async def test_reindex_does_not_resurrect_deleted_or_overwrite_updated_memory(tmp_path):
+    original=make(tmp_path)
+    await original.append(BuyerPreference('a','like','喜欢裙子'))
+    await original.append(BuyerPreference('a','like','喜欢风衣'))
+    old=await original.list_by_buyer('a')
+    started=asyncio.Event();release=asyncio.Event()
+    class PausedEmbed(Embed):
+        async def embed_batch(self,texts):
+            started.set()
+            await release.wait()
+            return await super().embed_batch(texts)
+    changed=SemanticPreferenceStore(original.path,Legacy(),Extract(),PausedEmbed(),'next-model',.5)
+    task=asyncio.create_task(changed.select(old,'裙子风衣',5))
+    try:
+        await asyncio.wait_for(started.wait(),1)
+        await original.delete_by_id('a',old[0].memory_id,old[0].version)
+        await original.replace_by_id('a',old[1].memory_id,old[1].version,BuyerPreference('a','like','喜欢咖啡'))
+    finally:
+        release.set()
+        found=await task
+    assert found==[]
+    remaining=await original.list_by_buyer('a')
+    assert len(remaining)==1 and remaining[0].statement=='喜欢咖啡' and remaining[0].version==2
+    with original._db() as db:
+        assert db.execute("SELECT model_id FROM memory_facts").fetchone()[0]=='test'
+
+
+async def test_same_model_dimension_change_rebuilds_incompatible_vectors(tmp_path):
+    original=make(tmp_path)
+    await original.append(BuyerPreference('a','like','喜欢裙子'))
+    class Embed3(Embed):
+        async def embed(self,q):return [1.,0.,0.]
+    changed=make(tmp_path,embed=Embed3())
+    assert [p.statement for p in await changed.select(await changed.list_by_buyer('a'),'裙子',5)]==['喜欢裙子']
+    with changed._db() as db:
+        assert len(json.loads(db.execute("SELECT vector FROM memory_facts").fetchone()[0]))==3
+
+
+async def test_reindex_write_error_rolls_back_whole_batch(tmp_path):
+    original=make(tmp_path)
+    await original.append(BuyerPreference('a','like','喜欢裙子'))
+    await original.append(BuyerPreference('a','like','喜欢风衣'))
+    changed=SemanticPreferenceStore(original.path,Legacy(),Extract(),Embed(),'next-model',.5)
+    await changed.append(BuyerPreference('a','like','喜欢衬衣'))
+    before=await changed._rows('a')
+    with changed._db() as db:
+        db.execute("""CREATE TRIGGER fail_index_update BEFORE UPDATE OF vector ON memory_facts
+            WHEN OLD.statement='喜欢风衣' BEGIN SELECT RAISE(ABORT,'模拟写库失败'); END""")
+    found=await changed.select(await changed.list_by_buyer('a'),'裙子风衣',5)
+    assert [p.statement for p in found]==['喜欢衬衣']
+    assert await changed._rows('a')==before

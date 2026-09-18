@@ -38,20 +38,20 @@ _load_environment(PROJECT_ROOT / ".env")
 @dataclass(frozen=True)
 class Settings:
     llm_base_url: str
-    llm_api_key: str
+    llm_api_key: str = field(repr=False)
     llm_model: str
     port: int
     log_level: str
     # ---- 检索升级（模块一）----
     embedding_base_url: str
-    embedding_api_key: str
+    embedding_api_key: str = field(repr=False)
     embedding_model: str
     embedding_dim: int  # 知识库建库需显式维度（text-embedding-v4 实测 1024）
     qdrant_url: str  # 空 = qdrant-client 本地嵌入模式（DATA_DIR/qdrant）
     qdrant_collection: str
     reranker_base_url: str  # 空 = 降级为按向量分排序
     reranker_model: str
-    tavily_api_key: str  # 空 = 不注册 web_search_tool
+    tavily_api_key: str = field(repr=False)  # 空 = 不注册 web_search_tool
     # ---- 可观测（模块四）----
     otlp_endpoint: str  # 空 = 不启用 TracingMiddleware
     # ---- 数据目录（模块三）----
@@ -60,7 +60,7 @@ class Settings:
     category_kb_collection: str
     # ---- 三期：Context 工程 ----
     context_size: int  # 模型上下文窗口，压缩阈值按此比例计算
-    tool_result_limit: int  # 单个工具结果 token 上限（AgentScope 2.0.6 口径）
+    tool_result_limit: int  # 单个工具结果 token 上限（AgentScope 2.0.8 口径）
     reply_token_budget: int  # 0 = 不启用 Token 预算护栏
     # ---- 三期：工具韧性 ----
     tool_failure_threshold: int  # 连续失败达阈值后熔断
@@ -120,7 +120,14 @@ class Settings:
     prompt_pin_version: str = ""
     metrics_reader_buyers: tuple[str, ...] = ()
     identity_hmac_secret: str = field(default="", repr=False)
+    reranker_mode: str = "http"  # 只允许专用 HTTP 精排或显式关闭
+    reranker_api_key: str = field(default="", repr=False)
+    reranker_protocol: str = "flat"  # flat / dashscope
+    reranker_timeout_seconds: float = 15.0
     hybrid_recall_enabled: bool = False  # 冻结评测证明收益后再启用实验召回
+    hybrid_lexical_weight: float = 1.0
+    hybrid_vector_weight: float = 1.0
+    recall_candidates: int = 32
 
 
 def load_settings() -> Settings:
@@ -142,12 +149,19 @@ def load_settings() -> Settings:
         llm_base_url=llm_base_url,
         llm_api_key=llm_api_key,
         llm_model=os.getenv("LLM_MODEL", "qwen3-max"),
+        reranker_mode=os.getenv("RERANKER_MODE", "http"),
+        reranker_api_key=os.getenv("RERANKER_API_KEY") or llm_api_key,
+        reranker_protocol=os.getenv("RERANKER_PROTOCOL", "flat"),
+        reranker_timeout_seconds=float(os.getenv("RERANKER_TIMEOUT_SECONDS", "15")),
         hybrid_recall_enabled=os.getenv("HYBRID_RECALL_ENABLED", "0") in ("1", "true", "True"),
+        hybrid_lexical_weight=float(os.getenv("HYBRID_LEXICAL_WEIGHT", "1")),
+        hybrid_vector_weight=float(os.getenv("HYBRID_VECTOR_WEIGHT", "1")),
+        recall_candidates=int(os.getenv("RECALL_CANDIDATES", "32")),
         port=int(os.getenv("PORT", "8000")),
         log_level=os.getenv("LOG_LEVEL", "info"),
         # embedding 默认复用 LLM 网关（OpenAI 兼容 /v1/embeddings）
-        embedding_base_url=os.getenv("EMBEDDING_BASE_URL", llm_base_url),
-        embedding_api_key=os.getenv("EMBEDDING_API_KEY", llm_api_key),
+        embedding_base_url=os.getenv("EMBEDDING_BASE_URL") or llm_base_url,
+        embedding_api_key=os.getenv("EMBEDDING_API_KEY") or llm_api_key,
         embedding_model=os.getenv("EMBEDDING_MODEL", "text-embedding-v4"),
         embedding_dim=int(os.getenv("EMBEDDING_DIM", "1024")),
         qdrant_url=os.getenv("QDRANT_URL", ""),

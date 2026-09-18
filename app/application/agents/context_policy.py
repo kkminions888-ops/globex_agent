@@ -57,7 +57,7 @@ def build_context_config(context_size: int, tool_result_limit: int) -> ContextCo
         context_size (`int`):
             模型上下文窗口大小（与 create_chat_model 保持一致）。
         tool_result_limit (`int`):
-            单个工具结果的 token 上限（AgentScope 2.0.6），不是字符数。
+            单个工具结果的 token 上限（AgentScope 2.0.8），不是字符数。
     """
     del context_size  # 窗口由 model 侧提供，这里仅保留参数以标明配套关系
     return ContextConfig(

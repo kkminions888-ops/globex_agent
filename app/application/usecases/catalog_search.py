@@ -77,6 +77,9 @@ class ProductCard:
     image_url: str | None = None
     image_kind: str = "placeholder"
     image_alt: str = "暂无商品图片"
+    source_language: str = ""
+    source_locale: str = ""
+    data_provenance: str = ""
 
     def to_dict(self) -> dict:
         card = {
@@ -109,6 +112,10 @@ class ProductCard:
         }
         if self.landed_price is not None:
             card["landed_price"] = self.landed_price
+        if self.source_language:
+            card.update(source_language=self.source_language, source_locale=self.source_locale)
+        if self.data_provenance:
+            card["data_provenance"] = self.data_provenance
         return card
 
 
@@ -132,8 +139,16 @@ class CatalogSearchUseCase:
         reranker: Optional[Reranker] = None,
         tariff_schedule: Optional[TariffSchedule] = None,
         hybrid_enabled: bool = False,
+        hybrid_lexical_weight: float = 1.0,
+        hybrid_vector_weight: float = 1.0,
+        recall_candidates: int = 32,
     ) -> None:
         self._hybrid_enabled = hybrid_enabled
+        self._fusion_weights = (hybrid_lexical_weight, hybrid_vector_weight)
+        reciprocal_rank_fusion([], [], weights=self._fusion_weights)
+        if type(recall_candidates) is not int or not 8 <= recall_candidates <= 256:
+            raise ValueError("recall_candidates 须为 8 到 256 的整数")
+        self._recall_candidates = recall_candidates
         self._product_repo = product_repo
         self._embedder = embedder
         self._vector_index = vector_index
@@ -153,7 +168,7 @@ class CatalogSearchUseCase:
 
         if self._embedder is not None and self._vector_index is not None:
             try:
-                scored = await self._vector_recall(spec)
+                scored = await self._vector_recall(spec, adaptive=True)
                 recall_strategy = "embedding_only"
             except Exception as err:  # noqa: BLE001 —— 召回基建异常必须降级而非失败
                 logger.warning("向量召回不可用，降级关键词召回：%s", err)
@@ -230,14 +245,27 @@ class CatalogSearchUseCase:
                 "filtered_out": rejected[:_FILTERED_OUT_LIMIT], "existence_checked": True}
 
     async def _execute_hybrid(self, spec: ProductSearchSpec) -> dict:
+        # 两路共享同一份权威目录快照；过滤资格不依赖向量库的陈旧价格或库存。
+        products = await self._product_repo.list_all()
+        permitted = [p.product_id for p in products if self._reject_reason(p, spec) is None]
+        diagnostics = {"filter_mode": "adaptive_post_filter", "eligible_products": len(permitted),
+                       "lexical_weight": self._fusion_weights[0], "vector_weight": self._fusion_weights[1],
+                       "candidate_limit": max(self._recall_candidates, spec.top_k * 4)}
         async def lexical():
-            products = await self._product_repo.list_all()
             return bm25_rank(spec.normalized_query, products)
         async def vector():
             if self._embedder is None or self._vector_index is None:
                 return None
             try:
-                return await self._vector_recall(spec, adaptive=True)
+                embedding = await self._embedder.embed(spec.normalized_query)
+                filtered_search = getattr(self._vector_index, "search_filtered", None)
+                if filtered_search is not None:
+                    hits = await filtered_search(embedding, top_n=diagnostics["candidate_limit"], product_ids=permitted)
+                    if hits is not None:
+                        diagnostics["filter_mode"] = "authoritative_ids"
+                        by_id = {p.product_id: p for p in products}
+                        return [(h.score, by_id[h.product_id]) for h in hits if h.product_id in by_id]
+                return await self._vector_recall(spec, adaptive=True, embedding=embedding)
             except Exception as err:
                 logger.warning("Hybrid 向量侧不可用：%s", type(err).__name__)
                 return None
@@ -253,17 +281,20 @@ class CatalogSearchUseCase:
                 elif len(rejected) < _FILTERED_OUT_LIMIT:
                     rejected.append(self._to_rejected(product, spec, reason))
             return result
-        lexical_hits = eligible(lexical_hits)[:max(32, spec.top_k*4)]
+        lexical_hits = eligible(lexical_hits)[:diagnostics["candidate_limit"]]
         vector_eligible = eligible(vector_hits or [])
-        scored = reciprocal_rank_fusion(lexical_hits, vector_eligible)
+        # 单路故障时保留健康侧，不让零权重把降级结果清空。
+        weights = self._fusion_weights if vector_hits is not None else (1.0, 0.0)
+        scored = reciprocal_rank_fusion(lexical_hits, vector_eligible, weights=weights)
         strategy = "hybrid_only" if vector_hits is not None else "bm25"
         rerank_applied = False
-        if scored and vector_hits is not None:
+        if scored and self._reranker is not None:
             try:
                 scored = await self._rerank(spec, scored)
-                strategy, rerank_applied = "hybrid_rerank", True
+                strategy, rerank_applied = ("hybrid_rerank" if vector_hits is not None else "bm25_rerank"), True
             except Exception as err:
-                logger.warning("Hybrid 重排不可用：%s", type(err).__name__)
+                diagnostics["reranker_error"] = getattr(err, "code", type(err).__name__)
+                logger.warning("Hybrid 重排不可用：%s", diagnostics["reranker_error"])
         deduped, seen = [], set()
         for score, product in scored:
             key = product.canonical_product_id or product.product_id
@@ -273,7 +304,7 @@ class CatalogSearchUseCase:
         return {"hits": [self._to_card(score, p, spec).to_dict() for score, p in deduped[:spec.top_k]],
                 "total_candidates": len(deduped), "recall_strategy": strategy, "rerank_applied": rerank_applied,
                 "retrieval_variant": "bm25_vector_rrf_v1", "vector_available": vector_hits is not None,
-                "filtered_out": rejected}
+                "filtered_out": rejected, "retrieval_diagnostics": diagnostics}
 
     def _reject_reason(self, product: Product, spec: ProductSearchSpec, primary=None) -> Optional[str]:
         """返回硬约束拒绝原因，None 表示通过。"""
@@ -312,9 +343,10 @@ class CatalogSearchUseCase:
 
     # ---- 一阶段：向量召回 ----
 
-    async def _vector_recall(self, spec: ProductSearchSpec, adaptive: bool = False) -> list[tuple[float, Product]]:
-        embedding = await self._embedder.embed(spec.normalized_query)
-        top_n = max(32, spec.top_k*4) if adaptive else _RECALL_TOP_N
+    async def _vector_recall(self, spec: ProductSearchSpec, adaptive: bool = False, embedding=None) -> list[tuple[float, Product]]:
+        if embedding is None:
+            embedding = await self._embedder.embed(spec.normalized_query)
+        top_n = max(self._recall_candidates, spec.top_k*4) if adaptive else _RECALL_TOP_N
         while True:
             vector_hits = await self._vector_index.search(embedding, top_n=top_n)
             products = await self._product_repo.find_by_ids([hit.product_id for hit in vector_hits])
@@ -423,6 +455,9 @@ class CatalogSearchUseCase:
             ships_to=list(product.ships_to),
             dimensions_cm=dict(product.dimensions_cm),
             updated_at=product.updated_at,
+            source_language=product.source_language,
+            source_locale=product.source_locale,
+            data_provenance=product.data_provenance,
             default_sku_id=primary.sku_id,
             image_url=media.image_url,
             image_kind=media.image_kind,

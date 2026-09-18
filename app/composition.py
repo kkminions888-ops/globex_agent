@@ -176,7 +176,6 @@ async def build_container() -> Container:
     product_repo = InMemoryProductRepository()
     bus = TradeEventBus()
     vector_index = QdrantProductIndex(settings)
-    reranker = HttpReranker(settings) if settings.reranker_base_url else None
 
     cache = RedisCache(settings.redis_url)
     raw_embedder = OpenAIEmbeddingClient(settings)
@@ -263,10 +262,16 @@ async def build_container() -> Container:
     # 必须是显式开启的选择；关时注入 None，主链路零开销
     drift_detector = DriftDetector() if settings.drift_detect_enabled else None
 
+    from app.infrastructure.rerank.factory import create_reranker
+    reranker = create_reranker(settings, throttle=throttle, bus=bus)
+
     # ---- Application ----
     catalog_search = CatalogSearchUseCase(
         product_repo, embedder=embedder, vector_index=vector_index, reranker=reranker,
         hybrid_enabled=settings.hybrid_recall_enabled,
+        hybrid_lexical_weight=settings.hybrid_lexical_weight,
+        hybrid_vector_weight=settings.hybrid_vector_weight,
+        recall_candidates=settings.recall_candidates,
     )
     place_order = PlaceOrderUseCase(confirmations)
     query_order = QueryOrderUseCase(trade_store)
@@ -287,6 +292,7 @@ async def build_container() -> Container:
         embedder, settings.embedding_model + ":" + str(settings.embedding_dim),
     )
     preference_selector = preference_store
+    from app.infrastructure.shopping_forms import ShoppingFormStore
     main_factory = MainAgentFactory(
         settings, search_factory, trade_factory, bus, preference_store, circuit_registry, throttle,
         sequencing=sequencing_tracker,
@@ -294,6 +300,7 @@ async def build_container() -> Container:
         preference_selector=preference_selector,
         capability_registry=CapabilityRegistry(settings.data_dir / "capabilities.db"),
         buyer_skill_store=BuyerSkillStore(settings.data_dir / "buyer_skills.db"),
+        shopping_form_store=ShoppingFormStore(settings.data_dir / "shopping_forms.db"),
     )
     sessions = SessionRegistry(main_factory, session_store, enforce_owner=settings.session_owner_binding, prompt_registry=prompt_registry)
     orchestrator = MainAgentOrchestrator(

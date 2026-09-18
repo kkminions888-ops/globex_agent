@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "catalog_size": 1000,
+  "sku_count": 1705,
+  "strategy": "hybrid_rerank",
+  "top_product": "P3076",
+  "knowledge_documents": 45,
+  "knowledge_query_succeeded": true,
+  "restart_inventory_preserved": true,
+  "chat_calls": 0,
+  "http_requests": {
+    "/v1/embeddings": 202,
+    "/v1/rerank": 1
+  },
+  "data_scope": "isolated_sqlite"
+}

@@ -140,7 +140,7 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
         self._bus = bus
 
     async def generate_structured_output(self, messages, structured_model, **kwargs):
-        # SDK 2.0.6 的结构化生成直接调用 _call_api，不经过 __call__。
+        # SDK 2.0.8 的结构化生成直接调用 _call_api，不经过 __call__。
         token = _structured_call.set(True)
         resources = []
         resource_token = _structured_finalizers.set(resources)
@@ -153,6 +153,20 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
             finally:
                 _structured_finalizers.reset(resource_token)
                 _structured_call.reset(token)
+
+    async def _call_api_with_structured_output(self, *args, **kwargs):
+        # 2.0.8 会在 forced/auto/none 策略间回退。每次解析完成必须先关闭
+        # 上一次流；否则解析失败时它仍占着唯一闸门名额，下一次请求会自锁。
+        resources = _structured_finalizers.get()
+        boundary = len(resources) if resources is not None else 0
+        try:
+            return await super()._call_api_with_structured_output(*args, **kwargs)
+        finally:
+            if resources is not None:
+                owned = resources[boundary:]
+                del resources[boundary:]
+                for resource in reversed(owned):
+                    await resource.close(sys.exc_info())
 
     async def _call_api(self, model_name, messages, tools=None, tool_choice=None, **kwargs):
         if not _structured_call.get():

@@ -1,0 +1,46 @@
+{
+  "reviewed_at": "2026-09-18",
+  "popularity_ranking_available": false,
+  "sources": [
+    {
+      "platform": "amazon",
+      "url": "https://sell.amazon.com/global-selling",
+      "basis": "官方全球站点列表；本轮选英语、西语、德语、法语、日语、荷语、波兰语、瑞典语"
+    },
+    {
+      "platform": "amazon",
+      "url": "https://sell.amazon.com/blog/amazon-listing-translation",
+      "basis": "商品详情按目标站点语言翻译；不是买家销量语种排名"
+    },
+    {
+      "platform": "ebay",
+      "url": "https://www.developer.ebay.com/develop/api/sell/request_headers",
+      "basis": "市场与 locale 映射，包括 nl-NL 和 pl-PL"
+    },
+    {
+      "platform": "etsy",
+      "url": "https://help.etsy.com/hc/en-us/articles/115015651868-How-to-Change-Your-Language-Settings-for-Shopping-on-Etsy",
+      "basis": "网站支持的语言列表；不能把界面语言直接当销量份额"
+    },
+    {
+      "platform": "etsy",
+      "url": "https://help.etsy.com/hc/en-gb/articles/360000343048-How-to-Translate-Your-Shop-and-Listings",
+      "basis": "标题、描述等可手动翻译，覆盖自动翻译；内容须放入对应语言字段"
+    },
+    {
+      "platform": "walmart",
+      "url": "https://corporate.walmart.com/about/international/about/marketplace",
+      "basis": "市场位于美国、加拿大、墨西哥和智利"
+    },
+    {
+      "platform": "walmart",
+      "url": "https://www.walmartconnect.ca/en/advertising-help/campaign-setup-and-management/campaign-setup-sponsored-products/step-5-add-select-keywords",
+      "basis": "加拿大支持英语和法语搜索/广告词"
+    },
+    {
+      "platform": "walmart",
+      "url": "https://marketplacelearn.walmart.com/ca/faqs/Getting%20Started",
+      "basis": "加拿大商品内容的英语/法语问题入口"
+    }
+  ]
+}

@@ -15,9 +15,8 @@
     # 无凭据也能跑：纯关键词档，适合 CI
     uv run python scripts/eval/run_product_recall.py --strategy keyword_2gram
 
-关于 K 的选择（重要）：`catalog_search._RECALL_TOP_N = 8` 限制了向量召回只取 8 个候选，
-因此向量档的 Recall@K 在 K>8 时**不可能再涨**，而关键词档是全库打分无上限。
-在 K=10 上对比两档等于系统性地偏袒关键词档，故默认 K=8。
+默认报告 K=8，与既有基线保持一致。候选窗口由 RECALL_CANDIDATES 控制，
+支持权威目录 ID 过滤或渐进补召回，不能把候选窗口和最终展示 K 混为一谈。
 """
 from __future__ import annotations
 
@@ -39,7 +38,7 @@ from app.infrastructure.embedding.openai_embedding_client import (  # noqa: E402
 from app.infrastructure.persistence.in_memory_repositories import (  # noqa: E402
     InMemoryProductRepository,
 )
-from app.infrastructure.rerank.http_reranker import HttpReranker  # noqa: E402
+from app.infrastructure.rerank.factory import create_reranker  # noqa: E402
 from app.infrastructure.settings import load_settings  # noqa: E402
 from app.infrastructure.vector.index_bootstrap import bootstrap_product_index  # noqa: E402
 from app.infrastructure.vector.qdrant_product_index import QdrantProductIndex  # noqa: E402
@@ -134,14 +133,16 @@ async def build_usecase(strategy: str) -> tuple[CatalogSearchUseCase, InMemoryPr
 
     reranker = None
     if strategy in {"embedding_rerank", "hybrid_rerank"}:
-        if settings.reranker_base_url:
-            reranker = HttpReranker(settings)
-        else:
-            print("  [warn] 未配置 RERANKER_BASE_URL，embedding_rerank 档实际等价于 embedding_only")
+        reranker = create_reranker(settings)
+        if reranker is None:
+            print("  [warn] 精排未配置，实际按召回排序")
     return (
         CatalogSearchUseCase(
             repo, embedder=embedder, vector_index=vector_index, reranker=reranker,
             hybrid_enabled=strategy == "hybrid_rerank",
+            hybrid_lexical_weight=settings.hybrid_lexical_weight,
+            hybrid_vector_weight=settings.hybrid_vector_weight,
+            recall_candidates=settings.recall_candidates,
         ),
         repo,
         strategy,

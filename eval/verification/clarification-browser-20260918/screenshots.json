@@ -1,0 +1,90 @@
+{
+  "buyer": "clarification-browser-test",
+  "note": "原始截图直接归档，未裁切或修改；时间取源文件修改时间；修复前后和首次失败、追问复核分开标记。",
+  "screenshots": [
+    {
+      "file": "01-agent-questions.png",
+      "caption": "Agent 根据本轮需求生成八个澄清问题",
+      "result": "通过",
+      "capture_time_from_file_mtime": "2026-09-18T11:56:34+08:00",
+      "dimensions": {
+        "width": 1440,
+        "height": 2002
+      },
+      "sha256": "0b5e8f3c7a851d9d2e698542a86ee282d56b918048d55c2597212073dd2ca90b",
+      "evidence": "browser-report.json"
+    },
+    {
+      "file": "02-answers.png",
+      "caption": "买家填写动态表单，尚未提交",
+      "result": "通过",
+      "capture_time_from_file_mtime": "2026-09-18T11:56:35+08:00",
+      "dimensions": {
+        "width": 1440,
+        "height": 2002
+      },
+      "sha256": "9762698cfbf8f03efd3ccec72537caa65b8ba87c1c14d310be5277877ec84f3a",
+      "evidence": "browser-report.json"
+    },
+    {
+      "file": "03-agent-continued-before-display-fix.png",
+      "caption": "修复前：提交后聊天气泡直接展示内部 JSON",
+      "result": "历史缺陷，已修复",
+      "capture_time_from_file_mtime": "2026-09-18T11:56:42+08:00",
+      "dimensions": {
+        "width": 1440,
+        "height": 1982
+      },
+      "sha256": "e8313a326d5a3fad5c06c165e0bc30f1bd22db185ee2f21f64fd154c8b70c220",
+      "evidence": "browser-report.json"
+    },
+    {
+      "file": "04-reloaded-before-display-fix.png",
+      "caption": "修复前：刷新能恢复，但气泡仍暴露 JSON",
+      "result": "历史缺陷，已修复",
+      "capture_time_from_file_mtime": "2026-09-18T11:56:43+08:00",
+      "dimensions": {
+        "width": 1440,
+        "height": 1982
+      },
+      "sha256": "c041960ce72265fe3e6314d032202716e4ac6c622356e62e4bad2b796cdcd0f3",
+      "evidence": "browser-report.json"
+    },
+    {
+      "file": "05-restarted-restored.png",
+      "caption": "修复后：服务重启且无浏览器缓存，恢复对话、可读摘要与答案",
+      "result": "通过",
+      "capture_time_from_file_mtime": "2026-09-18T11:59:27+08:00",
+      "dimensions": {
+        "width": 1440,
+        "height": 1919
+      },
+      "sha256": "d0aed7defd1efc485bbaead43f443e3ac86e28a0cf06407c0feacdd2eb7972e6",
+      "evidence": "restart-search-report.json"
+    },
+    {
+      "file": "product-first-attempt-failed.png",
+      "caption": "商品首次查询只返回计划，没有商品卡",
+      "result": "失败，仍未解决",
+      "capture_time_from_file_mtime": "2026-09-18T11:59:45+08:00",
+      "dimensions": {
+        "width": 1440,
+        "height": 1100
+      },
+      "sha256": "6d12207c445ade254bcca50e73d5a7feea61bf1f428120c0a7be652e09815c3c",
+      "evidence": "restart-search-report.json"
+    },
+    {
+      "file": "06-product-recheck.png",
+      "caption": "明确追问后显示商品卡；不覆盖首次查询失败",
+      "result": "复核通过",
+      "capture_time_from_file_mtime": "2026-09-18T12:01:13+08:00",
+      "dimensions": {
+        "width": 1440,
+        "height": 1785
+      },
+      "sha256": "d4ec680782cd71a094e496c20279dabf39bab9c2cd838f030983bc3c09d383dd",
+      "evidence": "product-recheck-report.json"
+    }
+  ]
+}

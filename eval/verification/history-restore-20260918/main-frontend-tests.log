@@ -1,0 +1,39 @@
+
+> globex-frontend@0.3.0 test
+> vitest run
+
+
+ RUN  v3.2.4 /private/tmp/globex-release-20260918/frontend
+
+ ✓ tests/productContract.test.ts (36 tests) 28ms
+ ✓ tests/shoppingPlans.test.tsx (14 tests) 32ms
+ ✓ tests/confirmationCards.test.tsx (11 tests) 41ms
+ ✓ tests/confirmations.test.ts (8 tests) 11ms
+stderr | tests/commerceClient.test.ts > 通过官方 SDK 消费真实 AG-UI 协议 > HTTP 错误显示可恢复提示，不把服务器错误页直接渲染给用户
+Agent execution failed: Error: HTTP 503: <html>internal traceback</html>
+    at file:///private/tmp/globex-release-20260918/frontend/node_modules/@ag-ui/client/src/run/http-request.ts:37:77
+    at doInnerSub (/private/tmp/globex-release-20260918/frontend/node_modules/rxjs/src/internal/operators/mergeInternals.ts:71:15)
+    at outerNext (/private/tmp/globex-release-20260918/frontend/node_modules/rxjs/src/internal/operators/mergeInternals.ts:53:58)
+    at OperatorSubscriber._this._next (/private/tmp/globex-release-20260918/frontend/node_modules/rxjs/src/internal/operators/OperatorSubscriber.ts:70:13)
+    at OperatorSubscriber.Subscriber.next (/private/tmp/globex-release-20260918/frontend/node_modules/rxjs/src/internal/Subscriber.ts:75:12)
+    at /private/tmp/globex-release-20260918/frontend/node_modules/rxjs/src/internal/observable/innerFrom.ts:90:24
+    at processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  status: 503,
+  payload: '<html>internal traceback</html>'
+}
+
+ ✓ tests/commerceClient.test.ts (8 tests) 98ms
+ ✓ tests/runRecovery.test.ts (19 tests) 696ms
+   ✓ 持久运行恢复（使用官方 AG-UI SDK） > 网络断流按cursor重连，丢弃重复和乱序帧，不重新POST模型  608ms
+ ✓ tests/contextWorkspace.test.tsx (5 tests) 63ms
+ ✓ tests/shoppingForm.test.tsx (9 tests) 99ms
+ ✓ tests/toolApprovals.test.tsx (1 test) 24ms
+ ✓ tests/myOrders.test.tsx (2 tests) 122ms
+ ✓ tests/buyerWorkspace.test.tsx (6 tests) 297ms
+ ✓ tests/skillSlashInteraction.test.tsx (8 tests) 316ms
+
+ Test Files  12 passed (12)
+      Tests  127 passed (127)
+   Start at  13:09:11
+   Duration  2.18s (transform 572ms, setup 0ms, collect 2.64s, tests 1.83s, environment 2.33s, prepare 798ms)
+

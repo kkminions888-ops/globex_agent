@@ -1,0 +1,15 @@
+{
+  "embedding": {
+    "http_status": 200,
+    "response_bytes": 0,
+    "model": "text-embedding-v4",
+    "json_valid": false
+  },
+  "http_reranker": {
+    "http_status": 200,
+    "response_bytes": 60,
+    "model": "qwen-text-rerank",
+    "success": false,
+    "message": "未找到模型对应的服务"
+  }
+}

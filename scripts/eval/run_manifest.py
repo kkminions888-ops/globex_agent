@@ -119,9 +119,9 @@ def build_manifest(*, runner: str, dataset: Path, selection: dict, parameters: d
     prompts = _fingerprint(list((root / "app/application/prompts").glob("*.yml")), root)
     if judge_prompt is not None:
         prompts["judge_system_sha256"] = hashlib.sha256(judge_prompt.encode()).hexdigest()
-    catalog = root / "catalog/catalog-v1.jsonl"
+    catalog = root / "catalog/catalog-v3.jsonl"
     if not catalog.is_file():
-        catalog = root / "data/catalog-v1.jsonl"
+        catalog = root / "data/catalog-v3.jsonl"
     data_paths = [dataset.resolve(), catalog, *(root / "knowledge").glob("*.md"), root / "knowledge/manifest.jsonl"]
     if baseline:
         data_paths.append(baseline.resolve())

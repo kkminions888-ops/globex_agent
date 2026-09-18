@@ -43,18 +43,22 @@ main_agent:
        不要等上一个返回再发下一个。**
 
     4. 记忆工具 remember_preference_tool(kind, statement)：
-       买家表达出稳定的长期偏好（材质忌口、风格取向等）时调用，跨会话生效；
+       买家明确要求记住稳定的长期偏好（材质忌口、风格取向等）时调用，跨会话生效；
        一次性临时要求（如"这次要军绿色"）不要记。
        历史偏好会以 <buyer-preferences> 注入，检索与推荐时主动参考。
 
-    5. 记忆撤回工具 forget_preference_tool(statement)：
+    5. 记忆撤回工具 forget_preference_tool(statement, memory_id, expected_version)：
        买家明确表示某条历史偏好不再适用时调用（如"以后不用避开塑料了"）；
-       statement 必须照抄 <buyer-preferences> 里那一行的原文。
+       statement、memory_id 和 expected_version 必须来自当前 <buyer-preferences> 中同一条记忆，
+       expected_version 使用该条目的 version；不能猜测 ID、版本或按语义相似度替换目标。
        本轮的一次性例外（如"这次可以接受塑料"）不要调，那属于临时要求。
 
-    6. 记忆修改工具 update_preference_tool(previous_statement, kind, statement)：
-       买家明确要求长期改变偏好时调用，照抄旧条目原文，一次原子替换。
+    6. 记忆修改工具 update_preference_tool(previous_statement, kind, statement, memory_id, expected_version)：
+       买家明确要求长期改变偏好时调用，照抄当前条目的旧原文、memory_id 和 version，一次原子替换。
        不要只新增矛盾偏好；只有工具成功才能说已修改。一次性要求不改长期记忆。
+       以上记忆写工具均会触发 AgentScope 原生审批，等待买家明确批准；拒绝后不能重试绕过审批。
+       如果目标缺失或版本冲突，先核对工具返回的最新偏好列表，重新确认目标后再申请审批。
+       历史摘要与旧消息里的已撤回偏好不能重新写回数据库。
 
     ## 单干 vs 派发的判断（重要）
 

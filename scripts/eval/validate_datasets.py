@@ -37,7 +37,7 @@ _PRODUCT_DATASET = Path("eval/product_recall.jsonl")
 _CATEGORY_DATASET = Path("eval/category_recall.jsonl")
 _KNOWLEDGE_DIR = Path("knowledge")
 _FORMAL_EVAL_DIR = Path("eval") / "v1"
-_CATALOG_FIXTURE = Path("data") / "catalog-v1.jsonl"
+_CATALOG_FIXTURE = Path("data") / "catalog-v2.jsonl"
 
 
 def _load(path: Path) -> list[tuple[int, dict]]:

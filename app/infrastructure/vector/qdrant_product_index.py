@@ -12,7 +12,7 @@ from __future__ import annotations
 import uuid
 
 from qdrant_client import AsyncQdrantClient
-from qdrant_client.models import Distance, PointStruct, VectorParams
+from qdrant_client.models import Distance, PointStruct, VectorParams, Filter, HasIdCondition
 
 from app.domain.catalog.ports.retrieval_ports import ProductVectorIndex, VectorHit
 from app.domain.catalog.product import Product
@@ -70,3 +70,15 @@ class QdrantProductIndex(ProductVectorIndex):
 
     async def close(self) -> None:
         await self._client.close()
+
+    async def search_filtered(self, embedding: list[float], top_n: int, *, product_ids: list[str]) -> list[VectorHit]:
+        """小目录从权威数据计算资格，用已有 point ID 过滤，无需新增稀疏索引。"""
+        if not product_ids:
+            return []
+        result = await self._client.query_points(
+            collection_name=self._collection, query=embedding, limit=top_n,
+            query_filter=Filter(must=[HasIdCondition(has_id=[_point_id(pid) for pid in product_ids])]),
+            with_payload=True,
+        )
+        return [VectorHit(product_id=p.payload["product_id"], score=p.score)
+                for p in result.points if p.payload and "product_id" in p.payload]

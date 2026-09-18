@@ -1,0 +1,10 @@
+{
+  "steps": [
+    {
+      "step": "服务重启和无浏览器缓存时恢复对话及答案，气泡展示已修复"
+    }
+  ],
+  "page_errors": [],
+  "status": "failed",
+  "error": "Locator.wait_for: Timeout 15000ms exceeded.\nCall log:\n  - waiting for get_by_role(\"region\", name=\"商品搜索结果\") to be visible\n"
+}

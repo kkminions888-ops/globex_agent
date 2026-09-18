@@ -1,0 +1,58 @@
+{
+  "buyer_id": "pao-coder",
+  "steps": [
+    {
+      "session_id": "c5bdc143-8b3f-43ca-ae75-cd2a061cac0c",
+      "messages": 2,
+      "products": 1,
+      "events": 15,
+      "result": "passed"
+    },
+    {
+      "session_id": "a30e87f3-58f5-48a5-9c64-3b5ece677d2d",
+      "messages": 7,
+      "products": 0,
+      "events": 48,
+      "result": "passed"
+    },
+    {
+      "session_id": "9fc12abc-375b-4af2-a207-99be0bff05d1",
+      "messages": 2,
+      "products": 1,
+      "events": 15,
+      "result": "passed"
+    },
+    {
+      "session_id": "9d72ff57-1743-425c-969f-eb5930a67ad4",
+      "messages": 2,
+      "products": 1,
+      "events": 15,
+      "result": "passed"
+    },
+    {
+      "session_id": "53f5861c-3ec9-46a1-b077-e6b47e12836b",
+      "messages": 2,
+      "products": 0,
+      "events": 14,
+      "result": "passed"
+    },
+    {
+      "session_id": "015da3fe-1487-4582-b456-12f82d9f4dec",
+      "messages": 2,
+      "products": 0,
+      "events": 19,
+      "result": "passed"
+    },
+    {
+      "session_id": "06ccd8d8-5049-41fb-a849-893593d40c19",
+      "messages": 4,
+      "products": 1,
+      "events": 36,
+      "result": "passed"
+    }
+  ],
+  "posts": [],
+  "page_errors": [],
+  "captures": "原账号仅做只读断言，不保存买家原文截图",
+  "status": "passed"
+}

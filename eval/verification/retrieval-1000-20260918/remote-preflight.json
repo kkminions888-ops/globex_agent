@@ -1,0 +1,16 @@
+{
+  "embedding": {
+    "endpoint": "http://1688openai.alibaba-inc.com/v1",
+    "model": "text-embedding-v4",
+    "status": "BLOCKED",
+    "error_type": "RuntimeError",
+    "error_code": null
+  },
+  "reranker": {
+    "endpoint": "https://1688openai.alibaba-inc.com/v1/services/reranker",
+    "model": "qwen-text-rerank",
+    "status": "BLOCKED",
+    "error_type": "RerankerServiceError",
+    "error_code": "model_unavailable"
+  }
+}

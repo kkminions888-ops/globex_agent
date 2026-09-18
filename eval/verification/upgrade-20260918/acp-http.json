@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "http": true,
+  "protocol": "2026-04-17",
+  "approval": {
+    "id": "approval-cdc95a2dbe140d6f2dcb9352b2ab376b",
+    "status": "pending",
+    "snapshot_hash": "d826c60fd588a75b94f6648736a7865685b5dc8f84652233ca237866eab68f8f",
+    "checkout": {
+      "id": "checkout-4b7614e861e44aba9d4db1f585c57cb1",
+      "status": "ready_for_payment",
+      "currency": "cny",
+      "line_items": [
+        {
+          "id": "line-0",
+          "item": {
+            "id": "demo-backpack-black",
+            "name": "demo-backpack-black",
+            "unit_amount": 12900
+          },
+          "quantity": 1,
+          "totals": [
+            {
+              "type": "total",
+              "display_text": "沙箱商品金额",
+              "amount": 12900
+            }
+          ]
+        }
+      ],
+      "totals": [
+        {
+          "type": "total",
+          "display_text": "沙箱总金额",
+          "amount": 12900
+        }
+      ],
+      "fulfillment_options": [],
+      "messages": [],
+      "links": [],
+      "capabilities": {},
+      "expires_at": "2026-09-17T16:30:02.149925+00:00"
+    },
+    "sandbox": true,
+    "merchant": "http://127.0.0.1:18099"
+  },
+  "completed": {
+    "id": "approval-cdc95a2dbe140d6f2dcb9352b2ab376b",
+    "status": "completed",
+    "snapshot_hash": "d826c60fd588a75b94f6648736a7865685b5dc8f84652233ca237866eab68f8f",
+    "checkout": {
+      "id": "checkout-4b7614e861e44aba9d4db1f585c57cb1",
+      "status": "completed",
+      "currency": "cny",
+      "line_items": [
+        {
+          "id": "line-0",
+          "item": {
+            "id": "demo-backpack-black",
+            "name": "demo-backpack-black",
+            "unit_amount": 12900
+          },
+          "quantity": 1,
+          "totals": [
+            {
+              "type": "total",
+              "display_text": "沙箱商品金额",
+              "amount": 12900
+            }
+          ]
+        }
+      ],
+      "totals": [
+        {
+          "type": "total",
+          "display_text": "沙箱总金额",
+          "amount": 12900
+        }
+      ],
+      "fulfillment_options": [],
+      "messages": [],
+      "links": [],
+      "capabilities": {},
+      "expires_at": "2026-09-17T16:30:02.149925+00:00",
+      "order": {
+        "id": "sandbox-order-4606ce99d1114a749b5108a127b1f6c1",
+        "checkout_session_id": "checkout-4b7614e861e44aba9d4db1f585c57cb1",
+        "permalink_url": "http://127.0.0.1/sandbox-orders/checkout-4b7614e861e44aba9d4db1f585c57cb1"
+      }
+    },
+    "sandbox": true,
+    "merchant": "http://127.0.0.1:18099"
+  },
+  "replay_same_order": true
+}

@@ -13,6 +13,92 @@ const store = () => {
   return { getItem: (key: string) => values.get(key) ?? null, setItem: (key: string, value: string) => { values.set(key, value); } };
 };
 
+it("重开本次新建的会话也查数据库，恢复超100条原文和运行记录", async () => {
+  const storage=store();
+  const full=Array.from({length:120},(_,index)=>({id:`old-${index}`,role:index%2 ? 'assistant':'user',content:`历史消息${index}`}));
+  let request:any, loads=0;
+  const client=new CommerceClient({url:'/commerce/ag-ui/run',storage,fetch:async(url,init)=>{
+    if(init.method==='POST') {
+      request=JSON.parse(String(init.body));
+      return sse(request.runId,[[1,{type:'RUN_STARTED',threadId:request.threadId,runId:request.runId}],
+        [2,{type:'RUN_FINISHED',threadId:request.threadId,runId:request.runId}]]);
+    }
+    loads++;
+    return json({messages:full,productHistory:[],events:[{id:'persisted:1',type:'TOOL_CALL_START',timestamp:1234}],
+      run:{runId:request.runId,threadId:request.threadId,status:'completed',messages:full.slice(-100),state:{products:[],toolApprovals:[]}}});
+  }});
+  await client.submit('新建但列表尚未刷新');
+  const saved=client.getSnapshot().sessionId;
+  client.reset(); client.setSession(saved);
+  await waitUntil(()=>loads>0 && client.getSnapshot().messages.length===120);
+  expect(client.getSnapshot().messages[0].content).toBe('历史消息0');
+  expect(client.getSnapshot().events[0]).toMatchObject({id:'persisted:1',label:'调用工具',timestamp:1234});
+  expect(client.getSnapshot().historyError).toBeNull();
+});
+
+it("完整历史续聊不消失，不把全部页面历史发给模型，也不保留被最终回答替换的草稿",async()=>{
+  const full=Array.from({length:120},(_,index)=>({id:`old-${index}`,role:index%2 ? 'assistant':'user',content:`历史消息${index}`}));
+  const client=new CommerceClient({url:'/commerce/ag-ui/run',fetch:async(url,init)=>{
+    if(init.method==='POST') {
+      const body=JSON.parse(String(init.body));expect(body.messages).toHaveLength(100);
+      return sse(body.runId,[[1,{type:'RUN_STARTED',threadId:body.threadId,runId:body.runId}],
+        [2,{type:'TEXT_MESSAGE_START',messageId:'draft',role:'assistant'}],
+        [3,{type:'TEXT_MESSAGE_CONTENT',messageId:'draft',delta:'草稿'}],
+        [4,{type:'TEXT_MESSAGE_END',messageId:'draft'}],
+        [5,{type:'MESSAGES_SNAPSHOT',messages:[...body.messages,{id:'final',role:'assistant',content:'最终答复'}]}],
+        [6,{type:'RUN_FINISHED',threadId:body.threadId,runId:body.runId}]]);
+    }
+    if(url.includes('/sessions?')) return json({sessions:[{id:'s',title:'长会话',updatedAt:1}]});
+    return json({messages:full,run:{runId:'r',threadId:'s',status:'completed',messages:full.slice(-100),state:{}}});
+  }});
+  await client.initialize();await client.submit('继续');
+  expect(client.getSnapshot().messages).toHaveLength(122);
+  expect(client.getSnapshot().messages[0].content).toBe('历史消息0');
+  expect(client.getSnapshot().messages.at(-1)?.content).toBe('最终答复');
+  expect(client.getSnapshot().messages.some(m=>m.id==='draft')).toBe(false);
+});
+
+it("快速切换 A→B→A 时拒绝第一次迟到响应，恢复失败后再次打开可重试",async()=>{
+  let firstResolve!:(response:Response)=>void, loads=0;
+  const result=(id:string,content:string)=>json({run:{runId:id,threadId:id,status:'completed',
+    messages:[{id,role:'assistant',content}],state:{}}});
+  const client=new CommerceClient({url:'/commerce/ag-ui/run',fetch:async(url)=>{
+    if(url.includes('/sessions?'))return json({sessions:[{id:'a',title:'A',updatedAt:1},{id:'b',title:'B',updatedAt:2}]});
+    if(url.includes('/sessions/a')) {
+      loads++;
+      if(loads===1)return new Promise<Response>(resolve=>{firstResolve=resolve;});
+      if(loads===2)throw new Error('暂时断网');
+      return result('a','数据库最新版');
+    }
+    return result('b','会话B');
+  }});
+  await client.initialize();client.setSession('a');client.setSession('b');client.setSession('a');
+  await waitUntil(()=>client.getSnapshot().historyError!==null);
+  firstResolve(result('a','迟到旧内容'));await new Promise(resolve=>setTimeout(resolve,0));
+  expect(client.getSnapshot().messages.some(m=>m.content==='迟到旧内容')).toBe(false);
+  client.setSession('a');await waitUntil(()=>client.getSnapshot().historyError===null);
+  expect(client.getSnapshot().messages[0].content).toBe('数据库最新版');
+});
+
+it("长历史恢复进行中的运行时只重连事件，不重复模型或丢掉早期原文",async()=>{
+  const full=Array.from({length:121},(_,index)=>({id:`m-${index}`,role:index%2 ? 'assistant':'user',content:`消息${index}`}));
+  let posts=0;
+  const run={runId:'r',threadId:'s',status:'running',messages:full.slice(-100),state:{},input:{messages:full.slice(-100)}};
+  const client=new CommerceClient({url:'/commerce/ag-ui/run',fetch:async(url,init)=>{
+    if(init.method==='POST')posts++;
+    if(url.includes('/sessions?'))return json({sessions:[{id:'s',title:'运行中',updatedAt:1}]});
+    if(url.includes('/sessions/'))return json({messages:full,run});
+    if(url.includes('/events'))return sse('r',[[1,{type:'RUN_STARTED',threadId:'s',runId:'r'}],
+      [2,{type:'MESSAGES_SNAPSHOT',messages:[...run.messages,{id:'final',role:'assistant',content:'完整结果'}]}],
+      [3,{type:'RUN_FINISHED',threadId:'s',runId:'r'}]]);
+    return json(run);
+  }});
+  await client.initialize();expect(posts).toBe(0);
+  expect(client.getSnapshot().messages).toHaveLength(122);
+  expect(client.getSnapshot().messages[0].content).toBe('消息0');
+  expect(client.getSnapshot().messages.at(-1)?.content).toBe('完整结果');
+});
+
 describe("持久运行恢复（使用官方 AG-UI SDK）", () => {
   it("网络断流按cursor重连，丢弃重复和乱序帧，不重新POST模型", async () => {
     let body: any, posts = 0, gets = 0;
@@ -223,7 +309,8 @@ it.each([false,true])("版本过期保留旧历史并仅在新会话重试一次
    if(init.method!=="POST") return new Response(JSON.stringify({detail:"会话不存在"}),{status:404,headers:{"Content-Type":"application/json"}});
    const body=JSON.parse(String(init.body));
    return new Response(new ReadableStream({start(controller){
-    finish=()=>{controller.enqueue(new TextEncoder().encode(`id: ${body.runId}:1\ndata: ${JSON.stringify({type:"RUN_FINISHED",threadId:body.threadId,runId:body.runId})}\n\n`));controller.close();};
+    controller.enqueue(new TextEncoder().encode(`id: ${body.runId}:1\ndata: ${JSON.stringify({type:"RUN_STARTED",threadId:body.threadId,runId:body.runId})}\n\n`));
+    finish=()=>{controller.enqueue(new TextEncoder().encode(`id: ${body.runId}:2\ndata: ${JSON.stringify({type:"RUN_FINISHED",threadId:body.threadId,runId:body.runId})}\n\n`));controller.close();};
    }}),{headers:{"Content-Type":"text/event-stream"}});
   }});
   const pending=client.submit("核对背包库存");

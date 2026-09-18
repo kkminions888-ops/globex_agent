@@ -24,6 +24,7 @@ export function useCommerceAgent() {
   return {
     ...snapshot,
     submit: client.submit,
+    submitForm: client.submitForm,
     resolveToolApproval: client.resolveToolApproval,
     stop: client.stop,
     reset: client.reset,

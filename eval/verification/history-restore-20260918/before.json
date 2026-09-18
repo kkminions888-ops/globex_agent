@@ -1,0 +1,26 @@
+{
+  "switches": [
+    {
+      "title": "我想买耳机",
+      "messages": 4,
+      "products": 0,
+      "submitted_forms": 1,
+      "events": "0"
+    },
+    {
+      "title": "请查询 Wanderlite",
+      "messages": 4,
+      "products": 1,
+      "submitted_forms": 0,
+      "events": "0"
+    },
+    {
+      "title": "我想买耳机",
+      "messages": 4,
+      "products": 0,
+      "submitted_forms": 0,
+      "events": "0"
+    }
+  ],
+  "posts": []
+}

@@ -8,6 +8,7 @@ import asyncio
 import hashlib
 import json
 import math
+import logging
 import sqlite3
 import uuid
 from pathlib import Path
@@ -223,6 +224,41 @@ class SemanticPreferenceStore(PreferenceStore):
             with self._db() as db:return [dict(r) for r in db.execute('SELECT action,version,source_kind,source_ref,occurred_at FROM memory_audit WHERE buyer_id=? AND memory_id=? ORDER BY occurred_at',(buyer_id,memory_id))]
         return await asyncio.to_thread(read)
 
+    @staticmethod
+    def _valid_vector(vector,dimension=None):
+        return (isinstance(vector,list) and bool(vector)
+            and (dimension is None or len(vector)==dimension)
+            and all(isinstance(x,(int,float)) and not isinstance(x,bool) and math.isfinite(x) for x in vector)
+            and any(vector) and math.isfinite(math.hypot(*vector)))
+
+    def _compatible_vector(self,row,dimension):
+        if row['model_id']!=self.model_id:return None
+        try:
+            vector=json.loads(row['vector'])
+            return vector if self._valid_vector(vector,dimension) else None
+        except (TypeError,ValueError):return None
+
+    async def _reindex(self,buyer,rows,dimension):
+        """只重建索引，不重新提炼事实；模型调用期间不占用数据库事务。"""
+        stale=[r for r in rows if self._compatible_vector(r,dimension) is None]
+        if not stale:return
+        try:
+            vectors=await asyncio.wait_for(self.embedder.embed_batch([r['statement'] for r in stale]),30)
+            if len(vectors)!=len(stale) or any(not self._valid_vector(v,dimension) for v in vectors):
+                raise ValueError('记忆重建返回的向量无效')
+            def commit():
+                with self._db() as db:
+                    db.execute('BEGIN IMMEDIATE')
+                    for row,vector in zip(stale,vectors):
+                        # CAS 同时约束事实版本和原索引；删除、编辑或其它重建胜出后不能覆盖。
+                        db.execute('''UPDATE memory_facts SET vector=?,model_id=?
+                            WHERE buyer_id=? AND id=? AND version=? AND model_id=? AND vector=?''',
+                            (json.dumps(vector),self.model_id,buyer,row['id'],row['version'],row['model_id'],row['vector']))
+            await asyncio.to_thread(commit)
+        except Exception as error:
+            # 无效批次不写入；本轮仍可检索已有的兼容向量，下轮再尝试修复。
+            logging.getLogger(__name__).warning('长期记忆索引重建失败，保留原索引及兼容记忆：%s',type(error).__name__)
+
     async def select(self,preferences,query,top_k):
         if not preferences:return []
         buyer=preferences[0].buyer_id
@@ -234,21 +270,25 @@ class SemanticPreferenceStore(PreferenceStore):
         if not likes or top_k<=0:return dislikes
         try:
             q=await asyncio.wait_for(self.embedder.embed(query),20)
-            if not q or not all(math.isfinite(float(x)) for x in q) or not any(q):raise ValueError()
+            if not self._valid_vector(q):raise ValueError('查询向量无效')
+            await self._reindex(buyer,rows,len(q))
+            rows=await self._rows(buyer)
+            dislikes=[self._preference(r) for r in rows if r['kind']=='dislike']
+            likes=[r for r in rows if r['kind']=='like']
             scored=[]
+            query_norm=math.hypot(*q)
             for r in likes:
-                if r['model_id']!=self.model_id:raise ValueError('向量模型已变化，需重建索引')
-                v=json.loads(r['vector'])
-                if len(v)!=len(q):raise ValueError('向量维度不匹配')
-                score=sum(a*b for a,b in zip(v,q))/(math.sqrt(sum(a*a for a in v))*math.sqrt(sum(b*b for b in q)))
+                v=self._compatible_vector(r,len(q))
+                if v is None:continue
+                vector_norm=math.hypot(*v)
+                score=sum((a/vector_norm)*(b/query_norm) for a,b in zip(v,q))
                 if score>=self.threshold:scored.append((score,r))
             scored.sort(key=lambda x:(-x[0],x[1]['id']))
             # 返回前再核验删除/更新，向量与事实同一记录，无异步双写窗口。
             current={(r['id'],r['version']) for r in await self._rows(buyer)}
-            selected=[self._preference(r) for _,r in scored[:top_k] if (r['id'],r['version']) in current]
+            selected=[self._preference(r) for _,r in scored if (r['id'],r['version']) in current][:top_k]
             return [p for p in dislikes+selected if (p.memory_id,p.version) in current]
         except Exception as error:
             # 不伪装为向量命中；硬约束仍保留，调用方能观测明确降级。
-            import logging
             logging.getLogger(__name__).warning('长期记忆向量召回失败，仅保留负向约束：%s',type(error).__name__)
             return [self._preference(r) for r in await self._rows(buyer) if r['kind']=='dislike']

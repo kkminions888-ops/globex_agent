@@ -1,0 +1,47 @@
+[
+  {
+    "file": "01-before-empty-execution-history.png",
+    "sha256": "aa1f33c937f8d3333794c57feb502999a8e870719f66ccbf1278af166da4c8b9",
+    "width": 1440,
+    "height": 1968,
+    "captured_at": "2026-09-18T12:13:20.504937+08:00",
+    "buyer_id": "clarification-browser-test",
+    "result": "修复前运行记录缺失"
+  },
+  {
+    "file": "restarted-02-long-history-first.png",
+    "sha256": "aec5977e16a37778ef7e9f60c7c36f44a7193d6ff9721e9b0e1dedccefde87d2",
+    "width": 1440,
+    "height": 1100,
+    "captured_at": "2026-09-18T12:20:32.133509+08:00",
+    "buyer_id": "clarification-browser-test",
+    "result": "通过"
+  },
+  {
+    "file": "restarted-03-historical-products.png",
+    "sha256": "22a637e5e2af2e7338dfce4544c9cc66eab171a12312489af68ed8551d2f84cf",
+    "width": 1440,
+    "height": 1500,
+    "captured_at": "2026-09-18T12:20:32.968868+08:00",
+    "buyer_id": "clarification-browser-test",
+    "result": "通过"
+  },
+  {
+    "file": "restarted-04-form-and-execution-records.png",
+    "sha256": "5f876e342f8b3195e75c613f4f03ca98af93e0c85bd5c6eb70ba2fe2fa4830f0",
+    "width": 1440,
+    "height": 2252,
+    "captured_at": "2026-09-18T12:20:34.879821+08:00",
+    "buyer_id": "clarification-browser-test",
+    "result": "通过"
+  },
+  {
+    "file": "restarted-05-product-restored.png",
+    "sha256": "ccdf1cbfa59ef93e92d2a26ba1258ba2bea3c4268def97835801dc5c8bdcc6c4",
+    "width": 1440,
+    "height": 1785,
+    "captured_at": "2026-09-18T12:20:36.446680+08:00",
+    "buyer_id": "clarification-browser-test",
+    "result": "通过"
+  }
+]

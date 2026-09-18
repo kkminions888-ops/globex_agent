@@ -1,0 +1,17 @@
+{
+  "embedding": {
+    "endpoint": "http://127.0.0.1:18081/v1",
+    "model": "BAAI/bge-small-zh-v1.5",
+    "status": "PASS",
+    "dimensions": 512
+  },
+  "reranker": {
+    "endpoint": "http://127.0.0.1:18081/v1/rerank",
+    "model": "Xenova/bge-reranker-base-int8",
+    "status": "PASS",
+    "scores": [
+      6.902072429656982,
+      -10.155165672302246
+    ]
+  }
+}

@@ -173,3 +173,15 @@ describe("真实页面的斜线选购方案交互与官方SDK边界", () => {
     expect(requests[1].forwardedProps).not.toHaveProperty("selectedSkill");
   });
 });
+
+it("澄清入口先向 Agent 发送需求，不直接创建固定表单", async()=>{
+  await mount();
+  await type("想买一个登机背包");
+  const button=[...host.querySelectorAll('button')].find(b=>b.textContent==="澄清选购需求")!;
+  await click(button);
+  expect(requests).toHaveLength(1);
+  expect(requests[0].messages.at(-1).content).toContain("想买一个登机背包");
+  expect(requests[0].messages.at(-1).content).toContain("调用选购需求澄清工具");
+  expect(vi.mocked(fetch).mock.calls.some(([url,init])=>String(url).includes('/shopping-forms')&&init?.method==='POST')).toBe(false);
+  expect(host.querySelector('.shopping-form form')).toBeNull();
+});

@@ -292,7 +292,8 @@ class AGUIJournal:
     async def sessions(self, buyer_id):
         async with self._db(True) as db:
             await self._recover(db, time.time())
-            async with db.execute("SELECT session_id,title,updated_at,last_run_id FROM agui_sessions WHERE buyer_id=? ORDER BY updated_at DESC LIMIT 100", (buyer_id,)) as cursor:
+            # 这里只返回轻量目录，不能静默隐藏第 101 个及更早的会话。
+            async with db.execute("SELECT session_id,title,updated_at,last_run_id FROM agui_sessions WHERE buyer_id=? ORDER BY updated_at DESC", (buyer_id,)) as cursor:
                 return [{"id": row["session_id"], "title": row["title"], "updatedAt": int(row["updated_at"] * 1000), "runId": row["last_run_id"], "source": "server"} for row in await cursor.fetchall()]
 
     async def session(self, session_id, buyer_id):
@@ -300,5 +301,34 @@ class AGUIJournal:
             await self._recover(db, time.time())
             row = self._owned(await self._one(db, "SELECT * FROM agui_sessions WHERE session_id=?", (session_id,)), buyer_id)
             run = self._run(await self._one(db, "SELECT * FROM agui_runs WHERE run_id=?", (row["last_run_id"],)))
-            return {"id": session_id, "title": row["title"], "messages": json.loads(row["messages_json"]),
+            # sessions.messages_json 是下一轮使用的滑动窗口，不是页面完整历史。
+            # 旧版本已保留每轮最终投影；按持久顺序合并即可恢复，无需重写原始数据。
+            messages, product_history = {}, []
+            async with db.execute(
+                "SELECT run_id,projection_json,updated_at FROM agui_runs "
+                "WHERE session_id=? AND buyer_id=? ORDER BY created_at,rowid",
+                (session_id, buyer_id),
+            ) as cursor:
+                async for saved in cursor:
+                    projection = json.loads(saved["projection_json"])
+                    for message in projection["messages"]:
+                        messages[message["id"]] = message
+                    products = projection["state"].get("products", [])
+                    if products and saved["run_id"] != row["last_run_id"]:
+                        product_history.append({"runId": saved["run_id"], "products": products,
+                                                "updatedAt": int(saved["updated_at"] * 1000)})
+            # 只回传最近 80 条事件的安全元数据，不暴露工具参数、结果或推理原文。
+            async with db.execute(
+                "SELECT r.run_id,e.seq,json_extract(e.event_json,'$.type') AS type,"
+                "json_extract(e.event_json,'$.timestamp') AS timestamp "
+                "FROM agui_events e JOIN agui_runs r ON r.run_id=e.run_id "
+                "WHERE r.session_id=? AND r.buyer_id=? "
+                "AND json_extract(e.event_json,'$.type') NOT IN ('TEXT_MESSAGE_CONTENT','TOOL_CALL_ARGS') "
+                "ORDER BY r.created_at DESC,r.rowid DESC,e.seq DESC LIMIT 80",
+                (session_id, buyer_id),
+            ) as cursor:
+                events = [{"id": f"{item['run_id']}:{item['seq']}", "type": item["type"],
+                           "timestamp": item["timestamp"]} for item in await cursor.fetchall()]
+            return {"id": session_id, "title": row["title"], "messages": list(messages.values()),
+                    "productHistory": product_history, "events": events[::-1],
                     "state": json.loads(row["state_json"]), "run": run, "updatedAt": int(row["updated_at"] * 1000)}

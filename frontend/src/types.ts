@@ -76,7 +76,7 @@ export interface DiagnosticEvent {
   id: string;
   type: string;
   label: string;
-  timestamp: number;
+  timestamp: number | null;
   detail?: string;
 }
 
@@ -90,6 +90,8 @@ export interface SessionSummary {
 export interface ToolApproval { id: string; tool: string; label: string; arguments: string | Record<string, unknown> }
 
 export interface CommerceSnapshot {
+  productHistory?: {runId: string; updatedAt: number; products: ProductCard[]}[];
+  shoppingForm?: unknown;
   toolApprovals?: ToolApproval[];
   skills: PublishedSkill[];
   skillsStatus: "loading" | "ready" | "error";

@@ -1,0 +1,9 @@
+{
+  "app/application/tools/shopping_form_tool.py": "2a8f17454a3eba148e61ed3d511885f2cc3d4c9fdca911f788cf66c4f09430cd",
+  "app/infrastructure/shopping_forms.py": "c255f7dbae4e52b765716a9c3a3757acc9454c4f6e1ff0efa19c6903e9ac9bde",
+  "app/application/agents/main_agent.py": "f981dd37a4950c8a561605bf1f860e2c2933fcc85b4335f6ffefd160a6ba6cc7",
+  "app/presentation/shopping_forms.py": "88fac69003c715c1c43510ad7a5ee057045b752c00bdc12c3a780722423a51a0",
+  "frontend/src/components/ShoppingForm.tsx": "c80edf14fdcb808e5afebbd0ddd6a8dd3d46d475995159277b38c87c2c1d4154",
+  "frontend/src/App.tsx": "7d43f9ce65125403ee63ced532063bed4ec13fa80f3e357ec639a65d9527b0a2",
+  "frontend/tests/shoppingForm.test.tsx": "a4427b6ada58621ae9f3a67350cc021fb8febf99e0754035b5bd70b1257626f4"
+}

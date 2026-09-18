@@ -1,0 +1,65 @@
+{
+  "models": [
+    {
+      "repository": "Xenova/bge-reranker-base",
+      "revision": "280bcc27a84e0b898c251e06fddb25171bd9b101",
+      "files": {
+        "tokenizer_config.json": {
+          "sha256": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b",
+          "bytes": 443
+        },
+        "special_tokens_map.json": {
+          "sha256": "d5469a60db23249c7f8945013d78df30b44b6bf686c6bb4740f4223f77b1b535",
+          "bytes": 279
+        },
+        "config.json": {
+          "sha256": "b6575b9d5be20d6747417c8e20c5a0db1636356e0b6d422d7244c628423c4d4c",
+          "bytes": 782
+        },
+        "tokenizer.json": {
+          "sha256": "48564c5c7d3fa64d85d95e65414a542385f88b0f128fd8d4163fd7a57f2be05c",
+          "bytes": 17098079
+        },
+        "onnx/model_int8.onnx": {
+          "sha256": "2059d8ef0b6e935b4845e11b38c9af9e9e2e7b91f69fc99efe03254e0a7da8d3",
+          "bytes": 278825308
+        }
+      }
+    },
+    {
+      "repository": "Qdrant/bge-small-zh-v1.5",
+      "revision": "46fbe35fd4374a00fee7de77dfddaeb6dd6a2c59",
+      "files": {
+        "model_optimized.onnx": {
+          "sha256": "1294ea4b6331115a353d81f96b85e8c8d7fdcc284453d5b2fab5b016230aad38",
+          "bytes": 94781076
+        },
+        "tokenizer_config.json": {
+          "sha256": "e6f3b96db926a37d4039995fbf5ad17de158dfb8f6343d607e4dbaad18d75f5a",
+          "bytes": 367
+        },
+        "special_tokens_map.json": {
+          "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+          "bytes": 125
+        },
+        "config.json": {
+          "sha256": "9088751d39abbf86ec3d19ffca92ad62ad19075f7e59712e6c71217fa125d1d3",
+          "bytes": 739
+        },
+        "tokenizer.json": {
+          "sha256": "48cea5d44424912a6fd1ea647bf4fe50b55ab8b1e5879c3275f80e339e8fae26",
+          "bytes": 439125
+        }
+      }
+    }
+  ],
+  "python": "3.11.13",
+  "machine": "arm64",
+  "threads": 4,
+  "libraries": {
+    "fastembed": "0.7.4",
+    "onnxruntime": "1.30.0",
+    "qdrant-client": "1.19.0",
+    "agentscope": "2.0.8"
+  }
+}

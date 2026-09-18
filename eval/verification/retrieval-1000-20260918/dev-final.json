@@ -1,0 +1,3810 @@
+{
+  "split": "dev",
+  "cases": 18,
+  "k": 5,
+  "catalog_size": 1000,
+  "platforms": {
+    "amazon": 250,
+    "ebay": 250,
+    "etsy": 250,
+    "walmart": 250
+  },
+  "frozen": {
+    "eval/v2/product_retrieval.jsonl": "1f5961d1f9d3454836a55ec82bb43027573cdd2c03fc44412632b73b13899c92",
+    "data/catalog-v2.jsonl": "0ca735f3d3fdee6667ec47afba85b96366c9322a2fa52f36eed218ad790048ae",
+    "app/application/usecases/catalog_search.py": "48903ca5e17620b1ced74fe6122a6da8f1a8ec95acdcec3d8b83cfc34a9fc02a",
+    "app/infrastructure/retrieval/bm25.py": "e921ac391ff9159ba79294c03354b79e487e4fee26852a8c019619f6862f5b12",
+    "app/infrastructure/rerank/http_reranker.py": "b07a39f8156d223141d3d75bca42e0fb36a47a457e9f57548ef30516dc5871ec",
+    "scripts/eval/retrieval_v2.py": "63f45db0890745bee24c337dac7f30b03b45df8efe4c61dbfd0c9e08dcdf2616"
+  },
+  "weights": [
+    1,
+    1
+  ],
+  "candidate_limit": 32,
+  "models": {
+    "embedding": "BAAI/bge-small-zh-v1.5",
+    "reranker": "Xenova/bge-reranker-base-int8"
+  },
+  "scope": "合成目录模块评测；二元NDCG；按场景族配对bootstrap；不是生产收益",
+  "llm_calls": 0,
+  "status": "LIVE_COMPLETED",
+  "samples": {
+    "keyword": [
+      {
+        "id": "v2-00-intent",
+        "family": 0,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，周末走山路，想把帐篷衣服背身上，肩膀别太累",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 18.30470800632611,
+        "ids": [
+          "P3001",
+          "P3002",
+          "P3003",
+          "P3004",
+          "P3005"
+        ],
+        "gold": [
+          "CAN-GX-01-1",
+          "CAN-GX-01-2",
+          "CAN-GX-01-3",
+          "CAN-GX-01-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-00-specification",
+        "family": 0,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，走山路要带饮水系统，至少45升，还要防雨",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 17.953917005797848,
+        "ids": [
+          "P3012",
+          "P3013",
+          "P3014",
+          "P3015",
+          "P3001"
+        ],
+        "gold": [
+          "CAN-GX-01-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-04-intent",
+        "family": 4,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，出差给电脑手机补电，想少带几个电源头",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 18.83270899998024,
+        "ids": [
+          "P3064",
+          "P3065",
+          "P3067",
+          "P3068",
+          "P3069"
+        ],
+        "gold": [
+          "CAN-GX-05-1",
+          "CAN-GX-05-2",
+          "CAN-GX-05-3",
+          "CAN-GX-05-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-04-specification",
+        "family": 4,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，电脑手机一起充，要100瓦三口和全球插脚",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 18.184166998253204,
+        "ids": [
+          "P3076",
+          "P3078",
+          "P3079",
+          "P3112",
+          "P3113"
+        ],
+        "gold": [
+          "CAN-GX-05-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-08-intent",
+        "family": 8,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，我上夜班白天睡，窗外太阳晒进来太亮",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 18.268957996042445,
+        "ids": [
+          "P3128",
+          "P3129",
+          "P3131",
+          "P3133",
+          "P3134"
+        ],
+        "gold": [
+          "CAN-GX-09-1",
+          "CAN-GX-09-2",
+          "CAN-GX-09-3",
+          "CAN-GX-09-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-08-specification",
+        "family": 8,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，窗帘要99%遮光，还要双层隔热，纯棉",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 19.531291007297114,
+        "ids": [
+          "P3141",
+          "P3142",
+          "P3128",
+          "P3129",
+          "P3131"
+        ],
+        "gold": [
+          "CAN-GX-09-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-12-intent",
+        "family": 12,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，晚上帐篷里做饭看不清，想找可充电的照明",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 18.63716699881479,
+        "ids": [
+          "P3192",
+          "P3193",
+          "P3194",
+          "P3195",
+          "P3196"
+        ],
+        "gold": [
+          "CAN-GX-13-1",
+          "CAN-GX-13-2",
+          "CAN-GX-13-3",
+          "CAN-GX-13-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-12-specification",
+        "family": 12,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，营地灯要800流明，IPX6，能吸在金属上挂起来",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 18.556374998297542,
+        "ids": [
+          "P3204",
+          "P3205",
+          "P3206",
+          "P3207",
+          "P3196"
+        ],
+        "gold": [
+          "CAN-GX-13-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-16-intent",
+        "family": 16,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，出差几天胡茬长了，找能随身用的电动工具",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 17.858625011285767,
+        "ids": [
+          "P3256",
+          "P3257",
+          "P3258",
+          "P3259",
+          "P3261"
+        ],
+        "gold": [
+          "CAN-GX-17-1",
+          "CAN-GX-17-2",
+          "CAN-GX-17-3",
+          "CAN-GX-17-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-16-specification",
+        "family": 16,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，剃须刀三个刀头，全身水洗，还要修鬓角",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 18.486667002434842,
+        "ids": [
+          "P3268",
+          "P3269",
+          "P3271",
+          "P3265",
+          "P3266"
+        ],
+        "gold": [
+          "CAN-GX-17-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-20-intent",
+        "family": 20,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，上班自己带饭，想找玻璃的饭菜容器",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 18.61983300477732,
+        "ids": [
+          "P3321",
+          "P3322",
+          "P3323",
+          "P3324",
+          "P3325"
+        ],
+        "gold": [
+          "CAN-GX-21-1",
+          "CAN-GX-21-2",
+          "CAN-GX-21-3",
+          "CAN-GX-21-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-20-specification",
+        "family": 20,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，饭盒要1200毫升三分隔防漏，能微波",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 18.09887500712648,
+        "ids": [
+          "P3332",
+          "P3333",
+          "P3334",
+          "P3335",
+          "P3296"
+        ],
+        "gold": [
+          "CAN-GX-21-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-24-intent",
+        "family": 24,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，晚上桌上看书光线暗，想照亮书页且可调角度",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 18.11137500044424,
+        "ids": [
+          "P3384",
+          "P3386",
+          "P3387",
+          "P3388",
+          "P3389"
+        ],
+        "gold": [
+          "CAN-GX-25-1",
+          "CAN-GX-25-2",
+          "CAN-GX-25-3",
+          "CAN-GX-25-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-24-specification",
+        "family": 24,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，台灯要800流明，显色指数95，色温无级调节",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 18.119540996849537,
+        "ids": [
+          "P3397",
+          "P3398",
+          "P3399",
+          "P3384",
+          "P3386"
+        ],
+        "gold": [
+          "CAN-GX-25-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-28-intent",
+        "family": 28,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，想带猫出门，既能装进去也方便观察它",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 18.8796669972362,
+        "ids": [
+          "P3448",
+          "P3449",
+          "P3452",
+          "P3453",
+          "P3454"
+        ],
+        "gold": [
+          "CAN-GX-29-1",
+          "CAN-GX-29-2",
+          "CAN-GX-29-3",
+          "CAN-GX-29-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-28-specification",
+        "family": 28,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，航空包承重9公斤，垫子能拆洗，四面透气",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 19.66091600479558,
+        "ids": [
+          "P3461",
+          "P3463",
+          "P3456",
+          "P3457",
+          "P3458"
+        ],
+        "gold": [
+          "CAN-GX-29-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-empty-0",
+        "family": "empty-0",
+        "kind": "empty",
+        "query": "找旅行装备商品，预算只有1元",
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "empty_ok": true,
+        "elapsed_ms": 18.419540996546857,
+        "ids": [],
+        "gold": [],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-empty-4",
+        "family": "empty-4",
+        "kind": "empty",
+        "query": "找美妆个护商品，预算只有1元",
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "empty_ok": true,
+        "elapsed_ms": 17.782499999157153,
+        "ids": [],
+        "gold": [],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      }
+    ],
+    "bm25": [
+      {
+        "id": "v2-00-intent",
+        "family": 0,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，周末走山路，想把帐篷衣服背身上，肩膀别太累",
+        "recall": 0.0,
+        "mrr": 0,
+        "ndcg": 0.0,
+        "empty_ok": null,
+        "elapsed_ms": 24.46983300615102,
+        "ids": [
+          "P3196",
+          "P3201",
+          "P1042",
+          "P3192",
+          "P3204"
+        ],
+        "gold": [
+          "CAN-GX-01-1",
+          "CAN-GX-01-2",
+          "CAN-GX-01-3",
+          "CAN-GX-01-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-00-specification",
+        "family": 0,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，走山路要带饮水系统，至少45升，还要防雨",
+        "recall": 1.0,
+        "mrr": 0.25,
+        "ndcg": 0.43067655807339306,
+        "empty_ok": null,
+        "elapsed_ms": 25.110207992838696,
+        "ids": [
+          "P3001",
+          "P3004",
+          "P3008",
+          "P3012",
+          "P1003"
+        ],
+        "gold": [
+          "CAN-GX-01-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-04-intent",
+        "family": 4,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，出差给电脑手机补电，想少带几个电源头",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 25.188333995174617,
+        "ids": [
+          "P3064",
+          "P3068",
+          "P3072",
+          "P3076",
+          "P3112"
+        ],
+        "gold": [
+          "CAN-GX-05-1",
+          "CAN-GX-05-2",
+          "CAN-GX-05-3",
+          "CAN-GX-05-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-04-specification",
+        "family": 4,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，电脑手机一起充，要100瓦三口和全球插脚",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 24.034625006606802,
+        "ids": [
+          "P3076",
+          "P1005",
+          "P1025",
+          "P1024",
+          "P3192"
+        ],
+        "gold": [
+          "CAN-GX-05-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-08-intent",
+        "family": 8,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，我上夜班白天睡，窗外太阳晒进来太亮",
+        "recall": 1.0,
+        "mrr": 0.5,
+        "ndcg": 0.7606395682357036,
+        "empty_ok": null,
+        "elapsed_ms": 26.30191699427087,
+        "ids": [
+          "P1039",
+          "P3128",
+          "P3133",
+          "P3136",
+          "P3141"
+        ],
+        "gold": [
+          "CAN-GX-09-1",
+          "CAN-GX-09-2",
+          "CAN-GX-09-3",
+          "CAN-GX-09-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-08-specification",
+        "family": 8,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，窗帘要99%遮光，还要双层隔热，纯棉",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 23.618375009391457,
+        "ids": [
+          "P3141",
+          "P1036",
+          "P3128",
+          "P3133",
+          "P3136"
+        ],
+        "gold": [
+          "CAN-GX-09-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-12-intent",
+        "family": 12,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，晚上帐篷里做饭看不清，想找可充电的照明",
+        "recall": 0.75,
+        "mrr": 0.5,
+        "ndcg": 0.592512031964586,
+        "empty_ok": null,
+        "elapsed_ms": 27.563458002987318,
+        "ids": [
+          "P1039",
+          "P3196",
+          "P3201",
+          "P1008",
+          "P3192"
+        ],
+        "gold": [
+          "CAN-GX-13-1",
+          "CAN-GX-13-2",
+          "CAN-GX-13-3",
+          "CAN-GX-13-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-12-specification",
+        "family": 12,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，营地灯要800流明，IPX6，能吸在金属上挂起来",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 25.773374989512376,
+        "ids": [
+          "P3204",
+          "P1039",
+          "P3397",
+          "P3196",
+          "P3201"
+        ],
+        "gold": [
+          "CAN-GX-13-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-16-intent",
+        "family": 16,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，出差几天胡茬长了，找能随身用的电动工具",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 26.317374999052845,
+        "ids": [
+          "P3256",
+          "P3265",
+          "P3261",
+          "P3268",
+          "P3064"
+        ],
+        "gold": [
+          "CAN-GX-17-1",
+          "CAN-GX-17-2",
+          "CAN-GX-17-3",
+          "CAN-GX-17-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-16-specification",
+        "family": 16,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，剃须刀三个刀头，全身水洗，还要修鬓角",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 25.307333999080583,
+        "ids": [
+          "P3268",
+          "P3265",
+          "P3261",
+          "P3256",
+          "P1034"
+        ],
+        "gold": [
+          "CAN-GX-17-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-20-intent",
+        "family": 20,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，上班自己带饭，想找玻璃的饭菜容器",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 24.733500002184883,
+        "ids": [
+          "P3321",
+          "P3324",
+          "P3328",
+          "P3332",
+          "P3272"
+        ],
+        "gold": [
+          "CAN-GX-21-1",
+          "CAN-GX-21-2",
+          "CAN-GX-21-3",
+          "CAN-GX-21-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-20-specification",
+        "family": 20,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，饭盒要1200毫升三分隔防漏，能微波",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 24.641167008667253,
+        "ids": [
+          "P3332",
+          "P3324",
+          "P3328",
+          "P3281",
+          "P3321"
+        ],
+        "gold": [
+          "CAN-GX-21-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-24-intent",
+        "family": 24,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，晚上桌上看书光线暗，想照亮书页且可调角度",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 25.928083996404894,
+        "ids": [
+          "P3384",
+          "P3388",
+          "P3392",
+          "P3397",
+          "P3128"
+        ],
+        "gold": [
+          "CAN-GX-25-1",
+          "CAN-GX-25-2",
+          "CAN-GX-25-3",
+          "CAN-GX-25-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-24-specification",
+        "family": 24,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，台灯要800流明，显色指数95，色温无级调节",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 25.05958400433883,
+        "ids": [
+          "P3397",
+          "P3384",
+          "P3388",
+          "P3392",
+          "P3204"
+        ],
+        "gold": [
+          "CAN-GX-25-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-28-intent",
+        "family": 28,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，想带猫出门，既能装进去也方便观察它",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 26.005084000644274,
+        "ids": [
+          "P3448",
+          "P3452",
+          "P3456",
+          "P3461",
+          "P3177"
+        ],
+        "gold": [
+          "CAN-GX-29-1",
+          "CAN-GX-29-2",
+          "CAN-GX-29-3",
+          "CAN-GX-29-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-28-specification",
+        "family": 28,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，航空包承重9公斤，垫子能拆洗，四面透气",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 24.85187500133179,
+        "ids": [
+          "P3461",
+          "P3456",
+          "P3448",
+          "P3452",
+          "P3021"
+        ],
+        "gold": [
+          "CAN-GX-29-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-empty-0",
+        "family": "empty-0",
+        "kind": "empty",
+        "query": "找旅行装备商品，预算只有1元",
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "empty_ok": true,
+        "elapsed_ms": 23.60945800319314,
+        "ids": [],
+        "gold": [],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 0,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-empty-4",
+        "family": "empty-4",
+        "kind": "empty",
+        "query": "找美妆个护商品，预算只有1元",
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "empty_ok": true,
+        "elapsed_ms": 23.690916001214646,
+        "ids": [],
+        "gold": [],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 0,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      }
+    ],
+    "dense": [
+      {
+        "id": "v2-00-intent",
+        "family": 0,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，周末走山路，想把帐篷衣服背身上，肩膀别太累",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 73.96416700794362,
+        "ids": [
+          "P3009",
+          "P3015",
+          "P3006",
+          "P3003",
+          "P1049"
+        ],
+        "gold": [
+          "CAN-GX-01-1",
+          "CAN-GX-01-2",
+          "CAN-GX-01-3",
+          "CAN-GX-01-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-00-specification",
+        "family": 0,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，走山路要带饮水系统，至少45升，还要防雨",
+        "recall": 1.0,
+        "mrr": 0.5,
+        "ndcg": 0.6309297535714575,
+        "empty_ok": null,
+        "elapsed_ms": 70.05287500214763,
+        "ids": [
+          "P3009",
+          "P3012",
+          "P3006",
+          "P3003",
+          "P3192"
+        ],
+        "gold": [
+          "CAN-GX-01-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-04-intent",
+        "family": 4,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，出差给电脑手机补电，想少带几个电源头",
+        "recall": 0.0,
+        "mrr": 0,
+        "ndcg": 0.0,
+        "empty_ok": null,
+        "elapsed_ms": 71.18204099242575,
+        "ids": [
+          "P3127",
+          "P1026",
+          "P3123",
+          "P3117",
+          "P3113"
+        ],
+        "gold": [
+          "CAN-GX-05-1",
+          "CAN-GX-05-2",
+          "CAN-GX-05-3",
+          "CAN-GX-05-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-04-specification",
+        "family": 4,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，电脑手机一起充，要100瓦三口和全球插脚",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 72.43679100065492,
+        "ids": [
+          "P3076",
+          "P1005",
+          "P1025",
+          "P1024",
+          "P3075"
+        ],
+        "gold": [
+          "CAN-GX-05-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-08-intent",
+        "family": 8,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，我上夜班白天睡，窗外太阳晒进来太亮",
+        "recall": 0.75,
+        "mrr": 1.0,
+        "ndcg": 0.75369761125927,
+        "empty_ok": null,
+        "elapsed_ms": 68.75187500554603,
+        "ids": [
+          "P3129",
+          "P3228",
+          "P3135",
+          "P3136",
+          "P3226"
+        ],
+        "gold": [
+          "CAN-GX-09-1",
+          "CAN-GX-09-2",
+          "CAN-GX-09-3",
+          "CAN-GX-09-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-08-specification",
+        "family": 8,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，窗帘要99%遮光，还要双层隔热，纯棉",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 70.43975000851788,
+        "ids": [
+          "P3141",
+          "P3129",
+          "P3139",
+          "P3135",
+          "P3172"
+        ],
+        "gold": [
+          "CAN-GX-09-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-12-intent",
+        "family": 12,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，晚上帐篷里做饭看不清，想找可充电的照明",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 68.77854200138245,
+        "ids": [
+          "P3201",
+          "P3196",
+          "P3192",
+          "P3206",
+          "P1008"
+        ],
+        "gold": [
+          "CAN-GX-13-1",
+          "CAN-GX-13-2",
+          "CAN-GX-13-3",
+          "CAN-GX-13-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-12-specification",
+        "family": 12,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，营地灯要800流明，IPX6，能吸在金属上挂起来",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 71.8002079956932,
+        "ids": [
+          "P3204",
+          "P3201",
+          "P3197",
+          "P3194",
+          "P1008"
+        ],
+        "gold": [
+          "CAN-GX-13-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-16-intent",
+        "family": 16,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，出差几天胡茬长了，找能随身用的电动工具",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 69.1788750118576,
+        "ids": [
+          "P3268",
+          "P3257",
+          "P3265",
+          "P3262",
+          "P1038"
+        ],
+        "gold": [
+          "CAN-GX-17-1",
+          "CAN-GX-17-2",
+          "CAN-GX-17-3",
+          "CAN-GX-17-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-16-specification",
+        "family": 16,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，剃须刀三个刀头，全身水洗，还要修鬓角",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 68.36337500135414,
+        "ids": [
+          "P3268",
+          "P3266",
+          "P3261",
+          "P3257",
+          "P3299"
+        ],
+        "gold": [
+          "CAN-GX-17-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-20-intent",
+        "family": 20,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，上班自己带饭，想找玻璃的饭菜容器",
+        "recall": 0.75,
+        "mrr": 1.0,
+        "ndcg": 0.8318724637288826,
+        "empty_ok": null,
+        "elapsed_ms": 69.43612499162555,
+        "ids": [
+          "P3323",
+          "P3326",
+          "P3331",
+          "P2269",
+          "P2069"
+        ],
+        "gold": [
+          "CAN-GX-21-1",
+          "CAN-GX-21-2",
+          "CAN-GX-21-3",
+          "CAN-GX-21-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-20-specification",
+        "family": 20,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，饭盒要1200毫升三分隔防漏，能微波",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 70.34033400123008,
+        "ids": [
+          "P3333",
+          "P3331",
+          "P3327",
+          "P3323",
+          "P2117"
+        ],
+        "gold": [
+          "CAN-GX-21-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-24-intent",
+        "family": 24,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，晚上桌上看书光线暗，想照亮书页且可调角度",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 69.54608400701545,
+        "ids": [
+          "P3397",
+          "P3388",
+          "P3384",
+          "P3393",
+          "P2054"
+        ],
+        "gold": [
+          "CAN-GX-25-1",
+          "CAN-GX-25-2",
+          "CAN-GX-25-3",
+          "CAN-GX-25-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-24-specification",
+        "family": 24,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，台灯要800流明，显色指数95，色温无级调节",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 67.3921249981504,
+        "ids": [
+          "P3399",
+          "P3386",
+          "P3391",
+          "P3393",
+          "P3203"
+        ],
+        "gold": [
+          "CAN-GX-25-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-28-intent",
+        "family": 28,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，想带猫出门，既能装进去也方便观察它",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 69.48595900030341,
+        "ids": [
+          "P3455",
+          "P3448",
+          "P2095",
+          "P2375",
+          "P2135"
+        ],
+        "gold": [
+          "CAN-GX-29-1",
+          "CAN-GX-29-2",
+          "CAN-GX-29-3",
+          "CAN-GX-29-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-28-specification",
+        "family": 28,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，航空包承重9公斤，垫子能拆洗，四面透气",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 68.29745900176931,
+        "ids": [
+          "P3461",
+          "P3456",
+          "P3448",
+          "P3454",
+          "P3027"
+        ],
+        "gold": [
+          "CAN-GX-29-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-empty-0",
+        "family": "empty-0",
+        "kind": "empty",
+        "query": "找旅行装备商品，预算只有1元",
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "empty_ok": true,
+        "elapsed_ms": 41.41666700888891,
+        "ids": [],
+        "gold": [],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 0,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-empty-4",
+        "family": "empty-4",
+        "kind": "empty",
+        "query": "找美妆个护商品，预算只有1元",
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "empty_ok": true,
+        "elapsed_ms": 42.662417006795295,
+        "ids": [],
+        "gold": [],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 0,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "v2-00-intent",
+        "family": 0,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，周末走山路，想把帐篷衣服背身上，肩膀别太累",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 70.05858300544787,
+        "ids": [
+          "P3009",
+          "P3006",
+          "P3015",
+          "P3001",
+          "P3196"
+        ],
+        "gold": [
+          "CAN-GX-01-1",
+          "CAN-GX-01-2",
+          "CAN-GX-01-3",
+          "CAN-GX-01-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-00-specification",
+        "family": 0,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，走山路要带饮水系统，至少45升，还要防雨",
+        "recall": 1.0,
+        "mrr": 0.5,
+        "ndcg": 0.6309297535714575,
+        "empty_ok": null,
+        "elapsed_ms": 71.69008400524035,
+        "ids": [
+          "P3009",
+          "P3012",
+          "P3004",
+          "P3001",
+          "P3464"
+        ],
+        "gold": [
+          "CAN-GX-01-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-04-intent",
+        "family": 4,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，出差给电脑手机补电，想少带几个电源头",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.5855700749881525,
+        "empty_ok": null,
+        "elapsed_ms": 70.37166599184275,
+        "ids": [
+          "P3064",
+          "P3124",
+          "P3073",
+          "P3117",
+          "P3113"
+        ],
+        "gold": [
+          "CAN-GX-05-1",
+          "CAN-GX-05-2",
+          "CAN-GX-05-3",
+          "CAN-GX-05-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-04-specification",
+        "family": 4,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，电脑手机一起充，要100瓦三口和全球插脚",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 69.43537500046659,
+        "ids": [
+          "P3076",
+          "P1005",
+          "P1025",
+          "P1024",
+          "P3072"
+        ],
+        "gold": [
+          "CAN-GX-05-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-08-intent",
+        "family": 8,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，我上夜班白天睡，窗外太阳晒进来太亮",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 70.10399999853689,
+        "ids": [
+          "P3129",
+          "P3133",
+          "P3136",
+          "P3141",
+          "P1039"
+        ],
+        "gold": [
+          "CAN-GX-09-1",
+          "CAN-GX-09-2",
+          "CAN-GX-09-3",
+          "CAN-GX-09-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-08-specification",
+        "family": 8,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，窗帘要99%遮光，还要双层隔热，纯棉",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 69.97487499029376,
+        "ids": [
+          "P3141",
+          "P3129",
+          "P3133",
+          "P3139",
+          "P1013"
+        ],
+        "gold": [
+          "CAN-GX-09-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-12-intent",
+        "family": 12,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，晚上帐篷里做饭看不清，想找可充电的照明",
+        "recall": 0.75,
+        "mrr": 1.0,
+        "ndcg": 0.8048099750039491,
+        "empty_ok": null,
+        "elapsed_ms": 70.42283299961127,
+        "ids": [
+          "P3201",
+          "P3196",
+          "P1039",
+          "P3192",
+          "P1008"
+        ],
+        "gold": [
+          "CAN-GX-13-1",
+          "CAN-GX-13-2",
+          "CAN-GX-13-3",
+          "CAN-GX-13-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-12-specification",
+        "family": 12,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，营地灯要800流明，IPX6，能吸在金属上挂起来",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 70.76729199616238,
+        "ids": [
+          "P3204",
+          "P3201",
+          "P3197",
+          "P3397",
+          "P3194"
+        ],
+        "gold": [
+          "CAN-GX-13-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-16-intent",
+        "family": 16,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，出差几天胡茬长了，找能随身用的电动工具",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 68.81254199834075,
+        "ids": [
+          "P3257",
+          "P3268",
+          "P3265",
+          "P3262",
+          "P1025"
+        ],
+        "gold": [
+          "CAN-GX-17-1",
+          "CAN-GX-17-2",
+          "CAN-GX-17-3",
+          "CAN-GX-17-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-16-specification",
+        "family": 16,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，剃须刀三个刀头，全身水洗，还要修鬓角",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 70.52883401047438,
+        "ids": [
+          "P3268",
+          "P3266",
+          "P3261",
+          "P3256",
+          "P1034"
+        ],
+        "gold": [
+          "CAN-GX-17-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-20-intent",
+        "family": 20,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，上班自己带饭，想找玻璃的饭菜容器",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 71.11545800580643,
+        "ids": [
+          "P3321",
+          "P3324",
+          "P3328",
+          "P3332",
+          "P2269"
+        ],
+        "gold": [
+          "CAN-GX-21-1",
+          "CAN-GX-21-2",
+          "CAN-GX-21-3",
+          "CAN-GX-21-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-20-specification",
+        "family": 20,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，饭盒要1200毫升三分隔防漏，能微波",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 70.43812499614432,
+        "ids": [
+          "P3332",
+          "P3324",
+          "P3331",
+          "P3323",
+          "P3281"
+        ],
+        "gold": [
+          "CAN-GX-21-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-24-intent",
+        "family": 24,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，晚上桌上看书光线暗，想照亮书页且可调角度",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 69.06695799261797,
+        "ids": [
+          "P3384",
+          "P3388",
+          "P3397",
+          "P3392",
+          "P2054"
+        ],
+        "gold": [
+          "CAN-GX-25-1",
+          "CAN-GX-25-2",
+          "CAN-GX-25-3",
+          "CAN-GX-25-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-24-specification",
+        "family": 24,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，台灯要800流明，显色指数95，色温无级调节",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 68.42812499962747,
+        "ids": [
+          "P3397",
+          "P3384",
+          "P3388",
+          "P3392",
+          "P3204"
+        ],
+        "gold": [
+          "CAN-GX-25-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-28-intent",
+        "family": 28,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，想带猫出门，既能装进去也方便观察它",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 70.20079200447071,
+        "ids": [
+          "P3448",
+          "P3452",
+          "P3461",
+          "P3457",
+          "P2095"
+        ],
+        "gold": [
+          "CAN-GX-29-1",
+          "CAN-GX-29-2",
+          "CAN-GX-29-3",
+          "CAN-GX-29-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-28-specification",
+        "family": 28,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，航空包承重9公斤，垫子能拆洗，四面透气",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 69.35237500874791,
+        "ids": [
+          "P3461",
+          "P3456",
+          "P3448",
+          "P3454",
+          "P3027"
+        ],
+        "gold": [
+          "CAN-GX-29-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-empty-0",
+        "family": "empty-0",
+        "kind": "empty",
+        "query": "找旅行装备商品，预算只有1元",
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "empty_ok": true,
+        "elapsed_ms": 42.38666700257454,
+        "ids": [],
+        "gold": [],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 0,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-empty-4",
+        "family": "empty-4",
+        "kind": "empty",
+        "query": "找美妆个护商品，预算只有1元",
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "empty_ok": true,
+        "elapsed_ms": 41.34675000386778,
+        "ids": [],
+        "gold": [],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 0,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      }
+    ],
+    "hybrid_reranker": [
+      {
+        "id": "v2-00-intent",
+        "family": 0,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，周末走山路，想把帐篷衣服背身上，肩膀别太累",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 625.833917001728,
+        "ids": [
+          "P3015",
+          "P3009",
+          "P3006",
+          "P3001",
+          "P3214"
+        ],
+        "gold": [
+          "CAN-GX-01-1",
+          "CAN-GX-01-2",
+          "CAN-GX-01-3",
+          "CAN-GX-01-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-00-specification",
+        "family": 0,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，走山路要带饮水系统，至少45升，还要防雨",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 549.8823329980951,
+        "ids": [
+          "P3012",
+          "P3009",
+          "P3004",
+          "P3001",
+          "P3468"
+        ],
+        "gold": [
+          "CAN-GX-01-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-04-intent",
+        "family": 4,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，出差给电脑手机补电，想少带几个电源头",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 438.8924590020906,
+        "ids": [
+          "P3064",
+          "P3068",
+          "P3073",
+          "P3076",
+          "P3117"
+        ],
+        "gold": [
+          "CAN-GX-05-1",
+          "CAN-GX-05-2",
+          "CAN-GX-05-3",
+          "CAN-GX-05-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-04-specification",
+        "family": 4,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，电脑手机一起充，要100瓦三口和全球插脚",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 501.8309580045752,
+        "ids": [
+          "P3076",
+          "P1025",
+          "P3117",
+          "P3115",
+          "P3123"
+        ],
+        "gold": [
+          "CAN-GX-05-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-08-intent",
+        "family": 8,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，我上夜班白天睡，窗外太阳晒进来太亮",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 608.5262090055039,
+        "ids": [
+          "P3133",
+          "P3136",
+          "P3129",
+          "P3141",
+          "P3228"
+        ],
+        "gold": [
+          "CAN-GX-09-1",
+          "CAN-GX-09-2",
+          "CAN-GX-09-3",
+          "CAN-GX-09-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-08-specification",
+        "family": 8,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，窗帘要99%遮光，还要双层隔热，纯棉",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 856.3977500016335,
+        "ids": [
+          "P3141",
+          "P3139",
+          "P3133",
+          "P3129",
+          "P3304"
+        ],
+        "gold": [
+          "CAN-GX-09-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-12-intent",
+        "family": 12,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，晚上帐篷里做饭看不清，想找可充电的照明",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 602.047666994622,
+        "ids": [
+          "P3192",
+          "P3201",
+          "P3196",
+          "P3206",
+          "P1008"
+        ],
+        "gold": [
+          "CAN-GX-13-1",
+          "CAN-GX-13-2",
+          "CAN-GX-13-3",
+          "CAN-GX-13-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-12-specification",
+        "family": 12,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，营地灯要800流明，IPX6，能吸在金属上挂起来",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 418.9909999986412,
+        "ids": [
+          "P3204",
+          "P3194",
+          "P3397",
+          "P3201",
+          "P3197"
+        ],
+        "gold": [
+          "CAN-GX-13-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-16-intent",
+        "family": 16,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，出差几天胡茬长了，找能随身用的电动工具",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 689.5597919938155,
+        "ids": [
+          "P3265",
+          "P3262",
+          "P3257",
+          "P3268",
+          "P3064"
+        ],
+        "gold": [
+          "CAN-GX-17-1",
+          "CAN-GX-17-2",
+          "CAN-GX-17-3",
+          "CAN-GX-17-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-16-specification",
+        "family": 16,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，剃须刀三个刀头，全身水洗，还要修鬓角",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 628.337250003824,
+        "ids": [
+          "P3268",
+          "P3266",
+          "P3261",
+          "P3256",
+          "P3299"
+        ],
+        "gold": [
+          "CAN-GX-17-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-20-intent",
+        "family": 20,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，上班自己带饭，想找玻璃的饭菜容器",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 642.1382499975152,
+        "ids": [
+          "P3324",
+          "P3328",
+          "P3321",
+          "P3332",
+          "P3272"
+        ],
+        "gold": [
+          "CAN-GX-21-1",
+          "CAN-GX-21-2",
+          "CAN-GX-21-3",
+          "CAN-GX-21-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-20-specification",
+        "family": 20,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，饭盒要1200毫升三分隔防漏，能微波",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 677.5608750031097,
+        "ids": [
+          "P3332",
+          "P3331",
+          "P3324",
+          "P3323",
+          "P3281"
+        ],
+        "gold": [
+          "CAN-GX-21-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-24-intent",
+        "family": 24,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，晚上桌上看书光线暗，想照亮书页且可调角度",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 604.9485830008052,
+        "ids": [
+          "P3388",
+          "P3384",
+          "P3397",
+          "P3392",
+          "P3411"
+        ],
+        "gold": [
+          "CAN-GX-25-1",
+          "CAN-GX-25-2",
+          "CAN-GX-25-3",
+          "CAN-GX-25-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-24-specification",
+        "family": 24,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，台灯要800流明，显色指数95，色温无级调节",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 404.45629200257827,
+        "ids": [
+          "P3397",
+          "P3204",
+          "P3384",
+          "P3392",
+          "P3388"
+        ],
+        "gold": [
+          "CAN-GX-25-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-28-intent",
+        "family": 28,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，想带猫出门，既能装进去也方便观察它",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 770.3459589974955,
+        "ids": [
+          "P3461",
+          "P3448",
+          "P3457",
+          "P3452",
+          "P3496"
+        ],
+        "gold": [
+          "CAN-GX-29-1",
+          "CAN-GX-29-2",
+          "CAN-GX-29-3",
+          "CAN-GX-29-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-28-specification",
+        "family": 28,
+        "kind": "specification",
+        "query": "在 Roamix 系列中，航空包承重9公斤，垫子能拆洗，四面透气",
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "empty_ok": null,
+        "elapsed_ms": 435.4784169991035,
+        "ids": [
+          "P3461",
+          "P3456",
+          "P3029",
+          "P3021",
+          "P3027"
+        ],
+        "gold": [
+          "CAN-GX-29-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_rerank",
+        "rerank_applied": true,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-empty-0",
+        "family": "empty-0",
+        "kind": "empty",
+        "query": "找旅行装备商品，预算只有1元",
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "empty_ok": true,
+        "elapsed_ms": 41.560707992175594,
+        "ids": [],
+        "gold": [],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 0,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-empty-4",
+        "family": "empty-4",
+        "kind": "empty",
+        "query": "找美妆个护商品，预算只有1元",
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "empty_ok": true,
+        "elapsed_ms": 42.201958000077866,
+        "ids": [],
+        "gold": [],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 0,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      }
+    ]
+  },
+  "usage": {
+    "keyword": [],
+    "bm25": [],
+    "dense": [],
+    "hybrid": [],
+    "hybrid_reranker": [
+      {
+        "kind": "rerank",
+        "input_tokens": 2429,
+        "output_tokens": null,
+        "elapsed_ms": 555.1137079892214
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 2019,
+        "output_tokens": null,
+        "elapsed_ms": 479.5827089983504
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 1678,
+        "output_tokens": null,
+        "elapsed_ms": 368.7833340081852
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 1872,
+        "output_tokens": null,
+        "elapsed_ms": 430.9528329904424
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 2352,
+        "output_tokens": null,
+        "elapsed_ms": 538.4705830074381
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 2595,
+        "output_tokens": null,
+        "elapsed_ms": 786.1356670036912
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 2151,
+        "output_tokens": null,
+        "elapsed_ms": 531.3011670077685
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 1555,
+        "output_tokens": null,
+        "elapsed_ms": 349.1512500040699
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 2502,
+        "output_tokens": null,
+        "elapsed_ms": 619.1988339996897
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 2434,
+        "output_tokens": null,
+        "elapsed_ms": 557.7976659988053
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 2422,
+        "output_tokens": null,
+        "elapsed_ms": 571.4500830072211
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 2459,
+        "output_tokens": null,
+        "elapsed_ms": 607.2080000012647
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 2462,
+        "output_tokens": null,
+        "elapsed_ms": 536.7637090093922
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 1499,
+        "output_tokens": null,
+        "elapsed_ms": 335.47720800561365
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 3098,
+        "output_tokens": null,
+        "elapsed_ms": 701.29729200562
+      },
+      {
+        "kind": "rerank",
+        "input_tokens": 1522,
+        "output_tokens": null,
+        "elapsed_ms": 365.4730839916738
+      }
+    ]
+  },
+  "dependencies": {
+    "embedding": {
+      "endpoint": "http://127.0.0.1:18081/v1",
+      "model": "BAAI/bge-small-zh-v1.5",
+      "status": "PASS",
+      "dimensions": 512
+    },
+    "reranker": {
+      "endpoint": "http://127.0.0.1:18081/v1/rerank",
+      "model": "Xenova/bge-reranker-base-int8",
+      "status": "PASS",
+      "scores": [
+        6.902072429656982,
+        -10.155165672302246
+      ]
+    }
+  },
+  "summary": {
+    "keyword": {
+      "recall": 0.75,
+      "mrr": 1.0,
+      "ndcg": 0.8183412193664159,
+      "p95_ms": 19.66091600479558,
+      "hard_constraint_failures": 0,
+      "empty_failures": 0,
+      "rerank_successes": 0,
+      "vector_successes": 0
+    },
+    "bm25": {
+      "recall": 0.921875,
+      "mrr": 0.828125,
+      "ndcg": 0.8614892598921051,
+      "p95_ms": 27.563458002987318,
+      "hard_constraint_failures": 0,
+      "empty_failures": 0,
+      "rerank_successes": 0,
+      "vector_successes": 0
+    },
+    "dense": {
+      "recall": 0.875,
+      "mrr": 0.90625,
+      "ndcg": 0.8658238917057776,
+      "p95_ms": 73.96416700794362,
+      "hard_constraint_failures": 0,
+      "empty_failures": 0,
+      "rerank_successes": 0,
+      "vector_successes": 18
+    },
+    "hybrid": {
+      "recall": 0.953125,
+      "mrr": 0.96875,
+      "ndcg": 0.9388318627227225,
+      "p95_ms": 71.69008400524035,
+      "hard_constraint_failures": 0,
+      "empty_failures": 0,
+      "rerank_successes": 0,
+      "vector_successes": 18
+    },
+    "hybrid_reranker": {
+      "recall": 1.0,
+      "mrr": 1.0,
+      "ndcg": 1.0,
+      "p95_ms": 856.3977500016335,
+      "hard_constraint_failures": 0,
+      "empty_failures": 0,
+      "rerank_successes": 16,
+      "vector_successes": 18
+    }
+  },
+  "by_kind": {
+    "keyword": {
+      "empty": {
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "p95_ms": 18.419540996546857,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 0,
+        "vector_successes": 0
+      },
+      "intent": {
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "p95_ms": 18.8796669972362,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 0,
+        "vector_successes": 0
+      },
+      "specification": {
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "p95_ms": 19.66091600479558,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 0,
+        "vector_successes": 0
+      }
+    },
+    "bm25": {
+      "empty": {
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "p95_ms": 23.690916001214646,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 0,
+        "vector_successes": 0
+      },
+      "intent": {
+        "recall": 0.84375,
+        "mrr": 0.75,
+        "ndcg": 0.7941439500250362,
+        "p95_ms": 27.563458002987318,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 0,
+        "vector_successes": 0
+      },
+      "specification": {
+        "recall": 1.0,
+        "mrr": 0.90625,
+        "ndcg": 0.9288345697591741,
+        "p95_ms": 25.773374989512376,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 0,
+        "vector_successes": 0
+      }
+    },
+    "dense": {
+      "empty": {
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "p95_ms": 42.662417006795295,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 0,
+        "vector_successes": 2
+      },
+      "intent": {
+        "recall": 0.75,
+        "mrr": 0.875,
+        "ndcg": 0.7777815642151231,
+        "p95_ms": 73.96416700794362,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 0,
+        "vector_successes": 8
+      },
+      "specification": {
+        "recall": 1.0,
+        "mrr": 0.9375,
+        "ndcg": 0.9538662191964322,
+        "p95_ms": 72.43679100065492,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 0,
+        "vector_successes": 8
+      }
+    },
+    "hybrid": {
+      "empty": {
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "p95_ms": 42.38666700257454,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 0,
+        "vector_successes": 2
+      },
+      "intent": {
+        "recall": 0.90625,
+        "mrr": 1.0,
+        "ndcg": 0.9237975062490127,
+        "p95_ms": 71.11545800580643,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 0,
+        "vector_successes": 8
+      },
+      "specification": {
+        "recall": 1.0,
+        "mrr": 0.9375,
+        "ndcg": 0.9538662191964322,
+        "p95_ms": 71.69008400524035,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 0,
+        "vector_successes": 8
+      }
+    },
+    "hybrid_reranker": {
+      "empty": {
+        "recall": null,
+        "mrr": null,
+        "ndcg": null,
+        "p95_ms": 42.201958000077866,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 0,
+        "vector_successes": 2
+      },
+      "intent": {
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "p95_ms": 770.3459589974955,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 8,
+        "vector_successes": 8
+      },
+      "specification": {
+        "recall": 1.0,
+        "mrr": 1.0,
+        "ndcg": 1.0,
+        "p95_ms": 856.3977500016335,
+        "hard_constraint_failures": 0,
+        "empty_failures": 0,
+        "rerank_successes": 8,
+        "vector_successes": 8
+      }
+    }
+  },
+  "paired": {
+    "bm25_minus_keyword": {
+      "recall": {
+        "mean_delta": 0.171875,
+        "family_bootstrap_95pct": [
+          0.046875,
+          0.25
+        ]
+      },
+      "mrr": {
+        "mean_delta": -0.171875,
+        "family_bootstrap_95pct": [
+          -0.390625,
+          0.0
+        ]
+      },
+      "ndcg": {
+        "mean_delta": 0.043148040525689324,
+        "family_bootstrap_95pct": [
+          -0.15301738971513654,
+          0.18165878063358412
+        ]
+      }
+    },
+    "hybrid_minus_dense": {
+      "recall": {
+        "mean_delta": 0.078125,
+        "family_bootstrap_95pct": [
+          -0.015625,
+          0.15625
+        ]
+      },
+      "mrr": {
+        "mean_delta": 0.0625,
+        "family_bootstrap_95pct": [
+          0.0,
+          0.1875
+        ]
+      },
+      "ndcg": {
+        "mean_delta": 0.07300797101694484,
+        "family_bootstrap_95pct": [
+          -0.0033828110906166803,
+          0.15520908421867463
+        ]
+      }
+    },
+    "hybrid_reranker_minus_dense": {
+      "recall": {
+        "mean_delta": 0.125,
+        "family_bootstrap_95pct": [
+          0.03125,
+          0.25
+        ]
+      },
+      "mrr": {
+        "mean_delta": 0.09375,
+        "family_bootstrap_95pct": [
+          0.0,
+          0.21875
+        ]
+      },
+      "ndcg": {
+        "mean_delta": 0.13417610829422238,
+        "family_bootstrap_95pct": [
+          0.03846078969807953,
+          0.25186266001131996
+        ]
+      }
+    },
+    "hybrid_reranker_minus_hybrid": {
+      "recall": {
+        "mean_delta": 0.046875,
+        "family_bootstrap_95pct": [
+          0.0,
+          0.109375
+        ]
+      },
+      "mrr": {
+        "mean_delta": 0.03125,
+        "family_bootstrap_95pct": [
+          0.0,
+          0.09375
+        ]
+      },
+      "ndcg": {
+        "mean_delta": 0.06116813727727755,
+        "family_bootstrap_95pct": [
+          0.01219937656225318,
+          0.1223362745545551
+        ]
+      }
+    }
+  },
+  "inputs_unchanged": true,
+  "failures": {
+    "keyword": [
+      {
+        "id": "v2-00-intent",
+        "family": 0,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，周末走山路，想把帐篷衣服背身上，肩膀别太累",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 18.30470800632611,
+        "ids": [
+          "P3001",
+          "P3002",
+          "P3003",
+          "P3004",
+          "P3005"
+        ],
+        "gold": [
+          "CAN-GX-01-1",
+          "CAN-GX-01-2",
+          "CAN-GX-01-3",
+          "CAN-GX-01-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-04-intent",
+        "family": 4,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，出差给电脑手机补电，想少带几个电源头",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 18.83270899998024,
+        "ids": [
+          "P3064",
+          "P3065",
+          "P3067",
+          "P3068",
+          "P3069"
+        ],
+        "gold": [
+          "CAN-GX-05-1",
+          "CAN-GX-05-2",
+          "CAN-GX-05-3",
+          "CAN-GX-05-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-08-intent",
+        "family": 8,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，我上夜班白天睡，窗外太阳晒进来太亮",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 18.268957996042445,
+        "ids": [
+          "P3128",
+          "P3129",
+          "P3131",
+          "P3133",
+          "P3134"
+        ],
+        "gold": [
+          "CAN-GX-09-1",
+          "CAN-GX-09-2",
+          "CAN-GX-09-3",
+          "CAN-GX-09-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-12-intent",
+        "family": 12,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，晚上帐篷里做饭看不清，想找可充电的照明",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 18.63716699881479,
+        "ids": [
+          "P3192",
+          "P3193",
+          "P3194",
+          "P3195",
+          "P3196"
+        ],
+        "gold": [
+          "CAN-GX-13-1",
+          "CAN-GX-13-2",
+          "CAN-GX-13-3",
+          "CAN-GX-13-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-16-intent",
+        "family": 16,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，出差几天胡茬长了，找能随身用的电动工具",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 17.858625011285767,
+        "ids": [
+          "P3256",
+          "P3257",
+          "P3258",
+          "P3259",
+          "P3261"
+        ],
+        "gold": [
+          "CAN-GX-17-1",
+          "CAN-GX-17-2",
+          "CAN-GX-17-3",
+          "CAN-GX-17-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-20-intent",
+        "family": 20,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，上班自己带饭，想找玻璃的饭菜容器",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 18.61983300477732,
+        "ids": [
+          "P3321",
+          "P3322",
+          "P3323",
+          "P3324",
+          "P3325"
+        ],
+        "gold": [
+          "CAN-GX-21-1",
+          "CAN-GX-21-2",
+          "CAN-GX-21-3",
+          "CAN-GX-21-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-24-intent",
+        "family": 24,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，晚上桌上看书光线暗，想照亮书页且可调角度",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 18.11137500044424,
+        "ids": [
+          "P3384",
+          "P3386",
+          "P3387",
+          "P3388",
+          "P3389"
+        ],
+        "gold": [
+          "CAN-GX-25-1",
+          "CAN-GX-25-2",
+          "CAN-GX-25-3",
+          "CAN-GX-25-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      },
+      {
+        "id": "v2-28-intent",
+        "family": 28,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，想带猫出门，既能装进去也方便观察它",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 18.8796669972362,
+        "ids": [
+          "P3448",
+          "P3449",
+          "P3452",
+          "P3453",
+          "P3454"
+        ],
+        "gold": [
+          "CAN-GX-29-1",
+          "CAN-GX-29-2",
+          "CAN-GX-29-3",
+          "CAN-GX-29-4"
+        ],
+        "violations": {},
+        "strategy": "keyword_2gram",
+        "rerank_applied": false,
+        "vector_available": null,
+        "diagnostics": {}
+      }
+    ],
+    "bm25": [
+      {
+        "id": "v2-00-intent",
+        "family": 0,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，周末走山路，想把帐篷衣服背身上，肩膀别太累",
+        "recall": 0.0,
+        "mrr": 0,
+        "ndcg": 0.0,
+        "empty_ok": null,
+        "elapsed_ms": 24.46983300615102,
+        "ids": [
+          "P3196",
+          "P3201",
+          "P1042",
+          "P3192",
+          "P3204"
+        ],
+        "gold": [
+          "CAN-GX-01-1",
+          "CAN-GX-01-2",
+          "CAN-GX-01-3",
+          "CAN-GX-01-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-12-intent",
+        "family": 12,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，晚上帐篷里做饭看不清，想找可充电的照明",
+        "recall": 0.75,
+        "mrr": 0.5,
+        "ndcg": 0.592512031964586,
+        "empty_ok": null,
+        "elapsed_ms": 27.563458002987318,
+        "ids": [
+          "P1039",
+          "P3196",
+          "P3201",
+          "P1008",
+          "P3192"
+        ],
+        "gold": [
+          "CAN-GX-13-1",
+          "CAN-GX-13-2",
+          "CAN-GX-13-3",
+          "CAN-GX-13-4"
+        ],
+        "violations": {},
+        "strategy": "bm25",
+        "rerank_applied": false,
+        "vector_available": false,
+        "diagnostics": {
+          "filter_mode": "adaptive_post_filter",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      }
+    ],
+    "dense": [
+      {
+        "id": "v2-04-intent",
+        "family": 4,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，出差给电脑手机补电，想少带几个电源头",
+        "recall": 0.0,
+        "mrr": 0,
+        "ndcg": 0.0,
+        "empty_ok": null,
+        "elapsed_ms": 71.18204099242575,
+        "ids": [
+          "P3127",
+          "P1026",
+          "P3123",
+          "P3117",
+          "P3113"
+        ],
+        "gold": [
+          "CAN-GX-05-1",
+          "CAN-GX-05-2",
+          "CAN-GX-05-3",
+          "CAN-GX-05-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-08-intent",
+        "family": 8,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，我上夜班白天睡，窗外太阳晒进来太亮",
+        "recall": 0.75,
+        "mrr": 1.0,
+        "ndcg": 0.75369761125927,
+        "empty_ok": null,
+        "elapsed_ms": 68.75187500554603,
+        "ids": [
+          "P3129",
+          "P3228",
+          "P3135",
+          "P3136",
+          "P3226"
+        ],
+        "gold": [
+          "CAN-GX-09-1",
+          "CAN-GX-09-2",
+          "CAN-GX-09-3",
+          "CAN-GX-09-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-20-intent",
+        "family": 20,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，上班自己带饭，想找玻璃的饭菜容器",
+        "recall": 0.75,
+        "mrr": 1.0,
+        "ndcg": 0.8318724637288826,
+        "empty_ok": null,
+        "elapsed_ms": 69.43612499162555,
+        "ids": [
+          "P3323",
+          "P3326",
+          "P3331",
+          "P2269",
+          "P2069"
+        ],
+        "gold": [
+          "CAN-GX-21-1",
+          "CAN-GX-21-2",
+          "CAN-GX-21-3",
+          "CAN-GX-21-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-28-intent",
+        "family": 28,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，想带猫出门，既能装进去也方便观察它",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.6366824387328317,
+        "empty_ok": null,
+        "elapsed_ms": 69.48595900030341,
+        "ids": [
+          "P3455",
+          "P3448",
+          "P2095",
+          "P2375",
+          "P2135"
+        ],
+        "gold": [
+          "CAN-GX-29-1",
+          "CAN-GX-29-2",
+          "CAN-GX-29-3",
+          "CAN-GX-29-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      }
+    ],
+    "hybrid": [
+      {
+        "id": "v2-04-intent",
+        "family": 4,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，出差给电脑手机补电，想少带几个电源头",
+        "recall": 0.5,
+        "mrr": 1.0,
+        "ndcg": 0.5855700749881525,
+        "empty_ok": null,
+        "elapsed_ms": 70.37166599184275,
+        "ids": [
+          "P3064",
+          "P3124",
+          "P3073",
+          "P3117",
+          "P3113"
+        ],
+        "gold": [
+          "CAN-GX-05-1",
+          "CAN-GX-05-2",
+          "CAN-GX-05-3",
+          "CAN-GX-05-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      },
+      {
+        "id": "v2-12-intent",
+        "family": 12,
+        "kind": "intent",
+        "query": "在 Roamix 系列中，晚上帐篷里做饭看不清，想找可充电的照明",
+        "recall": 0.75,
+        "mrr": 1.0,
+        "ndcg": 0.8048099750039491,
+        "empty_ok": null,
+        "elapsed_ms": 70.42283299961127,
+        "ids": [
+          "P3201",
+          "P3196",
+          "P1039",
+          "P3192",
+          "P1008"
+        ],
+        "gold": [
+          "CAN-GX-13-1",
+          "CAN-GX-13-2",
+          "CAN-GX-13-3",
+          "CAN-GX-13-4"
+        ],
+        "violations": {},
+        "strategy": "hybrid_only",
+        "rerank_applied": false,
+        "vector_available": true,
+        "diagnostics": {
+          "filter_mode": "authoritative_ids",
+          "eligible_products": 643,
+          "lexical_weight": 1.0,
+          "vector_weight": 1.0,
+          "candidate_limit": 32
+        }
+      }
+    ],
+    "hybrid_reranker": []
+  },
+  "all_live_paths_executed": true
+}
