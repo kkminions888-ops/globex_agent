@@ -49,3 +49,6 @@ node_modules/
 .cache/
 frontend/dist/
 *.tsbuildinfo
+
+# 设计文档、改动记录与图解仅在本地维护。
+/docs/
