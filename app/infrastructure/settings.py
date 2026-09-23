@@ -74,6 +74,9 @@ class Settings:
     llm_max_concurrency: int = 2  # 同时在飞的模型请求上限
     llm_min_interval_seconds: float = 1.0  # 相邻请求起跑最小间隔，治速率爬升过快
     llm_max_retries: int = 2  # 瞬时故障重试次数（指数退避）
+    prompt_cache_mode: str = "passthrough"  # 不主动标记；不等于关闭供应商隐式缓存
+    prompt_cache_policy: str = "static"
+    skill_catalog_mode: str = "legacy"  # append_only 为变化驱动候选，收益验收后再启用
     # ---- 四期：存储 ----
     # 默认 SQLite（零外部依赖，落在 DATA_DIR/globex.db）。
     # 换服务型数据库需自行装异步驱动（aiomysql / asyncpg）并改此 URL，本仓未验证。
@@ -81,6 +84,11 @@ class Settings:
     context_strategy: str = "legacy"
     context_pruning_timing: str = "after_use"
     context_product_tokens: int = 6000
+    context_prompt_layout: str = "legacy_system"  # stable_prefix 待收益验收后启用
+    context_state_mode: str = "snapshot"  # delta 只用于稳定前缀的独立实验
+    context_prune_low_ratio: float = 1.0  # 小于 1 时触发后回收到较低水位
+    context_lookup_mode: str = "strict"  # bounded 兼容明确字段别名及限额分页
+    context_compact_result_rules: bool = False  # 固定说明提升到规则，JSON只移除空白
     context_target_tokens: int = 48000
     database_url: str = ""
     # ---- 四期：Redis 缓存 ----
@@ -128,6 +136,7 @@ class Settings:
     hybrid_lexical_weight: float = 1.0
     hybrid_vector_weight: float = 1.0
     recall_candidates: int = 32
+    embedding_version: str = ""  # 同名模型更新权重或编码方式时，用版本区分已存向量
 
 
 def load_settings() -> Settings:
@@ -143,8 +152,14 @@ def load_settings() -> Settings:
     data_dir.mkdir(parents=True, exist_ok=True)  # SQLite 默认落在此目录，建库前必须存在
     return Settings(
         context_strategy=os.getenv("CONTEXT_STRATEGY", "legacy"),
+        skill_catalog_mode=os.getenv("SKILL_CATALOG_MODE", "legacy"),
         context_pruning_timing=os.getenv("CONTEXT_PRUNING_TIMING", "after_use"),
         context_product_tokens=int(os.getenv("CONTEXT_PRODUCT_TOKENS", "6000")),
+        context_prompt_layout=os.getenv("CONTEXT_PROMPT_LAYOUT", "legacy_system"),
+        context_state_mode=os.getenv("CONTEXT_STATE_MODE", "snapshot"),
+        context_prune_low_ratio=float(os.getenv("CONTEXT_PRUNE_LOW_RATIO", "1")),
+        context_lookup_mode=os.getenv("CONTEXT_LOOKUP_MODE", "strict"),
+        context_compact_result_rules=os.getenv("CONTEXT_COMPACT_RESULT_RULES", "0") == "1",
         context_target_tokens=int(os.getenv("CONTEXT_TARGET_TOKENS", "48000")),
         llm_base_url=llm_base_url,
         llm_api_key=llm_api_key,
@@ -163,6 +178,7 @@ def load_settings() -> Settings:
         embedding_base_url=os.getenv("EMBEDDING_BASE_URL") or llm_base_url,
         embedding_api_key=os.getenv("EMBEDDING_API_KEY") or llm_api_key,
         embedding_model=os.getenv("EMBEDDING_MODEL", "text-embedding-v4"),
+        embedding_version=os.getenv("EMBEDDING_VERSION", ""),
         embedding_dim=int(os.getenv("EMBEDDING_DIM", "1024")),
         qdrant_url=os.getenv("QDRANT_URL", ""),
         qdrant_collection=os.getenv("QDRANT_COLLECTION", "globex_products"),
@@ -189,6 +205,8 @@ def load_settings() -> Settings:
         llm_max_concurrency=int(os.getenv("LLM_MAX_CONCURRENCY", "2")),
         llm_min_interval_seconds=float(os.getenv("LLM_MIN_INTERVAL_SECONDS", "1.0")),
         llm_max_retries=int(os.getenv("LLM_MAX_RETRIES", "2")),
+        prompt_cache_mode=os.getenv("PROMPT_CACHE_MODE", "passthrough"),
+        prompt_cache_policy=os.getenv("PROMPT_CACHE_POLICY", "static"),
         # 兼容早期变量名 MYSQL_URL；两者都没配时默认本地 SQLite
         database_url=(
             os.getenv("DATABASE_URL")

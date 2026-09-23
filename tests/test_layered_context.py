@@ -356,3 +356,70 @@ def test_explicit_reselection_replaces_previous_selection():
     agent=fixture_agent()
     update_working_state(agent,[UserMsg('b','选中P1001-S1'),UserMsg('b','改选P1003-S2')])
     assert governance(agent)['working']['selected']==['P1003-S2']
+
+
+@pytest.mark.parametrize('text,expected', [
+    ('第一批 P1003 的到手价多少？', 1), ('第12轮第三件的历史价格？', 12),
+    ('第十一批的运费', 11), ('第二十批的报价', 20),
+    ('第一批和第二批对比', None), ('不要第一批，查最新的', None),
+    ('第一批的当前库存', None), ('第0批', None), ('查这个商品', None),
+])
+def test_explicit_lookup_batch_is_conservative(text, expected):
+    from app.application.tools.conversation_fact_lookup import explicit_lookup_batch
+    assert explicit_lookup_batch(text) == expected
+
+
+async def test_reply_scopes_omitted_lookup_batch_without_changing_history(tmp_path):
+    from app.application.tools.conversation_fact_lookup import lookup_batch_scope
+    store = ContextEvidenceStore(tmp_path/'batch.db')
+    refs = []
+    for price in (222, 237):
+        refs.append(await store.save('b', 's', 'display_batch', {'hits': [{
+            'product_id': 'P1003', 'price_major': price, 'currency': 'CNY'}]}))
+    lookup = build_conversation_fact_lookup(store)
+    agent = fixture_agent(0)
+    middleware = LayeredContextMiddleware(store)
+    user = UserMsg('b', content=[TextBlock(text='第一批 P1003 的报价？'),
+                                TextBlock(text='服务端附件中的第二批不应参与解析')])
+    before = user.model_dump_json()
+    async def record(**kwargs):
+        inferred = json.loads((await lookup(product_id='P1003')).content[0].text)['records'][0]
+        assert inferred['data']['hits'][0]['price_major'] == 222
+        assert inferred['observation_scope']['effective_batch'] == 1
+        assert inferred['observation_scope']['batch_inferred_from_user']
+        # 显式工具参数和证据引用优先，不能偷改参数含义。
+        for arguments in ({'batch': 2}, {'result_ref': refs[1]}):
+            explicit = json.loads((await lookup(**arguments)).content[0].text)['records'][0]
+            assert explicit['data']['hits'][0]['price_major'] == 237
+            assert not explicit['observation_scope']['batch_inferred_from_user']
+        yield 'done'
+    assert [x async for x in middleware.on_reply(agent, {'inputs': user}, record)] == ['done']
+    assert user.model_dump_json() == before
+    assert lookup_batch_scope.get() is None
+    latest = json.loads((await lookup(product_id='P1003')).content[0].text)['records'][0]
+    assert latest['data']['hits'][0]['price_major'] == 237
+
+
+async def test_batch_scope_rejects_other_owner_and_resets_after_failure(tmp_path):
+    from app.application.tools.conversation_fact_lookup import lookup_batch_scope
+    store = ContextEvidenceStore(tmp_path/'owner.db')
+    for buyer, session in [('b', 's'), ('other', 's'), ('b', 'other-session')]:
+        for price in (10, 20):
+            await store.save(buyer, session, 'display_batch', {'hits': [{'product_id': 'P1', 'price_major': price}]})
+    lookup = build_conversation_fact_lookup(store)
+    async def interrupted(**kwargs):
+        for buyer, session in [('other', 's'), ('b', 'other-session')]:
+            token = ShoppingContext.set(ShoppingContextSnapshot(session, buyer, 'zh-CN', 'CNY'))
+            try:
+                row = json.loads((await lookup(product_id='P1')).content[0].text)['records'][0]
+                assert row['data']['hits'][0]['price_major'] == 20
+                assert not row['observation_scope']['batch_inferred_from_user']
+            finally:
+                ShoppingContext.reset(token)
+        raise RuntimeError('模拟工具链中断')
+        yield
+    with pytest.raises(RuntimeError, match='模拟工具链中断'):
+        async for _ in LayeredContextMiddleware(store).on_reply(
+                fixture_agent(0), {'inputs': UserMsg('b', '第一批的报价')}, interrupted):
+            pass
+    assert lookup_batch_scope.get() is None

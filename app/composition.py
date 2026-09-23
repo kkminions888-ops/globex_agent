@@ -79,6 +79,7 @@ from app.infrastructure.capability_registry import CapabilityRegistry
 from app.presentation.ag_ui_runtime import AGUIRuntime
 from app.infrastructure.runtime_version import app_source_fingerprint
 from app.infrastructure.vector.index_bootstrap import bootstrap_product_index
+from app.infrastructure.vector.embedding_identity import embedding_identity
 from app.infrastructure.vector.qdrant_product_index import QdrantProductIndex
 
 logger = logging.getLogger(__name__)
@@ -180,7 +181,7 @@ async def build_container() -> Container:
     cache = RedisCache(settings.redis_url)
     raw_embedder = OpenAIEmbeddingClient(settings)
     embedder = (
-        CachedEmbeddingClient(raw_embedder, cache, settings.embedding_model)
+        CachedEmbeddingClient(raw_embedder, cache, embedding_identity(settings))
         if cache.enabled
         else raw_embedder
     )

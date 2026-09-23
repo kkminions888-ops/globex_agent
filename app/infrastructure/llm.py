@@ -20,6 +20,7 @@ import asyncio
 import logging
 import sys
 import time
+from copy import copy
 from collections.abc import AsyncIterable
 from contextvars import ContextVar
 from typing import Any, AsyncGenerator, Optional
@@ -37,6 +38,11 @@ from app.infrastructure.settings import Settings
 from app.infrastructure.throttle import GatewayThrottle
 from app.infrastructure.transient import is_transient_error
 from app.infrastructure.operational_metrics import observe_model, observe_model_started
+from app.infrastructure.prompt_cache import (
+    CacheAttempt, CacheRejected, PromptCacheFormatter, UsageCapturingStream, PrefixTracker,
+    attach_usage, cache_attempt, cache_disabled, cache_retry_target,
+    is_cache_rejection, read_cache_usage,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -57,12 +63,20 @@ class BudgetCall:
         self.started_at = None
         self.first_text_at = None
         self.last_usage_response = None
+        self.cache_attempt = None
+        self.started_wall_ns = None
+        self.streamed = False
+        self.upstream_usage = None
 
     def mark_started(self):
         observe_model_started()
         self.started_at = time.monotonic()
         self.first_text_at = None
         self.last_usage_response = None
+        self.cache_attempt = None
+        self.started_wall_ns = time.time_ns()
+        self.streamed = False
+        self.upstream_usage = None
 
     def observe_chunk(self, response):
         if _usage_tokens(response) is not None:
@@ -84,6 +98,9 @@ class BudgetCall:
     def settle(self, response) -> None:
         self.observe_chunk(response)
         usage_response = self.last_usage_response or response
+        if self.upstream_usage is not None:
+            # 协议违约发生在SDK解析前，也必须结算这次已经产生的真实消耗。
+            usage_response = {'usage': self.upstream_usage}
         if self.reservation is not None:
             self.reservation.settle(_usage_tokens(usage_response))
             self.reservation = None
@@ -98,7 +115,11 @@ class BudgetCall:
             from app.infrastructure.context_usage import record_context_usage
             record_context_usage(input_tokens if input_tokens is not None else _safe_field(usage, "prompt_tokens"),
                                  output_tokens if output_tokens is not None else _safe_field(usage, "completion_tokens"),
-                                 (time.monotonic()-self.started_at)*1000)
+                                 (time.monotonic()-self.started_at)*1000,
+                                 cache=self.cache_attempt.metrics() if self.cache_attempt else None,
+                                 start_time=self.started_wall_ns,
+                                 ttft_ms=(self.first_text_at-self.started_at)*1000
+                                 if self.streamed and self.first_text_at is not None else None)
             self.started_at = None
 
 
@@ -110,13 +131,100 @@ _structured_finalizers: ContextVar[list | None] = ContextVar("globex_structured_
 class StreamClosingOpenAIChatModel(OpenAIChatModel):
     """捕获 SDK 生成器内部的 HTTP stream，让尚未开始读取的流也能显式关闭。"""
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self._prefix_tracker = PrefixTracker()
+        # 在原生 SDK 最终 create 参数处观察，包含 formatter 与工具 schema 的实际输出。
+        # 业务只记指纹；隔离评测可显式安装本地原文证据 sink，不改变供应商参数。
+        create = self.client.chat.completions.create
+        async def observed_create(*args, **request):
+            from app.infrastructure.context_usage import record_evaluation_evidence
+            record_evaluation_evidence('model_request', {key: request[key] for key in
+                ('model', 'messages', 'tools', 'tool_choice', 'response_format', 'temperature', 'max_tokens', 'max_completion_tokens', 'stream', 'stream_options')
+                if key in request and isinstance(request[key], (dict, list, str, int, float, bool))})
+            attempt = cache_attempt.get()
+            if attempt is not None:
+                from app.infrastructure.context_usage import context_call_kind
+                ctx = ShoppingContext.current()
+                scope = (ctx.buyer_id, ctx.shopping_session_id) if ctx else None
+                attempt.prefix = self._prefix_tracker.observe(request, scope=scope, kind=context_call_kind.get())
+            from app.infrastructure.model_protocol import ResponseContract, ValidatedStream
+            call = _budget_call.get()
+            response_ids = set()
+            def observe(*, response=None, protocol_status=None):
+                if response is not None:
+                    response_id = _safe_field(response, 'id')
+                    if isinstance(response_id, str):
+                        response_ids.add(response_id)
+                    if call is not None and _safe_field(response, 'usage') is not None:
+                        call.upstream_usage = response.usage
+                    if attempt is not None:
+                        returned = _safe_field(response, 'model')
+                        if returned:
+                            attempt.response_models.add(returned)
+                        usage = _safe_field(response, 'usage')
+                        if usage is not None:
+                            attempt.usage = read_cache_usage(usage)
+                if protocol_status is not None:
+                    if attempt is not None:
+                        attempt.protocol_status = protocol_status
+                    record_evaluation_evidence('model_response_contract', {
+                        'requested_model': request.get('model'),
+                        'response_models': sorted(attempt.response_models) if attempt else [],
+                        'response_ids': sorted(response_ids),
+                        'protocol_status': protocol_status})
+            contract = ResponseContract(request, observe)
+            response = await create(*args, **request)
+            return ValidatedStream(response, contract) if request.get('stream') else contract.completion(response)
+        self.client.chat.completions.create = observed_create
+
+    async def _call_api(self, model_name, messages, tools=None, tool_choice=None, **kwargs):
+        if self.stream and getattr(tool_choice, 'mode', None) == 'product_search_tool':
+            # 兼容网关的强制函数参数流可能缺少完整结束标记；该只读取证使用完整响应。
+            # 请求局部副本保留原生解析、配额和计量，不切换模型、不重试，也不改共享流式配置。
+            request_model = copy(self)
+            request_model.stream = False
+            return await request_model._call_api(model_name, messages, tools, tool_choice, **kwargs)
+        formatter = self.formatter
+        attempt = CacheAttempt(model_name, getattr(formatter, "mode", "passthrough"),
+                               getattr(formatter, "policy", "static"), cache_disabled.get())
+        if attempt.retry_without_cache:
+            attempt.reason = "parameter_rejected_retry"
+        call = _budget_call.get()
+        if call is not None:
+            call.cache_attempt = attempt
+        token = cache_attempt.set(attempt)
+        try:
+            return await super()._call_api(model_name, messages, tools, tool_choice, **kwargs)
+        except Exception as error:
+            if attempt.marker_count and is_cache_rejection(error):
+                attempt.reason = "parameter_rejected"
+                raise CacheRejected(model_name) from None
+            raise
+        finally:
+            cache_attempt.reset(token)
+
+    def _parse_completion_response(self, start_datetime, response, audio_format="wav"):
+        attempt = cache_attempt.get()
+        if attempt is not None:
+            attempt.usage = read_cache_usage(response.usage)
+        parsed = super()._parse_completion_response(start_datetime, response, audio_format)
+        return attach_usage(parsed, attempt)
+
     def _parse_stream_response(self, start_datetime, response):
-        parsed = super()._parse_stream_response(start_datetime, response)
+        attempt = cache_attempt.get()
+        captured = UsageCapturingStream(response, attempt) if attempt else response
+        parsed = super()._parse_stream_response(start_datetime, captured)
+        async def decorated():
+            async for chunk in parsed:
+                yield attach_usage(chunk, attempt)
+        wrapped = decorated()
         finalizer = current_stream_finalizer.get()
         if finalizer is not None:
             finalizer.add(response)
             finalizer.add(parsed)
-        return parsed
+            finalizer.add(wrapped)
+        return wrapped
 
 
 class ThrottledChatModel(StreamClosingOpenAIChatModel):
@@ -144,6 +252,7 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
         token = _structured_call.set(True)
         resources = []
         resource_token = _structured_finalizers.set(resources)
+        cache_token = cache_disabled.set(cache_disabled.get())
         try:
             return await super().generate_structured_output(messages, structured_model, **kwargs)
         finally:
@@ -153,6 +262,21 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
             finally:
                 _structured_finalizers.reset(resource_token)
                 _structured_call.reset(token)
+                cache_disabled.reset(cache_token)
+
+    async def _call_api_with_structured_output(self, *args, **kwargs):
+        # 2.0.8 会在 forced/auto/none 策略间回退。每次解析完成必须先关闭
+        # 上一次流；否则解析失败时它仍占着唯一闸门名额，下一次请求会自锁。
+        resources = _structured_finalizers.get()
+        boundary = len(resources) if resources is not None else 0
+        try:
+            return await super()._call_api_with_structured_output(*args, **kwargs)
+        finally:
+            if resources is not None:
+                owned = resources[boundary:]
+                del resources[boundary:]
+                for resource in reversed(owned):
+                    await resource.close(sys.exc_info())
 
     async def _call_api_with_structured_output(self, *args, **kwargs):
         # 2.0.8 会在 forced/auto/none 策略间回退。每次解析完成必须先关闭
@@ -171,6 +295,15 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
     async def _call_api(self, model_name, messages, tools=None, tool_choice=None, **kwargs):
         if not _structured_call.get():
             return await super()._call_api(model_name, messages, tools, tool_choice, **kwargs)
+        try:
+            return await self._structured_api_attempt(model_name, messages, tools, tool_choice, **kwargs)
+        except CacheRejected:
+            # 已结束并结算被拒绝的请求，重新获取共享闸门和预算；只重试模型请求。
+            # 整个结构化生成的后续 forced/auto/none 尝试都不再重复探测；外层 finally 恢复。
+            cache_disabled.set(True)
+            return await self._structured_api_attempt(model_name, messages, tools, tool_choice, **kwargs)
+
+    async def _structured_api_attempt(self, model_name, messages, tools, tool_choice, **kwargs):
         # 在 SDK 添加 schema 和提示后计预算；每个真实请求独立计量，
         # 包括 SDK 的 tool_choice 兼容重试以及输出格式校验失败的请求。
         call = BudgetCall(messages, tools, kwargs)
@@ -189,6 +322,7 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
         finalizer = StreamFinalizer(slot, call.settle)
         _structured_finalizers.get().append(finalizer)
         token = current_stream_finalizer.set(finalizer)
+        budget_token = _budget_call.set(call)
         try:
             call.mark_started()
             result = await super()._call_api(model_name, messages, tools, tool_choice, **kwargs)
@@ -205,10 +339,25 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
             raise
         finally:
             current_stream_finalizer.reset(token)
+            _budget_call.reset(budget_token)
         await finalizer.close()
         return result
 
     async def __call__(  # type: ignore[override]
+        self, messages, tools=None, tool_choice=None, **kwargs,
+    ):
+        try:
+            return await self._call_throttled(messages, tools, tool_choice, **kwargs)
+        except CacheRejected as error:
+            disabled = cache_disabled.set(True)
+            target = cache_retry_target.set(error.model)
+            try:
+                return await self._call_throttled(messages, tools, tool_choice, **kwargs)
+            finally:
+                cache_retry_target.reset(target)
+                cache_disabled.reset(disabled)
+
+    async def _call_throttled(
         self,
         messages: list[Msg],
         tools: Optional[list[dict]] = None,
@@ -274,6 +423,7 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
         try:
             yield None  # type: ignore[misc]  # 内部启动标记仅由 __call__ 消费。
             finalizer.bind_current_task()
+            budget_call.streamed = True
             async for chunk in stream:
                 finalizer.last = chunk
                 budget_call.observe_chunk(chunk)
@@ -307,6 +457,8 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
                 logger.info("Token 预算档位 %s，切用备用模型 %s", tier, self._fallback.model)
                 self._publish_budget_tier(tier)
                 return await self._fallback(messages, tools, tool_choice, **kwargs)
+        if self._fallback is not None and cache_retry_target.get() == self._fallback.model:
+            return await self._fallback(messages, tools, tool_choice, **kwargs)
         return await super().__call__(messages, tools, tool_choice, **kwargs)
 
     def _publish_budget_tier(self, tier: str) -> None:
@@ -474,7 +626,8 @@ def create_chat_model(
         "client_kwargs": {"max_retries": 0},
     }
     fallback = (
-        StreamClosingOpenAIChatModel(model=settings.llm_fallback_model, **common)
+        StreamClosingOpenAIChatModel(model=settings.llm_fallback_model,
+            formatter=PromptCacheFormatter(mode=settings.prompt_cache_mode, policy=settings.prompt_cache_policy), **common)
         if settings.llm_fallback_model and settings.llm_fallback_model != settings.llm_model
         else None
     )
@@ -484,5 +637,6 @@ def create_chat_model(
         fallback=fallback,
         max_transient_retries=settings.llm_max_retries,
         bus=bus,
+        formatter=PromptCacheFormatter(mode=settings.prompt_cache_mode, policy=settings.prompt_cache_policy),
         **common,
     )

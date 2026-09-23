@@ -67,6 +67,25 @@ _CONTENT_FIELDS = {
     "gen_ai.tool.call.result": "globex.output.characters",
 }
 
+# 显式缓存只导出枚举和数值，不能放行任意 metadata/提示词。
+_SAFE_ATTRIBUTES.update('globex.context.' + key for key in (
+    'call_kind', 'usage_known', 'input_tokens', 'output_tokens', 'elapsed_ms',
+    'input_tokens_known', 'output_tokens_known', 'ttft_ms', 'ttft_ms_known',
+))
+_SAFE_ATTRIBUTES.update('globex.prompt_cache.' + key for key in (
+    'model', 'cache_mode', 'cache_policy', 'cache_marker_count', 'cache_reason',
+    'cache_retry_without_markers', 'cache_read_tokens', 'cache_write_tokens',
+    'cache_usage_invalid', 'reported_cost', 'cache_read_tokens_known',
+    'cache_write_tokens_known', 'reported_cost_known',
+    'response_model', 'response_model_matches', 'response_model_conflict', 'protocol_status',
+))
+
+_SAFE_ATTRIBUTES.update('globex.prompt_cache.' + key for key in (
+    'prefix_comparison', 'prefix_scope_known', 'prefix_system_hash', 'prefix_tools_hash',
+    'prefix_message_count', 'prefix_common_messages', 'prefix_common_message_bytes',
+    'prefix_first_changed_message', 'prefix_system_changed', 'prefix_tools_changed',
+    'prefix_parameters_changed'))
+
 
 def _safe_id(value: object) -> str:
     return value if isinstance(value, str) and _SAFE_ID.fullmatch(value) else ""
@@ -425,7 +444,8 @@ def build_agent_middlewares(settings: Settings) -> list:
     if settings.context_strategy == 'layered':
         from app.infrastructure.context_governance import LayeredContextMiddleware
         middlewares[1] = LayeredContextMiddleware(ContextEvidenceStore(settings.data_dir / 'context_evidence.db'),
-            product_tokens=settings.context_product_tokens, target_tokens=settings.context_target_tokens, timing=settings.context_pruning_timing)
+            product_tokens=settings.context_product_tokens, target_tokens=settings.context_target_tokens, timing=settings.context_pruning_timing, prompt_layout=settings.context_prompt_layout,
+            state_mode=settings.context_state_mode, prune_low_ratio=settings.context_prune_low_ratio, compact_result_rules=settings.context_compact_result_rules)
     if settings.reply_token_budget > 0:
         middlewares.append(
             ReplyBudgetControlMiddleware(

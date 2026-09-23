@@ -47,22 +47,60 @@ def _identity():
     return snapshot.buyer_id, snapshot.shopping_session_id
 
 
-def build_create_order_tool(usecase: PlaceOrderUseCase, bus: TradeEventBus):
+async def _verified_order_items(evidence_store, buyer_id: str, session_id: str, items: list[dict]) -> list[OrderItemInput]:
+    """从会话原始工具证据核对来源，模型文字及当前目录不能替代检索记录。"""
+    if evidence_store is None:
+        raise ValueError("商品检索证据未接入，不能准备下单确认")
+    verified = []
+    for item in items:
+        product_id, sku_id = item.get("product_id"), item.get("sku_id")
+        if not isinstance(product_id, str) or not product_id.strip():
+            raise ValueError("订单行必须提供 product_id")
+        if sku_id is not None and (not isinstance(sku_id, str) or not sku_id.strip()):
+            raise ValueError("sku_id 必须为非空文字")
+        evidence = await evidence_store.find_product(buyer_id, session_id, product_id=product_id, sku_id=sku_id or "")
+        if evidence is None:
+            raise ValueError(f"当前会话未检索返回商品或规格：{sku_id or product_id}；请先用 product_search_tool 精确核验")
+        card = next((hit for hit in evidence["data"].get("hits", []) if hit.get("product_id") == product_id), None)
+        if card is None:
+            raise ValueError("商品检索证据与请求不匹配")
+        sku_ids = {sku["sku_id"] for sku in card.get("skus", []) if sku.get("sku_id")}
+        if sku_id is None:
+            # 单商品入口沿用返回卡片的默认规格，不猜测买家没有见过的 SKU。
+            sku_id = card.get("default_sku_id") or (next(iter(sku_ids)) if len(sku_ids) == 1 else None)
+        if sku_id not in sku_ids:
+            raise ValueError(f"商品 {product_id} 缺少可核对的规格，请先检索并明确 sku_id")
+        verified.append(OrderItemInput(product_id, sku_id, item.get("quantity", 1)))
+    return verified
+
+
+def build_create_order_tool(usecase: PlaceOrderUseCase, bus: TradeEventBus, evidence_store=None):
     async def create_order_tool(
-        items: list[dict],
-        shipping_address: dict,
+        items: list[dict] | None = None,
+        shipping_address: dict | None = None,
+        product_id: str | None = None,
+        sku_id: str | None = None,
+        quantity: int = 1,
     ) -> ToolChunk:
         """准备下单意向的权威确认卡，返回 confirmation_required，不创建订单或扣库存。
 
         即使买家在对话中说“同意”，也必须等待其点击页面确认卡；模型不能代为确认。
         金额仅含所选商品，不含运费和税费，不代表付款。买家身份由系统会话上下文注入。
+        商品与规格必须来自当前买家、当前会话的检索结果；否则先精确检索。
+        单商品可直接传 product_id；省略 sku_id 时沿用检索卡默认规格，确认卡仍展示具体规格。
 
         Args:
             items (`list[dict]`):
-                订单行列表，每项形如 {"product_id": "P1001", "sku_id": "P1001-S1", "quantity": 1}。
+                多商品订单行列表，每项形如 {"product_id": "P1001", "sku_id": "P1001-S1", "quantity": 1}；与单商品参数互斥。
             shipping_address (`dict`):
                 收货地址，形如 {"recipient_name": "...", "country": "CN", "state": "...",
                 "city": "...", "address_line": "...", "postal_code": "...", "phone": "..."}。
+            product_id (`str | None`):
+                单商品入口，如 "P1001"；必须曾在当前会话检索返回。
+            sku_id (`str | None`):
+                单商品规格，缺省沿用检索卡中的默认规格，不更换商品。
+            quantity (`int`):
+                单商品购买数量，默认 1，必须为正整数；使用 items 时数量放在订单行内。
         """
         try:
             buyer_id, session_id = _identity()
@@ -70,18 +108,15 @@ def build_create_order_tool(usecase: PlaceOrderUseCase, bus: TradeEventBus):
             return _fail(str(err))
         bus.publish(session_id, "tool.invoke", {"tool": "create_order_tool", "args": {"buyer_id": buyer_id, "items": items}})
         try:
-            if not isinstance(items, list) or any(not isinstance(item, dict) for item in items):
-                raise ValueError("items 必须是订单行对象列表")
+            if items is not None and (product_id is not None or sku_id is not None or type(quantity) is not int or quantity != 1):
+                raise ValueError("items 与单商品 product_id / sku_id / quantity 参数不能混用")
+            if items is None:
+                items = [{"product_id": product_id, "sku_id": sku_id, "quantity": quantity}]
+            if not isinstance(items, list) or not items or any(not isinstance(item, dict) for item in items):
+                raise ValueError("items 必须是非空订单行对象列表")
             if not isinstance(shipping_address, dict):
                 raise ValueError("shipping_address 必须是地址对象")
-            order_items = [
-                OrderItemInput(
-                    product_id=item["product_id"],
-                    sku_id=item["sku_id"],
-                    quantity=item.get("quantity", 1),
-                )
-                for item in items
-            ]
+            order_items = await _verified_order_items(evidence_store, buyer_id, session_id, items)
             address = Address(
                 recipient_name=shipping_address.get("recipient_name", ""),
                 country=shipping_address.get("country", ""),

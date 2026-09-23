@@ -50,8 +50,8 @@ def _harness(sequencing=None, loop_detector=None) -> HarnessToolMiddleware:
     )
 
 
-async def _call(tool: FunctionTool) -> ToolChunk:
-    result = await tool()
+async def _call(tool: FunctionTool, **kwargs) -> ToolChunk:
+    result = await tool(**kwargs)
     if hasattr(result, "__aiter__"):
         chunks = [chunk async for chunk in result]
         return chunks[-1]
@@ -70,6 +70,69 @@ def _text(chunk: ToolChunk) -> str:
 
 
 class TestHarnessMiddleware:
+    async def test_real_factory_lookup_shares_guard_and_preserves_all_pages(self, tmp_path):
+        from dataclasses import replace
+        from app.application.agents.search_agent import SearchAgentFactory
+        from app.application.agents.trade_agent import TradeAgentFactory
+        from app.application.agents.main_agent import MainAgentFactory
+        from app.infrastructure.eventbus import TradeEventBus
+        from app.infrastructure.throttle import GatewayThrottle
+        from tests.test_retrieval import _settings
+        settings = replace(_settings(tmp_path), harness_enabled=True, context_lookup_mode='bounded')
+        bus, circuit, throttle = TradeEventBus(), CircuitBreakerRegistry(), GatewayThrottle(1, 0)
+        search = SearchAgentFactory(settings, None, bus, None, circuit, throttle)
+        orders = TradeAgentFactory(settings, None, None, None, bus, circuit, throttle)
+        main = MainAgentFactory(settings, search, orders, bus, None, circuit, throttle)
+        assert search._loop_detector is orders._loop_detector is main._loop_detector
+        assert search._sequencing is orders._sequencing is main._sequencing
+        tools = search.build_tools() + orders.build_tools()
+        assert all(isinstance(t._middlewares[0], HarnessToolMiddleware) for t in tools)
+        lookup = next(t for t in tools if t.name == 'conversation_fact_lookup')
+        ref = await search.evidence_store.save('b1', 's1', 'display_batch', {'hits': [
+            {'product_id': f'P{i}', 'skus': [{'sku_id': f'P{i}-S1', 'spec': '黑色', 'currency': 'CNY', 'price_major': i}]}
+            for i in range(16)]})
+        token = ShoppingContext.set(SNAPSHOT)
+        try:
+            for offset in (0, 5, 10, 15):
+                assert '[harness]' not in _text(await _call(lookup, result_ref=ref, fields='price', offset=offset))
+            for _ in range(2):
+                result = await _call(lookup, result_ref=ref, fields='price', offset=15)
+            assert '相同结果 3 次' in _text(result)
+            assert len(main._sequencing.called('s1')) == 6
+        finally:
+            ShoppingContext.reset(token)
+
+    async def test_successive_pages_do_not_trigger_loop_hint_but_repeated_page_does(self):
+        async def lookup(offset: int = 0) -> ToolChunk:
+            """读取隔离的历史页。"""
+            return ToolChunk(content=[TextBlock(text=json.dumps({'offset': offset, 'hits': []}))], state=ToolResultState.SUCCESS)
+        tool = FunctionTool(lookup, middlewares=[_harness()])
+        token = ShoppingContext.set(SNAPSHOT)
+        try:
+            for offset in (0, 5, 10, 15):
+                assert '[harness]' not in _text(await _call(tool, offset=offset))
+            for _ in range(2):
+                chunk = await _call(tool, offset=15)
+            assert '相同结果 3 次' in _text(chunk)
+        finally:
+            ShoppingContext.reset(token)
+
+    async def test_streaming_progress_is_compared_as_whole_result(self):
+        stock = 10
+        async def stream_stock():
+            """流式返回库存，不同中间结果不能只因末尾都写完成而误判。"""
+            nonlocal stock
+            stock -= 1
+            yield ToolChunk(content=[TextBlock(text=str(stock))], is_last=False)
+            yield ToolChunk(content=[TextBlock(text='完成')], state=ToolResultState.SUCCESS)
+        tool = FunctionTool(stream_stock, middlewares=[_harness()])
+        token = ShoppingContext.set(SNAPSHOT)
+        try:
+            for _ in range(4):
+                assert '[harness]' not in _text(await _call(tool))
+        finally:
+            ShoppingContext.reset(token)
+
     async def test_normal_call_passes_through(self):
         tool = FunctionTool(
             _tool_factory("product_search_tool", json.dumps(SEARCH_PAYLOAD, ensure_ascii=False)),
@@ -163,7 +226,7 @@ class TestHarnessMiddleware:
 
         body = _text(chunk)
         assert "[harness]" in body
-        assert "连续 3 次" in body
+        assert "相同结果 3 次" in body
 
     async def test_schema_failure_is_reported_not_raised(self):
         tool = FunctionTool(

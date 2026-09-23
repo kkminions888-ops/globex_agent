@@ -13,8 +13,8 @@
 本中间件串起四件事（按 pre → post 顺序）：
 
     pre_tool_call   Sequencing 断言（前置工具校验，写路径可硬拒）
-                    LoopDetector（同一工具连续打转 → 注入收敛提示）
     post_tool_call  Schema 断言（返回结构完整性）
+                    LoopDetector（相同参数与结果重复 → 注入收敛提示）
                     L3 内容过滤（工具结果注入上下文前拦提示词注入）
 
 失败语义：断言失败一律不 raise，只把提示并入返回给模型的文本，让它下一轮自愈；
@@ -26,6 +26,7 @@
 from __future__ import annotations
 
 import logging
+import json
 from typing import Any, AsyncGenerator, Callable, Optional
 
 from agentscope.message import TextBlock, ToolResultState
@@ -34,6 +35,7 @@ from agentscope.tool import ToolBase, ToolChunk, ToolMiddlewareBase
 from app.application.harness.assertions import SequencingTracker, check_schema
 from app.application.harness.loop_detector import LoopDetector
 from app.infrastructure.context import ShoppingContext
+from app.infrastructure.context_usage import record_evaluation_evidence
 from app.infrastructure.eventbus import TradeEventBus
 from app.infrastructure.security.content_filter import sanitize_tool_output
 
@@ -85,13 +87,6 @@ class HarnessToolMiddleware(ToolMiddlewareBase):
             return
         notices.extend(seq.warnings)
 
-        # ---- pre_tool_call：循环检测 ----
-        converge_hint = self._loop_detector.check(session_id, tool_name)
-        if converge_hint:
-            logger.info("Harness 循环收敛提示：%s", tool_name)
-            self._publish(tool_name, {"harness": "loop_detected"})
-            notices.append(converge_hint)
-
         # 记录调用（供后续顺序断言使用）
         self._sequencing.record(session_id, tool_name)
 
@@ -109,6 +104,28 @@ class HarnessToolMiddleware(ToolMiddlewareBase):
             yield chunk
 
         text = _chunk_text(last)
+
+        # 工具返回之后才知道是否有新进展；正常翻页不能只因工具同名而误报。
+        state = last.state.value
+        result = [_block_text(block) if _block_text(block) is not None
+                  else block.model_dump(mode='json') if hasattr(block, 'model_dump') else block
+                  for chunk in chunks for block in chunk.content or []]
+        # TextBlock 内的 JSON 也规范化，键顺序/空白不同不构成业务进展。
+        for index, value in enumerate(result):
+            if isinstance(value, str):
+                try:
+                    result[index] = json.loads(value)
+                except ValueError:
+                    pass
+        record_evaluation_evidence('tool_result', {'tool': tool_name, 'arguments': input_kwargs,
+                                                  'state': state, 'result': result,
+                                                  'stage': 'before_harness_notices'})
+        converge_hint = self._loop_detector.observe(session_id, tool_name, input_kwargs, result, state)
+        if converge_hint:
+            self._publish(tool_name, {"harness": "loop_detected", "reason": "same_arguments_and_result"})
+            record_evaluation_evidence('tool_notice', {'tool': tool_name,
+                'arguments': input_kwargs, 'reason': 'same_arguments_and_result'})
+            notices.append(converge_hint)
 
         # Schema 断言
         schema_outcome = check_schema(tool_name, text)

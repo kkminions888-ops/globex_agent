@@ -67,6 +67,15 @@ class BuyerSkillStore:
                     raise LookupError("个人 Skill 不存在")
                 if str(head["version"]) != expected_version:
                     raise BuyerSkillConflict("Skill 已被更新，请刷新后再编辑")
+                previous = db.execute("""SELECT * FROM buyer_skill_versions
+                    WHERE buyer_id=? AND id=? AND version=?""",
+                    (buyer_id, skill_id, head["version"])).fetchone()
+                current = self.decode(previous, body=True)
+                # CAS 先检查；无内容变化的保存不制造新版本和无意义的目录更新。
+                if (current["title"], current["description"], current["body"]) == (
+                    title.strip(), description.strip(), body.strip()
+                ):
+                    return current
                 version = head["version"] + 1
             else:
                 count = db.execute("SELECT count(*) FROM buyer_skill_heads WHERE buyer_id=? AND active=1", (buyer_id,)).fetchone()[0]

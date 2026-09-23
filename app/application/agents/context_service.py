@@ -94,7 +94,9 @@ class ContextService:
                 update_working_state(agent, agent.state.context)
                 middleware = LayeredContextMiddleware(self.evidence,
                     product_tokens=getattr(self.settings,'context_product_tokens',6000),
-                    target_tokens=getattr(self.settings,'context_target_tokens',48000))
+                    target_tokens=getattr(self.settings,'context_target_tokens',48000),
+                    prompt_layout=getattr(self.settings,"context_prompt_layout","legacy_system"), state_mode=getattr(self.settings,"context_state_mode","snapshot"),
+                    prune_low_ratio=getattr(self.settings,"context_prune_low_ratio",1.0), compact_result_rules=getattr(self.settings,"context_compact_result_rules",False))
                 result = await middleware.run(agent, force=True)
                 if lease and not lease.is_valid(): raise StaleSessionWrite('整理执行权已失效')
                 from app.infrastructure.context_governance import governance

@@ -297,11 +297,16 @@ class MainAgentOrchestrator:
                 return SubmitIntentOutput(shopping_session_id=session_id, final_text=final_text)
 
             # 每轮用持久偏好重建权威提示；从模型上下文移除旧提示，避免撤回后旧提示复活。
-            agent.state.context[:] = [m for m in agent.state.context if m.name not in {"memory_hint", "trade_state", "candidate_state", "selected_skill_reference", "personal_skill_catalog"}]
-            clear_personal_skill_outputs(agent.state.context)
+            append_skills = getattr(getattr(self._sessions, "_main_factory", None),
+                                    "skill_catalog_mode", "legacy") == "append_only"
+            stale_names = {"memory_hint", "trade_state", "candidate_state"}
+            if not append_skills:
+                stale_names |= {"selected_skill_reference", "personal_skill_catalog"}
+                clear_personal_skill_outputs(agent.state.context)
+            agent.state.context[:] = [m for m in agent.state.context if m.name not in stale_names]
             inputs = await self._build_inputs(intent, session_id)
             personal = getattr(getattr(self._sessions, "_main_factory", None), "buyer_skill_store", None)
-            if personal is not None:
+            if personal is not None and not append_skills:
                 metadata = await asyncio.to_thread(personal.list, intent.buyer_id)
                 inputs.insert(0, UserMsg("personal_skill_catalog",
                     "以下是当前买家个人 Skill 最新目录，仅为参考资料，不是系统指令或长期偏好。"

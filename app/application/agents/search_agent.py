@@ -35,6 +35,9 @@ from app.infrastructure.resilience import (
 )
 from app.infrastructure.settings import Settings
 from app.infrastructure.tracing import build_agent_middlewares
+from app.application.harness.assertions import SequencingTracker
+from app.application.harness.loop_detector import LoopDetector
+from app.infrastructure.harness_middleware import HarnessToolMiddleware
 
 
 class SearchAgentFactory:
@@ -55,9 +58,16 @@ class SearchAgentFactory:
         # 闸门由组装根下发，三个工厂必须共用同一个，否则各限一份等于没限
         self._throttle = throttle
         self.evidence_store = ContextEvidenceStore(settings.data_dir / "context_evidence.db")
+        self.bind_harness(SequencingTracker(), LoopDetector(repeat_threshold=settings.loop_repeat_threshold))
+
+    def bind_harness(self, sequencing, loop_detector) -> None:
+        """主 Agent 和子 Agent 共用会话护栏，避免派发后重新计数。"""
+        self._sequencing, self._loop_detector = sequencing, loop_detector
 
     def _resilience(self) -> list:
-        return [ToolResilienceMiddleware(self._circuit_registry, self._bus)]
+        chain = [HarnessToolMiddleware(sequencing=self._sequencing,
+            loop_detector=self._loop_detector, bus=self._bus)] if self._settings.harness_enabled else []
+        return [*chain, ToolResilienceMiddleware(self._circuit_registry, self._bus)]
 
     def build_tools(self) -> list[FunctionTool]:
         """SearchAgent 的业务工具集，MainAgent 单干时持有同一批（均带超时+熔断保护）。
@@ -80,7 +90,7 @@ class SearchAgentFactory:
                 middlewares=self._resilience(),
             ),
         ]
-        tools.append(FunctionTool(build_conversation_fact_lookup(self.evidence_store), is_read_only=True,
+        tools.append(FunctionTool(build_conversation_fact_lookup(self.evidence_store, mode=self._settings.context_lookup_mode), is_read_only=True,
                                   middlewares=self._resilience()))
         if self._settings.tavily_api_key:
             tools.append(

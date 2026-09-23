@@ -12,15 +12,18 @@
     2. **按会话隔离**。文档 17-3 的示例用了模块级 `_called_tools: list`，
        多会话并发时会互相污染（A 会话的调用记录算到 B 头上），
        这里改为按 shopping_session_id 分桶；
-    3. 只看**最近 window 次**调用，避免长对话里早期的正常重复被反复计入。
+    3. 只比较最近 window 次已完成调用的参数与完整结果；翻页、换字段、业务值变化
+       都视为不同取证。旧的按工具名计数 API 只保留兼容，运行中间件使用 observe。
 """
 from __future__ import annotations
 
 from collections import defaultdict, deque
 from dataclasses import dataclass, field
+import hashlib
+import json
 from typing import Deque, Optional
 
-# 同一工具在窗口内连续出现达此次数即判定打转
+# 同工具、同参数、同结果在窗口内出现达此次数时提示，阈值保持不变。
 DEFAULT_REPEAT_THRESHOLD = 3
 # 滑动窗口长度
 DEFAULT_WINDOW = 6
@@ -31,16 +34,61 @@ CONVERGE_HINT = (
     "如果确实拿不到数据，就如实说明并给出替代建议。"
 )
 
+PROGRESS_HINT = (
+    "近期对 {tool} 的相同参数调用已得到相同结果 {count} 次，没有新进展。"
+    "请优先使用已有证据回答；确需补充时明确缺失字段，或按返回的下一页位置查询。"
+    "正常翻页、不同商品/字段及结果变化不属于此提示；历史结果不能替代当前状态核验。"
+)
+
+
+def _fingerprint(value) -> str:
+    """仅在内存中比较规范内容，不保存原文、不移除业务时间和证据引用。"""
+    if isinstance(value, str):
+        try:
+            value = json.loads(value)
+        except (ValueError, TypeError):
+            pass
+    encoded = json.dumps(value, sort_keys=True, ensure_ascii=False, default=str)
+    return hashlib.sha256(encoded.encode()).hexdigest()
+
 
 @dataclass
 class LoopDetector:
-    """按会话统计工具调用序列，判断是否在打转。"""
+    """按会话比较取证进展，不缓存或阻止工具执行。"""
 
     repeat_threshold: int = DEFAULT_REPEAT_THRESHOLD
     window: int = DEFAULT_WINDOW
     _calls: dict[str, Deque[str]] = field(
         default_factory=lambda: defaultdict(lambda: deque(maxlen=DEFAULT_WINDOW)),
     )
+    _observations: dict[str, deque] = field(default_factory=dict)
+
+    def observe(self, session_id: str, tool_name: str, arguments: dict,
+                result, state: str) -> Optional[str]:
+        """只比较已完成结果；同参数结果改变重置计数，翻页/换字段不误报。
+
+        窗口内允许其他调用穿插，从而识别 A/B/A/B 的重复取证。这里只提示，
+        不跳过工具、不复用旧库存、不重放写操作。旧 check API 保留兼容。
+        """
+        if state not in {'success', 'error'}:
+            return None
+        self.record(session_id, tool_name)
+        history = self._observations.get(session_id)
+        if history is None or history.maxlen != self.window:
+            history = self._observations[session_id] = deque(history or (), maxlen=self.window)
+        request_key = _fingerprint(arguments)
+        result_key = state + ':' + _fingerprint(result)
+        history.append((tool_name, request_key, result_key))
+        count = 0
+        for name, request, response in reversed(history):
+            if name != tool_name or request != request_key:
+                continue
+            if response != result_key:
+                break
+            count += 1
+        if count >= self.repeat_threshold:
+            return PROGRESS_HINT.format(tool=tool_name, count=count)
+        return None
 
     def _bucket(self, session_id: str) -> Deque[str]:
         bucket = self._calls[session_id]
@@ -78,3 +126,4 @@ class LoopDetector:
     def reset(self, session_id: str) -> None:
         """一轮意图结束后清理，避免跨轮误判。"""
         self._calls.pop(session_id, None)
+        self._observations.pop(session_id, None)

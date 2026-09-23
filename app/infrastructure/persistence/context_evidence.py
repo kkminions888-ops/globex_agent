@@ -91,6 +91,22 @@ class ContextEvidenceStore:
             return self._decode(row) if row else None
         return await asyncio.to_thread(read)
 
+    async def batch_locator(self, buyer: str, session: str, number: int) -> dict | None:
+        """只读取展示来源、商品/SKU顺序，不从数据库重取业务事实。"""
+        if number < 1:
+            return None
+        def read():
+            with self._connect() as db:
+                batch = db.execute("SELECT ref,json_extract(payload,'$.result_ref') AS source_ref FROM context_evidence WHERE buyer=? AND session=? AND kind='display_batch' ORDER BY fence,created,ref LIMIT 1 OFFSET ?", (buyer,session,number-1)).fetchone()
+                if not batch or not batch['source_ref']:
+                    return None
+                rows = db.execute("""SELECT h.key AS position, json_extract(h.value,'$.product_id') AS product_id,
+                    (SELECT json_group_array(json_extract(s.value,'$.sku_id')) FROM json_each(h.value,'$.skus') s) AS sku_ids
+                    FROM context_evidence e,json_each(e.payload,'$.hits') h
+                    WHERE e.ref=? AND buyer=? AND session=? ORDER BY CAST(h.key AS INTEGER)""", (batch['ref'],buyer,session)).fetchall()
+                return {'source_ref':batch['source_ref'],'products':[{'product_id':r['product_id'],'sku_ids':json.loads(r['sku_ids'])} for r in rows]}
+        return await asyncio.to_thread(read)
+
     @staticmethod
     def _decode(row):
         if hashlib.sha256(row["payload"].encode()).hexdigest() != row["sha256"]:

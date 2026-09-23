@@ -30,6 +30,10 @@ class VectorHit:
 
 
 class ProductVectorIndex(ABC):
+    async def products_needing_embeddings(self, products: list[Product]) -> list[Product]:
+        """返回向量缺失或已过期的商品；不支持版本查询的旧适配器全量构建。"""
+        return products
+
     async def search_filtered(self, embedding: list[float], top_n: int, *, product_ids: list[str]) -> list[VectorHit] | None:
         """按权威目录许可的 ID 召回；旧适配器返回 None，由应用层渐进补召回。"""
         return None

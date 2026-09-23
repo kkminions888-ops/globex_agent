@@ -74,6 +74,39 @@ class TestOutputGuardL4:
 
 
 class TestLoopDetector:
+    def test_progress_distinguishes_pagination_fields_and_arguments(self):
+        detector = LoopDetector()
+        for offset in (0, 5, 10, 15):
+            assert detector.observe('s', 'lookup', {'offset': offset}, {'hits': []}, 'success') is None
+        for fields in ('specs', 'price', 'stock'):
+            assert detector.observe('s', 'lookup', {'fields': fields}, {'hits': []}, 'success') is None
+
+    def test_changed_inventory_and_recovered_errors_reset_same_request_count(self):
+        detector = LoopDetector()
+        for stock in (5, 5, 4, 4, 3, 3):
+            assert detector.observe('s', 'stock', {'sku_id': 'P1-S1'}, {'stock': stock}, 'success') is None
+        for state in ('error', 'error', 'success', 'success'):
+            assert detector.observe('s', 'lookup', {}, 'same', state) is None
+
+    def test_repeated_evidence_and_alternating_loop_are_detected_without_raw_retention(self):
+        detector = LoopDetector()
+        for _ in range(2):
+            assert detector.observe('s', 'lookup', {'batch': 1}, 'private original', 'success') is None
+            assert detector.observe('s', 'lookup', {'batch': 2}, 'other result', 'success') is None
+        assert '相同结果 3 次' in detector.observe('s', 'lookup', {'batch': 1}, 'private original', 'success')
+        assert 'private original' not in repr(detector)
+        assert detector.observe('other', 'lookup', {'batch': 1}, 'private original', 'success') is None
+        detector.reset('s')
+        assert detector.observe('s', 'lookup', {'batch': 1}, 'private original', 'success') is None
+
+    def test_json_order_is_not_progress_and_pending_states_are_not_counted(self):
+        detector = LoopDetector()
+        for state in ('running', 'interrupted', 'denied'):
+            assert detector.observe('s', 'lookup', {}, '{}', state) is None
+        assert detector.observe('s', 'lookup', {'b': 2, 'a': 1}, '{"x":1,"y":2}', 'success') is None
+        assert detector.observe('s', 'lookup', {'a': 1, 'b': 2}, '{"y": 2, "x": 1}', 'success') is None
+        assert detector.observe('s', 'lookup', {'a': 1, 'b': 2}, '{"x":1,"y":2}', 'success')
+
     def test_no_hint_below_threshold(self):
         det = LoopDetector(repeat_threshold=3)
         assert det.check("s1", "product_search_tool") is None
