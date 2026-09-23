@@ -142,7 +142,10 @@ class CatalogSearchUseCase:
         hybrid_lexical_weight: float = 1.0,
         hybrid_vector_weight: float = 1.0,
         recall_candidates: int = 32,
+        capture_retrieval_stages: bool = False,
     ) -> None:
+        # 仅评测主动开启；记录混合检索的实际阶段，不改变排序或向模型增加字段。
+        self._capture_retrieval_stages = capture_retrieval_stages
         self._hybrid_enabled = hybrid_enabled
         self._fusion_weights = (hybrid_lexical_weight, hybrid_vector_weight)
         reciprocal_rank_fusion([], [], weights=self._fusion_weights)
@@ -288,6 +291,17 @@ class CatalogSearchUseCase:
         # 单路故障时保留健康侧，不让零权重把降级结果清空。
         weights = self._fusion_weights if vector_hits is not None else (1.0, 0.0)
         scored = reciprocal_rank_fusion(lexical_hits, vector_eligible, weights=weights)
+        stages = None
+        if self._capture_retrieval_stages:
+            stages = {
+                "lexical_candidates": [p.product_id for _, p in lexical_hits],
+                "vector_candidates": [p.product_id for _, p in vector_eligible],
+                # 零权重的路不参与融合；向量故障时以实际降级权重为准。
+                "merged_candidates": list(dict.fromkeys(
+                    p.product_id for ranking, weight in zip((lexical_hits, vector_eligible), weights)
+                    if weight > 0 for _, p in ranking)),
+                "fused_candidates": [p.product_id for _, p in scored],
+            }
         strategy = "hybrid_only" if vector_hits is not None else "bm25"
         rerank_applied = False
         if scored and self._reranker is not None:
@@ -303,10 +317,14 @@ class CatalogSearchUseCase:
             if key not in seen:
                 seen.add(key)
                 deduped.append((score, product))
-        return {"hits": [self._to_card(score, p, spec).to_dict() for score, p in deduped[:spec.top_k]],
+        result = {"hits": [self._to_card(score, p, spec).to_dict() for score, p in deduped[:spec.top_k]],
                 "total_candidates": len(deduped), "recall_strategy": strategy, "rerank_applied": rerank_applied,
                 "retrieval_variant": "bm25_vector_rrf_v1", "vector_available": vector_hits is not None,
                 "filtered_out": rejected, "retrieval_diagnostics": diagnostics}
+        if stages is not None:
+            stages["ranked_candidates"] = [p.product_id for _, p in deduped]
+            result["retrieval_stages"] = stages
+        return result
 
     def _reject_reason(self, product: Product, spec: ProductSearchSpec, primary=None) -> Optional[str]:
         """返回硬约束拒绝原因，None 表示通过。"""

@@ -8,6 +8,7 @@ import pytest
 from app.application.usecases.confirmation_service import ConfirmationService
 from app.domain.order.address import Address
 from app.infrastructure.eventbus import TradeEventBus
+from app.infrastructure.persistence.context_evidence import ContextEvidenceStore
 from app.infrastructure.persistence.in_memory_repositories import InMemoryProductRepository
 from app.infrastructure.persistence.sql.repositories import bootstrap_schema, create_engine
 from app.infrastructure.persistence.sql.trade_store import SqlTradeStore
@@ -24,10 +25,12 @@ async def confirmation_env(tmp_path):
     store = SqlTradeStore(engine, clock=lambda: now[0])
     products = InMemoryProductRepository()
     bus = TradeEventBus()
+    evidence = ContextEvidenceStore(tmp_path / "context-evidence.db")
     service = ConfirmationService(products, store, bus, clock=lambda: now[0])
     try:
         await bootstrap_schema(engine)
         await store.initialize_inventory(await products.list_all())
-        yield SimpleNamespace(engine=engine, products=products, store=store, bus=bus, service=service, now=now)
+        yield SimpleNamespace(engine=engine, products=products, store=store, bus=bus,
+                              service=service, evidence=evidence, now=now)
     finally:
         await engine.dispose()

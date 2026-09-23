@@ -7,6 +7,8 @@ from datetime import timedelta
 import pytest
 
 from app.application.tools.order_tools import build_cancel_order_tool, build_create_order_tool, build_query_order_tool
+from app.application.tools.product_search_tool import build_product_search_tool
+from app.application.usecases.catalog_search import CatalogSearchUseCase
 from app.application.usecases.confirmation_service import ConfirmationService
 from app.application.usecases.order_usecases import CancelOrderUseCase, OrderItemInput, PlaceOrderUseCase, QueryOrderUseCase
 from app.infrastructure.context import ShoppingContext, ShoppingContextSnapshot
@@ -197,10 +199,11 @@ async def test_event_delivery_failure_keeps_committed_decision_recoverable_and_i
 
 async def test_model_write_tools_prepare_only_and_cannot_choose_identity_approval_or_operation_id(confirmation_env):
     env = confirmation_env
-    create = build_create_order_tool(PlaceOrderUseCase(env.service), env.bus)
+    create = build_create_order_tool(PlaceOrderUseCase(env.service), env.bus, env.evidence)
+    search = build_product_search_tool(CatalogSearchUseCase(env.products), env.bus, env.evidence)
     cancel = build_cancel_order_tool(CancelOrderUseCase(env.service), env.bus)
     query = build_query_order_tool(QueryOrderUseCase(env.store), env.bus)
-    assert set(inspect.signature(create).parameters) == {"items", "shipping_address"}
+    assert set(inspect.signature(create).parameters) == {"items", "shipping_address", "product_id", "sku_id", "quantity"}
     assert set(inspect.signature(cancel).parameters) == {"order_id", "reason"}
     without_context = await create(items=[], shipping_address={})
     assert without_context.content[0].text.startswith("[error]")
@@ -208,6 +211,10 @@ async def test_model_write_tools_prepare_only_and_cannot_choose_identity_approva
     try:
         from dataclasses import asdict
         item = {"product_id": "P1001", "sku_id": "P1001-S1", "quantity": 1}
+        unverified = await create(items=[item], shipping_address=asdict(address()))
+        assert "未检索返回" in unverified.content[0].text
+        assert not await env.store.list_confirmations(buyer_id="buyer-1", session_id="session-1")
+        await search(product_id="P1001", sku_id="P1001-S1")
         prepared = json.loads((await create(items=[item], shipping_address=asdict(address()))).content[0].text)
         assert prepared["confirmation_required"] is True
         assert "order" not in prepared

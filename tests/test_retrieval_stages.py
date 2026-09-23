@@ -66,13 +66,21 @@ def test_merge_checks_full_union_and_detects_a_truncated_pool():
 
 
 @pytest.mark.parametrize('lexical_weight', [0, 1])
-async def test_real_pipeline_stage_capture_is_opt_in_and_does_not_change_results(lexical_weight):
+@pytest.mark.parametrize('vector_fails', [False, True])
+@pytest.mark.parametrize('rerank_enabled', [False, True])
+async def test_real_pipeline_stage_capture_is_opt_in_and_does_not_change_results(lexical_weight, vector_fails, rerank_enabled):
     products = (await InMemoryProductRepository().list_all())[:12]
     repo = InMemoryProductRepository(products)
     index = SimpleNamespace(search_filtered=AsyncMock(return_value=[
         VectorHit(p.product_id, 1 / (i + 1)) for i,p in enumerate(products[:8])]))
     kwargs = dict(embedder=SimpleNamespace(embed=AsyncMock(return_value=[1.])),
                   vector_index=index, hybrid_enabled=True, hybrid_lexical_weight=lexical_weight)
+    if vector_fails:
+        index.search_filtered.side_effect = RuntimeError('测试向量服务不可用')
+    if rerank_enabled:
+        # 专用精排将融合顺序反转，确认采集的是各阶段的真实顺序。
+        kwargs['reranker'] = SimpleNamespace(rerank=AsyncMock(
+            side_effect=lambda query, documents: list(range(len(documents)))))
     plain = CatalogSearchUseCase(repo, **kwargs)
     observed = CatalogSearchUseCase(repo, **kwargs, capture_retrieval_stages=True)
     spec = ProductSearchSpec(normalized_query='旅行', top_k=3)
@@ -83,5 +91,18 @@ async def test_real_pipeline_stage_capture_is_opt_in_and_does_not_change_results
     assert actual == expected
     assert set(trace['merged_candidates']) == set(trace['fused_candidates'])
     assert [h['product_id'] for h in actual['hits']] == trace['ranked_candidates'][:3]
-    if lexical_weight == 0:
+    if vector_fails:
+        assert trace['vector_candidates'] == []
+        assert trace['merged_candidates'] == trace['lexical_candidates']
+    elif lexical_weight == 0:
         assert trace['merged_candidates'] == trace['vector_candidates']
+    if rerank_enabled:
+        canonical_seen = set()
+        by_id = {p.product_id: p for p in products}
+        expected_ranked = []
+        for pid in reversed(trace['fused_candidates']):
+            canonical = by_id[pid].canonical_product_id or pid
+            if canonical not in canonical_seen:
+                canonical_seen.add(canonical)
+                expected_ranked.append(pid)
+        assert trace['ranked_candidates'] == expected_ranked

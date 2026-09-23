@@ -212,13 +212,16 @@ class TestToolsDirectInvoke:
 
     async def test_create_order_tool_and_error_path(self, confirmation_env):
         env = confirmation_env
-        tool = build_create_order_tool(PlaceOrderUseCase(env.service), env.bus)
+        tool = build_create_order_tool(PlaceOrderUseCase(env.service), env.bus, env.evidence)
+        search = build_product_search_tool(CatalogSearchUseCase(env.products), env.bus, env.evidence)
 
         # 买家身份由 ShoppingContext 注入，而非模型入参
         token = ShoppingContext.set(
             ShoppingContextSnapshot(shopping_session_id="s1", buyer_id="b1", locale="zh-CN", currency="CNY"),
         )
         try:
+            # 成功路径也必须经过当前买家、当前会话的真实商品检索取证。
+            await search(product_id="P1001", sku_id="P1001-S1")
             ok = await tool(
                 items=[{"product_id": "P1001", "sku_id": "P1001-S1", "quantity": 1}],
                 shipping_address=ADDRESS,
