@@ -11,14 +11,17 @@ from importlib.metadata import version
 ROOT = Path(__file__).resolve().parents[3]
 SUITE = ROOT / 'eval/harness/v1/suite.json'
 SCHEMA_VERSION = 'harness-eval-v1'
-POLICY_FIELDS = {'skill_catalog_mode', 'context_strategy', 'context_pruning_timing', 'context_product_tokens',
+POLICY_FIELDS = {'context_summary_mode', 'model_recovery_mode', 'skill_catalog_mode', 'context_strategy', 'context_pruning_timing', 'context_product_tokens',
                  'context_target_tokens', 'context_prompt_layout', 'context_state_mode', 'context_lookup_mode', 'context_prune_low_ratio', 'context_compact_result_rules', 'prompt_cache_mode', 'prompt_cache_policy'}
 WATCHED = ('app/application/agents/', 'app/application/harness/', 'app/application/memory/',
+           'app/domain/learning.py', 'app/application/learning.py', 'app/infrastructure/learning',
+           'app/infrastructure/strategy_extractor.py', 'app/infrastructure/ag_ui_journal.py',
+           'tests/test_learning', 'scripts/learning.py', 'eval/learning/',
            'app/application/prompts/', 'app/application/tools/', 'app/infrastructure/context',
            'app/infrastructure/prompt_cache.py', 'app/infrastructure/llm.py',
            'app/infrastructure/buyer_skills.py', 'app/infrastructure/capability_registry.py',
            'tests/test_skill_catalog', 'tests/test_buyer_workspace', 'tests/test_capability_registry',
-           'app/infrastructure/model_protocol.py', 'app/infrastructure/visible_evidence.py',
+           'app/infrastructure/model_protocol.py', 'app/infrastructure/model_recovery.py', 'app/infrastructure/visible_evidence.py',
            'app/infrastructure/harness_middleware.py', 'app/infrastructure/budget.py',
            'app/infrastructure/resilience.py', 'app/infrastructure/throttle.py',
            'app/infrastructure/stream_lifecycle.py', 'app/infrastructure/tracing.py',
@@ -58,7 +61,8 @@ def write_json(path, value):
 def source_manifest(root=ROOT):
     files = [p for directory in ('app', 'scripts/eval', 'tests') for p in (root / directory).rglob('*.py')]
     files += [root / 'pyproject.toml', root / 'uv.lock', root / 'Makefile', root / '.github/workflows/harness-eval.yml']
-    files += [root / 'scripts/model_preflight.py']
+    files += [root / 'scripts/model_preflight.py', root / 'scripts/learning.py']
+    files += list((root / 'eval/learning').glob('*.json'))
     files += list((root / 'app/application/prompts').glob('*.yml'))
     files += list((root / 'eval/harness/v1').glob('*.json'))
     # 此评测使用冻结目录与代码内费率，不连接外部知识索引。

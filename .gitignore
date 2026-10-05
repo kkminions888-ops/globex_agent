@@ -52,3 +52,6 @@ frontend/dist/
 
 # 设计文档、改动记录与图解仅在本地维护。
 /docs/
+
+# 评测使用的临时买家/学习数据库只保留在本机。
+/eval/verification/**/isolated/

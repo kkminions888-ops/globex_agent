@@ -150,8 +150,12 @@ class StreamClosingOpenAIChatModel(OpenAIChatModel):
                 attempt.prefix = self._prefix_tracker.observe(request, scope=scope, kind=context_call_kind.get())
             from app.infrastructure.model_protocol import ResponseContract, ValidatedStream
             call = _budget_call.get()
+            from app.infrastructure.model_recovery import response_observation
+            observation = response_observation.get()
             response_ids = set()
             def observe(*, response=None, protocol_status=None):
+                if observation is not None:
+                    observation.observe(response, protocol_status)
                 if response is not None:
                     response_id = _safe_field(response, 'id')
                     if isinstance(response_id, str):
@@ -238,6 +242,7 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
         max_transient_retries: int = 2,
         retry_base_seconds: float = 6.0,
         bus: Optional[TradeEventBus] = None,
+        recovery_mode: str = 'off',
         **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
@@ -246,6 +251,9 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
         self._max_transient_retries = max_transient_retries
         self._retry_base_seconds = retry_base_seconds
         self._bus = bus
+        if recovery_mode not in {'off', 'bounded'}:
+            raise ValueError('MODEL_RECOVERY_MODE 只支持 off / bounded')
+        self._recovery_mode = recovery_mode
 
     async def generate_structured_output(self, messages, structured_model, **kwargs):
         # SDK 2.0.8 的结构化生成直接调用 _call_api，不经过 __call__。
@@ -346,6 +354,12 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
     async def __call__(  # type: ignore[override]
         self, messages, tools=None, tool_choice=None, **kwargs,
     ):
+        from app.infrastructure.model_recovery import recover_response
+        from app.infrastructure.context_usage import context_call_kind
+        return await recover_response(self, messages, tools, tool_choice, kwargs,
+            enabled=self._recovery_mode == 'bounded' and context_call_kind.get() == 'business')
+
+    async def _call_once(self, messages, tools=None, tool_choice=None, **kwargs):
         try:
             return await self._call_throttled(messages, tools, tool_choice, **kwargs)
         except CacheRejected as error:
@@ -448,7 +462,8 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
         """
         call = _budget_call.get()
         tier = call.tier if call is not None else current_tier()
-        if tier != "main":
+        from app.infrastructure.context_usage import context_call_kind
+        if tier != "main" and context_call_kind.get() != 'summary':
             # 使用预留之前确定的档位；预留本身会降低 remaining，不能因此漏掉 hint。
             hint = MINIMAL_MODE_HINT if tier == "minimal" else None
             if hint:
@@ -511,7 +526,8 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
                     )
                     await asyncio.sleep(delay)
 
-        if self._fallback is None:
+        from app.infrastructure.context_usage import context_call_kind
+        if self._fallback is None or context_call_kind.get() == 'summary':
             raise last_error  # type: ignore[misc]
 
         logger.warning("模型 %s 重试用尽，回退到 %s：%s", self.model, self._fallback.model, last_error)
@@ -637,6 +653,7 @@ def create_chat_model(
         fallback=fallback,
         max_transient_retries=settings.llm_max_retries,
         bus=bus,
+        recovery_mode=settings.model_recovery_mode,
         formatter=PromptCacheFormatter(mode=settings.prompt_cache_mode, policy=settings.prompt_cache_policy),
         **common,
     )

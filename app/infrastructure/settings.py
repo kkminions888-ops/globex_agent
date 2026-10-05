@@ -86,10 +86,13 @@ class Settings:
     context_product_tokens: int = 6000
     context_prompt_layout: str = "legacy_system"  # stable_prefix 待收益验收后启用
     context_state_mode: str = "snapshot"  # delta 只用于稳定前缀的独立实验
+    context_summary_mode: str = "native"  # preserve_prefix 为同模型、原工具定义的摘要候选
+    model_recovery_mode: str = "off"  # bounded 为有限次续写候选；取消和协议越权不重试
     context_prune_low_ratio: float = 1.0  # 小于 1 时触发后回收到较低水位
     context_lookup_mode: str = "strict"  # bounded 兼容明确字段别名及限额分页
     context_compact_result_rules: bool = False  # 固定说明提升到规则，JSON只移除空白
     context_target_tokens: int = 48000
+    learning_capture_enabled: bool = False  # 终态入队；离线 worker 单独执行，不自动训练或发布
     database_url: str = ""
     # ---- 四期：Redis 缓存 ----
     redis_url: str = ""  # 空 = 全部缓存能力关闭（零外部依赖）
@@ -139,10 +142,11 @@ class Settings:
     embedding_version: str = ""  # 同名模型更新权重或编码方式时，用版本区分已存向量
 
 
-def load_settings() -> Settings:
+def load_settings(*, require_llm_key: bool = True) -> Settings:
+    """服务启动默认校验密钥；离线评测可先读取配置，再按运行档位校验。"""
     llm_base_url = os.getenv("LLM_BASE_URL", "https://dashscope.aliyuncs.com/compatible-mode/v1")
     llm_api_key = os.getenv("LLM_API_KEY", "")
-    if not llm_api_key:
+    if require_llm_key and not llm_api_key:
         raise RuntimeError(
             "未配置 LLM_API_KEY，无法启动。请通过环境变量注入（推荐）："
             "export LLM_API_KEY=<你的密钥>；或在项目根目录创建本地 .env 文件"
@@ -157,10 +161,13 @@ def load_settings() -> Settings:
         context_product_tokens=int(os.getenv("CONTEXT_PRODUCT_TOKENS", "6000")),
         context_prompt_layout=os.getenv("CONTEXT_PROMPT_LAYOUT", "legacy_system"),
         context_state_mode=os.getenv("CONTEXT_STATE_MODE", "snapshot"),
+        context_summary_mode=os.getenv("CONTEXT_SUMMARY_MODE", "native"),
+        model_recovery_mode=os.getenv("MODEL_RECOVERY_MODE", "off"),
         context_prune_low_ratio=float(os.getenv("CONTEXT_PRUNE_LOW_RATIO", "1")),
         context_lookup_mode=os.getenv("CONTEXT_LOOKUP_MODE", "strict"),
         context_compact_result_rules=os.getenv("CONTEXT_COMPACT_RESULT_RULES", "0") == "1",
         context_target_tokens=int(os.getenv("CONTEXT_TARGET_TOKENS", "48000")),
+        learning_capture_enabled=os.getenv("LEARNING_CAPTURE_ENABLED", "0") == "1",
         llm_base_url=llm_base_url,
         llm_api_key=llm_api_key,
         llm_model=os.getenv("LLM_MODEL", "qwen3-max"),

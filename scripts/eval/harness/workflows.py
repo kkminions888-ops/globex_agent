@@ -206,7 +206,8 @@ async def _run_workflow(case, settings, throttle, folder, repetition, usage_hook
                         mid = LayeredContextMiddleware(search.evidence_store,
                             product_tokens=settings.context_product_tokens, target_tokens=settings.context_target_tokens,
                             prompt_layout=settings.context_prompt_layout, state_mode=settings.context_state_mode,
-                            prune_low_ratio=settings.context_prune_low_ratio, compact_result_rules=settings.context_compact_result_rules)
+                            prune_low_ratio=settings.context_prune_low_ratio, compact_result_rules=settings.context_compact_result_rules,
+                            summary_mode=settings.context_summary_mode)
                         compact_started=time.monotonic()
                         try:
                             report = await mid.run(agent, force=True)

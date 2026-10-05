@@ -102,7 +102,8 @@ class Benchmark:
         middleware=EvidenceCompactionMiddleware(store) if strategy=='legacy' else LayeredContextMiddleware(store,
             timing={'entry':'entry','after_use':'after_use'}.get(strategy,self.timing),summary=strategy!='deterministic',
             product_tokens=self.settings.context_product_tokens,target_tokens=self.settings.context_target_tokens,prompt_layout=self.settings.context_prompt_layout,
-            state_mode=self.settings.context_state_mode,prune_low_ratio=self.settings.context_prune_low_ratio, compact_result_rules=self.settings.context_compact_result_rules)
+            state_mode=self.settings.context_state_mode,prune_low_ratio=self.settings.context_prune_low_ratio, compact_result_rules=self.settings.context_compact_result_rules,
+            summary_mode=self.settings.context_summary_mode)
         if strategy == 'legacy':
             from scripts.eval.baselines.lookup_v1 import build_conversation_fact_lookup as baseline_lookup
             lookup_impl = baseline_lookup(store)

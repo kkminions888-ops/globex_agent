@@ -190,7 +190,7 @@ async def test_runner_keeps_failed_case_and_generates_html(tmp_path,monkeypatch)
     monkeypatch.setattr(runner,'execute_case',failure)
     from app.infrastructure.settings import load_settings
     from dataclasses import replace
-    monkeypatch.setattr('app.infrastructure.settings.load_settings',lambda:replace(load_settings(),llm_api_key='test-key',llm_base_url='http://localhost.invalid'))
+    monkeypatch.setattr('app.infrastructure.settings.load_settings',lambda **kwargs:replace(load_settings(require_llm_key=False),llm_api_key='test-key',llm_base_url='http://localhost.invalid'))
     out=tmp_path/'evaluation'
     await runner.run_profile('smoke',out,case_ids=['agent-sku'],skip_contracts=True)
     saved=json.loads((out/'results.json').read_text())
@@ -209,7 +209,7 @@ async def test_cancelled_runner_still_has_partial_report_and_attempt_ledger(tmp_
     monkeypatch.setattr(runner,'execute_case',cancel)
     from app.infrastructure.settings import load_settings
     from dataclasses import replace
-    monkeypatch.setattr('app.infrastructure.settings.load_settings',lambda:replace(load_settings(),llm_api_key='test-key',llm_base_url='http://localhost.invalid'))
+    monkeypatch.setattr('app.infrastructure.settings.load_settings',lambda **kwargs:replace(load_settings(require_llm_key=False),llm_api_key='test-key',llm_base_url='http://localhost.invalid'))
     out=tmp_path/'cancelled'
     with pytest.raises(asyncio.CancelledError):
         await runner.run_profile('smoke',out,case_ids=['agent-sku'],skip_contracts=True)
@@ -268,11 +268,50 @@ def test_execution_environment_is_reproducible_without_credentials():
     from dataclasses import replace
     from app.infrastructure.settings import load_settings
     from scripts.eval.harness.contracts import execution_environment
-    configured=replace(load_settings(),llm_api_key='do-not-export',identity_hmac_secret='do-not-export',loop_repeat_threshold=7)
+    configured=replace(load_settings(require_llm_key=False),llm_api_key='do-not-export',identity_hmac_secret='do-not-export',loop_repeat_threshold=7)
     metadata=execution_environment(configured)
     assert 'do-not-export' not in json.dumps(metadata)
     assert metadata['settings']['loop_repeat_threshold']==7
     assert metadata['packages']['agentscope']
+
+
+def test_application_still_requires_key_but_offline_configuration_does_not(tmp_path, monkeypatch):
+    from app.infrastructure.settings import load_settings
+    monkeypatch.setenv('LLM_API_KEY', '')
+    monkeypatch.setenv('DATA_DIR', str(tmp_path/'data'))
+    with pytest.raises(RuntimeError, match='LLM_API_KEY'):
+        load_settings()
+    assert load_settings(require_llm_key=False).llm_api_key == ''
+
+
+@pytest.mark.parametrize('profile', ['contracts', 'smoke'])
+async def test_missing_credentials_allow_contracts_but_block_model_with_report(tmp_path, monkeypatch, profile, capsys):
+    from unittest.mock import AsyncMock
+    from scripts.eval.harness import runner
+    monkeypatch.setenv('LLM_API_KEY', '')
+    monkeypatch.setenv('LLM_BASE_URL', '')
+    monkeypatch.setenv('DATA_DIR', str(tmp_path/'data'))
+    contracts = AsyncMock(return_value={'passed':True, 'passed_count':1})
+    model = AsyncMock(side_effect=AssertionError('缺少密钥不能请求模型'))
+    monkeypatch.setattr(runner, 'contract_checks', contracts)
+    monkeypatch.setattr(runner, 'execute_case', model)
+    out = tmp_path/profile
+    await runner.run_profile(profile, out)
+    saved = json.loads((out/'manifest.json').read_text())
+    contracts.assert_awaited_once()
+    model.assert_not_awaited()
+    assert saved['source_stable'] is True
+    assert (out/'report.html').is_file()
+    assert json.loads((out/'results.json').read_text()) == []
+    if profile == 'contracts':
+        assert saved['status'] == 'completed'
+        assert 'error' not in saved
+    else:
+        assert saved['status'] == 'failed'
+        assert saved['error'] == 'model_credentials_missing'
+        assert saved['missing_configuration'] == ['LLM_API_KEY', 'LLM_BASE_URL']
+        assert '缺少配置' in (out/'report.html').read_text()
+        assert 'HARNESS_LLM_API_KEY' in capsys.readouterr().out
 
 
 def test_cross_version_comparison_rejects_hidden_runtime_change(tmp_path):

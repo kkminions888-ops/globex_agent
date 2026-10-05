@@ -12,6 +12,9 @@ from typing import Any
 
 import aiosqlite
 
+from app.domain.learning import PROCESSOR_VERSION, canonical, digest
+from app.infrastructure.learning_store import LEARNING_SCHEMA, job_identity, terminal_source
+
 
 class JournalConflict(ValueError):
     pass
@@ -34,8 +37,10 @@ def _json(value: Any) -> str:
 
 
 class AGUIJournal:
-    def __init__(self, path: str | Path):
+    def __init__(self, path: str | Path, *, learning_enabled=False, learning_versions=None):
         self.path = Path(path)
+        self.learning_enabled = learning_enabled
+        self.learning_versions = learning_versions or {}
         self._initialized = False
         self._init_lock = asyncio.Lock()
 
@@ -72,8 +77,7 @@ class AGUIJournal:
                 CREATE TABLE IF NOT EXISTS agui_events (
                   run_id TEXT NOT NULL, seq INTEGER NOT NULL, event_json TEXT NOT NULL,
                   PRIMARY KEY(run_id,seq));
-                COMMIT;
-                        """)
+                        """ + LEARNING_SCHEMA + "COMMIT;")
                     self._initialized = True
                     return
                 except aiosqlite.OperationalError as err:
@@ -220,6 +224,14 @@ class AGUIJournal:
                          (_json(projection), seq, status, now, row["run_id"]))
         await db.execute("UPDATE agui_sessions SET messages_json=?,state_json=?,updated_at=? WHERE session_id=? AND last_run_id=?",
                          (_json(projection["messages"][-100:]), _json(projection["state"]), now, row["session_id"], row["run_id"]))
+        if self.learning_enabled and status != "running" and row["status"] == "running":
+            # 终态和 outbox 同一数据库事务，不能出现页面已完成、任务却未入队的窗口。
+            source_hash = digest(terminal_source(row, projection, seq, status))
+            identity = job_identity("agui", row["run_id"], source_hash, row["buyer_id"], row["session_id"])
+            payload = {"last_seq": seq, "status": status, "processor_version": PROCESSOR_VERSION,
+                       "versions": self.learning_versions}
+            await db.execute("INSERT OR IGNORE INTO learning_jobs(id,source_kind,source_ref,buyer_id,session_id,source_hash,payload_json,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?)",
+                (identity, "agui", row["run_id"], row["buyer_id"], row["session_id"], source_hash, canonical(payload), now, now))
 
     async def append(self, run_id, owner, events):
         async with self._db(True) as db:

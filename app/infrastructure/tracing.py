@@ -445,7 +445,8 @@ def build_agent_middlewares(settings: Settings) -> list:
         from app.infrastructure.context_governance import LayeredContextMiddleware
         middlewares[1] = LayeredContextMiddleware(ContextEvidenceStore(settings.data_dir / 'context_evidence.db'),
             product_tokens=settings.context_product_tokens, target_tokens=settings.context_target_tokens, timing=settings.context_pruning_timing, prompt_layout=settings.context_prompt_layout,
-            state_mode=settings.context_state_mode, prune_low_ratio=settings.context_prune_low_ratio, compact_result_rules=settings.context_compact_result_rules)
+            state_mode=settings.context_state_mode, prune_low_ratio=settings.context_prune_low_ratio, compact_result_rules=settings.context_compact_result_rules,
+            summary_mode=settings.context_summary_mode)
     if settings.reply_token_budget > 0:
         middlewares.append(
             ReplyBudgetControlMiddleware(

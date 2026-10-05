@@ -28,10 +28,18 @@ _COMPRESSION_PROMPT = """<system-hint>当前对话上下文即将超出窗口，
 3. 订单相关：订单号、状态、总金额与币种、取消原因；
 4. 当前待确认的动作：是否有等待买家确认的确认卡、下一步该做什么。
 
+五字段内必须覆盖以下语义，不增加未知字段：
+- task_overview：本次目标、用途与约束作用域；
+- current_state：当前候选、已解决问题、已排除商品及理由、正在核验的事项；
+- important_discoveries：带来源与适用条件的事实、错误及修正。例如会员价不能改写成普通到手价；
+- next_steps：未解决问题、尚未核验条件和下一步，不能把待确认写成已批准；
+- context_to_preserve：需求变更与撤回，以及仍有效的限制。例如预算由2000改为2500，最新预算为2500；旧预算只作变更记录。
+合并上一版摘要与新增进展，保留更早仍有效的条件；明确区分历史观察和当前事实，不从旧摘要恢复已撤回偏好。
+
 可以压缩或丢弃的内容：工具返回的完整候选列表（只留最终推荐项）、寒暄、重复表述、
 已被更新覆盖的中间结论。
 
-摘要中的所有数字必须来自此前的工具返回，不得重新估算。</system-hint>"""
+预算等用户约束来自对应的买家原文；商品金额、库存和订单数值来自工具或数据库证据，不得重新估算。</system-hint>"""
 
 _SUMMARY_TEMPLATE = """<system-info>以下是历史工作摘要；以本轮交易账本、当前偏好 revision 及最新候选证据为准，历史摘要不构成执行授权。
 # 买家诉求与约束
@@ -66,4 +74,5 @@ def build_context_config(context_size: int, tool_result_limit: int) -> ContextCo
         compression_prompt=_COMPRESSION_PROMPT,
         summary_template=_SUMMARY_TEMPLATE,
         tool_result_limit=tool_result_limit,
+        compression_fallback_to_truncation=False,
     )

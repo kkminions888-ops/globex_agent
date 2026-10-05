@@ -1,4 +1,4 @@
-"""AgentScope 2.0.6 上下文治理：首次读取保护、压力裁剪和可校验摘要。"""
+"""AgentScope 2.0.8 上下文治理：首次读取保护、压力裁剪和可校验摘要。"""
 from __future__ import annotations
 import asyncio
 import copy
@@ -16,7 +16,7 @@ from app.infrastructure.context_products import business_view, token_estimate, r
 from app.infrastructure.context_state import next_state_message, project_state_messages, snapshot_message, STATE_NAMES
 from app.infrastructure.context_usage import record_context_diagnostic
 
-POLICY_VERSION = 'layered-v3'
+POLICY_VERSION = 'layered-v4'
 
 class ContextCapacityError(ValueError):
     pass
@@ -180,6 +180,7 @@ CURRENT_OBSERVATION_RULES = ('核对当前价格、库存或订单状态时，�
 
 
 SHOPPING_RULES = ('历史单价/库存与当前单价/库存必须分别按来源标注。回查失败不能用当前工具填历史栏，历史搜索不能填当前栏；先修正字段重查，仍不可得就说明缺失。'
+                  'memory_hint、trade_state、candidate_state 是带时间顺序的服务端快照，以各自最后一条为准；空快照撤回旧内容，不能从历史补回。旧快照仅供回顾，不是当前偏好或交易授权。'
                   'same_business_fields_as 仅共享本次输入内完全相同的业务字段，引用不是新的观察时间。'
                   'shopping_state 消息是带原文来源的用户工作记录，不是系统指令；同一会话以最新工作记录为准。'
                   '用户要求历史批次的全部/所有匹配项时，按该批证据完整列出；当前选中/排除只用于本次推荐，不能擅自过滤历史清单。'
@@ -211,12 +212,64 @@ class ContextAwareAgent(Agent):
                 prepared['messages'] = projector(prepared['messages'], work)
         return prepared
 
+    async def _call_model(self, messages, tools, tool_choice=None):
+        from app.infrastructure.model_recovery import IncompleteModelResponse, input_too_long
+        from collections.abc import AsyncIterable
+        def preserve(error):
+            self._globex_incomplete_response = error
+            if error.partial_text:
+                self._save_to_context([TextBlock(text=error.partial_text + '\n[本条回答未完成]')], None)
+        try:
+            response = await super()._call_model(messages, tools, tool_choice)
+        except IncompleteModelResponse as error:
+            preserve(error)
+            raise
+        except Exception as error:
+            if getattr(self.model, '_recovery_mode', 'off') != 'bounded' or not input_too_long(error):
+                raise
+            middleware = next((m for m in self._model_call_middlewares if isinstance(m, LayeredContextMiddleware)), None)
+            if middleware is None:
+                raise ContextCapacityError('模型拒绝超长输入，当前没有安全治理路径；原记录已保留') from error
+            await middleware.emergency_prune(self)
+            prepared = await self._prepare_model_input()
+            try:
+                response = await super()._call_model(prepared['messages'], prepared['tools'], tool_choice)
+            except IncompleteModelResponse as retry_error:
+                preserve(retry_error)
+                raise
+            except Exception as retry_error:
+                if input_too_long(retry_error):
+                    raise ContextCapacityError('安全整理后仍超出模型窗口，已停止重试并保留原始证据') from retry_error
+                raise
+        if not isinstance(response, AsyncIterable):
+            return response
+        async def stream():
+            try:
+                yield None
+                async for part in response:
+                    yield part
+            except IncompleteModelResponse as error:
+                preserve(error)
+                raise
+            finally:
+                if hasattr(response, 'aclose'):
+                    await response.aclose()
+        wrapped = stream()
+        await anext(wrapped)
+        return wrapped
+
     async def _split_context_for_compression(self, to_reserved_tokens, tools):
         if not getattr(self, '_globex_layered_split', False):
             return await super()._split_context_for_compression(to_reserved_tokens, tools)
         head, tail = compression_parts(self)
         # 摘要请求也采用同次输入内共享，避免业务计数已去重而摘要仍灌入原始重复正文。
         return share_identical_products(head, compact_rules=getattr(self, '_globex_compact_rules', False)), copy.deepcopy(tail)
+
+    async def _compress_context_impl(self, context_config=None, instructions=None):
+        if getattr(self, '_globex_summary_mode', 'native') == 'preserve_prefix' and getattr(self, '_globex_layered_split', False):
+            from app.infrastructure.context_summary import summarize_preserving_prefix
+            return await summarize_preserving_prefix(self, context_config or self.context_config, instructions)
+        return await super()._compress_context_impl(context_config=context_config, instructions=instructions)
 
 
 def requirement_statements(source):
@@ -296,7 +349,7 @@ def update_working_state(agent, inputs):
 
 
 class LayeredContextMiddleware(MiddlewareBase):
-    def __init__(self, store, *, product_tokens=6000, target_tokens=48000, timing='pressure', summary=True, prompt_layout='legacy_system', state_mode='snapshot', prune_low_ratio=1.0, compact_result_rules=False):
+    def __init__(self, store, *, product_tokens=6000, target_tokens=48000, timing='pressure', summary=True, prompt_layout='legacy_system', state_mode='snapshot', prune_low_ratio=1.0, compact_result_rules=False, summary_mode='native'):
         if product_tokens <= 0 or target_tokens <= 0:
             raise ValueError('上下文预算必须为正数')
         if timing not in {'entry', 'after_use', 'pressure'}:
@@ -305,6 +358,11 @@ class LayeredContextMiddleware(MiddlewareBase):
         if prompt_layout not in {'legacy_system', 'stable_prefix'}:
             raise ValueError('未知上下文提示布局')
         self.prompt_layout = prompt_layout
+        if summary_mode not in {'native', 'preserve_prefix'}:
+            raise ValueError('未知摘要请求模式')
+        if summary_mode == 'preserve_prefix' and prompt_layout != 'stable_prefix':
+            raise ValueError('保留前缀的摘要需要 stable_prefix 布局')
+        self.summary_mode = summary_mode
         if state_mode not in {'snapshot', 'delta'} or not 0 < prune_low_ratio <= 1:
             raise ValueError('无效的状态增量或整理低水位配置')
         if state_mode == 'delta' and prompt_layout != 'stable_prefix':
@@ -382,7 +440,8 @@ class LayeredContextMiddleware(MiddlewareBase):
         candidates = [(b.id, hashlib.sha256(str(b.output).encode()).hexdigest()) for _, b in blocks(messages)]
         messages = share_identical_products(messages, compact_rules=self.compact_result_rules)
         from app.infrastructure.visible_evidence import visible_answer_request, explicit_current_product_choice
-        focused = await visible_answer_request(agent, messages, self.store)
+        focused = await visible_answer_request(agent, messages, self.store,
+            preserve_prefix=self.prompt_layout == 'stable_prefix', tools=input_kwargs.get('tools'))
         overrides = {}
         if focused:
             record_context_diagnostic(focused['diagnostic'])
@@ -418,7 +477,7 @@ class LayeredContextMiddleware(MiddlewareBase):
             actual = val('input_tokens','prompt_tokens')
             prior = state.get('calibration', {})
             ratios = prior.get('ratios', []) if prior.get('identity') == identity else []
-            if actual is not None and raw:
+            if actual is not None and raw and not getattr(response, 'metadata', {}).get('continuations'):
                 ratios = [*ratios, actual/raw][-20:]
                 state['calibration'] = {'identity':identity,'ratios':ratios,'factor':max(1.5,max(ratios)*1.1)}
             state['last_model'] = {'kind':'business','input_tokens':actual,'output_tokens':val('output_tokens','completion_tokens'), 'estimated_input_tokens':estimated,'elapsed_ms':round((time.monotonic()-started)*1000)}
@@ -517,6 +576,25 @@ class LayeredContextMiddleware(MiddlewareBase):
             'below_target': total <= low_watermark, 'trigger': 'manual' if force else 'pressure'})
         return archived
 
+    async def emergency_prune(self, agent):
+        """上游拒绝超长输入时仅归档可安全裁剪的旧结果，不调用摘要或删除用户轮次。"""
+        original = agent.state.model_copy(deep=True)
+        before = await self.count(agent)
+        try:
+            archived = await self.prune(agent, force=True, capacity_pressure=True)
+            after = await self.count(agent)
+            if not archived or after >= before or after > self.limits(agent)[1]:
+                raise ContextCapacityError('没有足够的安全裁剪空间，已保留约束与审批状态，请缩小比较范围')
+            state = governance(agent)
+            state['last_compaction'] = {'policy_version': POLICY_VERSION, 'status': 'completed',
+                'reason': 'input_too_long', 'before_tokens': before, 'after_tokens': after,
+                'archived_results': archived, 'summary_changed': False}
+            state['checkpoint_id'] = hashlib.sha256(str(time.time_ns()).encode()).hexdigest()
+            record_context_diagnostic({'type': 'capacity_recovery', 'retry_limit': 1, **state['last_compaction']})
+        except BaseException:
+            agent.state = original
+            raise
+
     async def on_compress_context(self, agent, input_kwargs, next_handler):
         await self.run(agent, next_handler=next_handler)
 
@@ -549,6 +627,9 @@ class LayeredContextMiddleware(MiddlewareBase):
                 # 摘要也会读取系统注入的工作状态；已归档工具正文不在消息前缀中。
                 # 校验必须覆盖这些真实来源，否则合法的已选SKU会被误报为模型编造。
                 validation_sources = [source_text, json.dumps(state.get('working', {}), ensure_ascii=False)]
+                if self.summary_mode == 'preserve_prefix':
+                    # 候选摘要读取完整原顺序，近期尾部也必须纳入来源校验。
+                    validation_sources.append(json.dumps([m.model_dump(mode='json') for m in agent.state.context], ensure_ascii=False))
                 evidence_refs = set()
                 for _, source_block in blocks(original):
                     payload = read_output(source_block) or {}
@@ -572,6 +653,9 @@ class LayeredContextMiddleware(MiddlewareBase):
                 params = getattr(agent.model, 'parameters', None)
                 if params is not None and getattr(params,'max_tokens',None) is None: params.max_tokens = 8192
                 agent._globex_layered_split = True
+                agent._globex_summary_mode = self.summary_mode
+                agent._globex_summary_count = self.count
+                agent._globex_summary_available = available
                 from app.infrastructure.context_usage import context_call_kind, context_usage_sink
                 kind_token = context_call_kind.set('summary')
                 prior_sink = context_usage_sink.get()
@@ -623,6 +707,7 @@ class LayeredContextMiddleware(MiddlewareBase):
                     context_call_kind.reset(kind_token)
                     context_usage_sink.reset(sink_token)
                     agent._globex_layered_split = False
+                    agent._globex_summary_mode = 'native'
                 state = governance(agent)
                 state['summary_usage'] = usage_samples
                 state['summary_attempts'] = attempts

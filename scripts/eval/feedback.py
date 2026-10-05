@@ -94,9 +94,15 @@ class FeedbackStore:
         return proposal
 
     def import_manifest(self, path: Path) -> dict:
-        raw = path.read_bytes(); manifest = json.loads(raw); manifest_hash = hashlib.sha256(raw).hexdigest()
+        from scripts.eval.learning_import import read_report
+        manifest, imported_results, manifest_hash = read_report(path)
         summary = {'queued_scores': 0, 'badcases': 0, 'unlinked_scores': 0}
-        results = manifest.get('execution', {}).get('results', [])
+        if manifest.get('schema_version') == 'harness-eval-v1':
+            # 新版结果与 manifest 分文件；实例身份必须包含策略和重复号。
+            results = [{**row, 'id': f"{row['case_id']}:{row['strategy']}:{row['repetition']}",
+                        'verdict': 'PASS' if row['passed'] else 'FAIL'} for row in imported_results]
+        else:
+            results = imported_results
         for result in results:
             refs = {event.get('correlation', {}).get('trace_id') for event in result.get('trace_events', [])
                     if valid_trace_id(event.get('correlation', {}).get('trace_id'))}

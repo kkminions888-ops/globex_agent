@@ -196,6 +196,37 @@ class CapabilityRegistry:
             self._audit(db, row, "publish", publisher, evidence)
             return self._metadata(self._row(db, kind, identifier, version))
 
+    def publish_learned(self, document, *, base, actor, evidence):
+        """学习服务完成审核后发布；基准 CAS 与注册表写入处于同一事务。"""
+        doc = validate(document)
+        actor, evidence = self._actor(actor), self._proof(evidence)
+        if doc['kind'] != 'strategy' or not doc['id'].startswith('learned-'):
+            raise CapabilityError('自动维护只允许 learned- 命名空间的系统策略')
+        raw = canonical(doc)
+        content_hash = hashlib.sha256(raw.encode()).hexdigest()
+        with self._transaction() as db:
+            existing = db.execute('SELECT * FROM capabilities WHERE kind=? AND id=? AND version=?', ('strategy', doc['id'], doc['version'])).fetchone()
+            if existing:
+                row = self._row(db, 'strategy', doc['id'], doc['version'])
+                if row['content_hash'] == content_hash and row['state'] == 'published':
+                    return self._metadata(row)
+                raise CapabilityError('目标版本已存在，不能覆盖或重新发布已撤销内容')
+            active = db.execute("SELECT * FROM capabilities WHERE kind='strategy' AND id=? AND state='published' ORDER BY published_at DESC LIMIT 1", (doc['id'],)).fetchone()
+            if base:
+                if not active or any(active[key] != base[key] for key in ('id', 'version', 'content_hash')):
+                    raise CapabilityError('策略基准版本已改变，请重新提炼和验证')
+                self._row(db, 'strategy', base['id'], base['version'])
+            elif active:
+                raise CapabilityError('新增策略 ID 已占用，必须显式指定基准版本')
+            if parse_time(doc['expires_at']) <= now():
+                raise CapabilityError('策略已过期')
+            stamp = now().isoformat()
+            db.execute("INSERT INTO capabilities(kind,id,version,content_hash,payload,state,author,created_at,reviewer,review_evidence,publisher,published_at) VALUES(?,?,?,?,?,'published',?,?,?,?,?,?)",
+                       ('strategy', doc['id'], doc['version'], content_hash, raw, actor, stamp, actor, evidence, actor, stamp))
+            row = self._row(db, 'strategy', doc['id'], doc['version'])
+            self._audit(db, row, 'publish_learned', actor, evidence)
+            return self._metadata(row)
+
     def revoke(self, kind, identifier, version, *, actor, reason):
         actor, reason = self._actor(actor), self._proof(reason)
         with self._transaction() as db:

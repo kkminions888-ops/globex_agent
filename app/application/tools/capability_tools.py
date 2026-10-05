@@ -2,6 +2,7 @@
 """按需读取已审核能力；工具无发布、执行代码、动态注册或偏好写入入口。"""
 import asyncio
 import json
+import logging
 
 from agentscope.message import TextBlock, ToolResultState
 from agentscope.tool import ToolChunk
@@ -73,6 +74,17 @@ def build_capability_tools(registry, available_tools, bus, personal_store=None):
                 if not snapshot.capability_digest:
                     ShoppingContext.set_capability_digest(bound_digest)
             data = await asyncio.to_thread(operation, expected_digest=expected_digest, **kwargs)
+            if tool == "lookup_strategy_memory_tool" and isinstance(data, list) and data:
+                from app.infrastructure.learning_context import learning_run
+                from app.infrastructure.learning_store import LearningStore
+                audit = learning_run.get()
+                if audit:
+                    try:
+                        await asyncio.to_thread(LearningStore(audit["path"]).record_exposure,
+                            run_id=audit["run_id"], buyer_id=audit["buyer_id"], session_id=audit["session_id"], strategies=data)
+                    except Exception as error:
+                        # 审计失败不能改变已验证的工具结果，也不能伪造一次成功采纳。
+                        logging.getLogger(__name__).warning("策略读取审计未保存：%s", type(error).__name__)
             # 诊断只发布版本与命中数；正文留在本次工具响应，不复制到广播日志。
             bus.publish(session, "tool.result", {"tool": tool, "count": len(data) if isinstance(data, list) else 1,
                                                  "content_hash": data.get("content_hash") if isinstance(data, dict) else None})

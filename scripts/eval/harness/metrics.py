@@ -122,8 +122,12 @@ def summarize(manifest, rows):
             'state_skipped': sum(not d['emitted'] for d in states) if states else None,
             'prune_rewrites': sum(d['archived_results'] > 0 for d in prunes) if prunes else None,
             'archived_results': sum(d['archived_results'] for d in prunes) if prunes else None,
-            'request_reasons': {reason: sum(r['reason'] == reason for r in requests) for reason in sorted({r['reason'] for r in requests})},
-            'estimated_sections': {section: sum(r[section + '_estimated_tokens'] for r in requests) if requests else None
+            'request_reasons': {reason: sum((r.get('reason') or 'unknown') == reason for r in requests)
+                for reason in sorted({r.get('reason') or 'unknown' for r in requests})},
+            # 旧版或失败调用可能只有恢复次数；缺失分区不能补零，也不能阻断原始失败报告。
+            'estimated_sections': {section: sum(r[section + '_estimated_tokens'] for r in requests)
+                if requests and all(type(r.get(section + '_estimated_tokens')) in (int, float)
+                    and math.isfinite(r[section + '_estimated_tokens']) for r in requests) else None
                 for section in ('system', 'state', 'product', 'history', 'tool_schema')},
             'measured_requests': len(requests),
             'visible_evidence_answers':sum(d.get('type')=='visible_evidence' and d.get('covered') is True for d in diagnostics),

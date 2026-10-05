@@ -35,6 +35,11 @@ def render(output: Path, manifest, rows):
       f'<div class="card"><small>失败场景运行</small><b>{report["failure_count"]}</b><small>保留最初失败与异常</small></div>',
       f'<div class="card"><small>统计单位</small><b>{len(manifest["cases"])} 个场景</b><small>重复运行先在场景内聚合</small></div></div>',
       '<section><h2>先看结论</h2>']
+    if manifest.get('error'):
+        parts.append('<p class="note">评测未完成：'+e(manifest['error'])+'</p>')
+    if manifest.get('missing_configuration'):
+        parts.append('<p class="note">缺少配置：'+e('、'.join(manifest['missing_configuration']))+
+                     '。GitHub Actions 需配置对应的 HARNESS_LLM_API_KEY / HARNESS_LLM_BASE_URL secrets。</p>')
     for name,g in report['gates'].items():
         parts.append(f'<h3>{e(name)}：{e(g["status"])}</h3><ul>'+''.join('<li>'+e(reason)+'</li>' for reason in g['reasons'])+'</ul>')
     parts.append('<h3>服务模型与工具合同</h3><table><tr><th>策略</th><th>响应模型</th><th>标识不符 / 未知</th><th>工具协议异常 / 未知</th><th>已有证据直接回答</th></tr>')

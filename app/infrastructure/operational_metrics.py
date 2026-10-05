@@ -11,7 +11,8 @@ from time import perf_counter
 from typing import Any
 
 _TOOL_NAMES = {'product_search_tool', 'category_insight_tool', 'create_order_tool', 'query_order_tool',
-               'cancel_order_tool', 'remember_preference_tool', 'landed_price_tool', 'web_search_tool'}
+               'cancel_order_tool', 'remember_preference_tool', 'landed_price_tool', 'web_search_tool',
+               'lookup_strategy_memory_tool', 'load_agent_skill_tool'}
 _STATUSES = {'success', 'error', 'cancelled'}
 _BUCKETS = (100, 500, 1000, 5000, 15000, 30000, 60000, 120000)
 

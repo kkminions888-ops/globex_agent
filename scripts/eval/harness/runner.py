@@ -116,7 +116,8 @@ async def run_profile(profile, output, *, suite_path=None, strategies=None, case
     (output/'traces').mkdir()
     from app.infrastructure.settings import load_settings
     from app.infrastructure.throttle import GatewayThrottle
-    config=load_settings();runtime=suite['runtime']
+    # 离线契约不需要模型密钥；真实评测先保存报告，再明确拦截缺失配置。
+    config=load_settings(require_llm_key=False);runtime=suite['runtime']
     settings=replace(config,llm_fallback_model='',llm_max_retries=runtime['model_retries'],
         semantic_cache_enabled=False,redis_url='',queue_enabled=False,tavily_api_key='',
         context_size=runtime['context_size'],reply_token_budget=0,token_budget_total=0,otlp_endpoint='',
@@ -157,6 +158,10 @@ async def run_profile(profile, output, *, suite_path=None, strategies=None, case
                 return checkpoint()
         if ids and (not settings.llm_api_key or not settings.llm_base_url):
             manifest['status']='failed';manifest['error']='model_credentials_missing'
+            manifest['missing_configuration'] = [name for name, value in (
+                ('LLM_API_KEY', settings.llm_api_key), ('LLM_BASE_URL', settings.llm_base_url)) if not value]
+            print('未执行真实模型评测，缺少配置：'+', '.join(manifest['missing_configuration'])+
+                  '。GitHub Actions 请配置对应的 HARNESS_LLM_API_KEY / HARNESS_LLM_BASE_URL secrets。', flush=True)
             return checkpoint()
         throttle=GatewayThrottle(1,runtime['min_interval_seconds'])
         cases={c['id']:c for c in suite['_cases']}

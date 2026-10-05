@@ -95,7 +95,7 @@ def supported_sku_fields_only(text, payload):
     return re.fullmatch(r'[\s，。！？、；：,.!?;:（）()「」【】\[\]“”\'"]*', rest) is not None
 
 
-async def visible_answer_request(agent, messages, store):
+async def visible_answer_request(agent, messages, store, *, preserve_prefix=False, tools=None):
     ctx = ShoppingContext.current()
     if ctx is None or store is None or not hasattr(store, 'batch_locator'):
         return None
@@ -197,6 +197,10 @@ async def visible_answer_request(agent, messages, store):
                 'hits':payload['hits']},ensure_ascii=False,separators=(',',':'))),
         buyer,
     ])
-    return {'messages':prepared,'tools':[],'tool_choice':ToolChoice(mode='none'),
+    if preserve_prefix:
+        # 缓存候选保留工具配对和定义；只追加提取要求，禁止执行由 HTTP 合同落实。
+        prepared = [*messages, *prepared[-3:]]
+    return {'messages':prepared,'tools':tools if preserve_prefix else [],'tool_choice':ToolChoice(mode='none'),
             'diagnostic':{'type':'visible_evidence','covered':True,'batch':number,
-                          'product_count':len(payload['hits']),'historical_lookup_required':False}}
+                          'product_count':len(payload['hits']),'historical_lookup_required':False,
+                          'prefix_preserved':preserve_prefix}}

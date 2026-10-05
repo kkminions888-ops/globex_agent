@@ -90,6 +90,10 @@ class MainAgentFactory:
         self.skill_catalog_mode = settings.skill_catalog_mode
         if self.skill_catalog_mode not in {"legacy", "append_only"}:
             raise ValueError("SKILL_CATALOG_MODE 只支持 legacy / append_only")
+        self.stable_prefix = settings.context_prompt_layout == 'stable_prefix'
+        if self.stable_prefix:
+            # 稳定布局必须覆盖目录链路，不能只稳定购物状态却继续回写旧 Skill。
+            self.skill_catalog_mode = 'append_only'
         self.shopping_form_store = shopping_form_store
         # 与 orchestrator 共用同一个 selector，保证主/子 Agent 的偏好选取口径一致
         self._preference_selector = preference_selector or PreferenceSelector()

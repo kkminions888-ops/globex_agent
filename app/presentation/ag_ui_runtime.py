@@ -14,6 +14,7 @@ from app.application.agents.ag_ui_adapter import AGUIRunAdapter
 from app.application.agents.orchestrator import SubmitIntentInput
 from app.infrastructure.ag_ui_journal import AGUIJournal, JournalLeaseLost
 from app.infrastructure.eventbus import observe_run_events
+from app.infrastructure.learning_context import learning_scope
 
 logger = logging.getLogger(__name__)
 
@@ -135,7 +136,7 @@ class AGUIRuntime:
                 saved = await self.confirmations.list(intent.buyer_id, intent.shopping_session_id)
                 adapter.state["confirmations"] = saved["confirmations"]
                 adapter.snapshot()
-            with observe_run_events(adapter.on_trade_event):
+            with learning_scope(self.journal, body.run_id, intent.buyer_id, intent.shopping_session_id), observe_run_events(adapter.on_trade_event):
                 result = await self.orchestrator.handle_intent(intent, event_observer=adapter.on_agent_event,
                     use_semantic_cache=False, persistence_guard=entry.is_valid)
             if not entry.is_valid():
@@ -143,7 +144,7 @@ class AGUIRuntime:
             if getattr(result,"error_code",None)=="SESSION_VERSION_CHANGED":
                 adapter.state["resumeDestination"]=await self.journal.latest_destination(intent.shopping_session_id,intent.buyer_id)
             if result.error or adapter.error:
-                adapter.fail(result.error if getattr(result,"error_code",None) in {"SESSION_VERSION_CHANGED","CONTEXT_CAPACITY_EXCEEDED"} else adapter.error or "本轮服务暂时未能完成请求，请重试。", code=getattr(result,"error_code",None))
+                adapter.fail(result.error if getattr(result,"error_code",None) in {"SESSION_VERSION_CHANGED","CONTEXT_CAPACITY_EXCEEDED","MODEL_RESPONSE_INCOMPLETE"} else adapter.error or "本轮服务暂时未能完成请求，请重试。", code=getattr(result,"error_code",None))
             else:
                 adapter.finish(result.final_text)
         except asyncio.CancelledError:
