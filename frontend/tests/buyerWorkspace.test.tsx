@@ -6,6 +6,7 @@ import App from "../src/App";
 
 let host: HTMLDivElement, root: Root;
 let personal: any[], preferences: any[], requests: any[], failure: boolean;
+let sessions: {id:string;title:string;updatedAt:number}[];
 let contextOperation: {operation_id:string;status:string}|null;
 let finishCompaction: ((response:Response)=>void)|undefined;
 beforeEach(() => {
@@ -13,13 +14,19 @@ beforeEach(() => {
   sessionStorage.clear();
   localStorage.clear(); localStorage.setItem("globex.access-token", "test-token");
   personal=[]; preferences=[]; requests=[]; failure=false;
+  sessions=[];
   contextOperation=null; finishCompaction=undefined;
   vi.stubGlobal("scrollTo",vi.fn()); Element.prototype.scrollIntoView=vi.fn();
   vi.stubGlobal("fetch",vi.fn(async (input: string, init?: RequestInit) => {
     const url=new URL(String(input),"http://test"), path=url.pathname, method=init?.method ?? "GET";
     const body=init?.body ? JSON.parse(String(init.body)) : undefined;
     requests.push({ path, method, body, query:url.searchParams, headers:init?.headers });
-    if (path.endsWith("/sessions")) return Response.json({sessions:[]});
+    if (path.endsWith("/sessions")) return Response.json({sessions});
+    if (path.startsWith("/commerce/ag-ui/sessions/")) {
+      const id=decodeURIComponent(path.split("/").at(-1)!);
+      return Response.json({run:{runId:`run-${id}`,threadId:id,status:"completed",state:{}},
+        messages:[{id:`message-${id}`,role:"assistant",content:`已从数据库恢复：${id}`}],activities:[],productHistory:[],events:[]});
+    }
     if (path.endsWith("/confirmations")) return Response.json({confirmations:[]});
     if (path.endsWith("/favorites")) return Response.json({products:[]});
     if (path === "/commerce/context") return Response.json({revision:3,operation:contextOperation});
@@ -142,7 +149,10 @@ it("刷新后保留偏好页面并重新读取已保存的服务端偏好", asyn
 it("整理中切到 Skill 页面，后台完成后解除全局忙碌状态", async () => {
   await mount();await fill("query","帮我挑通勤包");
   await click(host.querySelector('[aria-label="发送选购需求"]')!);
+  await click(host.querySelector(".context-meter-trigger")!);
   await click(button("整理上下文"));
+  expect(host.querySelector('[aria-label="停止生成"]')).toBeNull();
+  expect(host.querySelector<HTMLButtonElement>('[aria-label="发送选购需求"]')!.disabled).toBe(true);
   await click(button("我的 Skill"));
   expect(host.querySelector<HTMLInputElement>("#personal-skill-title")!.matches(":disabled")).toBe(true);
   expect(finishCompaction).toBeTypeOf("function");
@@ -152,6 +162,7 @@ it("整理中切到 Skill 页面，后台完成后解除全局忙碌状态", asy
   });
   expect(host.querySelector<HTMLInputElement>("#personal-skill-title")!.matches(":disabled")).toBe(false);
   await click(button("我的选购"));
+  await click(host.querySelector(".context-meter-trigger")!);
   expect(button("整理上下文").disabled).toBe(false);
 });
 
@@ -166,4 +177,40 @@ it("在偏好页刷新也会恢复当前会话的整理状态", async () => {
     finishCompaction!(Response.json({status:"completed",message:"恢复完成"}));
   });
   expect(host.querySelector<HTMLTextAreaElement>("#preference-statement")!.matches(":disabled")).toBe(false);
+});
+
+it("侧栏点击搜索才显示输入，按 ID 找到历史并读取服务端正文，不启动新运行", async () => {
+  sessions=[{id:"session-latest",title:"通勤耳机",updatedAt:200},{id:"session-backpack",title:"周末轻便背包",updatedAt:100}];
+  await mount();
+  expect(host.querySelector(".sidebar input")).toBeNull();
+  const trigger=host.querySelector<HTMLButtonElement>(".sidebar-search-trigger")!;
+  trigger.focus();await click(trigger);
+  const input=host.querySelector<HTMLInputElement>('[role="combobox"][aria-label="搜索选购标题或会话 ID"]')!;
+  expect(document.activeElement).toBe(input);
+  await act(async()=>{
+    Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,"value")!.set!.call(input," SESSION-BACKPACK ");
+    input.dispatchEvent(new Event("input",{bubbles:true}));
+  });
+  expect(host.querySelectorAll('.conversation-search [role="option"]')).toHaveLength(1);
+  await act(async()=>input.dispatchEvent(new KeyboardEvent("keydown",{key:"Enter",bubbles:true,cancelable:true})));
+  expect(host.querySelector('.conversation-search')).toBeNull();
+  expect(host.textContent).toContain("已从数据库恢复：session-backpack");
+  expect(requests.some(r=>r.path==="/commerce/ag-ui/sessions/session-backpack" && r.method==="GET")).toBe(true);
+  expect(requests.some(r=>r.path==="/commerce/ag-ui/run")).toBe(false);
+  expect(host.querySelectorAll('.sidebar-history button')).toHaveLength(2);
+});
+
+it("从手机导航打开搜索时关闭抽屉，关闭搜索恢复导航按钮焦点和滚动", async () => {
+  await mount();
+  const toggle=host.querySelector<HTMLButtonElement>('[aria-label="打开导航"]')!;
+  toggle.focus();await click(toggle);
+  expect(host.querySelector('.sidebar.is-open')).not.toBeNull();
+  await click(host.querySelector('.sidebar-search-trigger')!);
+  expect(host.querySelector('.sidebar.is-open')).toBeNull();
+  expect(document.activeElement).toBe(host.querySelector('.conversation-search input'));
+  expect(document.body.style.overflow).toBe("hidden");
+  await act(async()=>document.dispatchEvent(new KeyboardEvent("keydown",{key:"Escape",bubbles:true})));
+  expect(host.querySelector('.conversation-search')).toBeNull();
+  expect(document.activeElement).toBe(toggle);
+  expect(document.body.style.overflow).toBe("");
 });

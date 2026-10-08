@@ -5,6 +5,7 @@ from __future__ import annotations
 import copy
 import json
 import re
+import time
 from typing import Any, Callable
 
 from ag_ui.core import (
@@ -28,6 +29,7 @@ from ag_ui.core import (
 
 from app.infrastructure.eventbus import TradeEvent
 from app.application.agents.product_candidate_projection import ProductCandidateProjection
+from app.application.agents.activity_summary import input_summary, result_summary
 
 _TOOL_LABELS = {
     "product_search_tool": "检索商品",
@@ -61,6 +63,7 @@ class AGUIRunAdapter:
             "searchCompleted": False,
             "status": "queued",
             "progress": [],
+            "activities": [],
         }
         if authoritative_state:
             self.state.update({k:copy.deepcopy(authoritative_state[k]) for k in ("products","searchCompleted","skillUsages","shoppingForm") if k in authoritative_state})
@@ -70,6 +73,8 @@ class AGUIRunAdapter:
         self._tool_names: dict[str, str] = {}
         self._tool_output: dict[str, list[str]] = {}
         self._skill_args: dict[str, str] = {}
+        self._activity_args: dict[str, str] = {}
+        self._thinking_published: dict[str, float] = {}
         self._completed = False
 
     def _id(self, kind: str, original: str) -> str:
@@ -91,6 +96,46 @@ class AGUIRunAdapter:
         else:
             entry.update(label=label, status=status)
 
+    def _activity(self, identifier: str, kind: str, *, name: str = "") -> dict:
+        entries = self.state["activities"]
+        entry = next((item for item in entries if item["id"] == identifier), None)
+        if entry is None:
+            entry = {"id": identifier, "runId": self.request.run_id, "kind": kind,
+                     "label": "Thinking" if kind == "thinking" else _TOOL_LABELS.get(name, "执行工具"),
+                     "status": "running" if kind == "thinking" else "preparing",
+                     "sequence": len(entries) + 1,
+                     # 记录服务端收到事件的时间，不伪称供应商执行耗时。
+                     "startedAt": int(time.time() * 1000), "finishedAt": None,
+                     "source": "provider" if kind == "thinking" else "agentscope"}
+            if kind == "tool":
+                entry.update(toolCallId=identifier, toolName=name)
+            else:
+                entry["content"] = ""
+            entries.append(entry)
+        elif kind == "tool" and name:
+            entry.update(toolName=name, label=_TOOL_LABELS.get(name, "执行工具"))
+        return entry
+
+    def _publish_activity(self, entry: dict) -> None:
+        # Thinking 只发布单条活动，不为每个 token 重复复制商品和整轮状态。
+        self.emit(CustomEvent(name="activity.upsert", value=copy.deepcopy(entry)))
+
+    def _tool_activity(self, original_id: str, **updates) -> dict:
+        entry = self._activity(self._id("tool", original_id), "tool", name=self._tool_names.get(original_id, ""))
+        entry.update(updates)
+        if entry["status"] in {"completed", "error", "cancelled", "interrupted"}:
+            entry["finishedAt"] = entry["finishedAt"] or int(time.time() * 1000)
+        self._publish_activity(entry)
+        return entry
+
+    def _close_activities(self, status: str, *, keep_waiting: bool = False) -> None:
+        for entry in self.state["activities"]:
+            if entry["status"] in {"preparing", "running", "waiting"}:
+                if keep_waiting and entry["status"] == "waiting":
+                    continue
+                entry.update(status=status, finishedAt=int(time.time() * 1000))
+                self._publish_activity(entry)
+
     def on_agent_event(self, event: Any) -> None:
         """保留框架原始的开始/增量/结束边界，不从工具名称推测调用关联。"""
         kind = getattr(event, "type", None)
@@ -110,17 +155,41 @@ class AGUIRunAdapter:
             message_id = self._id("text", event.block_id)
             self._text_open.discard(message_id)
             self.emit(TextMessageEndEvent(message_id=message_id))
+        elif kind in {"THINKING_BLOCK_START", "THINKING_BLOCK_DELTA", "THINKING_BLOCK_END"}:
+            # AgentScope 2.0.8 将供应商公开返回的 thinking/reasoning 映射到这些事件。
+            # 不读取 memory、系统提示、隐藏字段或从回答反推 Thinking。
+            identifier = self._id("thinking", f"{event.reply_id}:{event.block_id}")
+            entry = self._activity(identifier, "thinking")
+            if kind == "THINKING_BLOCK_DELTA":
+                delta = event.delta if isinstance(event.delta, str) else ""
+                remaining = max(0, 8000 - len(entry["content"]))
+                entry["content"] += delta[:remaining]
+                if len(delta) > remaining:
+                    entry["truncated"] = True
+                now = time.monotonic()
+                if now - self._thinking_published.get(identifier, 0) >= 0.2 and remaining:
+                    self._publish_activity(entry)
+                    self._thinking_published[identifier] = now
+            elif kind == "THINKING_BLOCK_END":
+                entry.update(status="completed", finishedAt=int(time.time() * 1000))
+                self._publish_activity(entry)
+            else:
+                self._publish_activity(entry)
+                self._thinking_published[identifier] = time.monotonic()
         elif kind == "TOOL_CALL_START":
             call_id = self._id("tool", event.tool_call_id)
             self._tool_names[event.tool_call_id] = event.tool_call_name
             self._tool_open.add(call_id)
             if event.tool_call_name == "load_agent_skill_tool":
                 self._skill_args[event.tool_call_id] = ""
+            self._activity_args[event.tool_call_id] = ""
             self.emit(ToolCallStartEvent(tool_call_id=call_id, tool_call_name=event.tool_call_name))
+            self._tool_activity(event.tool_call_id)
         elif kind == "TOOL_CALL_DELTA":
             if event.delta:
                 if event.tool_call_id in self._skill_args:
                     self._skill_args[event.tool_call_id] = (self._skill_args[event.tool_call_id] + event.delta)[:2048]
+                self._activity_args[event.tool_call_id] = (self._activity_args.get(event.tool_call_id, "") + event.delta)[:16384]
                 self.emit(ToolCallArgsEvent(
                     tool_call_id=self._id("tool", event.tool_call_id), delta=event.delta,
                 ))
@@ -129,6 +198,8 @@ class AGUIRunAdapter:
             self._tool_open.discard(call_id)
             # END 仅表示参数流结束；工具是否完成由 RESULT 表达。
             self.emit(ToolCallEndEvent(tool_call_id=call_id))
+            summary = input_summary(self._tool_names.get(event.tool_call_id, ""), self._activity_args.pop(event.tool_call_id, ""))
+            self._tool_activity(event.tool_call_id, **({"inputSummary": summary} if summary else {}))
         elif kind == "TOOL_RESULT_START":
             name = event.tool_call_name
             self._tool_names[event.tool_call_id] = name
@@ -136,6 +207,7 @@ class AGUIRunAdapter:
             if name == "load_agent_skill_tool":
                 self._skill_reading(event.tool_call_id)
             self._progress(self._id("tool", event.tool_call_id), _TOOL_LABELS.get(name, name), "running")
+            self._tool_activity(event.tool_call_id, status="running")
             self.snapshot()
         elif kind == "TOOL_RESULT_TEXT_DELTA":
             self._tool_output.setdefault(event.tool_call_id, []).append(event.delta)
@@ -149,8 +221,13 @@ class AGUIRunAdapter:
             name = self._tool_names.get(event.tool_call_id, "工具")
             success = str(event.state).lower() == "success"
             content = "".join(self._tool_output.pop(event.tool_call_id, []))
+            status = {"success": "completed", "error": "error", "denied": "cancelled",
+                      "interrupted": "interrupted", "running": "running"}.get(str(event.state).lower(), "error")
+            status, summary = result_summary(name, content, status)
             if name == "load_agent_skill_tool":
                 self._skill_result(event.tool_call_id, content, success)
+                if next(item for item in self.state["skillUsages"] if item["toolCallId"] == call_id)["status"] == "error":
+                    status, summary = "error", "方案读取未成功或版本已变化。"
             self.emit(ToolCallResultEvent(
                 message_id=self._id("result", event.tool_call_id),
                 tool_call_id=call_id,
@@ -158,6 +235,7 @@ class AGUIRunAdapter:
                 role="tool",
             ))
             self._progress(call_id, _TOOL_LABELS.get(name, name), "completed" if success else "error")
+            self._tool_activity(event.tool_call_id, status=status, resultSummary=summary)
             self.snapshot()
         elif kind == "REPLY_END":
             reason = str(event.finished_reason).lower()
@@ -166,8 +244,11 @@ class AGUIRunAdapter:
         elif kind == "REQUIRE_USER_CONFIRM":
             self.state["status"]="awaiting_confirmation"
             for call in event.tool_calls:
-                item={"id":f"{event.reply_id}:{call.id}","tool":call.name,"label":_TOOL_LABELS.get(call.name,call.name),"arguments":call.input}
+                item={"id":f"{event.reply_id}:{call.id}","tool":call.name,"label":_TOOL_LABELS.get(call.name,call.name),"arguments":call.input,
+                      "toolCallId":self._id("tool", call.id)}
                 if not any(p["id"]==item["id"] for p in self.state["toolApprovals"]):self.state["toolApprovals"].append(item)
+                self._tool_names[call.id] = call.name
+                self._tool_activity(call.id, status="waiting", resultSummary="等待你的批准或拒绝。")
             self.snapshot()
         elif kind == "REQUIRE_EXTERNAL_EXECUTION":
             # 首版不接受 resume，遇到暂停必须如实结束，不能把未执行动作展示成成功。
@@ -288,6 +369,7 @@ class AGUIRunAdapter:
         self._completed = True
         self._close_streams()
         self._close_skill_reads("未收到方案读取成功的结果。")
+        self._close_activities("interrupted", keep_waiting=bool(self.state["toolApprovals"]))
         # 用审核后的最终回答收口；保留客户端传入的全部历史与本轮用户消息。
         self.emit(MessagesSnapshotEvent(messages=[
             *self.request.messages,
@@ -304,6 +386,7 @@ class AGUIRunAdapter:
         self._completed = True
         self._close_streams()
         self._close_skill_reads("本轮已中断，方案读取尚未完成。")
+        self._close_activities("cancelled" if cancelled else "interrupted" if code == "SERVER_RESTART" else "error")
         self.state["status"] = "cancelled" if cancelled else "error"
         for entry in self.state["progress"]:
             if entry["status"] == "running":

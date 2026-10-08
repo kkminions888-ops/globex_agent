@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import copy
 from contextlib import asynccontextmanager
 import hashlib
 import json
@@ -34,6 +35,22 @@ class JournalLeaseLost(RuntimeError):
 
 def _json(value: Any) -> str:
     return json.dumps(value, ensure_ascii=False, separators=(",", ":"))
+
+
+def _close_activity_state(state: dict, *, stopped: bool) -> dict:
+    """崩溃恢复也收口展示投影；不能让工具或 Thinking 永久显示进行中。"""
+    state = copy.deepcopy(state)
+    state["status"] = "cancelled" if stopped else "error"
+    for activity in state.setdefault("activities", []):
+        if activity.get("status") in {"preparing", "running", "waiting"}:
+            activity.update(status="cancelled" if stopped else "interrupted", finishedAt=int(time.time() * 1000))
+    for entry in state.get("progress", []):
+        if entry.get("status") == "running":
+            entry["status"] = "error"
+    for entry in state.get("skillUsages", []):
+        if entry.get("status") == "reading":
+            entry.update(status="error", error="本轮中断，未收到方案读取成功的结果。")
+    return state
 
 
 class AGUIJournal:
@@ -118,6 +135,7 @@ class AGUIJournal:
     @staticmethod
     def _run(row):
         projection = json.loads(row["projection_json"])
+        projection["state"].setdefault("activities", [])
         return {"runId": row["run_id"], "threadId": row["session_id"], "status": row["status"],
                 "cursor": row["last_seq"], "stopRequested": bool(row["stop_requested"]),
                 "input": json.loads(row["input_json"]), "messages": projection["messages"],
@@ -174,9 +192,9 @@ class AGUIJournal:
             trusted_state={k:previous_state[k] for k in ('products','searchCompleted','skillUsages') if k in previous_state} if body.get('resume') else {}
             messages = json.loads(session["messages_json"]) if session else []
             # 客户端历史/state 不是事实来源；只接受本轮 user，旧历史由日志恢复。
-            messages = [*messages[-99:], {"id": user["id"], "role": "user", "content": user["content"]}]
+            messages = [*messages[-99:], {"id": user["id"], "role": "user", "content": user["content"], "runId": run_id}]
             body = {**body, "messages": messages, "state": trusted_state}
-            projection = {"messages": messages, "state": {}, "openMessages": [], "openTools": []}
+            projection = {"messages": messages, "state": {"activities": []}, "openMessages": [], "openTools": []}
             await db.execute("INSERT INTO agui_runs(run_id,session_id,buyer_id,fingerprint,input_json,projection_json,status,owner,lease_until,created_at,updated_at) VALUES(?,?,?,?,?,?,'running',?,?,?,?)",
                 (run_id, session_id, buyer_id, fingerprint, _json(body), _json(projection), owner, now + lease_seconds, now, now))
             title = session["title"] if session else str(user["content"])[:48]
@@ -185,16 +203,36 @@ class AGUIJournal:
             return self._run(await self._one(db, "SELECT * FROM agui_runs WHERE run_id=?", (run_id,))), True
 
     @staticmethod
-    def _project(projection, event):
+    def _project(projection, event, run_id):
         kind = event["type"]
         if kind == "MESSAGES_SNAPSHOT":
-            projection["messages"] = [m for m in event["messages"] if m.get("role") in {"user", "assistant"}]
+            owners = {m["id"]: m.get("runId") for m in projection["messages"]}
+            messages = []
+            for message in event["messages"]:
+                if message.get("role") not in {"user", "assistant"}:
+                    continue
+                # 老日志尚无 runId 时保留未知，session 按首次持久出现的轮次补齐；
+                # 不能把本轮携带的所有旧历史重新归属到当前运行。
+                owner = owners[message["id"]] if message["id"] in owners else run_id
+                item = {key: value for key, value in message.items() if key != "runId"}
+                if owner:
+                    item["runId"] = owner
+                messages.append(item)
+            projection["messages"] = messages
         elif kind == "STATE_SNAPSHOT":
             projection["state"] = event["snapshot"]
+        elif kind == "CUSTOM" and event.get("name") == "activity.upsert":
+            activity = event["value"]
+            activities = projection["state"].setdefault("activities", [])
+            previous = next((i for i, item in enumerate(activities) if item["id"] == activity["id"]), None)
+            if previous is None:
+                activities.append(copy.deepcopy(activity))
+            else:
+                activities[previous] = copy.deepcopy(activity)
         elif kind == "TEXT_MESSAGE_START":
             message_id = event["messageId"]
             if not any(m["id"] == message_id for m in projection["messages"]):
-                projection["messages"].append({"id": message_id, "role": "assistant", "content": ""})
+                projection["messages"].append({"id": message_id, "role": "assistant", "content": "", "runId": run_id})
             if message_id not in projection["openMessages"]:
                 projection["openMessages"].append(message_id)
         elif kind == "TEXT_MESSAGE_CONTENT":
@@ -212,7 +250,12 @@ class AGUIJournal:
     async def _append(self, db, row, events):
         projection, seq, status = json.loads(row["projection_json"]), row["last_seq"], row["status"]
         for event in events:
-            self._project(projection, event)
+            if event["type"] == "CUSTOM" and event.get("name") == "activity.upsert":
+                activity = event.get("value")
+                if (not isinstance(activity, dict) or activity.get("runId") != row["run_id"]
+                        or not isinstance(activity.get("id"), str) or not activity["id"].startswith(row["run_id"] + ":")):
+                    raise JournalConflict("活动必须属于当前运行")
+            self._project(projection, event, row["run_id"])
             seq += 1
             await db.execute("INSERT INTO agui_events VALUES(?,?,?)", (row["run_id"], seq, _json(event)))
             if event["type"] == "RUN_FINISHED":
@@ -256,7 +299,7 @@ class AGUIJournal:
             if row["last_seq"] == 0:
                 events.insert(0, {"type": "RUN_STARTED", "threadId": row["session_id"], "runId": row["run_id"]})
             events += [{"type": "TOOL_CALL_END", "toolCallId": i} for i in projection["openTools"]]
-            events += [{"type": "STATE_SNAPSHOT", "snapshot": {**projection["state"], "status": "cancelled" if stopped else "error"}},
+            events += [{"type": "STATE_SNAPSHOT", "snapshot": _close_activity_state(projection["state"], stopped=stopped)},
                        {"type": "RUN_ERROR", "message": "本轮已明确停止" if stopped else "服务重启或执行租约失效，本轮未完成；已恢复保存的内容，可重新提交需求。", "code": "CANCELLED" if stopped else "SERVER_RESTART"}]
             await self._append(db, row, events)
 
@@ -297,7 +340,7 @@ class AGUIJournal:
             if row["last_seq"] == 0:
                 events.insert(0, {"type": "RUN_STARTED", "threadId": row["session_id"], "runId": row["run_id"]})
             events += [{"type": "TOOL_CALL_END", "toolCallId": i} for i in projection["openTools"]]
-            events += [{"type": "STATE_SNAPSHOT", "snapshot": {**projection["state"], "status": "cancelled" if stopped else "error"}},
+            events += [{"type": "STATE_SNAPSHOT", "snapshot": _close_activity_state(projection["state"], stopped=stopped)},
                        {"type": "RUN_ERROR", "message": "本轮已明确停止" if stopped else "服务已关闭，本轮已保存为中断，可恢复查看已有内容。", "code": "CANCELLED" if stopped else "SERVER_RESTART"}]
             await self._append(db, row, events)
 
@@ -315,16 +358,35 @@ class AGUIJournal:
             run = self._run(await self._one(db, "SELECT * FROM agui_runs WHERE run_id=?", (row["last_run_id"],)))
             # sessions.messages_json 是下一轮使用的滑动窗口，不是页面完整历史。
             # 旧版本已保留每轮最终投影；按持久顺序合并即可恢复，无需重写原始数据。
-            messages, product_history = {}, []
+            messages, product_history, activities, pending_activities = {}, [], [], {}
             async with db.execute(
-                "SELECT run_id,projection_json,updated_at FROM agui_runs "
+                "SELECT run_id,projection_json,input_json,created_at,updated_at FROM agui_runs "
                 "WHERE session_id=? AND buyer_id=? ORDER BY created_at,rowid",
                 (session_id, buyer_id),
             ) as cursor:
                 async for saved in cursor:
                     projection = json.loads(saved["projection_json"])
+                    # 只用已受归属和请求指纹校验的原生 resume 决议收口旧确认卡。
+                    # “已批准”仅表示决议，实际执行结果保留在后续运行；不改写历史事件。
+                    for decision in json.loads(saved["input_json"]).get("resume") or []:
+                        approved = decision.get("status") != "cancelled" and (decision.get("payload") or {}).get("approved") is True
+                        for activity in pending_activities.pop(decision["interruptId"], []):
+                            activity.update(status="approved" if approved else "cancelled",
+                                            finishedAt=int(saved["created_at"] * 1000),
+                                            resultSummary="已批准，执行结果见后续步骤。" if approved else "你已拒绝此操作。")
                     for message in projection["messages"]:
-                        messages[message["id"]] = message
+                        original_run = messages.get(message["id"], {}).get("runId") or saved["run_id"]
+                        messages[message["id"]] = {**message, "runId": message.get("runId") or original_run}
+                    # 原生公开活动已经过适配器白名单处理，不回查原始参数/工具正文。
+                    run_activities = sorted(
+                        (item for item in projection["state"].get("activities", []) if item.get("runId") == saved["run_id"]),
+                        key=lambda item: item["sequence"],
+                    )
+                    activities.extend(run_activities)
+                    for approval in projection["state"].get("toolApprovals", []):
+                        activity = next((item for item in run_activities if item["id"] == approval.get("toolCallId") and item["status"] == "waiting"), None)
+                        if activity is not None:
+                            pending_activities.setdefault(approval["id"], []).append(activity)
                     products = projection["state"].get("products", [])
                     if products and saved["run_id"] != row["last_run_id"]:
                         product_history.append({"runId": saved["run_id"], "products": products,
@@ -341,6 +403,9 @@ class AGUIJournal:
             ) as cursor:
                 events = [{"id": f"{item['run_id']}:{item['seq']}", "type": item["type"],
                            "timestamp": item["timestamp"]} for item in await cursor.fetchall()]
+            state = json.loads(row["state_json"])
+            state.setdefault("activities", [])
             return {"id": session_id, "title": row["title"], "messages": list(messages.values()),
+                    "activities": activities,
                     "productHistory": product_history, "events": events[::-1],
-                    "state": json.loads(row["state_json"]), "run": run, "updatedAt": int(row["updated_at"] * 1000)}
+                    "state": state, "run": run, "updatedAt": int(row["updated_at"] * 1000)}

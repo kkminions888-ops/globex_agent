@@ -123,6 +123,8 @@ class Container:
     identity_policy: Any = None
     prompt_registry: Any = None
     context_service: Any = None
+    model_registry: Any = None
+    model_service: Any = None
 
     async def startup(self) -> None:
         """建表 / 建向量库 / 建知识库。任一失败只告警，对应能力降级但服务可用。"""
@@ -154,6 +156,8 @@ class Container:
             await self.ag_ui_runtime.shutdown()
         if isinstance(self.session_store, JsonFileSessionStore):
             await self.session_store.close()
+        for session in list(getattr(self.orchestrator._sessions, "_agents", {})):
+            await self.orchestrator._sessions.invalidate(session)
         await self.vector_index.close()
         await self.cache.close()
         if self.trade_db_engine is not None and self.trade_db_engine is not self.db_engine:
@@ -256,6 +260,22 @@ async def build_container() -> Container:
             min_interval_seconds=settings.llm_min_interval_seconds,
         )
     )
+    throttle_groups = {'current-gateway': throttle}
+    def throttle_for(group):
+        if group not in throttle_groups:
+            throttle_groups[group] = (RedisGatewayThrottle(cache.client,
+                max_concurrency=settings.llm_max_concurrency,
+                min_interval_seconds=settings.llm_min_interval_seconds,
+                namespace='model-quota:' + group) if cache.enabled else GatewayThrottle(
+                max_concurrency=settings.llm_max_concurrency,
+                min_interval_seconds=settings.llm_min_interval_seconds))
+        return throttle_groups[group]
+
+    from app.infrastructure.model_registry import ModelRegistry
+    model_registry = ModelRegistry(settings) if hasattr(session_store, 'model_binding') else None
+    if model_registry is not None:
+        await model_registry.initialize()
+
     # 护栏判定器同样全进程唯一：按会话累积状态，需跨 Agent 实例与轮次共享
     sequencing_tracker = SequencingTracker()
     loop_detector = LoopDetector(repeat_threshold=settings.loop_repeat_threshold)
@@ -279,23 +299,38 @@ async def build_container() -> Container:
     cancel_order = CancelOrderUseCase(confirmations)
 
     search_factory = SearchAgentFactory(
-        settings, catalog_search, bus, knowledge_base, circuit_registry, throttle,
+        settings, catalog_search, bus, knowledge_base, circuit_registry, throttle, throttle_factory=throttle_for,
     )
     trade_factory = TradeAgentFactory(
-        settings, place_order, query_order, cancel_order, bus, circuit_registry, throttle,
+        settings, place_order, query_order, cancel_order, bus, circuit_registry, throttle, throttle_factory=throttle_for,
     )
     # 规范化事实与向量同库提交；默认长期记忆走语义检索。
     from app.infrastructure.semantic_memory import SemanticPreferenceStore, PreferenceDistiller
     from app.infrastructure.llm import create_chat_model
+    async def distillation_model(buyer_id):
+        from app.infrastructure.context import ShoppingContext, ShoppingContextSnapshot
+        current = ShoppingContext.current()
+        if current is not None and current.model_runtime is not None:
+            return create_chat_model(settings, stream=False, throttle=throttle, bus=bus, throttle_factory=throttle_for)
+        token = ShoppingContext.set(ShoppingContextSnapshot('preference-editor', buyer_id, 'zh-CN', 'CNY'))
+        try:
+            if model_registry is not None:
+                snapshot = await model_registry.resolve_default(buyer_id=buyer_id)
+                ShoppingContext.set_model(snapshot, model_registry.runtime(snapshot))
+            return create_chat_model(settings, stream=False, throttle=throttle, bus=bus, throttle_factory=throttle_for)
+        finally:
+            ShoppingContext.reset(token)
+
     preference_store = SemanticPreferenceStore(
         settings.data_dir / "buyer_memory.db", preference_store,
-        PreferenceDistiller(create_chat_model(settings, stream=False, throttle=throttle, bus=bus)),
+        PreferenceDistiller(model_factory=distillation_model),
         embedder, settings.embedding_model + ":" + str(settings.embedding_dim),
     )
     preference_selector = preference_store
     from app.infrastructure.shopping_forms import ShoppingFormStore
     main_factory = MainAgentFactory(
         settings, search_factory, trade_factory, bus, preference_store, circuit_registry, throttle,
+        throttle_factory=throttle_for,
         sequencing=sequencing_tracker,
         loop_detector=loop_detector,
         preference_selector=preference_selector,
@@ -303,7 +338,7 @@ async def build_container() -> Container:
         buyer_skill_store=BuyerSkillStore(settings.data_dir / "buyer_skills.db"),
         shopping_form_store=ShoppingFormStore(settings.data_dir / "shopping_forms.db"),
     )
-    sessions = SessionRegistry(main_factory, session_store, enforce_owner=settings.session_owner_binding, prompt_registry=prompt_registry)
+    sessions = SessionRegistry(main_factory, session_store, enforce_owner=settings.session_owner_binding, prompt_registry=prompt_registry, model_registry=model_registry)
     orchestrator = MainAgentOrchestrator(
         sessions, bus, preference_store, conversation_store, semantic_cache,
         output_guard_enabled=settings.output_guard_enabled,
@@ -318,8 +353,11 @@ async def build_container() -> Container:
     )
 
     from app.application.agents.context_service import ContextService
+    from app.application.agents.model_selection import ModelSelectionService
     return Container(
         settings=settings,
+        model_registry=model_registry,
+        model_service=ModelSelectionService(model_registry, sessions, orchestrator, session_store) if model_registry else None,
         bus=bus,
         orchestrator=orchestrator,
         context_service=ContextService(orchestrator, session_store, search_factory.evidence_store, confirmations, settings),

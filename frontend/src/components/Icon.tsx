@@ -8,6 +8,7 @@ const paths: Record<string, ReactNode> = {
     </>
   ),
   plus: <path d="M12 5v14M5 12h14" />,
+  search: <><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 4 4" /></>,
   chat: (
     <>
       <path d="M20 11.5a8 8 0 0 1-8 8H5l-3 2v-10a9 9 0 0 1 18 0Z" />
@@ -32,6 +33,12 @@ const paths: Record<string, ReactNode> = {
     <>
       <path d="M5 7h14l1 14H4L5 7Z" />
       <path d="M8 8V6a4 4 0 0 1 8 0v2" />
+    </>
+  ),
+  order: (
+    <>
+      <path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5Z" />
+      <path d="M14 3v5h5M8 12h8M8 16h6" />
     </>
   ),
   leaf: (

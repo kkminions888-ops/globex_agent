@@ -1,15 +1,17 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode, type RefObject } from "react";
 import Icon from "./Icon";
 export default function Modal({
   title,
   drawer = false,
   children,
   onClose,
+  initialFocusRef,
 }: {
   title: string;
   drawer?: boolean;
   children: ReactNode;
   onClose: () => void;
+  initialFocusRef?: RefObject<HTMLElement>;
 }) {
   const ref = useRef<HTMLElement>(null),
     closeRef = useRef(onClose);
@@ -18,7 +20,7 @@ export default function Modal({
     const previous = document.activeElement as HTMLElement | null,
       previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    ref.current?.querySelector<HTMLButtonElement>("button")?.focus();
+    (initialFocusRef?.current ?? ref.current?.querySelector<HTMLButtonElement>("button"))?.focus();
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") closeRef.current();
       if (event.key !== "Tab") return;
@@ -26,7 +28,7 @@ export default function Modal({
         ref.current?.querySelectorAll<HTMLElement>(
           'button:not([disabled]), a[href], input, select, textarea, [tabindex="0"]',
         ) ?? [],
-      );
+      ).filter(item => item.tabIndex >= 0 && !item.matches(":disabled"));
       const first = items[0],
         last = items[items.length - 1];
       if (event.shiftKey && document.activeElement === first) {

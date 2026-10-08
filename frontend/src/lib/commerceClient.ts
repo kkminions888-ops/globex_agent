@@ -15,6 +15,7 @@ import type {
 } from "../types";
 import { readConfirmations, mergeConfirmations } from "./confirmations";
 import { recoveringFetch } from "./recoveringFetch";
+import { readActivities, replaceRunActivities, upsertActivities } from "./activities";
 import { isSelectedSkill, readPublishedSkills, readSkillUsages } from "./skills";
 
 const STORAGE_KEY = "globex.agui.sessions.v1";
@@ -239,11 +240,12 @@ function historyPrefix(history: ChatMessage[], window: ChatMessage[]): ChatMessa
 
 function displayMessages(
   messages: ReadonlyArray<Readonly<Message>>,
+  runForMessage: (id: string) => string | undefined = () => undefined,
 ): ChatMessage[] {
   return messages.flatMap((message) => {
     if (message.role !== "user" && message.role !== "assistant") return [];
     const content = typeof message.content === "string" ? message.content : "";
-    return content ? [{ id: message.id, role: message.role, content }] : [];
+    return content ? [{ id: message.id, role: message.role, content, ...(runForMessage(message.id) ? {runId: runForMessage(message.id)} : {}) }] : [];
   });
 }
 
@@ -254,6 +256,7 @@ function emptySnapshot(sessionId = newId()): CommerceSnapshot {
     products: [],
     productHistory: [],
     events: [],
+    activities: [],
     status: "idle",
     step: "随时开始新的选购",
     error: null,
@@ -306,6 +309,7 @@ export class CommerceClient {
   private serverHistory: SessionSummary[] = [];
   private historyRevision = 0;
   private skillsRevision = 0;
+  private activityRevision = 0;
   private restoreLatestSession = true;
 
   constructor(private options: ClientOptions) {
@@ -463,6 +467,7 @@ export class CommerceClient {
 
   private async executeRun(runId: string, messages: ChatMessage[], resume = false, selectedSkill?: SelectedSkill, approval?: { id: string; approved: boolean }, allowVersionRestart = true): Promise<void> {
     const priorSessionId=this.snapshot.sessionId;
+    const activityRevision = ++this.activityRevision;
     let destination=this.snapshot.products.find(p=>p.landed_price?.ship_to)?.landed_price?.ship_to;
     let restartVersion=false;
     const journaled = /\/ag-ui\/run\/?$/.test(this.options.url);
@@ -488,6 +493,9 @@ export class CommerceClient {
         },
       }) : baseFetch,
     });
+    const knownRuns = new Map(messages.map(message => [message.id, message.runId]));
+    const initialIds = new Set(workingMessages.map(message => message.id));
+    const runForMessage = (id: string) => knownRuns.get(id) ?? (initialIds.has(id) ? undefined : runId);
     const active = { agent, runId };
     this.active = active;
     const current = () => this.active === active;
@@ -514,7 +522,7 @@ export class CommerceClient {
     };
     const subscriber: AgentSubscriber = {
       onMessagesChanged: ({ messages: next }) => {
-        if (current()) this.update({ messages: [...archivedMessages, ...displayMessages(next)] });
+        if (current()) this.update({ messages: [...archivedMessages, ...displayMessages(next, runForMessage)] });
       },
       onStateChanged: ({ state }) => {
         if (!current() || !isRecord(state)) return;
@@ -527,6 +535,7 @@ export class CommerceClient {
           .find((step) => step.status === "running");
         const latest = ongoing ?? progress[progress.length - 1];
         this.update({
+          ...(Array.isArray(state.activities) ? { activities: replaceRunActivities(this.snapshot.activities ?? [], readActivities(state.activities, runId), runId) } : {}),
           toolApprovals: readApprovals(state.toolApprovals),
           products: readProducts(state.products),
           shoppingForm: state.shoppingForm ?? null,
@@ -540,6 +549,11 @@ export class CommerceClient {
         });
       },
       onEvent: ({ event }) => {
+        if (current() && event.type === "CUSTOM" && event.name === "activity.upsert") {
+          const activities = readActivities([event.value], runId);
+          if (activities.length) this.update({activities: upsertActivities(this.snapshot.activities ?? [], activities)});
+          return;
+        }
         if (
           !current() ||
           ["TEXT_MESSAGE_CONTENT", "TOOL_CALL_ARGS"].includes(event.type)
@@ -606,6 +620,9 @@ export class CommerceClient {
         this.save();
       }
     }
+    if ((approval || resume) && terminal && journaled) {
+      await this.refreshSessionActivities(priorSessionId, activityRevision);
+    }
     if (restartVersion && this.snapshot.sessionId===priorSessionId && !this.active) {
       const latest=[...messages].reverse().find(m=>m.role==="user");
       if (latest) {
@@ -620,6 +637,19 @@ export class CommerceClient {
 
   private authHeaders(): Record<string, string> {
     return this.options.accessToken ? { Authorization: `Bearer ${this.options.accessToken}` } : {};
+  }
+
+  private async refreshSessionActivities(sessionId: string, revision: number) {
+    // 审批资源的终态由服务端跨轮核对，不能把点击批准当成工具已成功。
+    if (sessionId !== this.snapshot.sessionId || this.active) return;
+    const historyRevision = this.historyRevision;
+    try {
+      const data = await this.journalRequest(`/sessions/${encodeURIComponent(sessionId)}`);
+      if (revision === this.activityRevision && historyRevision === this.historyRevision && sessionId === this.snapshot.sessionId && !this.active &&
+          isRecord(data.run) && data.run.threadId === sessionId && Array.isArray(data.activities)) {
+        this.update({activities: readActivities(data.activities)});
+      }
+    } catch { /* 保留已有步骤；稍后重开会话会重新读取权威记录。 */ }
   }
 
   private async journalRequest(path: string, method = "GET"): Promise<Record<string, unknown>> {
@@ -677,6 +707,7 @@ export class CommerceClient {
     const running = run.status === "running";
     const messages = readMessages(run.messages);
     this.update({
+      ...(typeof run.runId === "string" ? { activities: replaceRunActivities(this.snapshot.activities ?? [], readActivities(state.activities, run.runId), run.runId) } : {}),
       toolApprovals: readApprovals(state.toolApprovals),
       messages: [...historyPrefix(this.snapshot.messages, messages), ...messages], products: readProducts(state.products),
       shoppingForm: state.shoppingForm ?? null,
@@ -699,6 +730,7 @@ export class CommerceClient {
       this.applyServerRun(data.run);
       this.update({
         ...(Array.isArray(data.messages) ? {messages: readMessages(data.messages)} : {}),
+        ...(Array.isArray(data.activities) ? {activities: readActivities(data.activities)} : {}),
         productHistory: Array.isArray(data.productHistory) ? data.productHistory.filter(isRecord).flatMap(item =>
           typeof item.runId === "string" && typeof item.updatedAt === "number"
             ? [{runId: item.runId, updatedAt: item.updatedAt, products: readProducts(item.products)}] : []) : [],
@@ -735,7 +767,10 @@ export class CommerceClient {
       if (run.status === "running" && isRecord(run.input)) {
         // 新 SDK 实例从本轮日志起点重放，保持 START/工具流协议状态完整，不重复执行模型。
         await this.executeRun(runId, readMessages(run.input.messages), true);
-      } else this.save();
+      } else {
+        this.save();
+        await this.refreshSessionActivities(sessionId, this.activityRevision);
+      }
     } catch (error) {
       if (sessionId === this.snapshot.sessionId) this.update({ status: "error", error: `暂时无法恢复本轮：${connectionError(error)}`,
         ...(String(error).includes("404") ? { recoverableRunId: null } : {}) });
@@ -785,7 +820,7 @@ export class CommerceClient {
     const separator = path.includes("?") ? "&" : "?";
     const response = await (this.options.fetch ?? globalThis.fetch)(`${base}${path}${separator}buyer_id=${encodeURIComponent(this.buyerId)}`, {
       method, headers: { ...this.authHeaders(), ...(body ? { "Content-Type": "application/json" } : {}) },
-      body: body ? JSON.stringify(path === "/context/compact" ? {...body,buyer_id:this.buyerId} : body) : undefined,
+      body: body ? JSON.stringify((path === "/context/compact" || path.startsWith("/models/") || path.startsWith("/model-connections") || /^\/sessions\/[^/]+\/model$/.test(path)) ? {...body,buyer_id:this.buyerId} : body) : undefined,
     });
     const data: unknown = await response.json().catch(() => { throw new Error("服务暂时不可用，请稍后重试。输入已保留。"); });
     if (!response.ok) {

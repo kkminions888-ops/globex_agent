@@ -118,6 +118,8 @@ def build_app() -> FastAPI:
                          lambda: container().ag_ui_runtime)
     from app.presentation.context_workspace import register_context_routes
     register_context_routes(api, lambda: container().context_service)
+    from app.presentation.model_workspace import register_model_routes
+    register_model_routes(api, container)
     register_confirmation_routes(api, lambda: container().confirmations)
     register_buyer_workspace_routes(api, lambda: container().orchestrator)
     from app.presentation.shopping_forms import register_shopping_form_routes

@@ -75,9 +75,10 @@ async def recover_response(model, messages, tools, tool_choice, kwargs, *, enabl
         details = context_request_details.set(request_details(rows, number))
         try:
             if number:
-                raw = await model.count_tokens(messages=rows, tools=tools)
+                from app.infrastructure.model_counting import count_model_input, input_limits
+                count = await count_model_input(model, rows, tools)
                 output = kwargs.get('max_completion_tokens') or kwargs.get('max_tokens') or model.parameters.max_tokens or 8192
-                if raw * 1.5 + output + max(4096, model.context_size * .05) > model.context_size:
+                if count['estimated_input_tokens'] > input_limits(model, output)['input_budget']:
                     raise IncompleteModelResponse('', 'capacity')
             response = await model._call_once(rows, tools, choice, **kwargs)
             return response, observation, None

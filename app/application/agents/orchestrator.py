@@ -420,6 +420,12 @@ class MainAgentOrchestrator:
             render_preference_lines(preferences).encode(),
         ).hexdigest()[:16]
 
+    @staticmethod
+    def _model_cache_scope():
+        context = ShoppingContext.current()
+        snapshot = getattr(context, 'model_snapshot', None)
+        return ':' + snapshot['fingerprint'] if snapshot else ''
+
     async def _lookup_cache(self, intent: SubmitIntentInput, has_history: bool) -> Optional[str]:
         """语义缓存查询；命中时发 cache.hit 事件让过程可见（不静默复用）。"""
         if self._semantic_cache is None:
@@ -431,7 +437,7 @@ class MainAgentOrchestrator:
             intent.buyer_id,
             intent.raw_query,
             has_history,
-            scope=scope,
+            scope=scope + self._model_cache_scope(),
         )
         if hit is None:
             return None
@@ -456,7 +462,7 @@ class MainAgentOrchestrator:
             intent.raw_query,
             final_text,
             has_history,
-            scope=scope,
+            scope=scope + self._model_cache_scope(),
         )
 
     async def _record_conversation(

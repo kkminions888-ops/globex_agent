@@ -49,6 +49,7 @@ class SearchAgentFactory:
         knowledge_base: KnowledgeBase,
         circuit_registry: CircuitBreakerRegistry,
         throttle: GatewayThrottle,
+        throttle_factory=None,
     ) -> None:
         self._settings = settings
         self._catalog_search = catalog_search
@@ -57,6 +58,7 @@ class SearchAgentFactory:
         self._circuit_registry = circuit_registry
         # 闸门由组装根下发，三个工厂必须共用同一个，否则各限一份等于没限
         self._throttle = throttle
+        self._throttle_factory = throttle_factory
         self.evidence_store = ContextEvidenceStore(settings.data_dir / "context_evidence.db")
         self.bind_harness(SequencingTracker(), LoopDetector(repeat_threshold=settings.loop_repeat_threshold))
 
@@ -107,7 +109,7 @@ class SearchAgentFactory:
         return ContextAwareAgent(
             name=prompts["name"],
             system_prompt=prompts["system_prompt"],
-            model=create_chat_model(self._settings, throttle=self._throttle, bus=self._bus),
+            model=create_chat_model(self._settings, throttle=self._throttle, bus=self._bus, throttle_factory=self._throttle_factory),
             toolkit=Toolkit(tools=list(self.build_tools())),
             middlewares=build_agent_middlewares(self._settings),
             context_config=build_context_config(

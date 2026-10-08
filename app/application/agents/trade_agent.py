@@ -51,6 +51,7 @@ class TradeAgentFactory:
         bus: TradeEventBus,
         circuit_registry: CircuitBreakerRegistry,
         throttle: GatewayThrottle,
+        throttle_factory=None,
     ) -> None:
         self._settings = settings
         self._place_order = place_order
@@ -61,6 +62,7 @@ class TradeAgentFactory:
         self.evidence_store = ContextEvidenceStore(settings.data_dir / "context_evidence.db")
         self._circuit_registry = circuit_registry
         self._throttle = throttle
+        self._throttle_factory = throttle_factory
         self.bind_harness(SequencingTracker(), LoopDetector(repeat_threshold=settings.loop_repeat_threshold))
 
     def bind_harness(self, sequencing, loop_detector) -> None:
@@ -96,7 +98,7 @@ class TradeAgentFactory:
             ContextAwareAgent(
                 name=prompts["name"],
                 system_prompt=prompts["system_prompt"],
-                model=create_chat_model(self._settings, throttle=self._throttle, bus=self._bus),
+                model=create_chat_model(self._settings, throttle=self._throttle, bus=self._bus, throttle_factory=self._throttle_factory),
                 toolkit=Toolkit(tools=list(self.build_tools())),
                 middlewares=build_agent_middlewares(self._settings),
                 context_config=build_context_config(

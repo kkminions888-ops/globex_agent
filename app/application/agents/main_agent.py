@@ -76,6 +76,7 @@ class MainAgentFactory:
         capability_registry=None,
         buyer_skill_store=None,
         shopping_form_store=None,
+        throttle_factory=None,
     ) -> None:
         self._settings = settings
         self._search_factory = search_factory
@@ -84,6 +85,7 @@ class MainAgentFactory:
         self._preference_store = preference_store
         self._circuit_registry = circuit_registry
         self._throttle = throttle
+        self._throttle_factory = throttle_factory
         self._capability_registry = capability_registry
         self.capability_registry = capability_registry
         self.buyer_skill_store = buyer_skill_store
@@ -201,7 +203,7 @@ class MainAgentFactory:
             ContextAwareAgent(
                 name=prompts["name"],
                 system_prompt=system_prompt,
-                model=create_chat_model(self._settings, throttle=self._throttle, bus=self._bus),
+                model=create_chat_model(self._settings, throttle=self._throttle, bus=self._bus, throttle_factory=self._throttle_factory),
                 toolkit=Toolkit(tools=tools),
                 middlewares=build_agent_middlewares(self._settings) + self._memory_middlewares() + skill_middlewares,
                 context_config=build_context_config(
@@ -218,15 +220,16 @@ class SessionRegistry:
     """按 shopping_session_id 缓存 MainAgent 实例，支撑多轮对话；
     AgentState 经 SessionStore 端口落盘（SQLite 或文件），服务重启后恢复。"""
 
-    def __init__(self, main_factory: MainAgentFactory, session_store: SessionStore, *, enforce_owner: bool = True, prompt_registry=None) -> None:
+    def __init__(self, main_factory: MainAgentFactory, session_store: SessionStore, *, enforce_owner: bool = True, prompt_registry=None, model_registry=None) -> None:
         self._main_factory = main_factory
         self._session_store = session_store
         self._agents: dict[str, Agent] = {}
         self._claims = {}
         self._enforce_owner = enforce_owner
         self._prompt_registry = prompt_registry
+        self._model_registry = model_registry
 
-    async def get_or_create(self, shopping_session_id: str) -> Agent:
+    async def get_or_create(self, shopping_session_id: str, *, apply_model_selection: bool = True) -> Agent:
         from app.infrastructure.context import ShoppingContext
         from app.domain.session.ports.session_store import SessionOwnerMismatch, SessionStateCorrupt
         context = ShoppingContext.current()
@@ -249,13 +252,35 @@ class SessionRegistry:
                 assignment = await self._prompt_registry.assign(shopping_session_id, context.buyer_id)
                 ShoppingContext.set_prompt_assignment(assignment)
                 record_prompt_assignment()
+            try:
+                restored = AgentState.model_validate_json(claim.state_json) if claim.state_json is not None else None
+            except Exception as error:
+                raise SessionStateCorrupt("持久会话快照损坏，未按空会话覆盖历史") from error
+            snapshot = None
+            if self._model_registry is not None:
+                binding = await self._session_store.model_binding(shopping_session_id, context.buyer_id)
+                saved = restored.middle_context.get('globex_model') if restored else None
+                awaiting = bool(restored and restored.context and restored.get_awaiting_tool_calls(restored.context[-1].name))
+                # 原生 ASK 恢复必须使用产生该审批的配置，不消费待选模型。
+                from app.application.agents.model_selection import resolve_session_snapshot
+                snapshot = await resolve_session_snapshot(self._model_registry, context.buyer_id,
+                    binding, restored, allow_pending=apply_model_selection)
+                ShoppingContext.set_model(snapshot,
+                    await self._model_registry.runtime_for_snapshot(snapshot, buyer_id=context.buyer_id))
+                if restored and snapshot != saved and binding['pending'] == snapshot:
+                    await self.check_model_capacity(shopping_session_id, context.buyer_id, snapshot, restored)
+                await self._session_store.bind_run_model(claim, snapshot,
+                    selection_revision=binding['revision'], consume_pending=apply_model_selection and not awaiting)
             previous = self._claims.get(shopping_session_id)
-            if shopping_session_id not in self._agents or previous is None or previous.revision != claim.revision:
-                try:
-                    restored = AgentState.model_validate_json(claim.state_json) if claim.state_json is not None else None
-                except Exception as error:
-                    raise SessionStateCorrupt("持久会话快照损坏，未按空会话覆盖历史") from error
+            cached = self._agents.get(shopping_session_id)
+            changed = snapshot is not None and cached is not None and cached.state.middle_context.get('globex_model') != snapshot
+            if cached is None or previous is None or previous.revision != claim.revision or changed:
+                if cached is not None:
+                    from app.application.agents.model_selection import close_agent_model
+                    await close_agent_model(cached)
                 self._agents[shopping_session_id] = self._main_factory.build(restored)
+            if snapshot is not None:
+                self._agents[shopping_session_id].state.middle_context['globex_model'] = snapshot
             self._claims[shopping_session_id] = claim
             return self._agents[shopping_session_id]
         except BaseException:
@@ -264,8 +289,33 @@ class SessionRegistry:
 
     async def invalidate(self, shopping_session_id: str) -> None:
         """取得跨进程执行权后丢弃本地缓存，下一次读取恢复持久状态。"""
-        self._agents.pop(shopping_session_id, None)
+        agent = self._agents.pop(shopping_session_id, None)
+        if agent is not None:
+            from app.application.agents.model_selection import close_agent_model
+            await close_agent_model(agent)
         self._claims.pop(shopping_session_id, None)
+
+    async def check_model_capacity(self, session, buyer, snapshot, state):
+        from app.infrastructure.context import ShoppingContext, ShoppingContextSnapshot
+        from app.application.agents.model_selection import check_capacity, close_agent_model
+        token = ShoppingContext.set(ShoppingContextSnapshot(session, buyer, 'zh-CN', 'CNY'))
+        agent = None
+        try:
+            ShoppingContext.set_model(snapshot,
+                await self._model_registry.runtime_for_snapshot(snapshot, buyer_id=buyer))
+            if self._prompt_registry is not None:
+                assignment = await self._prompt_registry.existing_assignment(session, buyer)
+                if assignment is not None:
+                    ShoppingContext.set_prompt_assignment(assignment)
+            ShoppingContext.set_skill_catalog_mode(getattr(self._main_factory, 'skill_catalog_mode', 'legacy'))
+            agent = self._main_factory.build(state.model_copy(deep=True))
+            await check_capacity(agent)
+        finally:
+            try:
+                if agent is not None:
+                    await close_agent_model(agent)
+            finally:
+                ShoppingContext.reset(token)
 
     async def persist(self, shopping_session_id: str) -> bool:
         """捕获本轮票据后执行 CAS，旧执行者无法覆盖新 owner 的状态。"""

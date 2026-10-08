@@ -1,11 +1,15 @@
 """手动整理是独立维护操作，不生成买家消息、不调用交易工具。"""
 from __future__ import annotations
 import asyncio
+import logging
+import math
 from contextlib import AsyncExitStack
 from app.infrastructure.context import ShoppingContext, ShoppingContextSnapshot
 from app.infrastructure.context_governance import LayeredContextMiddleware, update_working_state, ContextCapacityError
 from app.application.agents.tool_confirmation import awaiting_event
 from app.domain.session.ports.session_store import StaleSessionWrite
+
+logger = logging.getLogger(__name__)
 
 
 class ContextService:
@@ -23,9 +27,94 @@ class ContextService:
         await asyncio.gather(*list(self.tasks.values()), return_exceptions=True)
 
     async def view(self, session, buyer):
-        result = await self.store.context_view(session, buyer)
+        # revision 与快照来自同一事务，不把上次整理或累计用量冒充当前占用。
+        if hasattr(self.store, 'context_snapshot'):
+            result, state_json = await self.store.context_snapshot(session, buyer)
+        else:
+            result, state_json = await self.store.context_view(session, buyer), None
         result['strategy'] = getattr(self.settings,'context_strategy','legacy')
+        result['usage'] = await self._snapshot_usage(session, buyer, result['revision'], state_json)
         return result
+
+    async def _snapshot_usage(self, session, buyer, revision, state_json):
+        """完整已保存工作集的本地估算；不取执行权、不运行模型、不更改真实状态。"""
+        registry = self.orchestrator._sessions
+        factory = getattr(registry, '_main_factory', None)
+        if not state_json or factory is None:
+            return None
+        token = ShoppingContext.set(ShoppingContextSnapshot(session, buyer, 'zh-CN', 'CNY'))
+        agent = None
+        try:
+            from agentscope.state import AgentState
+            state = AgentState.model_validate_json(state_json)
+            if not state.context and not state.summary:
+                return None
+            prompt_registry = getattr(registry, '_prompt_registry', None)
+            if prompt_registry is not None:
+                # 不能静默用当前 YAML 替换该会话固定的 Prompt 版本。
+                assignment = await prompt_registry.existing_assignment(session, buyer)
+                if assignment is None:
+                    return None
+                ShoppingContext.set_prompt_assignment(assignment)
+            ShoppingContext.set_skill_catalog_mode(getattr(factory, 'skill_catalog_mode', 'legacy'))
+            model_registry = getattr(registry, '_model_registry', None)
+            model_snapshot = state.middle_context.get('globex_model')
+            if model_registry is not None:
+                binding = await self.store.model_binding(session, buyer)
+                locked = self.orchestrator._session_locks.get(session)
+                from app.application.agents.model_selection import resolve_session_snapshot
+                model_snapshot = await resolve_session_snapshot(model_registry, buyer, binding, state,
+                    allow_pending=not (locked and locked.locked()))
+                ShoppingContext.set_model(model_snapshot,
+                    await model_registry.runtime_for_snapshot(model_snapshot, buyer_id=buyer))
+            agent = factory.build(state)
+            middleware = next((m for m in agent._model_call_middlewares
+                               if isinstance(m, LayeredContextMiddleware)), None)
+            if middleware is not None:
+                estimated = await middleware.count(agent)
+            else:
+                # legacy 没有商品共享投影，按它实际准备的完整输入估算。
+                prepared = await agent._prepare_model_input()
+                from app.infrastructure.model_counting import count_model_input
+                estimated = (await count_model_input(agent.model, **prepared, calibration=state.middle_context.get('globex_context', {}).get('calibration')))['estimated_input_tokens']
+            from app.infrastructure.model_counting import input_limits
+            limits = input_limits(agent.model)
+            window, reserve, safety, available = (limits[k] for k in ('context_window','output_reserve','safety_reserve','input_budget'))
+            if not math.isfinite(estimated) or estimated < 0 or available <= 0:
+                return None
+            return {'estimated_input_tokens': estimated, 'context_window': window,
+                    'utilization_ratio': estimated / window, 'input_budget': available,
+                    'output_reserve': reserve, 'safety_reserve': safety,
+                    'saved_revision': revision, 'source': 'saved_context_estimate',
+                    'model': agent.model.model, 'profile_id': (model_snapshot or {}).get('profile_id'),
+                    'context_max': (model_snapshot or {}).get('context_max', window),
+                    'counter_method': (getattr(agent.model, '_globex_counter_metadata', {}) or {}).get('method', 'agentscope_estimate')}
+        except Exception as error:
+            # 估算不可用不阻断摘要与手动整理，也不输出买家快照或配置内容。
+            logger.warning('上下文占用估算不可用：%s', type(error).__name__)
+            return None
+        finally:
+            try:
+                if agent is not None:
+                    # 工厂为副本创建的主/回退客户端都要释放；不会关闭会话里的模型。
+                    models, seen, clients = [agent.model], set(), set()
+                    while models:
+                        model = models.pop()
+                        if id(model) in seen:
+                            continue
+                        seen.add(id(model))
+                        fallback = getattr(model, '_fallback', None)
+                        if fallback is not None:
+                            models.append(fallback)
+                        client = getattr(model, 'client', None)
+                        if client is not None and id(client) not in clients:
+                            clients.add(id(client))
+                            try:
+                                await client.close()
+                            except Exception as error:
+                                logger.warning('上下文估算客户端释放失败：%s', type(error).__name__)
+            finally:
+                ShoppingContext.reset(token)
 
     async def start(self, session, buyer, request_id, expected_revision):
         lock = self.orchestrator._session_locks.setdefault(session, asyncio.Lock())
@@ -89,7 +178,7 @@ class ContextService:
                 view = await self.store.context_view(session,buyer)
                 if view['revision'] != operation['expected_revision']:
                     raise StaleSessionWrite('选购记录已更新，请重试整理')
-                agent = await registry.get_or_create(session)
+                agent = await registry.get_or_create(session, **({'apply_model_selection': False} if getattr(registry, '_model_registry', None) else {}))
                 if awaiting_event(agent) is not None: raise StaleSessionWrite('尚有待审批工具')
                 update_working_state(agent, agent.state.context)
                 middleware = LayeredContextMiddleware(self.evidence,

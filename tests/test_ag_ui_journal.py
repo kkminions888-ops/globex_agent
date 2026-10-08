@@ -3,6 +3,7 @@
 import asyncio
 import json
 import socket
+import time
 from types import SimpleNamespace
 
 import httpx
@@ -19,6 +20,14 @@ from app.presentation.ag_ui_runtime import AGUIRuntime
 def body(run="r1", session="s1", buyer="b1", query="查询旅行背包"):
     return {"threadId": session, "runId": run, "messages": [{"id": f"u-{run}", "role": "user", "content": query}],
             "state": {}, "tools": [], "context": [], "forwardedProps": {"buyerId": buyer}}
+
+
+def controlled_journal_time(monkeypatch):
+    """只控制日志租约时钟，不影响事件循环、数据库重试或其它模块。"""
+    clock = SimpleNamespace(now=time.time())
+    monkeypatch.setattr("app.infrastructure.ag_ui_journal.time",
+                        SimpleNamespace(time=lambda: clock.now, monotonic=time.monotonic))
+    return clock
 
 
 class ControlledOrchestrator:
@@ -125,16 +134,19 @@ async def test_restart_preserves_finished_run_without_reexecuting_model(tmp_path
     assert saved["run"]["status"] == "completed"
 
 
-async def test_abandoned_run_becomes_durable_interrupted_terminal(tmp_path):
+async def test_abandoned_run_becomes_durable_interrupted_terminal(tmp_path, monkeypatch):
+    clock = controlled_journal_time(monkeypatch)
     path = tmp_path / "runs.db"
     journal = AGUIJournal(path)
-    await journal.reserve(body(), "b1", "dead-process", lease_seconds=0.04)
+    await journal.reserve(body(), "b1", "dead-process", lease_seconds=30)
     await journal.append("r1", "dead-process", [
         {"type": "RUN_STARTED", "threadId": "s1", "runId": "r1"},
         {"type": "TEXT_MESSAGE_START", "messageId": "a1", "role": "assistant"},
         {"type": "TEXT_MESSAGE_CONTENT", "messageId": "a1", "delta": "已保存部分内容"},
     ])
-    await asyncio.sleep(0.06)
+    assert (await journal.run("r1", "b1"))["status"] == "running"
+    # 先确认部分内容已写入，再精确到达过期边界，不依赖机器在40ms内完成SQLite操作。
+    clock.now += 30
     reopened = AGUIJournal(path)
     run = await reopened.run("r1", "b1")
     assert run["status"] == "interrupted"

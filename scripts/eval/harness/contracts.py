@@ -21,6 +21,7 @@ WATCHED = ('app/application/agents/', 'app/application/harness/', 'app/applicati
            'app/infrastructure/prompt_cache.py', 'app/infrastructure/llm.py',
            'app/infrastructure/buyer_skills.py', 'app/infrastructure/capability_registry.py',
            'tests/test_skill_catalog', 'tests/test_buyer_workspace', 'tests/test_capability_registry',
+           'configs/models.yaml', 'app/infrastructure/model_registry.py', 'app/infrastructure/model_connection.py', 'app/infrastructure/model_counting.py', 'tests/test_model_',
            'app/infrastructure/model_protocol.py', 'app/infrastructure/model_recovery.py', 'app/infrastructure/visible_evidence.py',
            'app/infrastructure/harness_middleware.py', 'app/infrastructure/budget.py',
            'app/infrastructure/resilience.py', 'app/infrastructure/throttle.py',
@@ -60,7 +61,7 @@ def write_json(path, value):
 
 def source_manifest(root=ROOT):
     files = [p for directory in ('app', 'scripts/eval', 'tests') for p in (root / directory).rglob('*.py')]
-    files += [root / 'pyproject.toml', root / 'uv.lock', root / 'Makefile', root / '.github/workflows/harness-eval.yml']
+    files += [root / 'configs/models.yaml', root / 'pyproject.toml', root / 'uv.lock', root / 'Makefile', root / '.github/workflows/harness-eval.yml']
     files += [root / 'scripts/model_preflight.py', root / 'scripts/learning.py']
     files += list((root / 'eval/learning').glob('*.json'))
     files += list((root / 'app/application/prompts').glob('*.yml'))

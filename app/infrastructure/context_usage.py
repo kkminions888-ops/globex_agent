@@ -24,11 +24,12 @@ def record_context_diagnostic(event):
         sink(event)
 
 
-def record_context_usage(input_tokens, output_tokens, elapsed_ms, *, cache=None, start_time=None, ttft_ms=None):
+def record_context_usage(input_tokens, output_tokens, elapsed_ms, *, cache=None, start_time=None, ttft_ms=None, model_identity=None):
     sample = {'kind':context_call_kind.get(), 'input_tokens':input_tokens, 'output_tokens':output_tokens, 'elapsed_ms':elapsed_ms}
     if context_request_details.get() is not None:
         sample['request_context'] = dict(context_request_details.get())
     if cache is not None:sample['prompt_cache']=cache
+    if model_identity is not None:sample['model_execution']=dict(model_identity)
     # 非流式不能把完整响应耗时伪装成首字时间。
     sample['ttft_ms'] = ttft_ms
     sink=context_usage_sink.get()
@@ -47,6 +48,10 @@ def record_context_usage(input_tokens, output_tokens, elapsed_ms, *, cache=None,
             attempt.set_attribute('globex.context.call_kind', sample['kind'])
             attempt.set_attribute('globex.context.elapsed_ms', elapsed_ms)
             attempt.set_attribute('globex.context.ttft_ms_known', ttft_ms is not None)
+            if model_identity:
+                for key in ('identity', 'requested_model', 'profile_id', 'profile_revision', 'response_model_matches'):
+                    if model_identity.get(key) is not None:
+                        attempt.set_attribute('globex.model.' + key, model_identity[key])
             if ttft_ms is not None:attempt.set_attribute('globex.context.ttft_ms', ttft_ms)
             for key, val in [('input_tokens', input_tokens), ('output_tokens', output_tokens)]:
                 attempt.set_attribute('globex.context.'+key+'_known', val is not None)

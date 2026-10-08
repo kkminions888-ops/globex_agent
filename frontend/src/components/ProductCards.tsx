@@ -1,6 +1,7 @@
 import { memo, useState } from "react";
 import type { ProductCard } from "../types";
 import Icon from "./Icon";
+import "./compactProductCards.css";
 export function money(value: number, currency: string) {
   if (!Number.isFinite(value)) return "待确认";
   try {
@@ -57,7 +58,7 @@ function ProductCards({
   onDetail,
 }: ProductCardsProps) {
   return (
-    <div className="product-grid">
+    <div className="product-grid compact-product-grid">
       {products.map((product, index) => {
         const saved = favoriteIds.has(product.product_id),
           selected = comparedIds.has(product.product_id),
@@ -92,7 +93,7 @@ function ProductCards({
               <span className="visual-caption">
                 {product.image_kind === "illustration"
                   ? "商品示意图 · 非实物照片"
-                  : "商品图片待补充"}
+                  : product.image_url ? "商品图片" : "商品图片待补充"}
               </span>
             </div>
             <div className="product-body">
@@ -101,7 +102,7 @@ function ProductCards({
                 {rating && (
                   <span className="rating">
                     <i>★</i> {rating.average.toFixed(1)}{" "}
-                    <span>({rating.review_count} · 样例)</span>
+                    <span>({rating.review_count}{product.rating_is_live ? "" : " · 样例"})</span>
                   </span>
                 )}
               </div>

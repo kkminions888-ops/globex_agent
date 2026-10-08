@@ -170,7 +170,12 @@
     "tests/test_buyer_workspace.py",
     "tests/test_capability_registry.py",
     "tests/test_context_prefix_recovery.py",
-    "tests/test_skill_evaluation_suite.py"
+    "tests/test_skill_evaluation_suite.py",
+    "tests/test_model_registry.py",
+    "tests/test_model_runtime_counting.py",
+    "tests/test_model_selection_runtime.py",
+    "tests/test_model_workspace.py",
+    "tests/test_model_connection_identity.py"
   ],
   "runtime": {
     "concurrency": 1,

@@ -148,7 +148,8 @@ class AGUIRuntime:
             else:
                 adapter.finish(result.final_text)
         except asyncio.CancelledError:
-            adapter.fail("本轮已明确停止" if entry.reason == "stop" else "服务重启或执行中断，已保存的内容仍可恢复。", cancelled=entry.reason == "stop")
+            adapter.fail("本轮已明确停止" if entry.reason == "stop" else "服务重启或执行中断，已保存的内容仍可恢复。",
+                         cancelled=entry.reason == "stop", code=None if entry.reason == "stop" else "SERVER_RESTART")
         except Exception:
             logger.exception("AG-UI 运行失败：%s", body.run_id)
             adapter.fail("本轮服务暂时未能完成请求，请重试。")

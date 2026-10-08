@@ -9,6 +9,7 @@ dependencies = [
     "ag-ui-protocol==0.1.22",
     "agentscope==2.0.8",
     "aiosqlite>=0.22.1",
+    "cryptography>=46,<51",
     "fastapi>=0.115",
     "httpx>=0.28.1",
     "jsonschema>=4,<5",
@@ -25,6 +26,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+tokenization = ["transformers>=4.50,<6"]
 retrieval = [
     "fastembed==0.7.4",
 ]

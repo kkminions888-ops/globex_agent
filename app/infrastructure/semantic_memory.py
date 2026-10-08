@@ -28,11 +28,13 @@ class MemoryUnavailable(ValueError):
     pass
 
 class PreferenceDistiller:
-    def __init__(self, model): self.model = model
+    def __init__(self, model=None, *, model_factory=None):
+        self.model, self.model_factory = model, model_factory
 
     async def extract(self, preference: BuyerPreference, existing=()) -> list[dict]:
+        model = await self.model_factory(preference.buyer_id) if self.model_factory else self.model
         try:
-            response = await asyncio.wait_for(self.model(messages=[
+            response = await asyncio.wait_for(model(messages=[
                 Msg(name="system", role="system", content=[TextBlock(text=EXTRACTION_PROMPT)]),
                 Msg(name="user", role="user", content=[TextBlock(text=json.dumps({"kind":preference.kind,"input":preference.statement,"existing":[{"kind":p.kind,"statement":p.statement,"memory_id":p.memory_id} for p in existing]},ensure_ascii=False))]),
             ], max_tokens=1200), timeout=45)
@@ -54,6 +56,12 @@ class PreferenceDistiller:
             return list({(f['kind'],f['statement']):f for f in result}.values())
         except Exception as error:
             raise MemoryUnavailable('偏好提炼暂不可用，未保存原文，请稍后重试。') from error
+        finally:
+            if self.model_factory:
+                from types import SimpleNamespace
+                from app.application.agents.model_selection import close_agent_model
+                await close_agent_model(SimpleNamespace(model=model))
+
 
 class SemanticPreferenceStore(PreferenceStore):
     semantic_memory = True

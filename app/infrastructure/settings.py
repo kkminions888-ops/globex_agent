@@ -74,6 +74,11 @@ class Settings:
     llm_max_concurrency: int = 2  # 同时在飞的模型请求上限
     llm_min_interval_seconds: float = 1.0  # 相邻请求起跑最小间隔，治速率爬升过快
     llm_max_retries: int = 2  # 瞬时故障重试次数（指数退避）
+    llm_enable_thinking: bool | None = None  # 未设置不发送；明确值由支持该参数的网关处理
+    llm_fallback_context_size: int | None = None
+    model_admin_buyers: tuple[str, ...] = ()
+    model_master_key: str = field(default="", repr=False)
+    model_allowed_local_hosts: tuple[str, ...] = ()
     prompt_cache_mode: str = "passthrough"  # 不主动标记；不等于关闭供应商隐式缓存
     prompt_cache_policy: str = "static"
     skill_catalog_mode: str = "legacy"  # append_only 为变化驱动候选，收益验收后再启用
@@ -152,6 +157,10 @@ def load_settings(*, require_llm_key: bool = True) -> Settings:
             "export LLM_API_KEY=<你的密钥>；或在项目根目录创建本地 .env 文件"
             "（参考 .env.example，该文件已被 gitignore，不会入库）。"
         )
+    thinking_value = os.getenv("LLM_ENABLE_THINKING", "").strip().lower()
+    thinking_options = {"": None, "1": True, "true": True, "0": False, "false": False}
+    if thinking_value not in thinking_options:
+        raise ValueError("LLM_ENABLE_THINKING 仅接受空值、1/0 或 true/false")
     data_dir = Path(os.getenv("DATA_DIR", str(PROJECT_ROOT / "data")))
     data_dir.mkdir(parents=True, exist_ok=True)  # SQLite 默认落在此目录，建库前必须存在
     return Settings(
@@ -171,6 +180,11 @@ def load_settings(*, require_llm_key: bool = True) -> Settings:
         llm_base_url=llm_base_url,
         llm_api_key=llm_api_key,
         llm_model=os.getenv("LLM_MODEL", "qwen3-max"),
+        llm_enable_thinking=thinking_options[thinking_value],
+        llm_fallback_context_size=int(os.environ['LLM_FALLBACK_CONTEXT_SIZE']) if os.getenv('LLM_FALLBACK_CONTEXT_SIZE') else None,
+        model_master_key=os.getenv('MODEL_MASTER_KEY', ''),
+        model_admin_buyers=tuple(x.strip() for x in os.getenv('MODEL_ADMIN_BUYERS', '').split(',') if x.strip()),
+        model_allowed_local_hosts=tuple(x.strip() for x in os.getenv('MODEL_ALLOWED_LOCAL_HOSTS', '').split(',') if x.strip()),
         reranker_mode=os.getenv("RERANKER_MODE", "http"),
         reranker_api_key=os.getenv("RERANKER_API_KEY") or llm_api_key,
         reranker_protocol=os.getenv("RERANKER_PROTOCOL", "flat"),

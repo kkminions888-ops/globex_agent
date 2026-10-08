@@ -56,6 +56,8 @@ EMBEDDING_MODEL=text-embedding-v4
 
 只有 `LLM_API_KEY` 非空才允许启动；占位字符串不能用于真实对话。Embedding 默认复用 LLM 的网关和密钥，网关不支持 embedding 时需单独配置 `EMBEDDING_BASE_URL`、`EMBEDDING_API_KEY`。环境变量优先于根目录 `.env`。首次启动会加载商品目录、初始化持久库，并尝试建立商品和知识向量索引，可能需要一段时间和 embedding 调用费用。
 
+需要供应商公开的 Think 输出时，可设置 `LLM_ENABLE_THINKING=1`（或 `true`）并重启后端；`0`／`false` 明确关闭，未设置或留空则不发送参数，保持原行为。此配置导入“当前网关”模型档案；页面只展示档案已声明的思考选项。兼容迁移的主模型和回退模型都继承该声明，因此两者须支持 `enable_thinking`；不支持时应配置兼容模型或留空 `LLM_FALLBACK_MODEL`。自定义连接按自身声明与校验结果使用思考开关或强度，不能按模型名称猜测。Think 可能增加耗时和用量；未返回 `reasoning_content`／`reasoning` 时，页面不会生成思考内容。Compose 已向 `app`／`worker` 透传这些配置；环境改动后需重新创建相应容器，已有会话仍按冻结版本执行，可在模型列表重新选择新版本。
+
 最小本机模式使用 SQLite 和本地 Qdrant，无需 MySQL、Redis、Docker 或 Langfuse。首次体验建议不配置 `REDIS_URL`、`QDRANT_URL`；已有配置不要为了启动随意清空，应先确认原有数据与依赖。
 
 **3. 终端一启动后端。**
@@ -98,6 +100,9 @@ npm --prefix frontend run preview -- --host 127.0.0.1 --port 5174 --strictPort
 | 入口 | 使用方式与实际行为 |
 | --- | --- |
 | 我的选购 | 输入用途、预算、收货地；流式回答、商品卡、规格详情、2–3 件比较、心选收藏 |
+| 思考与执行记录 | 对话中展示工具步骤，展开查看条件和结果摘要；“执行记录”集中查看各轮过程。Think 仅展示供应商公开返回的思考流，模型未返回时不补造 |
+| 模型选择与管理 | 输入区选择模型、思考档位与上下文上限；管理列表显示和默认选项，校验后添加或编辑自定义连接；“设为新会话默认”是独立操作 |
+| 上下文用量圆环 | 点击查看当前模型、窗口和计数口径，手动整理工作上下文；完整对话与商品卡保留 |
 | `/` 选择 Skill | 输入 `/` 选择方案后发送；服务端核对版本与内容哈希、读取正文，再交给 Agent 执行 |
 | 我的 Skill | 编写名称、使用场景和 Markdown 步骤；保存、修改、删除均走服务端；仅当前买家可用，不自动发布为公共方案 |
 | 长期偏好 | 添加、编辑、删除“喜欢／避免”；先提炼去噪再落库，正向偏好按持久向量召回、负向约束全量保留；Agent 的记住、修改、删除工具经原生审批后执行；页面支持版本校验及变更记录 |
@@ -107,6 +112,8 @@ npm --prefix frontend run preview -- --host 127.0.0.1 --port 5174 --strictPort
 | 交易确认 | Agent 或页面生成确认单，买家明确批准后才执行本地订单与库存事务 |
 
 对话里的记忆变更会先出现审批卡，点击“批准本次操作”才执行；拒绝不改记忆，刷新可恢复待审批操作。页面直接保存则无需再走 Agent 审批。
+
+页面采用浅蓝工作台布局，侧栏可搜索历史；手机通过左上角打开导航。右上角可关闭氛围插画。工具参数生成结束不代表执行成功，步骤分别标明进行中、等待确认、已批准、已完成或中断。新产生的工具与 Think 记录存入服务端运行日志，刷新和重开历史从同一买家、同一会话恢复；旧版会话没有这些记录时不推测补齐。工具详情仅展示允许字段的摘要，原有同买家工具协议与原始证据保持不变。Think 每段最多保存 8000 字，超过会明确标记；该展示不额外请求模型，供应商开关由可选的 `LLM_ENABLE_THINKING` 控制，未设置时保持原行为。
 
 例如：“记住我喜欢轻便的小众设计”“把喜欢黑色改成喜欢蓝色”“删除喜欢蓝色这条偏好”。只点保存成功的条目才是已持久化内容；未保存表单不是长期记忆。正在执行的一轮使用已加载上下文，修改在下一轮生效。个人 Skill 只指导现有工具使用，不允许买家上传脚本或扩大工具权限。
 
@@ -120,6 +127,10 @@ flowchart TD
     Client -->|POST + SSE / 游标重连| API[FastAPI AG-UI 路由与持久运行日志]
     API --> Orchestrator[Orchestrator：身份、会话、偏好、Skill、Prompt 版本]
     Orchestrator --> Main[MainAgent 总调度]
+    UI --> Models[模型选择与管理 API]
+    Models --> Registry[ModelRegistry：目录、版本、凭据引用]
+    Registry --> ModelDB[(SQLite 模型配置 / 独立主密钥)]
+    Registry -->|每轮冻结模型快照| Orchestrator
     Main --> Tools[检索、品类知识、偏好、交易工具]
     Main -->|task_dispatch 按需派发| Sub[SearchAgent / TradeAgent]
     Sub --> Tools
@@ -137,14 +148,36 @@ flowchart TD
 - **业务分层**：DDD 洋葱架构。领域层定义实体和端口，应用层负责用例、工具与编排，基础设施层实现数据库、模型和检索适配，FastAPI 位于最外侧；`composition.py` 统一装配 API 与 worker。
 - **检索与知识**：版本化 JSONL 商品目录装入内存仓储；embedding → Qdrant → HTTP reranker，两级降级到向量排序或关键词。精确商品/SKU ID 可直接查权威目录；预算等硬约束由代码过滤。品类知识使用 Markdown + AgentScope KnowledgeBase。BM25/RRF Hybrid 已实现，默认关闭，尚未证明收益。
 - **上下文与记忆**：偏好经模型提炼后与向量原子持久化，通过 AgentScope 2.x MiddlewareBase 在每轮语义召回并注入独立 hint；个人 Skill 常驻元数据，正文按需加载。工具完整证据与模型决策投影分离，支持证据回查、清理和压缩；预算不足时规则回复收口。Prompt 与工具合同版本绑定会话。
+- **模型配置与计数**：[ModelRegistry](app/infrastructure/model_registry.py) 统一读取内置目录和买家配置；会话选择、每轮执行快照、窗口及思考参数持久化。AgentScope 的 `count_tokens` 接口委托 [计数适配层](app/infrastructure/model_counting.py)，页面圆环与容量检查共用模型身份和计数口径；回退模型独立核验容量并记录消耗。
 - **交易与可靠性**：确认、幂等操作、订单与库存由 SQLite 事务提交；会话 lease/fencing/CAS 防并发旧写。队列具备 pending 回收、死信与归档。网关并发、重试、熔断和 Harness 约束工具及模型执行。
 - **观测与评测**：OTel/OTLP 关联 API、Agent、模型、工具，队列路径传播 Trace 上下文；Langfuse 可接收追踪与评分。独立 dev/release 数据、运行清单和门禁保留真实失败，不用单测通过代替效果达标。
 
 **两条执行路径要分清**：当前网页的 AG-UI 请求在 API 进程直接执行，运行结果写持久日志；`QUEUE_ENABLED=1` 不会把这条路径自动转交 worker。Redis 队列用于旧 `/commerce/intents` 与异步任务入口，未启用队列时旧同步入口也在 API 进程执行。AG-UI 为保留商品等结构化事实，不使用只缓存最终文本的语义回复缓存。
 
+## 选择与接入模型
+
+点击发送按钮附近的模型名称，可搜索并选择已配置模型，调整本次上下文上限和思考设置；“模型管理”提供默认/自定义列表、显示开关以及分档窗口滑杆。主行是展示名称（如`Qwen3.8-Max`），副行`API · qwen3.8-max`才是发送给模型服务的实际名称。同一端点、凭据、协议及API型号只显示一个条目；不同网关或凭据不会误合并。目录隐藏保留原配置及历史快照，不改绑既有会话。要让后续新会话采用当前选择，单独点击“设为新会话默认”；已有会话保持原选择。
+
+模型配置位于 [configs/models.yaml](configs/models.yaml)，首次沿用 `.env` 的当前模型、窗口和回退配置。“默认”页也列出当前网关尚未接入的Qwen3.8 Max/Flash、Qwen3.7 Plus/Flash参考预设：官方文档在2026-10-08核对为1M窗口，来源和日期随预设保存。待连接条目不能选用；管理员点击“连接”后，用现有网关验证，成功才保存并开放选择，失败保留重试入口。已经接入的同型号不会再显示一份待连接预设。添加入口仍支持自己的服务；重复提交相同运行配置复用既有模型，不重复创建。页面配置保存到 SQLite，不把选择写回 `.env`。模型档案只追加修订，运行使用冻结版本：生成中保存的选择在下一轮生效，等待 AgentScope ASK 审批时继续使用原模型与参数。刷新读取同一会话的配置；切到更小窗口会先检查已有上下文，不能安全容纳时提示先整理或改用更大窗口，原选择和历史保留。
+
+**模型支持上限与本次上限不同。** 例如模型声明支持128K，可在目录允许范围内选择64K/128K本地预算；64K不是向供应商申请另一种模型窗口。当前仅开放离散 `local_budget` 档位，不发送虚构的窗口参数，也不能用滑块突破供应商容量。更大窗口不会自动扩大 Harness 的48K工作目标。
+
+自定义接入步骤：
+
+1. 在模型管理中添加模型，选择千问预设或手工填写 OpenAI Chat Completions 兼容服务地址、模型 ID 和 API Key。也可明确勾选“沿用当前网关连接”，由服务端复用同地址、同供应商的指定版本凭据，不向页面返回密钥。
+2. 展开容量与思考设置，填写窗口、独立输入上限、输出预留及离散档位。千问预设提供128K/200K/400K/1M预算，默认200K；官方最大输出131,072与实际8,192输出预留分别记录。未确认支持思考时保持“不启用思考参数”。
+3. 可先点“测试连接”，仅校验，不保存；确认后点“校验并添加模型”。服务端用固定、无买家数据的小样例验证流式输出、工具往返和所选思考参数，同时记录返回型号。修改表单后旧测试结果失效；预设遇到网关返回其它型号时拒绝保存，缺少返回型号则标未知。小探针不证明最大窗口容量，也不替代任务效果评测。
+4. 通过后再从列表选择。编辑时密钥不回显，留空可保留；修改服务地址或供应商必须填写对应新密钥，避免把旧凭据发送到新服务。
+
+网页只开放兼容协议，不接受任意脚本或请求模板。默认只允许本机演示连接管理；远端采用签名身份时，另配置 `MODEL_ADMIN_BUYERS`。私有网络模型需显式配置 `MODEL_ALLOWED_LOCAL_HOSTS`，远端地址要求 HTTPS，云元数据与链路本地地址始终拒绝。密钥在服务端加密保存，不进入浏览器存储、模型公开目录或执行事件。
+
+Token 计数仍通过 AgentScope：默认是 SDK 估算加同模型、同网关的保守校准，不能称为实际用量。计数适配层也支持经核验的本地 tokenizer + chat template，需要匹配模型、思考参数和文件哈希；仅可信部署配置可指定，页面自定义连接暂使用校准估算。依赖、模板或匹配条件不满足时明确退回估算，不按品牌猜 tokenizer，不在点击圆环时联网下载。实际 usage 由供应商调用结果单独记录，上一请求用量不等于已追加回答后的当前窗口占用。
+
+回滚时可先在列表重新选择内置当前网关及原档位，再独立恢复新会话默认；正在进行的轮次仍完成原快照。不要删除数据库或主密钥来“重置”配置。若回退工程版本，先停止写入并保留整个数据目录和原主密钥；旧版本不会理解新增模型绑定，不应在未验证恢复路径时继续处理待审批交易。
+
 ## 上下文整理与长对话
 
-对话下方提供「整理上下文」和只读「本次选购摘要」。摘要展示带原话来源的预算、收货地、商品约束及选择；修改需求直接发消息。运行中或等待工具审批时不能整理，短会话会提示无需整理。整理操作、版本和完成结果保存在服务端，刷新后可以继续查看；完整聊天和商品卡不会因整理消失。
+发送按钮旁的圆环显示上下文窗口使用比例，点击可查看用量、手动「整理上下文」及只读「本次选购摘要」。用量是同一版本已保存会话的保守估算，包含系统提示、工具定义和对话，不含正在输入的草稿；生成中显示上轮已保存估算，完成后刷新。尚无可用统计时圆环默认显示 0%，详情明确标记「默认值 · 尚无统计」，不代表已测得零用量。它不是累计账单用量。摘要展示带原话来源的预算、收货地、商品约束及选择；修改需求直接发消息。运行中或等待工具审批时不能整理，短会话会提示无需整理。整理操作、版本和完成结果保存在服务端，刷新后可以继续查看；完整聊天和商品卡不会因整理消失。
 
 自动治理通过 `CONTEXT_STRATEGY=legacy / layered` 切换，**二轮专项验收通过，本机及示例配置启用 layered；代码缺省仍为 legacy，可随时回滚**。二轮开发集选择 `CONTEXT_PRUNING_TIMING=pressure`（成功读取后且出现压力时裁剪）；新策略先保存完整工具证据，入口只删除展示/诊断冗余；新结果至少被模型成功读取一次，且离开最近完整轮次后，才具备裁剪资格。选中商品、不同目的地/币种/数量的报价和历史价格比较受到保护。旧结果保留证据引用，按展示批次、商品位置、SKU 和字段组回查。
 
@@ -163,15 +196,19 @@ flowchart TD
 | 规范化长期偏好、持久向量、版本/来源、操作审计及迁移标记 | `data/buyer_memory.db`；旧 PreferenceStore 首次访问时提炼迁移 |
 | 买家个人 Skill 与不可变修订 | `data/buyer_skills.db` |
 | 公开 Skill、审核策略 / Prompt 版本 | `data/capabilities.db` / `data/prompts/registry.sqlite3` |
+| 模型档案修订、加密凭据、买家显示偏好与新会话默认 | `data/models.sqlite3`；会话模型绑定与执行快照由会话/运行持久库保存 |
+| 自定义模型凭据主密钥 | 默认 `data/.secrets/model_registry.key`；可用服务端 `MODEL_MASTER_KEY` 替代，不能随数据库公开分发 |
 | 本地向量索引 | `data/qdrant/`；配置 Qdrant 服务端时由该服务保存 |
 | 队列终态归档 | `data/queue_archive.db`；启用队列时使用 |
 | 心选收藏 | `data/buyer_favorites.db`，按 `buyer_id` 保存和查询 |
 | 近期会话显示缓存、当前会话指针 | 浏览器 `localStorage`，只作加速；无缓存时仍从数据库恢复 `pao-coder` |
 | 当前导航位置 | 当前标签页 `sessionStorage`；刷新保留 |
 
-`DATABASE_URL=file` 只将会话、流水和偏好切到 JSON Store，交易仍保存到独立 `trade.db`，AG-UI、个人 Skill 和新的语义记忆也仍用各自 SQLite 库。
+`DATABASE_URL=file` 只将会话、流水和偏好切到 JSON Store，交易仍保存到独立 `trade.db`，AG-UI、个人 Skill 和新的语义记忆也仍用各自 SQLite 库。模型管理与会话模型选择依赖 SQL 会话绑定，默认 SQLite 模式支持；旧 file 模式不提供这些功能，模型接口会明确返回不可用，不回退成仅浏览器保存。
 
 默认固定用户 `pao-coder`，不实现额外账号系统。初始化按用户从数据库读取会话目录，恢复有效的当前会话，指针无效或空草稿则恢复最近持久会话。偏好、个人 Skill、订单和收藏均按相同用户查询；清除浏览器缓存不会更换默认用户。开发隔离测试可显式配置 `VITE_BUYER_ID`。前后端都需保留原有数据与身份，不要通过删除 `data/`“修复”启动问题。备份可先停止写入进程再复制整个数据目录；运行中备份 SQLite 应使用一致性备份方法，不能只拷主文件忽略 WAL。
+
+恢复自定义模型配置时同时需要原加密数据库和原主密钥，建议分开保管。自动生成的密钥目录权限为700、密钥文件为600；远端部署宜用独立 Secret 管理提供 `MODEL_MASTER_KEY`。直接换一把主密钥无法解密旧凭据，不是密钥轮换流程。
 
 断开或刷新网页只断开订阅，服务端本轮继续执行；点击“停止”才明确取消。API 重启后尚未完成的运行会标为中断，保留已接收内容，不恢复模型内部执行栈。重新打开页面时，从持久事件和会话数据恢复已保存的内容及运行状态。
 
@@ -189,6 +226,10 @@ flowchart TD
 | `OTEL_EXPORTER_OTLP_ENDPOINT` 或 `OTEL_EXPORTER_OTLP_TRACES_ENDPOINT` | 已有 Collector 时使用；显式 OTLP 配置优先。认证头通过 `OTEL_EXPORTER_OTLP_TRACES_HEADERS` 或 `OTEL_EXPORTER_OTLP_HEADERS` 配置，格式为逗号分隔的 `名称=值`，示例见 `.env.example` |
 | `TAVILY_API_KEY` | 配置后注册 Web 搜索工具；不配不影响目录检索 |
 | `TOKEN_BUDGET_TOTAL`、`REPLY_TOKEN_BUDGET` | 默认 0；启用后限制请求预算，需根据模型与任务实际测量 |
+| `CONTEXT_SIZE`、`LLM_FALLBACK_CONTEXT_SIZE` | 内置主/回退模型的声明窗口；回退未单独配置时兼容沿用主值，不代表供应商保证。模型管理的合法本地档位不超过对应声明上限 |
+| `MODEL_ADMIN_BUYERS` | 逗号分隔的签名管理员身份；远端连接管理还检查来源。固定买家 ID 本身不授予管理权限 |
+| `MODEL_ALLOWED_LOCAL_HOSTS` | 显式允许自定义模型访问的本地/私有域名或 IP，逗号分隔；不是 URL，不取消元数据地址禁用规则 |
+| `MODEL_MASTER_KEY` | 可选 Fernet 主密钥，由服务端 Secret 注入；未设置时在 `DATA_DIR/.secrets/` 生成并持久保存，不可放入任何 `VITE_*` |
 | `IDENTITY_MODE`、`IDENTITY_HMAC_SECRET` | 默认 `demo` 是客户端声明身份；`hmac` 校验签名身份，密钥至少 32 字节，不等同于完整登录/SSO |
 | `PROMPT_PIN_VERSION` | 常规首次启动留空；只填写当前数据目录已导入的版本，不复制别人机器的版本 ID |
 | `API_PROXY_TARGET` | Vite 后端代理目标，改后重启 Vite；例如后端改为 8001 时设为 `http://127.0.0.1:8001` |
@@ -211,7 +252,9 @@ docker compose --env-file .env -f docker/docker-compose.yaml logs --tail 100 app
 
 访问 [http://127.0.0.1:5173](http://127.0.0.1:5173)。包含 API、worker、Qdrant、Redis 和 Nginx 静态前端；Nginx 同源代理 API 并关闭 SSE 缓冲。`config --quiet` 只验证配置，避免将展开后的密钥打印出来。
 
-Compose 用 `app-data`、`qdrant-data`、`redis-data` 命名卷，**不会自动读取本机 `data/` 中的买家记录或已发布方案**。不要直接沿用本机 `DATABASE_URL`、`DATA_DIR`、`PROMPT_PIN_VERSION`；容器路径与版本库需要对应。当前 Compose 的 embedding 默认复用 LLM 网关，若需独立 `EMBEDDING_BASE_URL/API_KEY`，还须在 `app` 和 `worker` 的 environment 中显式透传，仅写 `.env` 不会自动注入所有字段。
+Compose 用 `app-data`、`qdrant-data`、`redis-data` 命名卷，**不会自动读取本机 `data/` 中的买家记录或已发布方案**。不要直接沿用本机 `DATABASE_URL`、`DATA_DIR`、`PROMPT_PIN_VERSION`；容器路径与版本库需要对应。镜像包含 `configs/models.yaml`；模型库与自动生成的主密钥持久保存到 `app-data`。API 与 worker 已共用透传 `MODEL_MASTER_KEY`、`MODEL_ADMIN_BUYERS`、`MODEL_ALLOWED_LOCAL_HOSTS`、`MODEL_RECOVERY_MODE`、`LLM_ENABLE_THINKING` 和 `LLM_FALLBACK_CONTEXT_SIZE`；可选窗口留空按默认规则处理，`LLM_FALLBACK_MODEL=` 明确关闭回退。独立 `EMBEDDING_BASE_URL/API_KEY` 也已透传；其它字段须核对 Compose，不能假定 `.env` 中所有变量都会自动进入容器。
+
+通过 Nginx/容器访问时，API 看到的是代理地址，不能作为本机演示管理授权。需要页面添加或编辑连接时，请采用签名身份模式和 `MODEL_ADMIN_BUYERS`，并配置允许的浏览器来源；不要通过信任任意转发地址绕过管理检查。
 
 暂停并保留数据：
 
@@ -324,6 +367,7 @@ app/presentation/    FastAPI、AG-UI、买家工作区、确认与身份接口
 app/composition.py   依赖装配
 app/worker.py        Redis 意图消费者
 frontend/            React 页面、AG-UI 客户端与前端测试
+configs/models.yaml  当前模型迁移模板、窗口档位与计数默认配置
 knowledge/           品类知识及来源清单
 data/catalog-v3.jsonl 当前多语言样例目录；v1/v2 保留为历史评测底座
 其它 data 内容       会话、订单、偏好等运行态数据
@@ -332,4 +376,4 @@ tests/、eval/        后端回归、冻结用例与验收证据
 docker/              全栈 Compose 配置
 ```
 
-主要 API 分组：`/commerce/ag-ui/run`、`/commerce/ag-ui/runs/*`、`/commerce/ag-ui/sessions/*`；`/commerce/skills` 与 `/commerce/my-skills`；`/commerce/preferences` 与 `/commerce/favorites`；`/commerce/confirmations/*` 与 `/commerce/orders/*`；兼容入口 `/commerce/intents`、`/commerce/intents/async`、`/commerce/tasks/{id}` 和 WebSocket `/commerce/events`。以运行服务的 `/docs` 查看方法、参数和身份要求。
+主要 API 分组：`/commerce/ag-ui/run`、`/commerce/ag-ui/runs/*`、`/commerce/ag-ui/sessions/*`；`/commerce/skills` 与 `/commerce/my-skills`；`/commerce/preferences` 与 `/commerce/favorites`；`/commerce/confirmations/*` 与 `/commerce/orders/*`；`/commerce/models`、`/commerce/model-connections*`、`/commerce/sessions/{id}/model` 与 `/commerce/context`；兼容入口 `/commerce/intents`、`/commerce/intents/async`、`/commerce/tasks/{id}` 和 WebSocket `/commerce/events`。以运行服务的 `/docs` 查看方法、参数和身份要求。

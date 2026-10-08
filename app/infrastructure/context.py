@@ -27,6 +27,8 @@ class ShoppingContextSnapshot:
     capability_digest: str = ""
     skill_catalog_mode: str = "legacy"
     prompt_document_json: str = field(default="", repr=False)
+    model_snapshot: dict | None = None
+    model_runtime: dict | None = field(default=None, repr=False)
 
 
 _current_snapshot: ContextVar[Optional[ShoppingContextSnapshot]] = ContextVar(
@@ -36,6 +38,13 @@ _current_snapshot: ContextVar[Optional[ShoppingContextSnapshot]] = ContextVar(
 
 
 class ShoppingContext:
+    @staticmethod
+    def set_model(snapshot: dict, runtime: dict) -> None:
+        current = _current_snapshot.get()
+        if current is None:
+            raise RuntimeError("模型绑定需要当前会话上下文")
+        _current_snapshot.set(replace(current, model_snapshot=snapshot, model_runtime=runtime))
+
     @staticmethod
     def set_skill_catalog_mode(mode: str) -> None:
         snapshot = _current_snapshot.get()

@@ -23,7 +23,7 @@ import time
 from copy import copy
 from collections.abc import AsyncIterable
 from contextvars import ContextVar
-from typing import Any, AsyncGenerator, Optional
+from typing import Any, AsyncGenerator, Optional, Callable
 
 from agentscope.credential import OpenAICredential
 from agentscope.message import Msg, TextBlock
@@ -67,6 +67,7 @@ class BudgetCall:
         self.started_wall_ns = None
         self.streamed = False
         self.upstream_usage = None
+        self.model_identity = None
 
     def mark_started(self):
         observe_model_started()
@@ -77,6 +78,7 @@ class BudgetCall:
         self.started_wall_ns = time.time_ns()
         self.streamed = False
         self.upstream_usage = None
+        self.model_identity = None
 
     def observe_chunk(self, response):
         if _usage_tokens(response) is not None:
@@ -119,7 +121,8 @@ class BudgetCall:
                                  cache=self.cache_attempt.metrics() if self.cache_attempt else None,
                                  start_time=self.started_wall_ns,
                                  ttft_ms=(self.first_text_at-self.started_at)*1000
-                                 if self.streamed and self.first_text_at is not None else None)
+                                 if self.streamed and self.first_text_at is not None else None,
+                                 model_identity=self.model_identity)
             self.started_at = None
 
 
@@ -131,8 +134,10 @@ _structured_finalizers: ContextVar[list | None] = ContextVar("globex_structured_
 class StreamClosingOpenAIChatModel(OpenAIChatModel):
     """捕获 SDK 生成器内部的 HTTP stream，让尚未开始读取的流也能显式关闭。"""
 
-    def __init__(self, **kwargs):
+    def __init__(self, *, runtime=None, **kwargs):
         super().__init__(**kwargs)
+        self._globex_runtime = runtime
+        self._globex_counter_metadata = {'method': 'agentscope_estimate'}
         self._prefix_tracker = PrefixTracker()
         # 在原生 SDK 最终 create 参数处观察，包含 formatter 与工具 schema 的实际输出。
         # 业务只记指纹；隔离评测可显式安装本地原文证据 sink，不改变供应商参数。
@@ -169,6 +174,9 @@ class StreamClosingOpenAIChatModel(OpenAIChatModel):
                         usage = _safe_field(response, 'usage')
                         if usage is not None:
                             attempt.usage = read_cache_usage(usage)
+                    if call is not None:
+                        from app.infrastructure.model_counting import execution_identity
+                        call.model_identity = execution_identity(self, attempt.response_models if attempt else ())
                 if protocol_status is not None:
                     if attempt is not None:
                         attempt.protocol_status = protocol_status
@@ -182,7 +190,36 @@ class StreamClosingOpenAIChatModel(OpenAIChatModel):
             return ValidatedStream(response, contract) if request.get('stream') else contract.completion(response)
         self.client.chat.completions.create = observed_create
 
+    async def count_tokens(self, messages, tools=None):
+        from app.infrastructure.model_counting import local_token_count, CounterUnavailable
+        try:
+            count = await local_token_count(self, messages, tools)
+            self._globex_counter_metadata = {'method': 'local_chat_template'}
+            return count
+        except (CounterUnavailable, ImportError, OSError, ValueError, TypeError, KeyError) as error:
+            # 原因只用枚举，不把本机路径、模型配置或买家输入写进接口。
+            reason = str(error) if isinstance(error, CounterUnavailable) else 'tokenizer_unavailable'
+            self._globex_counter_metadata = {'method': 'agentscope_estimate', 'fallback_reason': reason}
+            return await super().count_tokens(messages, tools)
+
+    def _attach_model_identity(self, response, attempt):
+        from app.infrastructure.model_counting import execution_identity
+        if isinstance(response, ChatResponse):
+            response.metadata['model_execution'] = execution_identity(self, attempt.response_models if attempt else ())
+        return response
+
     async def _call_api(self, model_name, messages, tools=None, tool_choice=None, **kwargs):
+        if self._globex_runtime:
+            from app.infrastructure.model_counting import count_model_input, input_limits
+            from app.infrastructure.context_governance import ContextCapacityError
+            maximum = self._globex_runtime.get('max_output_tokens')
+            requested = kwargs.get('max_completion_tokens') or kwargs.get('max_tokens') or self.parameters.max_tokens or 8192
+            output = min(int(requested), int(maximum)) if maximum else int(requested)
+            kwargs.pop('max_tokens', None)
+            kwargs['max_completion_tokens'] = output
+            estimate = await count_model_input(self, messages, tools)
+            if estimate['estimated_input_tokens'] > input_limits(self, output)['input_budget']:
+                raise ContextCapacityError('所选模型的安全输入空间不足，请整理上下文或选择更大窗口；未发送模型请求')
         if self.stream and getattr(tool_choice, 'mode', None) == 'product_search_tool':
             # 兼容网关的强制函数参数流可能缺少完整结束标记；该只读取证使用完整响应。
             # 请求局部副本保留原生解析、配额和计量，不切换模型、不重试，也不改共享流式配置。
@@ -197,6 +234,8 @@ class StreamClosingOpenAIChatModel(OpenAIChatModel):
         call = _budget_call.get()
         if call is not None:
             call.cache_attempt = attempt
+            from app.infrastructure.model_counting import execution_identity
+            call.model_identity = execution_identity(self)
         token = cache_attempt.set(attempt)
         try:
             return await super()._call_api(model_name, messages, tools, tool_choice, **kwargs)
@@ -213,7 +252,7 @@ class StreamClosingOpenAIChatModel(OpenAIChatModel):
         if attempt is not None:
             attempt.usage = read_cache_usage(response.usage)
         parsed = super()._parse_completion_response(start_datetime, response, audio_format)
-        return attach_usage(parsed, attempt)
+        return self._attach_model_identity(attach_usage(parsed, attempt), attempt)
 
     def _parse_stream_response(self, start_datetime, response):
         attempt = cache_attempt.get()
@@ -221,7 +260,7 @@ class StreamClosingOpenAIChatModel(OpenAIChatModel):
         parsed = super()._parse_stream_response(start_datetime, captured)
         async def decorated():
             async for chunk in parsed:
-                yield attach_usage(chunk, attempt)
+                yield self._attach_model_identity(attach_usage(chunk, attempt), attempt)
         wrapped = decorated()
         finalizer = current_stream_finalizer.get()
         if finalizer is not None:
@@ -243,11 +282,13 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
         retry_base_seconds: float = 6.0,
         bus: Optional[TradeEventBus] = None,
         recovery_mode: str = 'off',
+        fallback_throttle: GatewayThrottle | None = None,
         **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
         self._throttle = throttle
         self._fallback = fallback
+        self._fallback_throttle = fallback_throttle
         self._max_transient_retries = max_transient_retries
         self._retry_base_seconds = retry_base_seconds
         self._bus = bus
@@ -471,10 +512,58 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
             if self._fallback is not None:
                 logger.info("Token 预算档位 %s，切用备用模型 %s", tier, self._fallback.model)
                 self._publish_budget_tier(tier)
-                return await self._fallback(messages, tools, tool_choice, **kwargs)
+                return await self._invoke_fallback(messages, tools, tool_choice, **kwargs)
         if self._fallback is not None and cache_retry_target.get() == self._fallback.model:
-            return await self._fallback(messages, tools, tool_choice, **kwargs)
+            return await self._invoke_fallback(messages, tools, tool_choice, **kwargs)
         return await super().__call__(messages, tools, tool_choice, **kwargs)
+
+    async def _invoke_fallback(self, messages, tools, tool_choice, **kwargs):
+        # 回退有自己的窗口和计数合同，不能拿主模型通过的容量检查作为授权。
+        if isinstance(self._fallback, OpenAIChatModel):
+            from app.infrastructure.model_counting import count_model_input, input_limits
+            from app.infrastructure.context_governance import ContextCapacityError
+            count = await count_model_input(self._fallback, messages, tools)
+            output = kwargs.get('max_completion_tokens') or kwargs.get('max_tokens')
+            if count['estimated_input_tokens'] > input_limits(self._fallback, output)['input_budget']:
+                raise ContextCapacityError('备用模型窗口不足，未发送回退请求；请整理上下文或改用更大窗口')
+        throttle = self._fallback_throttle
+        if throttle is not None and throttle is not self._throttle:
+            # 主调用持有共享配额组时无需重复获取；不同供应商必须走自己的闸门。
+            slot = throttle.slot()
+            await slot.__aenter__()
+            class HeldSlot:
+                closed = False
+                async def aclose(self):
+                    if not self.closed:
+                        self.closed = True
+                        await slot.__aexit__(None, None, None)
+            held = HeldSlot()
+            finalizer = current_stream_finalizer.get()
+            if finalizer is not None:
+                finalizer.add(held)
+            try:
+                response = await self._fallback(messages, tools, tool_choice, **kwargs)
+            except BaseException:
+                await held.aclose()
+                raise
+            if not isinstance(response, AsyncIterable):
+                await held.aclose()
+            elif finalizer is None:
+                # 正常业务必有外层 finalizer；单独调用时也要把闸门持有到流关闭。
+                async def wrapped():
+                    try:
+                        yield None
+                        async for chunk in response:
+                            yield chunk
+                    finally:
+                        if hasattr(response, 'aclose'):
+                            await response.aclose()
+                        await held.aclose()
+                stream = wrapped()
+                await anext(stream)
+                return stream
+            return response
+        return await self._fallback(messages, tools, tool_choice, **kwargs)
 
     def _publish_budget_tier(self, tier: str) -> None:
         if self._bus is None or self._fallback is None:
@@ -539,7 +628,7 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
         self._publish_fallback(str(last_error))
         if budget_call is not None:
             budget_call.mark_started()
-        return await self._fallback(messages, tools, tool_choice, **kwargs)
+        return await self._invoke_fallback(messages, tools, tool_choice, **kwargs)
 
     def _publish_fallback(self, reason: str) -> None:
         if self._bus is None or self._fallback is None:
@@ -627,7 +716,12 @@ def create_chat_model(
     stream: bool = True,
     throttle: Optional[GatewayThrottle] = None,
     bus: Optional[TradeEventBus] = None,
+    throttle_factory: Optional[Callable[[str], GatewayThrottle]] = None,
 ) -> OpenAIChatModel:
+    snapshot = ShoppingContext.current()
+    runtime = getattr(snapshot, 'model_runtime', None) if snapshot else None
+    if runtime:
+        return _create_profile_model(runtime, settings, stream, throttle, bus, throttle_factory)
     credential = OpenAICredential(
         api_key=settings.llm_api_key,
         base_url=settings.llm_base_url,
@@ -641,6 +735,9 @@ def create_chat_model(
         "max_retries": 0,
         "client_kwargs": {"max_retries": 0},
     }
+    if settings.llm_enable_thinking is not None:
+        # 供应商扩展参数：主模型和已配置回退模型使用同一显式选择；不改变模型名。
+        common["extra_body"] = {"enable_thinking": settings.llm_enable_thinking}
     fallback = (
         StreamClosingOpenAIChatModel(model=settings.llm_fallback_model,
             formatter=PromptCacheFormatter(mode=settings.prompt_cache_mode, policy=settings.prompt_cache_policy), **common)
@@ -657,3 +754,51 @@ def create_chat_model(
         formatter=PromptCacheFormatter(mode=settings.prompt_cache_mode, policy=settings.prompt_cache_policy),
         **common,
     )
+
+
+def _create_profile_model(runtime, settings, stream, throttle, bus, throttle_factory):
+    """同一轮的冻结配置创建所有 Agent 模型；凭据只停留在内存。"""
+    from copy import deepcopy
+    def arguments(profile):
+        reasoning = dict(profile.get('reasoning_parameters') or {})
+        extra_body = dict(reasoning.pop('extra_body', {}) or {})
+        # 不把未知配置键直接展开成 SDK 参数；协议选项由模型目录明确映射。
+        native = {key: reasoning.pop(key) for key in list(reasoning)
+                  if key in {'reasoning_effort'}}
+        if native.get('reasoning_effort') is not None:
+            # AgentScope 只有打开该开关才会把原生 reasoning_effort 序列化进请求。
+            native['thinking_enable'] = True
+        extra_body.update(reasoning)
+        maximum = int(profile.get('max_output_tokens') or 8192)
+        parameters = OpenAIChatModel.Parameters(max_tokens=min(8192, maximum), **native)
+        client_kwargs = {'max_retries': 0}
+        if str(profile.get('profile_id', '')).startswith('custom-'):
+            import httpx
+            from app.infrastructure.model_connection import ValidatedModelTransport
+            client_kwargs['http_client'] = httpx.AsyncClient(
+                transport=ValidatedModelTransport(allowed_local_hosts=getattr(settings, 'model_allowed_local_hosts', ())),
+                follow_redirects=False, trust_env=False)
+        return {
+            'model': profile['model_id'], 'runtime': deepcopy(profile),
+            'credential': OpenAICredential(api_key=profile['api_key'], base_url=profile['base_url']),
+            'context_size': int(profile['context_size']), 'stream': stream,
+            'max_retries': 0, 'client_kwargs': client_kwargs,
+            'parameters': parameters, 'extra_body': extra_body or None,
+            'formatter': PromptCacheFormatter(mode=settings.prompt_cache_mode, policy=settings.prompt_cache_policy),
+        }
+    primary_throttle = (throttle_factory(runtime.get('quota_group', 'default')) if throttle_factory else
+                        throttle or GatewayThrottle(settings.llm_max_concurrency, settings.llm_min_interval_seconds))
+    fallback_profile = runtime.get('fallback')
+    fallback = None
+    fallback_throttle = None
+    if fallback_profile:
+        fallback = StreamClosingOpenAIChatModel(**arguments(fallback_profile))
+        if fallback_profile.get('quota_group') == runtime.get('quota_group'):
+            fallback_throttle = primary_throttle
+        elif throttle_factory:
+            fallback_throttle = throttle_factory(fallback_profile.get('quota_group', 'default'))
+        else:
+            fallback_throttle = GatewayThrottle(settings.llm_max_concurrency, settings.llm_min_interval_seconds)
+    return ThrottledChatModel(**arguments(runtime), throttle=primary_throttle,
+        fallback=fallback, fallback_throttle=fallback_throttle, max_transient_retries=settings.llm_max_retries,
+        recovery_mode=settings.model_recovery_mode, bus=bus)

@@ -155,6 +155,32 @@ class PromptRegistry:
     async def assign(self, session_id: str, buyer_id: str) -> dict:
         return await asyncio.to_thread(self._assign, session_id, buyer_id)
 
+    async def existing_assignment(self, session_id: str, buyer_id: str) -> dict | None:
+        """只读已有分配，供上下文展示使用；不创建库、版本或会话分组。"""
+        return await asyncio.to_thread(self._existing_assignment, session_id, buyer_id)
+
+    def _existing_assignment(self, session_id: str, buyer_id: str) -> dict | None:
+        if not session_id or not buyer_id:
+            raise PromptRegistryError("读取版本分组需要明确会话和买家")
+        if not self.path.is_file():
+            return None
+        connection = sqlite3.connect(self.path.resolve().as_uri() + "?mode=ro", uri=True, timeout=30)
+        connection.row_factory = sqlite3.Row
+        try:
+            connection.execute("PRAGMA query_only=ON")
+            connection.execute("BEGIN")
+            assigned = connection.execute("SELECT * FROM prompt_assignments WHERE session_id=?", (session_id,)).fetchone()
+            if assigned is None:
+                return None
+            if assigned["buyer_id"] != buyer_id:
+                raise PromptRegistryError("会话版本分组属于其他买家")
+            version = self._version(connection, assigned["version_id"])
+            if self.pinned_version and self.pinned_version != version["version_id"]:
+                raise PromptRegistryError("评测固定版本与旧会话分组不一致，请使用新的隔离会话")
+            return {**dict(assigned), **version}
+        finally:
+            connection.close()
+
     def _assign(self, session_id, buyer_id):
         if not session_id or not buyer_id:
             raise PromptRegistryError("版本分组需要明确会话和买家")

@@ -39,6 +39,21 @@ class TaskAccessBindingRow(Base):
     buyer_id: Mapped[str] = mapped_column(String(128))
 
 
+class SessionModelBindingRow(Base):
+    __tablename__ = "session_model_bindings"
+    session_id: Mapped[str] = mapped_column(String(256), primary_key=True)
+    revision: Mapped[int] = mapped_column(Integer, default=0)
+    active_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+    pending_json: Mapped[str | None] = mapped_column(Text, nullable=True)
+
+
+class SessionModelRunRow(Base):
+    __tablename__ = "session_model_runs"
+    session_id: Mapped[str] = mapped_column(String(256), primary_key=True)
+    fence: Mapped[int] = mapped_column(Integer, primary_key=True)
+    snapshot_json: Mapped[str] = mapped_column(Text)
+
+
 class ContextCheckpointRow(Base):
     __tablename__ = "context_checkpoints"
     checkpoint_id: Mapped[str] = mapped_column(String(128), primary_key=True)
@@ -95,6 +110,7 @@ class SqlFencedSessionStore(SessionStore):
                     await connection.run_sync(lambda sync: Base.metadata.create_all(sync, tables=[
                         AgentSessionStateRow.__table__, ConversationSessionRow.__table__, SessionWriteClaimRow.__table__,
                         TaskAccessBindingRow.__table__, ContextCheckpointRow.__table__, ContextOperationRow.__table__,
+                        SessionModelBindingRow.__table__, SessionModelRunRow.__table__,
                     ]))
                     await connection.commit()
                     self._ready = True
@@ -241,14 +257,61 @@ class SqlFencedSessionStore(SessionStore):
             return row.state_json if row else None
 
     async def context_view(self, session_id: str, buyer_id: str) -> dict:
+        view, _ = await self.context_snapshot(session_id, buyer_id)
+        return view
+
+    async def model_binding(self, session_id: str, buyer_id: str) -> dict:
+        async with self._transaction() as db:
+            await self._ownership(db, session_id, buyer_id, create=True, enforce_owner=True)
+            row = await db.get(SessionModelBindingRow, session_id)
+            return self._model_binding(row)
+
+    @staticmethod
+    def _model_binding(row) -> dict:
+        return {'revision': row.revision if row else 0,
+                'active': json.loads(row.active_json) if row and row.active_json else None,
+                'pending': json.loads(row.pending_json) if row and row.pending_json else None}
+
+    async def select_model(self, session_id, buyer_id, snapshot, expected_revision):
+        # 只写下一轮意向；不会增加执行 fence 或让当前 AgentState 的 CAS 失效。
+        async with self._transaction() as db:
+            await self._ownership(db, session_id, buyer_id, create=True, enforce_owner=True)
+            row = await db.get(SessionModelBindingRow, session_id)
+            if (row.revision if row else 0) != expected_revision:
+                raise StaleSessionWrite('模型选择已更新，请刷新后重试')
+            if row is None:
+                row = SessionModelBindingRow(session_id=session_id, revision=0)
+                db.add(row)
+            row.pending_json = json.dumps(snapshot, ensure_ascii=False)
+            row.revision += 1
+            return self._model_binding(row)
+
+    async def bind_run_model(self, claim, snapshot, *, selection_revision, consume_pending=True):
+        async with self._transaction() as db:
+            owner, _ = await self._ownership(db, claim.session_id, claim.owner_id, create=False, enforce_owner=True)
+            if owner.fence != claim.fence or owner.revision != claim.revision:
+                raise StaleSessionWrite('模型绑定执行权已失效')
+            row = await db.get(SessionModelBindingRow, claim.session_id)
+            if row is None:
+                row = SessionModelBindingRow(session_id=claim.session_id, revision=0)
+                db.add(row)
+            # 预检过程中更新的选择保留给下一轮，不覆盖本次已冻结的配置。
+            if consume_pending and row.revision == selection_revision:
+                row.pending_json = None
+            row.active_json = json.dumps(snapshot, ensure_ascii=False)
+            db.add(SessionModelRunRow(session_id=claim.session_id, fence=claim.fence, snapshot_json=row.active_json))
+
+    async def context_snapshot(self, session_id: str, buyer_id: str) -> tuple[dict, str | None]:
+        """同一事务读取展示信息和模型快照；原始快照只供服务内部估算。"""
         async with self._transaction() as db:
             row, state = await self._ownership(db, session_id, buyer_id, create=False, enforce_owner=True)
             payload = json.loads(state.state_json) if state else {}
             governance = payload.get('middle_context', {}).get('globex_context', {})
             active = await db.scalar(select(ContextOperationRow).where(ContextOperationRow.session_id==session_id, ContextOperationRow.buyer_id==buyer_id, ContextOperationRow.status=='running'))
-            return {'operation':self._context_operation(active) if active else None, 'session_id':session_id, 'revision':row.revision, 'summary':payload.get('summary') or '',
+            view = {'operation':self._context_operation(active) if active else None, 'session_id':session_id, 'revision':row.revision, 'summary':payload.get('summary') or '',
                     'working':governance.get('working',{}), 'statistics':governance.get('last_compaction',{}),
                     'checkpoint_id':governance.get('checkpoint_id'), 'failures':governance.get('failures',0)}
+            return view, state.state_json if state else None
 
     async def create_context_operation(self, session_id, buyer_id, request_id, expected_revision):
         import hashlib
