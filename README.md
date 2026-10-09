@@ -3,6 +3,10 @@
 基于 **AgentScope 2.x + FastAPI + AG-UI + React** 的电商 Agent 工程。买家用自然语言描述需求，Agent 调用商品检索、品类知识和交易工具，页面实时渲染回答、商品卡和确认单；个人 Skill 与长期偏好可以直接在页面编写和保存。
 
 这是带持久化、运行恢复、观测和评测机制的课程实战工程。商品来自版本化样例目录，订单是本地业务账本，尚未接入真实电商供给、支付或物流。正式质量与收益验收仍有未通过项；启动成功或单测通过不能替代效果验收。下文依次介绍启动、页面能力、技术架构、数据保存及验证方式。
+<img width="1155" height="1972" alt="image" src="https://github.com/user-attachments/assets/9c81b7e7-95da-47e6-b519-682fa90cdf6b" />
+<img width="949" height="752" alt="image" src="https://github.com/user-attachments/assets/e2f84cd9-3faf-4d68-a05c-132b2b874d3d" />
+<img width="949" height="752" alt="image" src="https://github.com/user-attachments/assets/75018c8e-82bb-402a-857c-9e961ec81dc3" />
+
 
 ## 先选一种启动方式
 
