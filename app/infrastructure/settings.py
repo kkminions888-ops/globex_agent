@@ -132,6 +132,7 @@ class Settings:
     otel_service_name: str = "globex-agent"
     otlp_timeout_seconds: float = 5.0
     session_owner_binding: bool = True
+    automation_worker_mode: str = "embedded"  # embedded / external / off
     identity_mode: str = "demo"
     prompt_pin_version: str = ""
     metrics_reader_buyers: tuple[str, ...] = ()
@@ -262,6 +263,7 @@ def load_settings(*, require_llm_key: bool = True) -> Settings:
         otel_service_name=os.getenv("OTEL_SERVICE_NAME", "globex-agent"),
         otlp_timeout_seconds=float(os.getenv("OTEL_EXPORTER_OTLP_TRACES_TIMEOUT") or os.getenv("OTEL_EXPORTER_OTLP_TIMEOUT", "5")),
         session_owner_binding=os.getenv("SESSION_OWNER_BINDING", "1") not in ("0", "false", "False"),
+        automation_worker_mode=os.getenv("AUTOMATION_WORKER_MODE", "embedded"),
         identity_mode=os.getenv("IDENTITY_MODE", "demo"),
         prompt_pin_version=os.getenv("PROMPT_PIN_VERSION", ""),
         metrics_reader_buyers=tuple(item.strip() for item in os.getenv("METRICS_READER_BUYERS", "").split(",") if item.strip()),

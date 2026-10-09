@@ -278,3 +278,30 @@ async def test_fallback_stream_holds_group_until_close_before_first_chunk(tmp_pa
     finally:
         await model.client.close()
         await model._fallback.client.close()
+
+
+async def test_streaming_chat_uses_complete_summary_without_mutating_model(tmp_path):
+    class Summary(BaseModel):
+        goal: str
+    model = build(tmp_path, profile(), stream=True)
+    requests, samples = [], []
+    def handler(request):
+        payload = json.loads(request.content)
+        requests.append(payload)
+        # 兼容网关的函数流结束标记不可靠；摘要应直接使用完整响应协议。
+        assert payload['stream'] is False
+        return response(payload, structured=True)
+    usage = context_usage_sink.set(samples.append)
+    kind = context_call_kind.set('summary')
+    try:
+        await mock_client(model, handler)
+        result = await model.generate_structured_output([UserMsg('buyer', '保留当前预算')], Summary)
+        assert result.content == {'goal': '背包'}
+        assert model.stream is True
+        assert len(requests) == 1 and len(samples) == 1
+        assert samples[0]['kind'] == 'summary' and samples[0]['input_tokens'] == 80
+        assert not model._throttle._semaphore.locked()
+    finally:
+        context_usage_sink.reset(usage)
+        context_call_kind.reset(kind)
+        await model.client.close()

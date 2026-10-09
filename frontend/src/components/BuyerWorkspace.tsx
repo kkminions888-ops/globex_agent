@@ -57,7 +57,7 @@ export default function BuyerWorkspace({ mode, busy, request, onSkillsChanged }:
     finally { setSaving(false); }
   };
   const disabled = busy || saving || loading;
-  return <section className="buyer-workspace" aria-label={mode === "skills" ? "我的 Skill" : "长期偏好"}>
+  return <section className={"buyer-workspace " + (mode === "preferences" ? "preferences-workspace" : "skills-workspace")} aria-label={mode === "skills" ? "我的 Skill" : "长期偏好"}>
     <header className="workspace-heading">
       <div className="eyebrow">{mode === "skills" ? "YOUR WAY TO SHOP" : "THE LITTLE THINGS ABOUT YOU"}</div>
       <h1>{mode === "skills" ? <>把你的方法，<em>交给我。</em></> : <>你的偏好，<em>一直记得。</em></>}</h1>
@@ -128,7 +128,7 @@ export default function BuyerWorkspace({ mode, busy, request, onSkillsChanged }:
               </select></label>
               <label htmlFor="preference-statement">记住这件事<textarea id="preference-statement" required maxLength={500} rows={5} value={statement} onChange={e => setStatement(e.target.value)} placeholder="例如：喜欢轻便、小众设计的商品" /></label>
               <p className="workspace-help">系统会先提炼稳定偏好、去除无关内容，再保存为独立记忆并建立语义索引。保存后请核对左侧实际记住的内容；临时需求请直接在对话中提出。</p>
-              <div className="workspace-example"><Icon name="chat" /><p>也可以在对话中说：<br />“把喜欢黑色改成喜欢蓝色，以后都按这个偏好。”<br />“以后不用避开真皮了，删除这条偏好。”</p></div>
+              <details className="workspace-example"><summary>在对话中管理偏好</summary><p>“把喜欢黑色改成喜欢蓝色，以后都按这个偏好。”<br />“以后不用避开真皮了，删除这条偏好。”</p></details>
             </>}
             <div className="workspace-form-footer"><span>{mode === "skills" ? body.length + " / 12000" : statement.length + " / 500"}</span>
               <button className="workspace-save" type="submit" disabled={disabled || (mode === "skills" ? !title.trim() || !description.trim() || !body.trim() : !statement.trim())}>

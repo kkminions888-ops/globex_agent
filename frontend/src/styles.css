@@ -2801,3 +2801,11 @@ main { margin-left: var(--sidebar-width); padding: 26px 50px 255px; }
   .welcome-ideas small { font-size:11px; }
   .conversation-tabs button { font-size:12px; }
 }
+
+/* 当前会话由最近选购定位，自动化只占一个小钟表标记。 */
+.sidebar .history-short > span:first-of-type { flex: 1; min-width: 0; text-align: left; }
+.sidebar .history-short .session-automation-mark { display: inline-flex; flex: none; color: #8c7bc5; overflow: visible; }
+.sidebar .history-short .session-automation-mark svg { width: 11px; height: 11px; opacity: 1; }
+.workspace-page-title { min-width: 0; }
+.workspace-page-title > div { min-width: 0; }
+.workspace-page-title h1 { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: min(45vw, 600px); }

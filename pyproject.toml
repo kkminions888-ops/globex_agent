@@ -23,6 +23,7 @@ dependencies = [
     "redis>=8.1.0",
     "sqlalchemy[asyncio]>=2.0",
     "uvicorn[standard]>=0.30",
+    "croniter>=6.2.4",
 ]
 
 [project.optional-dependencies]

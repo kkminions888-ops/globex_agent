@@ -297,6 +297,14 @@ class ThrottledChatModel(StreamClosingOpenAIChatModel):
         self._recovery_mode = recovery_mode
 
     async def generate_structured_output(self, messages, structured_model, **kwargs):
+        from app.infrastructure.context_usage import context_call_kind
+        if self.stream and context_call_kind.get() == "summary":
+            # 摘要只在结构校验通过后提交，不向买家逐段展示。
+            # 完整响应避免兼容网关遗漏函数流结束标记；保留严格工具校验与计量。
+            # 用本次请求副本，不能把同一模型后续的正常聊天改成非流式。
+            request_model = copy(self)
+            request_model.stream = False
+            return await request_model.generate_structured_output(messages, structured_model, **kwargs)
         # SDK 2.0.8 的结构化生成直接调用 _call_api，不经过 __call__。
         token = _structured_call.set(True)
         resources = []

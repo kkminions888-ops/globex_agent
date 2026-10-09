@@ -104,6 +104,7 @@ export interface SessionSummary {
   title: string;
   updatedAt: number;
   source?: "server" | "local";
+  origin?: "automation";
 }
 
 export interface ToolApproval { id: string; tool: string; label: string; arguments: string | Record<string, unknown> }

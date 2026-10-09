@@ -86,7 +86,7 @@ it("从真实页面保存个人 Skill，刷新恢复，再通过斜杠菜单发�
   expect(write.headers.Authorization).toBe("Bearer test-token");
   await act(async()=>root.unmount());root=createRoot(host);await mount();
   await click(button("我的 Skill"));expect(host.textContent).toContain("我的周末清单");
-  await click(button("我的选购"));await fill("query","/");
+  await click(host.querySelector('[aria-label="Globex 环球好物首页"]')!);await fill("query","/");
   const option=host.querySelector('[role="option"]')!;
   expect(option.textContent).toContain("我的周末清单");await click(option);
   await click(host.querySelector('[aria-label="发送选购需求"]')!);
@@ -107,7 +107,7 @@ it("Skill 编辑携带原版本，冲突保留正文，删除后斜杠菜单不�
   await act(async()=>host.querySelector(".workspace-editor form")!.dispatchEvent(new Event("submit",{bubbles:true,cancelable:true})));
   expect(personal[0].version).toBe("2");
   await click(host.querySelector('[aria-label="删除 Skill：我的周末清单"]')!);await click(button("确认删除"));
-  expect(personal).toEqual([]);await click(button("我的选购"));await fill("query","/");
+  expect(personal).toEqual([]);await click(host.querySelector('[aria-label="Globex 环球好物首页"]')!);await fill("query","/");
   expect(host.querySelector('[role="option"]')).toBeNull();
 });
 
@@ -119,7 +119,7 @@ it("长期偏好支持添加、精确编辑、删除，并从服务器重新加�
   await act(async()=>host.querySelector(".workspace-editor form")!.dispatchEvent(new Event("submit",{bubbles:true,cancelable:true})));
   expect(preferences).toEqual([{kind:"like",statement:"喜欢蓝色"}]);
   expect(requests.find(r=>r.body?.previous_statement)?.body.previous_statement).toBe("喜欢黑色");
-  await click(button("我的选购"));await click(button("长期偏好"));
+  await click(host.querySelector('[aria-label="Globex 环球好物首页"]')!);await click(button("长期偏好"));
   expect(host.textContent).toContain("喜欢蓝色");
   await click(host.querySelector('[aria-label="删除偏好：喜欢蓝色"]')!);
   expect(preferences).toEqual([]);
@@ -161,7 +161,7 @@ it("整理中切到 Skill 页面，后台完成后解除全局忙碌状态", asy
     finishCompaction!(Response.json({status:"completed",message:"整理完成"}));
   });
   expect(host.querySelector<HTMLInputElement>("#personal-skill-title")!.matches(":disabled")).toBe(false);
-  await click(button("我的选购"));
+  await click(host.querySelector('[aria-label="Globex 环球好物首页"]')!);
   await click(host.querySelector(".context-meter-trigger")!);
   expect(button("整理上下文").disabled).toBe(false);
 });
@@ -213,4 +213,24 @@ it("从手机导航打开搜索时关闭抽屉，关闭搜索恢复导航按钮�
   expect(host.querySelector('.conversation-search')).toBeNull();
   expect(document.activeElement).toBe(toggle);
   expect(document.body.style.overflow).toBe("");
+});
+
+it("最近选购承担会话定位，自动化标识不占独立导航，工具过程仍在对话流", async () => {
+  sessions=[{id:"automated",title:"每周清单",updatedAt:200},{id:"manual",title:"手动比较",updatedAt:100}];
+  const original=globalThis.fetch;
+  vi.stubGlobal("fetch",vi.fn(async (input:string,init?:RequestInit) => String(input).includes('/automations/session-origins')
+    ? Response.json({session_ids:['automated']}) : original(input,init)));
+  await mount();
+  expect(button('我的选购')).toBeUndefined();
+  expect(host.querySelector('.conversation-toolbar')).toBeNull();
+  const automated=host.querySelector('.history-short.current')!;
+  expect(automated.textContent).toContain('每周清单');
+  expect(automated.getAttribute('aria-current')).toBe('page');
+  expect(automated.querySelector('[aria-label="自动化会话"]')).not.toBeNull();
+  await click(button('长期偏好'));
+  expect(host.querySelector('.history-short.current')).toBeNull();
+  await click(automated);
+  expect(host.querySelector('.history-short.current')).not.toBeNull();
+  expect(host.textContent).toContain('已从数据库恢复：automated');
+  expect(requests.filter(r=>r.path==='/commerce/ag-ui/run')).toHaveLength(0);
 });

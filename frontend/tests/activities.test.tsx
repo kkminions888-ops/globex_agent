@@ -96,9 +96,14 @@ it("Think 和工具详情可展开，未知耗时不显示，模型文本不作�
     expect(host.textContent).toContain("等待确认");
     expect(host.querySelector("img")).toBeNull();
     expect(host.querySelector(".execution-duration")).toBeNull();
-    expect(host.querySelectorAll("details")).toHaveLength(2);
-    await act(async () => {host.querySelector("summary")!.click();});
-    expect(host.querySelector("details")!.open).toBe(true);
+    expect(host.querySelectorAll(".execution-row details")).toHaveLength(2);
+    const thoughtDetail = host.querySelector<HTMLDetailsElement>(".execution-row details")!;
+    expect(thoughtDetail.open).toBe(false);
+    await act(async () => {
+      thoughtDetail.querySelector("summary")!.click();
+      await new Promise(resolve => setTimeout(resolve, 0));
+    });
+    expect(thoughtDetail.open).toBe(true);
   } finally {await act(async () => root.unmount());host.remove();}
 });
 

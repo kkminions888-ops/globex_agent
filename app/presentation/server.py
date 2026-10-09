@@ -120,6 +120,8 @@ def build_app() -> FastAPI:
     register_context_routes(api, lambda: container().context_service)
     from app.presentation.model_workspace import register_model_routes
     register_model_routes(api, container)
+    from app.presentation.automations import register_automation_routes
+    register_automation_routes(api, lambda: getattr(container(), 'automation_service', None))
     register_confirmation_routes(api, lambda: container().confirmations)
     register_buyer_workspace_routes(api, lambda: container().orchestrator)
     from app.presentation.shopping_forms import register_shopping_form_routes

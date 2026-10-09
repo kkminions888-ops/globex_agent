@@ -42,3 +42,36 @@
 .workspace-row-actions { display: flex; gap: 20px; font-size: 12px; }
 @media(max-width: 1050px) { .workspace-grid { grid-template-columns: 1fr; } .workspace-library { order: 2; } }
 @media(max-width: 640px) { .buyer-workspace { padding-top: 22px; } .workspace-editor,.workspace-library { padding: 20px; } .workspace-heading { margin-bottom: 25px; } .workspace-section-title > span { display: none; } .mobile-nav { overflow-x: auto; } .mobile-nav button { flex-shrink: 0; } }
+
+/* 偏好是日常管理页面：表单与已保存内容并排，收起辅助示例。 */
+.buyer-workspace.preferences-workspace { padding: 8px 0 28px; }
+.preferences-workspace .workspace-heading { margin-bottom: 18px; }
+.preferences-workspace .workspace-heading .eyebrow { display: none; }
+.preferences-workspace .workspace-heading h1 { font: 600 22px/1.4 var(--sans, sans-serif); margin: 0 0 7px; letter-spacing: -.3px; }
+.preferences-workspace .workspace-heading p { font-size: 12px; line-height: 1.6; margin: 0; }
+.preferences-workspace .workspace-grid { grid-template-columns: minmax(200px, .85fr) minmax(0, 1.3fr); gap: 16px; }
+.preferences-workspace .workspace-library { order: 0; padding: 14px; border-radius: 13px; }
+.preferences-workspace .workspace-editor { padding: 16px; border-radius: 13px; }
+.preferences-workspace .workspace-section-title { margin-bottom: 12px; gap: 8px; }
+.preferences-workspace .workspace-section-title h2 { font: 600 14px/1.5 var(--sans, sans-serif); }
+.preferences-workspace .workspace-section-title > span { font-size: 10px; }
+.preferences-workspace .workspace-editor label { margin: 12px 0 0; font-size: 12px; }
+.preferences-workspace .workspace-editor label:first-child { margin-top: 0; }
+.preferences-workspace .workspace-editor input,.preferences-workspace .workspace-editor select,.preferences-workspace .workspace-editor textarea { padding: 8px 10px; margin-top: 6px; border-radius: 8px; font-size: 12px; }
+.preferences-workspace .workspace-editor textarea { min-height: 100px; height: 110px; line-height: 1.65; }
+.preferences-workspace .workspace-help { font-size: 11px; line-height: 1.7; margin: 10px 0; }
+.preferences-workspace .workspace-example { display: block; padding: 9px 11px; margin: 10px 0; font-size: 11px; }
+.preferences-workspace .workspace-example summary { cursor: pointer; }
+.preferences-workspace .workspace-example p { margin-top: 6px; }
+.preferences-workspace .workspace-form-footer { margin-top: 14px; }
+.preferences-workspace .workspace-save { font-size: 12px; padding: 9px 13px; gap: 8px; border-radius: 8px; }
+.preferences-workspace .workspace-new { padding: 8px; font-size: 12px; margin-bottom: 10px; border-radius: 8px; }
+.preferences-workspace .workspace-item { padding: 12px; margin-top: 8px; border-radius: 9px; }
+.preferences-workspace .workspace-item p { font-size: 12px; line-height: 1.65; margin: 8px 0; }
+.preferences-workspace .workspace-item small { font-size: 10px; color: var(--muted); }
+.preferences-workspace .workspace-row-actions { gap: 13px; font-size: 11px; }
+.preferences-workspace .workspace-empty { font-size: 12px; padding: 15px 0 8px; }
+@media(max-width: 850px) {
+  .preferences-workspace .workspace-grid { grid-template-columns: 1fr; }
+  .preferences-workspace .workspace-library { order: 2; }
+}

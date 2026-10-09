@@ -1,0 +1,25 @@
+/* 紧凑的是层级与留白；正文仍保留可读行距和完整内容。 */
+.globex-workbench .conversation{margin:18px 0 16px}
+.globex-workbench .conversation-turn+.conversation-turn{margin-top:20px}
+.globex-workbench .conversation .query-row{gap:8px;margin:0 0 14px}
+.globex-workbench .conversation .query-bubble{padding:10px 13px;border-radius:12px 12px 3px 12px;font-size:13px;line-height:1.65}
+.globex-workbench .conversation .query-avatar{width:26px;height:26px;font-size:11px}
+.globex-workbench .conversation .assistant-row{gap:9px;margin:0 0 16px}
+.globex-workbench .conversation .assistant-mark{width:26px;height:26px;min-width:26px;border-radius:8px}
+.globex-workbench .conversation .assistant-mark svg{width:16px;height:16px}
+.globex-workbench .conversation .assistant-response{min-width:0;padding-top:1px}
+.globex-workbench .conversation .assistant-label{margin-bottom:3px;font-size:12px}
+.globex-workbench .conversation .assistant-label span{font-size:10px}
+.globex-workbench .conversation .assistant-text{font-size:13px;line-height:1.65}
+.globex-workbench .conversation .assistant-text+.assistant-text{margin-top:9px}
+.globex-workbench .conversation .markdown{font-size:13px;line-height:1.65;overflow-wrap:anywhere}
+.globex-workbench .conversation .markdown p{margin:5px 0 8px}
+.globex-workbench .conversation .markdown h1,.globex-workbench .conversation .markdown h2,.globex-workbench .conversation .markdown h3{margin:12px 0 6px;font-size:14px;line-height:1.5;font-weight:600}
+.globex-workbench .conversation .markdown ul,.globex-workbench .conversation .markdown ol{margin:6px 0 9px;padding-left:20px}
+.globex-workbench .conversation .markdown li{margin:3px 0}
+.globex-workbench .conversation .markdown li>p{margin:3px 0}
+.globex-workbench .conversation .markdown th,.globex-workbench .conversation .markdown td{padding:6px 8px;font-size:12px}
+.globex-workbench .conversation .markdown blockquote{margin:8px 0;padding:2px 10px}
+.globex-workbench .conversation .markdown hr{margin:12px 0}
+.globex-workbench .conversation .answer-details>summary{padding:6px 0;font-size:11px}
+@media(max-width:640px){.globex-workbench .conversation .assistant-row{gap:7px}.globex-workbench .conversation .query-bubble{padding:9px 11px}.globex-workbench .conversation .answer-details>summary{min-height:44px;display:flex;align-items:center}}

@@ -272,3 +272,25 @@ it("已保存的表单重复继续使用相同运行和消息 ID，不重复插�
   expect(sent[1].messages.filter(m=>m.id===runId+":user")).toHaveLength(1);
   expect(client.getSnapshot().messages.filter(m=>m.role==="user")).toHaveLength(1);
 });
+
+describe("自动化工作区的买家作用域", () => {
+  it.each([
+    ["/automations", "POST"],
+    ["/automations/preview", "POST"],
+    ["/automations/task-a", "PATCH"],
+    ["/automations/task-a/runs", "POST"],
+    ["/automation-runs/run-a/actions", "POST"],
+  ])("%s 在请求正文附带当前买家，不能被表单覆盖", async (path, method) => {
+    let requestBody: Record<string, unknown> = {};
+    const client = new CommerceClient({
+      url: "/commerce/ag-ui/run", buyerId: "isolated-buyer",
+      fetch: async (url, init) => {
+        expect(String(url)).toContain("buyer_id=isolated-buyer");
+        requestBody = JSON.parse(String(init.body));
+        return new Response(JSON.stringify({ok:true}));
+      },
+    });
+    await client.workspaceRequest(path, method, {buyer_id:"another-buyer",request_id:"one"});
+    expect(requestBody).toEqual({buyer_id:"isolated-buyer",request_id:"one"});
+  });
+});

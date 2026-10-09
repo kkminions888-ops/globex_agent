@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useId, useRef, useState, type FormEvent } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useId, useRef, useState, type FormEvent } from 'react';
 import { createPortal } from 'react-dom';
 import type { WorkspaceRequest } from './BuyerWorkspace';
 import Modal from './Modal';
@@ -12,9 +12,11 @@ import './modelPicker.css';
 export type ModelWorkspaceOptions = {
   sessionId: string; request: WorkspaceRequest; busy: boolean; pending: boolean;
   onChanged?: () => void | Promise<void>;
+  draft?: { value: ModelSelection; onChange: (selection: ModelSelection) => void };
+  disabled?: boolean;
 };
 
-export function useModelWorkspace({ sessionId, request, busy, onChanged }: ModelWorkspaceOptions) {
+export function useModelWorkspace({ sessionId, request, busy, onChanged, draft }: ModelWorkspaceOptions) {
   const [catalog, setCatalog] = useState<ModelCatalog | null>(null);
   const [loading, setLoading] = useState(true), [saving, setSaving] = useState(false);
   const [error, setError] = useState(''), [notice, setNotice] = useState('');
@@ -66,7 +68,9 @@ export function useModelWorkspace({ sessionId, request, busy, onChanged }: Model
       if (generation.current === current) { lock.current = false; setSaving(false); }
     }
   };
-  const select = (selection: ModelSelection) => mutate(
+  const select = (selection: ModelSelection) => draft
+    ? Promise.resolve((draft.onChange(selection), true))
+    : mutate(
     () => request('/sessions/' + encodeURIComponent(sessionId) + '/model', 'PATCH', {
       profile_id: selection.profile_id, profile_revision: selection.profile_revision,
       window_id: selection.window_id, thinking: selection.thinking, expected_revision: catalog?.revision,
@@ -110,7 +114,9 @@ export function useModelWorkspace({ sessionId, request, busy, onChanged }: Model
       expected_revision: catalog?.default_revision,
     }), '已设为新会话默认，已有会话保持原选择。',
   );
-  return { catalog, loading, saving, error, notice, refresh, select, preferences, add, validate, setDefault, clearError: () => setError('') };
+  // 草稿复用模型目录和管理能力，但绝不写入聊天会话的模型绑定。
+  const displayedCatalog = catalog && draft ? { ...catalog, selection: draft.value, pending_selection: null, active_selection: null } : catalog;
+  return { catalog: displayedCatalog, loading, saving, error, notice, refresh, select, preferences, add, validate, setDefault, clearError: () => setError('') };
 }
 
 type Workspace = ReturnType<typeof useModelWorkspace>;
@@ -412,13 +418,30 @@ function AddModel({ workspace, editing, onBack }: { workspace: Workspace; editin
 
 export default function ModelPicker(props: ModelWorkspaceOptions) {
   const workspace = useModelWorkspace(props);
-  const { catalog, loading, saving, error, select } = workspace;
+  const { catalog, loading, error, select } = workspace;
+  const saving = workspace.saving || !!props.disabled;
   const [open, setOpen] = useState(false), [modal, setModal] = useState<'manage' | 'add' | null>(null), [query, setQuery] = useState('');
   const [editing, setEditing] = useState<ModelProfile | null>(null);
   const [group, setGroup] = useState<'default' | 'custom'>('default');
   const groupInitialized = useRef(false);
   const wrapper = useRef<HTMLDivElement>(null), trigger = useRef<HTMLButtonElement>(null), search = useRef<HTMLInputElement>(null), list = useRef<HTMLDivElement>(null);
   const id = useId();
+  const [anchor, setAnchor] = useState<{ left: number; top?: number; bottom?: number; width: number; maxHeight: number }>();
+  useLayoutEffect(() => {
+    if (!open || !props.draft) return;
+    // 弹窗里的滚动容器不能裁掉选项，按触发器位置把浮层放在可用空间较多的一侧。
+    const place = () => {
+      const rect = trigger.current?.getBoundingClientRect();
+      if (!rect) return;
+      const width = Math.min(350, window.innerWidth - 24);
+      const above = rect.top - 16, below = window.innerHeight - rect.bottom - 16;
+      const height = Math.min(440, Math.max(above, below));
+      setAnchor({ left: Math.max(12, Math.min(rect.left, window.innerWidth - width - 12)),
+        ...(above >= below ? { bottom: window.innerHeight - rect.top + 8 } : { top: rect.bottom + 8 }), width, maxHeight: height });
+    };
+    place(); window.addEventListener('resize', place); document.addEventListener('scroll', place, true);
+    return () => { window.removeEventListener('resize', place); document.removeEventListener('scroll', place, true); };
+  }, [open, props.draft !== undefined]);
   useEffect(() => { setOpen(false); setModal(null); setQuery(''); }, [props.sessionId]);
   useEffect(() => {
     if (!open) return;
@@ -459,7 +482,7 @@ export default function ModelPicker(props: ModelWorkspaceOptions) {
   const closeModal = () => { setModal(null); trigger.current?.focus(); };
   return <div className="model-picker" ref={wrapper} onKeyDown={event => {
     if (!open || modal) return;
-    if (event.key === 'Escape') { event.preventDefault(); close(); }
+    if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); close(); }
     // 搜索框位于聊天表单内，回车只留在模型选择器，不能意外发送草稿。
     if (event.key === 'Enter' && event.target === search.current) event.preventDefault();
     if ((event.key === 'ArrowDown' || event.key === 'ArrowUp')
@@ -471,7 +494,7 @@ export default function ModelPicker(props: ModelWorkspaceOptions) {
       items[index < 0 ? (delta > 0 ? 0 : items.length - 1) : (index + delta + items.length) % items.length]?.focus();
     }
   }}>
-    <button type="button" ref={trigger} className="model-picker-trigger" aria-label={'选择模型，已选' + (selectionLabel ?? '正在读取')}
+    <button type="button" ref={trigger} className="model-picker-trigger" disabled={props.disabled} aria-label={'选择模型，已选' + (selectionLabel ?? '正在读取')}
       aria-expanded={open} aria-haspopup="dialog" aria-controls={open ? id : undefined} onClick={() => {
         if (!open) { setGroup(selectedGroup); setQuery(''); groupInitialized.current = !!catalog; }
         setOpen(value => !value);
@@ -481,7 +504,7 @@ export default function ModelPicker(props: ModelWorkspaceOptions) {
       {catalog?.pending_selection && <i className="model-pending-dot" aria-label="已保存下一轮设置" />}
       <svg className="model-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" /></svg>
     </button>
-    {open && <div className="model-picker-panel" role="dialog" aria-label="选择模型" id={id}>
+    {open && <div className="model-picker-panel" style={props.draft && anchor ? { ...anchor, position: 'fixed', top: anchor.top ?? 'auto', bottom: anchor.bottom ?? 'auto', right: 'auto', zIndex: 85 } : undefined} role="dialog" aria-label="选择模型" id={id}>
       <div className="model-picker-toolbar">
         <div className="model-picker-groups" role="tablist" aria-label="选择模型来源" onKeyDown={event => {
           if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
@@ -523,7 +546,7 @@ export default function ModelPicker(props: ModelWorkspaceOptions) {
       {workspace.notice && <p className="model-notice" role="status">{workspace.notice}</p>}
       <footer className="model-picker-footer">
         <button type="button" className="model-manage-link" onClick={manage}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 3-1 3-3 1-2 4 2 2v3l3 3 3-1 3 1 3-3v-3l2-2-2-4-3-1-1-3Z" /><circle cx="11" cy="11" r="3" /></svg>模型管理</button>
-        {effective && exactProfile && <button type="button" className="model-default-action" disabled={saving || !!isDefault}
+        {!props.draft && effective && exactProfile && <button type="button" className="model-default-action" disabled={saving || !!isDefault}
           onClick={() => void workspace.setDefault(effective)}>{isDefault ? '已是新会话默认' : '设为新会话默认'}</button>}
       </footer>
     </div>}
