@@ -58,3 +58,4 @@ frontend/dist/
 /eval/verification/**/runtime/
 # 模型凭据主密钥永不进入版本库（含自定义 DATA_DIR）。
 **/.secrets/
+.research/
