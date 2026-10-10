@@ -1,3 +1,4 @@
+import { ProductImageCaption } from "./CatalogMedia";
 import type { CommerceSnapshot } from "../types";
 import { money, ProductImage } from "./ProductCards";
 
@@ -11,7 +12,7 @@ export default function ProductHistory({batches = []}: {batches: CommerceSnapsho
       <h3>{new Date(batch.updatedAt).toLocaleString("zh-CN")} · {batch.products.length} 件</h3>
       <div className="product-grid">{batch.products.map((product, index) => <article className="product-card" key={product.product_id}>
         <div className="product-visual"><ProductImage product={product}/>
-          <span className="visual-caption">{product.image_kind === "illustration" ? "商品示意图 · 非实物照片" : "商品图片待补充"}</span>
+          <span className="visual-caption"><ProductImageCaption product={product} /></span>
         </div>
         <div className="product-body">
           <h4>{index + 1}. {product.title}</h4>

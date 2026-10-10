@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Icon from "./Icon";
+import Modal from "./Modal";
 import "./buyerWorkspace.css";
 
 type PersonalSkill = { id: string; version: string; title: string; description: string; body: string };
@@ -8,6 +9,7 @@ export type WorkspaceRequest = (path: string, method?: string, body?: Record<str
 type Props = { mode: "skills" | "preferences"; busy: boolean; request: WorkspaceRequest; onSkillsChanged: () => Promise<void> };
 
 export default function BuyerWorkspace({ mode, busy, request, onSkillsChanged }: Props) {
+  const [skillEditorOpen, setSkillEditorOpen] = useState(false);
   const [skills, setSkills] = useState<PersonalSkill[]>([]);
   const [editingMemory, setEditingMemory] = useState<Preference | null>(null);
   const [preferences, setPreferences] = useState<Preference[]>([]);
@@ -38,6 +40,7 @@ export default function BuyerWorkspace({ mode, busy, request, onSkillsChanged }:
   }, [mode, request]);
   useEffect(() => { void refresh(); return () => { revision.current++; }; }, [refresh, busy]);
   const editSkill = (skill: PersonalSkill | null) => {
+    setSkillEditorOpen(true);
     setSelected(skill); setTitle(skill?.title ?? ""); setDescription(skill?.description ?? "");
     setBody(skill?.body ?? ""); setNotice(""); setDeleting(null);
   };
@@ -57,61 +60,16 @@ export default function BuyerWorkspace({ mode, busy, request, onSkillsChanged }:
     finally { setSaving(false); }
   };
   const disabled = busy || saving || loading;
-  return <section className={"buyer-workspace " + (mode === "preferences" ? "preferences-workspace" : "skills-workspace")} aria-label={mode === "skills" ? "我的 Skill" : "长期偏好"}>
-    <header className="workspace-heading">
-      <div className="eyebrow">{mode === "skills" ? "YOUR WAY TO SHOP" : "THE LITTLE THINGS ABOUT YOU"}</div>
-      <h1>{mode === "skills" ? <>把你的方法，<em>交给我。</em></> : <>你的偏好，<em>一直记得。</em></>}</h1>
-      <p>{mode === "skills" ? "写下常用的选购步骤。保存后，在对话里输入 / 随时调用。"
-        : "喜欢什么、想避开什么，都可以写在这里。每次开始选购，我会带上这些记忆。"}</p>
-    </header>
-    {busy && <p className="workspace-note" role="status">正在完成这次选购，结束后可编辑。新记忆从下一轮开始生效。</p>}
-    {error && <div className="workspace-error" role="alert">{error} <button type="button" onClick={() => void refresh()} disabled={saving}>重新加载</button></div>}
-    {notice && <p className="workspace-notice" role="status"><Icon name="check" />{notice}</p>}
-    <div className="workspace-grid">
-      <aside className="workspace-library" aria-label={mode === "skills" ? "已保存的 Skill" : "已保存的偏好"}>
-        <div className="workspace-section-title"><h2>{mode === "skills" ? "我的方法库" : "我的记忆"}</h2>
-          <button type="button" onClick={() => void refresh()} disabled={disabled}>刷新</button></div>
-        <button className="workspace-new" type="button" disabled={disabled}
-          onClick={() => mode === "skills" ? editSkill(null) : editPreference(null)}><Icon name="plus" />{mode === "skills" ? "新建 Skill" : "添加偏好"}</button>
-        {loading ? <p role="status">正在读取已保存的内容…</p> : mode === "skills" ? (
-          skills.length ? skills.map(skill => <article key={skill.id} className={selected?.id === skill.id ? "workspace-item selected" : "workspace-item"}>
-            <button type="button" className="workspace-item-main" disabled={saving} onClick={() => editSkill(skill)}>
-              <strong>{skill.title}</strong><span>{skill.description}</span><small>个人 Skill · 修订 {skill.version}</small>
-            </button>
-            {deleting === skill.id ? <div className="workspace-delete">
-              <span>删除后将不能再调用。</span>
-              <button type="button" disabled={disabled} onClick={() => void mutate(
-                () => request("/my-skills/" + encodeURIComponent(skill.id) + "?expected_version=" + encodeURIComponent(skill.version), "DELETE"),
-                "Skill 已删除，方案菜单已同步。", () => { if (selected?.id === skill.id) editSkill(null); setDeleting(null); })}>确认删除</button>
-              <button type="button" onClick={() => setDeleting(null)}>保留</button>
-            </div> : <button type="button" className="workspace-delete-link" disabled={disabled} aria-label={"删除 Skill：" + skill.title} onClick={() => setDeleting(skill.id)}>删除</button>}
-          </article>) : <div className="workspace-empty"><Icon name="leaf" /><p>你的第一份选购方法，<br />从右侧的一段文字开始。</p></div>
-        ) : preferences.length ? preferences.map(p => <article key={p.kind + p.statement} className="workspace-item">
-          <span className={"preference-kind " + p.kind}>{p.kind === "like" ? "喜欢" : "避免"}</span>
-          <p>{p.statement}</p>
-          {p.memory_id && <small>第 {p.version} 版 · {p.source_kind === "agent" ? "对话确认保存" : p.source_kind === "legacy" ? "历史偏好迁移" : "页面保存"}</small>}
-          <div className="workspace-row-actions">
-            {p.memory_id && <button type="button" disabled={disabled} onClick={() => {
-              const id=p.memory_id!;
-              if (memoryHistory[id]) { setMemoryHistory(current => {const next={...current};delete next[id];return next;});return; }
-              void request("/preferences/"+encodeURIComponent(id)+"/history").then(data => setMemoryHistory(current => ({...current,[id]:data.events as typeof memoryHistory[string]}))).catch(() => setError("变更记录读取失败，请重试"));
-            }}>变更记录</button>}
-            <button type="button" disabled={disabled} aria-label={"编辑偏好：" + p.statement} onClick={() => editPreference(p)}>编辑</button>
-            <button type="button" disabled={disabled} aria-label={"删除偏好：" + p.statement} onClick={() => void mutate(
-              () => request("/preferences", "DELETE", { statement: p.statement, memory_id: p.memory_id, expected_version: p.version }), "这条偏好已删除，下一轮不再带入。", () => editPreference(null))}>删除</button>
-          </div>
-          {p.memory_id && memoryHistory[p.memory_id] && <ul aria-label="记忆变更记录">{memoryHistory[p.memory_id].map((event,i) => <li key={i}>{event.action === "create" ? "创建" : event.action === "update" ? "修改" : "删除"} · 第 {event.version} 版 · {new Date(event.occurred_at).toLocaleString()}</li>)}</ul>}
-        </article>) : <div className="workspace-empty"><Icon name="heart" /><p>这里还没有长期偏好。<br />可以先写下一件你在意的小事。</p></div>}
-      </aside>
-      <div className="workspace-editor">
+  const editor = <div className="workspace-editor">
         <div className="workspace-section-title"><h2>{mode === "skills" ? (selected ? "编辑 Skill" : "写一份新 Skill") : (original ? "修改偏好" : "添加一条长期偏好")}</h2>
           <span>仅用于你的选购</span></div>
+        {mode === "skills" && error && <div role="alert" className="workspace-error">{error}</div>}
         <form onSubmit={e => {
           e.preventDefault();
           if (mode === "skills") void mutate(
             () => request(selected ? "/my-skills/" + encodeURIComponent(selected.id) : "/my-skills", selected ? "PUT" : "POST",
               { title, description, body, ...(selected ? { expected_version: selected.version } : {}) }),
-            "Skill 已保存。回到选购，输入 / 就能使用。", () => editSkill(null));
+            "Skill 已保存。回到选购，输入 / 就能使用。", () => { editSkill(null); setSkillEditorOpen(false); });
           else void mutate(() => request("/preferences", "POST", { kind, statement, ...(original ? { previous_statement: original, memory_id: editingMemory?.memory_id, expected_version: editingMemory?.version } : {}) }),
             "偏好已保存，下一轮和新会话都会读取。", () => editPreference(null));
         }}>
@@ -135,7 +93,54 @@ export default function BuyerWorkspace({ mode, busy, request, onSkillsChanged }:
                 {saving ? "正在保存…" : mode === "skills" ? "保存 Skill" : "保存偏好"}<Icon name="arrow" /></button></div>
           </fieldset>
         </form>
-      </div>
+      </div>;
+  return <section className={"buyer-workspace " + (mode === "preferences" ? "preferences-workspace" : "skills-workspace")} aria-label={mode === "skills" ? "我的 Skill" : "长期偏好"}>
+    {mode === "skills" ? <header className="skill-library-header"><div><h2>我的方法库 <span>{skills.length}</span></h2><p>保存你的选购方法，在对话中输入 / 随时调用。</p></div><button type="button" className="skill-create" disabled={disabled} onClick={() => { if (selected) editSkill(null); else setSkillEditorOpen(true); }}><Icon name="plus" />新建 Skill</button></header> : <header className="workspace-heading">
+      <div className="eyebrow">THE LITTLE THINGS ABOUT YOU</div>
+      <h1>你的偏好，<em>一直记得。</em></h1>
+      <p>喜欢什么、想避开什么，都可以写在这里。每次开始选购，我会带上这些记忆。</p>
+    </header>}
+    {busy && <p className="workspace-note" role="status">正在完成这次选购，结束后可编辑。新记忆从下一轮开始生效。</p>}
+    {error && !(mode === "skills" && skillEditorOpen) && <div className="workspace-error" role="alert">{error} <button type="button" onClick={() => void refresh()} disabled={saving}>重新加载</button></div>}
+    {notice && <p className="workspace-notice" role="status"><Icon name="check" />{notice}</p>}
+    <div className="workspace-grid">
+      <aside className="workspace-library" aria-label={mode === "skills" ? "已保存的 Skill" : "已保存的偏好"}>
+        <div className="workspace-section-title"><h2>{mode === "skills" ? "全部方法" : "我的记忆"}</h2>
+          <button type="button" onClick={() => void refresh()} disabled={disabled}>刷新</button></div>
+        {mode === "preferences" && <button className="workspace-new" type="button" disabled={disabled}
+          onClick={() => editPreference(null)}><Icon name="plus" />添加偏好</button>}
+        {loading ? <p role="status">正在读取已保存的内容…</p> : mode === "skills" ? (
+          skills.length ? skills.map(skill => <article key={skill.id} className={selected?.id === skill.id ? "workspace-item selected" : "workspace-item"}>
+            <button type="button" className="workspace-item-main" disabled={disabled} onClick={() => editSkill(skill)}>
+              <strong>{skill.title}</strong><span>{skill.description}</span><small>个人 Skill · 修订 {skill.version}</small>
+            </button>
+            {deleting === skill.id ? <div className="workspace-delete">
+              <span>删除后将不能再调用。</span>
+              <button type="button" disabled={disabled} onClick={() => void mutate(
+                () => request("/my-skills/" + encodeURIComponent(skill.id) + "?expected_version=" + encodeURIComponent(skill.version), "DELETE"),
+                "Skill 已删除，方案菜单已同步。", () => { if (selected?.id === skill.id) { editSkill(null); setSkillEditorOpen(false); } setDeleting(null); })}>确认删除</button>
+              <button type="button" onClick={() => setDeleting(null)}>保留</button>
+            </div> : <button type="button" className="workspace-delete-link" disabled={disabled} aria-label={"删除 Skill：" + skill.title} onClick={() => setDeleting(skill.id)}>删除</button>}
+          </article>) : <div className="workspace-empty"><Icon name="leaf" /><p>你的第一份选购方法，<br />点击右上角「新建 Skill」开始。</p></div>
+        ) : preferences.length ? preferences.map(p => <article key={p.kind + p.statement} className="workspace-item">
+          <span className={"preference-kind " + p.kind}>{p.kind === "like" ? "喜欢" : "避免"}</span>
+          <p>{p.statement}</p>
+          {p.memory_id && <small>第 {p.version} 版 · {p.source_kind === "agent" ? "对话确认保存" : p.source_kind === "legacy" ? "历史偏好迁移" : "页面保存"}</small>}
+          <div className="workspace-row-actions">
+            {p.memory_id && <button type="button" disabled={disabled} onClick={() => {
+              const id=p.memory_id!;
+              if (memoryHistory[id]) { setMemoryHistory(current => {const next={...current};delete next[id];return next;});return; }
+              void request("/preferences/"+encodeURIComponent(id)+"/history").then(data => setMemoryHistory(current => ({...current,[id]:data.events as typeof memoryHistory[string]}))).catch(() => setError("变更记录读取失败，请重试"));
+            }}>变更记录</button>}
+            <button type="button" disabled={disabled} aria-label={"编辑偏好：" + p.statement} onClick={() => editPreference(p)}>编辑</button>
+            <button type="button" disabled={disabled} aria-label={"删除偏好：" + p.statement} onClick={() => void mutate(
+              () => request("/preferences", "DELETE", { statement: p.statement, memory_id: p.memory_id, expected_version: p.version }), "这条偏好已删除，下一轮不再带入。", () => editPreference(null))}>删除</button>
+          </div>
+          {p.memory_id && memoryHistory[p.memory_id] && <ul aria-label="记忆变更记录">{memoryHistory[p.memory_id].map((event,i) => <li key={i}>{event.action === "create" ? "创建" : event.action === "update" ? "修改" : "删除"} · 第 {event.version} 版 · {new Date(event.occurred_at).toLocaleString()}</li>)}</ul>}
+        </article>) : <div className="workspace-empty"><Icon name="heart" /><p>这里还没有长期偏好。<br />可以先写下一件你在意的小事。</p></div>}
+      </aside>
+      {mode === "preferences" ? editor : skillEditorOpen && <div className="skill-editor-overlay"><Modal title={selected ? "编辑 Skill" : "写一份新 Skill"} onClose={() => setSkillEditorOpen(false)}>{editor}</Modal></div>}
+
     </div>
   </section>;
 }

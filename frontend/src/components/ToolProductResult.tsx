@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import Icon from "./Icon";
-import { money } from "./ProductCards";
+import { money, ProductImage } from "./ProductCards";
 
 export type LoadToolProducts = (runId: string, toolCallId: string) => Promise<unknown>;
 type MiniProduct = { product_id: string; title: string; price_major: number; currency: string; spec?: string; default_sku_id?: string };
@@ -42,11 +41,11 @@ export default function ToolProductResult({ runId, toolCallId, load }: { runId: 
   const visible = showAll ? result.products : result.products.slice(0, 6);
   return <div className="tool-product-result">
     <div className="tool-products-grid">{visible.map((product, index) => <article className="tool-product-mini" key={`${product.product_id}:${product.default_sku_id ?? index}`}>
-      <span className="tool-product-symbol" aria-hidden="true"><Icon name="bag" /></span>
+      <span className="tool-product-symbol tool-product-icon"><ProductImage product={product} /></span>
       <div><strong title={product.title}>{product.title}</strong><span>{product.product_id}{product.spec ? ` · ${product.spec}` : ""}</span></div>
       <b>{money(product.price_major, product.currency)}</b>
     </article>)}</div>
-    <div className="tool-products-footer"><span>当时商品价 · 交易前需重新核验</span>
+    <div className="tool-products-footer"><span>当时商品价 · 图片仅示意 · 交易前需重新核验</span>
       {result.products.length > 6 && <button onClick={() => setShowAll(value => !value)}>{showAll ? "收起" : `查看全部 ${result.products.length} 件`}</button>}
     </div>
     {result.truncated && <p className="tool-products-note">此处仅展示可读取的商品{result.totalCount !== null ? `（该批共 ${result.totalCount} 件）` : ""}，分页或不完整的记录未展示。</p>}

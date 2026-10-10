@@ -20,10 +20,12 @@ import ProductComparison from "./components/ProductComparison";
 import ShoppingPlans, { SkillRunStatus } from "./components/ShoppingPlans";
 import SkillQueryInput from "./components/SkillQueryInput";
 import MyOrders from "./components/MyOrders";
+import FavoritesList from "./components/FavoritesList";
+import { CatalogMediaProvider } from "./components/CatalogMedia";
 import BuyerWorkspace from "./components/BuyerWorkspace";
 import { skillQueryDraft, submitSkillQuery } from "./lib/skills";
 
-type View = "shopping" | "history" | "favorites" | "skills" | "preferences" | "orders" | "automations";
+type View = "shopping" | "favorites" | "skills" | "preferences" | "orders" | "automations";
 const STARTERS = [
   "我想先逛逛旅行装备。请用“旅行装备”这个关键词一次搜索，返回 12 件候选，暂不扩展关键词或按子品类拆分搜索。收货国家中国，单件商品价格不超过 500 元人民币，运费和税费另列。先展示这批商品卡，再简要说明用途；符合条件不足 12 件时请如实说明。",
   "想买日常通勤耳机，帮我理一理选购思路。",
@@ -33,7 +35,7 @@ const VIEW_KEY = "globex.workspace.view";
 function readView(): View {
   try {
     const saved = sessionStorage.getItem(VIEW_KEY);
-    if (saved && ["shopping", "history", "favorites", "skills", "preferences", "orders", "automations"].includes(saved))
+    if (saved && ["shopping", "favorites", "skills", "preferences", "orders", "automations"].includes(saved))
       return saved as View;
   } catch { /* 存储受限时使用首页。 */ }
   return "shopping";
@@ -54,7 +56,6 @@ export default function App() {
   },[agent.sessionId,agent.workspaceRequest,agent.shoppingForm]);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const navigationRef = useRef<HTMLElement>(null);
-  const [historyQuery, setHistoryQuery] = useState("");
   const [historySearchOpen, setHistorySearchOpen] = useState(false);
   const [atmosphere, setAtmosphere] = useState(() => {
     try { return localStorage.getItem("globex.atmosphere") !== "off"; } catch { return true; }
@@ -133,7 +134,6 @@ export default function App() {
   const loadToolProducts = useCallback((runId: string, toolCallId: string) =>
     agent.workspaceRequest(`/ag-ui/runs/${encodeURIComponent(runId)}/tools/${encodeURIComponent(toolCallId)}/products`),
   [agent.workspaceRequest]);
-  const matchingHistory = agent.history.filter((item) => item.title.toLocaleLowerCase().includes(historyQuery.trim().toLocaleLowerCase()));
   const hasConversation = agent.messages.length > 0 || !!shoppingForm;
   const landedDestination = agent.products.find(
     (product) => product.landed_price?.ship_to,
@@ -346,16 +346,14 @@ export default function App() {
     />
   );
   const navItems: { id: View; label: string; icon: string }[] = [
-    { id: "orders", label: "我的订单", icon: "order" },
-    { id: "history", label: "对话历史", icon: "chat" },
-    { id: "favorites", label: "心选收藏", icon: "heart" },
+    { id: "orders", label: "订单与收藏", icon: "order" },
     { id: "skills", label: "我的 Skill", icon: "leaf" },
     { id: "preferences", label: "长期偏好", icon: "spark" },
     { id: "automations", label: "自动化", icon: "clock" },
   ];
 
   return (
-    <div className={`globex-workbench ${atmosphere ? "has-atmosphere" : "quiet-background"}`}>
+    <CatalogMediaProvider request={agent.workspaceRequest}><div className={`globex-workbench ${atmosphere ? "has-atmosphere" : "quiet-background"}`}>
       <div className="workbench-atmosphere" aria-hidden="true" />
       {mobileNavOpen && <button className="nav-scrim" aria-label="关闭导航" onClick={() => setMobileNavOpen(false)} />}
       <aside ref={navigationRef} id="workspace-navigation" className={`sidebar ${mobileNavOpen ? "is-open" : ""}`} aria-label="主导航">
@@ -379,15 +377,12 @@ export default function App() {
           {navItems.map((item) => (
             <button
               key={item.id}
-              className={`nav-item ${view === item.id ? "active" : ""}`}
+              className={`nav-item ${(view === item.id || (item.id === "orders" && view === "favorites")) ? "active" : ""}`}
               onClick={() => switchView(item.id)}
-              aria-current={view === item.id ? "page" : undefined}
+              aria-current={(view === item.id || (item.id === "orders" && view === "favorites")) ? "page" : undefined}
             >
               <Icon name={item.icon} />
               {item.label}
-              {item.id === "favorites" && (
-                <span className="nav-count">{favorites.length}</span>
-              )}
             </button>
           ))}
           <button className="nav-item sidebar-search-trigger" aria-haspopup="dialog" aria-expanded={historySearchOpen}
@@ -424,7 +419,7 @@ export default function App() {
           </div>
         </div>
       </aside>
-      <main>
+      <main className={view === "shopping" ? "" : "management-main"}>
         <div className="content">
           <header className="topbar">
             <div className="workspace-page-title">
@@ -432,7 +427,7 @@ export default function App() {
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
               </button>
               <div><div className="breadcrumb"><span>Globex</span><span>／</span><span>环球好物</span></div>
-              <h1>{view === "shopping" ? agent.history.find(item => item.id === agent.sessionId)?.title ?? "新的选购" : navItems.find((item) => item.id === view)?.label}</h1></div>
+              <h1>{view === "shopping" ? agent.history.find(item => item.id === agent.sessionId)?.title ?? "新的选购" : navItems.find((item) => item.id === (view === "favorites" ? "orders" : view))?.label}</h1></div>
             </div>
             <div className="topbar-actions">
               <div className="location"><Icon name="pin" />{landedDestination ? `配送至 ${landedDestination}` : "探索世界好物"}</div>
@@ -440,7 +435,15 @@ export default function App() {
             </div>
           </header>
           {view === "automations" && <Automations sessionId={agent.sessionId} request={agent.workspaceRequest} onHistoryChanged={agent.refreshHistory} onOpenSession={id => { void agent.refreshHistory().then(() => openSession(id)); }} busy={busy} />}
-          {view === "orders" && <MyOrders request={agent.workspaceRequest} confirmations={agent.confirmations} busy={agent.confirmationBusy || busy} error={agent.confirmationError} onPrepare={agent.prepareCancel} onResolve={agent.resolveConfirmation} onRefresh={agent.refreshConfirmations} />}
+          {(view === "orders" || view === "favorites") && <section className="purchases-workspace" aria-label="订单与收藏">
+            <div className="purchase-tabs" role="tablist" aria-label="订单与收藏切换">
+              <button id="orders-tab" role="tab" aria-selected={view === "orders"} aria-controls="purchase-panel" onClick={() => switchView("orders")}><Icon name="order" />我的订单</button>
+              <button id="favorites-tab" role="tab" aria-selected={view === "favorites"} aria-controls="purchase-panel" onClick={() => switchView("favorites")}><Icon name="heart" />心选收藏<span>{favorites.length}</span></button>
+            </div>
+            <div id="purchase-panel" role="tabpanel" aria-labelledby={view === "orders" ? "orders-tab" : "favorites-tab"}>
+              {view === "orders" ? <MyOrders request={agent.workspaceRequest} confirmations={agent.confirmations} busy={agent.confirmationBusy || busy} error={agent.confirmationError} onPrepare={agent.prepareCancel} onResolve={agent.resolveConfirmation} onRefresh={agent.refreshConfirmations} /> : <FavoritesList products={favorites} onDetail={setDetail} onRemove={toggleFavorite} onBrowse={() => switchView("shopping")} />}
+            </div>
+          </section>}
           {(view === "skills" || view === "preferences") && <BuyerWorkspace key={view} mode={view} busy={busy}
             request={agent.workspaceRequest} onSkillsChanged={agent.refreshSkills} />}
           {view === "shopping" && (
@@ -621,75 +624,10 @@ export default function App() {
 
             </>
           )}
-          {view === "favorites" && (
-            <>
-              <h1 className="library-title">心动的，先留在这里。</h1>
-              <p className="library-description">
-                收藏已保存到当前用户，刷新或更换浏览器后仍可查看。以下是上次查看的商品信息，价格与库存请重新查询确认。
-              </p>
-              {favorites.length ? (
-                renderCards(favorites)
-              ) : (
-                <section className="empty-state">
-                  <Icon name="heart" />
-                  <h2>等待第一份心动</h2>
-                  <p>点击商品右上角的爱心，就能把喜欢的留在这里。</p>
-                  <button onClick={() => switchView("shopping")}>
-                    去发现好物
-                    <Icon name="arrow" />
-                  </button>
-                </section>
-              )}
-            </>
-          )}
-          {view === "history" && (
-            <>
-              <h1 className="library-title">每一次期待，都有迹可循。</h1>
-              <p className="library-description">
-                选购记录按当前用户保存在服务端。刷新后会重新读取，浏览器缓存仅用于加快展示。
-              </p>
-              <label className="history-search library-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 4 4" /></svg><input value={historyQuery} onChange={(event) => setHistoryQuery(event.target.value)} placeholder="搜索你的选购记录" aria-label="搜索全部选购记录" /></label>
-              {agent.historyError && <p role="status">{agent.historyError}</p>}
-              {historyQuery && !matchingHistory.length && <p className="history-no-match">没有找到匹配的记录，换个关键词试试。</p>}
-              <div className="history-list">
-                {agent.history.length ? (
-                  matchingHistory.map((item) => (
-                    <button
-                      key={item.id}
-                      className="history-entry"
-                      onClick={() => openSession(item.id)}
-                      disabled={busy}
-                    >
-                      <span className="history-icon">
-                        <Icon name="chat" />
-                      </span>
-                      <span>
-                        <strong>{item.title}</strong>
-                        <small>
-                          {new Date(item.updatedAt).toLocaleString("zh-CN")}
-                          {item.id === agent.sessionId ? " · 当前选购" : ""}
-                        </small>
-                      </span>
-                      <Icon name="arrow" />
-                    </button>
-                  ))
-                ) : (
-                  <section className="empty-state">
-                    <Icon name="chat" />
-                    <h2>从第一次选购开始</h2>
-                    <p>你和 Globex 的每次交流，会为下一次选择留下一点线索。</p>
-                    <button onClick={newShopping}>
-                      开启新的选购
-                      <Icon name="arrow" />
-                    </button>
-                  </section>
-                )}
-              </div>
-            </>
-          )}
+
         </div>
       </main>
-      {view !== "automations" && view !== "skills" && view !== "preferences" && view !== "orders" && <div className={`composer-dock ${!hasConversation && view === "shopping" ? "composer-dock--welcome" : ""}`}>
+      {view === "shopping" && <div className={`composer-dock ${!hasConversation && view === "shopping" ? "composer-dock--welcome" : ""}`}>
         <div className="composer-wrap">
           {compared.length > 0 && (
             <div className="compare-bar">
@@ -827,6 +765,6 @@ export default function App() {
       <div className={`toast ${toast ? "visible" : ""}`} role="status">
         {toast}
       </div>
-    </div>
+    </div></CatalogMediaProvider>
   );
 }

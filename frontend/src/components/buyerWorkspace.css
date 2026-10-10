@@ -75,3 +75,38 @@
   .preferences-workspace .workspace-grid { grid-template-columns: 1fr; }
   .preferences-workspace .workspace-library { order: 2; }
 }
+
+/* 方法库是主入口，新建或编辑时才打开表单。 */
+.buyer-workspace.skills-workspace { padding: 0 0 24px; }
+.skill-library-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
+.skill-library-header h2 { font-size: 17px; margin: 0 0 5px; color: #536184; }
+.skill-library-header h2 span { font-size: 11px; font-weight: 400; color: #9a94b6; margin-left: 5px; }
+.skill-library-header p { color: #919ab2; font-size: 12px; margin: 0; line-height: 1.6; }
+.skill-library-header .skill-create { display: flex; align-items: center; flex-shrink: 0; gap: 5px; padding: 8px 11px; color: white; background: #8070d3; border: 0; border-radius: 8px; font-size: 12px; }
+.skill-create svg { width: 14px; height: 14px; }
+.skills-workspace .workspace-grid { display: block; }
+.skills-workspace .workspace-library { padding: 13px; border-radius: 11px; background: #ffffffc9; }
+.skills-workspace .workspace-section-title { margin-bottom: 8px; }
+.skills-workspace .workspace-section-title h2 { font: 600 12px/1.5 var(--sans,sans-serif); color: #8793ac; }
+.skills-workspace .workspace-section-title button { font-size: 11px; }
+.skills-workspace .workspace-item { margin: 0; border: 0; border-top: 1px solid #eceef6; border-radius: 0; background: none; padding: 12px 8px; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 12px; align-items: center; }
+.skills-workspace .workspace-item.selected { background: #f6f3ff; border-color: #ece7fa; border-radius: 7px; }
+.skills-workspace .workspace-item-main strong { font-size: 13px; font-weight: 600; color: #60618a; }
+.skills-workspace .workspace-item-main span { font-size: 11px; line-height: 1.6; margin: 4px 0; }
+.skills-workspace .workspace-item-main small { font-size: 10px; color: #a4aabe; }
+.skills-workspace .workspace-delete-link { margin: 0; font-size: 11px; }
+.skills-workspace .workspace-delete { grid-column: 1 / -1; margin: 0; }
+.skills-workspace .workspace-empty { padding: 26px 0; font-size: 12px; }
+.skill-editor-overlay .modal { width: min(620px,calc(100vw - 24px)); padding: 0; border-radius: 15px; background: #fafaff; }
+.skill-editor-overlay .close-modal { top: 12px; right: 12px; width: 28px; height: 28px; }
+.skill-editor-overlay .workspace-editor { padding: 21px; border: 0; border-radius: 15px; }
+.skill-editor-overlay .workspace-section-title { padding-right: 28px; margin-bottom: 13px; }
+.skill-editor-overlay .workspace-section-title h2 { font: 600 16px/1.5 var(--sans,sans-serif); color: #5d6389; }
+.skill-editor-overlay .workspace-section-title span { font-size: 10px; }
+.skill-editor-overlay .workspace-editor label { font-size: 12px; margin-top: 13px; color: #707b9b; }
+.skill-editor-overlay .workspace-editor input,.skill-editor-overlay .workspace-editor textarea { font-size: 12px; padding: 8px 10px; margin-top: 5px; border-radius: 7px; }
+.skill-editor-overlay .workspace-editor textarea { min-height: 145px; height: 185px; line-height: 1.7; }
+.skill-editor-overlay .workspace-help { font-size: 11px; margin: 8px 0; }
+.skill-editor-overlay .workspace-form-footer { margin-top: 12px; }
+.skill-editor-overlay .workspace-save { padding: 8px 12px; font-size: 12px; border-radius: 7px; }
+@media(max-width:530px) { .skill-library-header { gap: 8px; } .skill-library-header p { font-size: 11px; } .skill-editor-overlay .workspace-editor { padding: 16px; } }

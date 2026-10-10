@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { ProductCard } from "../types";
 import Icon from "./Icon";
+import { ProductImageCaption } from "./CatalogMedia";
 import Modal from "./Modal";
 import { money, ProductImage } from "./ProductCards";
 import "./productDetail.css";
@@ -40,11 +41,7 @@ export default function ProductDetail({
               <ProductImage product={product} />
             </div>
             <figcaption>
-              {product.image_kind === "illustration"
-                ? "示意图 · 非实拍"
-                : product.image_url
-                  ? "商品图片"
-                  : "图片待补充"}
+              <ProductImageCaption product={product} />
             </figcaption>
           </figure>
           <div className="detail-summary-copy">

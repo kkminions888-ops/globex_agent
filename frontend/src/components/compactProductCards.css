@@ -220,3 +220,10 @@
     grid-template-columns: minmax(0, 250px);
   }
 }
+
+/* 图集只在浏览器视口裁切，原图保留；同一张图只下载一次。 */
+.catalog-media-image { display: block; width: 100%; height: 100%; overflow: hidden; background: #fdfcf8; }
+.image-open > .catalog-media-image,.detail-visual > .catalog-media-image { width: 100%; height: 100%; }
+.tool-product-icon .catalog-media-image { width: 100%; height: 100%; border-radius: 5px; }
+.tool-product-icon .image-placeholder { min-height: 0; height: 100%; }
+.tool-product-icon .image-placeholder span,.tool-product-icon .image-placeholder small { display: none; }
