@@ -1,0 +1,60 @@
+{
+  "id": "current-baseline-pending",
+  "label": "当前配置正式基线（未运行）",
+  "protocol": "retrieval-standard-v1",
+  "created_at": "2026-10-14T14:44:03.630056+00:00",
+  "status": "not_run",
+  "scope": "formal",
+  "role": "baseline",
+  "standard_id": "retrieval-standard-v1",
+  "variant": "configured",
+  "provenance": {
+    "catalog_sha256": "a735003f34b11093097e2728d1003fc63ca63302e938e997f0fd5014cebec6fe",
+    "dataset_sha256": "d0dae146765af5583a8228fc23c6ecbc237d233eea157b2fc4813e35a97a4808",
+    "selection_sha256": "16ae560f523913432c4d1fe31cc7ef42a6b36d7ce25393a83751bc9733c0fe36",
+    "source_sha256": "0b1df5fafbd6f01570db7a7eb6e6650022fefd5b8c878ce31d86236c0dd367eb",
+    "standard_sha256": "f5cc0518b6a0733fe46ee5f40805b03e9829cd0b319d2bdaf9e741122c13ed0d",
+    "evaluator_sha256": "7fcc4bfce1fdc4724dd06acbab169e500203da562eb8afb15768be085bfdf675",
+    "config_sha256": "0fdd68b9421ae90da0c19f10e7362fc4adcb3f3336211f9db86991902fb8bb67",
+    "embedding_identity": "c8013050434d581dabc8df92936b4b685f43a183f1461a3e7ebc1859e2490f29",
+    "query_mode": "structured_spec",
+    "k": 5,
+    "split": "all",
+    "repetitions": 1,
+    "catalog_count": 3700,
+    "case_count": 72,
+    "sku_count": 7105
+  },
+  "summary": {
+    "ndcg_at_5": null,
+    "recall_at_5": null,
+    "returned_precision": null,
+    "empty_accuracy": null,
+    "hard_constraint_violations": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 0
+    },
+    "constraint_case_counts": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 0
+    },
+    "hard_constraint_case_failures": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 0
+    },
+    "constraint_positive_case_counts": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 0
+    },
+    "hard_constraint_violation_rate": null,
+    "positive_cases": 0,
+    "empty_cases": 0,
+    "p95_ms": null
+  },
+  "cases": [],
+  "note": "当前配置与输入已冻结，尚未执行当前向量主链；本文件不是测量报告或优化收益结论。"
+}

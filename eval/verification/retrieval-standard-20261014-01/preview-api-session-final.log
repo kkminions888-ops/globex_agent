@@ -1,0 +1,8 @@
+INFO:     Started server process [22516]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+INFO:     127.0.0.1:54928 - "GET /commerce/retrieval-evaluation?buyer_id=pao-coder HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54930 - "GET /commerce/retrieval-evaluation?buyer_id=pao-coder HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53145 - "GET /commerce/retrieval-evaluation?buyer_id=pao-coder HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53147 - "GET /commerce/retrieval-evaluation?buyer_id=pao-coder HTTP/1.1" 200 OK

@@ -1,0 +1,8 @@
+.evaluation-page { max-width: 1440px; margin: 0 auto; padding: 28px clamp(16px, 4vw, 60px) 64px; }
+.evaluation-page-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 30px; }
+.evaluation-page-brand { display: inline-flex; align-items: center; gap: 12px; color: #224a3b; text-decoration: none; font-size: 24px; font-weight: 700; }
+.evaluation-page-brand > svg { width: 38px; height: 38px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.evaluation-page-brand span span { display: block; margin-top: 2px; color: #69786e; font-size: 12px; font-weight: 400; letter-spacing: .06em; }
+.evaluation-page-back { display: inline-flex; align-items: center; gap: 7px; color: #526457; font-size: 13px; text-decoration: none; }
+.evaluation-page-back svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; transform: rotate(180deg); }
+.evaluation-page a:focus-visible { outline: 3px solid #94b6a0; outline-offset: 5px; border-radius: 3px; }

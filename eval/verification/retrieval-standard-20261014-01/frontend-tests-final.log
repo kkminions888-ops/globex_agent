@@ -1,0 +1,19 @@
+
+> globex-frontend@0.3.0 test
+> vitest run tests/retrievalEvaluation.test.tsx
+
+
+ RUN  v3.2.4 E:/laboratory/code/globex-agent/frontend
+
+ ✓ tests/retrievalEvaluation.test.tsx (8 tests) 286ms
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  22:58:34
+   Duration  5.53s (transform 160ms, setup 0ms, collect 270ms, tests 286ms, environment 1.42s, prepare 238ms)
+
+npm notice
+npm notice New major version of npm available! 11.17.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

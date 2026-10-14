@@ -1,0 +1,20 @@
+
+> globex-frontend@0.3.0 build
+> tsc -b && vite build
+
+vite v5.4.21 building for production...
+transforming...
+✓ 625 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                      0.72 kB │ gzip:  0.48 kB
+dist/assets/index-RtNfV_vP.css     165.20 kB │ gzip: 33.91 kB
+dist/assets/index-BdzZtALO.js      192.86 kB │ gzip: 66.00 kB
+dist/assets/agent-CWWVwje9.js      203.99 kB │ gzip: 44.71 kB
+dist/assets/ui-vendor-CMif1nyE.js  318.45 kB │ gzip: 99.22 kB
+✓ built in 3.74s
+npm notice
+npm notice New major version of npm available! 11.17.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,9 @@
+{
+  "passed": false,
+  "reasons": [
+    "运行未完整完成或源码不稳定",
+    "场景缺失或失败",
+    "安全契约未通过"
+  ],
+  "report": "eval\\verification\\harness-retrieval-standard-20261014-01\\report.html"
+}

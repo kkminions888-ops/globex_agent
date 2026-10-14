@@ -1,0 +1,158 @@
+- main:
+  - link "返回 Globex 选购":
+    - /url: /
+    - text: Globex
+    - generic: 检索评测工作台
+  - link "返回选购":
+    - /url: /
+    - text: 返回选购
+  - region "商品检索评测":
+    - generic: 检索质量 · 前后对照
+    - heading "让合适的商品，排在前面" [level=1]
+    - paragraph: 固定商品目录与标注查询，用同一套标准衡量每次优化。
+    - button "刷新报告"
+    - status:
+      - strong: 当前基线与候选待测
+      - paragraph: 标准已建立；真实评测完成后，这里展示前后差异。
+      - generic: retrieval-standard-v1
+    - list:
+      - listitem: 基线或候选尚未运行，不能计算优化收益
+    - complementary:
+      - strong: 当前模型正式基线
+      - generic: 待测 · 数据与标准冻结不代表模型检索已通过
+      - code: current-baseline-definition
+    - text: 基线报告
+    - combobox "基线报告":
+      - option "选择基线"
+      - option "当前配置正式基线（未运行） · 待测" [selected]
+      - option "关键词离线基线（诊断） · 离线诊断"
+    - generic: 对照
+    - text: 候选报告
+    - combobox "候选报告":
+      - option "选择候选"
+      - option "BM25 离线候选（诊断） · 离线诊断" [selected]
+    - article:
+      - heading "NDCG@5" [level=3]
+      - generic: 待验收
+      - paragraph: 二元 canonical 相关性，DCG=Σ gain/log2(rank+1)，IDCG按min(5,相关同款数)计算。同款重复gain为0且仍占展示位置；先截实际前5，不能从后面补位。
+      - generic: 基线
+      - strong: 待测
+      - generic: 候选
+      - strong: 85.5%
+      - generic "NDCG@5对照图":
+        - generic: 基线
+        - generic: 待测
+        - generic: 候选
+        - generic: 85.5%
+      - strong: 变化 待测
+      - generic: 变化 ≥ +2.0 个百分点
+    - article:
+      - heading "Recall@5" [level=3]
+      - generic: 待验收
+      - paragraph: 实际前5中命中的唯一相关canonical数 / 全部相关canonical数。标注超过5项时不能天然达到1。
+      - generic: 基线
+      - strong: 待测
+      - generic: 候选
+      - strong: 92.7%
+      - generic "Recall@5对照图":
+        - generic: 基线
+        - generic: 待测
+        - generic: 候选
+        - generic: 92.7%
+      - strong: 变化 待测
+      - generic: 变化 ≥ -1.0 个百分点
+    - article:
+      - heading "返回结果精度" [level=3]
+      - generic: 待验收
+      - paragraph: 实际前5中唯一相关canonical数 / 实际展示条数。重复占分母但不加分；正例返回0条时计0。
+      - generic: 基线
+      - strong: 待测
+      - generic: 候选
+      - strong: 41.6%
+      - generic "返回结果精度对照图":
+        - generic: 基线
+        - generic: 待测
+        - generic: 候选
+        - generic: 41.6%
+      - strong: 变化 待测
+      - generic: 变化 ≥ +2.0 个百分点
+    - article:
+      - heading "硬约束违规率" [level=3]
+      - generic: 待验收
+      - paragraph: 存在至少一个违规展示商品的用例-约束对数 / 适用用例-约束对数。预算、材质、配送分别统计；无覆盖为未知，不能当作0。
+      - generic: 基线
+      - strong: 待测
+      - generic: 候选
+      - strong: 0.0%
+      - generic "硬约束违规率对照图":
+        - generic: 基线
+        - generic: 待测
+        - generic: 候选
+        - generic: 0.0%
+      - strong: 变化 待测
+      - generic: 三类违规均为 0，且均有正例覆盖
+    - article:
+      - heading "硬约束违规检查" [level=2]
+      - paragraph: 预算、材质和配送分别检查；缺少正例覆盖不能判定通过。
+      - table:
+        - rowgroup:
+          - row "约束 基线违规商品 候选违规商品 候选适用查询 候选适用正例 标准":
+            - columnheader "约束"
+            - columnheader "基线违规商品"
+            - columnheader "候选违规商品"
+            - columnheader "候选适用查询"
+            - columnheader "候选适用正例"
+            - columnheader "标准"
+        - rowgroup:
+          - row "预算 待测 0 8 0 0 违规且有正例覆盖":
+            - rowheader "预算"
+            - cell "待测"
+            - cell "0"
+            - cell "8"
+            - cell "0"
+            - cell "0 违规且有正例覆盖"
+          - row "材质 待测 0 0 0 0 违规且有正例覆盖":
+            - rowheader "材质"
+            - cell "待测"
+            - cell "0"
+            - cell "0"
+            - cell "0"
+            - cell "0 违规且有正例覆盖"
+          - row "配送 待测 0 72 64 0 违规且有正例覆盖":
+            - rowheader "配送"
+            - cell "待测"
+            - cell "0"
+            - cell "72"
+            - cell "64"
+            - cell "0 违规且有正例覆盖"
+      - paragraph: 违规率按“查询 × 约束维度”计算：至少一件违规商品即该维度失败。违规商品列按商品与约束对计数，分母为 0 时显示待测。
+    - article:
+      - heading "评测口径与保护指标" [level=2]
+      - term: 标准版本
+      - definition: "1"
+      - term: 排序与召回
+      - definition: Top-5 · 固定标注查询
+      - term: 查询模式
+      - definition: structured_spec
+      - term: 数据划分
+      - definition: all
+      - term: 无结果准确率
+      - definition: 基线 待测 / 候选 100.0%
+      - term: 无结果保护门槛
+      - definition: 准确率不退化，缺少覆盖待验收
+      - term: 延迟 P95
+      - definition: 基线 待测 / 候选 76 ms
+      - paragraph: 精度以实际返回数量为分母；同时检查召回与空结果，防止通过少返回商品制造提升。指标差值以百分点展示。
+    - article:
+      - heading "逐查询差异" [level=2]
+      - paragraph: 按 NDCG 差值从低到高排列，先查看退化样本。
+      - text: 样本筛选
+      - combobox "样本筛选":
+        - option "全部样本" [selected]
+        - option "排序退化"
+        - option "排序提升"
+        - option "约束违规"
+      - generic: 暂无逐查询结果；完成评测后展示差异。
+    - generic "数据来源与可比性指纹"
+    - generic "指标定义与验收标准"
+    - paragraph: 本页只读取已保存的标准和报告。实际模型评测由开发流程执行，并保留原始证据。

@@ -1,0 +1,748 @@
+{
+  "cases": [
+    {
+      "id": "v2-00-intent",
+      "retrieved_product_ids": [
+        "P3001",
+        "P3002",
+        "P3003",
+        "P3004",
+        "P3005"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-00-specification",
+      "retrieved_product_ids": [
+        "P3012",
+        "P3013",
+        "P3014",
+        "P3015",
+        "P3001"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-01-intent",
+      "retrieved_product_ids": [
+        "P3016",
+        "P3017",
+        "P3018",
+        "P3019",
+        "P3021"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-01-specification",
+      "retrieved_product_ids": [
+        "P3028",
+        "P3029",
+        "P3031",
+        "P1001",
+        "P1011"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-02-intent",
+      "retrieved_product_ids": [
+        "P3032",
+        "P3034",
+        "P3035",
+        "P3036",
+        "P3037"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-02-specification",
+      "retrieved_product_ids": [
+        "P3045",
+        "P3046",
+        "P3047",
+        "P1002",
+        "P1016"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-03-intent",
+      "retrieved_product_ids": [
+        "P3032",
+        "P3034",
+        "P3035",
+        "P3036",
+        "P3037"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-03-specification",
+      "retrieved_product_ids": [
+        "P1014",
+        "P3048",
+        "P3049",
+        "P3051",
+        "P3052"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-04-intent",
+      "retrieved_product_ids": [
+        "P3064",
+        "P3065",
+        "P3067",
+        "P3068",
+        "P3069"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-04-specification",
+      "retrieved_product_ids": [
+        "P3076",
+        "P3078",
+        "P3079",
+        "P3112",
+        "P3113"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-05-intent",
+      "retrieved_product_ids": [
+        "P3081",
+        "P3082",
+        "P3083",
+        "P3084",
+        "P3085"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-05-specification",
+      "retrieved_product_ids": [
+        "P3092",
+        "P3093",
+        "P3094",
+        "P3095",
+        "P1004"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-06-intent",
+      "retrieved_product_ids": [
+        "P3096",
+        "P3097",
+        "P3098",
+        "P3101",
+        "P3102"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-06-specification",
+      "retrieved_product_ids": [
+        "P3108",
+        "P3109",
+        "P3111",
+        "P3104",
+        "P3105"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-07-intent",
+      "retrieved_product_ids": [
+        "P3064",
+        "P3065",
+        "P3067",
+        "P3068",
+        "P3069"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-07-specification",
+      "retrieved_product_ids": [
+        "P3124",
+        "P3125",
+        "P3126",
+        "P3127",
+        "P1026"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-08-intent",
+      "retrieved_product_ids": [
+        "P3128",
+        "P3129",
+        "P3131",
+        "P3133",
+        "P3134"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-08-specification",
+      "retrieved_product_ids": [
+        "P3141",
+        "P3142",
+        "P3128",
+        "P3129",
+        "P3131"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-09-intent",
+      "retrieved_product_ids": [
+        "P3144",
+        "P3145",
+        "P3146",
+        "P3147",
+        "P3148"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-09-specification",
+      "retrieved_product_ids": [
+        "P3156",
+        "P3157",
+        "P3158",
+        "P3159",
+        "P3152"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-10-intent",
+      "retrieved_product_ids": [
+        "P3161",
+        "P3162",
+        "P3163",
+        "P3164",
+        "P3166"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-10-specification",
+      "retrieved_product_ids": [
+        "P3172",
+        "P3173",
+        "P3174",
+        "P3175",
+        "P3161"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-11-intent",
+      "retrieved_product_ids": [
+        "P3177",
+        "P3178",
+        "P3179",
+        "P3181",
+        "P3182"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-11-specification",
+      "retrieved_product_ids": [
+        "P3188",
+        "P3189",
+        "P3191",
+        "P3177",
+        "P3178"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-12-intent",
+      "retrieved_product_ids": [
+        "P3192",
+        "P3193",
+        "P3194",
+        "P3195",
+        "P3196"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-12-specification",
+      "retrieved_product_ids": [
+        "P3204",
+        "P3205",
+        "P3206",
+        "P3207",
+        "P3196"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-13-intent",
+      "retrieved_product_ids": [
+        "P1016",
+        "P1017",
+        "P2072",
+        "P2080",
+        "P2096"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-13-specification",
+      "retrieved_product_ids": [
+        "P3221",
+        "P3222",
+        "P3223",
+        "P1010",
+        "P1040"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-14-intent",
+      "retrieved_product_ids": [
+        "P3224",
+        "P3225",
+        "P3226",
+        "P3227",
+        "P3228"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-14-specification",
+      "retrieved_product_ids": [
+        "P3236",
+        "P3237",
+        "P3238",
+        "P3239",
+        "P3224"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-15-intent",
+      "retrieved_product_ids": [
+        "P3241",
+        "P3243",
+        "P3244",
+        "P3245",
+        "P3246"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-15-specification",
+      "retrieved_product_ids": [
+        "P3252",
+        "P3254",
+        "P3255",
+        "P3241",
+        "P3243"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-16-intent",
+      "retrieved_product_ids": [
+        "P3256",
+        "P3257",
+        "P3258",
+        "P3259",
+        "P3261"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-16-specification",
+      "retrieved_product_ids": [
+        "P3268",
+        "P3269",
+        "P3271",
+        "P3265",
+        "P3266"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-17-intent",
+      "retrieved_product_ids": [
+        "P3448",
+        "P3449",
+        "P3452",
+        "P3453",
+        "P3454"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-17-specification",
+      "retrieved_product_ids": [
+        "P3284",
+        "P3285",
+        "P3287",
+        "P3281",
+        "P3282"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-18-intent",
+      "retrieved_product_ids": [
+        "P3288",
+        "P3289",
+        "P3291",
+        "P3292",
+        "P3293"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-18-specification",
+      "retrieved_product_ids": [
+        "P3301",
+        "P3302",
+        "P3303",
+        "P3288",
+        "P3289"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-19-intent",
+      "retrieved_product_ids": [
+        "P3304",
+        "P3305",
+        "P3306",
+        "P3307",
+        "P3309"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-19-specification",
+      "retrieved_product_ids": [
+        "P3316",
+        "P3317",
+        "P3318",
+        "P3312",
+        "P3313"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-20-intent",
+      "retrieved_product_ids": [
+        "P3321",
+        "P3322",
+        "P3323",
+        "P3324",
+        "P3325"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-20-specification",
+      "retrieved_product_ids": [
+        "P3332",
+        "P3333",
+        "P3334",
+        "P3335",
+        "P3296"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-21-intent",
+      "retrieved_product_ids": [
+        "P3342",
+        "P3343",
+        "P3344",
+        "P3345",
+        "P3346"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-21-specification",
+      "retrieved_product_ids": [
+        "P3348",
+        "P3349",
+        "P3351",
+        "P1001",
+        "P1011"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-22-intent",
+      "retrieved_product_ids": [
+        "P3353",
+        "P3354",
+        "P3355",
+        "P3356",
+        "P3357"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-22-specification",
+      "retrieved_product_ids": [
+        "P3364",
+        "P3365",
+        "P3366",
+        "P3367",
+        "P3353"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-23-intent",
+      "retrieved_product_ids": [
+        "P3368",
+        "P3369",
+        "P3371",
+        "P3372",
+        "P3373"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-23-specification",
+      "retrieved_product_ids": [
+        "P3381",
+        "P3382",
+        "P3383",
+        "P3372",
+        "P3373"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-24-intent",
+      "retrieved_product_ids": [
+        "P3384",
+        "P3386",
+        "P3387",
+        "P3388",
+        "P3389"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-24-specification",
+      "retrieved_product_ids": [
+        "P3397",
+        "P3398",
+        "P3399",
+        "P3384",
+        "P3386"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-25-intent",
+      "retrieved_product_ids": [
+        "P3401",
+        "P3402",
+        "P3403",
+        "P3404",
+        "P3405"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-25-specification",
+      "retrieved_product_ids": [
+        "P3412",
+        "P3413",
+        "P3414",
+        "P3415",
+        "P3401"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-26-intent",
+      "retrieved_product_ids": [
+        "P3401",
+        "P3402",
+        "P3403",
+        "P3404",
+        "P3405"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-26-specification",
+      "retrieved_product_ids": [
+        "P3428",
+        "P3431",
+        "P3424",
+        "P3425",
+        "P3426"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-27-intent",
+      "retrieved_product_ids": [
+        "P3436",
+        "P3437",
+        "P3438",
+        "P3439",
+        "P3441"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-27-specification",
+      "retrieved_product_ids": [
+        "P3444",
+        "P3445",
+        "P3446",
+        "P3447",
+        "P3436"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-28-intent",
+      "retrieved_product_ids": [
+        "P3448",
+        "P3449",
+        "P3452",
+        "P3453",
+        "P3454"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-28-specification",
+      "retrieved_product_ids": [
+        "P3461",
+        "P3463",
+        "P3456",
+        "P3457",
+        "P3458"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-29-intent",
+      "retrieved_product_ids": [
+        "P3272",
+        "P3273",
+        "P3274",
+        "P3276",
+        "P3277"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-29-specification",
+      "retrieved_product_ids": [
+        "P3476",
+        "P3477",
+        "P3478",
+        "P3479",
+        "P3468"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-30-intent",
+      "retrieved_product_ids": [
+        "P3481",
+        "P3482",
+        "P3483",
+        "P3485",
+        "P3486"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-30-specification",
+      "retrieved_product_ids": [
+        "P3492",
+        "P3493",
+        "P3494",
+        "P3488",
+        "P3489"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-31-intent",
+      "retrieved_product_ids": [
+        "P3496",
+        "P3497",
+        "P3498",
+        "P3499",
+        "P3001"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-31-specification",
+      "retrieved_product_ids": [
+        "P3496",
+        "P3497",
+        "P3498",
+        "P3499",
+        "P3464"
+      ],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-empty-0",
+      "retrieved_product_ids": [],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-empty-1",
+      "retrieved_product_ids": [],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-empty-2",
+      "retrieved_product_ids": [],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-empty-3",
+      "retrieved_product_ids": [],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-empty-4",
+      "retrieved_product_ids": [],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-empty-5",
+      "retrieved_product_ids": [],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-empty-6",
+      "retrieved_product_ids": [],
+      "recall_strategy": "keyword_2gram"
+    },
+    {
+      "id": "v2-empty-7",
+      "retrieved_product_ids": [],
+      "recall_strategy": "keyword_2gram"
+    }
+  ]
+}

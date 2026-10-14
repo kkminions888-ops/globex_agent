@@ -1,0 +1,10 @@
+{
+  "api_status": 200,
+  "proxy_status": 200,
+  "page_status": 200,
+  "reports": 3,
+  "comparison_status": "diagnostic",
+  "selected_baseline": "offline-keyword-baseline",
+  "selected_candidate": "offline-bm25-candidate",
+  "warnings": []
+}

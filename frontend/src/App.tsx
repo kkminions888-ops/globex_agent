@@ -1,4 +1,5 @@
 import Automations from "./components/Automations";
+import RetrievalEvaluation from "./components/RetrievalEvaluation";
 import ModelPicker from "./components/ModelPicker";
 import HistorySearch from "./components/HistorySearch";
 import ContextWorkspace, { useContextWorkspace } from "./components/ContextWorkspace";
@@ -25,7 +26,7 @@ import { CatalogMediaProvider } from "./components/CatalogMedia";
 import BuyerWorkspace from "./components/BuyerWorkspace";
 import { skillQueryDraft, submitSkillQuery } from "./lib/skills";
 
-type View = "shopping" | "favorites" | "skills" | "preferences" | "orders" | "automations";
+type View = "shopping" | "favorites" | "skills" | "preferences" | "orders" | "automations" | "retrieval";
 const STARTERS = [
   "我想先逛逛旅行装备。请用“旅行装备”这个关键词一次搜索，返回 12 件候选，暂不扩展关键词或按子品类拆分搜索。收货国家中国，单件商品价格不超过 500 元人民币，运费和税费另列。先展示这批商品卡，再简要说明用途；符合条件不足 12 件时请如实说明。",
   "想买日常通勤耳机，帮我理一理选购思路。",
@@ -34,8 +35,9 @@ const STARTERS = [
 const VIEW_KEY = "globex.workspace.view";
 function readView(): View {
   try {
+    if (new URLSearchParams(window.location.search).get("view") === "retrieval") return "retrieval";
     const saved = sessionStorage.getItem(VIEW_KEY);
-    if (saved && ["shopping", "favorites", "skills", "preferences", "orders", "automations"].includes(saved))
+    if (saved && ["shopping", "favorites", "skills", "preferences", "orders", "automations", "retrieval"].includes(saved))
       return saved as View;
   } catch { /* 存储受限时使用首页。 */ }
   return "shopping";
@@ -350,6 +352,7 @@ export default function App() {
     { id: "skills", label: "我的 Skill", icon: "leaf" },
     { id: "preferences", label: "长期偏好", icon: "spark" },
     { id: "automations", label: "自动化", icon: "clock" },
+    { id: "retrieval", label: "检索评测", icon: "compare" },
   ];
 
   return (
@@ -434,6 +437,7 @@ export default function App() {
               <button className="atmosphere-toggle icon-button" title={atmosphere ? "关闭氛围背景" : "开启氛围背景"} aria-label={atmosphere ? "关闭氛围背景" : "开启氛围背景"} aria-pressed={atmosphere} onClick={() => setAtmosphere(!atmosphere)}><Icon name="spark" /></button>
             </div>
           </header>
+          {view === "retrieval" && <RetrievalEvaluation request={agent.workspaceRequest} />}
           {view === "automations" && <Automations sessionId={agent.sessionId} request={agent.workspaceRequest} onHistoryChanged={agent.refreshHistory} onOpenSession={id => { void agent.refreshHistory().then(() => openSession(id)); }} busy={busy} />}
           {(view === "orders" || view === "favorites") && <section className="purchases-workspace" aria-label="订单与收藏">
             <div className="purchase-tabs" role="tablist" aria-label="订单与收藏切换">

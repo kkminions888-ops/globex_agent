@@ -1,0 +1,748 @@
+{
+  "cases": [
+    {
+      "id": "v2-00-intent",
+      "retrieved_product_ids": [
+        "P3196",
+        "P3201",
+        "P3192",
+        "P3204",
+        "P3001"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-00-specification",
+      "retrieved_product_ids": [
+        "P3001",
+        "P3004",
+        "P3008",
+        "P3012",
+        "P3464"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-01-intent",
+      "retrieved_product_ids": [
+        "P3021",
+        "P3024",
+        "P3016",
+        "P3028",
+        "P1020"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-01-specification",
+      "retrieved_product_ids": [
+        "P3028",
+        "P1025",
+        "P1015",
+        "P1011",
+        "P3177"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-02-intent",
+      "retrieved_product_ids": [
+        "P3032",
+        "P3036",
+        "P3041",
+        "P3045",
+        "P3177"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-02-specification",
+      "retrieved_product_ids": [
+        "P1016",
+        "P3045",
+        "P1002",
+        "P3041",
+        "P3081"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-03-intent",
+      "retrieved_product_ids": [
+        "P3032",
+        "P3036",
+        "P3041",
+        "P3045",
+        "P1060"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-03-specification",
+      "retrieved_product_ids": [
+        "P1014",
+        "P3048",
+        "P3052",
+        "P3056",
+        "P3061"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-04-intent",
+      "retrieved_product_ids": [
+        "P3064",
+        "P3068",
+        "P3072",
+        "P3076",
+        "P3112"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-04-specification",
+      "retrieved_product_ids": [
+        "P3076",
+        "P1005",
+        "P1025",
+        "P3064",
+        "P3068"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-05-intent",
+      "retrieved_product_ids": [
+        "P3081",
+        "P3084",
+        "P3089",
+        "P3092",
+        "P3177"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-05-specification",
+      "retrieved_product_ids": [
+        "P1004",
+        "P3092",
+        "P3089",
+        "P1023",
+        "P1022"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-06-intent",
+      "retrieved_product_ids": [
+        "P3096",
+        "P3101",
+        "P3104",
+        "P3108",
+        "P3361"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-06-specification",
+      "retrieved_product_ids": [
+        "P3108",
+        "P3104",
+        "P3096",
+        "P3101",
+        "P3361"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-07-intent",
+      "retrieved_product_ids": [
+        "P3064",
+        "P3068",
+        "P3072",
+        "P3076",
+        "P3112"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-07-specification",
+      "retrieved_product_ids": [
+        "P1026",
+        "P3124",
+        "P3112",
+        "P3116",
+        "P3122"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-08-intent",
+      "retrieved_product_ids": [
+        "P1039",
+        "P3128",
+        "P3133",
+        "P3136",
+        "P3141"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-08-specification",
+      "retrieved_product_ids": [
+        "P3141",
+        "P1036",
+        "P3128",
+        "P3133",
+        "P3136"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-09-intent",
+      "retrieved_product_ids": [
+        "P1032",
+        "P3144",
+        "P3148",
+        "P3152",
+        "P3156"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-09-specification",
+      "retrieved_product_ids": [
+        "P3156",
+        "P3152",
+        "P3381",
+        "P3144",
+        "P3148"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-10-intent",
+      "retrieved_product_ids": [
+        "P3168",
+        "P3161",
+        "P3164",
+        "P3172",
+        "P3177"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-10-specification",
+      "retrieved_product_ids": [
+        "P3168",
+        "P3161",
+        "P3164",
+        "P3172",
+        "P3348"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-11-intent",
+      "retrieved_product_ids": [
+        "P3177",
+        "P3181",
+        "P3184",
+        "P3188",
+        "P1059"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-11-specification",
+      "retrieved_product_ids": [
+        "P3188",
+        "P3177",
+        "P3181",
+        "P3184",
+        "P3448"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-12-intent",
+      "retrieved_product_ids": [
+        "P3196",
+        "P3201",
+        "P3192",
+        "P1039",
+        "P3204"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-12-specification",
+      "retrieved_product_ids": [
+        "P3204",
+        "P3397",
+        "P1039",
+        "P3196",
+        "P3201"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-13-intent",
+      "retrieved_product_ids": [
+        "P3208",
+        "P3212",
+        "P3216",
+        "P3001",
+        "P3004"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-13-specification",
+      "retrieved_product_ids": [
+        "P3221",
+        "P1010",
+        "P1040",
+        "P3216",
+        "P1047"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-14-intent",
+      "retrieved_product_ids": [
+        "P3224",
+        "P3228",
+        "P3232",
+        "P3236",
+        "P3001"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-14-specification",
+      "retrieved_product_ids": [
+        "P3236",
+        "P3224",
+        "P3228",
+        "P3232",
+        "P1043"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-15-intent",
+      "retrieved_product_ids": [
+        "P3241",
+        "P3244",
+        "P3248",
+        "P3252",
+        "P2107"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-15-specification",
+      "retrieved_product_ids": [
+        "P3252",
+        "P1045",
+        "P3241",
+        "P3244",
+        "P3248"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-16-intent",
+      "retrieved_product_ids": [
+        "P3256",
+        "P3265",
+        "P3261",
+        "P3268",
+        "P3064"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-16-specification",
+      "retrieved_product_ids": [
+        "P3268",
+        "P3265",
+        "P3261",
+        "P3256",
+        "P3177"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-17-intent",
+      "retrieved_product_ids": [
+        "P3448",
+        "P3452",
+        "P3456",
+        "P3461",
+        "P1018"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-17-specification",
+      "retrieved_product_ids": [
+        "P3284",
+        "P3281",
+        "P3272",
+        "P3276",
+        "P3332"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-18-intent",
+      "retrieved_product_ids": [
+        "P3288",
+        "P3292",
+        "P3296",
+        "P3301",
+        "P3032"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-18-specification",
+      "retrieved_product_ids": [
+        "P3301",
+        "P3296",
+        "P3288",
+        "P3292",
+        "P3177"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-19-intent",
+      "retrieved_product_ids": [
+        "P3304",
+        "P3309",
+        "P3312",
+        "P3316",
+        "P3481"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-19-specification",
+      "retrieved_product_ids": [
+        "P3316",
+        "P3312",
+        "P3304",
+        "P3309",
+        "P3012"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-20-intent",
+      "retrieved_product_ids": [
+        "P3321",
+        "P3324",
+        "P3328",
+        "P3332",
+        "P3272"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-20-specification",
+      "retrieved_product_ids": [
+        "P3332",
+        "P3324",
+        "P3328",
+        "P3321",
+        "P3281"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-21-intent",
+      "retrieved_product_ids": [
+        "P3342",
+        "P3344",
+        "P3348",
+        "P1058",
+        "P3336"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-21-specification",
+      "retrieved_product_ids": [
+        "P3348",
+        "P1011",
+        "P3168",
+        "P3161",
+        "P3164"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-22-intent",
+      "retrieved_product_ids": [
+        "P3361",
+        "P3353",
+        "P3356",
+        "P3364",
+        "P1036"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-22-specification",
+      "retrieved_product_ids": [
+        "P3364",
+        "P3361",
+        "P3353",
+        "P3356",
+        "P1036"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-23-intent",
+      "retrieved_product_ids": [
+        "P3372",
+        "P3368",
+        "P3376",
+        "P3381",
+        "P3336"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-23-specification",
+      "retrieved_product_ids": [
+        "P3381",
+        "P3156",
+        "P3376",
+        "P3372",
+        "P3368"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-24-intent",
+      "retrieved_product_ids": [
+        "P3384",
+        "P3388",
+        "P3392",
+        "P3397",
+        "P3128"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-24-specification",
+      "retrieved_product_ids": [
+        "P3397",
+        "P3384",
+        "P3388",
+        "P3392",
+        "P3204"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-25-intent",
+      "retrieved_product_ids": [
+        "P3401",
+        "P3404",
+        "P3408",
+        "P3412",
+        "P3428"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-25-specification",
+      "retrieved_product_ids": [
+        "P3412",
+        "P3401",
+        "P3404",
+        "P3408",
+        "P3397"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-26-intent",
+      "retrieved_product_ids": [
+        "P3416",
+        "P3421",
+        "P3401",
+        "P3404",
+        "P3408"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-26-specification",
+      "retrieved_product_ids": [
+        "P3428",
+        "P3424",
+        "P3421",
+        "P3416",
+        "P3045"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-27-intent",
+      "retrieved_product_ids": [
+        "P3436",
+        "P3441",
+        "P3444",
+        "P3432",
+        "P3177"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-27-specification",
+      "retrieved_product_ids": [
+        "P3444",
+        "P3436",
+        "P3441",
+        "P3172",
+        "P3432"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-28-intent",
+      "retrieved_product_ids": [
+        "P3448",
+        "P3452",
+        "P3456",
+        "P3461",
+        "P3177"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-28-specification",
+      "retrieved_product_ids": [
+        "P3461",
+        "P3456",
+        "P3448",
+        "P3452",
+        "P3021"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-29-intent",
+      "retrieved_product_ids": [
+        "P3272",
+        "P3276",
+        "P3464",
+        "P3468",
+        "P3472"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-29-specification",
+      "retrieved_product_ids": [
+        "P3476",
+        "P3468",
+        "P3472",
+        "P3464",
+        "P3336"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-30-intent",
+      "retrieved_product_ids": [
+        "P3481",
+        "P3485",
+        "P3488",
+        "P3492",
+        "P3177"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-30-specification",
+      "retrieved_product_ids": [
+        "P3492",
+        "P3481",
+        "P3485",
+        "P3488",
+        "P3304"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-31-intent",
+      "retrieved_product_ids": [
+        "P3496",
+        "P3177",
+        "P3181",
+        "P3184",
+        "P3321"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-31-specification",
+      "retrieved_product_ids": [
+        "P3496",
+        "P3464",
+        "P3468",
+        "P3472",
+        "P3336"
+      ],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-empty-0",
+      "retrieved_product_ids": [],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-empty-1",
+      "retrieved_product_ids": [],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-empty-2",
+      "retrieved_product_ids": [],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-empty-3",
+      "retrieved_product_ids": [],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-empty-4",
+      "retrieved_product_ids": [],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-empty-5",
+      "retrieved_product_ids": [],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-empty-6",
+      "retrieved_product_ids": [],
+      "recall_strategy": "bm25"
+    },
+    {
+      "id": "v2-empty-7",
+      "retrieved_product_ids": [],
+      "recall_strategy": "bm25"
+    }
+  ]
+}
