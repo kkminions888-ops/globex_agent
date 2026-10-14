@@ -1,0 +1,17 @@
+{
+  "document_links_passed": false,
+  "missing_links": [
+    {
+      "document": "docs\\改动记录\\2026-10-11\\运行最小权限修复.md",
+      "link": "../../../eval/verification/startup-permissions-20261011-01/repair.log"
+    },
+    {
+      "document": "docs\\改动记录\\2026-10-11\\运行最小权限修复.md",
+      "link": "../../../eval/verification/startup-permissions-20261011-01/repair-retry.log"
+    }
+  ],
+  "ordinary_user_access_passed": true,
+  "ordinary_user_backend_startup_passed": true,
+  "key_and_env_preserved": true,
+  "diagnostic_server_stopped": true
+}

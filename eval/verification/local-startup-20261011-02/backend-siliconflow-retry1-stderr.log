@@ -1,0 +1,23 @@
+INFO:     Started server process [40016]
+INFO:     Waiting for application startup.
+2026-10-11 20:16:26,029 INFO app.composition request=- task=- session=- trace=- prompt=- 队列未启用，意图在当前进程内直接执行
+2026-10-11 20:16:26,048 INFO app.composition request=- task=- session=- trace=- prompt=- 持久化形态：sqlite
+ERROR:    Traceback (most recent call last):
+  File "E:\anaconda3\envs\globex\Lib\site-packages\starlette\routing.py", line 648, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "E:\anaconda3\envs\globex\Lib\contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\laboratory\code\globex-agent\app\presentation\server.py", line 76, in lifespan
+    c = await build_container()
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\laboratory\code\globex-agent\app\composition.py", line 293, in build_container
+    await model_registry.initialize()
+  File "E:\laboratory\code\globex-agent\app\infrastructure\model_registry.py", line 83, in initialize
+    self._cipher = self._load_cipher()
+                   ^^^^^^^^^^^^^^^^^^^
+  File "E:\laboratory\code\globex-agent\app\infrastructure\model_registry.py", line 63, in _load_cipher
+    os.chmod(directory, 0o700)
+PermissionError: [WinError 5] 拒绝访问。: 'data\\.secrets'
+
+ERROR:    Application startup failed. Exiting.

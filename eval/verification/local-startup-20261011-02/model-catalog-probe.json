@@ -1,0 +1,38 @@
+{
+  "configured": true,
+  "endpoint": "https://api.siliconflow.cn/v1/models",
+  "status_code": 200,
+  "content_type": "application/json",
+  "redirect_host": null,
+  "model_count": 98,
+  "configured_llm_listed": false,
+  "configured_embedding_listed": false,
+  "candidate_ids": [
+    "BAAI/bge-m3",
+    "Qwen/Qwen3-32B",
+    "Qwen/Qwen3-Embedding-8B",
+    "deepseek-ai/DeepSeek-V3.2"
+  ],
+  "first_qwen_ids": [
+    "Qwen/Qwen3-14B",
+    "Qwen/Qwen3-30B-A3B-Instruct-2507",
+    "Qwen/Qwen3-32B",
+    "Qwen/Qwen3-8B",
+    "Qwen/Qwen3-ASR-1.7B",
+    "Qwen/Qwen3-Coder-30B-A3B-Instruct",
+    "Qwen/Qwen3-Embedding-0.6B",
+    "Qwen/Qwen3-Embedding-4B",
+    "Qwen/Qwen3-Embedding-8B",
+    "Qwen/Qwen3-Omni-30B-A3B-Captioner",
+    "Qwen/Qwen3-Omni-30B-A3B-Instruct",
+    "Qwen/Qwen3-Omni-30B-A3B-Thinking"
+  ],
+  "first_embedding_ids": [
+    "BAAI/bge-m3",
+    "Pro/BAAI/bge-m3",
+    "Qwen/Qwen3-Embedding-0.6B",
+    "Qwen/Qwen3-Embedding-4B",
+    "Qwen/Qwen3-Embedding-8B",
+    "Qwen/Qwen3-VL-Embedding-8B"
+  ]
+}

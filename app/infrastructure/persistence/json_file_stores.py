@@ -10,10 +10,11 @@
 """
 from __future__ import annotations
 
+import errno
 import json
-import fcntl
 import os
 import tempfile
+import time
 from contextlib import contextmanager
 import hashlib
 import logging
@@ -30,6 +31,11 @@ from app.domain.session.ports.session_store import SessionClaim, SessionOwnerUnb
 from app.infrastructure.persistence.sql.session_store import SqlFencedSessionStore
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.pool import NullPool
+
+if os.name == "nt":
+    import msvcrt
+else:
+    import fcntl
 
 logger = logging.getLogger(__name__)
 
@@ -52,12 +58,28 @@ class JsonFilePreferenceStore(PreferenceStore):
 
     @contextmanager
     def _lock(self, buyer_id):
-        with self._path(buyer_id).with_suffix(".lock").open("a") as stream:
-            fcntl.flock(stream, fcntl.LOCK_EX)
+        with self._path(buyer_id).with_suffix(".lock").open("a+b") as stream:
+            if os.name == "nt":
+                # Windows 按字节区间加锁，固定锁住首字节以跨进程互斥。
+                stream.seek(0)
+                while True:
+                    try:
+                        msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
+                        break
+                    except OSError as error:
+                        if error.errno not in (errno.EACCES, errno.EAGAIN):
+                            raise
+                        time.sleep(0.05)
+            else:
+                fcntl.flock(stream, fcntl.LOCK_EX)
             try:
                 yield
             finally:
-                fcntl.flock(stream, fcntl.LOCK_UN)
+                if os.name == "nt":
+                    stream.seek(0)
+                    msvcrt.locking(stream.fileno(), msvcrt.LK_UNLCK, 1)
+                else:
+                    fcntl.flock(stream, fcntl.LOCK_UN)
 
     async def append(self, preference: BuyerPreference) -> None:
         with self._lock(preference.buyer_id):

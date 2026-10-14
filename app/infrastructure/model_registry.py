@@ -60,7 +60,9 @@ class ModelRegistry:
                 raise ModelConfigurationError("MODEL_MASTER_KEY 必须是 Fernet 格式密钥") from None
         directory = Path(self.settings.data_dir) / ".secrets"
         directory.mkdir(parents=True, exist_ok=True, mode=0o700)
-        os.chmod(directory, 0o700)
+        # Windows 的 chmod 不能设置 POSIX 权限位；保留现有 NTFS ACL 与密钥文件。
+        if os.name != "nt":
+            os.chmod(directory, 0o700)
         key_path = directory / "model_registry.key"
         if not key_path.exists():
             try:
@@ -69,7 +71,8 @@ class ModelRegistry:
                     stream.write(Fernet.generate_key())
             except FileExistsError:
                 pass
-        os.chmod(key_path, 0o600)
+        if os.name != "nt":
+            os.chmod(key_path, 0o600)
         try:
             return Fernet(key_path.read_bytes())
         except ValueError:
@@ -139,17 +142,18 @@ class ModelRegistry:
                 await db.commit()
                 cursor = await db.execute("SELECT secret_ref,ciphertext FROM model_secrets")
                 self._secrets = dict(await cursor.fetchall())
-            os.chmod(self.path, 0o600)
+            if os.name != "nt":
+                os.chmod(self.path, 0o600)
             self._ready = True
 
     def presets(self) -> list[dict]:
         """官方参考模板与已校验连接分开；读取模板不创建运行 profile。"""
-        config = yaml.safe_load((Path(__file__).resolve().parents[2] / "configs/models.yaml").read_text())
+        config = yaml.safe_load((Path(__file__).resolve().parents[2] / "configs/models.yaml").read_text(encoding="utf-8"))
         defaults = config.get("preset_defaults", {})
         return [{**deepcopy(defaults), **deepcopy(item)} for item in config.get("presets", [])]
 
     def _migrate_settings(self) -> list[dict]:
-        config = yaml.safe_load((Path(__file__).resolve().parents[2] / "configs/models.yaml").read_text())
+        config = yaml.safe_load((Path(__file__).resolve().parents[2] / "configs/models.yaml").read_text(encoding="utf-8"))
         template = config["migration"]
         thinking = getattr(self.settings, "llm_enable_thinking", None)
         window = int(self.settings.context_size)
@@ -244,7 +248,7 @@ class ModelRegistry:
         profiles = [json.loads(raw) for (raw,) in rows]
         preferences = {key: json.loads(raw) for key, raw in prefs.items()}
         presets = self.presets()
-        config = yaml.safe_load((Path(__file__).resolve().parents[2] / "configs/models.yaml").read_text())
+        config = yaml.safe_load((Path(__file__).resolve().parents[2] / "configs/models.yaml").read_text(encoding="utf-8"))
         labels = {**config.get("display_names", {}), **{item["model_id"]: item["label"] for item in presets}}
         identities = {item["profile_id"]: self._connection_identity(item, ciphertexts) for item in profiles}
         groups: dict[tuple, list[dict]] = {}

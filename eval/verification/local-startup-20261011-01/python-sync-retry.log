@@ -1,0 +1,4 @@
+Prepared 3 packages in 622ms
+error: Failed to install: six-1.17.0-py2.py3-none-any.whl (six==1.17.0)
+  Caused by: Failed to create directory `E:\anaconda3\envs\globex\Lib\site-packages\six-1.17.0.dist-info`
+  Caused by: failed to create directory `E:\anaconda3\envs\globex\Lib\site-packages\six-1.17.0.dist-info`: 拒绝访问。 (os error 5)

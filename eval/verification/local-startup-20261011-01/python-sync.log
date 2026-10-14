@@ -1,0 +1,2 @@
+error: Failed to initialize cache at `C:\Users\14580\AppData\Local\uv\cache`
+  Caused by: failed to open file `C:\Users\14580\AppData\Local\uv\cache\sdists-v9\.git`: 拒绝访问。 (os error 5)

@@ -1,0 +1,9 @@
+
+> globex-frontend@0.3.0 dev
+> vite --host 0.0.0.0 --port 5173 --host 127.0.0.1 --port 5173 --strictPort
+
+
+  VITE v5.4.21  ready in 502 ms
+
+  ➜  Local:   http://127.0.0.1:5173/
+  ➜  press h + enter to show help

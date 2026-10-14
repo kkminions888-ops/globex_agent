@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-10-11T20:29:18.2202866+08:00",
+  "git_head": "ddd7e5be1af4bb474f3af325f3d5113051c1c013",
+  "git_status_porcelain": [
+    " M app/infrastructure/model_registry.py",
+    " M app/infrastructure/persistence/json_file_stores.py",
+    " M tests/test_model_registry.py",
+    "?? eval/verification/harness-startup-20261011-02/",
+    "?? eval/verification/local-startup-20261011-01/",
+    "?? eval/verification/local-startup-20261011-02/",
+    "?? tests/test_json_file_lock.py"
+  ],
+  "env_file_exists": true,
+  "env_file_bytes": 6291,
+  "env_last_write_time": "2026-10-11T20:03:10.0634453+08:00",
+  "env_mtime_same_as_baseline": true,
+  "listeners": [
+    {
+      "address": "127.0.0.1",
+      "port": 5173,
+      "pid": 1884,
+      "process": "node",
+      "executable_path": "E:\\application\\Program Files\\node\\node.exe"
+    },
+    {
+      "address": "127.0.0.1",
+      "port": 8000,
+      "pid": 69904,
+      "process": "python",
+      "executable_path": "E:\\anaconda3\\envs\\globex\\python.exe"
+    }
+  ],
+  "backend_health": {
+    "http_status": 200,
+    "status": "ok"
+  },
+  "frontend_home_http_status": 200,
+  "frontend_proxy_health": {
+    "http_status": 200,
+    "status": "ok"
+  },
+  "catalog_files": [
+    {
+      "path": "data/catalog-v1.jsonl",
+      "bytes": 447767,
+      "sha256": "841c543683543f11870ef7a07fb226d99fb6e39009675bba2c6ae1ccbb4dc821",
+      "same_bytes_as_baseline": true,
+      "same_sha256_as_baseline": true,
+      "isolated_copy_bytes": 447767,
+      "isolated_copy_sha256": "841c543683543f11870ef7a07fb226d99fb6e39009675bba2c6ae1ccbb4dc821",
+      "isolated_copy_same": true
+    },
+    {
+      "path": "data/catalog-v2.jsonl",
+      "bytes": 1039159,
+      "sha256": "fc837e52acda8c765fa7a2f46f1b2e108d3c9411c26ae4545ff4596ac5157984",
+      "same_bytes_as_baseline": true,
+      "same_sha256_as_baseline": true,
+      "isolated_copy_bytes": 1039159,
+      "isolated_copy_sha256": "fc837e52acda8c765fa7a2f46f1b2e108d3c9411c26ae4545ff4596ac5157984",
+      "isolated_copy_same": true
+    },
+    {
+      "path": "data/catalog-v3.jsonl",
+      "bytes": 4785235,
+      "sha256": "a735003f34b11093097e2728d1003fc63ca63302e938e997f0fd5014cebec6fe",
+      "same_bytes_as_baseline": true,
+      "same_sha256_as_baseline": true,
+      "isolated_copy_bytes": 4785235,
+      "isolated_copy_sha256": "a735003f34b11093097e2728d1003fc63ca63302e938e997f0fd5014cebec6fe",
+      "isolated_copy_same": true
+    }
+  ]
+}

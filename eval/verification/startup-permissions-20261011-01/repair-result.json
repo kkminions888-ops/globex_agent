@@ -1,0 +1,12 @@
+{
+    "timestamp":  "2026-10-11T13:20:45.4056734+00:00",
+    "operator":  "IZHOU\\CodexSandboxOnline",
+    "target_account":  "IZHOU\\14580",
+    "target_sid":  "S-1-5-21-2163205165-3682930785-3957545726-1001",
+    "directory_rights":  "ReadAndExecute; no inheritance",
+    "key_rights":  "Read",
+    "key_bytes_unchanged":  true,
+    "key_mtime_unchanged":  true,
+    "env_bytes_unchanged":  true,
+    "ownership_unchanged":  true
+}

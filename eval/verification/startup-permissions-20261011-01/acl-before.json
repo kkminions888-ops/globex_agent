@@ -1,0 +1,12 @@
+[
+    {
+        "path":  "E:\\laboratory\\code\\globex-agent\\data\\.secrets",
+        "owner":  "IZHOU\\CodexSandboxOnline",
+        "sddl":  "O:S-1-5-21-2163205165-3682930785-3957545726-1006G:S-1-5-21-2163205165-3682930785-3957545726-513D:P(A;OICI;FA;;;OW)(A;OICI;FA;;;SY)(A;OICI;FA;;;BA)"
+    },
+    {
+        "path":  "E:\\laboratory\\code\\globex-agent\\data\\.secrets\\model_registry.key",
+        "owner":  "IZHOU\\CodexSandboxOnline",
+        "sddl":  "O:S-1-5-21-2163205165-3682930785-3957545726-1006G:S-1-5-21-2163205165-3682930785-3957545726-513D:(A;ID;FA;;;SY)(A;ID;FA;;;BA)(A;ID;FA;;;OW)"
+    }
+]

@@ -1,0 +1,865 @@
+INFO:     Started server process [69904]
+INFO:     Waiting for application startup.
+2026-10-11 20:21:25,982 INFO app.composition request=- task=- session=- trace=- prompt=- 队列未启用，意图在当前进程内直接执行
+2026-10-11 20:21:26,001 INFO app.composition request=- task=- session=- trace=- prompt=- 持久化形态：sqlite
+2026-10-11 20:21:27,005 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:27,127 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 10，待完成 3690
+2026-10-11 20:21:27,343 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:27,466 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 20，待完成 3680
+2026-10-11 20:21:27,680 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:27,798 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 30，待完成 3670
+2026-10-11 20:21:28,007 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:28,142 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 40，待完成 3660
+2026-10-11 20:21:28,324 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:28,426 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 50，待完成 3650
+2026-10-11 20:21:28,633 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:28,740 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 60，待完成 3640
+2026-10-11 20:21:28,936 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:29,088 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 70，待完成 3630
+2026-10-11 20:21:29,331 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:29,450 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 80，待完成 3620
+2026-10-11 20:21:29,749 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:29,880 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 90，待完成 3610
+2026-10-11 20:21:30,062 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:30,178 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 100，待完成 3600
+2026-10-11 20:21:30,363 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:30,467 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 110，待完成 3590
+2026-10-11 20:21:30,667 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:30,789 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 120，待完成 3580
+2026-10-11 20:21:31,026 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:31,156 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 130，待完成 3570
+2026-10-11 20:21:31,354 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:31,477 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 140，待完成 3560
+2026-10-11 20:21:31,715 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:31,835 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 150，待完成 3550
+2026-10-11 20:21:32,030 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:32,147 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 160，待完成 3540
+2026-10-11 20:21:32,373 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:32,518 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 170，待完成 3530
+2026-10-11 20:21:32,719 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:32,844 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 180，待完成 3520
+2026-10-11 20:21:33,117 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:33,252 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 190，待完成 3510
+2026-10-11 20:21:33,461 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:33,609 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 200，待完成 3500
+2026-10-11 20:21:33,879 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:34,016 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 210，待完成 3490
+2026-10-11 20:21:34,238 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:34,368 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 220，待完成 3480
+2026-10-11 20:21:34,557 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:34,688 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 230，待完成 3470
+2026-10-11 20:21:34,897 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:35,037 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 240，待完成 3460
+2026-10-11 20:21:35,256 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:35,368 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 250，待完成 3450
+2026-10-11 20:21:35,576 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:35,744 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 260，待完成 3440
+2026-10-11 20:21:35,951 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:36,104 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 270，待完成 3430
+2026-10-11 20:21:36,338 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:36,483 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 280，待完成 3420
+2026-10-11 20:21:36,732 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:36,895 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 290，待完成 3410
+2026-10-11 20:21:37,102 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:37,232 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 300，待完成 3400
+2026-10-11 20:21:37,501 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:37,637 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 310，待完成 3390
+2026-10-11 20:21:37,825 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:37,961 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 320，待完成 3380
+2026-10-11 20:21:38,202 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:38,346 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 330，待完成 3370
+2026-10-11 20:21:38,553 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:38,683 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 340，待完成 3360
+2026-10-11 20:21:38,890 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:39,037 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 350，待完成 3350
+2026-10-11 20:21:39,258 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:39,389 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 360，待完成 3340
+2026-10-11 20:21:39,616 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:39,755 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 370，待完成 3330
+2026-10-11 20:21:39,976 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:40,132 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 380，待完成 3320
+2026-10-11 20:21:40,356 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:40,491 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 390，待完成 3310
+2026-10-11 20:21:40,690 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:40,804 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 400，待完成 3300
+2026-10-11 20:21:41,042 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:41,173 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 410，待完成 3290
+2026-10-11 20:21:41,366 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:41,503 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 420，待完成 3280
+2026-10-11 20:21:41,717 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:41,839 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 430，待完成 3270
+2026-10-11 20:21:42,158 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:42,281 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 440，待完成 3260
+2026-10-11 20:21:42,514 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:42,641 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 450，待完成 3250
+2026-10-11 20:21:42,838 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:42,959 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 460，待完成 3240
+2026-10-11 20:21:43,182 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:43,305 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 470，待完成 3230
+2026-10-11 20:21:43,556 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:43,705 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 480，待完成 3220
+2026-10-11 20:21:43,909 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:44,053 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 490，待完成 3210
+2026-10-11 20:21:44,289 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:44,426 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 500，待完成 3200
+2026-10-11 20:21:44,633 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:44,766 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 510，待完成 3190
+2026-10-11 20:21:44,963 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:45,088 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 520，待完成 3180
+2026-10-11 20:21:45,285 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:45,411 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 530，待完成 3170
+2026-10-11 20:21:45,617 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:45,732 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 540，待完成 3160
+2026-10-11 20:21:45,931 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:46,052 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 550，待完成 3150
+2026-10-11 20:21:46,274 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:46,414 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 560，待完成 3140
+2026-10-11 20:21:46,632 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:46,763 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 570，待完成 3130
+2026-10-11 20:21:46,990 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:47,104 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 580，待完成 3120
+2026-10-11 20:21:47,298 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:47,404 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 590，待完成 3110
+2026-10-11 20:21:47,606 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:47,747 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 600，待完成 3100
+2026-10-11 20:21:47,947 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:48,067 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 610，待完成 3090
+2026-10-11 20:21:48,292 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:48,424 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 620，待完成 3080
+2026-10-11 20:21:48,631 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:48,766 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 630，待完成 3070
+2026-10-11 20:21:48,963 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:49,202 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 640，待完成 3060
+2026-10-11 20:21:49,421 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:49,549 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 650，待完成 3050
+2026-10-11 20:21:49,808 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:49,923 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 660，待完成 3040
+2026-10-11 20:21:50,130 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:50,395 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 670，待完成 3030
+2026-10-11 20:21:50,593 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:50,735 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 680，待完成 3020
+2026-10-11 20:21:50,951 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:51,323 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 690，待完成 3010
+2026-10-11 20:21:51,506 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:51,640 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 700，待完成 3000
+2026-10-11 20:21:51,857 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:52,002 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 710，待完成 2990
+2026-10-11 20:21:52,374 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:52,520 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 720，待完成 2980
+2026-10-11 20:21:52,847 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:52,987 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 730，待完成 2970
+2026-10-11 20:21:53,251 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:53,382 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 740，待完成 2960
+2026-10-11 20:21:53,650 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:53,789 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 750，待完成 2950
+2026-10-11 20:21:54,028 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:54,224 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 760，待完成 2940
+2026-10-11 20:21:54,419 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:54,521 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 770，待完成 2930
+2026-10-11 20:21:54,727 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:54,855 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 780，待完成 2920
+2026-10-11 20:21:55,055 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:55,174 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 790，待完成 2910
+2026-10-11 20:21:55,389 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:55,526 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 800，待完成 2900
+2026-10-11 20:21:55,755 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:55,890 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 810，待完成 2890
+2026-10-11 20:21:56,064 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:56,195 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 820，待完成 2880
+2026-10-11 20:21:56,383 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:56,516 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 830，待完成 2870
+2026-10-11 20:21:56,708 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:56,823 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 840，待完成 2860
+2026-10-11 20:21:57,042 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:57,161 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 850，待完成 2850
+2026-10-11 20:21:57,369 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:57,507 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 860，待完成 2840
+2026-10-11 20:21:57,722 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:57,862 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 870，待完成 2830
+2026-10-11 20:21:58,048 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:58,210 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 880，待完成 2820
+2026-10-11 20:21:58,523 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:58,643 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 890，待完成 2810
+2026-10-11 20:21:58,969 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:59,100 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 900，待完成 2800
+2026-10-11 20:21:59,330 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:59,468 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 910，待完成 2790
+2026-10-11 20:21:59,657 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:21:59,787 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 920，待完成 2780
+2026-10-11 20:22:00,006 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:00,121 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 930，待完成 2770
+2026-10-11 20:22:00,337 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:00,472 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 940，待完成 2760
+2026-10-11 20:22:00,681 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:00,847 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 950，待完成 2750
+2026-10-11 20:22:01,101 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:01,217 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 960，待完成 2740
+2026-10-11 20:22:01,413 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:01,536 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 970，待完成 2730
+2026-10-11 20:22:01,759 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:01,977 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 980，待完成 2720
+2026-10-11 20:22:02,236 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:02,379 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 990，待完成 2710
+2026-10-11 20:22:02,581 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:02,698 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1000，待完成 2700
+2026-10-11 20:22:02,908 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:03,013 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1010，待完成 2690
+2026-10-11 20:22:03,274 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:03,412 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1020，待完成 2680
+2026-10-11 20:22:03,642 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:03,790 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1030，待完成 2670
+2026-10-11 20:22:04,001 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:04,120 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1040，待完成 2660
+2026-10-11 20:22:04,316 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:04,421 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1050，待完成 2650
+2026-10-11 20:22:04,615 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:04,750 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1060，待完成 2640
+2026-10-11 20:22:04,978 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:05,132 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1070，待完成 2630
+2026-10-11 20:22:05,366 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:05,490 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1080，待完成 2620
+2026-10-11 20:22:05,698 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:05,815 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1090，待完成 2610
+2026-10-11 20:22:06,034 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:06,169 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1100，待完成 2600
+2026-10-11 20:22:06,383 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:06,518 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1110，待完成 2590
+2026-10-11 20:22:06,736 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:06,858 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1120，待完成 2580
+2026-10-11 20:22:07,083 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:07,198 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1130，待完成 2570
+2026-10-11 20:22:07,408 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:07,579 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1140，待完成 2560
+2026-10-11 20:22:07,811 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:08,027 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1150，待完成 2550
+2026-10-11 20:22:08,233 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:08,403 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1160，待完成 2540
+2026-10-11 20:22:08,628 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:08,759 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1170，待完成 2530
+2026-10-11 20:22:08,954 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:09,068 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1180，待完成 2520
+2026-10-11 20:22:09,284 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:09,409 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1190，待完成 2510
+2026-10-11 20:22:09,654 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:09,798 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1200，待完成 2500
+2026-10-11 20:22:10,004 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:10,146 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1210，待完成 2490
+2026-10-11 20:22:10,394 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:10,549 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1220，待完成 2480
+2026-10-11 20:22:10,775 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:10,961 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1230，待完成 2470
+2026-10-11 20:22:11,498 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:11,643 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1240，待完成 2460
+2026-10-11 20:22:11,877 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:12,007 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1250，待完成 2450
+2026-10-11 20:22:12,229 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:12,372 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1260，待完成 2440
+2026-10-11 20:22:12,618 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:12,754 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1270，待完成 2430
+2026-10-11 20:22:13,027 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:13,165 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1280，待完成 2420
+2026-10-11 20:22:13,395 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:13,523 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1290，待完成 2410
+2026-10-11 20:22:13,730 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:13,880 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1300，待完成 2400
+2026-10-11 20:22:14,124 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:14,247 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1310，待完成 2390
+2026-10-11 20:22:14,509 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:14,673 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1320，待完成 2380
+2026-10-11 20:22:14,923 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:15,055 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1330，待完成 2370
+2026-10-11 20:22:15,286 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:15,426 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1340，待完成 2360
+2026-10-11 20:22:15,661 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:15,779 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1350，待完成 2350
+2026-10-11 20:22:15,990 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:16,088 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1360，待完成 2340
+2026-10-11 20:22:16,302 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:16,438 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1370，待完成 2330
+2026-10-11 20:22:16,658 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:16,783 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1380，待完成 2320
+2026-10-11 20:22:17,096 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:17,222 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1390，待完成 2310
+2026-10-11 20:22:17,439 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:17,558 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1400，待完成 2300
+2026-10-11 20:22:17,757 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:17,880 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1410，待完成 2290
+2026-10-11 20:22:18,105 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:18,240 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1420，待完成 2280
+2026-10-11 20:22:18,496 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:18,609 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1430，待完成 2270
+2026-10-11 20:22:18,813 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:18,973 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1440，待完成 2260
+2026-10-11 20:22:19,472 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:19,577 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1450，待完成 2250
+2026-10-11 20:22:19,838 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:19,968 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1460，待完成 2240
+2026-10-11 20:22:20,160 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:20,284 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1470，待完成 2230
+2026-10-11 20:22:20,545 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:20,689 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1480，待完成 2220
+2026-10-11 20:22:20,900 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:21,048 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1490，待完成 2210
+2026-10-11 20:22:21,273 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:21,423 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1500，待完成 2200
+2026-10-11 20:22:21,643 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:21,778 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1510，待完成 2190
+2026-10-11 20:22:21,993 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:22,120 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1520，待完成 2180
+2026-10-11 20:22:22,328 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:22,492 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1530，待完成 2170
+2026-10-11 20:22:22,731 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:22,852 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1540，待完成 2160
+2026-10-11 20:22:23,097 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:23,249 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1550，待完成 2150
+2026-10-11 20:22:23,469 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:23,595 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1560，待完成 2140
+2026-10-11 20:22:23,847 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:23,988 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1570，待完成 2130
+2026-10-11 20:22:24,204 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:24,336 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1580，待完成 2120
+2026-10-11 20:22:24,552 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:24,722 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1590，待完成 2110
+2026-10-11 20:22:24,971 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:25,095 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1600，待完成 2100
+2026-10-11 20:22:25,309 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:25,449 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1610，待完成 2090
+2026-10-11 20:22:25,667 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:25,809 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1620，待完成 2080
+2026-10-11 20:22:26,002 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:26,155 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1630，待完成 2070
+2026-10-11 20:22:26,423 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:26,579 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1640，待完成 2060
+2026-10-11 20:22:26,818 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:27,006 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1650，待完成 2050
+2026-10-11 20:22:27,315 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:27,471 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1660，待完成 2040
+2026-10-11 20:22:27,725 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:27,865 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1670，待完成 2030
+2026-10-11 20:22:28,064 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:28,241 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1680，待完成 2020
+2026-10-11 20:22:28,458 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:28,646 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1690，待完成 2010
+2026-10-11 20:22:28,899 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:29,058 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1700，待完成 2000
+2026-10-11 20:22:29,280 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:29,409 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1710，待完成 1990
+2026-10-11 20:22:29,611 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:29,806 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1720，待完成 1980
+2026-10-11 20:22:30,027 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:30,177 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1730，待完成 1970
+2026-10-11 20:22:30,407 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:30,544 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1740，待完成 1960
+2026-10-11 20:22:30,790 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:30,980 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1750，待完成 1950
+2026-10-11 20:22:31,264 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:31,455 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1760，待完成 1940
+2026-10-11 20:22:31,705 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:31,850 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1770，待完成 1930
+2026-10-11 20:22:32,081 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:32,272 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1780，待完成 1920
+2026-10-11 20:22:32,504 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:32,739 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1790，待完成 1910
+2026-10-11 20:22:38,003 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:38,135 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1800，待完成 1900
+2026-10-11 20:22:38,319 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:38,441 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1810，待完成 1890
+2026-10-11 20:22:38,640 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:38,757 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1820，待完成 1880
+2026-10-11 20:22:38,981 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:39,139 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1830，待完成 1870
+2026-10-11 20:22:39,349 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:39,483 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1840，待完成 1860
+2026-10-11 20:22:39,721 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:39,853 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1850，待完成 1850
+2026-10-11 20:22:40,065 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:40,214 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1860，待完成 1840
+2026-10-11 20:22:40,417 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:40,554 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1870，待完成 1830
+2026-10-11 20:22:40,739 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:40,860 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1880，待完成 1820
+2026-10-11 20:22:41,063 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:41,219 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1890，待完成 1810
+2026-10-11 20:22:41,420 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:41,548 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1900，待完成 1800
+2026-10-11 20:22:41,775 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:41,910 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1910，待完成 1790
+2026-10-11 20:22:42,114 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:42,233 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1920，待完成 1780
+2026-10-11 20:22:42,423 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:42,551 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1930，待完成 1770
+2026-10-11 20:22:42,783 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:42,915 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1940，待完成 1760
+2026-10-11 20:22:43,132 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:43,261 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1950，待完成 1750
+2026-10-11 20:22:43,487 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:43,614 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1960，待完成 1740
+2026-10-11 20:22:43,904 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:44,016 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1970，待完成 1730
+2026-10-11 20:22:44,291 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:44,403 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1980，待完成 1720
+2026-10-11 20:22:44,608 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:44,734 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 1990，待完成 1710
+2026-10-11 20:22:44,959 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:45,091 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2000，待完成 1700
+2026-10-11 20:22:45,319 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:45,441 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2010，待完成 1690
+2026-10-11 20:22:45,653 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:45,766 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2020，待完成 1680
+2026-10-11 20:22:46,050 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:46,163 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2030，待完成 1670
+2026-10-11 20:22:46,354 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:46,478 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2040，待完成 1660
+2026-10-11 20:22:46,716 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:46,857 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2050，待完成 1650
+2026-10-11 20:22:47,041 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:47,255 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2060，待完成 1640
+2026-10-11 20:22:47,457 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:47,606 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2070，待完成 1630
+2026-10-11 20:22:47,822 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:47,943 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2080，待完成 1620
+2026-10-11 20:22:48,178 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:48,298 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2090，待完成 1610
+2026-10-11 20:22:48,516 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:48,684 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2100，待完成 1600
+2026-10-11 20:22:48,923 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:49,087 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2110，待完成 1590
+2026-10-11 20:22:49,293 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:49,414 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2120，待完成 1580
+2026-10-11 20:22:49,730 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:49,881 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2130，待完成 1570
+2026-10-11 20:22:50,071 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:50,208 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2140，待完成 1560
+2026-10-11 20:22:50,403 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:50,501 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2150，待完成 1550
+2026-10-11 20:22:50,728 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:50,860 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2160，待完成 1540
+2026-10-11 20:22:51,044 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:51,188 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2170，待完成 1530
+2026-10-11 20:22:51,394 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:51,521 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2180，待完成 1520
+2026-10-11 20:22:51,749 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:51,857 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2190，待完成 1510
+2026-10-11 20:22:52,046 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:52,164 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2200，待完成 1500
+2026-10-11 20:22:52,347 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:52,463 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2210，待完成 1490
+2026-10-11 20:22:52,684 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:52,821 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2220，待完成 1480
+2026-10-11 20:22:53,028 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:53,135 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2230，待完成 1470
+2026-10-11 20:22:53,347 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:53,483 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2240，待完成 1460
+2026-10-11 20:22:53,667 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:53,783 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2250，待完成 1450
+2026-10-11 20:22:53,985 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:54,095 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2260，待完成 1440
+2026-10-11 20:22:54,316 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:54,448 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2270，待完成 1430
+2026-10-11 20:22:54,670 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:54,785 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2280，待完成 1420
+2026-10-11 20:22:55,007 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:55,133 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2290，待完成 1410
+2026-10-11 20:22:55,325 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:55,435 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2300，待完成 1400
+2026-10-11 20:22:55,658 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:55,785 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2310，待完成 1390
+2026-10-11 20:22:55,992 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:56,129 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2320，待完成 1380
+2026-10-11 20:22:56,360 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:56,480 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2330，待完成 1370
+2026-10-11 20:22:56,688 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:56,807 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2340，待完成 1360
+2026-10-11 20:22:57,096 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:57,219 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2350，待完成 1350
+2026-10-11 20:22:57,410 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:57,560 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2360，待完成 1340
+2026-10-11 20:22:57,802 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:57,980 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2370，待完成 1330
+2026-10-11 20:22:58,205 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:58,403 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2380，待完成 1320
+2026-10-11 20:22:58,621 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:58,758 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2390，待完成 1310
+2026-10-11 20:22:58,988 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:59,126 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2400，待完成 1300
+2026-10-11 20:22:59,353 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:59,500 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2410，待完成 1290
+2026-10-11 20:22:59,756 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:22:59,898 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2420，待完成 1280
+2026-10-11 20:23:00,112 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:00,258 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2430，待完成 1270
+2026-10-11 20:23:00,484 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:00,648 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2440，待完成 1260
+2026-10-11 20:23:00,854 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:00,998 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2450，待完成 1250
+2026-10-11 20:23:01,284 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:01,435 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2460，待完成 1240
+2026-10-11 20:23:01,679 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:01,877 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2470，待完成 1230
+2026-10-11 20:23:02,142 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:02,334 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2480，待完成 1220
+2026-10-11 20:23:02,610 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:02,739 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2490，待完成 1210
+2026-10-11 20:23:02,966 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:03,111 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2500，待完成 1200
+2026-10-11 20:23:03,326 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:03,487 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2510，待完成 1190
+2026-10-11 20:23:03,785 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:03,933 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2520，待完成 1180
+2026-10-11 20:23:04,158 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:04,379 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2530，待完成 1170
+2026-10-11 20:23:04,622 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:04,786 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2540，待完成 1160
+2026-10-11 20:23:05,005 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:05,148 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2550，待完成 1150
+2026-10-11 20:23:05,384 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:05,551 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2560，待完成 1140
+2026-10-11 20:23:05,793 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:06,186 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2570，待完成 1130
+2026-10-11 20:23:06,391 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:06,581 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2580，待完成 1120
+2026-10-11 20:23:06,840 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:07,035 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2590，待完成 1110
+2026-10-11 20:23:07,267 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:07,445 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2600，待完成 1100
+2026-10-11 20:23:07,713 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:07,885 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2610，待完成 1090
+2026-10-11 20:23:08,122 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:08,280 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2620，待完成 1080
+2026-10-11 20:23:08,551 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:08,728 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2630，待完成 1070
+2026-10-11 20:23:08,986 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:09,155 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2640，待完成 1060
+2026-10-11 20:23:09,389 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:09,546 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2650，待完成 1050
+2026-10-11 20:23:09,792 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:09,993 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2660，待完成 1040
+2026-10-11 20:23:10,236 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:10,611 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2670，待完成 1030
+2026-10-11 20:23:11,350 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:11,607 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2680，待完成 1020
+2026-10-11 20:23:11,894 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:12,242 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2690，待完成 1010
+2026-10-11 20:23:12,478 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:12,669 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2700，待完成 1000
+2026-10-11 20:23:12,896 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:13,037 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2710，待完成 990
+2026-10-11 20:23:13,290 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:13,492 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2720，待完成 980
+2026-10-11 20:23:13,779 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:13,942 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2730，待完成 970
+2026-10-11 20:23:14,183 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:14,319 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2740，待完成 960
+2026-10-11 20:23:14,593 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:14,808 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2750，待完成 950
+2026-10-11 20:23:15,036 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:15,201 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2760，待完成 940
+2026-10-11 20:23:15,455 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:15,629 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2770，待完成 930
+2026-10-11 20:23:15,841 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:15,972 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2780，待完成 920
+2026-10-11 20:23:16,188 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:16,339 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2790，待完成 910
+2026-10-11 20:23:16,595 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:16,784 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2800，待完成 900
+2026-10-11 20:23:17,011 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:17,161 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2810，待完成 890
+2026-10-11 20:23:17,422 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:17,596 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2820，待完成 880
+2026-10-11 20:23:17,829 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:17,996 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2830，待完成 870
+2026-10-11 20:23:18,255 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:18,387 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2840，待完成 860
+2026-10-11 20:23:18,653 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:18,832 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2850，待完成 850
+2026-10-11 20:23:19,177 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:19,331 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2860，待完成 840
+2026-10-11 20:23:19,555 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:19,721 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2870，待完成 830
+2026-10-11 20:23:20,027 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:20,216 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2880，待完成 820
+2026-10-11 20:23:20,462 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:20,626 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2890，待完成 810
+2026-10-11 20:23:20,887 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:21,085 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2900，待完成 800
+2026-10-11 20:23:21,355 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:21,509 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2910，待完成 790
+2026-10-11 20:23:21,745 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:21,932 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2920，待完成 780
+2026-10-11 20:23:22,140 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:22,304 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2930，待完成 770
+2026-10-11 20:23:22,513 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:22,682 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2940，待完成 760
+2026-10-11 20:23:22,901 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:23,041 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2950，待完成 750
+2026-10-11 20:23:23,255 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:23,438 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2960，待完成 740
+2026-10-11 20:23:23,675 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:23,862 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2970，待完成 730
+2026-10-11 20:23:24,111 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:24,254 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2980，待完成 720
+2026-10-11 20:23:24,471 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:24,638 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 2990，待完成 710
+2026-10-11 20:23:24,908 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:25,098 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3000，待完成 700
+2026-10-11 20:23:25,354 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:25,493 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3010，待完成 690
+2026-10-11 20:23:25,705 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:25,896 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3020，待完成 680
+2026-10-11 20:23:26,129 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:26,334 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3030，待完成 670
+2026-10-11 20:23:26,566 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:26,701 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3040，待完成 660
+2026-10-11 20:23:26,920 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:27,061 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3050，待完成 650
+2026-10-11 20:23:27,282 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:27,413 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3060，待完成 640
+2026-10-11 20:23:27,688 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:27,840 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3070，待完成 630
+2026-10-11 20:23:28,060 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:28,224 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3080，待完成 620
+2026-10-11 20:23:28,468 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:28,631 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3090，待完成 610
+2026-10-11 20:23:28,867 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:29,065 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3100，待完成 600
+2026-10-11 20:23:29,249 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:29,370 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3110，待完成 590
+2026-10-11 20:23:29,598 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:29,777 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3120，待完成 580
+2026-10-11 20:23:30,018 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:30,206 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3130，待完成 570
+2026-10-11 20:23:30,425 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:30,559 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3140，待完成 560
+2026-10-11 20:23:30,784 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:30,942 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3150，待完成 550
+2026-10-11 20:23:31,177 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:31,391 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3160，待完成 540
+2026-10-11 20:23:31,639 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:31,803 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3170，待完成 530
+2026-10-11 20:23:32,010 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:32,166 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3180，待完成 520
+2026-10-11 20:23:32,402 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:32,580 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3190，待完成 510
+2026-10-11 20:23:32,791 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:32,936 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3200，待完成 500
+2026-10-11 20:23:33,150 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:33,281 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3210，待完成 490
+2026-10-11 20:23:33,526 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:33,690 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3220，待完成 480
+2026-10-11 20:23:33,900 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:34,045 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3230，待完成 470
+2026-10-11 20:23:34,276 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:34,430 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3240，待完成 460
+2026-10-11 20:23:34,708 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:34,883 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3250，待完成 450
+2026-10-11 20:23:35,134 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:35,358 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3260，待完成 440
+2026-10-11 20:23:35,618 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:35,811 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3270，待完成 430
+2026-10-11 20:23:36,043 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:36,235 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3280，待完成 420
+2026-10-11 20:23:36,494 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:36,661 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3290，待完成 410
+2026-10-11 20:23:36,885 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:37,013 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3300，待完成 400
+2026-10-11 20:23:37,202 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:37,373 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3310，待完成 390
+2026-10-11 20:23:37,606 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:37,751 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3320，待完成 380
+2026-10-11 20:23:38,100 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:38,253 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3330，待完成 370
+2026-10-11 20:23:38,552 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:38,720 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3340，待完成 360
+2026-10-11 20:23:38,942 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:39,186 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3350，待完成 350
+2026-10-11 20:23:39,429 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:39,575 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3360，待完成 340
+2026-10-11 20:23:39,824 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:39,982 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3370，待完成 330
+2026-10-11 20:23:40,212 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:40,372 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3380，待完成 320
+2026-10-11 20:23:40,599 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:40,771 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3390，待完成 310
+2026-10-11 20:23:40,987 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:41,209 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3400，待完成 300
+2026-10-11 20:23:41,507 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:41,665 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3410，待完成 290
+2026-10-11 20:23:41,949 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:42,106 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3420，待完成 280
+2026-10-11 20:23:42,323 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:42,496 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3430，待完成 270
+2026-10-11 20:23:42,706 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:42,922 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3440，待完成 260
+2026-10-11 20:23:43,170 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:43,343 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3450，待完成 250
+2026-10-11 20:23:43,581 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:43,772 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3460，待完成 240
+2026-10-11 20:23:43,984 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:44,158 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3470，待完成 230
+2026-10-11 20:23:44,397 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:44,554 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3480，待完成 220
+2026-10-11 20:23:44,836 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:45,001 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3490，待完成 210
+2026-10-11 20:23:45,220 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:45,495 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3500，待完成 200
+2026-10-11 20:23:45,740 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:45,932 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3510，待完成 190
+2026-10-11 20:23:46,180 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:46,342 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3520，待完成 180
+2026-10-11 20:23:46,569 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:46,732 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3530，待完成 170
+2026-10-11 20:23:46,966 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:47,133 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3540，待完成 160
+2026-10-11 20:23:47,522 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:47,681 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3550，待完成 150
+2026-10-11 20:23:47,903 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:48,133 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3560，待完成 140
+2026-10-11 20:23:48,347 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:48,508 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3570，待完成 130
+2026-10-11 20:23:48,718 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:48,901 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3580，待完成 120
+2026-10-11 20:23:49,132 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:49,291 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3590，待完成 110
+2026-10-11 20:23:49,513 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:49,665 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3600，待完成 100
+2026-10-11 20:23:49,900 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:50,114 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3610，待完成 90
+2026-10-11 20:23:50,338 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:50,519 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3620，待完成 80
+2026-10-11 20:23:50,762 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:50,931 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3630，待完成 70
+2026-10-11 20:23:51,140 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:51,307 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3640，待完成 60
+2026-10-11 20:23:51,563 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:51,791 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3650，待完成 50
+2026-10-11 20:23:52,029 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:52,239 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3660，待完成 40
+2026-10-11 20:23:52,485 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:52,738 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3670，待完成 30
+2026-10-11 20:23:52,996 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:53,120 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3680，待完成 20
+2026-10-11 20:23:53,344 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:53,506 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3690，待完成 10
+2026-10-11 20:23:53,714 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:53,917 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量同步：复用 0，写入 3700，待完成 0
+2026-10-11 20:23:53,918 INFO app.infrastructure.vector.index_bootstrap request=- task=- session=- trace=- prompt=- 商品向量就绪：共 3700，复用 0，新推理 3700
+2026-10-11 20:23:53,956 | WARNING | _approx_token_chunker:__init__:109 - Passing ``chunk_size``, ``overlap`` to ApproxTokenChunker directly is deprecated, use ApproxTokenChunker.Parameters instead.
+2026-10-11 20:23:55,606 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:55,773 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:55,930 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:56,141 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:56,359 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:56,531 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:56,701 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:56,901 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:57,076 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:57,242 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:57,402 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:57,578 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:57,781 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:57,932 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:58,080 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:58,242 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:58,399 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:58,567 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:58,840 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:59,011 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:59,171 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:59,319 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:59,500 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:59,675 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:23:59,865 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:00,022 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:00,192 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:00,422 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:00,584 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:00,798 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:00,977 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:01,158 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:01,330 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:01,634 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:01,871 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:02,081 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:02,834 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:03,059 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:03,380 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:03,681 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:03,901 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:04,068 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:04,223 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:04,327 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:04,461 INFO httpx request=- task=- session=- trace=- prompt=- HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:04,492 INFO app.infrastructure.rag.category_knowledge request=- task=- session=- trace=- prompt=- 品类知识库就绪：写入或更新 45 篇，累计 45 篇
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2026-10-11 20:24:16,213 INFO app.infrastructure.tracing request=dc787211d2b24b9d921f9cf39aa9809f task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:16,363 INFO app.infrastructure.tracing request=72b4cdbb837941bdb32011956ca2d6ec task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:29,674 INFO app.infrastructure.tracing request=1e493a08997a4a36865ff0fbd8008829 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,107 INFO app.infrastructure.tracing request=ecae173de5994d748da94204e30f3078 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,130 INFO app.infrastructure.tracing request=66967c3cf47d4813b75116feb18a094e task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,164 INFO app.infrastructure.tracing request=2347601832d54d13ba9c9ce878bd13f4 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,179 INFO app.infrastructure.tracing request=66a3a9801f06457a8e4f6600a4c4b578 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,184 INFO app.infrastructure.tracing request=bfa1a5156bbd4b2db70c93397c574435 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,198 INFO app.infrastructure.tracing request=8aabcf6f240f4da584968fec758aed47 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,200 INFO app.infrastructure.tracing request=190854de800645799f3e7c26317434b9 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,205 INFO app.infrastructure.tracing request=4a934ab0b30d422a81c77de0359d2ee2 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,255 INFO app.infrastructure.tracing request=0894bc2227e944f2a519255fa4d037bd task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,263 INFO app.infrastructure.tracing request=7936dc7971ba4663a17f345a683bfd26 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,264 INFO app.infrastructure.tracing request=799355a7a8c14d7a8dca53b4acdb0f76 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,269 INFO app.infrastructure.tracing request=488a7ec1ac6246468419f4953105a971 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,272 INFO app.infrastructure.tracing request=b6737d9fbd034b02ad4a2a042b0310a5 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,299 INFO app.infrastructure.tracing request=4a708c7937a244af951122bdb0cac630 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,308 INFO app.infrastructure.tracing request=af88ae97abeb46d0935ca2a59bbece49 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,314 INFO app.infrastructure.tracing request=134dc9b1cf3141b387123838b3c86897 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,347 INFO app.infrastructure.tracing request=c944f772d57d4c3584242aea657e46d0 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,374 INFO app.infrastructure.tracing request=b558d3b301ee4bdf86b195c39cb2da57 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,390 INFO app.infrastructure.tracing request=913287a368da4a6ea2ab77ad4e511515 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:31,781 INFO app.infrastructure.tracing request=2effbd974f7c4045beed3fc5e4a57a91 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:24:33,002 INFO httpx request=e078d1d678244b40ab6bc3fc0c3785db task=- session=sha256:31b43297f077de336b4157ac trace=- prompt=p-06982b9e3f5bc97984001bc9d8dd65ad504c354aae64b63df9b9f5aadad17075 HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-11 20:24:34,636 INFO httpx request=e078d1d678244b40ab6bc3fc0c3785db task=- session=sha256:31b43297f077de336b4157ac trace=- prompt=p-06982b9e3f5bc97984001bc9d8dd65ad504c354aae64b63df9b9f5aadad17075 HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:35,869 INFO httpx request=e078d1d678244b40ab6bc3fc0c3785db task=- session=sha256:31b43297f077de336b4157ac trace=- prompt=p-06982b9e3f5bc97984001bc9d8dd65ad504c354aae64b63df9b9f5aadad17075 HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-11 20:24:38,325 INFO httpx request=e078d1d678244b40ab6bc3fc0c3785db task=- session=sha256:31b43297f077de336b4157ac trace=- prompt=p-06982b9e3f5bc97984001bc9d8dd65ad504c354aae64b63df9b9f5aadad17075 HTTP Request: POST https://api.siliconflow.cn/v1/embeddings "HTTP/1.1 200 OK"
+2026-10-11 20:24:38,464 WARNING app.application.usecases.catalog_search request=e078d1d678244b40ab6bc3fc0c3785db task=- session=sha256:31b43297f077de336b4157ac trace=- prompt=p-06982b9e3f5bc97984001bc9d8dd65ad504c354aae64b63df9b9f5aadad17075 rerank 不可用，按向量分排序：Reranker 未配置
+2026-10-11 20:24:39,994 INFO httpx request=e078d1d678244b40ab6bc3fc0c3785db task=- session=sha256:31b43297f077de336b4157ac trace=- prompt=p-06982b9e3f5bc97984001bc9d8dd65ad504c354aae64b63df9b9f5aadad17075 HTTP Request: POST https://api.siliconflow.cn/v1/chat/completions "HTTP/1.1 200 OK"
+2026-10-11 20:25:53,640 INFO app.infrastructure.tracing request=e078d1d678244b40ab6bc3fc0c3785db task=- session=- trace=- prompt=- HTTP 请求结束 method=POST status=200
+2026-10-11 20:25:53,816 INFO app.infrastructure.tracing request=d1ec5efc03f84263bb9fdb4cf1b9b6cc task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:25:53,828 INFO app.infrastructure.tracing request=23aacd0578f440039e3e755c8d15fbac task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:27:27,100 INFO app.infrastructure.tracing request=e5d2041721c846ada29de2aa45c0a5a9 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:27:27,182 INFO app.infrastructure.tracing request=15539fcf1c8d4857b9c162fed53e6d54 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:29:18,141 INFO app.infrastructure.tracing request=f37aed5228f249cf9accfe2368507d56 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:29:18,216 INFO app.infrastructure.tracing request=3ad27418617b4c8fa8c6d31de0077b10 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 20:30:14,326 INFO app.infrastructure.tracing request=d2c7ec797f744955a7552bb601838bf3 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:06:22,935 INFO app.infrastructure.tracing request=52cadcec5b9645dab8f2a536b697eb4a task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:06:23,342 INFO app.infrastructure.tracing request=9315eb28196d4710a5cb24926de8deae task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:06:23,493 INFO app.infrastructure.tracing request=5e09914cfc1a436289dea1ec56834c1a task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:06:40,043 INFO app.infrastructure.tracing request=1c3e4bf07bac4536a9419613cdd0ea07 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:06:58,549 INFO app.infrastructure.tracing request=b3751f06736640c7b09c01fd6d717f83 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:25:32,994 INFO app.infrastructure.tracing request=662749c4c9c3470fb37f5693995dffdd task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,164 INFO app.infrastructure.tracing request=249cbea23f84466d83f2d781b1d679ca task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,202 INFO app.infrastructure.tracing request=0c4f844dbfe845f0959bfdaaaa5d7445 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,254 INFO app.infrastructure.tracing request=57d4e96ac7674b66b0d7d921c175bd3c task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,267 INFO app.infrastructure.tracing request=10952677588a4ee7ad23038f8b748921 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,269 INFO app.infrastructure.tracing request=7f78ee017b5949e19c3a5450a4c19d74 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,281 INFO app.infrastructure.tracing request=d7df1a83321342109c4187632a467ced task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,288 INFO app.infrastructure.tracing request=f945f1a5f0f243ac8e8414d0dc8ac5eb task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,343 INFO app.infrastructure.tracing request=56826a8807a546ea83d3561607f6edd7 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,375 INFO app.infrastructure.tracing request=ca08e5013a4248639af1ca712954c226 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,377 INFO app.infrastructure.tracing request=7f45d1b712ac4dd48afbbefdd7bd38d0 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,382 INFO app.infrastructure.tracing request=43d7ced6a00f484289cf1e496bda2150 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,401 INFO app.infrastructure.tracing request=8e2645cacc294c05a69fbac591797d60 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,411 INFO app.infrastructure.tracing request=2c69cdcd2bc54df5b18d6cafab646190 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,420 INFO app.infrastructure.tracing request=83d918e123984b198d7364682ce3dd4e task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,438 INFO app.infrastructure.tracing request=ae6fd0dc5eee483ba6d098549c2cc112 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,545 INFO app.infrastructure.tracing request=195f7417226e4b1eaa514af5db5ac239 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,577 INFO app.infrastructure.tracing request=cbfd0b4879f84b249b9351270a69a4bd task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,616 INFO app.infrastructure.tracing request=bdca0d64b70f4a8ebe7899a35fa31711 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,632 INFO app.infrastructure.tracing request=599f037467de4146bf4150f95e532ca1 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,635 INFO app.infrastructure.tracing request=70a9d1949dd742318a4957f3de12c294 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,709 INFO app.infrastructure.tracing request=c58d4816457e45a7a0047e65da06c884 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,716 INFO app.infrastructure.tracing request=1e3db32d7ec64bce8f78c324758bb3fd task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,824 INFO app.infrastructure.tracing request=3b92b4c901b440c3be604c89c54c6efb task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,844 INFO app.infrastructure.tracing request=2dceb5192a70430ba9feb9bd1304fe03 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,978 INFO app.infrastructure.tracing request=0f4cb8d8fdc34a32aa5731d3ed5446a4 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:34,984 INFO app.infrastructure.tracing request=7387e05c804a42cfa4c210512cdab8af task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:35,004 INFO app.infrastructure.tracing request=94b696eeb386455ca276cbb6e721344d task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200
+2026-10-11 21:40:35,025 INFO app.infrastructure.tracing request=bd2e1749c42641ee988766d18ca1c644 task=- session=- trace=- prompt=- HTTP 请求结束 method=GET status=200

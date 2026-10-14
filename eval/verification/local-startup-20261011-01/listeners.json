@@ -1,0 +1,19 @@
+{
+  "timestamp": "2026-10-11T19:56:34.9791299+08:00",
+  "listeners": [
+    {
+      "address": "127.0.0.1",
+      "port": 5173,
+      "pid": 1884,
+      "process": "node",
+      "raw": "TCP    127.0.0.1:5173         0.0.0.0:0              LISTENING       1884"
+    },
+    {
+      "address": "127.0.0.1",
+      "port": 8000,
+      "pid": 63216,
+      "process": "python",
+      "raw": "TCP    127.0.0.1:8000         0.0.0.0:0              LISTENING       63216"
+    }
+  ]
+}

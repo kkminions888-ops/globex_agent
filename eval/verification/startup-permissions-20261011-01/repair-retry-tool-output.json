@@ -1,0 +1,5 @@
+{
+  "chunk_id": "f0f799",
+  "exit_code": 1,
+  "output": "Set-Acl : 该进程不具有执行此操作所需的“SeSecurityPrivilege”特权。\n所在位置 E:\\laboratory\\code\\globex-agent\\eval\\verification\\startup-permissions-20261011-01\\repair-permissions.ps1:34 字符: 1\n+ Set-Acl -LiteralPath $secretDirectory -AclObject $directoryAcl\n+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n    + CategoryInfo          : PermissionDenied: (E:\\laboratory\\c...t\\data\\.secrets:String) [Set-Acl], PrivilegeNotHeld \n   Exception\n    + FullyQualifiedErrorId : System.Security.AccessControl.PrivilegeNotHeldException,Microsoft.PowerShell.Commands.Se \n   tAclCommand\n \n"
+}

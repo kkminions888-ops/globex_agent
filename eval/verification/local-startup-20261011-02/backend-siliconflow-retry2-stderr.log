@@ -1,0 +1,29 @@
+INFO:     Started server process [35772]
+INFO:     Waiting for application startup.
+2026-10-11 20:19:32,802 INFO app.composition request=- task=- session=- trace=- prompt=- 队列未启用，意图在当前进程内直接执行
+2026-10-11 20:19:32,820 INFO app.composition request=- task=- session=- trace=- prompt=- 持久化形态：sqlite
+ERROR:    Traceback (most recent call last):
+  File "E:\anaconda3\envs\globex\Lib\site-packages\starlette\routing.py", line 648, in lifespan
+    async with self.lifespan_context(app) as maybe_state:
+  File "E:\anaconda3\envs\globex\Lib\contextlib.py", line 210, in __aenter__
+    return await anext(self.gen)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "E:\laboratory\code\globex-agent\app\presentation\server.py", line 76, in lifespan
+    c = await build_container()
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\laboratory\code\globex-agent\app\composition.py", line 293, in build_container
+    await model_registry.initialize()
+  File "E:\laboratory\code\globex-agent\app\infrastructure\model_registry.py", line 86, in initialize
+    self._cipher = self._load_cipher()
+                   ^^^^^^^^^^^^^^^^^^^
+  File "E:\laboratory\code\globex-agent\app\infrastructure\model_registry.py", line 67, in _load_cipher
+    if not key_path.exists():
+           ^^^^^^^^^^^^^^^^^
+  File "E:\anaconda3\envs\globex\Lib\pathlib.py", line 1235, in exists
+    self.stat()
+  File "E:\anaconda3\envs\globex\Lib\pathlib.py", line 1013, in stat
+    return os.stat(self, follow_symlinks=follow_symlinks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [WinError 5] 拒绝访问。: 'data\\.secrets\\model_registry.key'
+
+ERROR:    Application startup failed. Exiting.

@@ -1,0 +1,3 @@
+E:/anaconda3/envs/globex/python.exe -m scripts.eval.harness run --suite eval/harness/v1/suite.json --profile smoke --strategies current,candidate --output eval/verification/harness-startup-20261011-01
+'gbk' codec can't decode byte 0xaa in position 143: illegal multibyte sequence
+mingw32-make: *** [Makefile:10: eval-harness] Error 2

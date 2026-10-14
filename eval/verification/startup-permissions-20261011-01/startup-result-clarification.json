@@ -1,0 +1,11 @@
+{
+  "original_evidence": "backend-startup-result.json",
+  "clarification": "原始结果中的 external_model_request_submitted 字段命名不准确：它表示诊断脚本未提交聊天请求。启动阶段确实发出了 embedding 外部请求，详见原始 backend-startup.log；原始结果和日志保留不改写。",
+  "chat_request_submitted": false,
+  "startup_embedding_requests_observed": true,
+  "startup_embedding_usable": false,
+  "observed_failure": "307 Temporary Redirect to account login; category knowledge initialization failed",
+  "permission_verification_passed": true,
+  "backend_startup_and_health_passed": true,
+  "external_model_end_to_end_passed": false
+}
