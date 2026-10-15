@@ -1,8 +1,0 @@
-
-  VITE v5.4.21  ready in 554 ms
-
-  ➜  Local:   http://127.0.0.1:5173/
-22:54:28 [vite] hmr update /src/components/RetrievalEvaluation.tsx
-22:54:28 [vite] hmr update /src/components/RetrievalEvaluation.tsx
-22:54:28 [vite] hmr update /src/components/retrievalEvaluation.css
-22:54:29 [vite] hmr update /src/RetrievalEvaluationPage.tsx

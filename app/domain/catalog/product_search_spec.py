@@ -11,6 +11,8 @@ from typing import Optional
 import math
 import re
 
+from app.domain.catalog.product_attributes import normalize_product_type
+
 
 @dataclass(frozen=True)
 class ProductSearchSpec:
@@ -29,6 +31,11 @@ class ProductSearchSpec:
     required_material_tags: list[str] | tuple[str, ...] = ()
     product_id: Optional[str] = None
     sku_id: Optional[str] = None
+    product_type: Optional[str] = None
+    max_weight_kg: Optional[float] = None
+    preferred_product_type: Optional[str] = None
+    prefer_lightweight: bool = False
+    sku_spec: Optional[str] = None
 
     def __post_init__(self) -> None:
         for name, pattern in (("product_id", r"P\d{4,}"), ("sku_id", r"P\d{4,}-S\d+")):
@@ -47,3 +54,19 @@ class ProductSearchSpec:
             raise ValueError("ProductSearchSpec.top_k 必须为1到50的整数")
         if self.price_max_major is not None and (isinstance(self.price_max_major, bool) or not math.isfinite(self.price_max_major) or self.price_max_major < 0):
             raise ValueError("ProductSearchSpec.price_max_major 必须是有限的非负金额")
+        for name in ("product_type", "preferred_product_type"):
+            value = getattr(self, name)
+            if value is not None:
+                kind = normalize_product_type(value)
+                if kind is None:
+                    raise ValueError(f"ProductSearchSpec.{name} 必须是已知商品类型")
+                object.__setattr__(self, name, kind)
+        if self.max_weight_kg is not None:
+            if isinstance(self.max_weight_kg, bool) or not isinstance(self.max_weight_kg, (int, float)) or not math.isfinite(self.max_weight_kg) or self.max_weight_kg <= 0:
+                raise ValueError("ProductSearchSpec.max_weight_kg 必须是有限的正数重量")
+        if type(self.prefer_lightweight) is not bool:
+            raise ValueError("ProductSearchSpec.prefer_lightweight 必须是布尔值")
+        if self.sku_spec is not None:
+            if not isinstance(self.sku_spec, str) or not 1 <= len(self.sku_spec.strip()) <= 160 or any(ord(ch) < 32 for ch in self.sku_spec):
+                raise ValueError("ProductSearchSpec.sku_spec 必须是1到160字的规格文字")
+            object.__setattr__(self, "sku_spec", " ".join(self.sku_spec.split()))

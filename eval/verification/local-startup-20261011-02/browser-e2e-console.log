@@ -1,1 +1,0 @@
-{"status": "failed", "evidence_dir": "E:\\laboratory\\code\\globex-agent\\eval\\verification\\local-startup-20261011-02\\browser-e2e-20261011T120807Z-ca51f312", "error": {"type": "BrowserCheckError", "code": "click_target_unavailable"}}

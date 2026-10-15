@@ -1,0 +1,215 @@
+{
+  "status": "diagnostic",
+  "reasons": [
+    "当前为诊断范围；离线对照不代表正式基线或收益验收"
+  ],
+  "metrics": [
+    {
+      "key": "ndcg_at_5",
+      "label": "NDCG@5",
+      "baseline": 0.7777777777777778,
+      "candidate": 1.0,
+      "delta": 0.2222222222222222,
+      "threshold": 0.02,
+      "passed": true,
+      "unit": "ratio"
+    },
+    {
+      "key": "recall_at_5",
+      "label": "Recall@5",
+      "baseline": 0.7777777777777778,
+      "candidate": 1.0,
+      "delta": 0.2222222222222222,
+      "threshold": -0.01,
+      "passed": true,
+      "unit": "ratio"
+    },
+    {
+      "key": "returned_precision",
+      "label": "返回结果精度",
+      "baseline": 0.7111111111111111,
+      "candidate": 0.9333333333333333,
+      "delta": 0.2222222222222222,
+      "threshold": 0.02,
+      "passed": true,
+      "unit": "ratio"
+    },
+    {
+      "key": "empty_accuracy",
+      "label": "预期无结果准确率",
+      "baseline": 0.5555555555555556,
+      "candidate": 1,
+      "delta": 0.4444444444444444,
+      "threshold": 0.0,
+      "passed": true,
+      "unit": "ratio"
+    },
+    {
+      "key": "hard_constraint_violation_rate",
+      "label": "硬约束违规率",
+      "baseline": 0.0,
+      "candidate": 0.0,
+      "delta": 0.0,
+      "threshold": 0,
+      "passed": true,
+      "unit": "ratio"
+    },
+    {
+      "key": "p95_ms",
+      "label": "检索耗时 P95",
+      "baseline": 2.735599991865456,
+      "candidate": 4.4098999933339655,
+      "delta": 1.6743000014685094,
+      "threshold": null,
+      "passed": null,
+      "unit": "ms"
+    }
+  ],
+  "cases": [
+    {
+      "id": "contract-second-cheaper",
+      "kind": "contract",
+      "baseline_ndcg": 0.0,
+      "candidate_ndcg": 1.0,
+      "delta": 1.0,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-exact-expensive-sku",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-exact-cheap-sku",
+      "kind": "contract",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-spec-blue",
+      "kind": "contract",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-spec-absent",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-exchange-second-cheaper",
+      "kind": "contract",
+      "baseline_ndcg": 0.0,
+      "candidate_ndcg": 1.0,
+      "delta": 1.0,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-out-of-stock-cheap",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-budget-too-low",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-backpack-type",
+      "kind": "contract",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-type-negative",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-known-light",
+      "kind": "contract",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-unknown-weight",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-overweight",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-material-positive",
+      "kind": "contract",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-material-negative",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-shipping-positive",
+      "kind": "contract",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-shipping-negative",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    },
+    {
+      "id": "contract-deduplicate",
+      "kind": "contract",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    }
+  ],
+  "comparable": true
+}

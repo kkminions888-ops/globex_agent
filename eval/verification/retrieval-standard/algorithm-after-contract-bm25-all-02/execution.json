@@ -1,0 +1,15 @@
+{
+  "source_root": "E:\\laboratory\\code\\globex-agent\\eval\\verification\\retrieval-algorithm-20261014-231640\\source-after",
+  "catalog": "E:\\laboratory\\code\\globex-agent\\eval\\retrieval\\optimization-contract-catalog-v1.jsonl",
+  "dataset": "E:\\laboratory\\code\\globex-agent\\eval\\retrieval\\optimization-contract-queries-v1.jsonl",
+  "imported_usecase": "E:\\laboratory\\code\\globex-agent\\eval\\verification\\retrieval-algorithm-20261014-231640\\source-after\\app\\application\\usecases\\catalog_search.py",
+  "manifest": {
+    "provided": true,
+    "verified": true,
+    "sha256": "ff460909771b2c273bc6ea0c22ef0f08bb689c51ef226d8be4cb5c35b60170b1",
+    "file_count": 187
+  },
+  "python": "E:\\anaconda3\\envs\\globex\\python.exe",
+  "source_sha256": "3f28502d571e5ac00c4b09cd511411fabc2c6b8567530f0918dc3831e8676228",
+  "external_services": false
+}

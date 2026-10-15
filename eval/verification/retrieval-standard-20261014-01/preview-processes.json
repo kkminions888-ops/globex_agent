@@ -1,8 +1,0 @@
-{
-  "scope": "read_only_evaluation_preview",
-  "api_pid": 35848,
-  "ui_pid": 16232,
-  "api_url": "http://127.0.0.1:8001/commerce/retrieval-evaluation",
-  "ui_url": "http://127.0.0.1:5173/?view=retrieval-evaluation",
-  "started_at": "2026-10-14T22:47:35+08:00"
-}

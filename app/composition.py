@@ -309,6 +309,8 @@ async def build_container() -> Container:
         hybrid_lexical_weight=settings.hybrid_lexical_weight,
         hybrid_vector_weight=settings.hybrid_vector_weight,
         recall_candidates=settings.recall_candidates,
+        field_lexical_enabled=settings.field_lexical_enabled,
+        field_weights=settings.field_lexical_weights,
     )
     place_order = PlaceOrderUseCase(confirmations)
     query_order = QueryOrderUseCase(trade_store)

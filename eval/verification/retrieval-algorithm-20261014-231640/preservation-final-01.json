@@ -1,0 +1,17 @@
+{
+  "captured_at": "2026-10-14T23:48:43.208933+08:00",
+  "git_head": "5f3b52cee1952887e983a5e3eff3aa87c65e57e7",
+  "catalogs_unchanged": true,
+  "env_metadata_unchanged": true,
+  "candidate_app_matches_snapshot": true,
+  "catalog_files": {
+    "catalog-v1.jsonl": "841c543683543f11870ef7a07fb226d99fb6e39009675bba2c6ae1ccbb4dc821",
+    "catalog-v2.jsonl": "fc837e52acda8c765fa7a2f46f1b2e108d3c9411c26ae4545ff4596ac5157984",
+    "catalog-v3.jsonl": "a735003f34b11093097e2728d1003fc63ca63302e938e997f0fd5014cebec6fe"
+  },
+  "env_metadata": {
+    "exists": true,
+    "bytes": 6304,
+    "mtime_ns": 1791725892704841300
+  }
+}

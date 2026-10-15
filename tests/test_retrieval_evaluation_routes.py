@@ -172,6 +172,104 @@ async def test_defaults_use_measured_pair_and_keep_formal_pending_separate(tmp_p
     assert next(row for row in result["reports"] if row["id"] == "formal-pending")["summary"]["ndcg_at_5"] is None
 
 
+def _dated_report(role: str, minute: int, *, query_mode="structured_spec", status="completed") -> dict:
+    report = _report(role, scope="diagnostic")
+    report.update(created_at=f"2026-10-14T12:{minute:02d}:00Z", status=status)
+    report["provenance"]["query_mode"] = query_mode
+    return report
+
+
+async def test_defaults_select_latest_completed_comparable_pair_not_earliest_baseline(tmp_path):
+    api = _fixture(tmp_path)
+    for identifier, report in [
+        ("old-baseline", _dated_report("baseline", 1)),
+        ("old-candidate", _dated_report("candidate", 2)),
+        ("new-baseline-first", _dated_report("baseline", 10, query_mode="raw_query")),
+        ("new-baseline-latest", _dated_report("baseline", 11, query_mode="raw_query")),
+        ("new-candidate", _dated_report("candidate", 12, query_mode="raw_query")),
+        ("unmatched-newest", _dated_report("candidate", 15, query_mode="other_query")),
+        ("failed-newest", _dated_report("candidate", 16, status="failed")),
+    ]:
+        _add_report(tmp_path, identifier, report)
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=api), base_url="http://test") as client:
+        result = (await client.get("/commerce/retrieval-evaluation")).json()
+    assert (result["selected_baseline_id"], result["selected_candidate_id"]) == ("new-baseline-latest", "new-candidate")
+    assert result["comparison"]["comparable"] is True
+    assert result["comparison"]["status"] == "diagnostic"
+
+
+@pytest.mark.parametrize("field,replacement", [
+    ("catalog_sha256", "1" * 64), ("dataset_sha256", "2" * 64),
+    ("selection_sha256", "3" * 64), ("evaluator_sha256", "4" * 64),
+    ("embedding_identity", "different-model"), ("query_mode", "raw_query"),
+    ("split", "dev"), ("repetitions", 2),
+])
+async def test_default_candidate_requires_all_comparison_conditions(tmp_path, field, replacement):
+    api = _fixture(tmp_path)
+    _add_report(tmp_path, "baseline", _dated_report("baseline", 1))
+    _add_report(tmp_path, "matching", _dated_report("candidate", 2))
+    different = _dated_report("candidate", 3)
+    different["provenance"][field] = replacement
+    _add_report(tmp_path, "different-newest", different)
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=api), base_url="http://test") as client:
+        result = (await client.get("/commerce/retrieval-evaluation")).json()
+    assert result["selected_candidate_id"] == "matching"
+    assert result["comparison"]["comparable"] is True
+
+
+@pytest.mark.parametrize("params,expected", [
+    ({"baseline_id": "old-baseline"}, ("old-baseline", "old-candidate")),
+    ({"candidate_id": "old-candidate"}, ("old-baseline", "old-candidate")),
+    ({"baseline_id": "old-baseline", "candidate_id": "new-candidate"}, ("old-baseline", "new-candidate")),
+])
+async def test_explicit_selection_is_preserved_and_only_missing_side_is_matched(tmp_path, params, expected):
+    api = _fixture(tmp_path)
+    for identifier, report in [
+        ("old-baseline", _dated_report("baseline", 1)),
+        ("old-candidate", _dated_report("candidate", 2)),
+        ("new-baseline", _dated_report("baseline", 3, query_mode="raw_query")),
+        ("new-candidate", _dated_report("candidate", 4, query_mode="raw_query")),
+    ]:
+        _add_report(tmp_path, identifier, report)
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=api), base_url="http://test") as client:
+        result = (await client.get("/commerce/retrieval-evaluation", params=params)).json()
+    assert (result["selected_baseline_id"], result["selected_candidate_id"]) == expected
+    assert result["comparison"]["comparable"] is (len(params) == 1)
+    if len(params) == 2:
+        assert result["comparison"]["status"] == "not_comparable"
+
+
+async def test_no_comparable_pair_keeps_safe_mismatch_display(tmp_path):
+    api = _fixture(tmp_path)
+    _add_report(tmp_path, "baseline", _dated_report("baseline", 1))
+    _add_report(tmp_path, "different", _dated_report("candidate", 2, query_mode="different_query"))
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=api), base_url="http://test") as client:
+        result = (await client.get("/commerce/retrieval-evaluation")).json()
+    assert (result["selected_baseline_id"], result["selected_candidate_id"]) == ("baseline", "different")
+    assert result["comparison"]["status"] == "not_comparable"
+
+
+@pytest.mark.parametrize("parameters,expected", [
+    ({"latency_scope": "replay_after_frozen_real_retrieval", "external_services": False}, "replay_after_frozen_real_retrieval"),
+    ({"latency_scope": "offline"}, "offline"),
+    ({"external_services": False}, "offline"),
+    ({"latency_scope": "untrusted_value", "external_services": True}, "unknown"),
+    ({}, "unknown"),
+])
+async def test_public_latency_scope_is_allowlisted_without_private_parameters(tmp_path, parameters, expected):
+    api = _fixture(tmp_path)
+    report = _dated_report("baseline", 1)
+    report["parameters_safe"] = {**parameters, "private_api_key": "private-example-do-not-expose"}
+    _add_report(tmp_path, "baseline", report)
+    async with httpx.AsyncClient(transport=httpx.ASGITransport(app=api), base_url="http://test") as client:
+        response = await client.get("/commerce/retrieval-evaluation")
+    result = response.json()
+    assert result["reports"][0]["latency_scope"] == expected
+    assert result["reports"][0]["scope"] == "diagnostic"
+    assert "parameters_safe" not in result["reports"][0]
+    assert "private-example" not in response.text
+
+
 async def test_strict_mode_requires_authorized_metrics_reader(tmp_path):
     api = _fixture(tmp_path)
     policy = IdentityPolicy(mode="hmac", secret="evaluation-test-secret-at-least-32-bytes")

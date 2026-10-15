@@ -79,7 +79,7 @@ it.each(["diagnostic", "not_comparable"] as const)("%s 即使携带 passed 字�
   await render(vi.fn().mockResolvedValue(data));
   expect(host.querySelector(".status-passed")).toBeNull();
   expect(host.querySelector(".is-pass")).toBeNull();
-  expect(host.textContent).toContain(state === "diagnostic" ? "离线诊断，不能验收当前模型优化" : "报告不可比");
+  expect(host.textContent).toContain(state === "diagnostic" ? "诊断对照，尚未完成正式验收" : "报告不可比");
   expect(host.textContent).toContain("65.0%");
 });
 

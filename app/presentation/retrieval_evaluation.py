@@ -85,15 +85,41 @@ def _dashboard(
         raise HTTPException(status_code=404, detail="所选评测报告不存在或不可用")
     # 无显式选择时优先展示已有测量；正式待测报告仍保留在列表中。
     reports.sort(key=lambda item: (str(item.get("created_at", "")), item["id"]))
-    baseline_options = [item for item in reports if item.get("role") == "baseline"]
+    baseline_options = [item for item in reversed(reports) if item.get("role") == "baseline"]
     measured_baselines = [item for item in baseline_options if item.get("status") == "completed"]
     default_baseline = next(iter(measured_baselines or baseline_options or reports), None)
-    selected_baseline = baseline_id or (default_baseline["id"] if default_baseline else None)
     candidate_options = [item for item in reversed(reports)
-                         if item.get("role") == "candidate" and item["id"] != selected_baseline]
+                         if item.get("role") == "candidate" and item["id"] != baseline_id]
     measured_candidates = [item for item in candidate_options if item.get("status") == "completed"]
     default_candidate = next(iter(measured_candidates or candidate_options), None)
+    selected_baseline = baseline_id or (default_baseline["id"] if default_baseline else None)
     selected_candidate = candidate_id or (default_candidate["id"] if default_candidate else None)
+
+    def matching_pair(before_id: str, after_id: str) -> bool:
+        before, after = validated[before_id], validated[after_id]
+        if before["status"] != "completed" or after["status"] != "completed":
+            return False
+        try:
+            comparable = compare_reports(before, after, standard)["comparable"]
+            if before["scope"] == after["scope"] == "formal":
+                comparable = comparable and not _frozen_baseline_mismatches(before, frozen_definition)
+            return bool(comparable)
+        except (ValueError, TypeError, KeyError, AttributeError, RecursionError):
+            return False
+
+    # 仅替用户补全未选的一侧。多轮报告按最新候选优先，不能混用旧数据/模型口径。
+    if baseline_id is not None and candidate_id is None:
+        selected_candidate = next((item["id"] for item in measured_candidates
+                                   if matching_pair(baseline_id, item["id"])), selected_candidate)
+    elif candidate_id is not None and baseline_id is None:
+        selected_baseline = next((item["id"] for item in measured_baselines
+                                  if matching_pair(item["id"], candidate_id)), selected_baseline)
+    elif baseline_id is None and candidate_id is None:
+        latest_pair = next(((before["id"], after["id"])
+                            for after in measured_candidates for before in measured_baselines
+                            if matching_pair(before["id"], after["id"])), None)
+        if latest_pair is not None:
+            selected_baseline, selected_candidate = latest_pair
     comparison: dict[str, Any] = {
         "status": "pending", "scope": None, "comparable": False, "metrics": [], "cases": [],
         "reasons": ["需要两份可比较的评测报告；冻结定义不代表已运行基线"],
@@ -146,6 +172,14 @@ def _report_public(report_id: str, report: dict[str, Any]) -> dict[str, Any]:
     for key in ("label", "protocol", "status", "scope", "role", "created_at", "standard_id", "variant"):
         if isinstance(report.get(key), str):
             result[key] = report[key][:200]
+    parameters = report.get("parameters_safe")
+    parameters = parameters if isinstance(parameters, dict) else {}
+    if parameters.get("latency_scope") == "replay_after_frozen_real_retrieval":
+        result["latency_scope"] = "replay_after_frozen_real_retrieval"
+    elif parameters.get("latency_scope") == "offline" or parameters.get("external_services") is False:
+        result["latency_scope"] = "offline"
+    else:
+        result["latency_scope"] = "unknown"
     return result
 
 

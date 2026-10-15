@@ -1,0 +1,15 @@
+{
+  "source_root": "E:\\laboratory\\code\\globex-agent\\eval\\verification\\retrieval-algorithm-20261014-231640\\source-before",
+  "catalog": "E:\\laboratory\\code\\globex-agent\\eval\\verification\\retrieval-algorithm-20261014-231640\\source-before\\data\\catalog-v3.jsonl",
+  "dataset": "E:\\laboratory\\code\\globex-agent\\eval\\verification\\retrieval-algorithm-20261014-231640\\source-before\\eval\\v2\\product_retrieval.jsonl",
+  "imported_usecase": "E:\\laboratory\\code\\globex-agent\\eval\\verification\\retrieval-algorithm-20261014-231640\\source-before\\app\\application\\usecases\\catalog_search.py",
+  "manifest": {
+    "provided": true,
+    "verified": true,
+    "sha256": "40ac36e5c9b018bb28a33286cdf589e43d1ce1538c37253ea5d4c03fd18ffe9e",
+    "file_count": 183
+  },
+  "python": "E:\\anaconda3\\envs\\globex\\python.exe",
+  "source_sha256": "5c3ed6b290dddd6e336143fcb2be91df4a2bff88e88ca1ac4d8f1701da4c8acb",
+  "external_services": false
+}

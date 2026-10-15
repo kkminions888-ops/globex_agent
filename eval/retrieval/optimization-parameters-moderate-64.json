@@ -1,0 +1,13 @@
+{
+  "id": "moderate-64",
+  "field_weights": {
+    "title": 2,
+    "brand": 1.5,
+    "model": 3,
+    "category": 1,
+    "description": 1,
+    "highlights": 1,
+    "material": 1
+  },
+  "recall_candidates": 64
+}

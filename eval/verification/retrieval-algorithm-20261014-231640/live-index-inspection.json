@@ -1,0 +1,38 @@
+{
+  "status": "complete",
+  "created_at": "2026-10-14T15:26:18.906680+00:00",
+  "original_index_before": {
+    ".lock": "67a987c432005e3afcc13a871b3ddabaeee0f4504058da65b0769016d3083b44",
+    "collection/globex_products/storage.sqlite": "7ad729c01b67c968254250c946784852edfe3e081781e9681f95561adb5b65ea",
+    "meta.json": "00c74bd53003ef4b28a8af9e2bc0909711d7a87163206473d1e564960d6d0f40"
+  },
+  "external_api_calls": 0,
+  "copied_collection": "globex_products",
+  "catalog_sha256": "a735003f34b11093097e2728d1003fc63ca63302e938e997f0fd5014cebec6fe",
+  "copy_scope": [
+    "meta.json",
+    "collection/globex_products/"
+  ],
+  "note": "仅商品集合隔离副本；不创建或更新商品向量，不连接原索引。",
+  "product_count": 3700,
+  "existing_points": 3700,
+  "reusable_products": 3700,
+  "missing_or_stale_products": 0,
+  "embedding_identity": "56a39362caae8f4ebafba8f324e9163a57fa2c8c1d02e3aea794c8a8f07813e1",
+  "dimension": 1024,
+  "isolated_files": {
+    "collection/globex_products/storage.sqlite": "7ad729c01b67c968254250c946784852edfe3e081781e9681f95561adb5b65ea",
+    "meta.json": "00c74bd53003ef4b28a8af9e2bc0909711d7a87163206473d1e564960d6d0f40"
+  },
+  "credential_fields_available": {
+    "EMBEDDING_API_KEY": true,
+    "EMBEDDING_BASE_URL": true,
+    "EMBEDDING_MODEL": true
+  },
+  "original_index_after": {
+    ".lock": "67a987c432005e3afcc13a871b3ddabaeee0f4504058da65b0769016d3083b44",
+    "collection/globex_products/storage.sqlite": "7ad729c01b67c968254250c946784852edfe3e081781e9681f95561adb5b65ea",
+    "meta.json": "00c74bd53003ef4b28a8af9e2bc0909711d7a87163206473d1e564960d6d0f40"
+  },
+  "original_index_unchanged": true
+}

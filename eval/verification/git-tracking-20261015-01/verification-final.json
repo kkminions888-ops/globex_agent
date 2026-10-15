@@ -1,0 +1,32 @@
+{
+  "captured_at": "2026-10-15T12:57:03.063729+08:00",
+  "untracked_generated_files": 404,
+  "untracked_bytes": 23672670,
+  "all_local_files_preserved": true,
+  "local_missing_files": [],
+  "file_metadata_changed": [],
+  "exact_index_removal": true,
+  "only_intended_changes_staged": true,
+  "protected_files_still_tracked": {
+    "data/catalog-v1.jsonl": true,
+    "data/catalog-v2.jsonl": true,
+    "data/catalog-v3.jsonl": true,
+    "eval/v2/product_retrieval.jsonl": true,
+    "eval/retrieval/standard-v1.json": true,
+    "eval/retrieval/baseline-v1.json": true,
+    "app/application/usecases/catalog_search.py": true,
+    "frontend/src/components/RetrievalEvaluation.tsx": true,
+    "tests/test_retrieval_evaluation_routes.py": true
+  },
+  "ignore_rules_match_examples": true,
+  "ignored_examples": [
+    "eval/verification/retrieval-algorithm-20261014-231640/source-before/app/domain/catalog/product.py",
+    "eval/verification/retrieval-algorithm-20261014-231640/isolated-live-index/qdrant/meta.json",
+    "eval/verification/retrieval-algorithm-20261014-231640/live-query-vectors.json",
+    "eval/verification/ht03/dummy.json",
+    "frontend/tsconfig.tsbuildinfo"
+  ],
+  "git_head_unchanged": true,
+  "protected_paths_not_ignored": true,
+  "verification_note": "首次文本stdin在Windows被转换为CRLF，路径尾部含CR，改用NUL分隔复核，原输出保留在runtime/verification-first.json"
+}

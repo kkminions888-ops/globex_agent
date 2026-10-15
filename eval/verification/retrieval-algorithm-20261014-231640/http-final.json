@@ -1,0 +1,9 @@
+{
+  "status": 200,
+  "report_count": 18,
+  "baseline": "live-dense-baseline-holdout",
+  "candidate": "live-dense-final-candidate-holdout",
+  "comparison": "diagnostic",
+  "comparable": true,
+  "warnings": []
+}

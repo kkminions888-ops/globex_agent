@@ -41,6 +41,7 @@ def _catalog_path() -> Path:
 def _source_fingerprint() -> dict:
     names = ("app/application/usecases/catalog_search.py", "app/application/tools/product_search_tool.py",
              "app/domain/catalog/product.py", "app/domain/catalog/product_search_spec.py",
+             "app/domain/catalog/product_attributes.py", "app/infrastructure/settings.py", "app/composition.py",
              "app/infrastructure/retrieval/bm25.py", "app/infrastructure/vector/qdrant_product_index.py",
              "app/infrastructure/embedding/openai_embedding_client.py", "app/infrastructure/rerank/http_reranker.py",
              "app/infrastructure/rerank/factory.py", "app/infrastructure/persistence/seed_products.py", "uv.lock")
@@ -57,6 +58,7 @@ def _evaluator_fingerprint() -> dict:
 def _safe_config() -> dict:
     settings = load_settings(require_llm_key=False)
     fields = ("embedding_model", "embedding_dim", "embedding_version", "hybrid_recall_enabled",
+              "field_lexical_enabled", "field_lexical_weights",
               "hybrid_lexical_weight", "hybrid_vector_weight", "recall_candidates", "reranker_mode",
               "reranker_model", "reranker_protocol", "reranker_timeout_seconds", "qdrant_collection")
     safe = {field: getattr(settings, field) for field in fields}

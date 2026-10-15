@@ -1,0 +1,17 @@
+{
+  "id": "optimization-synthetic-contract-v1",
+  "scope": "synthetic_contract",
+  "files": {
+    "optimization-contract-catalog-v1.jsonl": "d68c340c671595d755daccaeafaf605224ccfc3f54a97d4d441341859510d5c0",
+    "optimization-contract-queries-v1.jsonl": "6b0b194b371142fc1c771fe9c8c70c159d11c7640da20cda962869d099c990b4"
+  },
+  "catalog_count": 12,
+  "case_count": 18,
+  "label_note": "合成契约，人工固定字段事实与预期；没有生产商品、买家数据或模型生成标签。冻结在基线/候选测量前，不按结果改gold。",
+  "static_rates_to_cny": {
+    "CNY": 1,
+    "USD": 7.1
+  },
+  "unknown_weight_rule": "0表示未知；max_weight_kg必须已知且大于0；不得把未知当轻便。",
+  "split_note": "dev仅一个SKU开发契约，holdout其余。不是正式泛化集，严禁宣称人工商品金标或生产效果。"
+}

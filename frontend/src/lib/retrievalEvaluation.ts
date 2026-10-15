@@ -16,6 +16,7 @@ export type EvaluationReport = {
   scope: "formal" | "diagnostic";
   role: "baseline" | "candidate";
   standard_id?: string;
+  latency_scope?: "offline" | "replay_after_frozen_real_retrieval";
   provenance: Record<string, unknown>;
   summary: {
     ndcg_at_5?: number | null;

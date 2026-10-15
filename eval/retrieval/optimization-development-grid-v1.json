@@ -1,0 +1,97 @@
+{
+  "id": "optimization-development-grid-v1",
+  "frozen_before_measurement": true,
+  "split": "dev",
+  "guardrails": {
+    "recall_min_delta": -0.01,
+    "precision_min_delta": 0
+  },
+  "selection_order": [
+    "ndcg_at_5_desc",
+    "returned_precision_desc",
+    "recall_at_5_desc",
+    "recall_candidates_asc",
+    "configuration_id_asc"
+  ],
+  "note": "三组专家预设字段权重和两档候选预算；只使用18个dev查询，不称全局最优。",
+  "configurations": [
+    {
+      "id": "flat-32",
+      "field_weights": {
+        "title": 1,
+        "brand": 1,
+        "model": 1,
+        "category": 1,
+        "description": 1,
+        "highlights": 1,
+        "material": 1
+      },
+      "recall_candidates": 32
+    },
+    {
+      "id": "flat-64",
+      "field_weights": {
+        "title": 1,
+        "brand": 1,
+        "model": 1,
+        "category": 1,
+        "description": 1,
+        "highlights": 1,
+        "material": 1
+      },
+      "recall_candidates": 64
+    },
+    {
+      "id": "focused-32",
+      "field_weights": {
+        "title": 3,
+        "brand": 2,
+        "model": 4,
+        "category": 1.5,
+        "description": 1,
+        "highlights": 1,
+        "material": 1.5
+      },
+      "recall_candidates": 32
+    },
+    {
+      "id": "focused-64",
+      "field_weights": {
+        "title": 3,
+        "brand": 2,
+        "model": 4,
+        "category": 1.5,
+        "description": 1,
+        "highlights": 1,
+        "material": 1.5
+      },
+      "recall_candidates": 64
+    },
+    {
+      "id": "moderate-32",
+      "field_weights": {
+        "title": 2,
+        "brand": 1.5,
+        "model": 3,
+        "category": 1,
+        "description": 1,
+        "highlights": 1,
+        "material": 1
+      },
+      "recall_candidates": 32
+    },
+    {
+      "id": "moderate-64",
+      "field_weights": {
+        "title": 2,
+        "brand": 1.5,
+        "model": 3,
+        "category": 1,
+        "description": 1,
+        "highlights": 1,
+        "material": 1
+      },
+      "recall_candidates": 64
+    }
+  ]
+}

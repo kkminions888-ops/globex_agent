@@ -1,0 +1,831 @@
+{
+  "report_id": "algorithm-before-contract-keyword-02",
+  "provenance": {
+    "catalog_sha256": "d68c340c671595d755daccaeafaf605224ccfc3f54a97d4d441341859510d5c0",
+    "dataset_sha256": "6b0b194b371142fc1c771fe9c8c70c159d11c7640da20cda962869d099c990b4",
+    "selection_sha256": "8586c5ec2849edf070134e6d2ce0ea094ffc80d73a5ed6a536bda762423f99f9",
+    "source_sha256": "5c3ed6b290dddd6e336143fcb2be91df4a2bff88e88ca1ac4d8f1701da4c8acb",
+    "standard_sha256": "f5cc0518b6a0733fe46ee5f40805b03e9829cd0b319d2bdaf9e741122c13ed0d",
+    "evaluator_sha256": "25c31e0eef3a379ed3ed988eb23ee4ad5eb7fc92f3f5e219a93f1e8f99f1ec7e",
+    "config_sha256": "3d56c692083eb46b8176384946d7bef596f92c7ac40f1c322858b89625538e21",
+    "embedding_identity": "none:lexical",
+    "query_mode": "structured_spec",
+    "k": 5,
+    "split": "all",
+    "repetitions": 1,
+    "catalog_count": 12,
+    "sku_count": 16,
+    "case_count": 18
+  },
+  "scope": "diagnostic",
+  "label_source": "synthetic_contract",
+  "summary": {
+    "mrr_at_5": 0.7777777777777778,
+    "candidate_recall": null,
+    "candidate_trace_case_count": 0,
+    "duplicate_rate": 0.06666666666666667,
+    "display_price_consistency": {
+      "checks": 15,
+      "violations": 0,
+      "satisfaction": 1
+    },
+    "sku_spec_constraint": {
+      "checks": 2,
+      "violations": 2,
+      "satisfaction": 0
+    },
+    "selected_sku_identity": {
+      "checks": 2,
+      "violations": 1,
+      "satisfaction": 0.5
+    },
+    "product_type_constraint": {
+      "checks": 2,
+      "violations": 1,
+      "satisfaction": 0.5
+    },
+    "weight_constraint": {
+      "checks": 3,
+      "violations": 2,
+      "satisfaction": 0.3333333333333333
+    },
+    "budget_false_exclusion_rate": 0.5,
+    "budget_eligible_gold_product_count": 4,
+    "budget_false_excluded_count": 2,
+    "unsupported_constraint_cases": 7,
+    "contract_expectation_accuracy": 0.6111111111111112,
+    "rerank_calls": 0,
+    "external_api_calls": 0,
+    "call_cost": {
+      "amount": 0,
+      "currency": "CNY",
+      "scope": "offline_no_external_api"
+    }
+  },
+  "cases": [
+    {
+      "id": "contract-second-cheaper",
+      "kind": "contract",
+      "family": "sku",
+      "mrr_at_5": 0.0,
+      "duplicate_count": 0,
+      "displayed_count": 0,
+      "display_price_checks": [],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": false,
+      "budget_eligible_gold_product_count": 1,
+      "budget_false_excluded_product_ids": [
+        "P9001"
+      ],
+      "unsupported_constraints": [],
+      "retrieved": [],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-exact-expensive-sku",
+      "kind": "empty",
+      "family": "sku",
+      "mrr_at_5": null,
+      "duplicate_count": 0,
+      "displayed_count": 0,
+      "display_price_checks": [],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-exact-cheap-sku",
+      "kind": "contract",
+      "family": "sku",
+      "mrr_at_5": 1.0,
+      "duplicate_count": 0,
+      "displayed_count": 1,
+      "display_price_checks": [
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [
+        true
+      ],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 1,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P9001",
+          "canonical_product_id": "CAN-P9001",
+          "default_sku_id": "P9001-S2",
+          "price_major": 180.0,
+          "currency": "CNY",
+          "score": 1.0
+        }
+      ],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-spec-blue",
+      "kind": "contract",
+      "family": "sku",
+      "mrr_at_5": 1.0,
+      "duplicate_count": 0,
+      "displayed_count": 1,
+      "display_price_checks": [
+        true
+      ],
+      "sku_spec_checks": [
+        false
+      ],
+      "selected_sku_checks": [
+        false
+      ],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": false,
+      "budget_eligible_gold_product_count": 1,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [
+        "sku_spec"
+      ],
+      "retrieved": [
+        {
+          "product_id": "P9002",
+          "canonical_product_id": "CAN-P9002",
+          "default_sku_id": "P9002-S1",
+          "price_major": 160.0,
+          "currency": "CNY",
+          "score": 1.0
+        }
+      ],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-spec-absent",
+      "kind": "empty",
+      "family": "sku",
+      "mrr_at_5": null,
+      "duplicate_count": 0,
+      "displayed_count": 1,
+      "display_price_checks": [
+        true
+      ],
+      "sku_spec_checks": [
+        false
+      ],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": false,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [
+        "sku_spec"
+      ],
+      "retrieved": [
+        {
+          "product_id": "P9002",
+          "canonical_product_id": "CAN-P9002",
+          "default_sku_id": "P9002-S1",
+          "price_major": 160.0,
+          "currency": "CNY",
+          "score": 1.0
+        }
+      ],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-exchange-second-cheaper",
+      "kind": "contract",
+      "family": "sku",
+      "mrr_at_5": 0.0,
+      "duplicate_count": 0,
+      "displayed_count": 0,
+      "display_price_checks": [],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": false,
+      "budget_eligible_gold_product_count": 1,
+      "budget_false_excluded_product_ids": [
+        "P9003"
+      ],
+      "unsupported_constraints": [],
+      "retrieved": [],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-out-of-stock-cheap",
+      "kind": "empty",
+      "family": "sku",
+      "mrr_at_5": null,
+      "duplicate_count": 0,
+      "displayed_count": 0,
+      "display_price_checks": [],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-budget-too-low",
+      "kind": "empty",
+      "family": "sku",
+      "mrr_at_5": null,
+      "duplicate_count": 0,
+      "displayed_count": 0,
+      "display_price_checks": [],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-backpack-type",
+      "kind": "contract",
+      "family": "type",
+      "mrr_at_5": 1.0,
+      "duplicate_count": 0,
+      "displayed_count": 1,
+      "display_price_checks": [
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [
+        true
+      ],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [
+        "product_type"
+      ],
+      "retrieved": [
+        {
+          "product_id": "P9001",
+          "canonical_product_id": "CAN-P9001",
+          "default_sku_id": "P9001-S1",
+          "price_major": 420.0,
+          "currency": "CNY",
+          "score": 1.0
+        }
+      ],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-type-negative",
+      "kind": "empty",
+      "family": "type",
+      "mrr_at_5": null,
+      "duplicate_count": 0,
+      "displayed_count": 1,
+      "display_price_checks": [
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [
+        false
+      ],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": false,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [
+        "product_type"
+      ],
+      "retrieved": [
+        {
+          "product_id": "P9005",
+          "canonical_product_id": "CAN-P9005",
+          "default_sku_id": "P9005-S1",
+          "price_major": 100.0,
+          "currency": "CNY",
+          "score": 1.0
+        }
+      ],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-known-light",
+      "kind": "contract",
+      "family": "weight",
+      "mrr_at_5": 1.0,
+      "duplicate_count": 0,
+      "displayed_count": 1,
+      "display_price_checks": [
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [
+        true
+      ],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [
+        "max_weight_kg"
+      ],
+      "retrieved": [
+        {
+          "product_id": "P9001",
+          "canonical_product_id": "CAN-P9001",
+          "default_sku_id": "P9001-S1",
+          "price_major": 420.0,
+          "currency": "CNY",
+          "score": 1.0
+        }
+      ],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-unknown-weight",
+      "kind": "empty",
+      "family": "weight",
+      "mrr_at_5": null,
+      "duplicate_count": 0,
+      "displayed_count": 1,
+      "display_price_checks": [
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [
+        false
+      ],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": false,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [
+        "max_weight_kg"
+      ],
+      "retrieved": [
+        {
+          "product_id": "P9007",
+          "canonical_product_id": "CAN-P9007",
+          "default_sku_id": "P9007-S1",
+          "price_major": 80.0,
+          "currency": "CNY",
+          "score": 1.0
+        }
+      ],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-overweight",
+      "kind": "empty",
+      "family": "weight",
+      "mrr_at_5": null,
+      "duplicate_count": 0,
+      "displayed_count": 1,
+      "display_price_checks": [
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [
+        false
+      ],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": false,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [
+        "max_weight_kg"
+      ],
+      "retrieved": [
+        {
+          "product_id": "P9008",
+          "canonical_product_id": "CAN-P9008",
+          "default_sku_id": "P9008-S1",
+          "price_major": 80.0,
+          "currency": "CNY",
+          "score": 1.0
+        }
+      ],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-material-positive",
+      "kind": "contract",
+      "family": "material",
+      "mrr_at_5": 1.0,
+      "duplicate_count": 0,
+      "displayed_count": 1,
+      "display_price_checks": [
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P9005",
+          "canonical_product_id": "CAN-P9005",
+          "default_sku_id": "P9005-S1",
+          "price_major": 100.0,
+          "currency": "CNY",
+          "score": 1.0
+        }
+      ],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-material-negative",
+      "kind": "empty",
+      "family": "material",
+      "mrr_at_5": null,
+      "duplicate_count": 0,
+      "displayed_count": 0,
+      "display_price_checks": [],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-shipping-positive",
+      "kind": "contract",
+      "family": "shipping",
+      "mrr_at_5": 1.0,
+      "duplicate_count": 0,
+      "displayed_count": 1,
+      "display_price_checks": [
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P9001",
+          "canonical_product_id": "CAN-P9001",
+          "default_sku_id": "P9001-S1",
+          "price_major": 420.0,
+          "currency": "CNY",
+          "score": 1.0
+        }
+      ],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-shipping-negative",
+      "kind": "empty",
+      "family": "shipping",
+      "mrr_at_5": null,
+      "duplicate_count": 0,
+      "displayed_count": 0,
+      "display_price_checks": [],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [],
+      "recall_strategy": "exact_id_lookup",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    },
+    {
+      "id": "contract-deduplicate",
+      "kind": "contract",
+      "family": "duplicate",
+      "mrr_at_5": 1.0,
+      "duplicate_count": 1,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P9010",
+          "canonical_product_id": "CAN-DUP",
+          "default_sku_id": "P9010-S1",
+          "price_major": 120.0,
+          "currency": "CNY",
+          "score": 5.0
+        },
+        {
+          "product_id": "P9011",
+          "canonical_product_id": "CAN-DUP",
+          "default_sku_id": "P9011-S1",
+          "price_major": 121.0,
+          "currency": "CNY",
+          "score": 5.0
+        },
+        {
+          "product_id": "P9012",
+          "canonical_product_id": "CAN-P9012",
+          "default_sku_id": "P9012-S1",
+          "price_major": 119.0,
+          "currency": "CNY",
+          "score": 5.0
+        },
+        {
+          "product_id": "P9001",
+          "canonical_product_id": "CAN-P9001",
+          "default_sku_id": "P9001-S1",
+          "price_major": 420.0,
+          "currency": "CNY",
+          "score": 1.0
+        },
+        {
+          "product_id": "P9002",
+          "canonical_product_id": "CAN-P9002",
+          "default_sku_id": "P9002-S1",
+          "price_major": 160.0,
+          "currency": "CNY",
+          "score": 1.0
+        }
+      ],
+      "recall_strategy": "keyword_2gram",
+      "rerank_applied": false,
+      "retrieval_stages": {}
+    }
+  ],
+  "slices": {
+    "contract": {
+      "quality": {
+        "ndcg_at_5": 0.7688578654609097,
+        "recall_at_5": 0.7777777777777778,
+        "returned_precision": 0.7111111111111111,
+        "empty_accuracy": null,
+        "hard_constraint_violations": {
+          "budget": 0,
+          "material": 0,
+          "shipping": 0
+        },
+        "constraint_case_counts": {
+          "budget": 4,
+          "material": 1,
+          "shipping": 1
+        },
+        "hard_constraint_case_failures": {
+          "budget": 0,
+          "material": 0,
+          "shipping": 0
+        },
+        "constraint_positive_case_counts": {
+          "budget": 4,
+          "material": 1,
+          "shipping": 1
+        },
+        "hard_constraint_violation_rate": 0.0,
+        "positive_cases": 9,
+        "empty_cases": 0,
+        "p95_ms": 0.5893999914405867
+      },
+      "additional": {
+        "mrr_at_5": 0.7777777777777778,
+        "candidate_recall": null,
+        "candidate_trace_case_count": 0,
+        "duplicate_rate": 0.09090909090909091,
+        "display_price_consistency": {
+          "checks": 11,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "sku_spec_constraint": {
+          "checks": 1,
+          "violations": 1,
+          "satisfaction": 0
+        },
+        "selected_sku_identity": {
+          "checks": 2,
+          "violations": 1,
+          "satisfaction": 0.5
+        },
+        "product_type_constraint": {
+          "checks": 1,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "weight_constraint": {
+          "checks": 1,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "budget_false_exclusion_rate": 0.5,
+        "budget_eligible_gold_product_count": 4,
+        "budget_false_excluded_count": 2,
+        "unsupported_constraint_cases": 3,
+        "contract_expectation_accuracy": 0.6666666666666666,
+        "rerank_calls": 0,
+        "external_api_calls": 0,
+        "call_cost": {
+          "amount": 0,
+          "currency": "CNY",
+          "scope": "offline_no_external_api"
+        }
+      }
+    },
+    "empty": {
+      "quality": {
+        "ndcg_at_5": null,
+        "recall_at_5": null,
+        "returned_precision": null,
+        "empty_accuracy": 0.5555555555555556,
+        "hard_constraint_violations": {
+          "budget": 0,
+          "material": 0,
+          "shipping": 0
+        },
+        "constraint_case_counts": {
+          "budget": 4,
+          "material": 1,
+          "shipping": 1
+        },
+        "hard_constraint_case_failures": {
+          "budget": 0,
+          "material": 0,
+          "shipping": 0
+        },
+        "constraint_positive_case_counts": {
+          "budget": 0,
+          "material": 0,
+          "shipping": 0
+        },
+        "hard_constraint_violation_rate": 0.0,
+        "positive_cases": 0,
+        "empty_cases": 9,
+        "p95_ms": 0.06730000313837081
+      },
+      "additional": {
+        "mrr_at_5": null,
+        "candidate_recall": null,
+        "candidate_trace_case_count": 0,
+        "duplicate_rate": 0.0,
+        "display_price_consistency": {
+          "checks": 4,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "sku_spec_constraint": {
+          "checks": 1,
+          "violations": 1,
+          "satisfaction": 0
+        },
+        "selected_sku_identity": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "product_type_constraint": {
+          "checks": 1,
+          "violations": 1,
+          "satisfaction": 0
+        },
+        "weight_constraint": {
+          "checks": 2,
+          "violations": 2,
+          "satisfaction": 0
+        },
+        "budget_false_exclusion_rate": null,
+        "budget_eligible_gold_product_count": 0,
+        "budget_false_excluded_count": 0,
+        "unsupported_constraint_cases": 4,
+        "contract_expectation_accuracy": 0.5555555555555556,
+        "rerank_calls": 0,
+        "external_api_calls": 0,
+        "call_cost": {
+          "amount": 0,
+          "currency": "CNY",
+          "scope": "offline_no_external_api"
+        }
+      }
+    }
+  },
+  "limitations": [
+    "价格一致率只核对展示默认SKU；不证明付款或实时汇率。",
+    "预算错误排除率只统计明确over_price_cap拒绝；未召回不归因预算。",
+    "无向量服务时field_hybrid为字段词法诊断，不能声称Hybrid/Dense收益。"
+  ]
+}

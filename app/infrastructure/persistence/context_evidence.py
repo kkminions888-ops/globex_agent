@@ -116,7 +116,7 @@ class ContextEvidenceStore:
 
 def product_decision_view(result: dict) -> dict:
     """保留决策所需标识、顺序、价格、库存、配送和硬约束，剔除展示冗余。"""
-    fields = ("product_id", "title", "brand", "category", "price_major", "currency", "source_price_major", "source_currency", "skus", "landed_price", "material_tags", "ships_to", "highlights", "default_sku_id", "canonical_product_id", "weight_kg", "dimensions_cm", "origin_country", "source_platform")
+    fields = ("product_id", "title", "brand", "category", "price_major", "currency", "source_price_major", "source_currency", "skus", "landed_price", "material_tags", "ships_to", "highlights", "default_sku_id", "canonical_product_id", "weight_kg", "known_weight_kg", "product_type", "eligible_sku_ids", "dimensions_cm", "origin_country", "source_platform")
     return {**{k: v for k, v in result.items() if k != "hits"}, "hits": [
         {k: hit[k] for k in fields if k in hit} for hit in result.get("hits", [])
     ]}

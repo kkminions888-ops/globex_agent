@@ -1,3 +1,0 @@
-E:/anaconda3/envs/globex/python.exe -m scripts.eval.harness run --suite eval/harness/v1/suite.json --profile smoke --strategies current,candidate --output eval/verification/harness-startup-20261011-02
-HTML: E:\laboratory\code\globex-agent\eval\verification\harness-startup-20261011-02\report.html
-mingw32-make: *** [Makefile:10: eval-harness] Error 2

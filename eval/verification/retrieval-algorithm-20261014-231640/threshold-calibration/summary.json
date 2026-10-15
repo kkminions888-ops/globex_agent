@@ -1,0 +1,90 @@
+{
+  "status": "completed",
+  "scope": "diagnostic_parameter_ablation",
+  "selected_threshold": 0.0,
+  "embedding_identity": "56a39362caae8f4ebafba8f324e9163a57fa2c8c1d02e3aea794c8a8f07813e1",
+  "source_sha256": "3f28502d571e5ac00c4b09cd511411fabc2c6b8567530f0918dc3831e8676228",
+  "evaluator_sha256": "ffe50e13503dd5c81cfc38ed5a8787c513eec71d5a716c97dac2da72f9691b76",
+  "external_api_calls": 0,
+  "rerank_calls": 0,
+  "holdout": {
+    "passed": true,
+    "complete_without_errors_or_degradation": true,
+    "deltas": {
+      "ndcg_at_5": 0.0,
+      "returned_precision": 0.0,
+      "empty_accuracy": 0,
+      "recall_at_5": 0.0
+    },
+    "protected_metrics": {
+      "ndcg_min_delta": 0.0,
+      "precision_min_delta": 0.0,
+      "empty_accuracy_min_delta": 0.0,
+      "recall_min_delta": -0.01
+    },
+    "baseline": {
+      "ndcg_at_5": 0.9032805166002897,
+      "recall_at_5": 0.9895833333333334,
+      "returned_precision": 0.4375,
+      "empty_accuracy": 1,
+      "hard_constraint_violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "constraint_case_counts": {
+        "budget": 6,
+        "material": 0,
+        "shipping": 54
+      },
+      "hard_constraint_case_failures": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "constraint_positive_case_counts": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 48
+      },
+      "hard_constraint_violation_rate": 0.0,
+      "positive_cases": 48,
+      "empty_cases": 6,
+      "p95_ms": 4.797999994480051
+    },
+    "candidate": {
+      "ndcg_at_5": 0.9032805166002897,
+      "recall_at_5": 0.9895833333333334,
+      "returned_precision": 0.4375,
+      "empty_accuracy": 1,
+      "hard_constraint_violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "constraint_case_counts": {
+        "budget": 6,
+        "material": 0,
+        "shipping": 54
+      },
+      "hard_constraint_case_failures": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "constraint_positive_case_counts": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 48
+      },
+      "hard_constraint_violation_rate": 0.0,
+      "positive_cases": 48,
+      "empty_cases": 6,
+      "p95_ms": 6.491799998912029
+    },
+    "removed_candidate_count": 0,
+    "enable_recommendation": "do_not_enable"
+  },
+  "enable_recommendation": "do_not_enable",
+  "note": "保护门槛通过不等于收益验收；无实际过滤/指标收益时不建议启用。"
+}

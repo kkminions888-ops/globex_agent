@@ -5,9 +5,21 @@ from functools import lru_cache
 import math
 import re
 import unicodedata
+from collections.abc import Mapping
 
 _CJK = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\u3040-\u30ff\u3005\U00020000-\U0002ffff]+")
 _WORD = re.compile(r"[^\W_]+(?:[-_.][^\W_]+)*", re.UNICODE)
+
+# 仅作为实验开发起点；上线调用方须显式选择，经开发集冻结后再验收。
+FIELD_WEIGHTED_BM25_DEFAULT_WEIGHTS = {
+    "title": 3.0,
+    "brand": 2.0,
+    "model": 4.0,
+    "category": 1.5,
+    "description": 1.0,
+    "highlights": 1.0,
+    "material": 1.5,
+}
 
 
 def terms(text: str) -> list[str]:
@@ -69,6 +81,56 @@ def bm25_rank(query: str, products: list, *, k1: float = 1.2, b: float = .75,
               for product, whole, subword in zip(products, word_scores, subword_scores)
               if whole + scale * subword > 0]
     return sorted(scored, key=lambda pair: (-pair[0], pair[1].product_id))
+
+
+def field_weighted_bm25_rank(
+    query: str,
+    products: list,
+    field_weights: Mapping[str, float] | None = None,
+    *,
+    k1: float = 1.2,
+    b: float = .75,
+    subword_weight: float = .25,
+) -> list[tuple[float, object]]:
+    """逐字段 BM25 后加权，保留各字段独立的长度归一化和文档频率。
+
+    显式权重是完整实验配置，未列出的字段不计分；默认值仅是待评测起点。
+    不重复文本放大词频，也不改动现有 ``bm25_rank`` 的排序行为。
+    """
+    weights = dict(FIELD_WEIGHTED_BM25_DEFAULT_WEIGHTS) if field_weights is None else field_weights
+    if not isinstance(weights, Mapping) or set(weights) - set(FIELD_WEIGHTED_BM25_DEFAULT_WEIGHTS):
+        raise ValueError("字段权重必须为已知检索字段的字典")
+    if (not weights or any(type(weight) not in (int, float) or not math.isfinite(weight) or weight < 0
+                           for weight in weights.values()) or not any(weights.values())):
+        raise ValueError("字段权重必须有限、非负且至少一项大于零")
+    if (type(k1) not in (int, float) or not math.isfinite(k1) or k1 <= 0
+            or type(b) not in (int, float) or not math.isfinite(b) or not 0 <= b <= 1
+            or type(subword_weight) not in (int, float) or not math.isfinite(subword_weight)
+            or subword_weight < 0):
+        raise ValueError("BM25 参数须满足 k1>0、0<=b<=1、子词权重非负，且均为有限数")
+    query_words = sorted(set(terms(query)))
+    query_subwords = sorted(set(_subwords(query_words)))
+    scale = subword_weight / max(1, len(query_subwords) / max(1, len(query_words)))
+    documents = [product.searchable_fields() for product in products]
+    scores = [0.0] * len(products)
+    for name in FIELD_WEIGHTED_BM25_DEFAULT_WEIGHTS:
+        weight = weights.get(name, 0)
+        if weight == 0:
+            continue
+        fields = [_document_terms(document.get(name, ""), terms) for document in documents]
+        word_scores = _field_scores(query_words, [field[0] for field in fields], k1=k1, b=b)
+        subword_scores = (
+            _field_scores(query_subwords, [field[1] for field in fields], k1=k1, b=b)
+            if scale and query_subwords else [0.0] * len(products)
+        )
+        for index, (whole, subword) in enumerate(zip(word_scores, subword_scores)):
+            scores[index] += weight * (whole + scale * subword)
+    if not all(math.isfinite(score) for score in scores):
+        raise ValueError("字段加权得分超出有限数值范围，请缩小权重")
+    return sorted(
+        [(score, product) for score, product in zip(scores, products) if score > 0],
+        key=lambda pair: (-pair[0], pair[1].product_id),
+    )
 
 
 def reciprocal_rank_fusion(*rankings: list, k: int = 60, weights=None) -> list:
