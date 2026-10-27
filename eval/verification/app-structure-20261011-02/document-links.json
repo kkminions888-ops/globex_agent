@@ -1,0 +1,22 @@
+[
+  {
+    "document": "app/README.md",
+    "linkCount": 18,
+    "missingLinks": []
+  },
+  {
+    "document": "docs/改动记录/2026-10-11/app结构说明.md",
+    "linkCount": 13,
+    "missingLinks": []
+  },
+  {
+    "document": "docs/改动记录/2026-10-11/README.md",
+    "linkCount": 7,
+    "missingLinks": []
+  },
+  {
+    "document": "docs/改动记录/README.md",
+    "linkCount": 1,
+    "missingLinks": []
+  }
+]

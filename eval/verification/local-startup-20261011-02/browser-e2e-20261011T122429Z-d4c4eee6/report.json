@@ -1,0 +1,120 @@
+{
+  "status": "passed",
+  "started_at_utc": "2026-10-11T12:24:29.648015+00:00",
+  "frontend_url": "http://127.0.0.1:5173",
+  "prompt_sha256": "39d8e7172d6e10454f6bcd09dd18fefe3f8165cb5dd9ec5afa6ab10cf7bfe82e",
+  "prompt_submitted": true,
+  "checks": {
+    "session_opened": "empty_landing",
+    "browser_error_counts_before_submission": {
+      "page": 0,
+      "console": 1
+    },
+    "terminal_snapshot": {
+      "inputReady": true,
+      "newChatEnabled": true,
+      "sendEnabled": false,
+      "running": false,
+      "queryCount": 1,
+      "answerCount": 1,
+      "answerCharacters": 1191,
+      "productCount": 5,
+      "runFinished": true,
+      "runError": false,
+      "eventCount": 21,
+      "eventTypes": [
+        "CUSTOM",
+        "MESSAGES_SNAPSHOT",
+        "RUN_FINISHED",
+        "RUN_STARTED",
+        "STATE_SNAPSHOT",
+        "TEXT_MESSAGE_END",
+        "TEXT_MESSAGE_START",
+        "TOOL_CALL_END",
+        "TOOL_CALL_RESULT",
+        "TOOL_CALL_START"
+      ],
+      "errorPanel": false,
+      "shoppingForm": false,
+      "streamTextWhileRunning": true,
+      "textUpdateCount": 832,
+      "dialogLabel": null,
+      "detailHasPrice": false,
+      "detailHasSpecs": false,
+      "skuPickerVisible": false
+    },
+    "content_wait_seconds": 0.0,
+    "final_snapshot": {
+      "inputReady": true,
+      "newChatEnabled": true,
+      "sendEnabled": false,
+      "running": false,
+      "queryCount": 1,
+      "answerCount": 1,
+      "answerCharacters": 1191,
+      "productCount": 5,
+      "runFinished": true,
+      "runError": false,
+      "eventCount": 21,
+      "eventTypes": [
+        "CUSTOM",
+        "MESSAGES_SNAPSHOT",
+        "RUN_FINISHED",
+        "RUN_STARTED",
+        "STATE_SNAPSHOT",
+        "TEXT_MESSAGE_END",
+        "TEXT_MESSAGE_START",
+        "TOOL_CALL_END",
+        "TOOL_CALL_RESULT",
+        "TOOL_CALL_START"
+      ],
+      "errorPanel": false,
+      "shoppingForm": false,
+      "streamTextWhileRunning": true,
+      "textUpdateCount": 832,
+      "dialogLabel": null,
+      "detailHasPrice": false,
+      "detailHasSpecs": false,
+      "skuPickerVisible": false
+    },
+    "detail": {
+      "dialog_label_is_product_detail": true,
+      "price_visible": true,
+      "specifications_visible": true,
+      "sku_picker_visible": true
+    },
+    "ag_ui_requests": [
+      {
+        "path": "/commerce/ag-ui/run",
+        "method": "POST",
+        "status": 200,
+        "mime_type": "text/event-stream",
+        "data_chunks": 809,
+        "finished": true
+      }
+    ]
+  },
+  "screenshots": [
+    "streaming.png",
+    "results.png",
+    "product-detail.png"
+  ],
+  "health": {
+    "http_status": 200,
+    "status": "ok"
+  },
+  "ag_ui_post_count": 1,
+  "ag_ui_requests": [
+    {
+      "path": "/commerce/ag-ui/run",
+      "method": "POST",
+      "status": 200,
+      "mime_type": "text/event-stream",
+      "data_chunks": 809,
+      "finished": true
+    }
+  ],
+  "page_error_count": 0,
+  "console_error_count": 1,
+  "finished_at_utc": "2026-10-11T12:25:55.193155+00:00"
+}

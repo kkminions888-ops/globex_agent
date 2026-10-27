@@ -1,0 +1,17 @@
+{
+  "api": {
+    "status": 200,
+    "bytes": 21606
+  },
+  "report_count": 3,
+  "comparison_status": "diagnostic",
+  "warnings": [],
+  "proxy": {
+    "status": 200,
+    "bytes": 21606
+  },
+  "page": {
+    "status": 200,
+    "bytes": 799
+  }
+}

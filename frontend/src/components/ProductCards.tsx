@@ -1,6 +1,7 @@
 import { memo, useState } from "react";
 import type { ProductCard } from "../types";
 import Icon from "./Icon";
+import { useProductMedia, ProductImageCaption, type MediaProduct } from "./CatalogMedia";
 import "./compactProductCards.css";
 export function money(value: number, currency: string) {
   if (!Number.isFinite(value)) return "待确认";
@@ -18,12 +19,13 @@ export function ProductImage({
   product,
   className = "",
 }: {
-  product: ProductCard;
+  product: MediaProduct;
   className?: string;
 }) {
-  const [failed, setFailed] = useState(false);
-  // 图片只使用服务端目录来源，不按商品名或 ID 注入前端样例图。
-  if (!product.image_url || failed)
+  const media = useProductMedia(product);
+  const [failedUrl, setFailedUrl] = useState<string | null>(null);
+  // 服务端注册表按精确 ID 补图，不从标题猜测；URL 更新后允许新图片重试。
+  if (!media.url || failedUrl === media.url)
     return (
       <div className={`image-placeholder ${className}`}>
         <Icon name="bag" />
@@ -31,13 +33,16 @@ export function ProductImage({
         <small>暂未提供商品图片</small>
       </div>
     );
+  if (media.cell !== undefined) return <svg className={`catalog-media-image ${className}`} viewBox="0 0 1 1" role="img" aria-label={media.alt}>
+    <image href={media.url} x={-(media.cell % 4)} y={-Math.floor(media.cell / 4)} width="4" height="4" onError={() => setFailedUrl(media.url)} />
+  </svg>;
   return (
     <img
       className={className}
-      src={product.image_url}
-      alt={product.image_alt || product.title}
+      src={media.url}
+      alt={media.alt}
       loading="lazy"
-      onError={() => setFailed(true)}
+      onError={() => setFailedUrl(media.url)}
     />
   );
 }
@@ -91,9 +96,7 @@ function ProductCards({
                 <Icon name="heart" />
               </button>
               <span className="visual-caption">
-                {product.image_kind === "illustration"
-                  ? "商品示意图 · 非实物照片"
-                  : product.image_url ? "商品图片" : "商品图片待补充"}
+                <ProductImageCaption product={product} />
               </span>
             </div>
             <div className="product-body">

@@ -23,6 +23,16 @@ dependencies = [
     "redis>=8.1.0",
     "sqlalchemy[asyncio]>=2.0",
     "uvicorn[standard]>=0.30",
+    "croniter>=6.2.4",
+]
+
+[project.optional-dependencies]
+tokenization = ["transformers>=4.50,<6"]
+retrieval = [
+    "fastembed==0.7.4",
+]
+optimization = [
+    "gepa==0.1.4",
 ]
 
 [project.optional-dependencies]

@@ -58,3 +58,33 @@ frontend/dist/
 /eval/verification/**/runtime/
 # 模型凭据主密钥永不进入版本库（含自定义 DATA_DIR）。
 **/.secrets/
+.research/
+
+# 本机评测生成物：原文件留在本机，不随代码提交；标准/金标/摘要与精选截图仍可版本化。
+/eval/verification/**/*.log
+/eval/verification/**/*.xml
+/eval/verification/**/*.tar
+/eval/verification/**/*.tar.gz
+/eval/verification/**/*.tgz
+/eval/verification/**/*.zip
+/eval/verification/**/*.db
+/eval/verification/**/*.db-*
+/eval/verification/**/*.sqlite
+/eval/verification/**/*.sqlite-*
+/eval/verification/**/*.sqlite3
+/eval/verification/**/*.sqlite3-*
+/eval/verification/**/source-before/
+/eval/verification/**/source-after/
+/eval/verification/**/isolated*/
+/eval/verification/**/runtime*/
+/eval/verification/**/tmp-run-*/
+/eval/verification/**/pytest*/
+/eval/verification/**/test_*/
+/eval/verification/**/qdrant/
+/eval/verification/**/model-cache/
+/eval/verification/**/live-query-vectors.json
+/eval/verification/**/live-query-started.json
+/eval/verification/**/preview-processes*.json
+# 为 Windows 长路径复核建立的短临时目录。
+/eval/verification/hp[0-9]*/
+/eval/verification/ht[0-9]*/

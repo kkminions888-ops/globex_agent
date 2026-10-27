@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-10-11T13:22:41.188720+00:00",
+  "port": 8001,
+  "account": "izhou\\14580",
+  "administrator_token": false,
+  "external_model_request_submitted": false,
+  "startup_completed": true,
+  "http_status": 200,
+  "health_status": "ok",
+  "database": "sqlite",
+  "trade_database": "sqlite",
+  "redis": "disabled",
+  "runtime": {
+    "app_source_sha256": "55f4c7d4ffbfceec7936d7493ece9c451bf9e1687bdc1f94f69462a3a97ec410"
+  },
+  "passed": true,
+  "diagnostic_server_stopped": true,
+  "env_bytes_unchanged": true,
+  "key_bytes_unchanged": true
+}

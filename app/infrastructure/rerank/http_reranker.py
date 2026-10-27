@@ -7,7 +7,11 @@ import time
 import httpx
 from app.domain.catalog.ports.retrieval_ports import Reranker
 from app.infrastructure.settings import Settings
-from app.infrastructure.context_usage import context_call_kind, record_context_usage
+from app.infrastructure.context_usage import (
+    context_call_kind,
+    record_context_diagnostic,
+    record_context_usage,
+)
 
 
 class RerankerServiceError(RuntimeError):
@@ -57,6 +61,7 @@ class HttpReranker(Reranker):
             else {"model": self._model, **inputs, "top_n": len(unique_documents)}
         )
         started, usage = time.monotonic(), {}
+        success, error_code = False, None
         token = context_call_kind.set("rerank")
         try:
             # 不跟随重定向，防止认证头转发至未知主机。
@@ -71,15 +76,17 @@ class HttpReranker(Reranker):
                 response.raise_for_status()
                 try:
                     result = response.json()
-                except ValueError as error:
+                except ValueError:
                     raise RerankerServiceError(
                         "invalid_json",
                         "reranker 返回空响应或无效 JSON；请核对服务地址和协议",
-                    ) from error
+                    ) from None
             if not isinstance(result, dict):
                 raise RerankerServiceError(
                     "invalid_response", "reranker 响应必须是对象"
                 )
+            # 即使候选结构无效，已发生请求的供应商用量也须保留。
+            usage = result.get("usage") or {}
             if (
                 result.get("success") is False
                 or result.get("code")
@@ -93,13 +100,34 @@ class HttpReranker(Reranker):
                     if missing
                     else "reranker 业务错误；请核对服务协议和配置",
                 )
-            usage = result.get("usage") or {}
             container = (
                 result.get("output", {}) if self._protocol == "dashscope" else result
             )
-            scores = validate_scores(container.get("results"), len(unique_documents))
+            if not isinstance(container, dict):
+                raise RerankerServiceError("invalid_response", "reranker output 必须是对象")
+            try:
+                scores = validate_scores(container.get("results"), len(unique_documents))
+            except ValueError:
+                raise RerankerServiceError(
+                    "invalid_scores", "reranker 分数须覆盖全部候选，索引合法且数值有限"
+                ) from None
             by_text = dict(zip(unique_documents, scores))
+            success = True
             return [by_text[document] for document in documents]
+        except httpx.TimeoutException:
+            error_code = "timeout"
+            raise RerankerServiceError(error_code, "reranker 请求超时，保留原候选顺序") from None
+        except httpx.HTTPStatusError as error:
+            error_code = "http_error"
+            raise RerankerServiceError(
+                error_code, f"reranker HTTP {error.response.status_code}，请核对配置和服务状态"
+            ) from None
+        except httpx.RequestError:
+            error_code = "network_error"
+            raise RerankerServiceError(error_code, "reranker 网络请求失败，保留原候选顺序") from None
+        except RerankerServiceError as error:
+            error_code = error.code
+            raise
         finally:
             input_tokens = (
                 usage.get("input_tokens", usage.get("prompt_tokens"))
@@ -108,10 +136,27 @@ class HttpReranker(Reranker):
             )
             if type(input_tokens) is not int or input_tokens < 0:
                 input_tokens = None
-            record_context_usage(
-                input_tokens, None, (time.monotonic() - started) * 1000
-            )
-            context_call_kind.reset(token)
+            total_tokens = usage.get("total_tokens") if isinstance(usage, dict) else None
+            if type(total_tokens) is not int or total_tokens < 0:
+                total_tokens = None
+            elapsed_ms = (time.monotonic() - started) * 1000
+            try:
+                record_context_usage(input_tokens, None, elapsed_ms)
+                # total_tokens 是供应商实际总消耗，不能伪装成未上报的输入 token。
+                # 未提供金额则保持未知；不按候选数或本地估算冒充调用成本。
+                record_context_diagnostic({
+                    "event": "reranker_call",
+                    "requested_documents": len(documents),
+                    "unique_documents": len(unique_documents),
+                    "success": success,
+                    "error_code": error_code,
+                    "input_tokens": input_tokens,
+                    "reported_total_tokens": total_tokens,
+                    "reported_cost": None,
+                    "elapsed_ms": elapsed_ms,
+                })
+            finally:
+                context_call_kind.reset(token)
 
 
 def validate_scores(results, count: int) -> list[float]:

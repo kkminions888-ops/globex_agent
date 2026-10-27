@@ -1,0 +1,68 @@
+{
+  "status": "failed",
+  "started_at_utc": "2026-10-11T12:09:49.114953+00:00",
+  "frontend_url": "http://127.0.0.1:5173",
+  "prompt_sha256": "39d8e7172d6e10454f6bcd09dd18fefe3f8165cb5dd9ec5afa6ab10cf7bfe82e",
+  "prompt_submitted": true,
+  "checks": {
+    "session_opened": "empty_landing",
+    "browser_error_counts_before_submission": {
+      "page": 0,
+      "console": 1
+    },
+    "final_snapshot": {
+      "inputReady": true,
+      "newChatEnabled": true,
+      "sendEnabled": false,
+      "running": false,
+      "queryCount": 1,
+      "answerCount": 0,
+      "answerCharacters": 0,
+      "productCount": 0,
+      "runFinished": true,
+      "runError": false,
+      "eventCount": 8,
+      "eventTypes": [
+        "CUSTOM",
+        "MESSAGES_SNAPSHOT",
+        "RUN_FINISHED",
+        "RUN_STARTED",
+        "STATE_SNAPSHOT"
+      ],
+      "errorPanel": false,
+      "shoppingForm": false,
+      "streamTextWhileRunning": false,
+      "textUpdateCount": 0,
+      "dialogLabel": null,
+      "detailHasPrice": false,
+      "detailHasSpecs": false,
+      "skuPickerVisible": false
+    }
+  },
+  "screenshots": [
+    "results.png",
+    "failure.png"
+  ],
+  "health": {
+    "http_status": 200,
+    "status": "ok"
+  },
+  "error": {
+    "type": "BrowserCheckError",
+    "code": "answer_not_visible"
+  },
+  "ag_ui_post_count": 1,
+  "ag_ui_requests": [
+    {
+      "path": "/commerce/ag-ui/run",
+      "method": "POST",
+      "status": 200,
+      "mime_type": "text/event-stream",
+      "data_chunks": 10,
+      "finished": true
+    }
+  ],
+  "page_error_count": 0,
+  "console_error_count": 1,
+  "finished_at_utc": "2026-10-11T12:09:54.490280+00:00"
+}

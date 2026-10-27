@@ -1,0 +1,508 @@
+{
+  "status": "diagnostic",
+  "reasons": [
+    "当前为诊断范围；离线对照不代表正式基线或收益验收",
+    "NDCG@5 缺少覆盖或增量未达到 +0.02",
+    "Recall@5 缺少覆盖或增量未达到 -0.01",
+    "返回结果精度 缺少覆盖或增量未达到 +0.02",
+    "预算约束存在违规或缺少覆盖",
+    "材质约束存在违规或缺少覆盖"
+  ],
+  "metrics": [
+    {
+      "key": "ndcg_at_5",
+      "label": "NDCG@5",
+      "baseline": 0.8414259351363097,
+      "candidate": 0.8118504747044865,
+      "delta": -0.02957546043182324,
+      "threshold": 0.02,
+      "passed": false,
+      "unit": "ratio"
+    },
+    {
+      "key": "recall_at_5",
+      "label": "Recall@5",
+      "baseline": 0.9184027777777778,
+      "candidate": 0.8819444444444444,
+      "delta": -0.03645833333333337,
+      "threshold": -0.01,
+      "passed": false,
+      "unit": "ratio"
+    },
+    {
+      "key": "returned_precision",
+      "label": "返回结果精度",
+      "baseline": 0.4,
+      "candidate": 0.3791666666666667,
+      "delta": -0.020833333333333315,
+      "threshold": 0.02,
+      "passed": false,
+      "unit": "ratio"
+    },
+    {
+      "key": "empty_accuracy",
+      "label": "预期无结果准确率",
+      "baseline": 1,
+      "candidate": 1,
+      "delta": 0,
+      "threshold": 0.0,
+      "passed": true,
+      "unit": "ratio"
+    },
+    {
+      "key": "hard_constraint_violation_rate",
+      "label": "硬约束违规率",
+      "baseline": 0.0,
+      "candidate": 0.0,
+      "delta": 0.0,
+      "threshold": 0,
+      "passed": false,
+      "unit": "ratio"
+    },
+    {
+      "key": "p95_ms",
+      "label": "检索耗时 P95",
+      "baseline": 104.73289999936242,
+      "candidate": 288.41140000440646,
+      "delta": 183.67850000504404,
+      "threshold": null,
+      "passed": null,
+      "unit": "ms"
+    }
+  ],
+  "cases": [
+    {
+      "id": "v2-01-intent",
+      "kind": "intent",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-01-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-02-intent",
+      "kind": "intent",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-02-specification",
+      "kind": "specification",
+      "baseline_ndcg": 0.6309297535714575,
+      "candidate_ndcg": 1.0,
+      "delta": 0.36907024642854247,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-03-intent",
+      "kind": "intent",
+      "baseline_ndcg": 0.0,
+      "candidate_ndcg": 0.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-03-specification",
+      "kind": "specification",
+      "baseline_ndcg": 0.38685280723454163,
+      "candidate_ndcg": 0.38685280723454163,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-05-intent",
+      "kind": "intent",
+      "baseline_ndcg": 0.5706417189553201,
+      "candidate_ndcg": 0.5706417189553201,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-05-specification",
+      "kind": "specification",
+      "baseline_ndcg": 0.6309297535714575,
+      "candidate_ndcg": 0.6309297535714575,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-06-intent",
+      "kind": "intent",
+      "baseline_ndcg": 0.5706417189553201,
+      "candidate_ndcg": 0.0,
+      "delta": -0.5706417189553201,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-06-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-07-intent",
+      "kind": "intent",
+      "baseline_ndcg": 0.15101961822780524,
+      "candidate_ndcg": 0.15101961822780524,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-07-specification",
+      "kind": "specification",
+      "baseline_ndcg": 0.6309297535714575,
+      "candidate_ndcg": 0.6309297535714575,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-09-intent",
+      "kind": "intent",
+      "baseline_ndcg": 0.7606395682357036,
+      "candidate_ndcg": 0.7606395682357036,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-09-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-10-intent",
+      "kind": "intent",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-10-specification",
+      "kind": "specification",
+      "baseline_ndcg": 0.43067655807339306,
+      "candidate_ndcg": 0.43067655807339306,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-11-intent",
+      "kind": "intent",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-11-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-13-intent",
+      "kind": "intent",
+      "baseline_ndcg": 0.8318724637288826,
+      "candidate_ndcg": 0.0,
+      "delta": -0.8318724637288826,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-13-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-14-intent",
+      "kind": "intent",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-14-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-15-intent",
+      "kind": "intent",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-15-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-17-intent",
+      "kind": "intent",
+      "baseline_ndcg": 0.0,
+      "candidate_ndcg": 0.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-17-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-18-intent",
+      "kind": "intent",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-18-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-19-intent",
+      "kind": "intent",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-19-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-21-intent",
+      "kind": "intent",
+      "baseline_ndcg": 0.9828920819566879,
+      "candidate_ndcg": 0.9828920819566879,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-21-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-22-intent",
+      "kind": "intent",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-22-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-23-intent",
+      "kind": "intent",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-23-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-25-intent",
+      "kind": "intent",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 0.9828920819566879,
+      "delta": -0.01710791804331213,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-25-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-26-intent",
+      "kind": "intent",
+      "baseline_ndcg": 0.2960819109658652,
+      "candidate_ndcg": 0.2960819109658652,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-26-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 0.6309297535714575,
+      "delta": -0.36907024642854247,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-27-intent",
+      "kind": "intent",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-27-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-29-intent",
+      "kind": "intent",
+      "baseline_ndcg": 0.5143371794949736,
+      "candidate_ndcg": 0.5143371794949736,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-29-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-30-intent",
+      "kind": "intent",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-30-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-31-intent",
+      "kind": "intent",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-31-specification",
+      "kind": "specification",
+      "baseline_ndcg": 1.0,
+      "candidate_ndcg": 1.0,
+      "delta": 0.0,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-empty-1",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-empty-2",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-empty-3",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-empty-5",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-empty-6",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    },
+    {
+      "id": "v2-empty-7",
+      "kind": "empty",
+      "baseline_ndcg": null,
+      "candidate_ndcg": null,
+      "delta": null,
+      "violation_count": 0
+    }
+  ],
+  "comparable": true
+}

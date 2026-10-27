@@ -16,7 +16,8 @@ class Summary(BaseModel):
 @pytest.mark.asyncio
 @pytest.mark.parametrize('stream', [False, True])
 @pytest.mark.parametrize('outcome', ['success', 'invalid', 'error', 'cancel'])
-async def test_sdk_structured_request_usage(monkeypatch, stream, outcome):
+@pytest.mark.parametrize('kind', ['summary', 'business'])
+async def test_sdk_structured_request_usage(monkeypatch, stream, outcome, kind):
     throttle = GatewayThrottle(1, 0)
     model = ThrottledChatModel(credential=OpenAICredential(api_key='test'), model='test',
         stream=stream, throttle=throttle, max_retries=0, max_transient_retries=0)
@@ -24,16 +25,17 @@ async def test_sdk_structured_request_usage(monkeypatch, stream, outcome):
     async def raw(self, model_name, messages, tools, tool_choice, **kwargs):
         assert throttle._semaphore.locked()
         assert tools[0]['function']['name'] == 'generate_structured_output'
+        assert self.stream == (False if kind == 'summary' else stream)
         if outcome == 'error': raise RuntimeError('connection failed')
         if outcome == 'cancel': raise asyncio.CancelledError()
         content = [ToolCallBlock(id='summary', name='generate_structured_output', input='{"goal":"背包"}')] if outcome == 'success' else [TextBlock(text='invalid')]
         response = ChatResponse(content=content, is_last=True, usage=ChatUsage(input_tokens=123, output_tokens=17, time=0.1))
-        if not stream:return response
+        if not self.stream:return response
         async def chunks():
             yield response
         return chunks()
     monkeypatch.setattr(OpenAIChatModel, '_call_api', raw)
-    t=context_usage_sink.set(samples.append);k=context_call_kind.set('summary')
+    t=context_usage_sink.set(samples.append);k=context_call_kind.set(kind)
     try:
         if outcome == 'success':
             res=await model.generate_structured_output([UserMsg(name='user',content='整理')],Summary)
@@ -43,7 +45,8 @@ async def test_sdk_structured_request_usage(monkeypatch, stream, outcome):
                 await asyncio.wait_for(model.generate_structured_output([UserMsg(name='user',content='整理')],Summary), timeout=2)
         # 当前 SDK 对格式错误依次尝试 forced / auto / none，每个真实调用单独计费。
         assert len(samples)==(3 if outcome == 'invalid' else 1)
-        assert samples[0]['kind']=='summary'
+        assert samples[0]['kind']==kind
+        assert model.stream == stream
         assert samples[0]['input_tokens']==(123 if outcome in ('success','invalid') else None)
         assert samples[0]['output_tokens']==(17 if outcome in ('success','invalid') else None)
         assert not throttle._semaphore.locked()

@@ -1,0 +1,489 @@
+{
+  "id": "threshold-0_7-dev",
+  "label": "同源码 cosine 阈值 0.7 dev 参数消融",
+  "protocol": "retrieval-standard-v1",
+  "standard_id": "retrieval-standard-v1",
+  "status": "completed",
+  "scope": "diagnostic",
+  "role": "candidate",
+  "variant": "dense_threshold_ablation",
+  "created_at": "2026-10-14T15:51:03.525478+00:00",
+  "provenance": {
+    "catalog_sha256": "a735003f34b11093097e2728d1003fc63ca63302e938e997f0fd5014cebec6fe",
+    "dataset_sha256": "d0dae146765af5583a8228fc23c6ecbc237d233eea157b2fc4813e35a97a4808",
+    "selection_sha256": "2cd25f40102e58070ea27e5404e2845033879ba40af718c8054b9605c0dce291",
+    "source_sha256": "3f28502d571e5ac00c4b09cd511411fabc2c6b8567530f0918dc3831e8676228",
+    "standard_sha256": "f5cc0518b6a0733fe46ee5f40805b03e9829cd0b319d2bdaf9e741122c13ed0d",
+    "evaluator_sha256": "ffe50e13503dd5c81cfc38ed5a8787c513eec71d5a716c97dac2da72f9691b76",
+    "config_sha256": "90ba5ae42bafbeb582daff80345171114e58ef5f7f5aa7d9b3cb2342bdd94e67",
+    "embedding_identity": "56a39362caae8f4ebafba8f324e9163a57fa2c8c1d02e3aea794c8a8f07813e1",
+    "query_mode": "structured_spec",
+    "k": 5,
+    "split": "dev",
+    "repetitions": 1,
+    "catalog_count": 3700,
+    "case_count": 18
+  },
+  "parameters_safe": {
+    "min_relevance_score": 0.7,
+    "relevance_score_kind": "embedding",
+    "hybrid_enabled": false,
+    "reranker_enabled": false,
+    "recall_candidates": 32
+  },
+  "cases": [
+    {
+      "id": "v2-00-intent",
+      "family": 0,
+      "kind": "intent",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 1.0,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 4,
+      "elapsed_ms": 0.4419000033522025,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-00-specification",
+      "family": 0,
+      "kind": "specification",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.25,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 4,
+      "elapsed_ms": 0.31069999386090785,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-04-intent",
+      "family": 4,
+      "kind": "intent",
+      "ndcg_at_5": 0.16812753627111746,
+      "recall_at_5": 0.25,
+      "returned_precision": 0.2,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 1.1011000024154782,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-04-specification",
+      "family": 4,
+      "kind": "specification",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.2,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 1.0464999941177666,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-08-intent",
+      "family": 8,
+      "kind": "intent",
+      "ndcg_at_5": 0.8318724637288826,
+      "recall_at_5": 0.75,
+      "returned_precision": 1.0,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 3,
+      "elapsed_ms": 0.5607000057352707,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-08-specification",
+      "family": 8,
+      "kind": "specification",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.25,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 4,
+      "elapsed_ms": 0.6480000010924414,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-12-intent",
+      "family": 12,
+      "kind": "intent",
+      "ndcg_at_5": 0.8318724637288826,
+      "recall_at_5": 0.75,
+      "returned_precision": 1.0,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 3,
+      "elapsed_ms": 0.5387999990489334,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-12-specification",
+      "family": 12,
+      "kind": "specification",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.25,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 4,
+      "elapsed_ms": 0.7111999875633046,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-16-intent",
+      "family": 16,
+      "kind": "intent",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 1.0,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 4,
+      "elapsed_ms": 0.6767000013496727,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-16-specification",
+      "family": 16,
+      "kind": "specification",
+      "ndcg_at_5": 0.6309297535714575,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.2,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.7791999960318208,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-20-intent",
+      "family": 20,
+      "kind": "intent",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.8,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 1.004400008241646,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-20-specification",
+      "family": 20,
+      "kind": "specification",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.2,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.8413999894401059,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-24-intent",
+      "family": 24,
+      "kind": "intent",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.8,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.8103000000119209,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-24-specification",
+      "family": 24,
+      "kind": "specification",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.2,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.873700002557598,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-28-intent",
+      "family": 28,
+      "kind": "intent",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 1.0,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 4,
+      "elapsed_ms": 0.8013999904505908,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-28-specification",
+      "family": 28,
+      "kind": "specification",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.2,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.8101999992504716,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-empty-0",
+      "family": "empty-0",
+      "kind": "empty",
+      "ndcg_at_5": null,
+      "recall_at_5": null,
+      "returned_precision": null,
+      "empty_ok": true,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": true,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 0,
+      "elapsed_ms": 4.1913999884855,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-empty-4",
+      "family": "empty-4",
+      "kind": "empty",
+      "ndcg_at_5": null,
+      "recall_at_5": null,
+      "returned_precision": null,
+      "empty_ok": true,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": true,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 0,
+      "elapsed_ms": 3.9142000023275614,
+      "error": null,
+      "degraded": false
+    }
+  ],
+  "summary": {
+    "ndcg_at_5": 0.9039251385812712,
+    "recall_at_5": 0.921875,
+    "returned_precision": 0.534375,
+    "empty_accuracy": 1,
+    "hard_constraint_violations": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 0
+    },
+    "constraint_case_counts": {
+      "budget": 2,
+      "material": 0,
+      "shipping": 18
+    },
+    "hard_constraint_case_failures": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 0
+    },
+    "constraint_positive_case_counts": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 16
+    },
+    "hard_constraint_violation_rate": 0.0,
+    "positive_cases": 16,
+    "empty_cases": 2,
+    "p95_ms": 4.1913999884855
+  },
+  "removed_candidate_count": 668,
+  "evaluator_files": {
+    "scripts/eval/retrieval_threshold.py": "ba6601ce4aa0654d5a9d72abdc8132e0b23d6ee58f4f3a5373e553bed895f783",
+    "scripts/eval/retrieval_optimization.py": "58ed54e227f684f5bb84e78c280f626f39d50ca953fa3bbf2afaedf49428f902",
+    "app/application/retrieval_evaluation.py": "40108c6ab7adcc99e8f78509e5e219f2c3ba1f717af828707be27948bc219060",
+    "eval/retrieval/standard-v1.json": "9b7e3240711fda940372a5fbea6b5e161dca3fcfcab07601d0d24740aff55157"
+  },
+  "shared_cache_sha256": "83db855569b42fa9b0d522be90224e65631386d96f30ec2b31dbefe26e177979",
+  "note": "零新调用的真实候选回放；时间是本地消融时间，不能替代在线P95或计费。"
+}

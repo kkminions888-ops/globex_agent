@@ -1,0 +1,26 @@
+[
+    {
+        "path":  "app/infrastructure/model_registry.py",
+        "sha256":  "FCEA6589180A3227FA61932EF62EA20D7BBAF1EF0CB899BB7C5014BEA0D800AC"
+    },
+    {
+        "path":  "app/composition.py",
+        "sha256":  "177DE9D0C1E7426F964CD1563E425DCD210B947F40020D065A39121B08DA1F22"
+    },
+    {
+        "path":  "app/presentation/server.py",
+        "sha256":  "F63008535181B3AB4A3B6D987813840398A88C4339F0239BE4F64F3221C6D0CF"
+    },
+    {
+        "path":  "data/catalog-v1.jsonl",
+        "sha256":  "841C543683543F11870EF7A07FB226D99FB6E39009675BBA2C6AE1CCBB4DC821"
+    },
+    {
+        "path":  "data/catalog-v2.jsonl",
+        "sha256":  "FC837E52ACDA8C765FA7A2F46F1B2E108D3C9411C26AE4545FF4596AC5157984"
+    },
+    {
+        "path":  "data/catalog-v3.jsonl",
+        "sha256":  "A735003F34B11093097E2728D1003FC63CA63302E938E997F0FD5014CEBEC6FE"
+    }
+]

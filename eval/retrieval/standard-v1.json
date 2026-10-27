@@ -1,0 +1,40 @@
+{
+  "id": "retrieval-standard-v1",
+  "version": 1,
+  "title": "商品检索准确性优化标准 V1",
+  "k": 5,
+  "description": "冻结当前商品目录、人工标注和运行条件，比较实际展示前五条。阈值是优化验收目标，不代表已经取得收益。",
+  "metrics": [
+    {"key": "ndcg_at_5", "label": "NDCG@5", "definition": "二元 canonical 相关性，DCG=Σ gain/log2(rank+1)，IDCG按min(5,相关同款数)计算。同款重复gain为0且仍占展示位置；先截实际前5，不能从后面补位。", "aggregation": "正例用例宏平均", "unit": "ratio"},
+    {"key": "recall_at_5", "label": "Recall@5", "definition": "实际前5中命中的唯一相关canonical数 / 全部相关canonical数。标注超过5项时不能天然达到1。", "aggregation": "正例用例宏平均", "unit": "ratio"},
+    {"key": "returned_precision", "label": "返回结果精度", "definition": "实际前5中唯一相关canonical数 / 实际展示条数。重复占分母但不加分；正例返回0条时计0。", "aggregation": "正例用例宏平均", "unit": "ratio"},
+    {"key": "hard_constraint_violation_rate", "label": "硬约束违规率", "definition": "存在至少一个违规展示商品的用例-约束对数 / 适用用例-约束对数。预算、材质、配送分别统计；无覆盖为未知，不能当作0。", "aggregation": "用例-约束对加权，单独显示三类覆盖与违规商品数", "unit": "ratio"},
+    {"key": "empty_accuracy", "label": "预期无结果准确率", "definition": "expected_empty用例实际返回0条的比例，不混入正例相关性分数。", "aggregation": "无结果用例平均", "unit": "ratio"},
+    {"key": "p95_ms", "label": "检索耗时 P95", "definition": "单次完整检索执行耗时的第95百分位（nearest rank）；不含建索引。", "aggregation": "全部用例", "unit": "ms"}
+  ],
+  "gates": {
+    "ndcg_at_5": {"min_delta": 0.02},
+    "returned_precision": {"min_delta": 0.02},
+    "recall_at_5": {"min_delta": -0.01},
+    "empty_accuracy": {"min_delta": 0.0},
+    "hard_constraint_violations": {"max_count": 0, "required_dimensions": ["budget", "material", "shipping"], "min_positive_cases_per_dimension": 1}
+  },
+  "baseline_definition": {
+    "catalog": "当前 data/catalog-v3.jsonl 完整快照，以SHA-256绑定；运行器若选用镜像目录也记录实际输入指纹",
+    "dataset": "版本化人工标注查询，gold须覆盖当前目录相关canonical；eval/v2仅用于现有诊断",
+    "query_mode": "structured_spec",
+    "split": "holdout",
+    "repetitions": 1,
+    "scope": "formal",
+    "algorithm": "冻结时实际生效的召回/精排配置；冻结清单不等于已测基线"
+  },
+  "comparability": ["standard_id", "standard_sha256", "evaluator_sha256", "catalog_sha256", "dataset_sha256", "selection_sha256", "embedding_identity", "query_mode", "k", "split", "repetitions", "case_ids"],
+  "warnings": [
+    "config_sha256与source_sha256可以不同以允许单项改动，但必须保留；目录、标注、选集、Embedding身份与运行口径必须一致。",
+    "formal且completed的完整报告才能验收；未运行、错误、显式降级、缺失值、覆盖不足和diagnostic范围均不能通过。每类约束至少有一个正例，只有无结果用例不足以证明有效筛选。",
+    "现有eval/v2没有结构化材质约束，预算仅覆盖预期无结果；需补充独立审查的材质/预算正例金标后冻结正式验收集。",
+    "keyword与bm25离线运行是诊断，对照不能证明当前向量主链或Hybrid/精排已优化，也不得修改线上默认策略。",
+    "0.02代表绝对分值增加2个百分点；阈值V1在候选调参前冻结，正式留出集不得用于选择参数。",
+    "标注与目录是合成评测快照，离线门禁不代表生产效果或端到端Agent成功率。"
+  ]
+}

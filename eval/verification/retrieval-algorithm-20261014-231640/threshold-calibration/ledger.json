@@ -1,0 +1,5576 @@
+{
+  "external_api_calls": 0,
+  "cache_sha256": "83db855569b42fa9b0d522be90224e65631386d96f30ec2b31dbefe26e177979",
+  "rows": [
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-00-intent",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7985a33133232661d91533f6eee289e145ba2a98027b6a37778715b8d7008548",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3012",
+        "P3024"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-00-specification",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "cfce80829e3f46b88475950f8b4ed38f511b2558455d70f1bb9b3fae32b2bd54",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3012",
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-04-intent",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "109ebf4649e97dbbe80f5d719a1c19622677d99c5765a65cca02a5283306356f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3124",
+        "P3116",
+        "P3113",
+        "P3064",
+        "P3122"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-04-specification",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e9e8777c769aef22b8fad51ff79dd71ab8d4d2754a93e8f7cb31640630e4c6c7",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3076",
+        "P3064",
+        "P3068",
+        "P3072",
+        "P3124"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-08-intent",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "82755cfc0d2aa6f903cd432cd6a095bb1edad85d57b6aea4b25a7518a6274037",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3136",
+        "P3128",
+        "P3133",
+        "P3141",
+        "P3089"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-08-specification",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "9bc233b9ed70b7132c416519c66ded3aecd9540ac1c72e117f6be3d173a9f28a",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3141",
+        "P3128",
+        "P3136",
+        "P3133",
+        "P3172"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-12-intent",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e4d7b8c8eace0561d1aec11d5828ea6cea3ffb8ac1466c406f3656b94848467e",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3192",
+        "P3201",
+        "P3196",
+        "P3204",
+        "P3116"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-12-specification",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "984e5379607318112e9e4cd6dbc754ff1da9b5fa339788a8c896b54030b3092b",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3204",
+        "P3201",
+        "P3196",
+        "P3192",
+        "P3397"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-16-intent",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3b07a97db0c881a7718756c562bb4dc2114b54457327d09485689f134654c7a3",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3256",
+        "P3265",
+        "P3261",
+        "P3268",
+        "P3296"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-16-specification",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "fe0619c61440782126f2dd613869cd089296cf82afee0ea9b29b7ef303601905",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3265",
+        "P3268",
+        "P3261",
+        "P3256",
+        "P3292"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-20-intent",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "d3ec920418b4080e8526b48bc3640e039008b758bfc320ac70ff9a56e2324f0f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3321",
+        "P3328",
+        "P3325",
+        "P3332",
+        "P3348"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-20-specification",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b5e6f1a3b59850d0abb29efc692f583e3afc6c9422bbb34662dfbb81797fcb38",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3332",
+        "P3328",
+        "P3321",
+        "P3324",
+        "P3382"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-24-intent",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7e38b3751701ada57e2736d21f584c4ca24169a79fc05a929f4ad5707017cdca",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3384",
+        "P3388",
+        "P3392",
+        "P3136"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-24-specification",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "a7e230a6d02708398f4e6fa52f2f31b3ba7317b1da5c34e428b6ca17bd147001",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3392",
+        "P3388",
+        "P3384",
+        "P3201"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-28-intent",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "864cea660df9075ea3cbbdcb15a6663540dab8c1f0ffbea3e2c2d821e762f613",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3448",
+        "P3452",
+        "P3461",
+        "P3456",
+        "P3464"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-28-specification",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e3340e629accde94b074ebf1f18bdfbff7914a9a47a9bb194b621772ad85a165",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3461",
+        "P3456",
+        "P3448",
+        "P3452",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-empty-0",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "e44812af2287773b92371cf0264fe74669ce25b191d63cf58e70f971633281ba",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-none-dev",
+      "case_id": "v2-empty-4",
+      "split": "dev",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "eb3df0654aea58864243bdfc904af0437c2734a104307ef50e92ff5b396c8270",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-00-intent",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7985a33133232661d91533f6eee289e145ba2a98027b6a37778715b8d7008548",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3012",
+        "P3024"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-00-specification",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "cfce80829e3f46b88475950f8b4ed38f511b2558455d70f1bb9b3fae32b2bd54",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3012",
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-04-intent",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "109ebf4649e97dbbe80f5d719a1c19622677d99c5765a65cca02a5283306356f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3124",
+        "P3116",
+        "P3113",
+        "P3064",
+        "P3122"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-04-specification",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e9e8777c769aef22b8fad51ff79dd71ab8d4d2754a93e8f7cb31640630e4c6c7",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3076",
+        "P3064",
+        "P3068",
+        "P3072",
+        "P3124"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-08-intent",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "82755cfc0d2aa6f903cd432cd6a095bb1edad85d57b6aea4b25a7518a6274037",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3136",
+        "P3128",
+        "P3133",
+        "P3141",
+        "P3089"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-08-specification",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "9bc233b9ed70b7132c416519c66ded3aecd9540ac1c72e117f6be3d173a9f28a",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3141",
+        "P3128",
+        "P3136",
+        "P3133",
+        "P3172"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-12-intent",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e4d7b8c8eace0561d1aec11d5828ea6cea3ffb8ac1466c406f3656b94848467e",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3192",
+        "P3201",
+        "P3196",
+        "P3204",
+        "P3116"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-12-specification",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "984e5379607318112e9e4cd6dbc754ff1da9b5fa339788a8c896b54030b3092b",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3204",
+        "P3201",
+        "P3196",
+        "P3192",
+        "P3397"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-16-intent",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3b07a97db0c881a7718756c562bb4dc2114b54457327d09485689f134654c7a3",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3256",
+        "P3265",
+        "P3261",
+        "P3268",
+        "P3296"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-16-specification",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "fe0619c61440782126f2dd613869cd089296cf82afee0ea9b29b7ef303601905",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3265",
+        "P3268",
+        "P3261",
+        "P3256",
+        "P3292"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-20-intent",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "d3ec920418b4080e8526b48bc3640e039008b758bfc320ac70ff9a56e2324f0f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3321",
+        "P3328",
+        "P3325",
+        "P3332",
+        "P3348"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-20-specification",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b5e6f1a3b59850d0abb29efc692f583e3afc6c9422bbb34662dfbb81797fcb38",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3332",
+        "P3328",
+        "P3321",
+        "P3324",
+        "P3382"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-24-intent",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7e38b3751701ada57e2736d21f584c4ca24169a79fc05a929f4ad5707017cdca",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3384",
+        "P3388",
+        "P3392",
+        "P3136"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-24-specification",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "a7e230a6d02708398f4e6fa52f2f31b3ba7317b1da5c34e428b6ca17bd147001",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3392",
+        "P3388",
+        "P3384",
+        "P3201"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-28-intent",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "864cea660df9075ea3cbbdcb15a6663540dab8c1f0ffbea3e2c2d821e762f613",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3448",
+        "P3452",
+        "P3461",
+        "P3456",
+        "P3464"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-28-specification",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e3340e629accde94b074ebf1f18bdfbff7914a9a47a9bb194b621772ad85a165",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3461",
+        "P3456",
+        "P3448",
+        "P3452",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-empty-0",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "e44812af2287773b92371cf0264fe74669ce25b191d63cf58e70f971633281ba",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_0-dev",
+      "case_id": "v2-empty-4",
+      "split": "dev",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "eb3df0654aea58864243bdfc904af0437c2734a104307ef50e92ff5b396c8270",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-00-intent",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7985a33133232661d91533f6eee289e145ba2a98027b6a37778715b8d7008548",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3012",
+        "P3024"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-00-specification",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "cfce80829e3f46b88475950f8b4ed38f511b2558455d70f1bb9b3fae32b2bd54",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3012",
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-04-intent",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "109ebf4649e97dbbe80f5d719a1c19622677d99c5765a65cca02a5283306356f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3124",
+        "P3116",
+        "P3113",
+        "P3064",
+        "P3122"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-04-specification",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e9e8777c769aef22b8fad51ff79dd71ab8d4d2754a93e8f7cb31640630e4c6c7",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3076",
+        "P3064",
+        "P3068",
+        "P3072",
+        "P3124"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-08-intent",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "82755cfc0d2aa6f903cd432cd6a095bb1edad85d57b6aea4b25a7518a6274037",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3136",
+        "P3128",
+        "P3133",
+        "P3141",
+        "P3089"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-08-specification",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "9bc233b9ed70b7132c416519c66ded3aecd9540ac1c72e117f6be3d173a9f28a",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3141",
+        "P3128",
+        "P3136",
+        "P3133",
+        "P3172"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-12-intent",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e4d7b8c8eace0561d1aec11d5828ea6cea3ffb8ac1466c406f3656b94848467e",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3192",
+        "P3201",
+        "P3196",
+        "P3204",
+        "P3116"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-12-specification",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "984e5379607318112e9e4cd6dbc754ff1da9b5fa339788a8c896b54030b3092b",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3204",
+        "P3201",
+        "P3196",
+        "P3192",
+        "P3397"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-16-intent",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3b07a97db0c881a7718756c562bb4dc2114b54457327d09485689f134654c7a3",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3256",
+        "P3265",
+        "P3261",
+        "P3268",
+        "P3296"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-16-specification",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "fe0619c61440782126f2dd613869cd089296cf82afee0ea9b29b7ef303601905",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3265",
+        "P3268",
+        "P3261",
+        "P3256",
+        "P3292"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-20-intent",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "d3ec920418b4080e8526b48bc3640e039008b758bfc320ac70ff9a56e2324f0f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3321",
+        "P3328",
+        "P3325",
+        "P3332",
+        "P3348"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-20-specification",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b5e6f1a3b59850d0abb29efc692f583e3afc6c9422bbb34662dfbb81797fcb38",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3332",
+        "P3328",
+        "P3321",
+        "P3324",
+        "P3382"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-24-intent",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7e38b3751701ada57e2736d21f584c4ca24169a79fc05a929f4ad5707017cdca",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3384",
+        "P3388",
+        "P3392",
+        "P3136"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-24-specification",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "a7e230a6d02708398f4e6fa52f2f31b3ba7317b1da5c34e428b6ca17bd147001",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3392",
+        "P3388",
+        "P3384",
+        "P3201"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-28-intent",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "864cea660df9075ea3cbbdcb15a6663540dab8c1f0ffbea3e2c2d821e762f613",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3448",
+        "P3452",
+        "P3461",
+        "P3456",
+        "P3464"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-28-specification",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e3340e629accde94b074ebf1f18bdfbff7914a9a47a9bb194b621772ad85a165",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3461",
+        "P3456",
+        "P3448",
+        "P3452",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-empty-0",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "e44812af2287773b92371cf0264fe74669ce25b191d63cf58e70f971633281ba",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_1-dev",
+      "case_id": "v2-empty-4",
+      "split": "dev",
+      "threshold": 0.1,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "eb3df0654aea58864243bdfc904af0437c2734a104307ef50e92ff5b396c8270",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-00-intent",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7985a33133232661d91533f6eee289e145ba2a98027b6a37778715b8d7008548",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3012",
+        "P3024"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-00-specification",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "cfce80829e3f46b88475950f8b4ed38f511b2558455d70f1bb9b3fae32b2bd54",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3012",
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-04-intent",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "109ebf4649e97dbbe80f5d719a1c19622677d99c5765a65cca02a5283306356f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3124",
+        "P3116",
+        "P3113",
+        "P3064",
+        "P3122"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-04-specification",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e9e8777c769aef22b8fad51ff79dd71ab8d4d2754a93e8f7cb31640630e4c6c7",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3076",
+        "P3064",
+        "P3068",
+        "P3072",
+        "P3124"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-08-intent",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "82755cfc0d2aa6f903cd432cd6a095bb1edad85d57b6aea4b25a7518a6274037",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3136",
+        "P3128",
+        "P3133",
+        "P3141",
+        "P3089"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-08-specification",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "9bc233b9ed70b7132c416519c66ded3aecd9540ac1c72e117f6be3d173a9f28a",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3141",
+        "P3128",
+        "P3136",
+        "P3133",
+        "P3172"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-12-intent",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e4d7b8c8eace0561d1aec11d5828ea6cea3ffb8ac1466c406f3656b94848467e",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3192",
+        "P3201",
+        "P3196",
+        "P3204",
+        "P3116"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-12-specification",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "984e5379607318112e9e4cd6dbc754ff1da9b5fa339788a8c896b54030b3092b",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3204",
+        "P3201",
+        "P3196",
+        "P3192",
+        "P3397"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-16-intent",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3b07a97db0c881a7718756c562bb4dc2114b54457327d09485689f134654c7a3",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3256",
+        "P3265",
+        "P3261",
+        "P3268",
+        "P3296"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-16-specification",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "fe0619c61440782126f2dd613869cd089296cf82afee0ea9b29b7ef303601905",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3265",
+        "P3268",
+        "P3261",
+        "P3256",
+        "P3292"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-20-intent",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "d3ec920418b4080e8526b48bc3640e039008b758bfc320ac70ff9a56e2324f0f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3321",
+        "P3328",
+        "P3325",
+        "P3332",
+        "P3348"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-20-specification",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b5e6f1a3b59850d0abb29efc692f583e3afc6c9422bbb34662dfbb81797fcb38",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3332",
+        "P3328",
+        "P3321",
+        "P3324",
+        "P3382"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-24-intent",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7e38b3751701ada57e2736d21f584c4ca24169a79fc05a929f4ad5707017cdca",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3384",
+        "P3388",
+        "P3392",
+        "P3136"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-24-specification",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "a7e230a6d02708398f4e6fa52f2f31b3ba7317b1da5c34e428b6ca17bd147001",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3392",
+        "P3388",
+        "P3384",
+        "P3201"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-28-intent",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "864cea660df9075ea3cbbdcb15a6663540dab8c1f0ffbea3e2c2d821e762f613",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3448",
+        "P3452",
+        "P3461",
+        "P3456",
+        "P3464"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-28-specification",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e3340e629accde94b074ebf1f18bdfbff7914a9a47a9bb194b621772ad85a165",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3461",
+        "P3456",
+        "P3448",
+        "P3452",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-empty-0",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "e44812af2287773b92371cf0264fe74669ce25b191d63cf58e70f971633281ba",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_2-dev",
+      "case_id": "v2-empty-4",
+      "split": "dev",
+      "threshold": 0.2,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "eb3df0654aea58864243bdfc904af0437c2734a104307ef50e92ff5b396c8270",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-00-intent",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7985a33133232661d91533f6eee289e145ba2a98027b6a37778715b8d7008548",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3012",
+        "P3024"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-00-specification",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "cfce80829e3f46b88475950f8b4ed38f511b2558455d70f1bb9b3fae32b2bd54",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3012",
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-04-intent",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "109ebf4649e97dbbe80f5d719a1c19622677d99c5765a65cca02a5283306356f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3124",
+        "P3116",
+        "P3113",
+        "P3064",
+        "P3122"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-04-specification",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e9e8777c769aef22b8fad51ff79dd71ab8d4d2754a93e8f7cb31640630e4c6c7",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3076",
+        "P3064",
+        "P3068",
+        "P3072",
+        "P3124"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-08-intent",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "82755cfc0d2aa6f903cd432cd6a095bb1edad85d57b6aea4b25a7518a6274037",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3136",
+        "P3128",
+        "P3133",
+        "P3141",
+        "P3089"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-08-specification",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "9bc233b9ed70b7132c416519c66ded3aecd9540ac1c72e117f6be3d173a9f28a",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3141",
+        "P3128",
+        "P3136",
+        "P3133",
+        "P3172"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-12-intent",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e4d7b8c8eace0561d1aec11d5828ea6cea3ffb8ac1466c406f3656b94848467e",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3192",
+        "P3201",
+        "P3196",
+        "P3204",
+        "P3116"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-12-specification",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "984e5379607318112e9e4cd6dbc754ff1da9b5fa339788a8c896b54030b3092b",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3204",
+        "P3201",
+        "P3196",
+        "P3192",
+        "P3397"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-16-intent",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3b07a97db0c881a7718756c562bb4dc2114b54457327d09485689f134654c7a3",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3256",
+        "P3265",
+        "P3261",
+        "P3268",
+        "P3296"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-16-specification",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "fe0619c61440782126f2dd613869cd089296cf82afee0ea9b29b7ef303601905",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3265",
+        "P3268",
+        "P3261",
+        "P3256",
+        "P3292"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-20-intent",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "d3ec920418b4080e8526b48bc3640e039008b758bfc320ac70ff9a56e2324f0f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3321",
+        "P3328",
+        "P3325",
+        "P3332",
+        "P3348"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-20-specification",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b5e6f1a3b59850d0abb29efc692f583e3afc6c9422bbb34662dfbb81797fcb38",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3332",
+        "P3328",
+        "P3321",
+        "P3324",
+        "P3382"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-24-intent",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7e38b3751701ada57e2736d21f584c4ca24169a79fc05a929f4ad5707017cdca",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3384",
+        "P3388",
+        "P3392",
+        "P3136"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-24-specification",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "a7e230a6d02708398f4e6fa52f2f31b3ba7317b1da5c34e428b6ca17bd147001",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3392",
+        "P3388",
+        "P3384",
+        "P3201"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-28-intent",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "864cea660df9075ea3cbbdcb15a6663540dab8c1f0ffbea3e2c2d821e762f613",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3448",
+        "P3452",
+        "P3461",
+        "P3456",
+        "P3464"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-28-specification",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e3340e629accde94b074ebf1f18bdfbff7914a9a47a9bb194b621772ad85a165",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3461",
+        "P3456",
+        "P3448",
+        "P3452",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-empty-0",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "e44812af2287773b92371cf0264fe74669ce25b191d63cf58e70f971633281ba",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_3-dev",
+      "case_id": "v2-empty-4",
+      "split": "dev",
+      "threshold": 0.3,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "eb3df0654aea58864243bdfc904af0437c2734a104307ef50e92ff5b396c8270",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-00-intent",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7985a33133232661d91533f6eee289e145ba2a98027b6a37778715b8d7008548",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3012",
+        "P3024"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-00-specification",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "cfce80829e3f46b88475950f8b4ed38f511b2558455d70f1bb9b3fae32b2bd54",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3012",
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-04-intent",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "109ebf4649e97dbbe80f5d719a1c19622677d99c5765a65cca02a5283306356f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3124",
+        "P3116",
+        "P3113",
+        "P3064",
+        "P3122"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-04-specification",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e9e8777c769aef22b8fad51ff79dd71ab8d4d2754a93e8f7cb31640630e4c6c7",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3076",
+        "P3064",
+        "P3068",
+        "P3072",
+        "P3124"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-08-intent",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "82755cfc0d2aa6f903cd432cd6a095bb1edad85d57b6aea4b25a7518a6274037",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3136",
+        "P3128",
+        "P3133",
+        "P3141",
+        "P3089"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-08-specification",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "9bc233b9ed70b7132c416519c66ded3aecd9540ac1c72e117f6be3d173a9f28a",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3141",
+        "P3128",
+        "P3136",
+        "P3133",
+        "P3172"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-12-intent",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e4d7b8c8eace0561d1aec11d5828ea6cea3ffb8ac1466c406f3656b94848467e",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3192",
+        "P3201",
+        "P3196",
+        "P3204",
+        "P3116"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-12-specification",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "984e5379607318112e9e4cd6dbc754ff1da9b5fa339788a8c896b54030b3092b",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3204",
+        "P3201",
+        "P3196",
+        "P3192",
+        "P3397"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-16-intent",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3b07a97db0c881a7718756c562bb4dc2114b54457327d09485689f134654c7a3",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3256",
+        "P3265",
+        "P3261",
+        "P3268",
+        "P3296"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-16-specification",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "fe0619c61440782126f2dd613869cd089296cf82afee0ea9b29b7ef303601905",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3265",
+        "P3268",
+        "P3261",
+        "P3256",
+        "P3292"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-20-intent",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "d3ec920418b4080e8526b48bc3640e039008b758bfc320ac70ff9a56e2324f0f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3321",
+        "P3328",
+        "P3325",
+        "P3332",
+        "P3348"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-20-specification",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b5e6f1a3b59850d0abb29efc692f583e3afc6c9422bbb34662dfbb81797fcb38",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3332",
+        "P3328",
+        "P3321",
+        "P3324",
+        "P3382"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-24-intent",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7e38b3751701ada57e2736d21f584c4ca24169a79fc05a929f4ad5707017cdca",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3384",
+        "P3388",
+        "P3392",
+        "P3136"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-24-specification",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "a7e230a6d02708398f4e6fa52f2f31b3ba7317b1da5c34e428b6ca17bd147001",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3392",
+        "P3388",
+        "P3384",
+        "P3201"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-28-intent",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "864cea660df9075ea3cbbdcb15a6663540dab8c1f0ffbea3e2c2d821e762f613",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3448",
+        "P3452",
+        "P3461",
+        "P3456",
+        "P3464"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-28-specification",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e3340e629accde94b074ebf1f18bdfbff7914a9a47a9bb194b621772ad85a165",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3461",
+        "P3456",
+        "P3448",
+        "P3452",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-empty-0",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "e44812af2287773b92371cf0264fe74669ce25b191d63cf58e70f971633281ba",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_4-dev",
+      "case_id": "v2-empty-4",
+      "split": "dev",
+      "threshold": 0.4,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 111,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "eb3df0654aea58864243bdfc904af0437c2734a104307ef50e92ff5b396c8270",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-00-intent",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7985a33133232661d91533f6eee289e145ba2a98027b6a37778715b8d7008548",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3012",
+        "P3024"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-00-specification",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "cfce80829e3f46b88475950f8b4ed38f511b2558455d70f1bb9b3fae32b2bd54",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3012",
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-04-intent",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "109ebf4649e97dbbe80f5d719a1c19622677d99c5765a65cca02a5283306356f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3124",
+        "P3116",
+        "P3113",
+        "P3064",
+        "P3122"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-04-specification",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e9e8777c769aef22b8fad51ff79dd71ab8d4d2754a93e8f7cb31640630e4c6c7",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3076",
+        "P3064",
+        "P3068",
+        "P3072",
+        "P3124"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-08-intent",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "82755cfc0d2aa6f903cd432cd6a095bb1edad85d57b6aea4b25a7518a6274037",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3136",
+        "P3128",
+        "P3133",
+        "P3141",
+        "P3089"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-08-specification",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "9bc233b9ed70b7132c416519c66ded3aecd9540ac1c72e117f6be3d173a9f28a",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3141",
+        "P3128",
+        "P3136",
+        "P3133",
+        "P3172"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-12-intent",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e4d7b8c8eace0561d1aec11d5828ea6cea3ffb8ac1466c406f3656b94848467e",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3192",
+        "P3201",
+        "P3196",
+        "P3204",
+        "P3116"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-12-specification",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "984e5379607318112e9e4cd6dbc754ff1da9b5fa339788a8c896b54030b3092b",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3204",
+        "P3201",
+        "P3196",
+        "P3192",
+        "P3397"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-16-intent",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3b07a97db0c881a7718756c562bb4dc2114b54457327d09485689f134654c7a3",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3256",
+        "P3265",
+        "P3261",
+        "P3268",
+        "P3296"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-16-specification",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "fe0619c61440782126f2dd613869cd089296cf82afee0ea9b29b7ef303601905",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3265",
+        "P3268",
+        "P3261",
+        "P3256",
+        "P3292"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-20-intent",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "d3ec920418b4080e8526b48bc3640e039008b758bfc320ac70ff9a56e2324f0f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3321",
+        "P3328",
+        "P3325",
+        "P3332",
+        "P3348"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-20-specification",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b5e6f1a3b59850d0abb29efc692f583e3afc6c9422bbb34662dfbb81797fcb38",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3332",
+        "P3328",
+        "P3321",
+        "P3324",
+        "P3382"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-24-intent",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7e38b3751701ada57e2736d21f584c4ca24169a79fc05a929f4ad5707017cdca",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3384",
+        "P3388",
+        "P3392",
+        "P3136"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-24-specification",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "a7e230a6d02708398f4e6fa52f2f31b3ba7317b1da5c34e428b6ca17bd147001",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3392",
+        "P3388",
+        "P3384",
+        "P3201"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-28-intent",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "864cea660df9075ea3cbbdcb15a6663540dab8c1f0ffbea3e2c2d821e762f613",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3448",
+        "P3452",
+        "P3461",
+        "P3456",
+        "P3464"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-28-specification",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e3340e629accde94b074ebf1f18bdfbff7914a9a47a9bb194b621772ad85a165",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3461",
+        "P3456",
+        "P3448",
+        "P3452",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-empty-0",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 253,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "e44812af2287773b92371cf0264fe74669ce25b191d63cf58e70f971633281ba",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_5-dev",
+      "case_id": "v2-empty-4",
+      "split": "dev",
+      "threshold": 0.5,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 256,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "eb3df0654aea58864243bdfc904af0437c2734a104307ef50e92ff5b396c8270",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-00-intent",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7985a33133232661d91533f6eee289e145ba2a98027b6a37778715b8d7008548",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3012",
+        "P3024"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-00-specification",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "cfce80829e3f46b88475950f8b4ed38f511b2558455d70f1bb9b3fae32b2bd54",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3012",
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-04-intent",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "109ebf4649e97dbbe80f5d719a1c19622677d99c5765a65cca02a5283306356f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3124",
+        "P3116",
+        "P3113",
+        "P3064",
+        "P3122"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-04-specification",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e9e8777c769aef22b8fad51ff79dd71ab8d4d2754a93e8f7cb31640630e4c6c7",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3076",
+        "P3064",
+        "P3068",
+        "P3072",
+        "P3124"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-08-intent",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "82755cfc0d2aa6f903cd432cd6a095bb1edad85d57b6aea4b25a7518a6274037",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3136",
+        "P3128",
+        "P3133",
+        "P3141",
+        "P3089"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-08-specification",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "9bc233b9ed70b7132c416519c66ded3aecd9540ac1c72e117f6be3d173a9f28a",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3141",
+        "P3128",
+        "P3136",
+        "P3133",
+        "P3172"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-12-intent",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e4d7b8c8eace0561d1aec11d5828ea6cea3ffb8ac1466c406f3656b94848467e",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3192",
+        "P3201",
+        "P3196",
+        "P3204",
+        "P3116"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-12-specification",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "984e5379607318112e9e4cd6dbc754ff1da9b5fa339788a8c896b54030b3092b",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3204",
+        "P3201",
+        "P3196",
+        "P3192",
+        "P3397"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-16-intent",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3b07a97db0c881a7718756c562bb4dc2114b54457327d09485689f134654c7a3",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3256",
+        "P3265",
+        "P3261",
+        "P3268",
+        "P3296"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-16-specification",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "fe0619c61440782126f2dd613869cd089296cf82afee0ea9b29b7ef303601905",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3265",
+        "P3268",
+        "P3261",
+        "P3256",
+        "P3292"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-20-intent",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "d3ec920418b4080e8526b48bc3640e039008b758bfc320ac70ff9a56e2324f0f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3321",
+        "P3328",
+        "P3325",
+        "P3332",
+        "P3348"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-20-specification",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b5e6f1a3b59850d0abb29efc692f583e3afc6c9422bbb34662dfbb81797fcb38",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3332",
+        "P3328",
+        "P3321",
+        "P3324",
+        "P3382"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-24-intent",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7e38b3751701ada57e2736d21f584c4ca24169a79fc05a929f4ad5707017cdca",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3384",
+        "P3388",
+        "P3392",
+        "P3136"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-24-specification",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "a7e230a6d02708398f4e6fa52f2f31b3ba7317b1da5c34e428b6ca17bd147001",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3392",
+        "P3388",
+        "P3384",
+        "P3201"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-28-intent",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "864cea660df9075ea3cbbdcb15a6663540dab8c1f0ffbea3e2c2d821e762f613",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3448",
+        "P3452",
+        "P3461",
+        "P3456",
+        "P3464"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-28-specification",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e3340e629accde94b074ebf1f18bdfbff7914a9a47a9bb194b621772ad85a165",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3461",
+        "P3456",
+        "P3448",
+        "P3452",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-empty-0",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 255,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "e44812af2287773b92371cf0264fe74669ce25b191d63cf58e70f971633281ba",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_6-dev",
+      "case_id": "v2-empty-4",
+      "split": "dev",
+      "threshold": 0.6,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 256,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "eb3df0654aea58864243bdfc904af0437c2734a104307ef50e92ff5b396c8270",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-00-intent",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 16,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7985a33133232661d91533f6eee289e145ba2a98027b6a37778715b8d7008548",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3008",
+        "P3001",
+        "P3004",
+        "P3012"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-00-specification",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 16,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "cfce80829e3f46b88475950f8b4ed38f511b2558455d70f1bb9b3fae32b2bd54",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3012",
+        "P3008",
+        "P3001",
+        "P3004"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-04-intent",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 4,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "109ebf4649e97dbbe80f5d719a1c19622677d99c5765a65cca02a5283306356f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3124",
+        "P3116",
+        "P3113",
+        "P3064",
+        "P3122"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-04-specification",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e9e8777c769aef22b8fad51ff79dd71ab8d4d2754a93e8f7cb31640630e4c6c7",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3076",
+        "P3064",
+        "P3068",
+        "P3072",
+        "P3124"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-08-intent",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 20,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "82755cfc0d2aa6f903cd432cd6a095bb1edad85d57b6aea4b25a7518a6274037",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3136",
+        "P3128",
+        "P3133"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-08-specification",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 16,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "9bc233b9ed70b7132c416519c66ded3aecd9540ac1c72e117f6be3d173a9f28a",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3141",
+        "P3128",
+        "P3136",
+        "P3133"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-12-intent",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 20,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e4d7b8c8eace0561d1aec11d5828ea6cea3ffb8ac1466c406f3656b94848467e",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3192",
+        "P3201",
+        "P3196"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-12-specification",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 16,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "984e5379607318112e9e4cd6dbc754ff1da9b5fa339788a8c896b54030b3092b",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3204",
+        "P3201",
+        "P3196",
+        "P3192"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-16-intent",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 16,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3b07a97db0c881a7718756c562bb4dc2114b54457327d09485689f134654c7a3",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3256",
+        "P3265",
+        "P3261",
+        "P3268"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-16-specification",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "fe0619c61440782126f2dd613869cd089296cf82afee0ea9b29b7ef303601905",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3265",
+        "P3268",
+        "P3261",
+        "P3256",
+        "P3292"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-20-intent",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 8,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "d3ec920418b4080e8526b48bc3640e039008b758bfc320ac70ff9a56e2324f0f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3321",
+        "P3328",
+        "P3325",
+        "P3332",
+        "P3348"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-20-specification",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b5e6f1a3b59850d0abb29efc692f583e3afc6c9422bbb34662dfbb81797fcb38",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3332",
+        "P3328",
+        "P3321",
+        "P3324",
+        "P3382"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-24-intent",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 4,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "7e38b3751701ada57e2736d21f584c4ca24169a79fc05a929f4ad5707017cdca",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3384",
+        "P3388",
+        "P3392",
+        "P3136"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-24-specification",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 4,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "a7e230a6d02708398f4e6fa52f2f31b3ba7317b1da5c34e428b6ca17bd147001",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3397",
+        "P3392",
+        "P3388",
+        "P3384",
+        "P3201"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-28-intent",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 16,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "864cea660df9075ea3cbbdcb15a6663540dab8c1f0ffbea3e2c2d821e762f613",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3448",
+        "P3452",
+        "P3461",
+        "P3456"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-28-specification",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e3340e629accde94b074ebf1f18bdfbff7914a9a47a9bb194b621772ad85a165",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3461",
+        "P3456",
+        "P3448",
+        "P3452",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-empty-0",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 256,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "e44812af2287773b92371cf0264fe74669ce25b191d63cf58e70f971633281ba",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_7-dev",
+      "case_id": "v2-empty-4",
+      "split": "dev",
+      "threshold": 0.7,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 256,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "eb3df0654aea58864243bdfc904af0437c2734a104307ef50e92ff5b396c8270",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-01-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b9a6ffeee39da998894b4df9a5c80b94be65b361e66b08e730cd2b9a220d7ec2",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3031",
+        "P3024",
+        "P3016",
+        "P3021",
+        "P3081"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-01-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "88bb0947e93bd26efc315d730cd8b0ced2d18f6ae4f084d4e11b012349020c92",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3031",
+        "P3024",
+        "P3021",
+        "P3016",
+        "P3092"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-02-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "5af7ffcccc55b63d2bf84b9acabb39bf3137266d8bfde82221dc3bc1b90f909c",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3045",
+        "P3036",
+        "P3032",
+        "P3041",
+        "P3448"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-02-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "02aeb55d2a59dbbd94e8626741c3787aa5892e9615f19e30d966fd60ce777401",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3045",
+        "P3036",
+        "P3032",
+        "P3041",
+        "P3052"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-03-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b33c9acfe1909818e2add6c21030f42d981dc1b32320389dd8ea39cf64a47997",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3052",
+        "P3051",
+        "P3056",
+        "P3061",
+        "P3161"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-03-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e0856776943fb8d4edf440c884a16897c751e649db69d2a0f69248674c340b52",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3061",
+        "P3052",
+        "P3051",
+        "P3056",
+        "P3172"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-05-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "bddaa1305bf56f5e76ded558148682fc8c93f3fb3bbe067c5ff4ddc2e52298bf",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3081",
+        "P3089",
+        "P3084",
+        "P3092",
+        "P3301"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-05-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "6a0e675fe982d3b4f58467787bcf567c9d01f1d2bbd9a1512417eebcfec0f7e8",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3089",
+        "P3092",
+        "P3081",
+        "P3084",
+        "P3116"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-06-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b97e3dfe16f3f5e4c4ba4be55ab0627af756cf716be7e4baf669e8befb0bc057",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3096",
+        "P3101",
+        "P3104",
+        "P3108",
+        "P3124"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-06-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3a3ee413070f9bfef8a78fe537a56eeea8814fa9a9ae7d3722919197f99eb781",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3108",
+        "P3104",
+        "P3101",
+        "P3096",
+        "P3068"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-07-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b09998aaf26a645c5cb06e81c67af987d8235b953988b29ff760961289c62bb8",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3116",
+        "P3113",
+        "P3122",
+        "P3124",
+        "P3064"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-07-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "f8f857215bc237a9489fa84260b6a5b15126e33a317341ee5b2801459f0c7508",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3124",
+        "P3116",
+        "P3113",
+        "P3122",
+        "P3072"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-09-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "c522ce514f1b9d348211bb8e00896195f62e304f95658716ccc499b567eac16f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3152",
+        "P3144",
+        "P3156",
+        "P3148",
+        "P3361"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-09-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "276083ef4850d9ce99a70ec8cca2224107cc2420c683e4ce6054e6e2c6117f55",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3156",
+        "P3152",
+        "P3144",
+        "P3148",
+        "P3361"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-10-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "85cb2c6100fd5e90270b9167601d8bc8dceed1877feb614933adbecc66f5687c",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3168",
+        "P3161",
+        "P3164",
+        "P3172",
+        "P3052"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-10-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "578c8f97d383d8775d5ec22ff3097f3512c4a7d7fb414c7b609912e7cfc3a564",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3168",
+        "P3164",
+        "P3161",
+        "P3172",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-11-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3e5762e5b0f15a5adcbac03a0bb69b83fceab36136cb3c039f595ac86d56e52c",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3184",
+        "P3181",
+        "P3188",
+        "P3177",
+        "P3168"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-11-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "8f182dc3348458ec837d1c656cdb105f78d8949ea68ddf7f74195a5e0cceb517",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3188",
+        "P3184",
+        "P3181",
+        "P3177",
+        "P3168"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-13-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "1b4c4909ce44f44dface9ff2058801fc457441360335d1a85150c731640a4133",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3004",
+        "P3008",
+        "P3001",
+        "P3208",
+        "P3212"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-13-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "197ca75912c30eb40cce6fbc2ac34a97d404ae8d42eaa2c0652a85463063160f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3221",
+        "P3208",
+        "P3212",
+        "P3216",
+        "P3004"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-14-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "f0104991faf88fda52822ae60043a8b4cf4381f754146206a31a64d8e06be9ac",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3232",
+        "P3228",
+        "P3224",
+        "P3236",
+        "P3008"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-14-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "5c95bdb367095e1e2419e236aecb4856f16b4eb508185a7a7d2f738f9ec5d00f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3236",
+        "P3232",
+        "P3228",
+        "P3224",
+        "P3001"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-15-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "78904ffb39d35db08d04668b59744e396516947e5a79767df7f53851806af145",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3252",
+        "P3248",
+        "P3241",
+        "P3244",
+        "P3012"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-15-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "cd511cb16db3f1e654bcbb324b2601b0d65ba66859a4d0f0d4673b395f7405c6",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3252",
+        "P3241",
+        "P3244",
+        "P3248",
+        "P3364"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-17-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "19a9cfcafa984e4a8ad4a90c7ba9eee936b4d5d14b86f71087c58e59272d0bd7",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3276",
+        "P3272",
+        "P3281",
+        "P3284",
+        "P3292"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-17-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "a3a9ca7fc649e044ad1495f3fb7fd8b06732ce08ca7316b40f0e608ffafa9237",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3284",
+        "P3276",
+        "P3281",
+        "P3272",
+        "P3328"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-18-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "4ba35d0025f9477106e54114de8dbaa674bae955f749828edf4d91fc26b8cc02",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3292",
+        "P3296",
+        "P3288",
+        "P3301",
+        "P3256"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-18-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "2ecafc56432536b4573e62f7a01ef83244207a51d8441808db9b47f9531132ae",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3301",
+        "P3296",
+        "P3292",
+        "P3291",
+        "P3116"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-19-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "317151b4104f5a724c5dfd7d89f3dfd33ce7f836f4599c5105cbc8bfeecfd632",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3304",
+        "P3309",
+        "P3316",
+        "P3312",
+        "P3301"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-19-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "215947b7b31553b9e1db895494bc790bb8252ef0b9fad4c201693c4c0a47ac74",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3316",
+        "P3304",
+        "P3309",
+        "P3312",
+        "P3276"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-21-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b3dda78ed9a05bb324447bc25ad8913088c615cb2dc22590fc1c47672e302076",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3342",
+        "P3344",
+        "P3348",
+        "P3336",
+        "P3156"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-21-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "5ca55601eb97f64ddd60ce87505f85ecb5b4f309d62d69cf1afecf1001b6bef3",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3348",
+        "P3344",
+        "P3342",
+        "P3336",
+        "P3155"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-22-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "95f7556d13fa02d9a9da2a9f8645701762790cc522a4d59be0ded2b36fd5e545",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3361",
+        "P3353",
+        "P3356",
+        "P3364",
+        "P3144"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-22-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "91ee4fdb7c7e40dfce9fd0d764c5b62efe965b3d12debc354691e7b1dd0286ca",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3364",
+        "P3361",
+        "P3353",
+        "P3356",
+        "P3252"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-23-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "0e09e0ac11a1fde227b8511ca8950e627aaefc1bb807e11055f777d89c155bd5",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3368",
+        "P3372",
+        "P3376",
+        "P3321",
+        "P3382"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-23-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "51c61b89a9642c8028b3c196e8d977c8ea778c493e2f6a59a20115b3ab75caea",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3382",
+        "P3376",
+        "P3372",
+        "P3368",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-25-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "d9cd520245be8744048766fdf4ce0e17b7c8664a4e3cf4f48e33fb054cae7623",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3402",
+        "P3404",
+        "P3408",
+        "P3412",
+        "P3096"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-25-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "63ffdcdc3426e4800d4a1fca55fbfc67a8979e0391165db6c93b778ae50760f0",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3412",
+        "P3401",
+        "P3408",
+        "P3404",
+        "P3016"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-26-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "1b32a3cd59a72e63c3d8dbb718fe9cd787564928128449b95cb26867c37296ec",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3416",
+        "P3421",
+        "P3428",
+        "P3424",
+        "P3084"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-26-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "db6a2fbc5954799318e092d937dbf90d25e22e4c0dd707668b8bb3d454f95648",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3431",
+        "P3424",
+        "P3421",
+        "P3416",
+        "P3089"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-27-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3081ab500756f3e73a7960870636dfbd1714d2dbe014cebf3f2700a23a444274",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3441",
+        "P3436",
+        "P3432",
+        "P3444",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-27-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "f7939d87043fd7e9c3f7d17d27371cb3854af4c9b345ac25bf27c50f8a3f2c92",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3441",
+        "P3436",
+        "P3432",
+        "P3444",
+        "P3052"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-29-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "84bba267a380b68acc5134bfe836669f09c531db46e56f7fc7620adb4b28e2d9",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3464",
+        "P3468",
+        "P3472",
+        "P3476",
+        "P3361"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-29-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "62efd8016a30cefbaff305b8c1bdf566f01260c0b891fb7d64ceacdbd7eb38e6",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3471",
+        "P3472",
+        "P3476",
+        "P3464",
+        "P3361"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-30-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "2f7079c14b5877e8a7b3ef3abe058046e15d3860867c0a0eb33b0b41f43095aa",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3485",
+        "P3481",
+        "P3488",
+        "P3492",
+        "P3232"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-30-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "ec88be45fe025d0e42358017055a5a7d82324d10c2db2bd59228eb3f06036001",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3492",
+        "P3485",
+        "P3481",
+        "P3488",
+        "P3304"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-31-intent",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "448b059599f180dd85c13c5c1204f81c957b075f3b8074a90d44a2e639a667c9",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3496",
+        "P3292",
+        "P3301",
+        "P3296",
+        "P3288"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-31-specification",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "2525974baac2ac32290301fc6aebc827c34442dde7e11cd87748e5a6bba937e5",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3496",
+        "P3301",
+        "P3261",
+        "P3256",
+        "P3292"
+      ]
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-empty-1",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "b4a1c5ff840c11b607219aa4b42af1de7b4c1542528acc39f4e5da972dce80a5",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-empty-2",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "82e0ec6840685dd428665c3e27890cfb19d9e40191959d9475e035499f20d94b",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-empty-3",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "1aef1e37977736dc9ef82ac46a2af31c01130cfbd9c816688c34bd09f457c396",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-empty-5",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "68f4a031a420a86f26339287c19ee14bd48e2294f1c674f37b9827f7035553f4",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-empty-6",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "214db709b90965fa6e27deb5440c53b4576d216ff267098184e184371607254c",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-none-holdout",
+      "case_id": "v2-empty-7",
+      "split": "holdout",
+      "threshold": null,
+      "score_kind": "embedding",
+      "relevance_filter_applied": false,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "69a221420d31816572630e47b35fffc8b14f746ff2cce1730f7c53ac30455268",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-01-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b9a6ffeee39da998894b4df9a5c80b94be65b361e66b08e730cd2b9a220d7ec2",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3031",
+        "P3024",
+        "P3016",
+        "P3021",
+        "P3081"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-01-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "88bb0947e93bd26efc315d730cd8b0ced2d18f6ae4f084d4e11b012349020c92",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3031",
+        "P3024",
+        "P3021",
+        "P3016",
+        "P3092"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-02-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "5af7ffcccc55b63d2bf84b9acabb39bf3137266d8bfde82221dc3bc1b90f909c",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3045",
+        "P3036",
+        "P3032",
+        "P3041",
+        "P3448"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-02-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "02aeb55d2a59dbbd94e8626741c3787aa5892e9615f19e30d966fd60ce777401",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3045",
+        "P3036",
+        "P3032",
+        "P3041",
+        "P3052"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-03-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b33c9acfe1909818e2add6c21030f42d981dc1b32320389dd8ea39cf64a47997",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3052",
+        "P3051",
+        "P3056",
+        "P3061",
+        "P3161"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-03-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "e0856776943fb8d4edf440c884a16897c751e649db69d2a0f69248674c340b52",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3061",
+        "P3052",
+        "P3051",
+        "P3056",
+        "P3172"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-05-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "bddaa1305bf56f5e76ded558148682fc8c93f3fb3bbe067c5ff4ddc2e52298bf",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3081",
+        "P3089",
+        "P3084",
+        "P3092",
+        "P3301"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-05-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "6a0e675fe982d3b4f58467787bcf567c9d01f1d2bbd9a1512417eebcfec0f7e8",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3089",
+        "P3092",
+        "P3081",
+        "P3084",
+        "P3116"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-06-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b97e3dfe16f3f5e4c4ba4be55ab0627af756cf716be7e4baf669e8befb0bc057",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3096",
+        "P3101",
+        "P3104",
+        "P3108",
+        "P3124"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-06-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3a3ee413070f9bfef8a78fe537a56eeea8814fa9a9ae7d3722919197f99eb781",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3108",
+        "P3104",
+        "P3101",
+        "P3096",
+        "P3068"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-07-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b09998aaf26a645c5cb06e81c67af987d8235b953988b29ff760961289c62bb8",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3116",
+        "P3113",
+        "P3122",
+        "P3124",
+        "P3064"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-07-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "f8f857215bc237a9489fa84260b6a5b15126e33a317341ee5b2801459f0c7508",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3124",
+        "P3116",
+        "P3113",
+        "P3122",
+        "P3072"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-09-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "c522ce514f1b9d348211bb8e00896195f62e304f95658716ccc499b567eac16f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3152",
+        "P3144",
+        "P3156",
+        "P3148",
+        "P3361"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-09-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "276083ef4850d9ce99a70ec8cca2224107cc2420c683e4ce6054e6e2c6117f55",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3156",
+        "P3152",
+        "P3144",
+        "P3148",
+        "P3361"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-10-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "85cb2c6100fd5e90270b9167601d8bc8dceed1877feb614933adbecc66f5687c",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3168",
+        "P3161",
+        "P3164",
+        "P3172",
+        "P3052"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-10-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "578c8f97d383d8775d5ec22ff3097f3512c4a7d7fb414c7b609912e7cfc3a564",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3168",
+        "P3164",
+        "P3161",
+        "P3172",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-11-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3e5762e5b0f15a5adcbac03a0bb69b83fceab36136cb3c039f595ac86d56e52c",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3184",
+        "P3181",
+        "P3188",
+        "P3177",
+        "P3168"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-11-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "8f182dc3348458ec837d1c656cdb105f78d8949ea68ddf7f74195a5e0cceb517",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3188",
+        "P3184",
+        "P3181",
+        "P3177",
+        "P3168"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-13-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "1b4c4909ce44f44dface9ff2058801fc457441360335d1a85150c731640a4133",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3004",
+        "P3008",
+        "P3001",
+        "P3208",
+        "P3212"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-13-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "197ca75912c30eb40cce6fbc2ac34a97d404ae8d42eaa2c0652a85463063160f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3221",
+        "P3208",
+        "P3212",
+        "P3216",
+        "P3004"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-14-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "f0104991faf88fda52822ae60043a8b4cf4381f754146206a31a64d8e06be9ac",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3232",
+        "P3228",
+        "P3224",
+        "P3236",
+        "P3008"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-14-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "5c95bdb367095e1e2419e236aecb4856f16b4eb508185a7a7d2f738f9ec5d00f",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3236",
+        "P3232",
+        "P3228",
+        "P3224",
+        "P3001"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-15-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "78904ffb39d35db08d04668b59744e396516947e5a79767df7f53851806af145",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3252",
+        "P3248",
+        "P3241",
+        "P3244",
+        "P3012"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-15-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "cd511cb16db3f1e654bcbb324b2601b0d65ba66859a4d0f0d4673b395f7405c6",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3252",
+        "P3241",
+        "P3244",
+        "P3248",
+        "P3364"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-17-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "19a9cfcafa984e4a8ad4a90c7ba9eee936b4d5d14b86f71087c58e59272d0bd7",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3276",
+        "P3272",
+        "P3281",
+        "P3284",
+        "P3292"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-17-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "a3a9ca7fc649e044ad1495f3fb7fd8b06732ce08ca7316b40f0e608ffafa9237",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3284",
+        "P3276",
+        "P3281",
+        "P3272",
+        "P3328"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-18-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "4ba35d0025f9477106e54114de8dbaa674bae955f749828edf4d91fc26b8cc02",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3292",
+        "P3296",
+        "P3288",
+        "P3301",
+        "P3256"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-18-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "2ecafc56432536b4573e62f7a01ef83244207a51d8441808db9b47f9531132ae",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3301",
+        "P3296",
+        "P3292",
+        "P3291",
+        "P3116"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-19-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "317151b4104f5a724c5dfd7d89f3dfd33ce7f836f4599c5105cbc8bfeecfd632",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3304",
+        "P3309",
+        "P3316",
+        "P3312",
+        "P3301"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-19-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "215947b7b31553b9e1db895494bc790bb8252ef0b9fad4c201693c4c0a47ac74",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3316",
+        "P3304",
+        "P3309",
+        "P3312",
+        "P3276"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-21-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "b3dda78ed9a05bb324447bc25ad8913088c615cb2dc22590fc1c47672e302076",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3342",
+        "P3344",
+        "P3348",
+        "P3336",
+        "P3156"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-21-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "5ca55601eb97f64ddd60ce87505f85ecb5b4f309d62d69cf1afecf1001b6bef3",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3348",
+        "P3344",
+        "P3342",
+        "P3336",
+        "P3155"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-22-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "95f7556d13fa02d9a9da2a9f8645701762790cc522a4d59be0ded2b36fd5e545",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3361",
+        "P3353",
+        "P3356",
+        "P3364",
+        "P3144"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-22-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "91ee4fdb7c7e40dfce9fd0d764c5b62efe965b3d12debc354691e7b1dd0286ca",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3364",
+        "P3361",
+        "P3353",
+        "P3356",
+        "P3252"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-23-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "0e09e0ac11a1fde227b8511ca8950e627aaefc1bb807e11055f777d89c155bd5",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3368",
+        "P3372",
+        "P3376",
+        "P3321",
+        "P3382"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-23-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "51c61b89a9642c8028b3c196e8d977c8ea778c493e2f6a59a20115b3ab75caea",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3382",
+        "P3376",
+        "P3372",
+        "P3368",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-25-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "d9cd520245be8744048766fdf4ce0e17b7c8664a4e3cf4f48e33fb054cae7623",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3402",
+        "P3404",
+        "P3408",
+        "P3412",
+        "P3096"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-25-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "63ffdcdc3426e4800d4a1fca55fbfc67a8979e0391165db6c93b778ae50760f0",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3412",
+        "P3401",
+        "P3408",
+        "P3404",
+        "P3016"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-26-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "1b32a3cd59a72e63c3d8dbb718fe9cd787564928128449b95cb26867c37296ec",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3416",
+        "P3421",
+        "P3428",
+        "P3424",
+        "P3084"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-26-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "db6a2fbc5954799318e092d937dbf90d25e22e4c0dd707668b8bb3d454f95648",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3431",
+        "P3424",
+        "P3421",
+        "P3416",
+        "P3089"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-27-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "3081ab500756f3e73a7960870636dfbd1714d2dbe014cebf3f2700a23a444274",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3441",
+        "P3436",
+        "P3432",
+        "P3444",
+        "P3061"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-27-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "f7939d87043fd7e9c3f7d17d27371cb3854af4c9b345ac25bf27c50f8a3f2c92",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3441",
+        "P3436",
+        "P3432",
+        "P3444",
+        "P3052"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-29-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "84bba267a380b68acc5134bfe836669f09c531db46e56f7fc7620adb4b28e2d9",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3464",
+        "P3468",
+        "P3472",
+        "P3476",
+        "P3361"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-29-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "62efd8016a30cefbaff305b8c1bdf566f01260c0b891fb7d64ceacdbd7eb38e6",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3471",
+        "P3472",
+        "P3476",
+        "P3464",
+        "P3361"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-30-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "2f7079c14b5877e8a7b3ef3abe058046e15d3860867c0a0eb33b0b41f43095aa",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3485",
+        "P3481",
+        "P3488",
+        "P3492",
+        "P3232"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-30-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "ec88be45fe025d0e42358017055a5a7d82324d10c2db2bd59228eb3f06036001",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3492",
+        "P3485",
+        "P3481",
+        "P3488",
+        "P3304"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-31-intent",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "448b059599f180dd85c13c5c1204f81c957b075f3b8074a90d44a2e639a667c9",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3496",
+        "P3292",
+        "P3301",
+        "P3296",
+        "P3288"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-31-specification",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32
+      ],
+      "query_sha256": "2525974baac2ac32290301fc6aebc827c34442dde7e11cd87748e5a6bba937e5",
+      "external_api_calls": 0,
+      "returned_product_ids": [
+        "P3496",
+        "P3301",
+        "P3261",
+        "P3256",
+        "P3292"
+      ]
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-empty-1",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "b4a1c5ff840c11b607219aa4b42af1de7b4c1542528acc39f4e5da972dce80a5",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-empty-2",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "82e0ec6840685dd428665c3e27890cfb19d9e40191959d9475e035499f20d94b",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-empty-3",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "1aef1e37977736dc9ef82ac46a2af31c01130cfbd9c816688c34bd09f457c396",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-empty-5",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "68f4a031a420a86f26339287c19ee14bd48e2294f1c674f37b9827f7035553f4",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-empty-6",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "214db709b90965fa6e27deb5440c53b4576d216ff267098184e184371607254c",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    },
+    {
+      "report_id": "threshold-0_0-holdout",
+      "case_id": "v2-empty-7",
+      "split": "holdout",
+      "threshold": 0.0,
+      "score_kind": "embedding",
+      "relevance_filter_applied": true,
+      "low_relevance_removed": 0,
+      "requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ],
+      "query_sha256": "69a221420d31816572630e47b35fffc8b14f746ff2cce1730f7c53ac30455268",
+      "external_api_calls": 0,
+      "returned_product_ids": []
+    }
+  ]
+}

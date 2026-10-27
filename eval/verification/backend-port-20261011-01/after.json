@@ -1,0 +1,11 @@
+{
+    "timestamp":  "2026-10-11T13:42:55.2920595+00:00",
+    "old_process_stopped":  true,
+    "port_8000_listeners":  [
+
+                            ],
+    "port_8000_bind_passed":  true,
+    "frontend_status":  200,
+    "backend_restarted_by_agent":  false,
+    "env_modified":  false
+}

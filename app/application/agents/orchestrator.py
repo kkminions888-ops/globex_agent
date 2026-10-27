@@ -92,6 +92,7 @@ class SubmitIntentInput:
     raw_query: str
     selected_skill: SelectedSkill | None = None
     confirmations: tuple[dict, ...] = ()
+    model_override: dict | None = None  # 仅后台可信入口可提供，HTTP 不解析此字段。
 
 
 @dataclass(frozen=True)
@@ -260,7 +261,7 @@ class MainAgentOrchestrator:
                     remember_verified_result("products", candidate_projection.result)
         try:
             selected_event("reading")
-            agent = await self._sessions.get_or_create(session_id)
+            agent = await self._sessions.get_or_create(session_id, **({"model_override": intent.model_override} if intent.model_override else {}))
             from app.application.agents.tool_confirmation import awaiting_event, confirmation_inputs
             pending=awaiting_event(agent)
             if intent.confirmations:

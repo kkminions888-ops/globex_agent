@@ -1,0 +1,8 @@
+{
+  "cardColumns": "281.656px 281.656px 281.656px 281.656px",
+  "documentWidth": 1265,
+  "metricCards": 4,
+  "status": "离线诊断，不能验收当前模型优化数值仅用于检查评测链路；正式验收需完成同口径的真实检索评测。retrieval-standard-v1",
+  "title": "Globex · 商品检索评测",
+  "viewportWidth": 1280
+}

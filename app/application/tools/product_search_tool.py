@@ -71,6 +71,11 @@ def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus,
         required_material_tags: list[str] | None = None,
         product_id: str | None = None,
         sku_id: str | None = None,
+        sku_spec: str | None = None,
+        product_type: str | None = None,
+        max_weight_kg: float | str | None = None,
+        preferred_product_type: str | None = None,
+        prefer_lightweight: bool = False,
     ) -> ToolChunk:
         """检索跨境商品库（embedding+rerank 二阶段召回），返回 Top-K 商品卡 JSON。
         传入 ship_to 时商品卡自动内联 landed_price 到手价明细（小计+运费+关税，统一折算 target_currency），
@@ -98,6 +103,16 @@ def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus,
                 精确商品 ID，如 "P1003"；与 sku_id 同时提供时必须匹配。
             sku_id (`str | None`):
                 精确规格 ID，如 "P1003-S1"；优先于 product_id 和查询文字，保持当前规格。
+            sku_spec (`str | None`):
+                明确指定的规格文字，如“黑色 20L”；仅保留可售且同时满足规格和预算的 SKU。
+            product_type (`str | None`):
+                明确要购买的细分类型，如“背包”“颈枕”，作为硬过滤；与一级类目分开。
+            max_weight_kg (`float | None`):
+                明确重量上限，单位 kg；没有可靠重量的商品不能满足该硬约束。
+            preferred_product_type (`str | None`):
+                模糊类型偏好，仅调整排序，不排除其他类型。
+            prefer_lightweight (`bool`):
+                仅表达轻便偏好时为 true，优先已知较轻商品；不擅自指定重量上限。
         """
         # 模型有时会把数字参数当字符串传（实测 qwen3-max 传 "300"），
         # schema 层放宽为接受数字字符串，这里统一强转后再进检索链路。
@@ -117,13 +132,19 @@ def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus,
                     content=[TextBlock(type="text", text=f"[error] price_max_major 非法：{price_max_major}")],
                     state=ToolResultState.ERROR,
                 )
+        if isinstance(max_weight_kg, str):
+            try:
+                max_weight_kg = float(max_weight_kg)
+            except ValueError:
+                return ToolChunk(content=[TextBlock(type="text", text="[error] max_weight_kg 必须是数值")], state=ToolResultState.ERROR)
         snapshot_ctx = ShoppingContext.current()
         context_exclusions = list(snapshot_ctx.excluded_material_tags) if snapshot_ctx else []
         excluded_material_tags = list(
             dict.fromkeys([*context_exclusions, *(excluded_material_tags or [])]),
         )
         # ID 核验不能被查询文字中推测出的品类误过滤；显式品类约束仍保留。
-        category = _normalize_category(category, "" if product_id or sku_id else normalized_query)
+        # 细分类型可以横跨一级类目，不能从“户外背包”等文字再推测错误的一级硬过滤。
+        category = _normalize_category(category, "" if product_id or sku_id or product_type else normalized_query)
         session_id = ShoppingContext.current_session_id()
         args = {
             "normalized_query": normalized_query,
@@ -136,6 +157,11 @@ def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus,
             "required_material_tags": required_material_tags or [],
             "product_id": product_id,
             "sku_id": sku_id,
+            "sku_spec": sku_spec,
+            "product_type": product_type,
+            "max_weight_kg": max_weight_kg,
+            "preferred_product_type": preferred_product_type,
+            "prefer_lightweight": prefer_lightweight,
         }
         bus.publish(session_id, "tool.invoke", {"tool": "product_search_tool", "args": args})
         if ship_to and ship_to not in TariffSchedule(ExchangeRateTable()).supported_destinations():
@@ -157,6 +183,11 @@ def build_product_search_tool(usecase: CatalogSearchUseCase, bus: TradeEventBus,
                 required_material_tags=required_material_tags or [],
                 product_id=product_id,
                 sku_id=sku_id,
+                sku_spec=sku_spec,
+                product_type=product_type,
+                max_weight_kg=max_weight_kg,
+                preferred_product_type=preferred_product_type,
+                prefer_lightweight=prefer_lightweight,
             )
             result = await usecase.execute(spec)
         except ValueError as err:

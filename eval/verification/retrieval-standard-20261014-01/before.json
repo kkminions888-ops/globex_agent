@@ -1,0 +1,37 @@
+{
+  "captured_at": "2026-10-14T22:36:49.288103+08:00",
+  "git_head": "8f0535c65a06a95f279898bc39cafb043d580701",
+  "retrieval_source_files": {
+    "app/application/usecases/catalog_search.py": "9f4f14e35bbe53c7e6f4a8d1f909173d5dce4f0890a1ec16c035db85bb14275b",
+    "app/application/tools/product_search_tool.py": "5f931542ce38d8751ae97b6484093e2611e92536335a448c0452d12115973dd4",
+    "app/domain/catalog/product.py": "6ee57da1da895cb25302a391e6edc6db0a07e675d56e27092c61695f3f631832",
+    "app/domain/catalog/product_search_spec.py": "703d74c10b45193dc8c4f9d7e44795596c9700a8d2e6f630e3c06856cffe4ea1",
+    "app/infrastructure/retrieval/bm25.py": "6e6250cc359ebbdbc3da9375f5b2ec536fd3db70006fd4f51bc21b26a5aba9ea",
+    "app/infrastructure/vector/qdrant_product_index.py": "afebbd2a872f8613d3b70a112c1a8e95f5951b3579111760ca64b998566abb33",
+    "app/infrastructure/embedding/openai_embedding_client.py": "f3046bca4eba52586af666406cdf12163e9176bc3736fe7ee5dd7dfcc2a576fe",
+    "app/infrastructure/rerank/http_reranker.py": "b1eef97c7630f0b7eb865fa0cd260b6f4654c0c272a039142b06704bcd976082",
+    "app/infrastructure/rerank/factory.py": "755d782dfc9bea3bcaec07a951aac156962adbadcf0844589703a0bfb0f00b5b",
+    "app/infrastructure/persistence/seed_products.py": "cddeeedccc7b0a487a7cc5679126489085a9b614e7a67da6dbba1edbaccd3627",
+    "uv.lock": "35e6b9a7a9318a0409a839b9c6ef7c173a0b446545a70129d84f970fbac944f9"
+  },
+  "retrieval_source_sha256": "0b1df5fafbd6f01570db7a7eb6e6650022fefd5b8c878ce31d86236c0dd367eb",
+  "catalogs": {
+    "catalog-v1.jsonl": {
+      "sha256": "841c543683543f11870ef7a07fb226d99fb6e39009675bba2c6ae1ccbb4dc821",
+      "bytes": 447767
+    },
+    "catalog-v2.jsonl": {
+      "sha256": "fc837e52acda8c765fa7a2f46f1b2e108d3c9411c26ae4545ff4596ac5157984",
+      "bytes": 1039159
+    },
+    "catalog-v3.jsonl": {
+      "sha256": "a735003f34b11093097e2728d1003fc63ca63302e938e997f0fd5014cebec6fe",
+      "bytes": 4785235
+    }
+  },
+  "env": {
+    "exists": true,
+    "bytes": 6304,
+    "mtime_ns": 1791725892704841300
+  }
+}

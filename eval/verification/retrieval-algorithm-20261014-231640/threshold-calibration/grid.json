@@ -1,0 +1,30 @@
+{
+  "id": "embedding-cosine-threshold-grid-v1",
+  "thresholds": [
+    0.0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7
+  ],
+  "score_kind": "embedding",
+  "hybrid_enabled": false,
+  "reranker_enabled": false,
+  "selection_split": "dev",
+  "protected_metrics": {
+    "ndcg_min_delta": 0.0,
+    "precision_min_delta": 0.0,
+    "empty_accuracy_min_delta": 0.0,
+    "recall_min_delta": -0.01
+  },
+  "selection_order": [
+    "precision_desc",
+    "ndcg_desc",
+    "recall_desc",
+    "threshold_asc"
+  ],
+  "note": "同源码真实候选参数消融；不作为改进前后算法收益，不修改默认配置。"
+}

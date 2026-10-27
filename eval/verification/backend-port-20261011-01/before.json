@@ -1,0 +1,8 @@
+{
+    "timestamp":  "2026-10-11T13:42:54.7553462+00:00",
+    "process_id":  69904,
+    "executable":  "E:\\anaconda3\\envs\\globex\\python.exe",
+    "command":  "\"E:\\anaconda3\\envs\\globex\\python.exe\" -m uvicorn app.presentation.server:app --host 127.0.0.1 --port 8000 --workers 1",
+    "creation_time":  "2026-10-11T12:21:19.4854950Z",
+    "reason":  "释放已确认的本工程旧后端占用的8000端口，供用户按更新后的配置手动启动"
+}

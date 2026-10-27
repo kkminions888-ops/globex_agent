@@ -1,0 +1,24 @@
+{
+  "status": "failed",
+  "started_at_utc": "2026-10-11T12:08:07.347306+00:00",
+  "frontend_url": "http://127.0.0.1:5173",
+  "prompt_sha256": "39d8e7172d6e10454f6bcd09dd18fefe3f8165cb5dd9ec5afa6ab10cf7bfe82e",
+  "prompt_submitted": false,
+  "checks": {},
+  "screenshots": [
+    "failure.png"
+  ],
+  "health": {
+    "http_status": 200,
+    "status": "ok"
+  },
+  "error": {
+    "type": "BrowserCheckError",
+    "code": "click_target_unavailable"
+  },
+  "ag_ui_post_count": 0,
+  "ag_ui_requests": [],
+  "page_error_count": 0,
+  "console_error_count": 1,
+  "finished_at_utc": "2026-10-11T12:08:10.060450+00:00"
+}

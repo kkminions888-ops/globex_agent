@@ -1,0 +1,78 @@
+{
+  "passed": true,
+  "complete_without_errors_or_degradation": true,
+  "deltas": {
+    "ndcg_at_5": 0.0,
+    "returned_precision": 0.0,
+    "empty_accuracy": 0,
+    "recall_at_5": 0.0
+  },
+  "protected_metrics": {
+    "ndcg_min_delta": 0.0,
+    "precision_min_delta": 0.0,
+    "empty_accuracy_min_delta": 0.0,
+    "recall_min_delta": -0.01
+  },
+  "baseline": {
+    "ndcg_at_5": 0.9032805166002897,
+    "recall_at_5": 0.9895833333333334,
+    "returned_precision": 0.4375,
+    "empty_accuracy": 1,
+    "hard_constraint_violations": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 0
+    },
+    "constraint_case_counts": {
+      "budget": 6,
+      "material": 0,
+      "shipping": 54
+    },
+    "hard_constraint_case_failures": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 0
+    },
+    "constraint_positive_case_counts": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 48
+    },
+    "hard_constraint_violation_rate": 0.0,
+    "positive_cases": 48,
+    "empty_cases": 6,
+    "p95_ms": 4.797999994480051
+  },
+  "candidate": {
+    "ndcg_at_5": 0.9032805166002897,
+    "recall_at_5": 0.9895833333333334,
+    "returned_precision": 0.4375,
+    "empty_accuracy": 1,
+    "hard_constraint_violations": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 0
+    },
+    "constraint_case_counts": {
+      "budget": 6,
+      "material": 0,
+      "shipping": 54
+    },
+    "hard_constraint_case_failures": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 0
+    },
+    "constraint_positive_case_counts": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 48
+    },
+    "hard_constraint_violation_rate": 0.0,
+    "positive_cases": 48,
+    "empty_cases": 6,
+    "p95_ms": 6.491799998912029
+  },
+  "removed_candidate_count": 0,
+  "enable_recommendation": "do_not_enable"
+}

@@ -428,6 +428,8 @@ def _product_from_record(record: dict) -> Product:
         localized_category=record.get("localized_category", ""),
         localized_material=record.get("localized_material", ""),
         data_provenance=record.get("data_provenance", ""),
+        product_type=record.get("product_type"),
+        model_spec=record.get("model_spec", ""),
     )
 
 

@@ -12,6 +12,9 @@ function commandAt(value: string, caret: number, end = caret): SlashCommand | nu
 }
 
 interface Props {
+  id?: string;
+  multiline?: boolean;
+  maxLength?: number;
   value: string;
   skills: PublishedSkill[];
   status: "loading" | "ready" | "error";
@@ -26,7 +29,7 @@ interface Props {
 
 /** 菜单只完成选择；实际读取由提交后的服务端状态确认。 */
 export default forwardRef<HTMLTextAreaElement, Props>(function SkillQueryInput({
-  value, skills, status, error, busy, onChange, onSelect, onSubmit, onRefresh, onMenuOpenChange,
+  value, skills, status, error, busy, onChange, onSelect, onSubmit, onRefresh, onMenuOpenChange, id = "query", multiline = false, maxLength = 4000,
 }, ref) {
   const [command, setCommand] = useState<SlashCommand | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -88,7 +91,7 @@ export default forwardRef<HTMLTextAreaElement, Props>(function SkillQueryInput({
       </div>
       <p className="slash-skill-help"><span>↑ ↓ 选择 · Enter 确定</span><span>Esc 关闭</span></p>
     </div>}
-    <textarea ref={ref} id="query" value={value} rows={value.includes("\n") ? 3 : 1} maxLength={4000}
+    <textarea ref={ref} id={id} value={value} rows={value.includes("\n") ? 3 : 1} maxLength={maxLength}
       role="combobox" aria-autocomplete="list" aria-expanded={open}
       aria-controls={open ? "slash-skill-options" : undefined}
       aria-activedescendant={open && status === "ready" && matches.length ? `slash-skill-option-${index}` : undefined}
@@ -106,7 +109,7 @@ export default forwardRef<HTMLTextAreaElement, Props>(function SkillQueryInput({
           else if (matches.length) setActiveIndex((index + (event.key === "ArrowDown" ? 1 : -1) + matches.length) % matches.length);
           return;
         }
-        if (event.key === "Enter" && !event.shiftKey) {
+        if (event.key === "Enter" && !event.shiftKey && (open || !multiline)) {
           event.preventDefault();
           if (open) { if (status === "ready" && matches[index]) choose(matches[index]); }
           else if (!busy) onSubmit();

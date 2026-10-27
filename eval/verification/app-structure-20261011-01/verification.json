@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-11T20:47:13+08:00",
+  "gitHead": "ddd7e5be1af4bb474f3af325f3d5113051c1c013",
+  "document": "app/README.md",
+  "documentSha256": "9BF374573B50660873D56CDFEC199F053E30752A9C12E4004EBEAE66A4ABA4C3",
+  "sourceFilesCount": 181,
+  "checkedLinks": 18,
+  "missingLinks": [],
+  "trailingWhitespaceLines": 0,
+  "codeFenceCount": 2,
+  "gitStatus": [
+    " M app/infrastructure/model_registry.py",
+    " M app/infrastructure/persistence/json_file_stores.py",
+    " M tests/test_model_registry.py",
+    "?? app/README.md",
+    "?? eval/verification/app-structure-20261011-01/",
+    "?? eval/verification/harness-startup-20261011-02/",
+    "?? eval/verification/local-startup-20261011-01/",
+    "?? eval/verification/local-startup-20261011-02/",
+    "?? tests/test_json_file_lock.py"
+  ]
+}

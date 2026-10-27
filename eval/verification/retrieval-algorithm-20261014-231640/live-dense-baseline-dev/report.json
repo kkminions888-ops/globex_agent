@@ -1,0 +1,683 @@
+{
+  "id": "live-dense-baseline-dev",
+  "label": "真实 Dense 冻结候选回放",
+  "protocol": "retrieval-standard-v1",
+  "standard_id": "retrieval-standard-v1",
+  "created_at": "2026-10-14T15:30:14.239028+00:00",
+  "status": "completed",
+  "scope": "diagnostic",
+  "role": "baseline",
+  "variant": "dense_frozen_real",
+  "provenance": {
+    "catalog_sha256": "a735003f34b11093097e2728d1003fc63ca63302e938e997f0fd5014cebec6fe",
+    "dataset_sha256": "d0dae146765af5583a8228fc23c6ecbc237d233eea157b2fc4813e35a97a4808",
+    "selection_sha256": "2cd25f40102e58070ea27e5404e2845033879ba40af718c8054b9605c0dce291",
+    "source_sha256": "5c3ed6b290dddd6e336143fcb2be91df4a2bff88e88ca1ac4d8f1701da4c8acb",
+    "standard_sha256": "f5cc0518b6a0733fe46ee5f40805b03e9829cd0b319d2bdaf9e741122c13ed0d",
+    "evaluator_sha256": "464f2baf92f954f42aea966297a8c2ef13a6ceccd374656bef9be9cb2e0ab6c1",
+    "config_sha256": "616931b170aedc4fe41ac7b8c1bbb59da8b695a93f6ba4340a5086160d61f273",
+    "embedding_identity": "56a39362caae8f4ebafba8f324e9163a57fa2c8c1d02e3aea794c8a8f07813e1",
+    "query_mode": "structured_spec",
+    "k": 5,
+    "split": "dev",
+    "repetitions": 1,
+    "catalog_count": 3700,
+    "sku_count": 7105,
+    "case_count": 18
+  },
+  "parameters_safe": {
+    "mode": "dense_frozen_real",
+    "reranker_enabled": false,
+    "hybrid_enabled": false,
+    "recall_candidates": 32,
+    "vector_cache_sha256": "83db855569b42fa9b0d522be90224e65631386d96f30ec2b31dbefe26e177979",
+    "latency_scope": "replay_after_frozen_real_retrieval"
+  },
+  "source_files": {
+    "app/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/application/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/application/agent_runtime.py": "db5b7cd4c5ed242f3738132d51dd6e0a5dce9b257402151d6bcdb9b44a9f7a9b",
+    "app/application/agents/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/application/agents/activity_summary.py": "32376679db4c8a1468322e2756f251256e456a995bdaeb7fcab33f97f976cb72",
+    "app/application/agents/ag_ui_adapter.py": "23223297e3011f58dfdae24dab7a6c2ffd4a519687aebc285d3a30b01054cc8d",
+    "app/application/agents/context_policy.py": "2acfe9ad71e32bd554c88dd426dcb5c0a682b83095458012d6278d9522ea9f18",
+    "app/application/agents/context_service.py": "ec41080f525b0ca5ecbe41973fc335a086d3b61e5782f5e853c2eca7afe8941e",
+    "app/application/agents/main_agent.py": "a5ace1dd55943056a35d5cd8de67f3387a5619bb09e40511f4ab25d27ed8974e",
+    "app/application/agents/model_selection.py": "d73928071f961adc7c6ab2c4c9b27cf2f7835f951654c3f9cfdf097243723089",
+    "app/application/agents/orchestrator.py": "04e8a0535b1493bd8a2a6565fecff452bed8034730cca37fef18c8bbd7b5a720",
+    "app/application/agents/permissions.py": "52fbc9e7c0228fdfa5dd2eca194dcbcaba57b6dbeafce5a0c4719089de00e848",
+    "app/application/agents/personal_skill_context.py": "fdf774cba8844bb2e81ba90fe786fab6d43fac024539b0ec5f75c3c42ceb8d31",
+    "app/application/agents/product_candidate_projection.py": "06399e054135de2dbe149ced74f7ba7830685d864ff65c413c7699d650150b34",
+    "app/application/agents/search_agent.py": "7d6935282c5c512fa1b9245c40db37012e89722e084a926529baa9683458325a",
+    "app/application/agents/selected_skill.py": "752c8004582494bf0ca964bd8271605642e0aa351047e7fc469f6dbce61aa208",
+    "app/application/agents/tool_confirmation.py": "f082372db75031e6ef6fa0cd36d6a893c99c9a259e970fd7aa1e84d3e65a9c42",
+    "app/application/agents/trade_agent.py": "179a9a19dcfbfb1c8ded648184784ef49792946b0eb3909f18f48261e97bb3be",
+    "app/application/automation.py": "ffc89e1b7f25081e89bd3eb5e286cf43bd2fde5ef1a36c05aae8d499e9b80116",
+    "app/application/harness/__init__.py": "6495851c364c242e8f92ed4b26a3b44655504adcee42486a1ea42fa5507115ba",
+    "app/application/harness/assertions.py": "ea763d3de96f1f69c475a0c6817a06e28ef90ddebc1945b83ea68ed9a5c0e972",
+    "app/application/harness/drift_detector.py": "f20506404785f747dc99007c52bb17c69e88c7ac33aeaad4e78631497ab6dc0c",
+    "app/application/harness/loop_detector.py": "1a064d64fd2f7de03603c4886f251a4bd1fe56fa3ee4463e9331818f57f6e0b2",
+    "app/application/learning.py": "dbcf43e389a0304462238a4830dcd57a651927eb23644f0f73b93b066e423abe",
+    "app/application/memory/__init__.py": "ae73cc583e163c67b446680edc2593fe66c4d2ed60b5b714d921ab60ede9a797",
+    "app/application/memory/middleware.py": "e6e1ae0f9b62b70db70ac2a213b74c267d1521dc0bd3b6d2eb0712b65bea851b",
+    "app/application/memory/preference_selector.py": "942e97e2fd8ca3fdff12e6369d0f6b5360d3929872cd8ab3138aff9d9a791a68",
+    "app/application/prompts/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/application/prompts/loader.py": "fbfe5f04c5e0837d73b50d9b9349d4a57ffbebd86de14623ede8744df1c1196c",
+    "app/application/retrieval_evaluation.py": "40108c6ab7adcc99e8f78509e5e219f2c3ba1f717af828707be27948bc219060",
+    "app/application/tools/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/application/tools/capability_tools.py": "9b581f730ce7f07b7b597af6ab86559a1782bf0cae2d0e7987f2444eb2131587",
+    "app/application/tools/category_insight_tool.py": "d3657244064a4966735cc3c43313a1c49ae2d5538d86611b8c27c584ceb54c56",
+    "app/application/tools/conversation_fact_lookup.py": "45378d1618aedd3d48d18409610d8eeb9d602f0dbb43ca90588c6ccb2d5b246b",
+    "app/application/tools/forget_preference_tool.py": "083ca73467f9b1a9081becd062232a6e470231521c653ab51dae76f619b7e00e",
+    "app/application/tools/order_tools.py": "9d53b0860f2efbd37a506490f2650720091c07495be8318de22c766c78c296b6",
+    "app/application/tools/product_search_tool.py": "5f931542ce38d8751ae97b6484093e2611e92536335a448c0452d12115973dd4",
+    "app/application/tools/remember_preference_tool.py": "3ad254ea579ca72e5c530a9b075d1689117160a5bb322aa0399aa83066c806c2",
+    "app/application/tools/shopping_form_tool.py": "adcbc982428ba7b0f276b7dc220c549f152bcc2a0bc2ed7ce3dbd83b1842490f",
+    "app/application/tools/task_dispatch_tool.py": "619e62425d34649db6f3796640a933c7a187cb795a6d08db098fb1d2336bc0f6",
+    "app/application/tools/update_preference_tool.py": "6a6931d7b9ad6a3ebfdc5eff684f6234a837f118a5d56bd118c0464c1a1ff70e",
+    "app/application/tools/web_search_tool.py": "79f8935b2ed88e903b1600e30a951e4b9fff397e78102675138c267b1735999d",
+    "app/application/usecases/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/application/usecases/catalog_search.py": "9f4f14e35bbe53c7e6f4a8d1f909173d5dce4f0890a1ec16c035db85bb14275b",
+    "app/application/usecases/confirmation_service.py": "900c083cdf0bf5af02b9df0aa2a8f0b48135de8510b07e201cd20dc9384b1645",
+    "app/application/usecases/order_usecases.py": "623e25984790959ecda77f501802b732f669aa1403970e7e02029916e650e685",
+    "app/application/usecases/product_media.py": "9e9bc45e04c1b98d868734d37837983c4f625b534872e4e1449abe5f38f3074b",
+    "app/automation_worker.py": "63b323e3e7379c23cf91fbc457e90ac1af345b01c7d2be77c6b8b3df19b4e288",
+    "app/composition.py": "177de9d0c1e7426f964cd1563e425dcd210b947f40020d065a39121b08da1f22",
+    "app/domain/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/domain/automation/__init__.py": "e4650b0da054d1730bf17ae373d992cd9491b5efa9c7bc0d97f561263c3d3765",
+    "app/domain/automation/models.py": "04ae42bfdcb53995ebc051fb45dd952707c5aaafb2a83aecb1dcc1e0d590cfba",
+    "app/domain/buyer/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/domain/buyer/ports/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/domain/buyer/preference.py": "fed75681ba7254a1084cc245fcc7e60c9476a8a46f2f6691bc78b11556df16e5",
+    "app/domain/catalog/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/domain/catalog/exchange_rate.py": "00a0e19c4093a45a6c8b625f8dd630010bd626903f1b687db457faaa6d88da1d",
+    "app/domain/catalog/money.py": "fa72fcf8461b29c51247086aa75cd94b18ee2b74efb19d8ba12b883904b9dca3",
+    "app/domain/catalog/ports/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/domain/catalog/ports/product_repository.py": "695e3023a5fb5a2d912decbb89430cbfc0aadf8c4d4e658cae3a420c4e2332c3",
+    "app/domain/catalog/ports/retrieval_ports.py": "8351d4ad63185d6b7ba5433ebd7fd1536000518acbb1d73791f4469c196abcc4",
+    "app/domain/catalog/product.py": "6ee57da1da895cb25302a391e6edc6db0a07e675d56e27092c61695f3f631832",
+    "app/domain/catalog/product_search_spec.py": "703d74c10b45193dc8c4f9d7e44795596c9700a8d2e6f630e3c06856cffe4ea1",
+    "app/domain/catalog/sku.py": "b39a1d6fb071dfa66f5ff710df572dab86b13e6419089008d9e88d26b7497d50",
+    "app/domain/learning.py": "0e32ff2f3660e1d9a52ad9b7b497e0916992c64d664806dfac5f5cb41dab8748",
+    "app/domain/order/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/domain/order/address.py": "4814eee8854e3f0558aa6a84ca3f2948f442093385ad106fd7f5b4c463b89701",
+    "app/domain/order/order.py": "c077cbd484d3ee8599cd6a98d90a2fd4f88cebd8cb47991b7ff823ed6c8f76cf",
+    "app/domain/order/order_line.py": "422b18dc5982746d18cbb18826452c6f357c5b0cb4bee3c1753a8e0dff4ad27c",
+    "app/domain/order/ports/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/domain/order/ports/order_repository.py": "c5ac31d0a58520e74ca404a0bd936ccd3588bee9b44a7192e5c70c47d5443a08",
+    "app/domain/order/ports/trade_store.py": "b7d994fa07b8b8263b0b5943069c4689b637a01796851c1891c0ddb0444e1969",
+    "app/domain/queue/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/domain/queue/ports/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/domain/queue/ports/task_queue.py": "57591fb8d306605220f765be46c5088dfb3d7be472ce6232be445ef45e0210af",
+    "app/domain/session/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/domain/session/ports/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/domain/session/ports/conversation_store.py": "f2ff5b7156642b291799da01435a5ea868a1a176d0553ae821d565172e693ff7",
+    "app/domain/session/ports/session_store.py": "eb1e4138610f07c288776ebaf2c660f285ef1d3b8efa79b55a224521e634ea3a",
+    "app/domain/shipping/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/domain/shipping/tariff_schedule.py": "51dfa0e190a2bc7828f12a828c7e8daefaaef323ccccde2fc75a8b142f57b8ff",
+    "app/infrastructure/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/infrastructure/ag_ui_journal.py": "5b1a7bf5ccf4a8c6358d38ac2992b37dc03113268bea140aab31ecbe75e85d6d",
+    "app/infrastructure/automation_store.py": "8ee0cb125cbd5e5f562487622048f58259b9b2f4d02a2bb847ddee2654fa1dd7",
+    "app/infrastructure/budget.py": "8837ca912a64598b412eedf4f47b5b5faf21b598a17a59fccdebc31f55c102d1",
+    "app/infrastructure/buyer_favorites.py": "d496b34e4aea4ef55eaa4dc89151e6d0800b706b49bf8c1d760b6bbe23d0c4c9",
+    "app/infrastructure/buyer_skills.py": "c98f2f697a1d529b4300152e1437253cf5b607f2a0a6d19bbd7466da7053447d",
+    "app/infrastructure/cache/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/infrastructure/cache/cached_embedding_client.py": "986ae9074a99096bd8792bf72ae2a5a458bdad697df7c518856955727306b0c7",
+    "app/infrastructure/cache/redis_cache.py": "02a64ba142db258478ec7d946ef25762d31b30e9cb77679884708d2adeb3ebf6",
+    "app/infrastructure/cache/semantic_cache.py": "d02383b9b500ce9144622f43b4d6c0a21969982310ca8253672a38792b617962",
+    "app/infrastructure/capability_registry.py": "e312e6988fce61d46a82326c9bf400f68d258e35877a3b67cecdfe8100883bf8",
+    "app/infrastructure/commerce/acp.py": "831c249d7bbc061c3d7e080fa80e542bb35b8e262493460d417650fcd0fed974",
+    "app/infrastructure/commerce/sandbox.py": "fc140e81283c1cf2f1220362d1ef562b4db78a69a42af73b120bd1d21474b877",
+    "app/infrastructure/context.py": "14a00e2dd90b86c2972f22b136c61596ed674e17e482ad7aea107dfa82008fcd",
+    "app/infrastructure/context_compaction.py": "5bb7184ae4feef764c8ba25748205fdf928b30dc9d3ce61980b0ea60f8896ff2",
+    "app/infrastructure/context_governance.py": "98071af321bd7e7b7d3de57263d1a277f084e8ab56f8162913f8fa1748507922",
+    "app/infrastructure/context_products.py": "1a301b9c412eb1edb1c6030c449315ae0ca8d1ecc073fa67b4d1becf1b194b3e",
+    "app/infrastructure/context_state.py": "4130382dc0dd73a827548c28cb951831c2ea53011ee14df899a460e1ec7a63bc",
+    "app/infrastructure/context_summary.py": "d064a92ac6dfb74f9682e61c69015a01f453dc832186fa030a677e9f59eb820a",
+    "app/infrastructure/context_usage.py": "2d72ea0b99322ac493bd47591d8b1d7ea536d72d4764f2b506a98b1f1765b8be",
+    "app/infrastructure/embedding/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/infrastructure/embedding/openai_embedding_client.py": "f3046bca4eba52586af666406cdf12163e9176bc3736fe7ee5dd7dfcc2a576fe",
+    "app/infrastructure/eventbus.py": "271edbe62e08a813dd5b4412308b36a1d915c4515fd737d926dc94f5c4428ad4",
+    "app/infrastructure/harness_middleware.py": "12cb98a02d5ba439cc19d8f6c5bc2f438b62202d90520a996a4df68db73c883c",
+    "app/infrastructure/identity.py": "277ac5f3096320dcb6fbdb7f952b5ed071f332c3880098dca181d346c151c478",
+    "app/infrastructure/langfuse_config.py": "1def74047e6bbee96fb3d65e2e40254bb8710bee8ece6f9ace6c1da39bb3d1a4",
+    "app/infrastructure/learning_context.py": "c2f1edba4da211d55154b1270065b9f5459353b235479a54d0e25c0b17c94304",
+    "app/infrastructure/learning_publication.py": "fbd9ac86bbf4f3dad06b649468ccb577f71f6b20a42abc2b04c4ac3a56c3948b",
+    "app/infrastructure/learning_store.py": "c6554845bd624b76fa16ce277a535f8203f4be0d7d8643b7cd2d8138db3b47d3",
+    "app/infrastructure/llm.py": "4654a5dc3a88cd76dbacb6c222dc27a719157f17d20f8927c416c887390196cb",
+    "app/infrastructure/model_connection.py": "6c3bc6615ade80a20c60052e5425fade7f7e065d190c1c9809daddf182e75e03",
+    "app/infrastructure/model_counting.py": "1c34902e025bdfe601eb5476a87f0c73052dc1333debe0d9fe508546049955e3",
+    "app/infrastructure/model_protocol.py": "01d75e747cdcecd37fbddd6c06e652d3b4039829c4318be598d32094bb80ce04",
+    "app/infrastructure/model_recovery.py": "bc552d13f0e1cf585745808b6b0341ab17c6ea0fcd97df503bd79a0bdb970955",
+    "app/infrastructure/model_registry.py": "fcea6589180a3227fa61932ef62ea20d7bbaf1ef0cb899bb7c5014bea0d800ac",
+    "app/infrastructure/model_stream.py": "cc51a3e95cdc97e322af09af86c32e43d11692795ba78c61a0bc6cd64b4f6757",
+    "app/infrastructure/operational_metrics.py": "1c84fa387dafa5025fc266f2f7b40cd3a64119b7c3ee12e7a3bb18766870d47e",
+    "app/infrastructure/persistence/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/infrastructure/persistence/context_evidence.py": "4bc1fe836448b674d875d96c27eebe7c01c0ace6c304b7fac0c2f62502f42e95",
+    "app/infrastructure/persistence/in_memory_repositories.py": "544c952b30eb86a46fe8bef51c7007e0693f11a04d3c8d42a5530873b62a0cbc",
+    "app/infrastructure/persistence/json_file_stores.py": "a231548fed96ca15457e135424a22c9822f0a6baa5b0634aa40e921a22882528",
+    "app/infrastructure/persistence/seed_products.py": "cddeeedccc7b0a487a7cc5679126489085a9b614e7a67da6dbba1edbaccd3627",
+    "app/infrastructure/persistence/sql/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/infrastructure/persistence/sql/repositories.py": "c904dd29c0e1aefe4e1dada6a83977983b449d070f42d98eaee6ed6cf27655d5",
+    "app/infrastructure/persistence/sql/session_store.py": "651d7193a0b41308e88ccc7be7a0f8fb562929652d713ed792f9d5690f9f4888",
+    "app/infrastructure/persistence/sql/tables.py": "e987df64f16a0c255430b88e18c7b373b72465f031ec4b63764af3f01af21c18",
+    "app/infrastructure/persistence/sql/trade_store.py": "f4ffb88359b6101c9b4c506fc806533e6acc931b4ca963fb3548c98686ff7b16",
+    "app/infrastructure/persistence/sql/trade_tables.py": "0f9476be333a7e41d39a84237b5750a4dd7be0d5a50999bfc397073c389129db",
+    "app/infrastructure/prompt_cache.py": "0dddb260f473fe65b4dd85e5d6ff1cd961f111a8f401db57854d674c8845446a",
+    "app/infrastructure/prompt_registry.py": "6ecd6cb18d3163a7926464f5ad670c2dcb94f8fb635106618f17971d417065b4",
+    "app/infrastructure/prompt_release.py": "7b1c62aab66ada8028cc70585274c6a566e81f917355e27f220cc54cba193ddf",
+    "app/infrastructure/queue/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/infrastructure/queue/archive.py": "ef591eef5c73a9ac8098b115dddcf9b67f37596af28be244cf01cca3a5b100b9",
+    "app/infrastructure/queue/maintenance.py": "128f36c9ada592c98b6216aa303b3545807f5b722b5eab8761289dde3e922ac4",
+    "app/infrastructure/queue/redis_stream_queue.py": "09ffc04eb459590b0aa84d7635e039a7d556fb5f877f76a47dad1c77f4c6a922",
+    "app/infrastructure/rag/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/infrastructure/rag/category_knowledge.py": "f7d252b517f635f12f2f557351a57eba62365950cc83665f0d57a42e3db7a9b5",
+    "app/infrastructure/rag/knowledge_retrieval.py": "e6b8f35d91b180ee60d8415a7c94229ebe751e8f82a6b8bb8c05ee4f715e3bbd",
+    "app/infrastructure/rerank/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/infrastructure/rerank/factory.py": "755d782dfc9bea3bcaec07a951aac156962adbadcf0844589703a0bfb0f00b5b",
+    "app/infrastructure/rerank/http_reranker.py": "b1eef97c7630f0b7eb865fa0cd260b6f4654c0c272a039142b06704bcd976082",
+    "app/infrastructure/resilience.py": "df6e5e36d8ae54b2dd1c4a93ea5a7d8a9c943d9533e3ebd1152777181a4b885d",
+    "app/infrastructure/retrieval/bm25.py": "6e6250cc359ebbdbc3da9375f5b2ec536fd3db70006fd4f51bc21b26a5aba9ea",
+    "app/infrastructure/retrieval_evaluation_store.py": "458e8a984b9e7a55c5b284d8f2edb1327010b5456e29ebf82cd5422720246281",
+    "app/infrastructure/runtime_version.py": "18fbfe52255d0202e4a389b78dd60b49e068aed400bd91b11825b6ec2a4270a9",
+    "app/infrastructure/security/__init__.py": "ff01f845777afdaafab5acff73568681aa85eb4ef9e7831ba3ac94bb08eda21f",
+    "app/infrastructure/security/content_filter.py": "e941fa6edc90c54064fd26cff273133ad3156f497996f66dc2c8573609c8b53e",
+    "app/infrastructure/security/output_guard.py": "bdd261787e8a1bc1d3bdeb02e27cd34acadd61fea6f690ffde368f9eb2cbf4d3",
+    "app/infrastructure/semantic_memory.py": "a0724daae255cf07dd584c616e8cf4dce1ad2643e32cddc0ad1c0d22dbb9f4b0",
+    "app/infrastructure/settings.py": "c2aba2428a1b572e4ee626063ff6774a5ef41851c1ffb0e3d7da3e32c97851bf",
+    "app/infrastructure/shared_breaker.py": "4286a6299bd74f67f86a43edb9c4d4d65f6ec694f853ec9fbe6097dff09c72ed",
+    "app/infrastructure/shared_throttle.py": "cffd15c58cc43933c0d624bd920931910e6b3de4462c2e34d20d00b71ef432eb",
+    "app/infrastructure/shopping_forms.py": "647a4216285f658d0f83013fa5fabba8367ebb5a838f36e37f46a395d1310847",
+    "app/infrastructure/strategy_extractor.py": "57e393dee3a5fb3804365deef47b6001d628e8ec03deda61769919956a03572e",
+    "app/infrastructure/throttle.py": "38d8a97297203bc879df0e1b88a2317ed33c8dbf90a11551816de32e3a1dee5b",
+    "app/infrastructure/tool_product_view.py": "fc4c261fffca9413c94111c65c61c34fc1eb77d75e66880daf9c317023a0cb75",
+    "app/infrastructure/tracing.py": "484fcdb1de4b5d243b9bd6c800cc2a9343e239a33f5a596d2871529b1ccb929e",
+    "app/infrastructure/transient.py": "deb2dc743940b9e47e924668677e00251da2c324c4f0255aa035e00a81b8cdea",
+    "app/infrastructure/vector/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/infrastructure/vector/embedding_identity.py": "a165f43923053a8f19b93266ca9c136f326c9a4cab68f49724692ee61beacef5",
+    "app/infrastructure/vector/index_bootstrap.py": "af6d7ef969f1860719564ca693c3ebe9440a4dc8cbd3b1b3cbbb68a0e070dba0",
+    "app/infrastructure/vector/qdrant_product_index.py": "afebbd2a872f8613d3b70a112c1a8e95f5951b3579111760ca64b998566abb33",
+    "app/infrastructure/visible_evidence.py": "79303d98055e3113b6db43100b36807980872e6e1f7b8db5aa1098638e496663",
+    "app/presentation/__init__.py": "9552f854fcf77389160a08cfb4be2eb902cd9a0c0af76ab57df02cbf9125d369",
+    "app/presentation/ag_ui.py": "9c9c19f1aec851add952d895f7d1928a0e4103a4c02b0caad82dd1725ce9d684",
+    "app/presentation/ag_ui_runtime.py": "9c73e10c84be33bed84e4aaff37eab77a7703c0e7a727886a457aa6de8f25b8a",
+    "app/presentation/automations.py": "44d8f4ac92324b5d84a35fd96e90b8aa56a25d12e4e095747b9cda1e18cf8f1b",
+    "app/presentation/buyer_workspace.py": "f402a9314e34c32b55effd0e603444ba5bf5835f4a0b90abd68d0efc8ecd3a70",
+    "app/presentation/confirmations.py": "ce5f44f362b2cad488a25bd0ba3a9cde22ef1e2526f1199e839ffc65b1f7ef8e",
+    "app/presentation/connection.py": "b7effd6509c104d9ef6f57e8443ea497bdb4e6553dc92d849aade625430e09a1",
+    "app/presentation/context_workspace.py": "5313e4b9aaa6ea6c64459404a53fd83fd0c747808c5e86ed65f976fde1b71a53",
+    "app/presentation/dto.py": "f12b16f11f0a559b89a7d1c1a81f06334394d9b513004d3152432c9d2f7dfa9e",
+    "app/presentation/favorites.py": "d1b6a931fb59118696ac35daf57ba0e62afac66723fa514026dc9d3971454211",
+    "app/presentation/identity.py": "fbfa88e61ef916e7f94a71c04a70d952e805b93e27172150bc985981e761a188",
+    "app/presentation/model_workspace.py": "59f191da520440753d5ac029afe4f6160b25d28545405d3f38081b6c6af604bd",
+    "app/presentation/product_media.py": "d100a753b801a8babdf9bb642524b81d97ed76748072c82035b7ee3ee855a90f",
+    "app/presentation/retrieval_evaluation.py": "9ca5a3add28853bbd9013f19b43ffbc5a32fe4dbe492ddb10050c532aca4553a",
+    "app/presentation/server.py": "48adac46cd832eb63168dd695ea08ac1aebf590b98db598dec59101e139ecb7c",
+    "app/presentation/shopping_forms.py": "8300fe94a6ea488249aa67bc97ede0aaa3ffebb25e8c54403415a60d576d8c54",
+    "app/worker.py": "d12356a4c0aa6e90cee178cd7723c71e32dea9ca9c3b3c0f9bb69cc0daa314cf",
+    "uv.lock": "35e6b9a7a9318a0409a839b9c6ef7c173a0b446545a70129d84f970fbac944f9",
+    "pyproject.toml": "6d373a013c9cbe9a218295eb563549e2f9ae347e397d296936f434f675fcf6ab"
+  },
+  "source_manifest": {
+    "provided": true,
+    "verified": true,
+    "sha256": "40ac36e5c9b018bb28a33286cdf589e43d1ce1538c37253ea5d4c03fd18ffe9e",
+    "file_count": 183
+  },
+  "evaluator": {
+    "sha256": "464f2baf92f954f42aea966297a8c2ef13a6ceccd374656bef9be9cb2e0ab6c1",
+    "files": {
+      "scripts/eval/retrieval_live_pair.py": "e8d4386e88a07a8db7fe7fde7a3577154b452b4f8a1df893f94eb7e2377c0595",
+      "scripts/eval/retrieval_optimization.py": "58ed54e227f684f5bb84e78c280f626f39d50ca953fa3bbf2afaedf49428f902",
+      "app/application/retrieval_evaluation.py": "40108c6ab7adcc99e8f78509e5e219f2c3ba1f717af828707be27948bc219060",
+      "eval/retrieval/standard-v1.json": "9b7e3240711fda940372a5fbea6b5e161dca3fcfcab07601d0d24740aff55157"
+    }
+  },
+  "cases": [
+    {
+      "id": "v2-00-intent",
+      "family": 0,
+      "kind": "intent",
+      "ndcg_at_5": 0.5855700749881525,
+      "recall_at_5": 0.5,
+      "returned_precision": 0.4,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 1.3124999968567863,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-00-specification",
+      "family": 0,
+      "kind": "specification",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.2,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.4192999913357198,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-04-intent",
+      "family": 4,
+      "kind": "intent",
+      "ndcg_at_5": 0.0,
+      "recall_at_5": 0.0,
+      "returned_precision": 0.0,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.35089999437332153,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-04-specification",
+      "family": 4,
+      "kind": "specification",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.2,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.31540000054519624,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-08-intent",
+      "family": 8,
+      "kind": "intent",
+      "ndcg_at_5": 0.5413996682199069,
+      "recall_at_5": 0.5,
+      "returned_precision": 0.4,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.3389000048628077,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-08-specification",
+      "family": 8,
+      "kind": "specification",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.2,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.31370000215247273,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-12-intent",
+      "family": 12,
+      "kind": "intent",
+      "ndcg_at_5": 0.5413996682199069,
+      "recall_at_5": 0.5,
+      "returned_precision": 0.4,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.33179999445565045,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-12-specification",
+      "family": 12,
+      "kind": "specification",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.2,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.34339999547228217,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-16-intent",
+      "family": 16,
+      "kind": "intent",
+      "ndcg_at_5": 0.5413996682199069,
+      "recall_at_5": 0.5,
+      "returned_precision": 0.4,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.3708000003825873,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-16-specification",
+      "family": 16,
+      "kind": "specification",
+      "ndcg_at_5": 0.43067655807339306,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.2,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.5133999948156998,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-20-intent",
+      "family": 20,
+      "kind": "intent",
+      "ndcg_at_5": 0.5585075862632192,
+      "recall_at_5": 0.5,
+      "returned_precision": 0.4,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.407600004109554,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-20-specification",
+      "family": 20,
+      "kind": "specification",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.2,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.3099000023212284,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-24-intent",
+      "family": 24,
+      "kind": "intent",
+      "ndcg_at_5": 0.5585075862632192,
+      "recall_at_5": 0.5,
+      "returned_precision": 0.4,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.31799999123904854,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-24-specification",
+      "family": 24,
+      "kind": "specification",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.2,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.2986999897984788,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-28-intent",
+      "family": 28,
+      "kind": "intent",
+      "ndcg_at_5": 0.5855700749881525,
+      "recall_at_5": 0.5,
+      "returned_precision": 0.4,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.3476999991107732,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-28-specification",
+      "family": 28,
+      "kind": "specification",
+      "ndcg_at_5": 1.0,
+      "recall_at_5": 1.0,
+      "returned_precision": 0.2,
+      "empty_ok": null,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": false,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 5,
+      "elapsed_ms": 0.33090000215452164,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-empty-0",
+      "family": "empty-0",
+      "kind": "empty",
+      "ndcg_at_5": null,
+      "recall_at_5": null,
+      "returned_precision": null,
+      "empty_ok": true,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": true,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 0,
+      "elapsed_ms": 3.0184000061126426,
+      "error": null,
+      "degraded": false
+    },
+    {
+      "id": "v2-empty-4",
+      "family": "empty-4",
+      "kind": "empty",
+      "ndcg_at_5": null,
+      "recall_at_5": null,
+      "returned_precision": null,
+      "empty_ok": true,
+      "violations": {
+        "budget": 0,
+        "material": 0,
+        "shipping": 0
+      },
+      "applicable_constraints": {
+        "budget": true,
+        "material": false,
+        "shipping": true
+      },
+      "returned_count": 0,
+      "elapsed_ms": 2.595600002678111,
+      "error": null,
+      "degraded": false
+    }
+  ],
+  "summary": {
+    "ndcg_at_5": 0.708939430327241,
+    "recall_at_5": 0.71875,
+    "returned_precision": 0.275,
+    "empty_accuracy": 1,
+    "hard_constraint_violations": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 0
+    },
+    "constraint_case_counts": {
+      "budget": 2,
+      "material": 0,
+      "shipping": 18
+    },
+    "hard_constraint_case_failures": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 0
+    },
+    "constraint_positive_case_counts": {
+      "budget": 0,
+      "material": 0,
+      "shipping": 16
+    },
+    "hard_constraint_violation_rate": 0.0,
+    "positive_cases": 16,
+    "empty_cases": 2,
+    "p95_ms": 3.0184000061126426
+  },
+  "note": "新旧源码复用同批真实Embedding/Qdrant候选，无模拟向量；未精排。耗时仅回放，不能作为在线P95收益。"
+}

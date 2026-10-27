@@ -1,0 +1,13 @@
+{
+  "id": "focused-32",
+  "field_weights": {
+    "title": 3,
+    "brand": 2,
+    "model": 4,
+    "category": 1.5,
+    "description": 1,
+    "highlights": 1,
+    "material": 1.5
+  },
+  "recall_candidates": 32
+}

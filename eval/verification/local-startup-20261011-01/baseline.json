@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-10-11T19:51:20.0145373+08:00",
+  "repository": "E:\\laboratory\\code\\globex-agent",
+  "git_head": "ddd7e5be1af4bb474f3af325f3d5113051c1c013",
+  "git_status_porcelain": [],
+  "env_file_exists": false,
+  "credential_fields": {
+    "LLM_API_KEY": false,
+    "EMBEDDING_API_KEY": false
+  },
+  "conda_globex_python_exists": true,
+  "conda_globex_python_version": "Python 3.11.17",
+  "node_version": "v24.16.0",
+  "npm_version": "11.17.0",
+  "uv_version": "uv 0.11.2 (02036a8ba 2026-03-26 x86_64-pc-windows-msvc)",
+  "ports": [
+    {
+      "port": 8000,
+      "listeners": []
+    },
+    {
+      "port": 5173,
+      "listeners": []
+    }
+  ],
+  "data_files": [
+    {
+      "path": "data/catalog-v1.jsonl",
+      "bytes": 447767,
+      "sha256": "841c543683543f11870ef7a07fb226d99fb6e39009675bba2c6ae1ccbb4dc821"
+    },
+    {
+      "path": "data/catalog-v2.jsonl",
+      "bytes": 1039159,
+      "sha256": "fc837e52acda8c765fa7a2f46f1b2e108d3c9411c26ae4545ff4596ac5157984"
+    },
+    {
+      "path": "data/catalog-v3.jsonl",
+      "bytes": 4785235,
+      "sha256": "a735003f34b11093097e2728d1003fc63ca63302e938e997f0fd5014cebec6fe"
+    }
+  ]
+}

@@ -7,8 +7,10 @@ SearchAgent 召回的"候选集"传递的就是 Product 卡片，TradeAgent 创�
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import math
 from typing import Optional
 
+from app.domain.catalog.product_attributes import infer_product_type, normalize_product_type
 from app.domain.catalog.sku import Sku
 
 
@@ -44,6 +46,9 @@ class Product:
     localized_category: str = ""
     localized_material: str = ""
     data_provenance: str = ""
+    # 新字段不写入旧的向量检索文本，以免无意间改变 Embedding 输入。
+    product_type: str | None = None
+    model_spec: str | dict[str, object] | None = ""
 
     def __post_init__(self) -> None:
         if not self.product_id:
@@ -52,6 +57,40 @@ class Product:
             raise ValueError(f"Product 至少要有一个 Sku：{self.product_id}")
         if self.weight_kg < 0:
             raise ValueError(f"Product.weight_kg 必须非负：{self.product_id}")
+
+    @property
+    def known_weight_kg(self) -> float | None:
+        """只返回有依据的正数重量；0、负数、非有限值都代表未知。"""
+        value = self.weight_kg
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            return None
+        return float(value) if math.isfinite(value) and value > 0 else None
+
+    @property
+    def effective_product_type(self) -> str | None:
+        """显式类型优先，旧目录才使用保守标题/类目推断。"""
+        if self.product_type is not None and str(self.product_type).strip():
+            return normalize_product_type(self.product_type)
+        return infer_product_type(self.title, self.localized_category or self.category)
+
+    def searchable_fields(self) -> dict[str, str]:
+        """字段检索使用结构化文本，供词项权重独立配置。"""
+        if isinstance(self.model_spec, dict):
+            model = " ".join(
+                str(self.model_spec[key]) for key in ("model", "name", "value", "unit")
+                if key in self.model_spec and isinstance(self.model_spec[key], (str, int, float))
+            )
+        else:
+            model = self.model_spec if isinstance(self.model_spec, str) else ""
+        return {
+            "title": self.title,
+            "brand": self.brand,
+            "model": model,
+            "category": self.localized_category or self.category,
+            "description": self.description,
+            "highlights": " ".join(f"{h.label} {h.detail}" for h in self.highlights),
+            "material": self.localized_material or " ".join(self.material_tags),
+        }
 
     def primary_sku(self) -> Sku:
         return self.skus[0]

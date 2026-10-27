@@ -1,0 +1,8 @@
+{
+  "document_links_passed": true,
+  "missing_links": [],
+  "ordinary_user_access_passed": true,
+  "ordinary_user_backend_startup_passed": true,
+  "key_and_env_preserved": true,
+  "diagnostic_server_stopped": true
+}

@@ -15,6 +15,7 @@ import aiosqlite
 
 from app.domain.learning import PROCESSOR_VERSION, canonical, digest
 from app.infrastructure.learning_store import LEARNING_SCHEMA, job_identity, terminal_source
+from app.infrastructure.tool_product_view import tool_product_view
 
 
 class JournalConflict(ValueError):
@@ -157,7 +158,7 @@ class AGUIJournal:
                     if isinstance(country,str) and len(country)==2 and country.isascii() and country.isalpha():return country.upper()
         return None
 
-    async def reserve(self, body: dict, buyer_id: str, owner: str, lease_seconds=30) -> tuple[dict, bool]:
+    async def reserve(self, body: dict, buyer_id: str, owner: str, lease_seconds=30, *, automation_ticket=None) -> tuple[dict, bool]:
         now, run_id, session_id = time.time(), body["runId"], body["threadId"]
         user = body["messages"][-1]
         props = body.get("forwardedProps") or {}
@@ -177,6 +178,18 @@ class AGUIJournal:
                 if previous["fingerprint"] != fingerprint:
                     raise JournalConflict("相同 runId 已用于不同请求")
                 return self._run(previous), False
+            if automation_ticket is not None:
+                # 与 reserve 同库同事务；暂停/编辑/失租和真正启动之间没有检查窗口。
+                ticket = await self._one(db, """SELECT a.*,r.status run_status,r.session_id,r.buyer_id,
+                    r.definition_revision,t.revision task_revision,t.status task_status
+                    FROM automation_attempts a JOIN automation_runs r ON r.id=a.run_id
+                    JOIN automations t ON t.id=r.automation_id WHERE a.id=?""", (automation_ticket['id'],))
+                if (not ticket or ticket['owner'] != automation_ticket['owner']
+                    or ticket['fence'] != automation_ticket['fence'] or ticket['lease_until'] <= now
+                    or ticket['run_status'] != 'starting' or ticket['task_status'] not in ('active','expired')
+                    or ticket['definition_revision'] != ticket['task_revision']
+                    or ticket['agent_run_id'] != run_id or ticket['session_id'] != session_id or ticket['buyer_id'] != buyer_id):
+                    raise JournalConflict("自动化配置或执行领取已失效")
             session = await self._one(db, "SELECT * FROM agui_sessions WHERE session_id=?", (session_id,))
             if session:
                 self._owned(session, buyer_id)
@@ -184,6 +197,8 @@ class AGUIJournal:
             if running:
                 raise JournalConflict("该会话仍有执行中的运行，请先恢复或明确停止它")
             previous_state=json.loads(session["state_json"]) if session else {}
+            if automation_ticket is not None and previous_state.get('toolApprovals'):
+                raise JournalConflict("该会话有待确认操作，请先处理")
             if body.get("resume"):
                 pending={p['id'] for p in previous_state.get('toolApprovals',[])}
                 requested=[p['interruptId'] for p in body['resume']]
@@ -197,6 +212,9 @@ class AGUIJournal:
             projection = {"messages": messages, "state": {"activities": []}, "openMessages": [], "openTools": []}
             await db.execute("INSERT INTO agui_runs(run_id,session_id,buyer_id,fingerprint,input_json,projection_json,status,owner,lease_until,created_at,updated_at) VALUES(?,?,?,?,?,?,'running',?,?,?,?)",
                 (run_id, session_id, buyer_id, fingerprint, _json(body), _json(projection), owner, now + lease_seconds, now, now))
+            if automation_ticket is not None:
+                await db.execute("UPDATE automation_attempts SET started_at=? WHERE id=?", (now, automation_ticket['id']))
+                await db.execute("UPDATE automation_runs SET status='running',updated_at=? WHERE id=?", (now, ticket['run_id']))
             title = session["title"] if session else str(user["content"])[:48]
             await db.execute("INSERT INTO agui_sessions VALUES(?,?,?,?,?,?,?) ON CONFLICT(session_id) DO UPDATE SET messages_json=excluded.messages_json,state_json=excluded.state_json,last_run_id=excluded.last_run_id,updated_at=excluded.updated_at",
                 (session_id, buyer_id, title, _json(messages), "{}", run_id, now))
@@ -321,6 +339,40 @@ class AGUIJournal:
             async with db.execute("SELECT seq,event_json FROM agui_events WHERE run_id=? AND seq>? ORDER BY seq LIMIT ?", (run_id, after, limit)) as cursor:
                 events = [{"seq": item["seq"], "event": json.loads(item["event_json"])} for item in await cursor.fetchall()]
             return events, row["status"], row["last_seq"]
+
+    async def run_session_id(self, run_id, buyer_id):
+        """只读取得已校验的会话归属，不恢复租约或装载整轮消息、商品。"""
+        async with self._db() as db:
+            row = self._owned(await self._one(db,
+                "SELECT session_id,buyer_id FROM agui_runs WHERE run_id=?", (run_id,)), buyer_id)
+            return row["session_id"]
+
+    async def tool_products(self, run_id, tool_call_id, buyer_id):
+        """按原始调用 ID 读取已存结果；不借用本轮最新商品，也不重新执行工具。"""
+        async with self._db() as db:
+            row = self._owned(await self._one(db,
+                "SELECT run_id,session_id,buyer_id,status,lease_until FROM agui_runs WHERE run_id=?", (run_id,)), buyer_id)
+            async with db.execute(
+                "SELECT seq,json_extract(event_json,'$.toolCallName') AS tool_name FROM agui_events "
+                "WHERE run_id=? AND json_extract(event_json,'$.type')='TOOL_CALL_START' "
+                "AND json_extract(event_json,'$.toolCallId')=? ORDER BY seq LIMIT 2",
+                (run_id, tool_call_id),
+            ) as cursor:
+                starts = await cursor.fetchall()
+            if len(starts) != 1 or starts[0]["tool_name"] != "product_search_tool":
+                raise JournalNotFound("该调用没有可查看的商品结果")
+            result = await self._one(db,
+                "SELECT event_json FROM agui_events WHERE run_id=? AND seq>? "
+                "AND json_extract(event_json,'$.type')='TOOL_CALL_RESULT' "
+                "AND json_extract(event_json,'$.toolCallId')=? ORDER BY seq DESC LIMIT 1",
+                (run_id, starts[0]["seq"], tool_call_id))
+            identity = {"runId": run_id, "toolCallId": tool_call_id}
+            if result is None:
+                pending = row["status"] == "running" and row["lease_until"] > time.time()
+                return {**identity, "status": "pending" if pending else "unavailable", "products": [],
+                        "count": 0, "totalCount": None, "truncated": False,
+                        "notice": "工具结果尚未保存，请稍后查看。" if pending else "本次调用没有保存完整的商品结果。"}
+            return {**identity, **tool_product_view(json.loads(result["event_json"]).get("content"))}
 
     async def request_stop(self, run_id, buyer_id):
         async with self._db(True) as db:

@@ -39,6 +39,7 @@ from app.presentation.connection import ConnectionManager
 from app.presentation.confirmations import register_confirmation_routes, confirmation_error
 from app.presentation.ag_ui import register_ag_ui_routes
 from app.presentation.buyer_workspace import register_buyer_workspace_routes
+from app.presentation.retrieval_evaluation import register_retrieval_evaluation_routes
 from app.presentation.identity import require_buyer, require_session, require_task, require_metrics_reader
 from app.infrastructure.tracing import TracingASGIMiddleware, inject_task_context, install_log_correlation
 from app.presentation.dto import (
@@ -120,8 +121,13 @@ def build_app() -> FastAPI:
     register_context_routes(api, lambda: container().context_service)
     from app.presentation.model_workspace import register_model_routes
     register_model_routes(api, container)
+    from app.presentation.automations import register_automation_routes
+    register_automation_routes(api, lambda: getattr(container(), 'automation_service', None))
     register_confirmation_routes(api, lambda: container().confirmations)
     register_buyer_workspace_routes(api, lambda: container().orchestrator)
+    register_retrieval_evaluation_routes(api)
+    from app.presentation.product_media import register_product_media_routes
+    register_product_media_routes(api)
     from app.presentation.shopping_forms import register_shopping_form_routes
     register_shopping_form_routes(api, lambda: container().orchestrator._sessions._main_factory.shopping_form_store)
     from app.presentation.favorites import register_favorite_routes

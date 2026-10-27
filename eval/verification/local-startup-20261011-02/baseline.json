@@ -1,0 +1,89 @@
+{
+  "timestamp": "2026-10-11T20:03:32.1162166+08:00",
+  "repository": "E:\\laboratory\\code\\globex-agent",
+  "git_head": "ddd7e5be1af4bb474f3af325f3d5113051c1c013",
+  "git_status_porcelain": [
+    " M app/infrastructure/persistence/json_file_stores.py",
+    "?? eval/verification/local-startup-20261011-01/",
+    "?? tests/test_json_file_lock.py"
+  ],
+  "env_file_exists": true,
+  "env_last_write_time": "2026-10-11T20:03:10.0634453+08:00",
+  "credential_fields": {
+    "LLM_BASE_URL": {
+      "present_in_file": true,
+      "nonempty_in_file": true,
+      "differs_from_example": true,
+      "process_environment_nonempty": false
+    },
+    "LLM_API_KEY": {
+      "present_in_file": true,
+      "nonempty_in_file": true,
+      "differs_from_example": true,
+      "process_environment_nonempty": false
+    },
+    "LLM_MODEL": {
+      "present_in_file": true,
+      "nonempty_in_file": true,
+      "differs_from_example": false,
+      "process_environment_nonempty": false
+    },
+    "LLM_FALLBACK_MODEL": {
+      "present_in_file": false,
+      "nonempty_in_file": false,
+      "differs_from_example": null,
+      "process_environment_nonempty": false
+    },
+    "EMBEDDING_MODEL": {
+      "present_in_file": true,
+      "nonempty_in_file": true,
+      "differs_from_example": false,
+      "process_environment_nonempty": false
+    },
+    "EMBEDDING_BASE_URL": {
+      "present_in_file": false,
+      "nonempty_in_file": false,
+      "differs_from_example": null,
+      "process_environment_nonempty": false
+    },
+    "EMBEDDING_API_KEY": {
+      "present_in_file": false,
+      "nonempty_in_file": false,
+      "differs_from_example": null,
+      "process_environment_nonempty": false
+    }
+  },
+  "listeners": [
+    {
+      "address": "127.0.0.1",
+      "port": 5173,
+      "pid": 1884,
+      "process": "node",
+      "executable_path": "E:\\application\\Program Files\\node\\node.exe"
+    },
+    {
+      "address": "127.0.0.1",
+      "port": 8000,
+      "pid": 63216,
+      "process": "python",
+      "executable_path": "E:\\anaconda3\\envs\\globex\\python.exe"
+    }
+  ],
+  "catalog_files": [
+    {
+      "path": "data/catalog-v1.jsonl",
+      "bytes": 447767,
+      "sha256": "841c543683543f11870ef7a07fb226d99fb6e39009675bba2c6ae1ccbb4dc821"
+    },
+    {
+      "path": "data/catalog-v2.jsonl",
+      "bytes": 1039159,
+      "sha256": "fc837e52acda8c765fa7a2f46f1b2e108d3c9411c26ae4545ff4596ac5157984"
+    },
+    {
+      "path": "data/catalog-v3.jsonl",
+      "bytes": 4785235,
+      "sha256": "a735003f34b11093097e2728d1003fc63ca63302e938e997f0fd5014cebec6fe"
+    }
+  ]
+}

@@ -22,6 +22,8 @@ from __future__ import annotations
 import logging
 import asyncio
 import re
+import math
+import unicodedata
 from dataclasses import dataclass, field
 from typing import Optional
 
@@ -33,10 +35,11 @@ from app.domain.catalog.ports.retrieval_ports import (
     Reranker,
 )
 from app.domain.catalog.product import Product
+from app.domain.catalog.sku import Sku
 from app.domain.catalog.product_search_spec import ProductSearchSpec
 from app.domain.shipping.tariff_schedule import TariffSchedule
 from app.application.usecases.product_media import product_media
-from app.infrastructure.retrieval.bm25 import bm25_rank, reciprocal_rank_fusion
+from app.infrastructure.retrieval.bm25 import bm25_rank, field_weighted_bm25_rank, reciprocal_rank_fusion
 
 logger = logging.getLogger(__name__)
 
@@ -80,6 +83,9 @@ class ProductCard:
     source_language: str = ""
     source_locale: str = ""
     data_provenance: str = ""
+    product_type: str | None = None
+    known_weight_kg: float | None = None
+    eligible_sku_ids: list[str] = field(default_factory=list)
 
     def to_dict(self) -> dict:
         card = {
@@ -109,6 +115,9 @@ class ProductCard:
             "image_url": self.image_url,
             "image_kind": self.image_kind,
             "image_alt": self.image_alt,
+            "product_type": self.product_type,
+            "known_weight_kg": self.known_weight_kg,
+            "eligible_sku_ids": self.eligible_sku_ids,
         }
         if self.landed_price is not None:
             card["landed_price"] = self.landed_price
@@ -143,10 +152,25 @@ class CatalogSearchUseCase:
         hybrid_vector_weight: float = 1.0,
         recall_candidates: int = 32,
         capture_retrieval_stages: bool = False,
+        field_lexical_enabled: bool = False,
+        field_weights: dict[str, float] | None = None,
+        min_relevance_score: float | None = None,
+        relevance_score_kind: str | None = None,
     ) -> None:
         # 仅评测主动开启；记录混合检索的实际阶段，不改变排序或向模型增加字段。
         self._capture_retrieval_stages = capture_retrieval_stages
-        self._hybrid_enabled = hybrid_enabled
+        self._hybrid_enabled = hybrid_enabled or field_lexical_enabled
+        self._field_lexical_enabled = field_lexical_enabled
+        self._field_weights = field_weights
+        if field_lexical_enabled:
+            field_weighted_bm25_rank("", [], field_weights=field_weights)
+        if min_relevance_score is not None:
+            if type(min_relevance_score) not in (int, float) or not math.isfinite(min_relevance_score):
+                raise ValueError("相关性阈值必须是有限数")
+            if relevance_score_kind not in {"embedding", "reranker", "keyword", "bm25", "field_bm25"}:
+                raise ValueError("相关性阈值必须绑定实际评分类型，不能跨模型或 RRF 分数复用")
+        self._min_relevance_score = min_relevance_score
+        self._relevance_score_kind = relevance_score_kind
         self._fusion_weights = (hybrid_lexical_weight, hybrid_vector_weight)
         reciprocal_rank_fusion([], [], weights=self._fusion_weights)
         if type(recall_candidates) is not int or not 8 <= recall_candidates <= 256:
@@ -170,28 +194,35 @@ class CatalogSearchUseCase:
         scored: list[tuple[float, Product]] = []
         recall_strategy = "keyword_2gram"
         rerank_applied = False
+        diagnostics = {"rerank_status": "not_configured" if self._reranker is None else "not_attempted"}
 
         if self._embedder is not None and self._vector_index is not None:
             try:
                 scored = await self._vector_recall(spec, adaptive=True)
                 recall_strategy = "embedding_only"
             except Exception as err:  # noqa: BLE001 —— 召回基建异常必须降级而非失败
-                logger.warning("向量召回不可用，降级关键词召回：%s", err)
+                logger.warning("向量召回不可用，降级关键词召回：%s", type(err).__name__)
                 scored = []
 
-        if recall_strategy == "embedding_only" and scored:
+        if recall_strategy == "embedding_only" and scored and self._reranker is not None:
             # 二阶段精排；失败降级按向量分排序
             try:
                 scored = await self._rerank(spec, scored)
                 recall_strategy = "embedding_rerank"
                 rerank_applied = True
+                diagnostics["rerank_status"] = "success"
             except Exception as err:  # noqa: BLE001
-                logger.warning("rerank 不可用，按向量分排序：%s", err)
+                diagnostics.update(rerank_status="failed", reranker_error=getattr(err, "code", type(err).__name__))
+                logger.warning("rerank 不可用，按向量分排序：%s", diagnostics["reranker_error"])
         elif not scored:
             scored = await self._keyword_recall(spec)
             recall_strategy = "keyword_2gram"
 
-        # ship_to / 价格硬约束过滤 + top_k 截断（硬约束走结构化过滤，不交给模型）
+        # 评分阈值仅作用于其绑定的真实评分，不能把 RRF 或另一模型分数当概率。
+        score_kind = "reranker" if rerank_applied else ("embedding" if recall_strategy == "embedding_only" else "keyword")
+        raw_ids = [p.product_id for _, p in scored]
+        scored = self._apply_relevance(scored, score_kind, diagnostics)
+        # 硬约束、软偏好、同款去重统一在最终截断之前执行。
         filtered: list[tuple[float, Product]] = []
         filtered_out: list[dict] = []
         for score, product in scored:
@@ -201,13 +232,19 @@ class CatalogSearchUseCase:
             elif len(filtered_out) < _FILTERED_OUT_LIMIT:
                 filtered_out.append(self._to_rejected(product, spec, reason))
 
+        filtered = self._rank_preferences_and_deduplicate(filtered, spec)
         hits = [self._to_card(score, product, spec) for score, product in filtered[: spec.top_k]]
         result = {
             "hits": [card.to_dict() for card in hits],
             "total_candidates": len(filtered),
             "recall_strategy": recall_strategy,
             "rerank_applied": rerank_applied,
+            "retrieval_diagnostics": diagnostics,
         }
+        self._explain_shortfall(result, spec, diagnostics)
+        if self._capture_retrieval_stages:
+            result["retrieval_stages"] = {"merged_candidates": raw_ids, "fused_candidates": raw_ids,
+                                          "ranked_candidates": [p.product_id for _, p in filtered]}
         if filtered_out:
             # 如实告知"召回到了但被硬约束挡掉"，否则模型分不清"库里没有"与"被过滤"，
             # 会把超预算商品答成"没有这个商品"
@@ -226,7 +263,11 @@ class CatalogSearchUseCase:
                 continue
             specific = [identifier for identifier in requested if "-S" in identifier]
             # 同一商品出现明确规格后，不能再因泛商品 ID 而回退默认规格。
-            selected = specific or [product.primary_available_sku().sku_id]
+            selected = specific or [sku.sku_id for sku in self._eligible_skus(product, spec)]
+            if not selected and not specific:
+                reason = self._reject_reason(product, spec)
+                rejected.append(self._to_rejected(product, spec, reason or "no_eligible_sku"))
+                continue
             eligible_skus = []
             for sku_id in selected:
                 sku = product.find_sku(sku_id)
@@ -244,10 +285,14 @@ class CatalogSearchUseCase:
                     accepted = {sku.sku_id for sku in eligible_skus}
                     card["skus"] = [sku for sku in card["skus"] if sku["sku_id"] in accepted]
                 hits.append(card)
-        return {"hits": hits[:spec.top_k], "total_candidates": len(hits),
+        result = {"hits": hits[:spec.top_k], "total_candidates": len(hits),
                 "recall_strategy": "exact_id_lookup", "rerank_applied": False,
                 "requested_identifiers": identifiers, "missing_identifiers": missing,
                 "filtered_out": rejected[:_FILTERED_OUT_LIMIT], "existence_checked": True}
+        if self._capture_retrieval_stages:
+            ids = [hit["product_id"] for hit in hits]
+            result["retrieval_stages"] = {"merged_candidates": ids, "fused_candidates": ids, "ranked_candidates": ids}
+        return result
 
     async def _execute_hybrid(self, spec: ProductSearchSpec) -> dict:
         # 两路共享同一份权威目录快照；过滤资格不依赖向量库的陈旧价格或库存。
@@ -255,8 +300,12 @@ class CatalogSearchUseCase:
         permitted = [p.product_id for p in products if self._reject_reason(p, spec) is None]
         diagnostics = {"filter_mode": "adaptive_post_filter", "eligible_products": len(permitted),
                        "lexical_weight": self._fusion_weights[0], "vector_weight": self._fusion_weights[1],
-                       "candidate_limit": max(self._recall_candidates, spec.top_k * 4)}
+                       "candidate_limit": max(self._recall_candidates, spec.top_k * 4),
+                       "rerank_status": "not_configured" if self._reranker is None else "not_attempted",
+                       "field_lexical_enabled": self._field_lexical_enabled}
         async def lexical():
+            if self._field_lexical_enabled:
+                return field_weighted_bm25_rank(spec.normalized_query, products, field_weights=self._field_weights)
             return bm25_rank(spec.normalized_query, products)
         async def vector():
             if self._embedder is None or self._vector_index is None:
@@ -265,11 +314,19 @@ class CatalogSearchUseCase:
                 embedding = await self._embedder.embed(spec.normalized_query)
                 filtered_search = getattr(self._vector_index, "search_filtered", None)
                 if filtered_search is not None:
-                    hits = await filtered_search(embedding, top_n=diagnostics["candidate_limit"], product_ids=permitted)
-                    if hits is not None:
+                    top_n = diagnostics["candidate_limit"]
+                    by_id = {p.product_id: p for p in products}
+                    while True:
+                        hits = await filtered_search(embedding, top_n=top_n, product_ids=permitted)
+                        if hits is None:
+                            break
                         diagnostics["filter_mode"] = "authoritative_ids"
-                        by_id = {p.product_id: p for p in products}
-                        return [(h.score, by_id[h.product_id]) for h in hits if h.product_id in by_id]
+                        ranked = sorted(((h.score, by_id[h.product_id]) for h in hits if h.product_id in by_id),
+                                        key=lambda pair: (-pair[0], pair[1].product_id))
+                        unique = {p.canonical_product_id or p.product_id for _, p in ranked if self._reject_reason(p, spec) is None}
+                        if len(unique) >= spec.top_k or len(hits) < top_n or top_n >= 256:
+                            return ranked
+                        top_n = min(256, top_n * 2)
                 return await self._vector_recall(spec, adaptive=True, embedding=embedding)
             except Exception as err:
                 logger.warning("Hybrid 向量侧不可用：%s", type(err).__name__)
@@ -308,19 +365,23 @@ class CatalogSearchUseCase:
             try:
                 scored = await self._rerank(spec, scored)
                 strategy, rerank_applied = ("hybrid_rerank" if vector_hits is not None else "bm25_rerank"), True
+                diagnostics["rerank_status"] = "success"
             except Exception as err:
+                diagnostics["rerank_status"] = "failed"
                 diagnostics["reranker_error"] = getattr(err, "code", type(err).__name__)
                 logger.warning("Hybrid 重排不可用：%s", diagnostics["reranker_error"])
-        deduped, seen = [], set()
-        for score, product in scored:
-            key = product.canonical_product_id or product.product_id
-            if key not in seen:
-                seen.add(key)
-                deduped.append((score, product))
+        # 无向量时保留 BM25 原始分数，便于使用开发集校准的词法阈值。
+        score_kind = "reranker" if rerank_applied else "rrf"
+        if vector_hits is None and not rerank_applied:
+            scored = lexical_hits
+            score_kind = "field_bm25" if self._field_lexical_enabled else "bm25"
+        scored = self._apply_relevance(scored, score_kind, diagnostics)
+        deduped = self._rank_preferences_and_deduplicate(scored, spec)
         result = {"hits": [self._to_card(score, p, spec).to_dict() for score, p in deduped[:spec.top_k]],
                 "total_candidates": len(deduped), "recall_strategy": strategy, "rerank_applied": rerank_applied,
-                "retrieval_variant": "bm25_vector_rrf_v1", "vector_available": vector_hits is not None,
+                "retrieval_variant": "field_bm25_vector_rrf_v2" if self._field_lexical_enabled else "bm25_vector_rrf_v1", "vector_available": vector_hits is not None,
                 "filtered_out": rejected, "retrieval_diagnostics": diagnostics}
+        self._explain_shortfall(result, spec, diagnostics)
         if stages is not None:
             stages["ranked_candidates"] = [p.product_id for _, p in deduped]
             result["retrieval_stages"] = stages
@@ -334,12 +395,21 @@ class CatalogSearchUseCase:
             return "out_of_stock"
         if spec.category and product.category != spec.category:
             return "category_mismatch"
+        if spec.product_type and product.effective_product_type != spec.product_type:
+            return "product_type_unknown" if product.effective_product_type is None else "product_type_mismatch"
+        if spec.max_weight_kg is not None:
+            if product.known_weight_kg is None:
+                return "weight_unknown"
+            if product.known_weight_kg > spec.max_weight_kg:
+                return "over_weight_limit"
         if set(product.material_tags) & set(spec.excluded_material_tags):
             return "material_excluded"
         if set(spec.required_material_tags) - set(product.material_tags):
             return "material_required_missing"
         if spec.ship_to and spec.ship_to not in product.ships_to:
             return "ship_to_unavailable"
+        if spec.sku_spec and not self._matching_skus(product, spec, primary):
+            return "sku_spec_unavailable"
         if not self._within_price_cap(product, spec, primary=primary):
             return "over_price_cap"
         return None
@@ -358,8 +428,58 @@ class CatalogSearchUseCase:
     def _within_price_cap(self, product: Product, spec: ProductSearchSpec, primary=None) -> bool:
         if spec.price_max_major is None:
             return True
-        primary_in_target = self._tariff.rates.convert((primary or product.primary_available_sku()).price, spec.target_currency)
-        return primary_in_target.to_major_units() <= spec.price_max_major
+        return bool(self._eligible_skus(product, spec, primary))
+
+    @staticmethod
+    def _matching_skus(product: Product, spec: ProductSearchSpec, primary: Sku | None = None) -> list[Sku]:
+        candidates = [primary] if primary is not None else product.skus
+        requested = unicodedata.normalize("NFKC", spec.sku_spec or "").casefold()
+        requested_terms = re.findall(r"[a-z0-9]+(?:[-.][a-z0-9]+)*|[\u3400-\u9fff]+", requested)
+        if requested and not requested_terms:
+            return []
+        def matches(sku: Sku) -> bool:
+            value = unicodedata.normalize("NFKC", sku.spec).casefold()
+            return all((term in value if re.search(r"[\u3400-\u9fff]", term)
+                        else re.search(r"(?<![a-z0-9])" + re.escape(term) + r"(?![a-z0-9])", value))
+                       for term in requested_terms)
+        return [sku for sku in candidates if sku.stock > 0 and matches(sku)]
+
+    def _eligible_skus(self, product: Product, spec: ProductSearchSpec, primary: Sku | None = None) -> list[Sku]:
+        return [sku for sku in self._matching_skus(product, spec, primary)
+                if spec.price_max_major is None or self._tariff.rates.convert(sku.price, spec.target_currency).to_major_units() <= spec.price_max_major]
+
+    @staticmethod
+    def _rank_preferences_and_deduplicate(scored: list[tuple[float, Product]], spec: ProductSearchSpec) -> list[tuple[float, Product]]:
+        if spec.preferred_product_type or spec.prefer_lightweight:
+            scored = sorted(scored, key=lambda pair: (
+                bool(spec.preferred_product_type) and pair[1].effective_product_type != spec.preferred_product_type,
+                bool(spec.prefer_lightweight) and pair[1].known_weight_kg is None,
+                pair[1].known_weight_kg if spec.prefer_lightweight and pair[1].known_weight_kg is not None else 0,
+            ))
+        deduped, seen = [], set()
+        for score, product in scored:
+            key = product.canonical_product_id or product.product_id
+            if key not in seen:
+                seen.add(key)
+                deduped.append((score, product))
+        return deduped
+
+    def _apply_relevance(self, scored: list[tuple[float, Product]], score_kind: str, diagnostics: dict) -> list[tuple[float, Product]]:
+        diagnostics.update(score_kind=score_kind, relevance_filter_applied=False, low_relevance_removed=0)
+        if self._min_relevance_score is None:
+            return scored
+        if score_kind != self._relevance_score_kind:
+            diagnostics["relevance_filter_skipped"] = "score_kind_mismatch"
+            return scored
+        kept = [(score, product) for score, product in scored if score >= self._min_relevance_score]
+        diagnostics.update(relevance_filter_applied=True, low_relevance_removed=len(scored) - len(kept))
+        return kept
+
+    @staticmethod
+    def _explain_shortfall(result: dict, spec: ProductSearchSpec, diagnostics: dict) -> None:
+        if len(result["hits"]) < spec.top_k:
+            result["shortfall"] = {"requested": spec.top_k, "returned": len(result["hits"]),
+                                   "reason": "low_relevance" if diagnostics.get("low_relevance_removed") else "insufficient_eligible_unique_products"}
 
     # ---- 一阶段：向量召回 ----
 
@@ -371,8 +491,10 @@ class CatalogSearchUseCase:
             vector_hits = await self._vector_index.search(embedding, top_n=top_n)
             products = await self._product_repo.find_by_ids([hit.product_id for hit in vector_hits])
             by_id = {product.product_id: product for product in products}
-            scored = [(hit.score, by_id[hit.product_id]) for hit in vector_hits if hit.product_id in by_id]
-            if not adaptive or len(vector_hits) < top_n or top_n >= 256 or sum(self._reject_reason(p, spec) is None for _, p in scored) >= spec.top_k:
+            scored = sorted(((hit.score, by_id[hit.product_id]) for hit in vector_hits if hit.product_id in by_id),
+                            key=lambda pair: (-pair[0], pair[1].product_id))
+            eligible_unique = {p.canonical_product_id or p.product_id for _, p in scored if self._reject_reason(p, spec) is None}
+            if not adaptive or len(vector_hits) < top_n or top_n >= 256 or len(eligible_unique) >= spec.top_k:
                 return scored
             top_n = min(256, top_n*2)
 
@@ -387,8 +509,7 @@ class CatalogSearchUseCase:
             raise RuntimeError("Reranker 未配置")
         documents = [product.searchable_text() for _, product in scored]
         rerank_scores = await self._reranker.rerank(spec.normalized_query, documents)
-        import math
-        if len(rerank_scores) != len(scored) or not all(math.isfinite(float(score)) for score in rerank_scores):
+        if len(rerank_scores) != len(scored) or not all(type(score) in (int, float) and math.isfinite(score) for score in rerank_scores):
             raise ValueError("重排分数必须等长且有限")
         reranked = [
             (rerank_scores[i], product)
@@ -424,7 +545,8 @@ class CatalogSearchUseCase:
     # ---- 商品卡组装（含到手价内联）----
 
     def _to_card(self, score: float, product: Product, spec: ProductSearchSpec, primary=None) -> ProductCard:
-        primary = primary or product.primary_available_sku()
+        eligible_skus = self._eligible_skus(product, spec, primary)
+        primary = primary or (eligible_skus[0] if eligible_skus else product.primary_available_sku())
         media = product_media(product.product_id, product.title)
         primary_in_target = self._tariff.rates.convert(primary.price, spec.target_currency)
         landed_price: Optional[dict] = None
@@ -478,6 +600,9 @@ class CatalogSearchUseCase:
             source_language=product.source_language,
             source_locale=product.source_locale,
             data_provenance=product.data_provenance,
+            product_type=product.effective_product_type,
+            known_weight_kg=product.known_weight_kg,
+            eligible_sku_ids=[sku.sku_id for sku in eligible_skus],
             default_sku_id=primary.sku_id,
             image_url=media.image_url,
             image_kind=media.image_kind,

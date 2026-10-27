@@ -1,0 +1,34 @@
+{
+    "timestamp":  "2026-10-11T13:25:35.1634658+00:00",
+    "permissions":  [
+                        {
+                            "path":  "E:\\laboratory\\code\\globex-agent\\data\\.secrets",
+                            "owner_unchanged":  true,
+                            "inheritance_disabled":  true,
+                            "target_rules":  [
+                                                 {
+                                                     "rights":  "ReadAndExecute, Synchronize",
+                                                     "type":  "Allow",
+                                                     "inheritance":  "None",
+                                                     "inherited":  false
+                                                 }
+                                             ]
+                        },
+                        {
+                            "path":  "E:\\laboratory\\code\\globex-agent\\data\\.secrets\\model_registry.key",
+                            "owner_unchanged":  true,
+                            "inheritance_disabled":  false,
+                            "target_rules":  [
+                                                 {
+                                                     "rights":  "Read, Synchronize",
+                                                     "type":  "Allow",
+                                                     "inheritance":  "None",
+                                                     "inherited":  false
+                                                 }
+                                             ]
+                        }
+                    ],
+    "existing_backend_health":  "ok",
+    "existing_frontend_status":  200,
+    "diagnostic_port_8001_open":  false
+}

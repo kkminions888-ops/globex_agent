@@ -29,6 +29,8 @@ beforeEach(() => {
     }
     if (path.endsWith("/confirmations")) return Response.json({confirmations:[]});
     if (path.endsWith("/favorites")) return Response.json({products:[]});
+    if (path.endsWith("/product-media")) return Response.json({});
+    if (path.endsWith("/orders")) return Response.json({orders:[], total:0});
     if (path === "/commerce/context") return Response.json({revision:3,operation:contextOperation});
     if (path === "/commerce/context/compact") {
       contextOperation={operation_id:"compact-1",status:"running"};
@@ -72,7 +74,7 @@ async function fill(id:string,value:string){
   });
 }
 async function saveSkill(){
-  await click(button("我的 Skill"));await fill("personal-skill-title","我的周末清单");
+  await click(button("我的 Skill"));await click(button("新建 Skill"));await fill("personal-skill-title","我的周末清单");
   await fill("personal-skill-description","准备周末出游时使用");await fill("personal-skill-body","先问行程与预算，最后用清单回答。");
   await act(async()=>host.querySelector(".workspace-editor form")!.dispatchEvent(new Event("submit",{bubbles:true,cancelable:true})));
 }
@@ -86,7 +88,7 @@ it("从真实页面保存个人 Skill，刷新恢复，再通过斜杠菜单发�
   expect(write.headers.Authorization).toBe("Bearer test-token");
   await act(async()=>root.unmount());root=createRoot(host);await mount();
   await click(button("我的 Skill"));expect(host.textContent).toContain("我的周末清单");
-  await click(button("我的选购"));await fill("query","/");
+  await click(host.querySelector('[aria-label="Globex 环球好物首页"]')!);await fill("query","/");
   const option=host.querySelector('[role="option"]')!;
   expect(option.textContent).toContain("我的周末清单");await click(option);
   await click(host.querySelector('[aria-label="发送选购需求"]')!);
@@ -107,7 +109,7 @@ it("Skill 编辑携带原版本，冲突保留正文，删除后斜杠菜单不�
   await act(async()=>host.querySelector(".workspace-editor form")!.dispatchEvent(new Event("submit",{bubbles:true,cancelable:true})));
   expect(personal[0].version).toBe("2");
   await click(host.querySelector('[aria-label="删除 Skill：我的周末清单"]')!);await click(button("确认删除"));
-  expect(personal).toEqual([]);await click(button("我的选购"));await fill("query","/");
+  expect(personal).toEqual([]);await click(host.querySelector('[aria-label="Globex 环球好物首页"]')!);await fill("query","/");
   expect(host.querySelector('[role="option"]')).toBeNull();
 });
 
@@ -119,7 +121,7 @@ it("长期偏好支持添加、精确编辑、删除，并从服务器重新加�
   await act(async()=>host.querySelector(".workspace-editor form")!.dispatchEvent(new Event("submit",{bubbles:true,cancelable:true})));
   expect(preferences).toEqual([{kind:"like",statement:"喜欢蓝色"}]);
   expect(requests.find(r=>r.body?.previous_statement)?.body.previous_statement).toBe("喜欢黑色");
-  await click(button("我的选购"));await click(button("长期偏好"));
+  await click(host.querySelector('[aria-label="Globex 环球好物首页"]')!);await click(button("长期偏好"));
   expect(host.textContent).toContain("喜欢蓝色");
   await click(host.querySelector('[aria-label="删除偏好：喜欢蓝色"]')!);
   expect(preferences).toEqual([]);
@@ -154,14 +156,15 @@ it("整理中切到 Skill 页面，后台完成后解除全局忙碌状态", asy
   expect(host.querySelector('[aria-label="停止生成"]')).toBeNull();
   expect(host.querySelector<HTMLButtonElement>('[aria-label="发送选购需求"]')!.disabled).toBe(true);
   await click(button("我的 Skill"));
-  expect(host.querySelector<HTMLInputElement>("#personal-skill-title")!.matches(":disabled")).toBe(true);
+  expect(button("新建 Skill").disabled).toBe(true);
+  expect(host.querySelector("#personal-skill-title")).toBeNull();
   expect(finishCompaction).toBeTypeOf("function");
   await act(async()=>{
     contextOperation=null;
     finishCompaction!(Response.json({status:"completed",message:"整理完成"}));
   });
-  expect(host.querySelector<HTMLInputElement>("#personal-skill-title")!.matches(":disabled")).toBe(false);
-  await click(button("我的选购"));
+  expect(button("新建 Skill").disabled).toBe(false);
+  await click(host.querySelector('[aria-label="Globex 环球好物首页"]')!);
   await click(host.querySelector(".context-meter-trigger")!);
   expect(button("整理上下文").disabled).toBe(false);
 });
@@ -213,4 +216,52 @@ it("从手机导航打开搜索时关闭抽屉，关闭搜索恢复导航按钮�
   expect(host.querySelector('.conversation-search')).toBeNull();
   expect(document.activeElement).toBe(toggle);
   expect(document.body.style.overflow).toBe("");
+});
+
+it("最近选购承担会话定位，自动化标识不占独立导航，工具过程仍在对话流", async () => {
+  sessions=[{id:"automated",title:"每周清单",updatedAt:200},{id:"manual",title:"手动比较",updatedAt:100}];
+  const original=globalThis.fetch;
+  vi.stubGlobal("fetch",vi.fn(async (input:string,init?:RequestInit) => String(input).includes('/automations/session-origins')
+    ? Response.json({session_ids:['automated']}) : original(input,init)));
+  await mount();
+  expect(button('我的选购')).toBeUndefined();
+  expect(host.querySelector('.conversation-toolbar')).toBeNull();
+  const automated=host.querySelector('.history-short.current')!;
+  expect(automated.textContent).toContain('每周清单');
+  expect(automated.getAttribute('aria-current')).toBe('page');
+  expect(automated.querySelector('[aria-label="自动化会话"]')).not.toBeNull();
+  await click(button('长期偏好'));
+  expect(host.querySelector('.history-short.current')).toBeNull();
+  await click(automated);
+  expect(host.querySelector('.history-short.current')).not.toBeNull();
+  expect(host.textContent).toContain('已从数据库恢复：automated');
+  expect(requests.filter(r=>r.path==='/commerce/ag-ui/run')).toHaveLength(0);
+});
+
+
+it("Skill 方法库默认可见，按需编辑且收起不丢草稿", async () => {
+  await mount(); await click(button("我的 Skill"));
+  expect(host.textContent).toContain("我的方法库");
+  expect(host.querySelector(".workspace-editor")).toBeNull();
+  await click(button("新建 Skill")); await fill("personal-skill-title", "未保存的旅行方法");
+  await click(host.querySelector('[role="dialog"] [aria-label="关闭"]')!);
+  expect(host.querySelector(".workspace-editor")).toBeNull();
+  await click(button("新建 Skill"));
+  expect(host.querySelector<HTMLInputElement>("#personal-skill-title")!.value).toBe("未保存的旅行方法");
+  expect(requests.some(r=>r.path==="/commerce/my-skills" && r.method==="POST")).toBe(false);
+});
+
+it("订单与收藏共享导航，收藏刷新恢复，旧历史入口回到选购", async () => {
+  sessionStorage.setItem("globex.workspace.view", "favorites");
+  await mount();
+  expect(host.querySelector('.nav-item.active')?.textContent).toBe("订单与收藏");
+  expect(host.querySelector('#favorites-tab')?.getAttribute('aria-selected')).toBe('true');
+  expect(host.querySelector('.composer-dock')).toBeNull();
+  expect([...host.querySelectorAll('.nav-item')].some(b=>b.textContent?.includes('对话历史')||b.textContent?.includes('心选收藏'))).toBe(false);
+  await click(button('我的订单'));
+  expect(requests.some(r=>r.path==='/commerce/orders')).toBe(true);
+  await act(async()=>root.unmount()); root=createRoot(host);
+  sessionStorage.setItem('globex.workspace.view','history'); await mount();
+  expect(host.querySelector('#chat-panel')).not.toBeNull();
+  expect(host.querySelector('.sidebar-search-trigger')).not.toBeNull();
 });

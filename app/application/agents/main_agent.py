@@ -229,7 +229,7 @@ class SessionRegistry:
         self._prompt_registry = prompt_registry
         self._model_registry = model_registry
 
-    async def get_or_create(self, shopping_session_id: str, *, apply_model_selection: bool = True) -> Agent:
+    async def get_or_create(self, shopping_session_id: str, *, apply_model_selection: bool = True, model_override: dict | None = None) -> Agent:
         from app.infrastructure.context import ShoppingContext
         from app.domain.session.ports.session_store import SessionOwnerMismatch, SessionStateCorrupt
         context = ShoppingContext.current()
@@ -265,12 +265,18 @@ class SessionRegistry:
                 from app.application.agents.model_selection import resolve_session_snapshot
                 snapshot = await resolve_session_snapshot(self._model_registry, context.buyer_id,
                     binding, restored, allow_pending=apply_model_selection)
+                if model_override is not None:
+                    if awaiting:
+                        raise SessionStateCorrupt("自动化不能替用户恢复待确认操作")
+                    snapshot = model_override
+                    if restored:
+                        await self.check_model_capacity(shopping_session_id, context.buyer_id, snapshot, restored)
                 ShoppingContext.set_model(snapshot,
                     await self._model_registry.runtime_for_snapshot(snapshot, buyer_id=context.buyer_id))
                 if restored and snapshot != saved and binding['pending'] == snapshot:
                     await self.check_model_capacity(shopping_session_id, context.buyer_id, snapshot, restored)
                 await self._session_store.bind_run_model(claim, snapshot,
-                    selection_revision=binding['revision'], consume_pending=apply_model_selection and not awaiting)
+                    selection_revision=binding['revision'], consume_pending=apply_model_selection and not awaiting and model_override is None)
             previous = self._claims.get(shopping_session_id)
             cached = self._agents.get(shopping_session_id)
             changed = snapshot is not None and cached is not None and cached.state.middle_context.get('globex_model') != snapshot

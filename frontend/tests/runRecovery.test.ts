@@ -318,3 +318,55 @@ it.each([false,true])("版本过期保留旧历史并仅在新会话重试一次
   expect(client.getSnapshot().confirmationError).toBeNull();
   finish();await pending;
  });
+
+
+it("自动化来源由服务端恢复，刷新及读取失败保留已知标记，不猜标题或ID", async () => {
+  let unavailable = false;
+  const fetch = async (url: string) => {
+    if (url.includes('/session-origins')) {
+      if (unavailable) throw new Error('暂时离线');
+      return json({ session_ids: ['actual-automation'] });
+    }
+    if (url.includes('/sessions?')) return json({ sessions: [
+      { id: 'actual-automation', title: '每周清单', updatedAt: 2 },
+      { id: 'automation-manual', title: '自动化只是我起的名字', updatedAt: 1 },
+    ] });
+    return json({});
+  };
+  const client = new CommerceClient({ url: '/commerce/ag-ui/run', fetch });
+  await client.initialize();
+  expect(client.getSnapshot().history[0].origin).toBe('automation');
+  expect(client.getSnapshot().history[1].origin).toBeUndefined();
+  const restored = new CommerceClient({ url: '/commerce/ag-ui/run', fetch });
+  await restored.initialize();
+  expect(restored.getSnapshot().history[0].origin).toBe('automation');
+  unavailable = true;
+  await restored.initialize();
+  expect(restored.getSnapshot().history[0].origin).toBe('automation');
+});
+
+
+it("自动化新增会话刷新目录后可以打开，不覆盖当前对话或重启模型", async () => {
+  let added = false;
+  const reads: string[] = [];
+  const client = new CommerceClient({ url: '/commerce/ag-ui/run', fetch: async (url, init) => {
+    expect(init.method).not.toBe('POST'); reads.push(String(url));
+    if (url.includes('/session-origins')) return json({ session_ids: added ? ['new-auto'] : [] });
+    if (url.includes('/sessions?')) return json({ sessions: [
+      { id:'manual', title:'当前手动会话', updatedAt:1 },
+      ...(added ? [{ id:'new-auto', title:'新自动化结果', updatedAt:2 }] : []),
+    ] });
+    const id = url.includes('/sessions/new-auto') ? 'new-auto' : 'manual';
+    return json({ run:{runId:id,threadId:id,status:'completed',state:{}}, messages:[{id,role:'assistant',content:id}] });
+  }});
+  await client.initialize();
+  expect(client.getSnapshot().sessionId).toBe('manual');
+  added = true;
+  const oldReads=reads.filter(url=>url.includes('/sessions/manual')).length;
+  await client.refreshHistory();
+  expect(client.getSnapshot().sessionId).toBe('manual');
+  expect(reads.filter(url=>url.includes('/sessions/manual')).length).toBe(oldReads);
+  client.setSession('new-auto');
+  await waitUntil(()=>client.getSnapshot().messages[0]?.content==='new-auto');
+  expect(client.getSnapshot().history.find(item=>item.id==='new-auto')?.origin).toBe('automation');
+});

@@ -125,6 +125,8 @@ class Container:
     context_service: Any = None
     model_registry: Any = None
     model_service: Any = None
+    automation_service: Any = None
+    automation_task: Any = None
 
     async def startup(self) -> None:
         """建表 / 建向量库 / 建知识库。任一失败只告警，对应能力降级但服务可用。"""
@@ -132,6 +134,11 @@ class Container:
             await self.context_service.startup()
         if self.ag_ui_runtime is not None:
             await self.ag_ui_runtime.startup()
+            from app.infrastructure.automation_store import AutomationStore
+            from app.application.automation import AutomationService
+            store = AutomationStore(self.ag_ui_runtime.journal.path)
+            await store.initialize()
+            self.automation_service = AutomationService(store, self.ag_ui_runtime, self.model_registry, self.session_store)
         if self.db_engine is not None and (self.trade_store is None or self.db_engine is not self.trade_db_engine):
             try:
                 await bootstrap_schema(self.db_engine)
@@ -148,8 +155,17 @@ class Container:
                 logger.warning("队列消费者组创建失败：%s", err)
         await bootstrap_product_index(self.product_repo, self.embedder, self.vector_index)
         await bootstrap_category_knowledge(self.knowledge_base)
+        mode = self.settings.automation_worker_mode
+        if mode not in {"embedded", "external", "off"}:
+            raise ValueError("AUTOMATION_WORKER_MODE 只支持 embedded、external、off")
+        if mode == "embedded" and self.automation_service is not None:
+            from app.application.automation import AutomationWorker
+            self.automation_task = asyncio.create_task(AutomationWorker(self.automation_service).run(), name="automation-worker")
 
     async def shutdown(self) -> None:
+        if self.automation_task is not None:
+            self.automation_task.cancel()
+            await asyncio.gather(self.automation_task, return_exceptions=True)
         if self.context_service is not None:
             await self.context_service.shutdown()
         if self.ag_ui_runtime is not None:
@@ -293,6 +309,8 @@ async def build_container() -> Container:
         hybrid_lexical_weight=settings.hybrid_lexical_weight,
         hybrid_vector_weight=settings.hybrid_vector_weight,
         recall_candidates=settings.recall_candidates,
+        field_lexical_enabled=settings.field_lexical_enabled,
+        field_weights=settings.field_lexical_weights,
     )
     place_order = PlaceOrderUseCase(confirmations)
     query_order = QueryOrderUseCase(trade_store)

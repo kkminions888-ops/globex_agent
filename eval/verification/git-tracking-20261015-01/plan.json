@@ -1,0 +1,14 @@
+{
+  "planned_untrack_count": 404,
+  "bytes": 23672670,
+  "groups": {
+    "raw_logs": 152,
+    "generated_test_reports": 14,
+    "generated_archives": 36,
+    "evaluation_databases": 2,
+    "other_generated_files": 1,
+    "test_temporary_files": 198,
+    "build_cache": 1
+  },
+  "excluded_ignored_paths": []
+}

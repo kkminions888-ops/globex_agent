@@ -1,0 +1,35 @@
+{
+  "scope": "diagnostic",
+  "status": "regression",
+  "reference_report_id": "algorithm-after-v2-bm25-holdout-02",
+  "candidate_report_id": "algorithm-after-v2-field-locked-holdout-02",
+  "reference_role_in_original_report": "candidate",
+  "note": "同份source-after上仅更改字段词法开关/锁定参数，未修改原报告role；不作标准正式验收。P95受建索引/并发影响，只作诊断。",
+  "metrics": {
+    "ndcg_at_5": {
+      "reference": 0.8414259351363097,
+      "candidate": 0.8118504747044865,
+      "delta": -0.02957546043182324
+    },
+    "recall_at_5": {
+      "reference": 0.9184027777777778,
+      "candidate": 0.8819444444444444,
+      "delta": -0.03645833333333337
+    },
+    "returned_precision": {
+      "reference": 0.4,
+      "candidate": 0.3791666666666667,
+      "delta": -0.020833333333333315
+    },
+    "empty_accuracy": {
+      "reference": 1,
+      "candidate": 1,
+      "delta": 0
+    },
+    "p95_ms": {
+      "reference": 114.6967999957269,
+      "candidate": 288.41140000440646,
+      "delta": 173.71460000867955
+    }
+  }
+}

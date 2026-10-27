@@ -1,0 +1,10 @@
+{
+  "endpoint": "https://api.siliconflow.cn/v1/chat/completions",
+  "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+  "status_code": 200,
+  "content_type": "application/json",
+  "redirect_host": null,
+  "has_content": true,
+  "has_tool_calls": false,
+  "finish_reason": "stop"
+}

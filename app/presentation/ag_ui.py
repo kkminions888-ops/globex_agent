@@ -229,6 +229,17 @@ def register_ag_ui_routes(
         except (JournalConflict, JournalForbidden, JournalNotFound) as err:
             raise translate(err) from err
 
+    @api.get("/commerce/ag-ui/runs/{run_id}/tools/{tool_call_id}/products")
+    async def tool_products(run_id: str, tool_call_id: str, request: Request, buyer_id: str = Query(min_length=1)):
+        await require_buyer(request, buyer_id)
+        try:
+            journal = runtime().journal
+            session_id = await journal.run_session_id(run_id, buyer_id)
+            await require_session(request, buyer_id, session_id, create=False)
+            return await journal.tool_products(run_id, tool_call_id, buyer_id)
+        except (JournalConflict, JournalForbidden, JournalNotFound) as err:
+            raise translate(err) from err
+
     @api.get("/commerce/ag-ui/sessions")
     async def sessions(request: Request, buyer_id: str = Query(min_length=1)):
         await require_buyer(request, buyer_id)

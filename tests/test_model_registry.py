@@ -82,13 +82,35 @@ async def test_secret_encryption_ownership_and_restart(settings):
     assert profile["key_configured"]
     assert "secret_ref" not in profile
     assert "a-different-secret" not in registry.path.read_bytes().decode(errors="ignore")
-    assert os.stat(settings.data_dir / ".secrets/model_registry.key").st_mode & 0o777 == 0o600
+    if os.name != "nt":
+        assert os.stat(settings.data_dir / ".secrets/model_registry.key").st_mode & 0o777 == 0o600
     with pytest.raises(ModelConfigurationError):
         await registry.resolve(profile["profile_id"], buyer_id="bob")
     assert all(x["profile_id"] != profile["profile_id"] for x in (await registry.catalog("bob"))["models"])
     restarted = ModelRegistry(settings, probe=good_probe)
     snapshot = await restarted.resolve(profile["profile_id"], buyer_id="alice")
     assert restarted.runtime(snapshot)["api_key"] == "a-different-secret"
+
+
+@pytest.mark.skipif(os.name != "nt", reason="Windows chmod 兼容回归")
+@pytest.mark.asyncio
+async def test_windows_registry_startup_preserves_existing_key_without_chmod(settings, monkeypatch):
+    key_path = settings.data_dir / ".secrets/model_registry.key"
+
+    def deny_chmod(*args, **kwargs):
+        raise PermissionError("Windows chmod 不可用")
+
+    with monkeypatch.context() as patcher:
+        patcher.setattr(os, "chmod", deny_chmod)
+        registry = ModelRegistry(settings, probe=good_probe)
+        await registry.initialize()
+        before = key_path.stat()
+        restarted = ModelRegistry(settings, probe=good_probe)
+        await restarted.initialize()
+        assert restarted.runtime(await restarted.resolve())["api_key"] == settings.llm_api_key
+
+    after = key_path.stat()
+    assert (after.st_size, after.st_mtime_ns) == (before.st_size, before.st_mtime_ns)
 
 
 @pytest.mark.asyncio

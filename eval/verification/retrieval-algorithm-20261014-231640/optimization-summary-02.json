@@ -1,0 +1,837 @@
+{
+  "scope": "diagnostic",
+  "comparisons": [
+    {
+      "name": "keyword-all",
+      "baseline": "algorithm-before-v2-keyword-02",
+      "candidate": "algorithm-after-v2-keyword-all-02",
+      "status": "diagnostic",
+      "metrics": [
+        {
+          "key": "ndcg_at_5",
+          "label": "NDCG@5",
+          "baseline": 0.701820740222904,
+          "candidate": 0.8936483287948119,
+          "delta": 0.19182758857190796,
+          "threshold": 0.02,
+          "passed": true,
+          "unit": "ratio"
+        },
+        {
+          "key": "recall_at_5",
+          "label": "Recall@5",
+          "baseline": 0.6822916666666666,
+          "candidate": 0.921875,
+          "delta": 0.23958333333333337,
+          "threshold": -0.01,
+          "passed": true,
+          "unit": "ratio"
+        },
+        {
+          "key": "returned_precision",
+          "label": "返回结果精度",
+          "baseline": 0.24375000000000002,
+          "candidate": 0.41250000000000003,
+          "delta": 0.16875,
+          "threshold": 0.02,
+          "passed": true,
+          "unit": "ratio"
+        },
+        {
+          "key": "empty_accuracy",
+          "label": "预期无结果准确率",
+          "baseline": 1,
+          "candidate": 1,
+          "delta": 0,
+          "threshold": 0.0,
+          "passed": true,
+          "unit": "ratio"
+        },
+        {
+          "key": "hard_constraint_violation_rate",
+          "label": "硬约束违规率",
+          "baseline": 0.0,
+          "candidate": 0.0,
+          "delta": 0.0,
+          "threshold": 0,
+          "passed": false,
+          "unit": "ratio"
+        },
+        {
+          "key": "p95_ms",
+          "label": "检索耗时 P95",
+          "baseline": 261.86309999320656,
+          "candidate": 207.21039999625646,
+          "delta": -54.652699996950105,
+          "threshold": null,
+          "passed": null,
+          "unit": "ms"
+        }
+      ],
+      "baseline_additional": {
+        "mrr_at_5": 0.859375,
+        "candidate_recall": null,
+        "candidate_trace_case_count": 0,
+        "duplicate_rate": 0.575,
+        "display_price_consistency": {
+          "checks": 320,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "sku_spec_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "selected_sku_identity": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "product_type_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "weight_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "budget_false_exclusion_rate": null,
+        "budget_eligible_gold_product_count": 0,
+        "budget_false_excluded_count": 0,
+        "unsupported_constraint_cases": 0,
+        "contract_expectation_accuracy": 0.875,
+        "rerank_calls": 0,
+        "external_api_calls": 0,
+        "call_cost": {
+          "amount": 0,
+          "currency": "CNY",
+          "scope": "offline_no_external_api"
+        }
+      },
+      "candidate_additional": {
+        "mrr_at_5": 0.88125,
+        "candidate_recall": 1.0,
+        "candidate_trace_case_count": 72,
+        "duplicate_rate": 0.0,
+        "display_price_consistency": {
+          "checks": 320,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "sku_spec_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "selected_sku_identity": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "product_type_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "weight_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "budget_false_exclusion_rate": null,
+        "budget_eligible_gold_product_count": 0,
+        "budget_false_excluded_count": 0,
+        "unsupported_constraint_cases": 0,
+        "contract_expectation_accuracy": 0.9444444444444444,
+        "rerank_calls": 0,
+        "external_api_calls": 0,
+        "call_cost": {
+          "amount": 0,
+          "currency": "CNY",
+          "scope": "offline_no_external_api"
+        }
+      },
+      "ndcg_regression_cases": 0,
+      "baseline_source": "5c3ed6b290dddd6e336143fcb2be91df4a2bff88e88ca1ac4d8f1701da4c8acb",
+      "candidate_source": "3f28502d571e5ac00c4b09cd511411fabc2c6b8567530f0918dc3831e8676228",
+      "evaluator": "25c31e0eef3a379ed3ed988eb23ee4ad5eb7fc92f3f5e219a93f1e8f99f1ec7e"
+    },
+    {
+      "name": "bm25-all",
+      "baseline": "algorithm-before-v2-bm25-02",
+      "candidate": "algorithm-after-v2-bm25-all-02",
+      "status": "diagnostic",
+      "metrics": [
+        {
+          "key": "ndcg_at_5",
+          "label": "NDCG@5",
+          "baseline": 0.8549011361411946,
+          "candidate": 0.8549011361411946,
+          "delta": 0.0,
+          "threshold": 0.02,
+          "passed": false,
+          "unit": "ratio"
+        },
+        {
+          "key": "recall_at_5",
+          "label": "Recall@5",
+          "baseline": 0.9270833333333334,
+          "candidate": 0.9270833333333334,
+          "delta": 0.0,
+          "threshold": -0.01,
+          "passed": true,
+          "unit": "ratio"
+        },
+        {
+          "key": "returned_precision",
+          "label": "返回结果精度",
+          "baseline": 0.415625,
+          "candidate": 0.415625,
+          "delta": 0.0,
+          "threshold": 0.02,
+          "passed": false,
+          "unit": "ratio"
+        },
+        {
+          "key": "empty_accuracy",
+          "label": "预期无结果准确率",
+          "baseline": 1,
+          "candidate": 1,
+          "delta": 0,
+          "threshold": 0.0,
+          "passed": true,
+          "unit": "ratio"
+        },
+        {
+          "key": "hard_constraint_violation_rate",
+          "label": "硬约束违规率",
+          "baseline": 0.0,
+          "candidate": 0.0,
+          "delta": 0.0,
+          "threshold": 0,
+          "passed": false,
+          "unit": "ratio"
+        },
+        {
+          "key": "p95_ms",
+          "label": "检索耗时 P95",
+          "baseline": 106.31129999819677,
+          "candidate": 110.91099999612197,
+          "delta": 4.5996999979252,
+          "threshold": null,
+          "passed": null,
+          "unit": "ms"
+        }
+      ],
+      "baseline_additional": {
+        "mrr_at_5": 0.8296875,
+        "candidate_recall": 0.96875,
+        "candidate_trace_case_count": 72,
+        "duplicate_rate": 0.0,
+        "display_price_consistency": {
+          "checks": 320,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "sku_spec_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "selected_sku_identity": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "product_type_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "weight_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "budget_false_exclusion_rate": null,
+        "budget_eligible_gold_product_count": 0,
+        "budget_false_excluded_count": 0,
+        "unsupported_constraint_cases": 0,
+        "contract_expectation_accuracy": 0.9722222222222222,
+        "rerank_calls": 0,
+        "external_api_calls": 0,
+        "call_cost": {
+          "amount": 0,
+          "currency": "CNY",
+          "scope": "offline_no_external_api"
+        }
+      },
+      "candidate_additional": {
+        "mrr_at_5": 0.8296875,
+        "candidate_recall": 0.96875,
+        "candidate_trace_case_count": 72,
+        "duplicate_rate": 0.0,
+        "display_price_consistency": {
+          "checks": 320,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "sku_spec_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "selected_sku_identity": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "product_type_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "weight_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "budget_false_exclusion_rate": null,
+        "budget_eligible_gold_product_count": 0,
+        "budget_false_excluded_count": 0,
+        "unsupported_constraint_cases": 0,
+        "contract_expectation_accuracy": 0.9722222222222222,
+        "rerank_calls": 0,
+        "external_api_calls": 0,
+        "call_cost": {
+          "amount": 0,
+          "currency": "CNY",
+          "scope": "offline_no_external_api"
+        }
+      },
+      "ndcg_regression_cases": 0,
+      "baseline_source": "5c3ed6b290dddd6e336143fcb2be91df4a2bff88e88ca1ac4d8f1701da4c8acb",
+      "candidate_source": "3f28502d571e5ac00c4b09cd511411fabc2c6b8567530f0918dc3831e8676228",
+      "evaluator": "25c31e0eef3a379ed3ed988eb23ee4ad5eb7fc92f3f5e219a93f1e8f99f1ec7e"
+    },
+    {
+      "name": "contracts-bm25-all",
+      "baseline": "algorithm-before-contract-bm25-02",
+      "candidate": "algorithm-after-contract-bm25-all-02",
+      "status": "diagnostic",
+      "metrics": [
+        {
+          "key": "ndcg_at_5",
+          "label": "NDCG@5",
+          "baseline": 0.7777777777777778,
+          "candidate": 1.0,
+          "delta": 0.2222222222222222,
+          "threshold": 0.02,
+          "passed": true,
+          "unit": "ratio"
+        },
+        {
+          "key": "recall_at_5",
+          "label": "Recall@5",
+          "baseline": 0.7777777777777778,
+          "candidate": 1.0,
+          "delta": 0.2222222222222222,
+          "threshold": -0.01,
+          "passed": true,
+          "unit": "ratio"
+        },
+        {
+          "key": "returned_precision",
+          "label": "返回结果精度",
+          "baseline": 0.7111111111111111,
+          "candidate": 0.9333333333333333,
+          "delta": 0.2222222222222222,
+          "threshold": 0.02,
+          "passed": true,
+          "unit": "ratio"
+        },
+        {
+          "key": "empty_accuracy",
+          "label": "预期无结果准确率",
+          "baseline": 0.5555555555555556,
+          "candidate": 1,
+          "delta": 0.4444444444444444,
+          "threshold": 0.0,
+          "passed": true,
+          "unit": "ratio"
+        },
+        {
+          "key": "hard_constraint_violation_rate",
+          "label": "硬约束违规率",
+          "baseline": 0.0,
+          "candidate": 0.0,
+          "delta": 0.0,
+          "threshold": 0,
+          "passed": true,
+          "unit": "ratio"
+        },
+        {
+          "key": "p95_ms",
+          "label": "检索耗时 P95",
+          "baseline": 2.735599991865456,
+          "candidate": 4.4098999933339655,
+          "delta": 1.6743000014685094,
+          "threshold": null,
+          "passed": null,
+          "unit": "ms"
+        }
+      ],
+      "baseline_additional": {
+        "mrr_at_5": 0.7777777777777778,
+        "candidate_recall": 1.0,
+        "candidate_trace_case_count": 1,
+        "duplicate_rate": 0.0,
+        "display_price_consistency": {
+          "checks": 15,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "sku_spec_constraint": {
+          "checks": 2,
+          "violations": 2,
+          "satisfaction": 0
+        },
+        "selected_sku_identity": {
+          "checks": 2,
+          "violations": 1,
+          "satisfaction": 0.5
+        },
+        "product_type_constraint": {
+          "checks": 2,
+          "violations": 1,
+          "satisfaction": 0.5
+        },
+        "weight_constraint": {
+          "checks": 3,
+          "violations": 2,
+          "satisfaction": 0.3333333333333333
+        },
+        "budget_false_exclusion_rate": 0.5,
+        "budget_eligible_gold_product_count": 4,
+        "budget_false_excluded_count": 2,
+        "unsupported_constraint_cases": 7,
+        "contract_expectation_accuracy": 0.6111111111111112,
+        "rerank_calls": 0,
+        "external_api_calls": 0,
+        "call_cost": {
+          "amount": 0,
+          "currency": "CNY",
+          "scope": "offline_no_external_api"
+        }
+      },
+      "candidate_additional": {
+        "mrr_at_5": 1.0,
+        "candidate_recall": 1.0,
+        "candidate_trace_case_count": 18,
+        "duplicate_rate": 0.0,
+        "display_price_consistency": {
+          "checks": 13,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "sku_spec_constraint": {
+          "checks": 1,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "selected_sku_identity": {
+          "checks": 4,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "product_type_constraint": {
+          "checks": 1,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "weight_constraint": {
+          "checks": 1,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "budget_false_exclusion_rate": 0.0,
+        "budget_eligible_gold_product_count": 4,
+        "budget_false_excluded_count": 0,
+        "unsupported_constraint_cases": 0,
+        "contract_expectation_accuracy": 1,
+        "rerank_calls": 0,
+        "external_api_calls": 0,
+        "call_cost": {
+          "amount": 0,
+          "currency": "CNY",
+          "scope": "offline_no_external_api"
+        }
+      },
+      "ndcg_regression_cases": 0,
+      "baseline_source": "5c3ed6b290dddd6e336143fcb2be91df4a2bff88e88ca1ac4d8f1701da4c8acb",
+      "candidate_source": "3f28502d571e5ac00c4b09cd511411fabc2c6b8567530f0918dc3831e8676228",
+      "evaluator": "25c31e0eef3a379ed3ed988eb23ee4ad5eb7fc92f3f5e219a93f1e8f99f1ec7e"
+    },
+    {
+      "name": "bm25-holdout",
+      "baseline": "algorithm-before-v2-bm25-holdout-02",
+      "candidate": "algorithm-after-v2-bm25-holdout-02",
+      "status": "diagnostic",
+      "metrics": [
+        {
+          "key": "ndcg_at_5",
+          "label": "NDCG@5",
+          "baseline": 0.8414259351363097,
+          "candidate": 0.8414259351363097,
+          "delta": 0.0,
+          "threshold": 0.02,
+          "passed": false,
+          "unit": "ratio"
+        },
+        {
+          "key": "recall_at_5",
+          "label": "Recall@5",
+          "baseline": 0.9184027777777778,
+          "candidate": 0.9184027777777778,
+          "delta": 0.0,
+          "threshold": -0.01,
+          "passed": true,
+          "unit": "ratio"
+        },
+        {
+          "key": "returned_precision",
+          "label": "返回结果精度",
+          "baseline": 0.4,
+          "candidate": 0.4,
+          "delta": 0.0,
+          "threshold": 0.02,
+          "passed": false,
+          "unit": "ratio"
+        },
+        {
+          "key": "empty_accuracy",
+          "label": "预期无结果准确率",
+          "baseline": 1,
+          "candidate": 1,
+          "delta": 0,
+          "threshold": 0.0,
+          "passed": true,
+          "unit": "ratio"
+        },
+        {
+          "key": "hard_constraint_violation_rate",
+          "label": "硬约束违规率",
+          "baseline": 0.0,
+          "candidate": 0.0,
+          "delta": 0.0,
+          "threshold": 0,
+          "passed": false,
+          "unit": "ratio"
+        },
+        {
+          "key": "p95_ms",
+          "label": "检索耗时 P95",
+          "baseline": 104.73289999936242,
+          "candidate": 114.6967999957269,
+          "delta": 9.96389999636449,
+          "threshold": null,
+          "passed": null,
+          "unit": "ms"
+        }
+      ],
+      "baseline_additional": {
+        "mrr_at_5": 0.815625,
+        "candidate_recall": 0.9583333333333334,
+        "candidate_trace_case_count": 54,
+        "duplicate_rate": 0.0,
+        "display_price_consistency": {
+          "checks": 240,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "sku_spec_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "selected_sku_identity": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "product_type_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "weight_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "budget_false_exclusion_rate": null,
+        "budget_eligible_gold_product_count": 0,
+        "budget_false_excluded_count": 0,
+        "unsupported_constraint_cases": 0,
+        "contract_expectation_accuracy": 0.9629629629629629,
+        "rerank_calls": 0,
+        "external_api_calls": 0,
+        "call_cost": {
+          "amount": 0,
+          "currency": "CNY",
+          "scope": "offline_no_external_api"
+        }
+      },
+      "candidate_additional": {
+        "mrr_at_5": 0.815625,
+        "candidate_recall": 0.9583333333333334,
+        "candidate_trace_case_count": 54,
+        "duplicate_rate": 0.0,
+        "display_price_consistency": {
+          "checks": 240,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "sku_spec_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "selected_sku_identity": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "product_type_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "weight_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "budget_false_exclusion_rate": null,
+        "budget_eligible_gold_product_count": 0,
+        "budget_false_excluded_count": 0,
+        "unsupported_constraint_cases": 0,
+        "contract_expectation_accuracy": 0.9629629629629629,
+        "rerank_calls": 0,
+        "external_api_calls": 0,
+        "call_cost": {
+          "amount": 0,
+          "currency": "CNY",
+          "scope": "offline_no_external_api"
+        }
+      },
+      "ndcg_regression_cases": 0,
+      "baseline_source": "5c3ed6b290dddd6e336143fcb2be91df4a2bff88e88ca1ac4d8f1701da4c8acb",
+      "candidate_source": "3f28502d571e5ac00c4b09cd511411fabc2c6b8567530f0918dc3831e8676228",
+      "evaluator": "25c31e0eef3a379ed3ed988eb23ee4ad5eb7fc92f3f5e219a93f1e8f99f1ec7e"
+    },
+    {
+      "name": "field-vs-before-bm25-holdout",
+      "baseline": "algorithm-before-v2-bm25-holdout-02",
+      "candidate": "algorithm-after-v2-field-locked-holdout-02",
+      "status": "diagnostic",
+      "metrics": [
+        {
+          "key": "ndcg_at_5",
+          "label": "NDCG@5",
+          "baseline": 0.8414259351363097,
+          "candidate": 0.8118504747044865,
+          "delta": -0.02957546043182324,
+          "threshold": 0.02,
+          "passed": false,
+          "unit": "ratio"
+        },
+        {
+          "key": "recall_at_5",
+          "label": "Recall@5",
+          "baseline": 0.9184027777777778,
+          "candidate": 0.8819444444444444,
+          "delta": -0.03645833333333337,
+          "threshold": -0.01,
+          "passed": false,
+          "unit": "ratio"
+        },
+        {
+          "key": "returned_precision",
+          "label": "返回结果精度",
+          "baseline": 0.4,
+          "candidate": 0.3791666666666667,
+          "delta": -0.020833333333333315,
+          "threshold": 0.02,
+          "passed": false,
+          "unit": "ratio"
+        },
+        {
+          "key": "empty_accuracy",
+          "label": "预期无结果准确率",
+          "baseline": 1,
+          "candidate": 1,
+          "delta": 0,
+          "threshold": 0.0,
+          "passed": true,
+          "unit": "ratio"
+        },
+        {
+          "key": "hard_constraint_violation_rate",
+          "label": "硬约束违规率",
+          "baseline": 0.0,
+          "candidate": 0.0,
+          "delta": 0.0,
+          "threshold": 0,
+          "passed": false,
+          "unit": "ratio"
+        },
+        {
+          "key": "p95_ms",
+          "label": "检索耗时 P95",
+          "baseline": 104.73289999936242,
+          "candidate": 288.41140000440646,
+          "delta": 183.67850000504404,
+          "threshold": null,
+          "passed": null,
+          "unit": "ms"
+        }
+      ],
+      "baseline_additional": {
+        "mrr_at_5": 0.815625,
+        "candidate_recall": 0.9583333333333334,
+        "candidate_trace_case_count": 54,
+        "duplicate_rate": 0.0,
+        "display_price_consistency": {
+          "checks": 240,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "sku_spec_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "selected_sku_identity": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "product_type_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "weight_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "budget_false_exclusion_rate": null,
+        "budget_eligible_gold_product_count": 0,
+        "budget_false_excluded_count": 0,
+        "unsupported_constraint_cases": 0,
+        "contract_expectation_accuracy": 0.9629629629629629,
+        "rerank_calls": 0,
+        "external_api_calls": 0,
+        "call_cost": {
+          "amount": 0,
+          "currency": "CNY",
+          "scope": "offline_no_external_api"
+        }
+      },
+      "candidate_additional": {
+        "mrr_at_5": 0.7878472222222223,
+        "candidate_recall": 0.9583333333333334,
+        "candidate_trace_case_count": 54,
+        "duplicate_rate": 0.0,
+        "display_price_consistency": {
+          "checks": 240,
+          "violations": 0,
+          "satisfaction": 1
+        },
+        "sku_spec_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "selected_sku_identity": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "product_type_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "weight_constraint": {
+          "checks": 0,
+          "violations": 0,
+          "satisfaction": null
+        },
+        "budget_false_exclusion_rate": null,
+        "budget_eligible_gold_product_count": 0,
+        "budget_false_excluded_count": 0,
+        "unsupported_constraint_cases": 0,
+        "contract_expectation_accuracy": 0.9259259259259259,
+        "rerank_calls": 0,
+        "external_api_calls": 0,
+        "call_cost": {
+          "amount": 0,
+          "currency": "CNY",
+          "scope": "offline_no_external_api"
+        }
+      },
+      "ndcg_regression_cases": 4,
+      "baseline_source": "5c3ed6b290dddd6e336143fcb2be91df4a2bff88e88ca1ac4d8f1701da4c8acb",
+      "candidate_source": "3f28502d571e5ac00c4b09cd511411fabc2c6b8567530f0918dc3831e8676228",
+      "evaluator": "25c31e0eef3a379ed3ed988eb23ee4ad5eb7fc92f3f5e219a93f1e8f99f1ec7e"
+    }
+  ],
+  "ablation": {
+    "scope": "diagnostic",
+    "status": "regression",
+    "reference_report_id": "algorithm-after-v2-bm25-holdout-02",
+    "candidate_report_id": "algorithm-after-v2-field-locked-holdout-02",
+    "reference_role_in_original_report": "candidate",
+    "note": "同份source-after上仅更改字段词法开关/锁定参数，未修改原报告role；不作标准正式验收。P95受建索引/并发影响，只作诊断。",
+    "metrics": {
+      "ndcg_at_5": {
+        "reference": 0.8414259351363097,
+        "candidate": 0.8118504747044865,
+        "delta": -0.02957546043182324
+      },
+      "recall_at_5": {
+        "reference": 0.9184027777777778,
+        "candidate": 0.8819444444444444,
+        "delta": -0.03645833333333337
+      },
+      "returned_precision": {
+        "reference": 0.4,
+        "candidate": 0.3791666666666667,
+        "delta": -0.020833333333333315
+      },
+      "empty_accuracy": {
+        "reference": 1,
+        "candidate": 1,
+        "delta": 0
+      },
+      "p95_ms": {
+        "reference": 114.6967999957269,
+        "candidate": 288.41140000440646,
+        "delta": 173.71460000867955
+      }
+    }
+  },
+  "parameters_locked": "eval/retrieval/optimization-parameters-locked-v1.json",
+  "limitations": [
+    "未混合合成契约和v2查询。",
+    "字段网格按dev选参后holdout退化，不应启用默认。",
+    "所有词法测量均无外部调用；不证明Dense/精排效果。",
+    "p95受索引构建和并发影响，不用于速度收益结论。"
+  ]
+}

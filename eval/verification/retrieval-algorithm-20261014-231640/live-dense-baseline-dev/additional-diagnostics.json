@@ -1,0 +1,1280 @@
+{
+  "report_id": "live-dense-baseline-dev",
+  "scope": "diagnostic",
+  "summary": {
+    "mrr_at_5": 0.890625,
+    "candidate_recall": null,
+    "candidate_trace_case_count": 0,
+    "duplicate_rate": 0.5875,
+    "display_price_consistency": {
+      "checks": 80,
+      "violations": 0,
+      "satisfaction": 1
+    },
+    "sku_spec_constraint": {
+      "checks": 0,
+      "violations": 0,
+      "satisfaction": null
+    },
+    "selected_sku_identity": {
+      "checks": 0,
+      "violations": 0,
+      "satisfaction": null
+    },
+    "product_type_constraint": {
+      "checks": 0,
+      "violations": 0,
+      "satisfaction": null
+    },
+    "weight_constraint": {
+      "checks": 0,
+      "violations": 0,
+      "satisfaction": null
+    },
+    "budget_false_exclusion_rate": null,
+    "budget_eligible_gold_product_count": 0,
+    "budget_false_excluded_count": 0,
+    "unsupported_constraint_cases": 0,
+    "contract_expectation_accuracy": 0.9444444444444444,
+    "rerank_calls": 0,
+    "external_api_calls": 0,
+    "call_cost": {
+      "amount": null,
+      "currency": null,
+      "scope": "replay_zero_new_calls_original_collection_cost_unknown"
+    }
+  },
+  "cases": [
+    {
+      "id": "v2-00-intent",
+      "kind": "intent",
+      "family": 0,
+      "mrr_at_5": 1.0,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3008",
+          "canonical_product_id": "CAN-GX-01-3",
+          "default_sku_id": "P3008-S1",
+          "price_major": 188.99,
+          "currency": "CNY",
+          "score": 0.7468
+        },
+        {
+          "product_id": "P3009",
+          "canonical_product_id": "CAN-GX-01-3",
+          "default_sku_id": "P3009-S1",
+          "price_major": 196.0,
+          "currency": "CNY",
+          "score": 0.7468
+        },
+        {
+          "product_id": "P3002",
+          "canonical_product_id": "CAN-GX-01-1",
+          "default_sku_id": "P3002-S1",
+          "price_major": 73.01,
+          "currency": "CNY",
+          "score": 0.7453
+        },
+        {
+          "product_id": "P3001",
+          "canonical_product_id": "CAN-GX-01-1",
+          "default_sku_id": "P3001-S2",
+          "price_major": 74.98,
+          "currency": "CNY",
+          "score": 0.7453
+        },
+        {
+          "product_id": "P3003",
+          "canonical_product_id": "CAN-GX-01-1",
+          "default_sku_id": "P3003-S1",
+          "price_major": 80.0,
+          "currency": "CNY",
+          "score": 0.7453
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-00-specification",
+      "kind": "specification",
+      "family": 0,
+      "mrr_at_5": 1.0,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3012",
+          "canonical_product_id": "CAN-GX-01-4",
+          "default_sku_id": "P3012-S1",
+          "price_major": 329.0,
+          "currency": "CNY",
+          "score": 0.7555
+        },
+        {
+          "product_id": "P3013",
+          "canonical_product_id": "CAN-GX-01-4",
+          "default_sku_id": "P3013-S1",
+          "price_major": 336.02,
+          "currency": "CNY",
+          "score": 0.7555
+        },
+        {
+          "product_id": "P3014",
+          "canonical_product_id": "CAN-GX-01-4",
+          "default_sku_id": "P3014-S1",
+          "price_major": 343.0,
+          "currency": "CNY",
+          "score": 0.7555
+        },
+        {
+          "product_id": "P3015",
+          "canonical_product_id": "CAN-GX-01-4",
+          "default_sku_id": "P3015-S1",
+          "price_major": 350.03,
+          "currency": "CNY",
+          "score": 0.7555
+        },
+        {
+          "product_id": "P3008",
+          "canonical_product_id": "CAN-GX-01-3",
+          "default_sku_id": "P3008-S1",
+          "price_major": 188.99,
+          "currency": "CNY",
+          "score": 0.7551
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-04-intent",
+      "kind": "intent",
+      "family": 4,
+      "mrr_at_5": 0.0,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": false,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3127",
+          "canonical_product_id": "CAN-GX-08-4",
+          "default_sku_id": "P3127-S1",
+          "price_major": 678.98,
+          "currency": "CNY",
+          "score": 0.7329
+        },
+        {
+          "product_id": "P3126",
+          "canonical_product_id": "CAN-GX-08-4",
+          "default_sku_id": "P3126-S1",
+          "price_major": 672.0,
+          "currency": "CNY",
+          "score": 0.7329
+        },
+        {
+          "product_id": "P3125",
+          "canonical_product_id": "CAN-GX-08-4",
+          "default_sku_id": "P3125-S1",
+          "price_major": 665.03,
+          "currency": "CNY",
+          "score": 0.7329
+        },
+        {
+          "product_id": "P3124",
+          "canonical_product_id": "CAN-GX-08-4",
+          "default_sku_id": "P3124-S1",
+          "price_major": 658.03,
+          "currency": "CNY",
+          "score": 0.7329
+        },
+        {
+          "product_id": "P3116",
+          "canonical_product_id": "CAN-GX-08-2",
+          "default_sku_id": "P3116-S1",
+          "price_major": 198.01,
+          "currency": "CNY",
+          "score": 0.7278
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-04-specification",
+      "kind": "specification",
+      "family": 4,
+      "mrr_at_5": 1.0,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3076",
+          "canonical_product_id": "CAN-GX-05-4",
+          "default_sku_id": "P3076-S1",
+          "price_major": 658.0,
+          "currency": "CNY",
+          "score": 0.7854
+        },
+        {
+          "product_id": "P3078",
+          "canonical_product_id": "CAN-GX-05-4",
+          "default_sku_id": "P3078-S1",
+          "price_major": 672.02,
+          "currency": "CNY",
+          "score": 0.7854
+        },
+        {
+          "product_id": "P3079",
+          "canonical_product_id": "CAN-GX-05-4",
+          "default_sku_id": "P3079-S1",
+          "price_major": 678.99,
+          "currency": "CNY",
+          "score": 0.7854
+        },
+        {
+          "product_id": "P3067",
+          "canonical_product_id": "CAN-GX-05-1",
+          "default_sku_id": "P3067-S1",
+          "price_major": 139.02,
+          "currency": "CNY",
+          "score": 0.7828
+        },
+        {
+          "product_id": "P3065",
+          "canonical_product_id": "CAN-GX-05-1",
+          "default_sku_id": "P3065-S1",
+          "price_major": 125.03,
+          "currency": "CNY",
+          "score": 0.7828
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-08-intent",
+      "kind": "intent",
+      "family": 8,
+      "mrr_at_5": 1.0,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3136",
+          "canonical_product_id": "CAN-GX-09-3",
+          "default_sku_id": "P3136-S1",
+          "price_major": 566.99,
+          "currency": "CNY",
+          "score": 0.7055
+        },
+        {
+          "product_id": "P3139",
+          "canonical_product_id": "CAN-GX-09-3",
+          "default_sku_id": "P3139-S1",
+          "price_major": 587.96,
+          "currency": "CNY",
+          "score": 0.7055
+        },
+        {
+          "product_id": "P3137",
+          "canonical_product_id": "CAN-GX-09-3",
+          "default_sku_id": "P3137-S1",
+          "price_major": 574.0,
+          "currency": "CNY",
+          "score": 0.7055
+        },
+        {
+          "product_id": "P3138",
+          "canonical_product_id": "CAN-GX-09-3",
+          "default_sku_id": "P3138-S1",
+          "price_major": 580.99,
+          "currency": "CNY",
+          "score": 0.7055
+        },
+        {
+          "product_id": "P3129",
+          "canonical_product_id": "CAN-GX-09-1",
+          "default_sku_id": "P3129-S1",
+          "price_major": 184.0,
+          "currency": "CNY",
+          "score": 0.7046
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-08-specification",
+      "kind": "specification",
+      "family": 8,
+      "mrr_at_5": 1.0,
+      "duplicate_count": 2,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3142",
+          "canonical_product_id": "CAN-GX-09-4",
+          "default_sku_id": "P3142-S1",
+          "price_major": 1000.97,
+          "currency": "CNY",
+          "score": 0.8669
+        },
+        {
+          "product_id": "P3141",
+          "canonical_product_id": "CAN-GX-09-4",
+          "default_sku_id": "P3141-S2",
+          "price_major": 1003.02,
+          "currency": "CNY",
+          "score": 0.8669
+        },
+        {
+          "product_id": "P3129",
+          "canonical_product_id": "CAN-GX-09-1",
+          "default_sku_id": "P3129-S1",
+          "price_major": 184.0,
+          "currency": "CNY",
+          "score": 0.8548
+        },
+        {
+          "product_id": "P3128",
+          "canonical_product_id": "CAN-GX-09-1",
+          "default_sku_id": "P3128-S1",
+          "price_major": 176.98,
+          "currency": "CNY",
+          "score": 0.8548
+        },
+        {
+          "product_id": "P3137",
+          "canonical_product_id": "CAN-GX-09-3",
+          "default_sku_id": "P3137-S1",
+          "price_major": 574.0,
+          "currency": "CNY",
+          "score": 0.854
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-12-intent",
+      "kind": "intent",
+      "family": 12,
+      "mrr_at_5": 1.0,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3193",
+          "canonical_product_id": "CAN-GX-13-1",
+          "default_sku_id": "P3193-S1",
+          "price_major": 65.98,
+          "currency": "CNY",
+          "score": 0.7449
+        },
+        {
+          "product_id": "P3195",
+          "canonical_product_id": "CAN-GX-13-1",
+          "default_sku_id": "P3195-S1",
+          "price_major": 80.02,
+          "currency": "CNY",
+          "score": 0.7449
+        },
+        {
+          "product_id": "P3194",
+          "canonical_product_id": "CAN-GX-13-1",
+          "default_sku_id": "P3194-S1",
+          "price_major": 73.0,
+          "currency": "CNY",
+          "score": 0.7449
+        },
+        {
+          "product_id": "P3192",
+          "canonical_product_id": "CAN-GX-13-1",
+          "default_sku_id": "P3192-S1",
+          "price_major": 59.0,
+          "currency": "CNY",
+          "score": 0.7449
+        },
+        {
+          "product_id": "P3202",
+          "canonical_product_id": "CAN-GX-13-3",
+          "default_sku_id": "P3202-S1",
+          "price_major": 203.03,
+          "currency": "CNY",
+          "score": 0.7354
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-12-specification",
+      "kind": "specification",
+      "family": 12,
+      "mrr_at_5": 1.0,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3206",
+          "canonical_product_id": "CAN-GX-13-4",
+          "default_sku_id": "P3206-S1",
+          "price_major": 343.0,
+          "currency": "CNY",
+          "score": 0.8325
+        },
+        {
+          "product_id": "P3207",
+          "canonical_product_id": "CAN-GX-13-4",
+          "default_sku_id": "P3207-S1",
+          "price_major": 350.01,
+          "currency": "CNY",
+          "score": 0.8325
+        },
+        {
+          "product_id": "P3204",
+          "canonical_product_id": "CAN-GX-13-4",
+          "default_sku_id": "P3204-S1",
+          "price_major": 329.01,
+          "currency": "CNY",
+          "score": 0.8325
+        },
+        {
+          "product_id": "P3205",
+          "canonical_product_id": "CAN-GX-13-4",
+          "default_sku_id": "P3205-S1",
+          "price_major": 336.02,
+          "currency": "CNY",
+          "score": 0.8325
+        },
+        {
+          "product_id": "P3203",
+          "canonical_product_id": "CAN-GX-13-3",
+          "default_sku_id": "P3203-S1",
+          "price_major": 210.0,
+          "currency": "CNY",
+          "score": 0.8266
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-16-intent",
+      "kind": "intent",
+      "family": 16,
+      "mrr_at_5": 1.0,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3259",
+          "canonical_product_id": "CAN-GX-17-1",
+          "default_sku_id": "P3259-S1",
+          "price_major": 139.0,
+          "currency": "CNY",
+          "score": 0.749
+        },
+        {
+          "product_id": "P3258",
+          "canonical_product_id": "CAN-GX-17-1",
+          "default_sku_id": "P3258-S1",
+          "price_major": 131.99,
+          "currency": "CNY",
+          "score": 0.749
+        },
+        {
+          "product_id": "P3257",
+          "canonical_product_id": "CAN-GX-17-1",
+          "default_sku_id": "P3257-S1",
+          "price_major": 125.0,
+          "currency": "CNY",
+          "score": 0.749
+        },
+        {
+          "product_id": "P3256",
+          "canonical_product_id": "CAN-GX-17-1",
+          "default_sku_id": "P3256-S1",
+          "price_major": 117.98,
+          "currency": "CNY",
+          "score": 0.749
+        },
+        {
+          "product_id": "P3267",
+          "canonical_product_id": "CAN-GX-17-3",
+          "default_sku_id": "P3267-S1",
+          "price_major": 398.98,
+          "currency": "CNY",
+          "score": 0.7461
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-16-specification",
+      "kind": "specification",
+      "family": 16,
+      "mrr_at_5": 0.25,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3266",
+          "canonical_product_id": "CAN-GX-17-3",
+          "default_sku_id": "P3266-S1",
+          "price_major": 392.0,
+          "currency": "CNY",
+          "score": 0.8575
+        },
+        {
+          "product_id": "P3265",
+          "canonical_product_id": "CAN-GX-17-3",
+          "default_sku_id": "P3265-S1",
+          "price_major": 385.01,
+          "currency": "CNY",
+          "score": 0.8575
+        },
+        {
+          "product_id": "P3267",
+          "canonical_product_id": "CAN-GX-17-3",
+          "default_sku_id": "P3267-S1",
+          "price_major": 398.98,
+          "currency": "CNY",
+          "score": 0.8575
+        },
+        {
+          "product_id": "P3268",
+          "canonical_product_id": "CAN-GX-17-4",
+          "default_sku_id": "P3268-S1",
+          "price_major": 658.01,
+          "currency": "CNY",
+          "score": 0.8508
+        },
+        {
+          "product_id": "P3269",
+          "canonical_product_id": "CAN-GX-17-4",
+          "default_sku_id": "P3269-S1",
+          "price_major": 665.0,
+          "currency": "CNY",
+          "score": 0.8508
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-20-intent",
+      "kind": "intent",
+      "family": 20,
+      "mrr_at_5": 1.0,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3321",
+          "canonical_product_id": "CAN-GX-21-1",
+          "default_sku_id": "P3321-S2",
+          "price_major": 192.98,
+          "currency": "CNY",
+          "score": 0.7808
+        },
+        {
+          "product_id": "P3323",
+          "canonical_product_id": "CAN-GX-21-1",
+          "default_sku_id": "P3323-S1",
+          "price_major": 198.0,
+          "currency": "CNY",
+          "score": 0.7808
+        },
+        {
+          "product_id": "P3322",
+          "canonical_product_id": "CAN-GX-21-1",
+          "default_sku_id": "P3322-S1",
+          "price_major": 191.02,
+          "currency": "CNY",
+          "score": 0.7808
+        },
+        {
+          "product_id": "P3328",
+          "canonical_product_id": "CAN-GX-21-3",
+          "default_sku_id": "P3328-S1",
+          "price_major": 566.98,
+          "currency": "CNY",
+          "score": 0.7622
+        },
+        {
+          "product_id": "P3329",
+          "canonical_product_id": "CAN-GX-21-3",
+          "default_sku_id": "P3329-S1",
+          "price_major": 574.0,
+          "currency": "CNY",
+          "score": 0.7622
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-20-specification",
+      "kind": "specification",
+      "family": 20,
+      "mrr_at_5": 1.0,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3335",
+          "canonical_product_id": "CAN-GX-21-4",
+          "default_sku_id": "P3335-S1",
+          "price_major": 1007.99,
+          "currency": "CNY",
+          "score": 0.8469
+        },
+        {
+          "product_id": "P3334",
+          "canonical_product_id": "CAN-GX-21-4",
+          "default_sku_id": "P3334-S1",
+          "price_major": 1001.0,
+          "currency": "CNY",
+          "score": 0.8469
+        },
+        {
+          "product_id": "P3333",
+          "canonical_product_id": "CAN-GX-21-4",
+          "default_sku_id": "P3333-S1",
+          "price_major": 994.02,
+          "currency": "CNY",
+          "score": 0.8469
+        },
+        {
+          "product_id": "P3332",
+          "canonical_product_id": "CAN-GX-21-4",
+          "default_sku_id": "P3332-S1",
+          "price_major": 987.0,
+          "currency": "CNY",
+          "score": 0.8469
+        },
+        {
+          "product_id": "P3328",
+          "canonical_product_id": "CAN-GX-21-3",
+          "default_sku_id": "P3328-S1",
+          "price_major": 566.98,
+          "currency": "CNY",
+          "score": 0.8416
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-24-intent",
+      "kind": "intent",
+      "family": 24,
+      "mrr_at_5": 1.0,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3397",
+          "canonical_product_id": "CAN-GX-25-4",
+          "default_sku_id": "P3397-S1",
+          "price_major": 336.0,
+          "currency": "CNY",
+          "score": 0.7752
+        },
+        {
+          "product_id": "P3398",
+          "canonical_product_id": "CAN-GX-25-4",
+          "default_sku_id": "P3398-S1",
+          "price_major": 343.0,
+          "currency": "CNY",
+          "score": 0.7752
+        },
+        {
+          "product_id": "P3399",
+          "canonical_product_id": "CAN-GX-25-4",
+          "default_sku_id": "P3399-S1",
+          "price_major": 349.99,
+          "currency": "CNY",
+          "score": 0.7752
+        },
+        {
+          "product_id": "P3384",
+          "canonical_product_id": "CAN-GX-25-1",
+          "default_sku_id": "P3384-S1",
+          "price_major": 59.0,
+          "currency": "CNY",
+          "score": 0.7638
+        },
+        {
+          "product_id": "P3386",
+          "canonical_product_id": "CAN-GX-25-1",
+          "default_sku_id": "P3386-S1",
+          "price_major": 73.0,
+          "currency": "CNY",
+          "score": 0.7638
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-24-specification",
+      "kind": "specification",
+      "family": 24,
+      "mrr_at_5": 1.0,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3399",
+          "canonical_product_id": "CAN-GX-25-4",
+          "default_sku_id": "P3399-S1",
+          "price_major": 349.99,
+          "currency": "CNY",
+          "score": 0.8286
+        },
+        {
+          "product_id": "P3398",
+          "canonical_product_id": "CAN-GX-25-4",
+          "default_sku_id": "P3398-S1",
+          "price_major": 343.0,
+          "currency": "CNY",
+          "score": 0.8286
+        },
+        {
+          "product_id": "P3397",
+          "canonical_product_id": "CAN-GX-25-4",
+          "default_sku_id": "P3397-S1",
+          "price_major": 336.0,
+          "currency": "CNY",
+          "score": 0.8286
+        },
+        {
+          "product_id": "P3395",
+          "canonical_product_id": "CAN-GX-25-3",
+          "default_sku_id": "P3395-S1",
+          "price_major": 210.02,
+          "currency": "CNY",
+          "score": 0.802
+        },
+        {
+          "product_id": "P3393",
+          "canonical_product_id": "CAN-GX-25-3",
+          "default_sku_id": "P3393-S1",
+          "price_major": 195.99,
+          "currency": "CNY",
+          "score": 0.802
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-28-intent",
+      "kind": "intent",
+      "family": 28,
+      "mrr_at_5": 1.0,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3449",
+          "canonical_product_id": "CAN-GX-29-1",
+          "default_sku_id": "P3449-S1",
+          "price_major": 125.0,
+          "currency": "CNY",
+          "score": 0.7448
+        },
+        {
+          "product_id": "P3448",
+          "canonical_product_id": "CAN-GX-29-1",
+          "default_sku_id": "P3448-S1",
+          "price_major": 118.01,
+          "currency": "CNY",
+          "score": 0.7448
+        },
+        {
+          "product_id": "P3455",
+          "canonical_product_id": "CAN-GX-29-2",
+          "default_sku_id": "P3455-S1",
+          "price_major": 219.04,
+          "currency": "CNY",
+          "score": 0.737
+        },
+        {
+          "product_id": "P3452",
+          "canonical_product_id": "CAN-GX-29-2",
+          "default_sku_id": "P3452-S1",
+          "price_major": 198.0,
+          "currency": "CNY",
+          "score": 0.737
+        },
+        {
+          "product_id": "P3453",
+          "canonical_product_id": "CAN-GX-29-2",
+          "default_sku_id": "P3453-S1",
+          "price_major": 205.0,
+          "currency": "CNY",
+          "score": 0.737
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-28-specification",
+      "kind": "specification",
+      "family": 28,
+      "mrr_at_5": 1.0,
+      "duplicate_count": 3,
+      "displayed_count": 5,
+      "display_price_checks": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [
+        {
+          "product_id": "P3463",
+          "canonical_product_id": "CAN-GX-29-4",
+          "default_sku_id": "P3463-S1",
+          "price_major": 679.0,
+          "currency": "CNY",
+          "score": 0.8523
+        },
+        {
+          "product_id": "P3461",
+          "canonical_product_id": "CAN-GX-29-4",
+          "default_sku_id": "P3461-S2",
+          "price_major": 674.0,
+          "currency": "CNY",
+          "score": 0.8523
+        },
+        {
+          "product_id": "P3456",
+          "canonical_product_id": "CAN-GX-29-3",
+          "default_sku_id": "P3456-S1",
+          "price_major": 378.0,
+          "currency": "CNY",
+          "score": 0.8477
+        },
+        {
+          "product_id": "P3457",
+          "canonical_product_id": "CAN-GX-29-3",
+          "default_sku_id": "P3457-S1",
+          "price_major": 385.0,
+          "currency": "CNY",
+          "score": 0.8477
+        },
+        {
+          "product_id": "P3458",
+          "canonical_product_id": "CAN-GX-29-3",
+          "default_sku_id": "P3458-S1",
+          "price_major": 391.99,
+          "currency": "CNY",
+          "score": 0.8477
+        }
+      ],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32
+      ]
+    },
+    {
+      "id": "v2-empty-0",
+      "kind": "empty",
+      "family": "empty-0",
+      "mrr_at_5": null,
+      "duplicate_count": 0,
+      "displayed_count": 0,
+      "display_price_checks": [],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ]
+    },
+    {
+      "id": "v2-empty-4",
+      "kind": "empty",
+      "family": "empty-4",
+      "mrr_at_5": null,
+      "duplicate_count": 0,
+      "displayed_count": 0,
+      "display_price_checks": [],
+      "sku_spec_checks": [],
+      "selected_sku_checks": [],
+      "type_checks": [],
+      "weight_checks": [],
+      "candidate_recall": null,
+      "candidate_canonical_count": null,
+      "contract_expectation_met": true,
+      "budget_eligible_gold_product_count": 0,
+      "budget_false_excluded_product_ids": [],
+      "unsupported_constraints": [],
+      "retrieved": [],
+      "recall_strategy": "embedding_only",
+      "rerank_applied": false,
+      "retrieval_stages": {},
+      "frozen_vector_requested_sizes": [
+        32,
+        64,
+        128,
+        256
+      ]
+    }
+  ],
+  "shared_live_call_ledger": "../live-query-vectors.json",
+  "limitations": [
+    "共享真实查询及全目录候选，未调用精排。",
+    "回放耗时不能代表在线总耗时。"
+  ]
+}

@@ -1,0 +1,1385 @@
+[
+  {
+    "id": "h1-dev-sku",
+    "split": "dev",
+    "title": "不同SKU价格",
+    "mode": "snapshot",
+    "rounds": 0,
+    "question": "请从第一批商品中找出全部黑色规格（包括石墨黑、曜石黑等黑色命名），每项列出完整 sku_id、对应历史单价和原报价币种。只列黑色 SKU，不列其它颜色。",
+    "contains": [
+      "P28102-S2",
+      "P28103-S1",
+      "P28104-S1"
+    ],
+    "requires_current": false,
+    "template_id": "dev-sku",
+    "fixture": {
+      "catalog": [
+        {
+          "brand": "Nomadica",
+          "canonical_product_id": "CAN-LEGACY-000",
+          "category": "旅行装备",
+          "description": "帆布加尼龙材质 结实耐磨 抗造 轻便 含再生尼龙 小众设计师品牌 适合长途飞行 旅行收纳",
+          "dimensions_cm": {
+            "height": 4,
+            "length": 12,
+            "width": 8
+          },
+          "external_product_id": "amazon-P28101",
+          "highlights": [
+            {
+              "detail": "帆布+再生尼龙（含合成聚合物）",
+              "label": "材质"
+            },
+            {
+              "detail": "全套 420g 轻便",
+              "label": "重量"
+            },
+            {
+              "detail": "小众设计师联名款",
+              "label": "风格"
+            }
+          ],
+          "material_tags": [
+            "合成聚合物"
+          ],
+          "origin_country": "VN",
+          "product_id": "P28101",
+          "rating_summary": {
+            "average": 4.0,
+            "review_count": 30
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "SG"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 189.0,
+              "sku_id": "P28101-S1",
+              "spec": "军绿色",
+              "stock": 50
+            },
+            {
+              "currency": "CNY",
+              "price_major": 245,
+              "sku_id": "P28101-S2",
+              "spec": "沙漠黄",
+              "stock": 30
+            }
+          ],
+          "source_platform": "amazon",
+          "tax_category": "旅行装备",
+          "title": "Nomadica 旅行三件套（收纳袋+颈枕+眼罩）",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.15
+        },
+        {
+          "brand": "TrailOx",
+          "canonical_product_id": "CAN-LEGACY-001",
+          "category": "旅行装备",
+          "description": "铝镁合金框架 PC箱体 结实抗摔 抗造 万向静音轮 TSA海关锁 登机尺寸 商务旅行",
+          "dimensions_cm": {
+            "height": 5,
+            "length": 13,
+            "width": 9
+          },
+          "external_product_id": "ebay-P28102",
+          "highlights": [
+            {
+              "detail": "德国工艺铝框，抗摔",
+              "label": "箱体"
+            },
+            {
+              "detail": "日本静音万向轮",
+              "label": "轮组"
+            }
+          ],
+          "material_tags": [
+            "天然材料"
+          ],
+          "origin_country": "DE",
+          "product_id": "P28102",
+          "rating_summary": {
+            "average": 4.1,
+            "review_count": 41
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "EU"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 899.0,
+              "sku_id": "P28102-S1",
+              "spec": "银色 / 20寸",
+              "stock": 20
+            },
+            {
+              "currency": "CNY",
+              "price_major": 899.0,
+              "sku_id": "P28102-S2",
+              "spec": "黑色 / 20寸",
+              "stock": 15
+            }
+          ],
+          "source_platform": "ebay",
+          "tax_category": "旅行装备",
+          "title": "TrailOx 20寸登机行李箱 铝框款",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.24
+        },
+        {
+          "brand": "Wanderlite",
+          "canonical_product_id": "CAN-LEGACY-002",
+          "category": "旅行装备",
+          "description": "防泼水尼龙 超轻 可折叠收纳 大容量 35升 徒步 城市通勤 便宜实惠 高性价比",
+          "dimensions_cm": {
+            "height": 6,
+            "length": 14,
+            "width": 10
+          },
+          "external_product_id": "etsy-P28103",
+          "highlights": [
+            {
+              "detail": "仅 380g 超轻",
+              "label": "重量"
+            },
+            {
+              "detail": "可折叠成手掌大小",
+              "label": "收纳"
+            }
+          ],
+          "material_tags": [
+            "合成聚合物"
+          ],
+          "origin_country": "KR",
+          "product_id": "P28103",
+          "rating_summary": {
+            "average": 4.2,
+            "review_count": 52
+          },
+          "ships_to": [
+            "CN",
+            "JP",
+            "SG"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 165,
+              "sku_id": "P28103-S1",
+              "spec": "石墨黑",
+              "stock": 37
+            },
+            {
+              "currency": "CNY",
+              "price_major": 182,
+              "sku_id": "P28103-S2",
+              "spec": "雾霾蓝",
+              "stock": 82
+            }
+          ],
+          "source_platform": "etsy",
+          "tax_category": "旅行装备",
+          "title": "Wanderlite 折叠旅行双肩包 35L",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.33
+        },
+        {
+          "brand": "AeroHush",
+          "canonical_product_id": "CAN-LEGACY-003",
+          "category": "数码配件",
+          "description": "主动降噪 蓝牙5.4 40小时续航 通话降噪 飞行旅行伴侣 头戴式 折叠便携",
+          "dimensions_cm": {
+            "height": 7,
+            "length": 15,
+            "width": 11
+          },
+          "external_product_id": "walmart-P28104",
+          "highlights": [
+            {
+              "detail": "-45dB 深度主动降噪",
+              "label": "降噪"
+            },
+            {
+              "detail": "40 小时长续航",
+              "label": "续航"
+            }
+          ],
+          "material_tags": [
+            "天然材料"
+          ],
+          "origin_country": "US",
+          "product_id": "P28104",
+          "rating_summary": {
+            "average": 4.3,
+            "review_count": 63
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "EU"
+          ],
+          "skus": [
+            {
+              "currency": "USD",
+              "price_major": 219.0,
+              "sku_id": "P28104-S1",
+              "spec": "曜石黑",
+              "stock": 40
+            },
+            {
+              "currency": "USD",
+              "price_major": 229.0,
+              "sku_id": "P28104-S2",
+              "spec": "月光白",
+              "stock": 25
+            }
+          ],
+          "source_platform": "walmart",
+          "tax_category": "数码配件",
+          "title": "AeroHush 主动降噪蓝牙耳机 Pro",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.42
+        },
+        {
+          "brand": "VoltTrek",
+          "canonical_product_id": "CAN-LEGACY-004",
+          "category": "数码配件",
+          "description": "氮化镓 GaN 65W 快充 全球通用插脚 英标欧标美标 出国旅行 多口 Type-C 轻巧",
+          "dimensions_cm": {
+            "height": 8,
+            "length": 16,
+            "width": 12
+          },
+          "external_product_id": "amazon-P28105",
+          "highlights": [
+            {
+              "detail": "全球 150+ 国家通用",
+              "label": "插脚"
+            },
+            {
+              "detail": "65W 双口快充",
+              "label": "功率"
+            }
+          ],
+          "material_tags": [
+            "天然材料"
+          ],
+          "origin_country": "CN",
+          "product_id": "P28105",
+          "rating_summary": {
+            "average": 4.4,
+            "review_count": 74
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "EU",
+            "JP"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 159.0,
+              "sku_id": "P28105-S1",
+              "spec": "标准版",
+              "stock": 100
+            }
+          ],
+          "source_platform": "amazon",
+          "tax_category": "数码配件",
+          "title": "VoltTrek 65W 氮化镓旅行充电器（全球插脚）",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.51
+        }
+      ],
+      "selected_sku": "P28103-S1",
+      "excluded_product": "P28102",
+      "current": {
+        "product_id": "P28103",
+        "sku_id": "P28103-S1",
+        "price_major": 199,
+        "currency": "CNY",
+        "stock": 7,
+        "order_id": "ORD-EVAL",
+        "order_status": "CANCELLED",
+        "preferences": [],
+        "notice": "长期塑料排除偏好已删除，不再要求排除塑料。"
+      },
+      "initial": "预算485元，寄到中国。",
+      "change": "预算改为335元，寄到德国。选中P28103-S1，不要下单。P28102太贵，淘汰。",
+      "destination": "DE",
+      "shipping": 28,
+      "shipping_delta": 10,
+      "tax": 4,
+      "rounds": 24,
+      "change_round": 6,
+      "compact_rounds": [
+        9,
+        18
+      ],
+      "restart_round": 14,
+      "description_repetitions": 4
+    },
+    "critical": true,
+    "layer": "context",
+    "tags": [
+      "context",
+      "snapshot",
+      "sku"
+    ],
+    "expected_black_skus": [
+      {
+        "sku_id": "P28102-S2",
+        "price_major": 899.0,
+        "currency": "CNY"
+      },
+      {
+        "sku_id": "P28103-S1",
+        "price_major": 165,
+        "currency": "CNY"
+      },
+      {
+        "sku_id": "P28104-S1",
+        "price_major": 219.0,
+        "currency": "USD"
+      }
+    ]
+  },
+  {
+    "id": "h1-dev-budget",
+    "split": "dev",
+    "title": "预算变更",
+    "mode": "snapshot",
+    "rounds": 0,
+    "question": "现在本次选购预算上限是多少元？只回答数字和币种。",
+    "contains": [
+      "366",
+      "CNY"
+    ],
+    "requires_current": false,
+    "template_id": "dev-budget",
+    "fixture": {
+      "catalog": [
+        {
+          "brand": "Nomadica",
+          "canonical_product_id": "CAN-LEGACY-000",
+          "category": "旅行装备",
+          "description": "帆布加尼龙材质 结实耐磨 抗造 轻便 含再生尼龙 小众设计师品牌 适合长途飞行 旅行收纳",
+          "dimensions_cm": {
+            "height": 4,
+            "length": 12,
+            "width": 8
+          },
+          "external_product_id": "amazon-P28141",
+          "highlights": [
+            {
+              "detail": "帆布+再生尼龙（含合成聚合物）",
+              "label": "材质"
+            },
+            {
+              "detail": "全套 420g 轻便",
+              "label": "重量"
+            },
+            {
+              "detail": "小众设计师联名款",
+              "label": "风格"
+            }
+          ],
+          "material_tags": [
+            "合成聚合物"
+          ],
+          "origin_country": "VN",
+          "product_id": "P28141",
+          "rating_summary": {
+            "average": 4.0,
+            "review_count": 30
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "SG"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 189.0,
+              "sku_id": "P28141-S1",
+              "spec": "军绿色",
+              "stock": 50
+            },
+            {
+              "currency": "CNY",
+              "price_major": 242,
+              "sku_id": "P28141-S2",
+              "spec": "沙漠黄",
+              "stock": 30
+            }
+          ],
+          "source_platform": "amazon",
+          "tax_category": "旅行装备",
+          "title": "Nomadica 旅行三件套（收纳袋+颈枕+眼罩）",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.15
+        },
+        {
+          "brand": "TrailOx",
+          "canonical_product_id": "CAN-LEGACY-001",
+          "category": "旅行装备",
+          "description": "铝镁合金框架 PC箱体 结实抗摔 抗造 万向静音轮 TSA海关锁 登机尺寸 商务旅行",
+          "dimensions_cm": {
+            "height": 5,
+            "length": 13,
+            "width": 9
+          },
+          "external_product_id": "ebay-P28142",
+          "highlights": [
+            {
+              "detail": "德国工艺铝框，抗摔",
+              "label": "箱体"
+            },
+            {
+              "detail": "日本静音万向轮",
+              "label": "轮组"
+            }
+          ],
+          "material_tags": [
+            "天然材料"
+          ],
+          "origin_country": "DE",
+          "product_id": "P28142",
+          "rating_summary": {
+            "average": 4.1,
+            "review_count": 41
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "EU"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 899.0,
+              "sku_id": "P28142-S1",
+              "spec": "银色 / 20寸",
+              "stock": 20
+            },
+            {
+              "currency": "CNY",
+              "price_major": 899.0,
+              "sku_id": "P28142-S2",
+              "spec": "黑色 / 20寸",
+              "stock": 15
+            }
+          ],
+          "source_platform": "ebay",
+          "tax_category": "旅行装备",
+          "title": "TrailOx 20寸登机行李箱 铝框款",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.24
+        },
+        {
+          "brand": "Wanderlite",
+          "canonical_product_id": "CAN-LEGACY-002",
+          "category": "旅行装备",
+          "description": "防泼水尼龙 超轻 可折叠收纳 大容量 35升 徒步 城市通勤 便宜实惠 高性价比",
+          "dimensions_cm": {
+            "height": 6,
+            "length": 14,
+            "width": 10
+          },
+          "external_product_id": "etsy-P28143",
+          "highlights": [
+            {
+              "detail": "仅 380g 超轻",
+              "label": "重量"
+            },
+            {
+              "detail": "可折叠成手掌大小",
+              "label": "收纳"
+            }
+          ],
+          "material_tags": [
+            "合成聚合物"
+          ],
+          "origin_country": "KR",
+          "product_id": "P28143",
+          "rating_summary": {
+            "average": 4.2,
+            "review_count": 52
+          },
+          "ships_to": [
+            "CN",
+            "JP",
+            "SG"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 189,
+              "sku_id": "P28143-S1",
+              "spec": "石墨黑",
+              "stock": 48
+            },
+            {
+              "currency": "CNY",
+              "price_major": 206,
+              "sku_id": "P28143-S2",
+              "spec": "雾霾蓝",
+              "stock": 66
+            }
+          ],
+          "source_platform": "etsy",
+          "tax_category": "旅行装备",
+          "title": "Wanderlite 折叠旅行双肩包 35L",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.33
+        },
+        {
+          "brand": "AeroHush",
+          "canonical_product_id": "CAN-LEGACY-003",
+          "category": "数码配件",
+          "description": "主动降噪 蓝牙5.4 40小时续航 通话降噪 飞行旅行伴侣 头戴式 折叠便携",
+          "dimensions_cm": {
+            "height": 7,
+            "length": 15,
+            "width": 11
+          },
+          "external_product_id": "walmart-P28144",
+          "highlights": [
+            {
+              "detail": "-45dB 深度主动降噪",
+              "label": "降噪"
+            },
+            {
+              "detail": "40 小时长续航",
+              "label": "续航"
+            }
+          ],
+          "material_tags": [
+            "天然材料"
+          ],
+          "origin_country": "US",
+          "product_id": "P28144",
+          "rating_summary": {
+            "average": 4.3,
+            "review_count": 63
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "EU"
+          ],
+          "skus": [
+            {
+              "currency": "USD",
+              "price_major": 219.0,
+              "sku_id": "P28144-S1",
+              "spec": "曜石黑",
+              "stock": 40
+            },
+            {
+              "currency": "USD",
+              "price_major": 229.0,
+              "sku_id": "P28144-S2",
+              "spec": "月光白",
+              "stock": 25
+            }
+          ],
+          "source_platform": "walmart",
+          "tax_category": "数码配件",
+          "title": "AeroHush 主动降噪蓝牙耳机 Pro",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.42
+        },
+        {
+          "brand": "VoltTrek",
+          "canonical_product_id": "CAN-LEGACY-004",
+          "category": "数码配件",
+          "description": "氮化镓 GaN 65W 快充 全球通用插脚 英标欧标美标 出国旅行 多口 Type-C 轻巧",
+          "dimensions_cm": {
+            "height": 8,
+            "length": 16,
+            "width": 12
+          },
+          "external_product_id": "amazon-P28145",
+          "highlights": [
+            {
+              "detail": "全球 150+ 国家通用",
+              "label": "插脚"
+            },
+            {
+              "detail": "65W 双口快充",
+              "label": "功率"
+            }
+          ],
+          "material_tags": [
+            "天然材料"
+          ],
+          "origin_country": "CN",
+          "product_id": "P28145",
+          "rating_summary": {
+            "average": 4.4,
+            "review_count": 74
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "EU",
+            "JP"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 159.0,
+              "sku_id": "P28145-S1",
+              "spec": "标准版",
+              "stock": 100
+            }
+          ],
+          "source_platform": "amazon",
+          "tax_category": "数码配件",
+          "title": "VoltTrek 65W 氮化镓旅行充电器（全球插脚）",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.51
+        }
+      ],
+      "selected_sku": "P28143-S1",
+      "excluded_product": "P28142",
+      "current": {
+        "product_id": "P28143",
+        "sku_id": "P28143-S1",
+        "price_major": 171,
+        "currency": "CNY",
+        "stock": 11,
+        "order_id": "ORD-EVAL",
+        "order_status": "CANCELLED",
+        "preferences": [],
+        "notice": "长期塑料排除偏好已删除，不再要求排除塑料。"
+      },
+      "initial": "预算516元，寄到中国。",
+      "change": "预算改为366元，寄到英国。选中P28143-S1，不要下单。P28142太贵，淘汰。",
+      "destination": "GB",
+      "shipping": 27,
+      "shipping_delta": 17,
+      "tax": 2,
+      "rounds": 24,
+      "change_round": 6,
+      "compact_rounds": [
+        9,
+        18
+      ],
+      "restart_round": 14,
+      "description_repetitions": 2
+    },
+    "critical": true,
+    "layer": "context",
+    "tags": [
+      "context",
+      "snapshot",
+      "budget"
+    ]
+  },
+  {
+    "id": "h1-dev-stock",
+    "split": "dev",
+    "title": "当前库存",
+    "mode": "snapshot",
+    "rounds": 0,
+    "question": "请重新核对P28173-S1当前库存，不要用历史库存。",
+    "contains": [
+      "3"
+    ],
+    "requires_current": true,
+    "template_id": "dev-stock",
+    "fixture": {
+      "catalog": [
+        {
+          "brand": "Nomadica",
+          "canonical_product_id": "CAN-LEGACY-000",
+          "category": "旅行装备",
+          "description": "帆布加尼龙材质 结实耐磨 抗造 轻便 含再生尼龙 小众设计师品牌 适合长途飞行 旅行收纳",
+          "dimensions_cm": {
+            "height": 4,
+            "length": 12,
+            "width": 8
+          },
+          "external_product_id": "amazon-P28171",
+          "highlights": [
+            {
+              "detail": "帆布+再生尼龙（含合成聚合物）",
+              "label": "材质"
+            },
+            {
+              "detail": "全套 420g 轻便",
+              "label": "重量"
+            },
+            {
+              "detail": "小众设计师联名款",
+              "label": "风格"
+            }
+          ],
+          "material_tags": [
+            "合成聚合物"
+          ],
+          "origin_country": "VN",
+          "product_id": "P28171",
+          "rating_summary": {
+            "average": 4.0,
+            "review_count": 30
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "SG"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 189.0,
+              "sku_id": "P28171-S1",
+              "spec": "军绿色",
+              "stock": 50
+            },
+            {
+              "currency": "CNY",
+              "price_major": 257,
+              "sku_id": "P28171-S2",
+              "spec": "沙漠黄",
+              "stock": 30
+            }
+          ],
+          "source_platform": "amazon",
+          "tax_category": "旅行装备",
+          "title": "Nomadica 旅行三件套（收纳袋+颈枕+眼罩）",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.15
+        },
+        {
+          "brand": "TrailOx",
+          "canonical_product_id": "CAN-LEGACY-001",
+          "category": "旅行装备",
+          "description": "铝镁合金框架 PC箱体 结实抗摔 抗造 万向静音轮 TSA海关锁 登机尺寸 商务旅行",
+          "dimensions_cm": {
+            "height": 5,
+            "length": 13,
+            "width": 9
+          },
+          "external_product_id": "ebay-P28172",
+          "highlights": [
+            {
+              "detail": "德国工艺铝框，抗摔",
+              "label": "箱体"
+            },
+            {
+              "detail": "日本静音万向轮",
+              "label": "轮组"
+            }
+          ],
+          "material_tags": [
+            "天然材料"
+          ],
+          "origin_country": "DE",
+          "product_id": "P28172",
+          "rating_summary": {
+            "average": 4.1,
+            "review_count": 41
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "EU"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 899.0,
+              "sku_id": "P28172-S1",
+              "spec": "银色 / 20寸",
+              "stock": 20
+            },
+            {
+              "currency": "CNY",
+              "price_major": 899.0,
+              "sku_id": "P28172-S2",
+              "spec": "黑色 / 20寸",
+              "stock": 15
+            }
+          ],
+          "source_platform": "ebay",
+          "tax_category": "旅行装备",
+          "title": "TrailOx 20寸登机行李箱 铝框款",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.24
+        },
+        {
+          "brand": "Wanderlite",
+          "canonical_product_id": "CAN-LEGACY-002",
+          "category": "旅行装备",
+          "description": "防泼水尼龙 超轻 可折叠收纳 大容量 35升 徒步 城市通勤 便宜实惠 高性价比",
+          "dimensions_cm": {
+            "height": 6,
+            "length": 14,
+            "width": 10
+          },
+          "external_product_id": "etsy-P28173",
+          "highlights": [
+            {
+              "detail": "仅 380g 超轻",
+              "label": "重量"
+            },
+            {
+              "detail": "可折叠成手掌大小",
+              "label": "收纳"
+            }
+          ],
+          "material_tags": [
+            "合成聚合物"
+          ],
+          "origin_country": "KR",
+          "product_id": "P28173",
+          "rating_summary": {
+            "average": 4.2,
+            "review_count": 52
+          },
+          "ships_to": [
+            "CN",
+            "JP",
+            "SG"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 209,
+              "sku_id": "P28173-S1",
+              "spec": "石墨黑",
+              "stock": 51
+            },
+            {
+              "currency": "CNY",
+              "price_major": 226,
+              "sku_id": "P28173-S2",
+              "spec": "雾霾蓝",
+              "stock": 63
+            }
+          ],
+          "source_platform": "etsy",
+          "tax_category": "旅行装备",
+          "title": "Wanderlite 折叠旅行双肩包 35L",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.33
+        },
+        {
+          "brand": "AeroHush",
+          "canonical_product_id": "CAN-LEGACY-003",
+          "category": "数码配件",
+          "description": "主动降噪 蓝牙5.4 40小时续航 通话降噪 飞行旅行伴侣 头戴式 折叠便携",
+          "dimensions_cm": {
+            "height": 7,
+            "length": 15,
+            "width": 11
+          },
+          "external_product_id": "walmart-P28174",
+          "highlights": [
+            {
+              "detail": "-45dB 深度主动降噪",
+              "label": "降噪"
+            },
+            {
+              "detail": "40 小时长续航",
+              "label": "续航"
+            }
+          ],
+          "material_tags": [
+            "天然材料"
+          ],
+          "origin_country": "US",
+          "product_id": "P28174",
+          "rating_summary": {
+            "average": 4.3,
+            "review_count": 63
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "EU"
+          ],
+          "skus": [
+            {
+              "currency": "USD",
+              "price_major": 219.0,
+              "sku_id": "P28174-S1",
+              "spec": "曜石黑",
+              "stock": 40
+            },
+            {
+              "currency": "USD",
+              "price_major": 229.0,
+              "sku_id": "P28174-S2",
+              "spec": "月光白",
+              "stock": 25
+            }
+          ],
+          "source_platform": "walmart",
+          "tax_category": "数码配件",
+          "title": "AeroHush 主动降噪蓝牙耳机 Pro",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.42
+        },
+        {
+          "brand": "VoltTrek",
+          "canonical_product_id": "CAN-LEGACY-004",
+          "category": "数码配件",
+          "description": "氮化镓 GaN 65W 快充 全球通用插脚 英标欧标美标 出国旅行 多口 Type-C 轻巧",
+          "dimensions_cm": {
+            "height": 8,
+            "length": 16,
+            "width": 12
+          },
+          "external_product_id": "amazon-P28175",
+          "highlights": [
+            {
+              "detail": "全球 150+ 国家通用",
+              "label": "插脚"
+            },
+            {
+              "detail": "65W 双口快充",
+              "label": "功率"
+            }
+          ],
+          "material_tags": [
+            "天然材料"
+          ],
+          "origin_country": "CN",
+          "product_id": "P28175",
+          "rating_summary": {
+            "average": 4.4,
+            "review_count": 74
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "EU",
+            "JP"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 159.0,
+              "sku_id": "P28175-S1",
+              "spec": "标准版",
+              "stock": 100
+            }
+          ],
+          "source_platform": "amazon",
+          "tax_category": "数码配件",
+          "title": "VoltTrek 65W 氮化镓旅行充电器（全球插脚）",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.51
+        }
+      ],
+      "selected_sku": "P28173-S1",
+      "excluded_product": "P28172",
+      "current": {
+        "product_id": "P28173",
+        "sku_id": "P28173-S1",
+        "price_major": 183,
+        "currency": "CNY",
+        "stock": 3,
+        "order_id": "ORD-EVAL",
+        "order_status": "CANCELLED",
+        "preferences": [],
+        "notice": "长期塑料排除偏好已删除，不再要求排除塑料。"
+      },
+      "initial": "预算497元，寄到中国。",
+      "change": "预算改为347元，寄到德国。选中P28173-S1，不要下单。P28172太贵，淘汰。",
+      "destination": "DE",
+      "shipping": 23,
+      "shipping_delta": 12,
+      "tax": 8,
+      "rounds": 24,
+      "change_round": 4,
+      "compact_rounds": [
+        9,
+        18
+      ],
+      "restart_round": 14,
+      "description_repetitions": 8
+    },
+    "critical": true,
+    "layer": "context",
+    "tags": [
+      "context",
+      "snapshot",
+      "stock"
+    ]
+  },
+  {
+    "id": "h1-dev-cost",
+    "split": "dev",
+    "title": "费用组成",
+    "mode": "snapshot",
+    "rounds": 0,
+    "question": "第一批P28183的到手价和运费分别是多少？用元回答。",
+    "contains": [
+      "222",
+      "26"
+    ],
+    "requires_current": false,
+    "template_id": "dev-cost",
+    "fixture": {
+      "catalog": [
+        {
+          "brand": "Nomadica",
+          "canonical_product_id": "CAN-LEGACY-000",
+          "category": "旅行装备",
+          "description": "帆布加尼龙材质 结实耐磨 抗造 轻便 含再生尼龙 小众设计师品牌 适合长途飞行 旅行收纳",
+          "dimensions_cm": {
+            "height": 4,
+            "length": 12,
+            "width": 8
+          },
+          "external_product_id": "amazon-P28181",
+          "highlights": [
+            {
+              "detail": "帆布+再生尼龙（含合成聚合物）",
+              "label": "材质"
+            },
+            {
+              "detail": "全套 420g 轻便",
+              "label": "重量"
+            },
+            {
+              "detail": "小众设计师联名款",
+              "label": "风格"
+            }
+          ],
+          "material_tags": [
+            "合成聚合物"
+          ],
+          "origin_country": "VN",
+          "product_id": "P28181",
+          "rating_summary": {
+            "average": 4.0,
+            "review_count": 30
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "SG"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 189.0,
+              "sku_id": "P28181-S1",
+              "spec": "军绿色",
+              "stock": 50
+            },
+            {
+              "currency": "CNY",
+              "price_major": 262,
+              "sku_id": "P28181-S2",
+              "spec": "沙漠黄",
+              "stock": 30
+            }
+          ],
+          "source_platform": "amazon",
+          "tax_category": "旅行装备",
+          "title": "Nomadica 旅行三件套（收纳袋+颈枕+眼罩）",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.15
+        },
+        {
+          "brand": "TrailOx",
+          "canonical_product_id": "CAN-LEGACY-001",
+          "category": "旅行装备",
+          "description": "铝镁合金框架 PC箱体 结实抗摔 抗造 万向静音轮 TSA海关锁 登机尺寸 商务旅行",
+          "dimensions_cm": {
+            "height": 5,
+            "length": 13,
+            "width": 9
+          },
+          "external_product_id": "ebay-P28182",
+          "highlights": [
+            {
+              "detail": "德国工艺铝框，抗摔",
+              "label": "箱体"
+            },
+            {
+              "detail": "日本静音万向轮",
+              "label": "轮组"
+            }
+          ],
+          "material_tags": [
+            "天然材料"
+          ],
+          "origin_country": "DE",
+          "product_id": "P28182",
+          "rating_summary": {
+            "average": 4.1,
+            "review_count": 41
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "EU"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 899.0,
+              "sku_id": "P28182-S1",
+              "spec": "银色 / 20寸",
+              "stock": 20
+            },
+            {
+              "currency": "CNY",
+              "price_major": 899.0,
+              "sku_id": "P28182-S2",
+              "spec": "黑色 / 20寸",
+              "stock": 15
+            }
+          ],
+          "source_platform": "ebay",
+          "tax_category": "旅行装备",
+          "title": "TrailOx 20寸登机行李箱 铝框款",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.24
+        },
+        {
+          "brand": "Wanderlite",
+          "canonical_product_id": "CAN-LEGACY-002",
+          "category": "旅行装备",
+          "description": "防泼水尼龙 超轻 可折叠收纳 大容量 35升 徒步 城市通勤 便宜实惠 高性价比",
+          "dimensions_cm": {
+            "height": 6,
+            "length": 14,
+            "width": 10
+          },
+          "external_product_id": "etsy-P28183",
+          "highlights": [
+            {
+              "detail": "仅 380g 超轻",
+              "label": "重量"
+            },
+            {
+              "detail": "可折叠成手掌大小",
+              "label": "收纳"
+            }
+          ],
+          "material_tags": [
+            "合成聚合物"
+          ],
+          "origin_country": "KR",
+          "product_id": "P28183",
+          "rating_summary": {
+            "average": 4.2,
+            "review_count": 52
+          },
+          "ships_to": [
+            "CN",
+            "JP",
+            "SG"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 189,
+              "sku_id": "P28183-S1",
+              "spec": "石墨黑",
+              "stock": 32
+            },
+            {
+              "currency": "CNY",
+              "price_major": 206,
+              "sku_id": "P28183-S2",
+              "spec": "雾霾蓝",
+              "stock": 86
+            }
+          ],
+          "source_platform": "etsy",
+          "tax_category": "旅行装备",
+          "title": "Wanderlite 折叠旅行双肩包 35L",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.33
+        },
+        {
+          "brand": "AeroHush",
+          "canonical_product_id": "CAN-LEGACY-003",
+          "category": "数码配件",
+          "description": "主动降噪 蓝牙5.4 40小时续航 通话降噪 飞行旅行伴侣 头戴式 折叠便携",
+          "dimensions_cm": {
+            "height": 7,
+            "length": 15,
+            "width": 11
+          },
+          "external_product_id": "walmart-P28184",
+          "highlights": [
+            {
+              "detail": "-45dB 深度主动降噪",
+              "label": "降噪"
+            },
+            {
+              "detail": "40 小时长续航",
+              "label": "续航"
+            }
+          ],
+          "material_tags": [
+            "天然材料"
+          ],
+          "origin_country": "US",
+          "product_id": "P28184",
+          "rating_summary": {
+            "average": 4.3,
+            "review_count": 63
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "EU"
+          ],
+          "skus": [
+            {
+              "currency": "USD",
+              "price_major": 219.0,
+              "sku_id": "P28184-S1",
+              "spec": "曜石黑",
+              "stock": 40
+            },
+            {
+              "currency": "USD",
+              "price_major": 229.0,
+              "sku_id": "P28184-S2",
+              "spec": "月光白",
+              "stock": 25
+            }
+          ],
+          "source_platform": "walmart",
+          "tax_category": "数码配件",
+          "title": "AeroHush 主动降噪蓝牙耳机 Pro",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.42
+        },
+        {
+          "brand": "VoltTrek",
+          "canonical_product_id": "CAN-LEGACY-004",
+          "category": "数码配件",
+          "description": "氮化镓 GaN 65W 快充 全球通用插脚 英标欧标美标 出国旅行 多口 Type-C 轻巧",
+          "dimensions_cm": {
+            "height": 8,
+            "length": 16,
+            "width": 12
+          },
+          "external_product_id": "amazon-P28185",
+          "highlights": [
+            {
+              "detail": "全球 150+ 国家通用",
+              "label": "插脚"
+            },
+            {
+              "detail": "65W 双口快充",
+              "label": "功率"
+            }
+          ],
+          "material_tags": [
+            "天然材料"
+          ],
+          "origin_country": "CN",
+          "product_id": "P28185",
+          "rating_summary": {
+            "average": 4.4,
+            "review_count": 74
+          },
+          "ships_to": [
+            "CN",
+            "US",
+            "EU",
+            "JP"
+          ],
+          "skus": [
+            {
+              "currency": "CNY",
+              "price_major": 159.0,
+              "sku_id": "P28185-S1",
+              "spec": "标准版",
+              "stock": 100
+            }
+          ],
+          "source_platform": "amazon",
+          "tax_category": "数码配件",
+          "title": "VoltTrek 65W 氮化镓旅行充电器（全球插脚）",
+          "updated_at": "2026-08-01",
+          "weight_kg": 0.51
+        }
+      ],
+      "selected_sku": "P28183-S1",
+      "excluded_product": "P28182",
+      "current": {
+        "product_id": "P28183",
+        "sku_id": "P28183-S1",
+        "price_major": 211,
+        "currency": "CNY",
+        "stock": 10,
+        "order_id": "ORD-EVAL",
+        "order_status": "CANCELLED",
+        "preferences": [],
+        "notice": "长期塑料排除偏好已删除，不再要求排除塑料。"
+      },
+      "initial": "预算519元，寄到中国。",
+      "change": "预算改为369元，寄到英国。选中P28183-S1，不要下单。P28182太贵，淘汰。",
+      "destination": "GB",
+      "shipping": 26,
+      "shipping_delta": 15,
+      "tax": 7,
+      "rounds": 24,
+      "change_round": 6,
+      "compact_rounds": [
+        9,
+        18
+      ],
+      "restart_round": 14,
+      "description_repetitions": 2
+    },
+    "critical": true,
+    "layer": "context",
+    "tags": [
+      "context",
+      "snapshot",
+      "cost"
+    ]
+  },
+  {
+    "id": "agent-sku",
+    "split": "dev",
+    "title": "精确 SKU 核验与更新预算",
+    "layer": "agent",
+    "mode": "workflow",
+    "scenario": "sku",
+    "critical": true,
+    "tags": [
+      "agent",
+      "sku"
+    ]
+  },
+  {
+    "id": "agent-approval",
+    "split": "dev",
+    "title": "订单准备、拒绝和恢复",
+    "layer": "agent",
+    "mode": "workflow",
+    "scenario": "approval",
+    "critical": true,
+    "tags": [
+      "agent",
+      "approval"
+    ]
+  }
+]

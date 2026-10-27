@@ -1,0 +1,13 @@
+{
+  "id": "flat-32",
+  "field_weights": {
+    "title": 1,
+    "brand": 1,
+    "model": 1,
+    "category": 1,
+    "description": 1,
+    "highlights": 1,
+    "material": 1
+  },
+  "recall_candidates": 32
+}

@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import os
+import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -132,6 +133,7 @@ class Settings:
     otel_service_name: str = "globex-agent"
     otlp_timeout_seconds: float = 5.0
     session_owner_binding: bool = True
+    automation_worker_mode: str = "embedded"  # embedded / external / off
     identity_mode: str = "demo"
     prompt_pin_version: str = ""
     metrics_reader_buyers: tuple[str, ...] = ()
@@ -144,6 +146,8 @@ class Settings:
     hybrid_lexical_weight: float = 1.0
     hybrid_vector_weight: float = 1.0
     recall_candidates: int = 32
+    field_lexical_enabled: bool = False  # 实验字段召回；收益门禁通过前不默认启用。
+    field_lexical_weights: dict[str, float] | None = None
     embedding_version: str = ""  # 同名模型更新权重或编码方式时，用版本区分已存向量
 
 
@@ -193,6 +197,8 @@ def load_settings(*, require_llm_key: bool = True) -> Settings:
         hybrid_lexical_weight=float(os.getenv("HYBRID_LEXICAL_WEIGHT", "1")),
         hybrid_vector_weight=float(os.getenv("HYBRID_VECTOR_WEIGHT", "1")),
         recall_candidates=int(os.getenv("RECALL_CANDIDATES", "32")),
+        field_lexical_enabled=os.getenv("FIELD_LEXICAL_ENABLED", "0") in ("1", "true", "True"),
+        field_lexical_weights=json.loads(os.environ["FIELD_LEXICAL_WEIGHTS"]) if os.getenv("FIELD_LEXICAL_WEIGHTS") else None,
         port=int(os.getenv("PORT", "8000")),
         log_level=os.getenv("LOG_LEVEL", "info"),
         # embedding 默认复用 LLM 网关（OpenAI 兼容 /v1/embeddings）
@@ -262,6 +268,7 @@ def load_settings(*, require_llm_key: bool = True) -> Settings:
         otel_service_name=os.getenv("OTEL_SERVICE_NAME", "globex-agent"),
         otlp_timeout_seconds=float(os.getenv("OTEL_EXPORTER_OTLP_TRACES_TIMEOUT") or os.getenv("OTEL_EXPORTER_OTLP_TIMEOUT", "5")),
         session_owner_binding=os.getenv("SESSION_OWNER_BINDING", "1") not in ("0", "false", "False"),
+        automation_worker_mode=os.getenv("AUTOMATION_WORKER_MODE", "embedded"),
         identity_mode=os.getenv("IDENTITY_MODE", "demo"),
         prompt_pin_version=os.getenv("PROMPT_PIN_VERSION", ""),
         metrics_reader_buyers=tuple(item.strip() for item in os.getenv("METRICS_READER_BUYERS", "").split(",") if item.strip()),

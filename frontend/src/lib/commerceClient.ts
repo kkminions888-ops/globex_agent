@@ -307,6 +307,7 @@ export class CommerceClient {
   private mutationId: string | undefined;
   private confirmationRevision = 0;
   private serverHistory: SessionSummary[] = [];
+  private directoryRevision = 0;
   private historyRevision = 0;
   private skillsRevision = 0;
   private activityRevision = 0;
@@ -666,19 +667,28 @@ export class CommerceClient {
     return data;
   }
 
-  initialize = async (): Promise<void> => {
+  refreshHistory = (): Promise<void> => this.initialize(false);
+
+  initialize = async (restoreSession = true): Promise<void> => {
     if (!/\/ag-ui\/run\/?$/.test(this.options.url)) return;
-    const revision = ++this.historyRevision;
+    const revision = ++this.directoryRevision;
+    const historyRevision = this.historyRevision;
     try {
-      const [data, formData] = await Promise.all([
+      const [data, formData, originData] = await Promise.all([
         this.journalRequest("/sessions"),
         this.workspaceRequest("/shopping-forms").catch(()=>null),
+        this.workspaceRequest("/automations/session-origins").catch(()=>null),
       ]);
-      if (revision !== this.historyRevision) return;
+      if (revision !== this.directoryRevision) return;
+      // 来源来自持久执行关联；短暂读取失败时保留已知标记，不猜会话 ID 或标题。
+      const automated = new Set(Array.isArray(originData?.session_ids)
+        ? originData.session_ids.filter((id): id is string => typeof id === "string")
+        : this.serverHistory.filter(item => item.origin === "automation").map(item => item.id));
       this.serverHistory = Array.isArray(data.sessions) ? data.sessions.filter(isRecord).flatMap((item) =>
         typeof item.id === "string" && typeof item.title === "string" && typeof item.updatedAt === "number"
-          ? [{ id: item.id, title: item.title, updatedAt: item.updatedAt, source: "server" as const }] : []) : [];
+          ? [{ id: item.id, title: item.title, updatedAt: item.updatedAt, source: "server" as const, ...(automated.has(item.id) ? { origin: "automation" as const } : {}) }] : []) : [];
       this.update({ history: this.history(), historyError: null });
+      if (!restoreSession || historyRevision !== this.historyRevision) return;
       const form = isRecord(formData?.form) ? formData.form : null;
       const latestHistoryTime = Math.max(0,...this.serverHistory.map(item=>item.updatedAt));
       const restoreForm = form && typeof form.session_id==="string" && typeof form.created_at==="number"
@@ -698,7 +708,7 @@ export class CommerceClient {
         await this.loadSession(chosen.id);
       }
     } catch {
-      if (revision === this.historyRevision) this.update({ historyError: "服务端历史暂不可用，当前显示本机缓存。" });
+      if (revision === this.directoryRevision) this.update({ historyError: "服务端历史暂不可用，当前显示本机缓存。" });
     }
   };
 
@@ -820,7 +830,7 @@ export class CommerceClient {
     const separator = path.includes("?") ? "&" : "?";
     const response = await (this.options.fetch ?? globalThis.fetch)(`${base}${path}${separator}buyer_id=${encodeURIComponent(this.buyerId)}`, {
       method, headers: { ...this.authHeaders(), ...(body ? { "Content-Type": "application/json" } : {}) },
-      body: body ? JSON.stringify((path === "/context/compact" || path.startsWith("/models/") || path.startsWith("/model-connections") || /^\/sessions\/[^/]+\/model$/.test(path)) ? {...body,buyer_id:this.buyerId} : body) : undefined,
+      body: body ? JSON.stringify((path === "/context/compact" || path.startsWith("/models/") || path.startsWith("/model-connections") || /^\/sessions\/[^/]+\/model$/.test(path) || /^\/(automations|automation-runs)(\/|$)/.test(path)) ? {...body,buyer_id:this.buyerId} : body) : undefined,
     });
     const data: unknown = await response.json().catch(() => { throw new Error("服务暂时不可用，请稍后重试。输入已保留。"); });
     if (!response.ok) {
